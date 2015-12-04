@@ -1,1 +1,1 @@
-### JavaScript basics - BMI challenge
+## JavaScript basics - BMI challenge
