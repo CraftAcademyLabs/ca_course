@@ -1,1 +1,1 @@
-### Ruby basics - ATM Challenge
+## Ruby basics - ATM Challenge
