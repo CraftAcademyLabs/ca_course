@@ -9,5 +9,5 @@
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * Extras
-   * Development Environment Setup
+   * [Development Environment Setup](Development Environment Setup/development_environment_setup.md)
 
