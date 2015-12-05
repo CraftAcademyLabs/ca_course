@@ -138,9 +138,6 @@ $ bundle install
 We'll be covering bundler and gems more extensively later on when we work with our challenges. 
 
 
-
-
-
 #### Git
 Git is a version control system that we'll be using extensively during the course. Version Control lets you track your files, changes and avoid general chaos over time. 
 
@@ -156,7 +153,7 @@ $ git --version
 git version 2.4.4
 ```
 
-#### TextMate
+#### Atom
 At the beginning of the course (week 1 - 6) we'll be using a text editor to write code. There are many editors out there we can use. [Sublime](http://www.sublimetext.com/) is one, [TextMate](https://macromates.com/) is another, but our editor of choice for this course is [Atom](https://atom.io). It is brought to us by the good people of GitHub and comes with over 3000 extension packages - all open sourced.
 
 *"Atom is a text editor that's modern, approachable, yet hackable to the core—a tool you can customize to do anything but also use productively without ever touching a config file."* - https://atom.io
