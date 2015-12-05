@@ -1,6 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
+* [Your first website](first_deploy/first_deploy.md)
 * [ATM Challenge - Ruby basics](atm_challenge/atm_challenge.md)
 * [BMI Challenge - JavaScript basics](bmi_challenge/bmi_challenge.md)
 * [Library challenge - Advanced Ruby](library_challenge/library_challenge.md)
@@ -11,5 +12,4 @@
 * Extras
    * [Development Environment Setup](Development Environment Setup/development_environment_setup.md)
    * [Working in the Cloud](working_in_the_cloud/working_in_the_cloud.md)
-* [Your first website](first_deploy/first_deploy.md)
 
