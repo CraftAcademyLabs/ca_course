@@ -2,11 +2,7 @@
 
 One of the first things you need to do before you start going through the challenges in this course is to set up the environment with all the applications you need to be able to write and run code. This is optional though. 
 
-You can go through the entire course using services such as [Cloud9](https://c9.io/) or [Koding](https://koding.com/). Using any of these services means you get access to a system “in the cloud” that you can reach from your web browser. You can access the hosted development environment from any computer that is connected to the internet. 
-
-Both Cloud9 and Koding have free plans and both allow several developers to collaborate and share code. Another handy service you can use to share code (but not execute it) is [Kobra.io](https://kobra.io) that also comes with handy video chat. 
-
-If you want to know more about Cloud services and how to set them up, please see chapter [Working in the Cloud](/working_in_the_cloud.md)
+Every step in this material can be completed using a hosted development enviroment. If you want to know more about Cloud services and how to set them up, please see chapter [Working in the Cloud](/working_in_the_cloud.md)
 
 Alright, let's focus on how to set up your local development environment. We'll be covering both OSX and Linux, so jump to whatever section suites you. 
 
@@ -73,7 +69,7 @@ If you get the response `Your system is ready to brew`, you're all set.
 
 #### RVM
 
-Ruby Environment Manager (RVM) is a tool that allows you to install, manage and work with multiple ruby environments.RVM lets you deploy each project with its own completely self-contained and dedicated environment, from the specific version of ruby, all the way down to the precise set of required gems to run your application.
+Ruby Environment Manager (RVM) is a tool that allows you to install, manage and work with multiple ruby environments. RVM lets you deploy each project with its own completely self-contained and dedicated environment, from the specific version of ruby, all the way down to the precise set of required gems to run your application.
 
 To install RVM, run the following command in your terminal:
 
