@@ -68,18 +68,28 @@ If you get the response `Your system is ready to brew`, you're all set.
 
 #### RVM
 
-Ruby Environment Manager (RVM) is a tool that allows you to install, manage and work with multiple ruby environments.
+Ruby Environment Manager (RVM) is a tool that allows you to install, manage and work with multiple ruby environments.RVM lets you deploy each project with its own completely self-contained and dedicated environment, from the specific version of ruby, all the way down to the precise set of required gems to run your application.
 
 To install RVM, run the following command in your terminal:
 
 ```shell
+$ gpg --keyserver hkp://keys.gnupg.net --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3
 $ curl -L https://get.rvm.io | bash -s stable --auto-dotfiles --autolibs=enable --ruby
 ```
 Once the installation is complete you must load RVM to make RVM available in your current session. Otherwise you'll need to restart your terminal. Run the following command in terminal:
 
 ```shell
-source ~/.rvm/scripts/rvm
+$ source ~/.rvm/scripts/rvm
 ```
+
+Verify your install:
+
+```shell
+$ type rvm | head -1
+rvm is a function
+```
+
+If you get the response `rvm is a function` it means you're all good.
 
 Now you can check what ruby version/versions you have installed on your machine with the `list` command:
 
@@ -95,9 +105,9 @@ $ rvm install 2.2.0  #or whatever version you need
 Switching between versions is done with the `use` command:
 
 ```shell
-rvm use 2.2.0
+$ rvm use 2.2.0
 ```
-Read the [RVM documentation](https://github.com/rvm/rvm#rvm) to see all the different options you can use.
+Read the [RVM documentation](https://github.com/rvm/rvm#action) to see all the different actions you can use.
 
 
 #### Git
@@ -114,6 +124,24 @@ And verify your installation:
 $ git --version
 git version 2.4.4
 ```
+
+#### TextMate
+At the beginning of the course (week 1 - 6) we'll be using a text editor to write code. There are many editors out there we can use. [Sublime](http://www.sublimetext.com/) is one, [TextMate](https://macromates.com/) is another, but our editor of choice for this course is [Atom](https://atom.io). It is brought to us by the good people of GitHub and comes with over 3000 extension packages - all open sourced.
+
+*"Atom is a text editor that's modern, approachable, yet hackable to the core—a tool you can customize to do anything but also use productively without ever touching a config file."* - https://atom.io
+
+Download and install Atom by following the instructions. Once you are done you can browse around for some packages you might find useful. Or you wait with that until you actually know what 'useful' is in the context of coding. If you want to find out more about how to install Atom packages head over to the excellent [documentation](https://atom.io/docs/v1.2.4/using-atom-atom-packages) site. 
+
+For now, what you really want to do is to set Atom as the default editor fir Git (trust me, you'll going to need it):
+
+```shell
+$ git config --global core.editor "atom --wait"
+```
+
+
+
+
+
 
 
 
