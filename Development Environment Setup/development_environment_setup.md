@@ -51,8 +51,71 @@ Apple LLVM version 7.0.0 (clang-700.1.76)
 Target: x86_64-apple-darwin14.5.0
 Thread model: posix
 ```
+#### Homebrew
+[Homebrew](http://brew.sh/) is “the missing package manager for OSX” written in Ruby. It allows you to easily install hundreds of open-source tools. Homebrew complements OSX. Install your gems with `gem install`, and their dependencies with `brew install`.
 
-RVM
+In your terminal, run the following command:
+```shell
+$ ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+```
+
+Once the installation is successful, run the following command:
+
+```shell
+$ brew doctor
+```
+If you get the response `Your system is ready to brew`, you're all set.
+
+#### RVM
+
+Ruby Environment Manager (RVM) is a tool that allows you to install, manage and work with multiple ruby environments.
+
+To install RVM, run the following command in your terminal:
+
+```shell
+$ curl -L https://get.rvm.io | bash -s stable --auto-dotfiles --autolibs=enable --ruby
+```
+Once the installation is complete you must load RVM to make RVM available in your current session. Otherwise you'll need to restart your terminal. Run the following command in terminal:
+
+```shell
+source ~/.rvm/scripts/rvm
+```
+
+Now you can check what ruby version/versions you have installed on your machine with the `list` command:
+
+```shell
+$ rvm list
+```
+
+And install new rubies with:
+```shell
+$ rvm install 2.2.0  #or whatever version you need
+```
+
+Switching between versions is done with the `use` command:
+
+```shell
+rvm use 2.2.0
+```
+Read the [RVM documentation](https://github.com/rvm/rvm#rvm) to see all the different options you can use.
+
+
+#### Git
+Git is a version control system that we'll be using extensively during the course. Version Control lets you track your files, changes and avoid general chaos over time. 
+
+With Homebrew, installing Git is easy:
+
+```shell
+$ brew install git
+```
+And verify your installation: 
+
+```shell
+$ git --version
+git version 2.4.4
+```
+
+
 
 
 
