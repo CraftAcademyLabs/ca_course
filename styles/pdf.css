@@ -5,4 +5,7 @@ code {
     margin-right:5%;
     max-width:90%;
     word-wrap:break-word;
+    border-style: solid;
+    border-color: grey;
+    border-width: 1px;
 }
