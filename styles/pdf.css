@@ -1,11 +1,11 @@
 /* CSS for pdf */
 
 code {
-    margin-left:5%;
-    margin-right:5%;
-    max-width:90%;
+    margin-left:5% !important;
+    margin-right:5% !important;
+    max-width:90% !important;
     word-wrap:break-word;
-    border-style: solid;
-    border-color: grey;
-    border-width: 1px;
+    border-style: solid !important;
+    border-color: grey !important;
+    border-width: 1px !important;
 }
