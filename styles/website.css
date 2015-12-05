@@ -1,1 +1,10 @@
 /* CSS for website */
+code {
+    margin-left:5% !important;
+    margin-right:5% !important;
+    max-width:90% !important;
+    word-wrap:break-word;
+    border-style: solid !important;
+    border-color: grey !important;
+    border-width: 1px !important;
+}
