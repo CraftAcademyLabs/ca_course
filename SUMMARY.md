@@ -10,5 +10,5 @@
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * Extras
    * [Development Environment Setup](Development Environment Setup/development_environment_setup.md)
-   * Working in the Cloud
+   * [Working in the Cloud](working_in_the_cloud/working_in_the_cloud.md)
 
