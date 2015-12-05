@@ -1,10 +1,10 @@
 ## Your first website
 
-It's all about the web. During this course we'll be building a lot of applications - to start with we'll be writing small pieces of software that will be run on our own computers. Relatively soon we'll move on to more advanced applications built to be deployed an run on a web server.
+It's all about the web. During this course we'll be building a lot of applications. For starters we'll be writing small pieces of software that will be run on our own computers. Relatively soon we'll move on to more advanced applications built to be deployed an run on a web server.
 
-The idea is that you get to master the different techniques before we introduce another layer of complexity. We have to learn how to crawl before we can run an marathon.
+The idea is that you get to master the different techniques before we introduce another layer of complexity. Before you know it we'll be deploying fully featured, dynamic web apps on virtual servers. But not today. We have to learn how to crawl before we can run an marathon.
 
-In this exercise we will start scratching the surface of html and css and build a small static web page - and deploy it on the internet for everybody to see. We'll also get a chance to practice some git-skills - an essential part of your skill-set. 
+In this exercise we will start scratching the surface of html and css and build a small static web page - and deploy it on the internet for everybody to see. We'll also get a chance to practice some git-skills - an essential part of your skill-set as a developer. 
 
 ** Note: *The following walk-through inspired by the step-by-step guide you can find on https://pages.github.com/* **
 
@@ -18,11 +18,11 @@ Head over to GitHub and create a new repository named `username.github.io`, wher
 
 In your terminal, go to the folder where you want to store your project, and clone the new repository:
 
-```shell
+```html
 $ git clone https://github.com/username/username.github.io
 $ cd username.github.io
-$ echo "Hello World!" > index.html
-$ echo "I'm <your name>, and I attend the Craft Academy Bootcamp" >> intex.html
+$ echo "<h1>Hello World</h1>" > index.html
+$  echo "<p>I'm Thomas, and I attend the Craft Academy Bootcamp<p>" >> index.html
 ```
 
 Use Git to commit, and push your changes to GitHub:
@@ -35,5 +35,7 @@ $ git push origin master
 ** Open your browser and go to `username.github.io`. **
 
 You have just deployed your first web site. 
+
+![](../images/github_io_step2.png)
 
 
