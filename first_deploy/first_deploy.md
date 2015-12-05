@@ -12,7 +12,7 @@ All of us are using GitHub for storage of our code in the cloud and for collabor
 
 One of the many features of GitHub offers is the possibility of to create web sites for users and projects. We'll take advantage of that feature to publish a personal web site.
 
-Head over to GitHub and create a new repository named `username.github.io`, where username is your username on GitHub. In my case it would be:  `tochman.github.io`. If the first part of the repository name doesn’t exactly match your username, it won’t work, so make sure to get it right.
+Head over to GitHub and create a new repository named `username.github.io`, where username is your username on GitHub. In my case it would be:  `tochman.github.io`. If the first part of the repository name doesn't exactly match your username, it won't work, so make sure to get it right.
 
 ![](../images/github_io_step1.png)
 
