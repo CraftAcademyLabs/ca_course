@@ -48,11 +48,10 @@ exclamations:
   - `obj.remove_name!`
 
 #### Variables
-(http://rubylearning.com/satishtalim/ruby_names.html)
 
 Variables in Ruby can contain data of any type. You can use variables in your Ruby programs without any declarations. Variable name itself denotes its scope (local, global, instance, etc.).
 
-- A local variable (declared within an object) name consists of a lowercase letter (or an underscore) followed by name characters (sunil, _z, hit_and_run).
+- A local variable (declared within an object) name consists of a lowercase letter (or an underscore) followed by name characters (`balance`, `cyrrent_collection`).
 - An instance variable name starts with an `@` sign followed by a name (`@sign`, `@name`, etc).
-- A class variable name start with a double "at" sign (@@) and may be followed by digits, underscores, and letters, e.g. @@colour
-- Global variables start with a dollar sign (''$'') followed by name characters. A global variable name can be formed using ''$-'' followed by any single character ($counter, $COUNTER, $-x). Ruby defines a number of global variables that include other punctuation characters, such as $_ and $-K.
+- A class variable name start with a double `@` sign (`@@`) and may be followed by digits, underscores, and letters, e.g. `@@colour`
+- Global variables starts with a dollar ($) sign followed by other characters, e.g. `$global`
