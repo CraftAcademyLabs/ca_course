@@ -1,6 +1,6 @@
 /* CSS for pdf */
 
-pre {
+code {
     max-width:200px;
     word-wrap:break-word;
 }
