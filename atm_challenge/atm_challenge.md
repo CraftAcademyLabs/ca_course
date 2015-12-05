@@ -2,7 +2,7 @@
 
 ### Learning experience
 - Learn about Ruby classes, modules and methods
-- Learn about unit testing with Rspec
+- Learn about unit testing with RSpec
 - Learn how to use `push` and `pop` on an `Array` object
 - Learn about naming standards
 
