@@ -1,7 +1,7 @@
 ## Ruby basics - ATM Challenge
 
 ### Learning experience
-- Learn about Ruby Classes and methods
+- Learn about Ruby classes, modules and methods
 - Learn about unit testing with Rspec
 - Learn how to use `push` and `pop` on an `Array` object
 - Learn about naming standards
@@ -25,7 +25,7 @@ The following objectives must be met:
 ### Naming standards
 You are free to set your own class and methods names. 
 #### Classes and Modules 
-Class and Module names starts with an uppercase letter, by convention they are named using MixedCase, e.g. module Encryption, class MixedCase
+Class and Module names starts with an uppercase letter, by convention they are named using `MixedCase`, e.g. `module Withdraval`, `class AccountHolder`.
 
 #### Methods
 Method names should begin with a lowercase letter (or an underscore). Apart from letters, only `?`, `!` and `=` characters are allowed as method name suffixes. This is a list of suggestions on naming standards for different kind of methods:
@@ -49,7 +49,7 @@ exclamations:
 
 #### Variables
 
-Variables in Ruby can contain data of any type. You can use variables in your Ruby programs without any declarations. Variable name itself denotes its scope (local, global, instance, etc.).
+Variables in Ruby can contain data of any type. You can use variables in your Ruby programs without any declarations. Variable name itself denotes its scope (local, global, instance, class.).
 
 - A local variable (declared within an object) name consists of a lowercase letter (or an underscore) followed by name characters (`balance`, `cyrrent_collection`).
 - An instance variable name starts with an `@` sign followed by a name (`@sign`, `@name`, etc).
