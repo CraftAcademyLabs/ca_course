@@ -4,7 +4,10 @@ It's all about the web. During this course we'll be building a lot of applicatio
 
 The idea is that you get to master the different techniques before we introduce another layer of complexity. Before you know it we'll be deploying fully featured, dynamic web apps on virtual servers. But not today. Today we'll learn how to crawl so that we can run an marathon in the future.
 
+#### Learning experience
 In this exercise we will start scratching the surface of html and css and build a small static web page - and deploy it on the internet for everybody to see. We'll also get a chance to practice some git-skills - an essential part of your skill-set as a developer. 
+
+#### Walkthrough
 
 ** Note: *The following walk-through inspired by the step-by-step guide you can find on https://pages.github.com/* **
 
