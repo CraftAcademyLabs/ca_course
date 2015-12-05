@@ -12,5 +12,40 @@ Are you a Windows user? Well, two things; '*I'm sorry to hear that*' and '*Pleas
 
 ### OSX
 
+Launch the Terminal, found in `/Applications/Utilities/`
+
+#### Xcode Command Line Tools
+[Xcode](https://developer.apple.com/xcode/) is an integrated development environment (IDE) with a suite of tools for developing software for OS X and iOS. But Xcode is more than what just meets the eye. Ruby gems often use so called "native extensions", that connects them with other non-Ruby components on your machine. Without Xcode installed, you don't have a C/C++/Objective-C compiler installed and can not use those extensions. While installing Xcode you also install LLVM, GCC, and many other developer tools. 
+
+For the purpose of this course, we are going to install Xcode Command Line Tools, a part of the Xcode IDE, without installing the entire Xcode package. 
+
+Check if Xcode Command Line Tools are installed:
+```shell
+$ xcode-select -p
+```
+
+Install:
+```shell
+$ xcode-select --install
+```
+
+Verify installation:
+```shell
+$ xcode-select -p
+/Library/Developer/CommandLineTools
+# or: 
+/Applications/Xcode.app/Contents/Developer
+```
+
+Also, verify that LLVM-GCC is installed:
+
+```shell
+$ gcc --version
+Configured with: --prefix=/Applications/Xcode.app/Contents/Developer/usr --with-gxx-include-dir=/usr/include/c++/4.2.1
+Apple LLVM version 7.0.0 (clang-700.1.76)
+Target: x86_64-apple-darwin14.5.0
+Thread model: posix
+```
+
 
 
