@@ -8,7 +8,7 @@ In this exercise we will start scratching the surface of html and css and build 
 
 ** Note: *The following walk-through inspired by the step-by-step guide you can find on https://pages.github.com/* **
 
-All of us are using GitHub for storage of our code in the cloud and for collaboration. If you still don't have a GitHub account - then you should definitely [head over to their site](https://github.com) and do it ASAP.
+All of us are using GitHub for storage of our code in the cloud and for collaboration. If you still don't have a GitHub account - then you should definitely head over to their site and [set up an account ASAP](https://github.com).
 
 One of the many features of GitHub offers is the possibility of to create web sites for users and projects. We'll take advantage of that feature to publish a personal web site.
 
