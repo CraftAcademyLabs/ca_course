@@ -28,6 +28,11 @@ Install:
 ```shell
 $ xcode-select --install
 ```
+![Step1](../images/xcode_clt_step1.png)
+![Step2](../images/xcode_clt_step2.png)
+![Step3](../images/xcode_clt_step3.png)
+![Step4](../images/xcode_clt_step4.png)
+
 
 Verify installation:
 ```shell
@@ -46,6 +51,8 @@ Apple LLVM version 7.0.0 (clang-700.1.76)
 Target: x86_64-apple-darwin14.5.0
 Thread model: posix
 ```
+
+RVM
 
 
 
