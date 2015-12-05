@@ -109,6 +109,37 @@ $ rvm use 2.2.0
 ```
 Read the [RVM documentation](https://github.com/rvm/rvm#action) to see all the different actions you can use.
 
+#### Bundler
+Bundler is a program for managing gem dependencies in your Ruby projects. With Bundler you can specify which gems your program needs, what versions they should be at, it can help you install them, load them at runtime and distribute them with your software.
+
+*"Bundler provides a consistent environment for Ruby projects by tracking and installing the exact gems and versions that are needed."* - http://bundler.io/
+
+You install it with a terminal command:
+
+```shell
+$ gem install bundler
+```
+
+Now, you can keep control of which gems you programs are using by adding them to a file called `Gemfile` in your project folder (Please note the capital 'G'). 
+
+An example `Gemfile` can look like this:
+```ruby
+source 'https://rubygems.org'
+gem 'rack'
+gem 'rspec'
+gem 'mail'
+```
+
+To install those gems and their dependencies, you run the following command in your terminal:
+```shell
+$ bundle install
+```
+
+We'll be covering bundler and gems more extensively later on when we work with our challenges. 
+
+
+
+
 
 #### Git
 Git is a version control system that we'll be using extensively during the course. Version Control lets you track your files, changes and avoid general chaos over time. 
@@ -137,6 +168,9 @@ For now, what you really want to do is to set Atom as the default editor fir Git
 ```shell
 $ git config --global core.editor "atom --wait"
 ```
+
+#### That's it!
+You are all set up, you have your necessary compilers (with Xcode CLT), your package managers (RVM, Bundler and Homebrew), you have your Ruby versions installed, a version control system (Git) and you have a text editor. **You are all good!**
 
 
 
