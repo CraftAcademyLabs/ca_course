@@ -1,1 +1,1 @@
-## Domain Model from User stories
+## Domain Model & User stories
