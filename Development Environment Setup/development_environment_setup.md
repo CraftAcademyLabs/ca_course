@@ -167,6 +167,37 @@ For now, what you really want to do is to set Atom as the default editor fir Git
 $ git config --global core.editor "atom --wait"
 ```
 
+#### Terminal prompt
+When you work with git and version control it is a good idea to set up your prompt that displays some useful information such as:
+- What branch are you currently on
+- What is your current status in regard to your own GH repository (`origin`)
+- What is your current status in regard to the main project repo (`upstream`)
+
+There is a very nice modification made availiable on GitHub called [Bash Git Prompt](https://github.com/magicmonty/bash-git-prompt). You an install it using Homebrew with these steps:
+
+```shell
+$ brew install bash-git-prompt
+```
+
+Once the installation is complete, you need to open the `.bash_profile` file and add the following configuration:
+
+```bash
+# ~/.bash_profile
+
+if [ -f "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh" ]; then
+    source "$(brew --prefix)/opt/bash-git-prompt/share/gitprompt.sh"
+fi
+```
+
+Once you save and close `.bash_profile`, go back to your terminal and reload it:
+
+```shell
+source ~/.bash_profile
+```
+
+
+
+
 #### That's it!
 You are all set up, you have your necessary compilers (with Xcode CLT), your package managers (RVM, Bundler and Homebrew), you have your Ruby versions installed, a version control system (Git) and you have a text editor. **You are all good!**
 
