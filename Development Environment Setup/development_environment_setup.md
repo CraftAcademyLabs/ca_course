@@ -195,11 +195,11 @@ Once you save and close `.bash_profile`, go back to your terminal and reload it:
 source ~/.bash_profile
 ```
 
-
+Your terminal prompt will now show a lot more useful information that will help you in your coding. 
 
 
 #### That's it!
-You are all set up, you have your necessary compilers (with Xcode CLT), your package managers (RVM, Bundler and Homebrew), you have your Ruby versions installed, a version control system (Git) and you have a text editor. **You are all good!**
+You are all set up, you have your necessary compilers (with Xcode CLT), your package managers (RVM, Bundler and Homebrew), you have your Ruby versions installed, a version control system (Git) and you have a text editor. In your terminal, where you will be spending most of your time, you have a prompt that tells you all you need to know about where you are in your version control process.  **You are all good!**
 
 
 
