@@ -3,7 +3,7 @@
 * [Introduction](README.md)
 * [Your first website](first_deploy/first_deploy.md)
 * [ATM Challenge - Ruby basics](atm_challenge/atm_challenge.md)
-   * Step 1
+   * [Step 1](atm_challenge/step_1.md)
 * [BMI Challenge - JavaScript basics](bmi_challenge/bmi_challenge.md)
 * [Library challenge - Advanced Ruby](library_challenge/library_challenge.md)
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
