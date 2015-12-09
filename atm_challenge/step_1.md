@@ -22,7 +22,7 @@ class Account
     self.pin = 1234
   end
   
-  def display_balance(pin_number)
+  def current_balance(pin_number)
     if pin_number == pin
       {balance: self.balance}
     else
