@@ -46,4 +46,20 @@ class Account
   end
 end
 ```
+```ruby
+class Account 
+ def positive_balance?
+    self.balance > 0
+ end
+ 
+  def withdraw(pin_number, amount)
+    if pin_number == self.pin && positive_balance?
+      self.balance -= amount
+      {withrawal: amount, balance: self.balance}
+    else
+      {message: pin_error}
+    end
+  end
+end 
+```
 
