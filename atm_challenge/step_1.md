@@ -3,39 +3,46 @@
 WIP: 
 
 ```ruby
-class Account
-  attr_reader :balance, :holder
+class Person
+    attr_accessor :name
+    def initialize(options = {})
+        self.name = options[:name]
+    end
+end
+```
 
-  def initialize(name, balance=100)
+```ruby
+class Account
+  attr_accessor :balance, :holder, :pin
+  MINIMUM_DEPOSIT = 100
+
+  def initialize(name, options = {})
     self.holder = Person.new(name: name)
-    self.balance = balance
+    self.balance = options[:balance] || MINIMUM_DEPOSIT
+    self.pin = 1234
   end
   
   def display_balance(pin_number)
     if pin_number == pin
-      puts "Balance: #{@balance}"
+      {balance: self.balance}
     else
-      puts pin_error
+      {message: pin_error}
     end
   end
 
   def withdraw(pin_number, amount)
-    if pin_number == @pin
-      @blanace -= amount
-      puts "Withdrew #{amount}. New balance: #{balance}"
+    if pin_number == self.pin
+      self.balance -= amount
+      {withrawal: amount, balance: self.balance}
     else
-      puts pin_error
+      {message: pin_error}
     end
   end
 
   private
 
-  def pin
-    self.pin = 1234
-  end
-
   def pin_error
-    return "Access denied: incorrect PIN."
+    "Access denied: incorrect PIN."
   end
 end
 ```
