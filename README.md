@@ -3,7 +3,7 @@
 Craft Academy is a 12-week intensive, practice-oriented course for aspiring junior developers. The course is delivered as a coding bootcamp by Craft Academy in Gothenburg, Sweden. It gives you the basics you need to create, develop and launch web-based applications.
 
 ### Open Source
-This publication contains the course materials we ask all our future students to go through. You are free to use it for your personal learning needs even if you are not attending our bbotcamp, we encourage that. 
+This publication contains the course materials we ask all our future students to go through. You are free to use it for your personal learning needs even if you are not attending our bootcamp, we encourage that. 
 
 **It is however not allowed to use this material in a commercial context without our written consent. It is not okay and it is against the very meaning of open source.** 
 
