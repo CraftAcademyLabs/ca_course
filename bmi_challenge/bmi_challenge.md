@@ -2,7 +2,7 @@
 
 **Body mass index (BMI) is a simple tool that is generally used to estimate the total amount of body fat.**
 
-In this challenge we will write a program that calculates a individuals BMI index. 
+In this challenge we will write a Javascript program that calculates a individuals BMI index. 
 
 
 ### How To Calculate BMI
