@@ -18,3 +18,10 @@ That will open the test runner in your default browser and you should see someth
 
 ![Default tests fron the `jasmine_standalone` package](../images/jasmine_runner_1.png)
 
+Now, let's have a look at the file structure. Open the content of your project folder in your text editor.
+
+```shell
+$ atom .
+``` 
+
+
