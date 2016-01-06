@@ -8,6 +8,7 @@
    * [Jasmine - Set up](bmi_challenge/jasmine_set_up.md)
    * [Firsts tests](bmi_challenge/step_1_firsts_tests.md)
    * [The calculator](bmi_challenge/step_2_the_calculator.md)
+   * Web interface
 * [Library challenge - Advanced Ruby](library_challenge/library_challenge.md)
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
