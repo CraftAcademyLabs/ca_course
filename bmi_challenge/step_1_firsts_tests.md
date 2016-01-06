@@ -32,7 +32,23 @@ describe("Person", function() {
 ```
 
 If you reload your `SpecRunner.html` you'll get two errors. 
+![Jasmin - failing tests](../images/jasmine_failing_tests.png)
 
+Let's implement the code that makes this test pass.
+
+In your `src` folder, create a file named `person.js`. Add the following code to that file:
+
+```js
+# src/person.js
+
+function Person(weight, height) {
+  this.weight = weight;
+  this.height = height;
+}
+
+```
+
+If you run your tests again, by reloading `SpecRunner.html` you'll see that our two initial tests are passing. 
 
 
 
