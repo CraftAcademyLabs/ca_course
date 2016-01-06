@@ -43,7 +43,9 @@ The important thing at this moment is to understand how the `SpecRunner.html` wo
 
 As you see, the runner needs to have both the source and the spec files included. Now you can safely remove those lines or comment them out. 
 
-At this point you are set up with the very basic configuration of Jasmine that will allow you to run Javascript tests.
+** Remember that whatever files you create (both specs and source files) they MUST be included in the `SpecRunner.html!**
+
+At this point you are set up with the very basic configuration of Jasmine that will allow you to run JavaScript tests.
 
 
 
