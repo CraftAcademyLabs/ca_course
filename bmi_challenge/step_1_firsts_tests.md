@@ -18,7 +18,7 @@ describe("Person", function() {
   var person;
 
   beforeEach(function() {
-    person = new Person(90, 186);
+    person = new Person({weight: 90, height: 186});
   });
 
   it("should have weight of 90", function() {
@@ -41,11 +41,10 @@ In your `src` folder, create a file named `person.js`. Add the following code to
 ```js
 # src/person.js
 
-function Person(weight, height) {
-  this.weight = weight;
-  this.height = height;
-}
-
+function Person(attr) {
+  this.weight = attr.weight;
+  this.height = attr.height;
+};
 ```
 
 If you run your tests again, by reloading `SpecRunner.html` you'll see that our two initial tests are passing. 
@@ -81,7 +80,7 @@ In those tests we are calling a `calculate_bmi()` function on the `person` objec
 
 Person.prototype.calculate_bmi = function() {
   this.bmiValue = 26.01;
-  this.bmiMessage = "You have overweight."
+  this.bmiMessage = "Overweight"
 };
 ```
 
@@ -97,5 +96,5 @@ Person.prototype.calculate_bmi = function() {
   calculator.metric_bmi(this);
 };
 ```
-Here we are instantiating a new `BMICalculator` object and calling a function we call `metric_bmi` on it. We are also passing in the current instance of Person to that function. At this point we need to shift our attention to the other spec file we need and test the behaiviour of the `BMICalculator`.
+Here we are instantiating a new `BMICalculator` object and calling a function we call `metric_bmi` on it. We are also passing in the current instance of Person to that function. At this point we need to shift our attention to the other spec file we need and test the behaviour of the `BMICalculator`.
 
