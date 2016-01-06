@@ -65,6 +65,7 @@ function setBMIMessage (obj, value){
   if (obj.bmiValue > 30) {
     obj.bmiMessage = "Obese"
   }
+}
 ```
 
 Remember to call it from the `metric_bmi` function.
