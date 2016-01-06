@@ -59,3 +59,43 @@ Okay, the next thing I want you to do is to right clicj anywhare on the browser 
 Cool, the browsers console can function as a way to manually tests your units and functions - similarly to rubys `irb`. 
 
 Let's write some more tests. 
+
+```js
+# spec/person_spec.js
+
+it("should calculate BMI value", function() {
+    person.calculate_bmi();
+    expect(person.bmiValue).toEqual(26.01)
+  });
+
+  it("should have a BMI Message", function() {
+    person.calculate_bmi();
+    expect(person.bmiMessage).toEqual("You have overweight.")
+  });
+```
+
+In those tests we are calling a `calculate_bmi()` function on the `person` object we have created. This will fail since we have no such function defined. 
+
+```js
+# src/person.js
+
+Person.prototype.calculate_bmi = function() {
+  this.bmiValue = 26.01;
+  this.bmiMessage = "You have overweight."
+};
+```
+
+That implementation vill make the test pass, but it is not what we want, is it? We have just passed in some hard coded values in to that function. 
+
+Let's instead call the `BMICalculator` to do the calculation for us by changing the code to:
+
+```js
+# src/person.js
+
+Person.prototype.calculate_bmi = function() {
+  calculator = new BMICalculator();
+  calculator.metric_bmi(this);
+};
+```
+Here we are instatiation a new `BMICalculator` and calling a function we call `metric_bmi` and passing in the current instance of Person to that function. At this point we need to shift our attention to the other spec file we need and test the behaiviour of the `BMICalculator`.
+
