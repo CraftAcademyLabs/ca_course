@@ -32,7 +32,7 @@ describe("Person", function() {
 ```
 
 If you reload your `SpecRunner.html` you'll get two errors. 
-![Jasmin - failing tests](../images/jasmine_failing_tests.png)
+![Jasmine - failing tests](../images/jasmine_failing_tests.png)
 
 Let's implement the code that makes this test pass.
 
@@ -50,5 +50,5 @@ function Person(weight, height) {
 
 If you run your tests again, by reloading `SpecRunner.html` you'll see that our two initial tests are passing. 
 
-
+![Jasmine - passing tests](../images/jasmine_passing_tests.png)
 
