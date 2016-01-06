@@ -43,3 +43,40 @@ BMICalculator.prototype.metric_bmi = function(obj) {
 };
 ```
 
+We still have not set the `bmiMessage` on the `Person`. In order to do that we need to create a function that sets that message depending on what `bmiValue` the person has.
+
+Add this function to the `bmi_calculator.js` file.
+
+```js
+# src/bmi_calculator.js
+
+function setBMIMessage (obj, value){
+  if (obj.bmiValue < 18.5) {
+    obj.bmiMessage = "You are too thin."
+  }
+  if (obj.bmiValue > 18.5 && obj.bmiValue < 25) {
+    obj.bmiMessage = "You are healthy."
+  }
+  if (obj.bmiValue > 25) {
+    obj.bmiMessage = "You have overweight."
+  }
+}
+```
+
+Remember to call it from the `metric_bmi` function.
+
+```js
+# src/bmi_calculator.js
+
+
+BMICalculator.prototype.metric_bmi = function(obj) {
+  var weight = obj.weight;
+  var height = obj.height;
+  if (weight > 0 && height > 0) {
+    var finalBmi = weight / (height / 100 * height / 100);
+    obj.bmiValue =  parseFloat(finalBmi.toFixed(2));
+    setBMIMessage(obj);
+  }
+};
+```
+
