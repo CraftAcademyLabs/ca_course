@@ -9,7 +9,6 @@ Here is the Fizz Buzz game in JavaScript:
 
 ```js
 function FizzBuzz() {
-
 };
 
 FizzBuzz.prototype._hasZeroReminder = function (number, divisor) {
