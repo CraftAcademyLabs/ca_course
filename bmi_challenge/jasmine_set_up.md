@@ -16,5 +16,5 @@ $ open SpecRunner.html
 
 That will open the test runner in your default browser and you should see something like this. 
 
-
+![Default tests fron the `jasmine_standalone` package](../images/jasmine_runner_1.png)
 
