@@ -97,5 +97,5 @@ Person.prototype.calculate_bmi = function() {
   calculator.metric_bmi(this);
 };
 ```
-Here we are instatiation a new `BMICalculator` and calling a function we call `metric_bmi` and passing in the current instance of Person to that function. At this point we need to shift our attention to the other spec file we need and test the behaiviour of the `BMICalculator`.
+Here we are instantiating a new `BMICalculator` and calling a function we call `metric_bmi` and passing in the current instance of Person to that function. At this point we need to shift our attention to the other spec file we need and test the behaiviour of the `BMICalculator`.
 
