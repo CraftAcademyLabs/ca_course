@@ -23,5 +23,10 @@ Now, let's have a look at the file structure. Open the content of your project f
 ```shell
 $ atom .
 ``` 
+You should see the basic structure of the example project.
+![](../images/jasmine_standalone_examples.png)
+
+You can leave the files as they are if you want, or you can delete them if you want - we will be deleting them at some point down the road anyway.
+
 
 
