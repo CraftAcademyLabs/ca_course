@@ -54,15 +54,17 @@ Add this function to the `bmi_calculator.js` file.
 
 function setBMIMessage (obj, value){
   if (obj.bmiValue < 18.5) {
-    obj.bmiMessage = "You are too thin."
+    obj.bmiMessage = "Underweight"
   }
-  if (obj.bmiValue > 18.5 && obj.bmiValue < 25) {
-    obj.bmiMessage = "You are healthy."
+  if (obj.bmiValue > 18.5 && obj.bmiValue < 24.9) {
+    obj.bmiMessage = "Normal"
   }
-  if (obj.bmiValue > 25) {
-    obj.bmiMessage = "You have overweight."
+  if (obj.bmiValue > 25 && obj.bmiValue < 29.9) {
+    obj.bmiMessage = "Overweight"
   }
-}
+  if (obj.bmiValue > 30) {
+    obj.bmiMessage = "Obese"
+  }
 ```
 
 Remember to call it from the `metric_bmi` function.
