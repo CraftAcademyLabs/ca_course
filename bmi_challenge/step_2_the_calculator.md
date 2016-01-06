@@ -68,7 +68,6 @@ Remember to call it from the `metric_bmi` function.
 ```js
 # src/bmi_calculator.js
 
-
 BMICalculator.prototype.metric_bmi = function(obj) {
   var weight = obj.weight;
   var height = obj.height;
