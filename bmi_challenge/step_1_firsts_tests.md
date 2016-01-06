@@ -70,7 +70,7 @@ it("should calculate BMI value", function() {
 
   it("should have a BMI Message", function() {
     person.calculate_bmi();
-    expect(person.bmiMessage).toEqual("You have overweight.")
+    expect(person.bmiMessage).toEqual("Overweight")
   });
 ```
 
