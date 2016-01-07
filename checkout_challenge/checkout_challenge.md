@@ -1,6 +1,6 @@
 ## Checkout Challenge
 
-Our client is an online marketplace, here is a sample of some of the products available on our site:
+Our client is an on-line marketplace, here is a sample of some of the products available on our site:
 
 ```
 Product code  | Name                   | Price
