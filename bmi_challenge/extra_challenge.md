@@ -43,5 +43,11 @@ FizzBuzz.prototype.fizz_buzz = function (number) {
         return number;
 };
 ```
+### Review and reflect
+Compare this implementation to the Ruby version we wrote a while back during the prep-course. 
+1. What are the similarities/differences between the Ruby and js versions?
+2. How do you find unit testing with Jasmine in comparison to RSpec? 
+3. How can you "gamify" Fizz Buzz? Consider the User Interface/Experience. Can the game be played by multiple players? What about mobile devices? 
+
 
 
