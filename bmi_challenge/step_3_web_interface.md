@@ -73,19 +73,6 @@ Create the `index.html` file in the main project folder and add a htm form that 
       <span id="display_message"></span>
 
     </div>
-
-    <script type="text/javascript">
-      $(document).ready(function () {
-        $('#calculate').click(function () {
-          var w = parseFloat($('#weight').val());
-          var h = parseFloat($('#height').val());
-          var person = new Person({weight: w, height: h});
-          person.calculate_bmi();
-          $('#display_value').html('Your BMI is ' + person.bmiValue);
-          $('#display_message').html('and you are '+ person.bmiMessage);
-        });
-      });
-    </script>
   </body>
 </html>
 
@@ -96,6 +83,26 @@ To open the web page go to your terminal and use the `open` command to fire up t
 $ open index.html
 ```
 
+The page is still very static and nothing happens if you fill in values in the form and click `Calculate`. We need to add some jQuery code in order to tell the interface what to do. There are two ways to do that. We can eather create a new `js` file and include it in our code, or we can insert the script directly in the html. Let's do the latter. In order for HTML to understand that it is dealing with JavaScript, we need to wrap it in `<script></script>` tags. 
+
+Have a look at the code below and once you understand what it does, add it to the `index.html` file.
+
+```html
+# index.html
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#calculate').click(function () {
+      var w = parseFloat($('#weight').val());
+      var h = parseFloat($('#height').val());
+      var person = new Person({weight: w, height: h});
+      person.calculate_bmi();
+      $('#display_value').html('Your BMI is ' + person.bmiValue);
+      $('#display_message').html('and you are '+ person.bmiMessage);
+    });
+  });
+</script>
+```
 Now you can play around with some values to see if everything is working properly. The next step will be to write some acceptance tests using Jasmine. In order to do that properly, we will introduce a web framework that we will be working with later during this course - [Sinatra](http://www.sinatrarb.com/).
 
 
