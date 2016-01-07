@@ -11,6 +11,7 @@
    * [Web interface](bmi_challenge/step_3_web_interface.md)
    * [Acceptance tests](bmi_challenge/step_4_acceptance_tests.md)
    * [Extra challenge](bmi_challenge/extra_challenge.md)
+   * Moving on
 * [Library challenge - Advanced Ruby](library_challenge/library_challenge.md)
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
