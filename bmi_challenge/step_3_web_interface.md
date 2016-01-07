@@ -103,6 +103,11 @@ Have a look at the code below and once you understand what it does, add it to th
   });
 </script>
 ```
+### Review and reflect
+1. What is the `$(document).ready...` function?
+2. Why are we using `parseFloat($('#weight').val());`?
+3. What would happen if we did not include `<script src="src/person.js"></script>` in the `index.html` source?
+
 Now you can play around with some values to see if everything is working properly. The next step will be to write some acceptance tests using Jasmine. In order to do that properly, we will introduce a web framework that we will be working with later during this course - [Sinatra](http://www.sinatrarb.com/).
 
 
