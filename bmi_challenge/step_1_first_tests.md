@@ -1,4 +1,4 @@
-## Firsts tests
+## First tests
 
 
 Create a new file in your `spec` folder. Call it `person_spec.js`.
