@@ -44,7 +44,7 @@ http://localhost:9292/index.html
 ```
 ![Web page accessed using a local web server](../images/bmi_sinatra_interface.png)
 
-You can go ahead an enter some values in the fields and see if everything is working as it should. 
+You can go ahead and enter some values in the fields and see if everything is working as it should. 
 
 **To stop the server in your terminal, just press the `ctrl` + `C` keys on your keyboard. To start it again, just type `rackup` and press enter.**
 
@@ -85,4 +85,4 @@ Now, run your tests by pointing your browser to the following URL.
 ```text
 http://localhost:9292/SpecRunner.html
 ```
-![Jasmine tests run using the local web server](../images/jasmine_sinatra_passing_tests.png)
+![Jasmine tests passing using the local web server](../images/jasmine_sinatra_passing_tests.png)
