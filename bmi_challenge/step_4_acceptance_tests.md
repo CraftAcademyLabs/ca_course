@@ -1,2 +1,2 @@
-# Acceptance tests
+## Acceptance tests
 
