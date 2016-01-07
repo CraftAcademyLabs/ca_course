@@ -53,7 +53,7 @@ If you run your tests again, by reloading `SpecRunner.html` you'll see that our 
 
 Okay, the next thing I want you to do is to right clicj anywhare on the browser window and choose `Inspect` from the pop-up menu. That opens the developer console. Try creating a new instance of a `Person` by following the example below.
 
-![Creating a Person in the browsers console](../images/jasmine_console.png)
+![Creating a Person in the browsers console](../images/jasmine_console_2.png)
 
 Cool, the browsers console can function as a way to manually tests your units and functions - similarly to rubys `irb`. 
 
