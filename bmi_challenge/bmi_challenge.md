@@ -11,7 +11,7 @@ If you know your height and weight in inches and pounds the calculation is a lit
 
 #### Metric Method
 
-The metric formula accepts height measurements in meters and weight in kilograms. If you know your height in centimeters only, simply divide the number of centimeters by 100 convert it to meters.
+The metric formula accepts height measurements in meters and weight in kilograms. If you know your height in centimetres only, simply divide the number of centimetres by 100 convert it to meters.
 
 For example, a person who is 183 cm tall is 1.83 m tall (183 cm / 100 = 1.83 m).
 
