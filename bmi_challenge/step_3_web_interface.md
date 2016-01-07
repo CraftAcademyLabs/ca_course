@@ -28,6 +28,8 @@ typeof jQuery
 ```
 If the response you get is `"function"` then you are all good and jQuery has been loaded. If you get `"undefined"` then something is wrong and you need to check your settings. 
 
+In regard to the jQuery snippet `$ holdReady(true);` please see [this issue on GitHub](https://github.com/velesin/jasmine-jquery/issues/244).
+
 
 
 
