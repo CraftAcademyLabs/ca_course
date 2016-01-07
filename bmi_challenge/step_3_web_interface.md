@@ -46,6 +46,22 @@ describe('BMI_UI - index.html', function() {
 });
 ```
 
+Create the `index.html` file in the main project folder and add a htm form that we need to input the data we need to create a `Person` and calculate the BMI.
+
+```html
+# index.html
+
+<form>
+  <input type="text" id="weight" placeholder="Weight">
+  <input type="text" id="height" placeholder="Height">
+  <input type="button" id="calculate" value="Calculate">
+</form>
+
+<div id="display">
+
+</div>
+```
+
 
 
 
