@@ -91,6 +91,13 @@ Create the `index.html` file in the main project folder and add a htm form that 
 
 ```
 
+To open the web page go to your terminal and use the `open` command to fire up the page in the browser. 
+```shell
+$ open index.html
+```
+
+Now you can play around with some values to see if everything is working properly. The next step will be to write some acceptance tests using Jasmine. In order to do that properly, we will introduce a web framework that we will be working with later during this course - [Sinatra](http://www.sinatrarb.com/).
+
 
 
 
