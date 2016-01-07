@@ -86,3 +86,8 @@ BMICalculator.prototype.metric_bmi = function(obj) {
 };
 ```
 
+### Review and reflect
+1. Why does the `setBMIMessage(obj);` call do?
+2. Why do we have a separate function called `setBMIMessage`? 
+3. Explain what `this` is in the context of an instance of a `Person` object.
+
