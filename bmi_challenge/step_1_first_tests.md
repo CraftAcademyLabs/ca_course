@@ -9,7 +9,7 @@ $ touch spec/person_spec.js
 
 *** Note that I use the `snake case` format for my file names. You are free to use any format you want but be consistent. ***
 
-We are going to write two test for our Person object. In order to calculate the BMI we will be needing a Person to have two attributes, Weight and Hight.
+We are going to write two test for our Person object. In order to calculate the BMI we will be needing a Person to have two attributes, `weight` and `hight`.
 
 ```js
 # spec/person_spec.js
@@ -36,7 +36,7 @@ If you reload your `SpecRunner.html` you'll get two errors.
 
 Let's implement the code that makes this test pass.
 
-In your `src` folder, create a file named `person.js`. Add the following code to that file:
+In your `src` folder, create a file called `person.js`. Add the following code to that file:
 
 ```js
 # src/person.js
@@ -84,7 +84,7 @@ Person.prototype.calculate_bmi = function() {
 };
 ```
 
-That implementation vill make the test pass, but it is not what we want, is it? We have just passed in some hard coded values in to that function. 
+That implementation will make the test pass, but it is not what we want, is it? We have just passed in some hard coded values in to that function. 
 
 Let's instead call the `BMICalculator` to do the calculation for us by changing the code to:
 
@@ -100,3 +100,5 @@ Here we are instantiating a new `BMICalculator` object and calling a function we
 
 ### Review and reflect
 
+1. Explain what `this` is in the context of an instance of a `Person` object.
+2. Make sure you run through the whole code manually using the browsers console. What happens if you reload the page?
