@@ -1,23 +1,19 @@
 ## JavaScript basics - BMI challenge
 
-**Body mass index (BMI) is a simple tool that is generally used to estimate the total amount of body fat.**
-
-In this challenge we will write a Javascript program that calculates a individuals BMI index. 
+**Body mass index (BMI) is a simple tool that is generally used to estimate the total amount of body fat. In this challenge we will write a JavaScript program that calculates a individuals BMI index.**
 
 
 ### How To Calculate BMI
 
-To calculate BMI, you need to know your weight and height in kilo-grams and centimeters or meters (Metric Method). The weight of a person is then divided by the height.
+To calculate BMI, you need to know your weight and height in kilograms and centimetres or meters (**Metric Method**). The weight of a person is then divided by the height.
  
-If you only know your height and weight in inches and pounds the calculation is a little more complex (Imperial Method).
+If you know your height and weight in inches and pounds the calculation is a little more complex (**Imperial Method**).
 
 #### Metric Method
 
 The metric formula accepts height measurements in meters and weight in kilograms. If you know your height in centimeters only, simply divide the number of centimeters by 100 convert it to meters.
 
 For example, a person who is 183 cm tall is 1.83 m tall (183 cm / 100 = 1.83 m).
-
-Using the metric formula is even easier than the imperial method as it's a two step process
 
 Multiply your height by itself.
 Divide your weight in kilograms by the value calculated in step 1.
@@ -46,4 +42,4 @@ The resulting number is your BMI. Compare this BMI value with the weight status 
 | Below 18.5  	| Underweight   	|
 | 18.5 - 24.9 	| Normal        	|
 | 25 - 29.9   	| Overweight    	|
-| 30.0 +      	| Obese         	|
+| Over 30.0   	| Obese         	|
