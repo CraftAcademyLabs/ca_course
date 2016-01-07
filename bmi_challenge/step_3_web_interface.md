@@ -46,20 +46,49 @@ describe('BMI_UI - index.html', function() {
 });
 ```
 
-Create the `index.html` file in the main project folder and add a htm form that we need to input the data we need to create a `Person` and calculate the BMI.
+Create the `index.html` file in the main project folder and add a htm form that we need to input the data we need to create a `Person` and calculate the BMI. We also need to include jQuery (as we did in the `SpecRunner.html`) and make sure that the source files for `Person` and `BMICalculator` are loaded. 
+
+**Go over the code below and make sure that you understand what is going on before you implement it.**
 
 ```html
 # index.html
 
-<form>
-  <input type="text" id="weight" placeholder="Weight">
-  <input type="text" id="height" placeholder="Height">
-  <input type="button" id="calculate" value="Calculate">
-</form>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+    <script src="src/person.js"></script>
+    <script src="src/bmi_calculator.js"></script>
+    <script src='https://code.jquery.com/jquery-2.1.4.js'></script>
+  </head>
+  <body>
+    <form>
+      <input type="text" id="weight" placeholder="Weight">
+      <input type="text" id="height" placeholder="Height">
+      <input type="button" id="calculate" value="Calculate">
+    </form>
+    <div>
+      <span id="display_value"></span>
+      <span id="display_message"></span>
 
-<div id="display">
+    </div>
 
-</div>
+    <script type="text/javascript">
+      $(document).ready(function () {
+        $('#calculate').click(function () {
+          var w = parseFloat($('#weight').val());
+          var h = parseFloat($('#height').val());
+          var person = new Person({weight: w, height: h});
+          person.calculate_bmi();
+          $('#display_value').html('Your BMI is ' + person.bmiValue);
+          $('#display_message').html('and you are '+ person.bmiMessage);
+        });
+      });
+    </script>
+  </body>
+</html>
+
 ```
 
 
