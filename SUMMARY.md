@@ -10,7 +10,7 @@
    * [The calculator](bmi_challenge/step_2_the_calculator.md)
    * [Web interface](bmi_challenge/step_3_web_interface.md)
    * [Extra challenge](bmi_challenge/extra_challenge.md)
-   * Acceptance tests
+   * [Acceptance tests](bmi_challenge/step_4_acceptance_tests.md)
 * [Library challenge - Advanced Ruby](library_challenge/library_challenge.md)
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
