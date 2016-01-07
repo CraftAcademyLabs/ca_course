@@ -31,6 +31,21 @@ If the response you get is `"function"` then you are all good and jQuery has bee
 In regard to the jQuery snippet `$ holdReady(true);` that we included in the `SpecRunner.html`, please see [this issue on GitHub](https://github.com/velesin/jasmine-jquery/issues/244) for an explanation.
 
 
+Crete a new test file in the `spec` folder and call it `bmi_ui_spec.js`. Add the following code to that file.
+
+```js
+# spec/bmi_ui_spec.js
+
+describe('BMI_UI - index.html', function() {
+    beforeEach(function() {
+        jasmine.getFixtures().fixturesPath = '.';
+        loadFixtures('index.html');
+        $.holdReady(false); 
+    });
+
+});
+```
+
 
 
 
