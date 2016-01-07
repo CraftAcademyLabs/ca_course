@@ -42,3 +42,47 @@ In your browser, type in this URL to access the web page you recently created:
 ```text
 http://localhost:9292/index.html
 ```
+![Web page accessed using a local web server](../images/bmi_sinatra_interface.png)
+
+You can go ahead an enter some values in the fields and see if everything is working as it should. 
+
+**To stop the server in your terminal, just press the `ctrl` + `C` keys on your keyboard. To start it again, just type `rackup` and press enter.**
+
+At this point we are ready to add some tests to our `bmi_ui_spec.js`. 
+
+What we want Jasmine to do is to:
+1. Fill in the fields for Weight and Height with values.
+2. Click the `Calculate` button.
+3. Assert that the right content is displayed on the page.
+
+Modify your `bmi_ui_spec.js` with the following code
+
+```ruby
+# spec/bmi_ui_spec.js
+
+describe('BMI_UI - index.html', function() {
+    beforeEach(function() {
+        jasmine.getFixtures().fixturesPath = '.';
+        loadFixtures('index.html');
+        $.holdReady(false);
+        $('#weight').val('90');
+        $('#height').val('186');
+        $('#calculate').trigger('click');
+    });
+    
+    it("displays BMI Value", function() {
+      expect($('#display_value').text()).toBe('Your BMI is 26.01');
+    });
+
+    it("displays BMI Message", function() {
+      expect($('#display_message').text()).toBe('and you are Overweight');
+    });
+});
+```
+Now, run your tests by pointing your browser to the following URL.
+
+
+```text
+http://localhost:9292/SpecRunner.html
+```
+![Jasmine tests run using the local web server](../images/jasmine_sinatra_passing_tests.png)
