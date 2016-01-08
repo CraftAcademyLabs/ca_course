@@ -8,3 +8,12 @@ At this point we will shift gears and allow you to work for yourself. There is p
 4. Create a local repository and push up your code to GitHub
 
 
+If you want to find some inspiration you can have a look at a slightly styled version of the BMI Calculator that we have deployed using gh-pages to github.io.
+
+```
+http://tochman.github.io/bmi/index.html
+```
+
+![BMI Calculator with Foundation 6 css framework](../images/deployed_styled_calculator.png)
+
+
