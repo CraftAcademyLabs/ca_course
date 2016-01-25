@@ -1,4 +1,4 @@
-## Jasmine - Set up
+## Testing with Jasmine
 
 Jasmine is a Behaviour Driven Development framework for testing JavaScript code. 
 
