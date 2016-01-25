@@ -9,7 +9,7 @@ First, we need to make some adjustments to the Jasmine framework by extending Ja
  
 Download/Copy Jasmine-jQuery from [this location](https://raw.githubusercontent.com/velesin/jasmine-jquery/master/lib/jasmine-jquery.js) and save to `lib/jasmine-jquery.js` 
 
-In your `SpecRunner.html` locate where you include the Jasmine `boot.js`. Right underneath, make sure to include both `jasmine-jquery` and `jquery` (we will get thet from a remote location rather then including it in the file structure). 
+In your `SpecRunner.html` locate where you include the Jasmine `boot.js`. Right underneath, make sure to include both `jasmine-jquery` and `jquery` (we will get that from a remote location rather then including it in the file structure). 
 
 ```html
 # SpecRunner-html
