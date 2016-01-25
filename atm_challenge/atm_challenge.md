@@ -13,7 +13,7 @@ Our client is a financial institution that wants to allow its customers to withd
 The following objectives must be met:
 - An ATM machine can hold up to $1000
 - Withdrawal can be cleared only if the person attempting the withdrawal has sufficient funds on his account
-- There are only $10-bills in the ATM. Withdrawals for amouts not divisible by 10 must be rejected.
+- There are only $5, $10 and $20 bills in the ATM. Withdrawals for amouts not divisible by 5 must be rejected.
 
 ## Tips and Tricks
 
