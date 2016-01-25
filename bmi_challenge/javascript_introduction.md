@@ -36,7 +36,7 @@ multiple lines";
 ### Numbers
 ```javascript
 num = 19;                         
-    // note lack of no ""
+    // note lack of ""
     
 num = 0xfe + 2.343 + 2.5e3;       
     // hex, floats, exp
