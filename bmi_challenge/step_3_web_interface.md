@@ -12,7 +12,7 @@ Download/Copy Jasmine-jQuery from [this location](https://raw.githubusercontent.
 In your `SpecRunner.html` locate where you include the Jasmine `boot.js`. Right underneath, make sure to include both `jasmine-jquery` and `jquery` (we will get that from a remote location rather then including it in the file structure). 
 
 ```html
-# SpecRunner-html
+# SpecRunner.html
 
 <script src='https://code.jquery.com/jquery-2.1.4.js'></script>
 <!--script src="lib/jquery.min.js"></script-->
