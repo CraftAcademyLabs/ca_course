@@ -4,9 +4,9 @@
 
 It’s more fun to imagine a story with “fat model, skinny controller” instead of a sterile “3-tiered architecture”. Models do the grunt work, views are the happy face, and controllers are the masterminds behind it all.
 
-* The browser makes a request, such as http://mysite.com/video/show/15
+* The browser makes a request, such as http://localhost:9292/project/show/15
 
-* The web server (mongrel, WEBrick, etc.) receives the request. It uses routes to find out which controller to use: the default route pattern is “/controller/action/id” as defined in config/routes.rb. In our case, it’s the “video” controller, method “show”, id “15″. The web server then uses the dispatcher to create a new controller, call the action and pass the parameters.
+* The web server (WEBrick, etc.) receives the request. It uses routes to find out which controller to use: the default route pattern is “/controller/action/id” as defined in config/routes.rb. In our case, it’s the “video” controller, method “show”, id “15″. The web server then uses the dispatcher to create a new controller, call the action and pass the parameters.
 
 * Controllers do the work of parsing user requests, data submissions, cookies, sessions and the “browser stuff”. They’re the pointy-haired manager that orders employees around. The best controller is Dilbert-esque: It gives orders without knowing (or caring) how it gets done. In our case, the show method in the video controller knows it needs to lookup a video. It asks the model to get video 15, and will eventually display it to the user.
 
