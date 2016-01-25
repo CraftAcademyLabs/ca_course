@@ -22,7 +22,7 @@ In your `SpecRunner.html` locate where you include the Jasmine `boot.js`. Right 
 <script src="lib/jasmine-jquery.js"></script>
 
 ```
-Let's do a manual test to see if you have set everything up and jQuery has been loaded. Reload your `SpecRunner.html`, open up the console ond type in:
+Let's do a manual test to see if you have set everything up and jQuery has been loaded. Reload your `SpecRunner.html`, open up the console and type in:
 ```js
 typeof jQuery
 ```
