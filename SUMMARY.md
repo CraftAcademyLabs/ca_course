@@ -6,7 +6,7 @@
    * [Step 1](atm_challenge/step_1.md)
 * [BMI Challenge - JavaScript basics](bmi_challenge/bmi_challenge.md)
    * [JavaScript introduction](bmi_challenge/javascript_introduction.md)
-   * [Jasmine - Set up](bmi_challenge/jasmine_set_up.md)
+   * [Testing with Jasmine ](bmi_challenge/jasmine_set_up.md)
    * [First tests](bmi_challenge/step_1_first_tests.md)
    * [The calculator](bmi_challenge/step_2_the_calculator.md)
    * [Web interface](bmi_challenge/step_3_web_interface.md)
