@@ -3,7 +3,6 @@
 * [Introduction](README.md)
 * [Your first website](first_deploy/first_deploy.md)
 * [ATM Challenge - Ruby basics](atm_challenge/atm_challenge.md)
-   * [Step 10](atm_challenge/step_1.md)
 * [BMI Challenge - JavaScript basics](bmi_challenge/bmi_challenge.md)
    * [JavaScript introduction](bmi_challenge/javascript_introduction.md)
    * [Testing with Jasmine](bmi_challenge/jasmine_set_up.md)
