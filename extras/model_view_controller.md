@@ -1,4 +1,4 @@
 ## Model View Controller
 
-![Model View Controller](./images/MVC.png)
+![Model View Controller](../images/MVC.png)
 
