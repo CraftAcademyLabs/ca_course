@@ -11,8 +11,19 @@ Our client is a financial institution that wants to allow its customers to withd
 ### Scope
 The following objectives must be met:
 - An ATM machine can hold up to $1000
-- Withdrawal can be cleared only if the person attempting the withdrawal has sufficient funds on his account
-- There are only $5, $10 and $20 bills in the ATM. Withdrawals for amouts not divisible by 5 must be rejected.
+- Withdrawal can be cleared only if 
+    - The ATM holds enough funds
+    - The amount is divisible by 5
+    - the person attempting the withdrawal provides a valid ATM card
+        - Valid pin and expire date
+    - the person attempting the withdrawal has sufficient funds on his account
+- There are only $5, $10 and $20 bills in the ATM. Withdrawals for amounts not divisible by 5 must be rejected.
+- Upon a successful withdrawal the system should return a receipt with information about the date, amount and bills that was dispatched. (The receipt should be presented in the form of a Hash
+
+```ruby
+{ message: 'success', date: '2016-01-30', amount: 35, bills: [20,10,5]}
+```
+
 
 ## Tips and Tricks
 
