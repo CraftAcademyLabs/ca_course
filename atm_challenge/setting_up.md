@@ -15,4 +15,25 @@
 * Initialize and push a git repository
 * Add your Pair as a `git remote`
 
+###Walkthrough
+
+Create a project folder in your Terminal and `cd` into that folder
+
+```shell
+$ touch atm_challenge
+```
+The first step is to add RSpec as a dependency for the project. 
+
+Inside the project folder, create a `Gemfile` and modify it's content
+
+```ruby
+# Gemfile
+
+source 'https://rubygems.org'
+
+gem 'rspec'
+```
+
+Back it your Terminal, run `bundle` to install the dependency. 
+
 
