@@ -24,13 +24,13 @@ The following objectives must be met:
 ####Example output
 ```ruby
 # sucessful withdrawal
-{ message: 'success', date: '2016-01-30', amount: 35, bills: [20,10,5]}
+{ status: true, message: 'success', date: '2016-01-30', amount: 35, bills: [20,10,5]}
 
 # wrong pin
-{ message: 'wrong pin', date: '2016-01-30'}
+{ status: false, message: 'wrong pin', date: '2016-01-30'}
 
 # expired card
-{ message: 'card expired', date: '2016-01-30'}
+{ status: false, message: 'card expired', date: '2016-01-30'}
 ```
 
 
