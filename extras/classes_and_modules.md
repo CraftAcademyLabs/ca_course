@@ -38,6 +38,11 @@ FooClass.new.bar # => NoMethodError: undefined method ‘bar’ for #<Foo:0x1e82
 
 
 ###Module methods
+You can include methods in your module that you can be both functions or included by one or several Classes and used as instance methods. There are several ways you can create methods in a Module. Let's say you want to be able to do
+```ruby
+FooModule.foo(some_value)
+```
+You can define the `foo` method like this
 ```ruby
 module FooModule
 
@@ -46,7 +51,7 @@ module FooModule
   end
 end
 ```
-
+Or like this...
 ```ruby
 module FooModule
   extend self
@@ -56,7 +61,7 @@ module FooModule
   end
 end
 ```
-
+...or like this.
 ```ruby
 module FooModule
 
@@ -66,6 +71,7 @@ module FooModule
   end
 end
 ```
+
 
 
 
