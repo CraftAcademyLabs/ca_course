@@ -14,7 +14,7 @@ Modules are about providing methods that you can use across multiple classes - t
 | Inclusion     | cannot be included                                           | can be included in classes and modules by using the `include` command (includes all instance methods as instance methods in a class/module) |
 | Extension     | can not extend with `extend` command (only with inheritance) | module can extend instance by using `extend` command (extends given instance with singleton methods from module)                            |
 
-###Class methods
+###Class - methods
 Class methods are methods that are called on a class and instance methods are methods that are called on an instance of a class.
 
 ```ruby
@@ -37,8 +37,11 @@ FooClass.new.bar # => NoMethodError: undefined method ‘bar’ for #<Foo:0x1e82
 ```
 
 
-###Module methods
-You can include methods in your module that you can be both functions or included by one or several Classes and used as instance methods. There are several ways you can create methods in a Module. Let's say you want to be able to do
+###Module - methods
+
+The methods in a module may be instance methods or module methods. You can include methods in your module that you can be both functions or included by one or several Classes and used as instance methods. Instance methods appear as methods in a class when the module is included, module methods do not. Conversely, module methods may be called without creating an encapsulating object, while instance methods may not.
+
+There are several ways you can create methods in a Module. Let's say you want to be able to do
 ```ruby
 FooModule.foo(some_value)
 ```
