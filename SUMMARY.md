@@ -13,7 +13,7 @@
    * [Acceptance tests](bmi_challenge/step_4_acceptance_tests.md)
    * [Moving on](bmi_challenge/step_5_moving_on.md)
    * [Extra challenge](bmi_challenge/extra_challenge.md)
-* [Library challenge - Advanced Ruby](library_challenge/library_challenge.md)
+* [Library challenge](library_challenge/library_challenge.md)
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
