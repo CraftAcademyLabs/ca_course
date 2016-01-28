@@ -40,6 +40,6 @@ The following objectives must be met:
 - Test your code - both manually in IRB but, most importantly with automated tests.
 - Try to write tests ** *before* ** you write your production code. See tests as a blueprint for your implementation.
 
-This is a good time to read the 'Naming Standards' section.
+This is a good time to read the [Naming Standards](../extras/naming_standards.md) section.
 
 
