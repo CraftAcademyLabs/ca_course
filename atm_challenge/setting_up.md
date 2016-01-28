@@ -42,7 +42,7 @@ Open the project in Atom. You can do that directly from your Terminal
 $ atom .
 ```
 
-You should see a new file in the projectst file and folder structure called `Gemfile.lock`. Open it and examine its content. You can see that by running bundle, you have installed the gem `rspec` but also all the gems that RSpec in turn depends on.
+You should see a new file in the projects file and folder structure called `Gemfile.lock`. Open it and examine its content. You can see that by running bundle, you have installed the gem `rspec` but also all the gems that RSpec in turn depends on.
 
 
 
