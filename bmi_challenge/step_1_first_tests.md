@@ -38,7 +38,7 @@ Let's implement the code that makes this test pass.
 
 In your `src` folder, create a file called `person.js`. Add the following code to that file:
 
-```js
+```javascript
 # src/person.js
 
 function Person(attr) {
@@ -59,23 +59,23 @@ Cool, the browsers console can function as a way to manually tests your units an
 
 Let's write some more tests. 
 
-```js
+```javascript
 # spec/person_spec.js
 
 it("should calculate BMI value", function() {
-    person.calculate_bmi();
-    expect(person.bmiValue).toEqual(26.01)
-  });
+  person.calculate_bmi();
+  expect(person.bmiValue).toEqual(26.01)
+});
 
-  it("should have a BMI Message", function() {
-    person.calculate_bmi();
-    expect(person.bmiMessage).toEqual("Overweight")
-  });
+it("should have a BMI Message", function() {
+  person.calculate_bmi();
+  expect(person.bmiMessage).toEqual("Overweight")
+});
 ```
 
 In those tests we are calling a `calculate_bmi()` function on the `person` object we have created. This will fail since we have no such function defined. 
 
-```js
+```javascript
 # src/person.js
 
 Person.prototype.calculate_bmi = function() {
@@ -88,7 +88,7 @@ That implementation will make the test pass, but it is not what we want, is it? 
 
 Let's instead call the `BMICalculator` to do the calculation for us by changing the code to:
 
-```js
+```javascript
 # src/person.js
 
 Person.prototype.calculate_bmi = function() {
