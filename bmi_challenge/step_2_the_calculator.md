@@ -5,7 +5,7 @@ Create a spec file for the `BMICalculator` and call it `bmi_calculator_spec.js`
 
 Add the following code to it
 
-```js
+```javascript
 # spec/bmi_calculator_spec.js
 
 describe("BMICalculator", function() {
@@ -29,7 +29,7 @@ Make sure that you run your spec runner after each addition and read the error m
 
 Add the following code to the `src/bmi_calculator.js` file
 
-```js
+```javascript
 # src/bmi_calculator.js
 
 function BMICalculator(){
@@ -51,7 +51,7 @@ We still have not set the `bmiMessage` on the `Person`. In order to do that we n
 
 Add this function to the `bmi_calculator.js` file.
 
-```js
+```javascript
 # src/bmi_calculator.js
 
 function setBMIMessage (obj, value){
@@ -72,7 +72,7 @@ function setBMIMessage (obj, value){
 
 Remember to call it from the `metric_bmi` function.
 
-```js
+```javascript
 # src/bmi_calculator.js
 
 BMICalculator.prototype.metric_bmi = function(obj) {
