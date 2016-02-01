@@ -11,7 +11,7 @@ $ touch spec/person_spec.js
 
 We are going to write two test for our Person object. In order to calculate the BMI we will be needing a Person to have two attributes, `weight` and `hight`.
 
-```js
+```javascript
 # spec/person_spec.js
 
 describe("Person", function() {
