@@ -41,11 +41,12 @@ num = 19;
 num = 0xfe + 2.343 + 2.5e3;       
     // hex, floats, exp
 
-var newObject = new Object();     
-    // constructor
 ```
 ### Objects
 ```javascript
+var newObject = new Object();     
+    // constructor
+    
 newObject = {};           
     // constructor shorthand
     
