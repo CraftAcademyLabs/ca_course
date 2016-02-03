@@ -25,4 +25,5 @@
    * [Domain Model from User stories](extras/domain_model_from_user_stories.md)
    * [Model View Controller](extras/model_view_controller.md)
    * [Ruby - Classes and Modules](extras/classes_and_modules.md)
+* FizzBuzz JS Challenge
 
