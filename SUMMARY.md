@@ -14,6 +14,7 @@
    * [Acceptance tests](bmi_challenge/step_4_acceptance_tests.md)
    * [Moving on](bmi_challenge/step_5_moving_on.md)
    * [Extra challenge](bmi_challenge/extra_challenge.md)
+* [FizzBuzz JS Challenge](fizz_buzz/js/fizzbuzz_js_challenge.md)
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
@@ -25,5 +26,4 @@
    * [Domain Model from User stories](extras/domain_model_from_user_stories.md)
    * [Model View Controller](extras/model_view_controller.md)
    * [Ruby - Classes and Modules](extras/classes_and_modules.md)
-* [FizzBuzz JS Challenge](fizz_buzz/js/fizzbuzz_js_challenge.md)
 
