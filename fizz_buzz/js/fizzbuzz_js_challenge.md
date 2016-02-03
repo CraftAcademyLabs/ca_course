@@ -34,13 +34,20 @@ the output according to the FizzBuzz rules.
 
 ### Tasks
 
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+#### TODO:
 
 - Fork the challenge repo: [https://github.com/CraftAcademy/fizz_buzz_js_challenge](https://github.com/CraftAcademy/fizz_buzz_js_challenge)
 - Run the command 'bundle' in the project directory to ensure you have all the gems
 - Write your specs and implementation
 - Be smart about using Git: commit and push often. Use feature branches.
 - Create a Pull Request as soon as possible
+
+#### Review and reflect
+Compare this implementation to the Ruby version we wrote a while back during the prep-course. 
+1. What are the similarities/differences between the Ruby and js versions?
+2. How do you find unit testing with Jasmine in comparison to RSpec? 
+3. How can you "gamify" Fizz Buzz? Consider the User Interface/Experience. Can the game be played by multiple players? What about mobile devices? 
 
 
 ### What we are looking for
