@@ -27,7 +27,10 @@ We have set up a repo for the project at https://github.com/CraftAcademy/slow_fo
 
 Fork that repo and go over the code and gems already included in the Gemfile. Your very fists assignment is the get that code working. **Make use of all the previous challenges including the Workshop to find answers to obstacles you might encounter.**
 
-Nex I want you to draw an ERD (Entity Relationship Diagram) of the system the way you see it fit. ER-modeling is a data modeling technique used in software engineering to produce a conceptual data model of a information system. Diagrams created using this ER-modeling technique are called Entity-Relationship Diagrams, or ER diagrams or ERDs. So you can say that Entity Relationship Diagrams illustrate the logical structure of databases.
+After that you need to create some User stories to cover the above feature requirements. 
+
+
+Next, I want you to draw an ERD (Entity Relationship Diagram) of the system the way you see it fit. ER-modeling is a data modeling technique used in software engineering to produce a conceptual data model of a information system. Diagrams created using this ER-modeling technique are called Entity-Relationship Diagrams, or ER diagrams or ERDs. So you can say that Entity Relationship Diagrams illustrate the logical structure of databases.
 
 There are three basic elements in ER-Diagrams:
 
