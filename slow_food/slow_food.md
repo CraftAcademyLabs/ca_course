@@ -20,7 +20,7 @@ Nothing else should be considered or implemented.
 * PostgreSQL for database
 * Warden for user authentication
 * Cucumber for acceptance tests
-* RSPec for unit tests
+* RSpec for unit tests
 
 
 We have set up a repo for the project at https://github.com/CraftAcademy/slow_food_sinatra
