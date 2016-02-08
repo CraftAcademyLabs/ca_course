@@ -1,6 +1,6 @@
 ### SlowFood (Sinatra)
 
-Our client is a Restaurant owner that needs an website where he can list his menu and allow visitors to place orders.
+Our client is a Restaurant owner that needs a website where he can list his menu and allow visitors to place orders.
 
 #### Scope (v1)
 
@@ -25,7 +25,7 @@ Nothing else should be considered or implemented.
 
 We have set up a repo for the project at https://github.com/CraftAcademy/slow_food_sinatra
 
-Fork that repo and go over the code and gems already included in the Gemfile. Your very fists assignment is the get that code working. **Make use of all the previous challenges including the Workshop to find answers to obstacles you might encounter.**
+Fork that repo and go over the code and gems already included in the Gemfile. Your very fist assignment is the get that code working. **Make use of all the previous challenges including the Workshop to find answers to obstacles you might encounter.**
 
 After that you need to create some User stories to cover the above feature requirements. 
 
