@@ -44,7 +44,7 @@ The following objectives must be met:
 
 - Don't overdo it. Keep your implementation as simple as possible.
 - Test your code - both manually in IRB but, most importantly with automated tests.
-- Try to write tests ** *before* ** you write your production code. See tests as a blueprint for your implementation.
+- You have to examine all tests ** *before* ** you write your production code. See tests as a blueprint for your implementation.
 
 This is a good time to read the [Naming Standards](../extras/naming_standards.md) section.
 
