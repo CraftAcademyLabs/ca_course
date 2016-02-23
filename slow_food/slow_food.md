@@ -25,6 +25,8 @@ Nothing else should be considered or implemented.
 
 We have set up a repo for the project at https://github.com/CraftAcademy/slow_food_sinatra
 
+**Remember, the code you get to start with is not necessarily right. It is up to you to make this work.**
+
 Fork that repo and go over the code and gems already included in the Gemfile. Your very fist assignment is the get that code working. **Make use of all the previous challenges including the Workshop to find answers to obstacles you might encounter.**
 
 After that you need to create some User stories to cover the above feature requirements. 
@@ -40,5 +42,9 @@ Entities are the "things" for which we want to store information. An entity is a
 * ERD's show entities in a database and relationships between tables within that database. It is essential to have ER-Diagrams if you want to create a good database design. The diagrams help focus on how the database actually works.
 * 
 You can use this ERD Tool: https://editor.ponyorm.com/
+
+
+
+
 
 
