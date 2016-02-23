@@ -37,7 +37,7 @@ There are three basic elements in ER-Diagrams:
 Entities are the "things" for which we want to store information. An entity is a person, place, thing or event.
 * Attributes are the data we want to collect for an entitiy.
 * Relationships describe the relations between the entities.
-* ERDs show entities in a database and relationships between tables within that database. It is essential to have ER-Diagrams if you want to create a good database design. The diagrams help focus on how the database actually works.
+* ERD's show entities in a database and relationships between tables within that database. It is essential to have ER-Diagrams if you want to create a good database design. The diagrams help focus on how the database actually works.
 * 
 You can use this ERD Tool: https://editor.ponyorm.com/
 
