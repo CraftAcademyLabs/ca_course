@@ -12,6 +12,8 @@ Read this entire README carefully and follow all instructions.
 - If you have a partial solution, **still check in a partial solution to GitHub and create a Pull Request**
 - You must submit a Pull Request to this repository with your code by 9.30am Monday morning - before the stand-up
 - **NOTE! Place all your production code in the `src` folder (html files directly in that folder and JavaScript files in `src/js`)**
+- **Make sure that you have a close look at the `Gemfile` to see what libraries will be used. That will have an impact on how you will be running your tests.**
+- **Make sure you read the documentation for the gems used.**
 
 ### Learning objective
  
