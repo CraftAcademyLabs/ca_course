@@ -1,6 +1,6 @@
 ## Setup Middleman
 
-If you don't have Ruby installed yet, please refer to our setup instructions for [Linux](../terminal/linux.md) or [Mac OS X](../terminal/mac_osx.md)
+If you don't have Ruby installed yet, please refer to our setup instructions for [Linux](https://craftacademy.gitbooks.io/caa_precourse/content/terminal/linux.html) or [Mac OS X](https://craftacademy.gitbooks.io/caa_precourse/content/terminal/mac_osx.html)
 
 Once you're done, head to your terminal and run the following command:
 
