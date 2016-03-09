@@ -16,7 +16,7 @@
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
 * [Static Website with Middleman](middleman/static_website_with_middleman.md)
-   * [Setup MIddleman](middleman/setup_middleman.md)
+   * [Setup Middleman](middleman/setup_middleman.md)
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * [Extras](extras/extras.md)
