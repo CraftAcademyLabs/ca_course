@@ -17,4 +17,4 @@ Building a static site with multiple pages can lead to having lots of repeated c
 
 Middleman uses the Ruby programming language. But don't worry if you're still new to Ruby as you'll likely not write too much of it while build your site.
 
-Now let's [install middleman and build our first site](middleman/setup_middleman.md).
+Now let's [install middleman and build our first site](setup_middleman.md).
