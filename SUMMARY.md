@@ -15,7 +15,7 @@
 * [Library challenge - Advanced Ruby](library_challenge/library_challenge.md)
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
-* Static Website with Middleman
+* [Static Website with Middleman](static_website_with_middleman.md)
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * [Extras](extras/extras.md)
