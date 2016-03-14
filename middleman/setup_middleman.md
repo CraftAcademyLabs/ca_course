@@ -18,7 +18,15 @@ Let's build a middleman skeleton project. From your terminal, navigate to the fo
 $ middleman init my_site
 ```
 
-This will create a folder named `my_fancy_site` in the current directory.
+This will create a folder named `my_site` in the current directory and generate starter files for your project.
+
+You'll be prompted the following questions to which you need to answer with either (`y`)es or (`n`)o:
+
+```shell
+Do you want to use Compass? n
+Do you want to use LiveReload? y
+Do you want a Rack-compatible config.ru file? n
+```
 
 ### Serving the Application - `middleman server`
 
@@ -31,6 +39,9 @@ $ middleman server
 
 This will start up the server and you should now be able to access the site at [http://localhost:4567/](http://localhost:4567/)
 
+![Middleman welcome screen](welcome_to_middleman.png)
+
+Great! We have successfully setup middleman and created our project. Now let's go through the files that were generated for us.
 
 ### Directory Structure
 
