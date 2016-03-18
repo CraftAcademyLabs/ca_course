@@ -41,9 +41,11 @@ This will start up the server and you should now be able to access the site at [
 
 ![Middleman welcome screen](welcome_to_middleman.png)
 
-Great! We have successfully setup middleman and created our project. Now let's go through the files that were generated for us.
+Great! We have successfully setup middleman and created our project. Now let's go through the files that have been generated for us.
 
 ### Directory Structure
+
+A tipical middleman application will have a directory structure that looks like this:
 
 ```shell
 my_site/
@@ -65,4 +67,30 @@ my_site/
         +-- normalize.css
 ```
 
-***Add Description of main folders here***
+#### The `source` directory
+
+The `source` folder is where you'll spend most of your time while building your website. By default it contains folders for JavaScript, CSS and images, but you can re-organise them at your own convenience. We'll see how to achieve that later in this chapter.
+
+#### The `config.rb`
+
+The `config.rb` file is were you will find the settings for your Middleman application. It also contains commented documentation on how to enable complex features such as compile-time compression, blog-mode, etc.
+
+#### The `Gemfile`
+
+Just like any other ruby project you have worked with so far, Middleman makes use of Bundler `Gemfile` to manage your gem dependencies.
+
+#### Other Middleman directories
+
+Middleman makes use of extra directories for specific purposes. Each of these folders are children of your main application folder.
+
+##### The `build` directory
+
+This is where your static website files will be compiled and exported to. 
+
+##### The `lib` directory
+
+The `lib` directory will house your external Ruby modules. These modules will contain helpers to use while building your application.
+
+##### The `data` directory
+
+Data files allow you to create `.yml`, `.yaml` or `.json` files in the `data` folder and makes this information available in your templates. We will be covering Data files in another section of this chapter.
