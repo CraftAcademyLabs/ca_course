@@ -24,5 +24,5 @@
    * [Working in the Cloud](working_in_the_cloud/working_in_the_cloud.md)
    * [Naming Standards](extras/naming_standards.md)
    * [Domain Model from User stories](extras/domain_model_from_user_stories.md)
-* Rails Messaging
+* [Rails Messaging](rails_messaging.md)
 
