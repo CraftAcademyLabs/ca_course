@@ -89,7 +89,7 @@ end
 We'll also add `_nav` partial that holds our applications navigation in the layouts folder.
 
 ```erb
-#views/layouts/_nav.html.erb)
+#views/layouts/_nav.html.erb
 
 <!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
@@ -124,7 +124,7 @@ $ rake db:migrate
 The generator also configures your `config/routes.rb` file to point to the Devise controller. You can check the User model for any additional configuration options you might want to add but for our case we will leave it at its defaults. At this point we can update the login and sign up links in our _nav partial to point to the appropriate routes.
 
 ```erb
-#views/layouts/_nav.html.erb)
+#views/layouts/_nav.html.erb
 
 <!-- truncated -->
   <ul class="nav navbar-nav pull-right">
@@ -162,8 +162,8 @@ We then add the name input field to Devise's views
 <% end %>
 ````
 
-```
-edit.html.erb (app/views/devise/registrations/edit.html.erb)
+```erb
+#app/views/devise/registrations/edit.html.erb
 
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
@@ -180,10 +180,10 @@ edit.html.erb (app/views/devise/registrations/edit.html.erb)
 
 <% end %>
 <!-- [...] -->
-view rawregistrations_edit.html.erb hosted with ❤ by GitHub
+````
 Since we are running this app on Rails 4, we will need to whitelist the name parameter. In our application controller file:
-
-application_controller.rb
+```ruby
+# app/controllers/application_controller.rb
 
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
@@ -199,16 +199,17 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.for(:account_update) << :name
   end
 end
-view rawapplication_controller.rb hosted with ❤ by GitHub
-INTEGRATING MAILBOXER
+```
+###Mailboxer
 
-We can now at this juncture tackle the elephant in the room. We already added the Mailboxer gem already in our Gemfile and we can proceed to install it and update our database.
-
+We've already added the Mailboxer gem already in our Gemfile. Now we can proceed to install it and update our database.
+```
 $ rails g mailboxer:install
 $ rake db:migrate
+```
 The generator creates an initializer file mailboxer.rb which you should use this to edit the default mailboxer settings. The options are quite straight forward, tweak them to your liking. We will then change the default name_method since we already have the name attribute in our user model to prevent conflict.
-
-mailboxer.rb (config/initializers/mailboxer.rb)
+```ruby
+#config/initializers/mailboxer.rb
 
 Mailboxer.setup do |config|
   # [...]
@@ -219,18 +220,16 @@ Mailboxer.setup do |config|
 
   # [...] 
 end
-view rawmailboxer.rb hosted with ❤ by GitHub
+```
 PREPARING OUR MODEL
 
-For us to equip our User model with Mailboxer functionalities we have to add acts_as_messageable. This will enable us send user-user messages. We also need to add an identity defined by a name and an email in our User model as required by Mailboxer.
+For us to equip our User model with Mailboxer functionalities we have to add `acts_as_messageable`. This will enable us send user-to-user messages. We also need to add an identity defined by a name and an email in our User model as required by Mailboxer.
 
 Our model must therefore have this specific methods. These methods are: mailboxer_email and mailboxer_name as stated in our mailboxer initializer file. You should make sure to change this when you edit their names in the initializer.
-
-user.rb (app/models/user.rb)
+```ruby
+#app/models/user.rb
 
 class User < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
@@ -244,7 +243,7 @@ class User < ActiveRecord::Base
     self.email
   end
 end
-view rawuser.rb hosted with ❤ by GitHub
+```
 PREPARING CONTROLLERS
 
 The way I would like to configure this is having two controllers
@@ -252,10 +251,11 @@ The way I would like to configure this is having two controllers
 MailboxController - This will hold our top-level folders (inbox, sentbox and trash) and will be responsible for displaying the messages in each of this folders.
 ConversationsController - This will handle various actions including creating conversations, replies and deletion of messages etc.
 Let's start by creating the mailbox controller
-
+```
 $ rails g controller mailbox
+```
 We will then add some custom routes for inbox, sentbox and trash in our routes.rb file
-
+```ruby 
 routes.rb (config/routes.rb)
 
 Rails.application.routes.draw do
@@ -267,10 +267,10 @@ Rails.application.routes.draw do
   get "mailbox/sent" => "mailbox#sent", as: :mailbox_sent
   get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
 end
-view rawroutes_1.rb hosted with ❤ by GitHub
-Lets define this methods in our mailbox controller
-
-mailbox_controller.rb (app/controllers/mailbox_controller.rb)
+```
+Let's define this methods in our mailbox controller
+```ruby
+#app/controllers/mailbox_controller.rb
 
 class MailboxController < ApplicationController
   before_action :authenticate_user!
@@ -291,10 +291,10 @@ class MailboxController < ApplicationController
   end
 
 end
-view rawmailbox_controller.rb hosted with ❤ by GitHub
-We will use the @active variable to highlight the currently selected folder in our view. We can now define the mailbox method as a helper method in our application_controller.rb file.
-
-application_controller.rb (app/controllers/application_controller.rb)
+```
+We will use the `@active` variable to highlight the currently selected folder in our view. We can now define the mailbox method as a helper method in our application_controller.rb file.
+```
+#app/controllers/application_controller.rb
 
 class ApplicationController < ActionController::Base
   # [...]
@@ -310,24 +310,25 @@ class ApplicationController < ActionController::Base
 
   # [...]
 end
-view rawapplication_controller_0.rb hosted with ❤ by GitHub
+```
 Let's now create a view file for each of the actions in the mailbox controller. Each of this will share the same partial to navigate between the mailbox folders
-
-inbox.html.erb (app/views/mailbox/inbox.html.erb)
+```erb 
+#app/views/mailbox/inbox.html.erb
 
 <%= render partial: 'mailbox/folder_view' %>
-view rawinbox.html.erb hosted with ❤ by GitHub
-sent.html.erb (app/views/mailbox/sent.html.erb)
+```
+```erb 
+#app/views/mailbox/sent.html.erb
 
 <%= render partial: 'mailbox/folder_view' %>
 view rawsent.html.erb hosted with ❤ by GitHub
 trash.html.erb (app/views/mailbox/trash.html.erb)
 
 <%= render partial: 'mailbox/folder_view' %>
-view rawtrash.html.erb hosted with ❤ by GitHub
-Lets create the folder_view partial, in our mailbox folder, create a new file name it _folder_view.html.erb and paste the following contents.
-
-_folder_view.html.erb (app/views/mailbox/_folder_view.html.erb)
+```
+Lets create the folder_view partial, in our mailbox folder, create a new file name it `_folder_view.html.erb` and paste the following contents.
+```erb
+#app/views/mailbox/_folder_view.html.erb
 
 <div class="row">
   <div class="spacer"></div>
@@ -354,10 +355,10 @@ _folder_view.html.erb (app/views/mailbox/_folder_view.html.erb)
   </div>
 
 </div>
-view raw_folder_view.html.erb hosted with ❤ by GitHub
-Inside here, we also make use of another partial called folders. Lets also, in the same mailbox folder create a new file _folders.html.erb and have the following contents
-
-_folders.html.erb (app/views/mailbox/_folders.html.erb)
+```
+Inside here, we also make use of another partial called folders. Lets also, in the same mailbox folder create a new file `_folders.html.erb` and have the following contents
+```erb
+#app/views/mailbox/_folders.html.erb
 
 <ul class="nav nav-pills nav-stacked">
   <li class="<%= active_page(:inbox) %>">
@@ -382,10 +383,10 @@ _folders.html.erb (app/views/mailbox/_folders.html.erb)
     <% end %>
   </li>
 </ul>
-view raw_folders.html.erb hosted with ❤ by GitHub
-Remember the @active instance variable we instantiated in our mailbox controller? lets make a helper method that makes use of that variable to highlight the current page. In our application_helper.rb file add the following method.
-
-application_helper.rb (app/helpers/application_helper.rb)
+```
+Remember the `@active` instance variable we instantiated in our mailbox controller? lets make a helper method that makes use of that variable to highlight the current page. In our `application_helper.rb` file add the following method.
+```ruby
+#app/helpers/application_helper.rb
 
 module ApplicationHelper
   # [...] 
@@ -393,10 +394,10 @@ module ApplicationHelper
     @active == active_page ? "active" : ""
   end
 end
-view rawapplication_helper_0.rb hosted with ❤ by GitHub
+```
 For our inbox, it would be a good idea to display the number of unread messages. We will define a helper method in our mailbox_helper.rb file in the helpers directory.
-
-mailbox_helper.rb (app/helpers/mailbox_helper.rb)
+```ruby
+#app/helpers/mailbox_helper.rb
 
 module MailboxHelper
   def unread_messages_count
@@ -405,10 +406,10 @@ module MailboxHelper
     mailbox.inbox(:unread => true).count(:id, :distinct => true)
   end
 end
-view rawmailbox_helper.rb hosted with ❤ by GitHub
+```
 We can now add a link in our navigation bar to link to our inbox page
-
-_nav.html.erb (app/views/layous/_nav.html.erb)
+```erb 
+#app/views/layous/_nav.html.erb
 
 <!-- [...] -->
     <div id="navbar" class="navbar-collapse collapse">
@@ -424,7 +425,7 @@ _nav.html.erb (app/views/layous/_nav.html.erb)
       </ul>
     </div><!--/.nav-collapse -->
 <!-- [...] -->
-view raw_nav_1.html.erb hosted with ❤ by GitHub
+```
 Clicking the inbox link should take you to our up and running inbox page with navigation already in place for the inbox, sent and trash folders.
 
 
