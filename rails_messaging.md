@@ -221,7 +221,7 @@ Mailboxer.setup do |config|
   # [...] 
 end
 ```
-PREPARING OUR MODEL
+### The Model
 
 For us to equip our User model with Mailboxer functionalities we have to add `acts_as_messageable`. This will enable us send user-to-user messages. We also need to add an identity defined by a name and an email in our User model as required by Mailboxer.
 
@@ -244,12 +244,14 @@ class User < ActiveRecord::Base
   end
 end
 ```
-PREPARING CONTROLLERS
+### The Controllers
 
-The way I would like to configure this is having two controllers
+We will be using two controllers to handle the messaging system.
 
-MailboxController - This will hold our top-level folders (inbox, sentbox and trash) and will be responsible for displaying the messages in each of this folders.
-ConversationsController - This will handle various actions including creating conversations, replies and deletion of messages etc.
+**MailboxController** - This controller will hold our top-level folders (inbox, sentbox and trash) and be responsible for displaying the messages in each of this folders.
+**ConversationsController** - This controller will handle various actions including creating conversations, replies and deletion of messages etc.
+
+
 Let's start by creating the mailbox controller
 ```
 $ rails g controller mailbox
@@ -289,7 +291,6 @@ class MailboxController < ApplicationController
     @trash = mailbox.trash
     @active = :trash
   end
-
 end
 ```
 We will use the `@active` variable to highlight the currently selected folder in our view. We can now define the mailbox method as a helper method in our application_controller.rb file.
@@ -370,7 +371,6 @@ Inside here, we also make use of another partial called folders. Lets also, in t
   </li>
   <li class="<%= active_page(:sent) %>">
     <%= link_to mailbox_sent_path do %>
-
         <em class="fa fa-paper-plane-o fa-lg"></em>
         <span>Sent</span>
     <% end %>
@@ -430,14 +430,15 @@ Clicking the inbox link should take you to our up and running inbox page with na
 
 
 
-CREATING CONVERSATIONS
+### Conversations
 
-With our mailbox ready to show messages from our inbox, sent and trash folders, its now time we created functionality to create and send new messages to other users. Lets go ahead and create our second controller (conversations)
-
+With our mailbox ready to show messages from our inbox, sent and trash folders, its now time we created functionality to create and send new messages to other users. Let's go ahead and create our second controller (conversations)
+```
 $ rails g controller conversations
+```
 Let's not forget to add a resources route for our conversations which will also hold other 3 member routes to handle reply, trash and untrashing of messages.
-
-routes.rb (config/routes.rb)
+```ruby
+config/routes.rb
 
 Rails.application.routes.draw do
   # [...]
@@ -451,10 +452,10 @@ Rails.application.routes.draw do
     end
   end
 end
-view rawroutes_2.rb hosted with ❤ by GitHub
+```
 With the conversations routes in place, lets edit our compose button link in our folder_view partial to point to the new action of our conversations controller.
-
-_folder_view.html.erb (app/views/mailbox/_folder_view.html.erb)
+```erb 
+#app/views/mailbox/_folder_view.html.erb
 
 <div class="row">
   <div class="spacer"></div>
@@ -464,10 +465,10 @@ _folder_view.html.erb (app/views/mailbox/_folder_view.html.erb)
   </div>
   <!-- [...] -->
 </div>
-view raw_folder_view_1.html.erb hosted with ❤ by GitHub
+```
 We now need to create the new method in our conversations controller and its corresponding view file
-
-conversations_controller.rb (app/controllers/conversations_controller.rb)
+```ruby
+#app/controllers/conversations_controller.rb
 
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
@@ -475,16 +476,17 @@ class ConversationsController < ApplicationController
   def new
   end
 end
-view rawconversations_controller_0.rb hosted with ❤ by GitHub
-new.html.erb (app/views/conversations/new.html.erb)
+``` 
+```erb
+#app/views/conversations/new.html.erb
 
 <%= render partial: 'mailbox/folder_view', locals: { is_conversation: true } %>
-view rawconversations_new.html.erb hosted with ❤ by GitHub
+```
 Notice we are still using our folder_view partial which is in our mailbox folder. This partial will be responsible for displaying different contents based on the current view. To start with, we are passing in a locale called is_conversation. When this is set to true, we will render the form to create new conversations and messages, else we will show contents for each mailbox folder.
 
-In our views folder, conversations folder, create a form partial called _form.html.erb, that will hold the form to create new conversations.
-
-_form.html.erb (app/views/conversations/_form.html.erb)
+In our views folder, conversations folder, create a form partial called `_form.html.erb`, that will hold the form to create new conversations.
+```erb 
+#app/views/conversations/_form.html.erb
 
 <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
     <div class="form-group">
@@ -503,10 +505,10 @@ _form.html.erb (app/views/conversations/_form.html.erb)
     <%= f.submit "Send Message", class: "btn btn-success" %>
 
 <% end %>
-view rawconversations_form.html.erb hosted with ❤ by GitHub
+```
 We then need to update our folder_view partial to render our conversation form if the is_conversation variable is set to true.
-
-_folder_view.html.erb (app/views/mailbox/_folder_view.html.erb)
+```erb 
+#app/views/mailbox/_folder_view.html.erb
 
 <div class="row">
   <!-- [...] -->
@@ -523,20 +525,20 @@ _folder_view.html.erb (app/views/mailbox/_folder_view.html.erb)
   </div>
 
 </div>
-view raw_folder_view_2.html.erb hosted with ❤ by GitHub
-Let's not forget to update our mailboxes passing the is_conversation locale as false. Update our mailbox view files (inbox.html.erb,sent.html.erb,trash.html.erb) to read
-
-inbox.html.erb, sent.html.erb, trash.html.erb (app/views/mailbox/)
+```
+Let's not forget to update your mailboxes passing the is_conversation locale as false. Update your mailbox view files (`inbox.html.erb`,`sent.html.erb`,`trash.html.erb`) to read
+```erb
+`inbox.html.erb`,`sent.html.erb`,`trash.html.erb` (in the `app/views/mailbox/`folder )
 
 <%= render partial: 'mailbox/folder_view', locals: { is_conversation: false } %>
-view rawmailboxes_view_files.html.erb hosted with ❤ by GitHub
+```
 With this, clicking on the Compose button on either page should take you to the new view of our conversations controller and you should have a beautiful form ready to send messages
 
 
 
 With our form up and running, we need to implement the create action in our conversations controller to save the messages to the database. We call Mailboxer's send_message method on the current user and that takes in an array of recipients, the message body and message subject after which we redirect to the show action of our conversations controller.
-
-conversations_controller.rb (app/controllers/conversations_controller.rb)
+```ruby 
+#app/controllers/conversations_controller.rb
 
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
@@ -564,10 +566,10 @@ class ConversationsController < ApplicationController
     params.require(:conversation).permit(:subject, :body,recipients:[])
   end
 end
-view rawconversations_controller_1.rb hosted with ❤ by GitHub
+```
 As you can see in the show action, we query all messages in the current conversation for the current user and store that in the @reciepts variable. Also, the conversation is actually a helper method we need to define in our application controller to help us get the current conversation.
-
-application_controller.rb (app/controllers/application_controller.rb)
+```ruby
+#app/controllers/application_controller.rb
 
 class ApplicationController < ActionController::Base
   # [...]
@@ -582,10 +584,10 @@ class ApplicationController < ActionController::Base
   protected
   # [...]
 end
-view rawapplication_controller_1.rb hosted with ❤ by GitHub
+```
 Creating the show view of the show action:
-
-show.html.erb (app/views/conversations/show.html.erb)
+```erb
+#app/views/conversations/show.html.erb
 
 <div class="row">
   <div class="spacer"></div>
@@ -611,10 +613,10 @@ show.html.erb (app/views/conversations/show.html.erb)
   </div>
 
 </div>
-view rawconversations_show.html.erb hosted with ❤ by GitHub
-Notice we call another partial messages in our new view. Create a new partial _messages in the conversations folder.
-
-_messages.html.erb (app/views/conversations/_messages.html.erb)
+``` 
+Notice we call another partial messages in our new view. Create a new partial `_messages` in the `conversations` folder.
+```erb
+#app/views/conversations/_messages.html.erb
 
 <% @receipts.each do |receipt| %>
     <% message = receipt.message %>
@@ -635,14 +637,14 @@ _messages.html.erb (app/views/conversations/_messages.html.erb)
       </div>
     </div>
 <% end %>
-view raw_messages.html.erb hosted with ❤ by GitHub
+```
 Creating a new conversation should successfully redirect you to that specific conversation and you should have your beautiful conversation show page like the one below
 
 
 
-Now that we can successfully send a message, we need to mechanism to reply correct? we will need to add a reply form on this page and a subsequent reply action in our conversations controller.
-
-show.html.erb (app/views/conversations/show.html.erb)
+Now that we can successfully send a message, we need to mechanism to reply, right? We  need to add a reply form on this page and a subsequent reply action in our conversations controller.
+```erb 
+#app/views/conversations/show.html.erb
 
 <div class="row">
    <!--[...]-->
@@ -666,10 +668,11 @@ show.html.erb (app/views/conversations/show.html.erb)
   </div>
 
 </div>
+```
 view rawconversations_show_1.html.erb hosted with ❤ by GitHub
 Now lets add the reply action to our controller
-
-conversations_controller.rb (app/controllers/conversations_controller.rb)
+```ruby 
+#app/controllers/conversations_controller.rb
 
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
@@ -688,16 +691,16 @@ class ConversationsController < ApplicationController
     params.require(:message).permit(:body, :subject)
   end
 end
-view rawconversations_controller_2.rb hosted with ❤ by GitHub
+```
 Mailboxer's reply_to_conversation method makes replying to conversations a breeze. It takes in a conversation and the message body and optionally a subject as arguments. If you want users to change the subject during reply, then remember to add the subject text field in the reply form and also in the reply_to_conversation method above as the third argument.
 
 DISPLAYING MESSAGES IN OUR MAILBOX FOLDERS
 
 Our mailbox controller views are lonely and we need to show contents in each of them from which users can click on a snippet and view the full message. In this folders, we want to show a snippet of the last message in each unique conversation.
 
-Lets create a new partial conversation inside our conversations folder name it _conversation.html.erb
-
-_conversation.html.erb (app/views/conversations/_conversation.html.erb)
+Lets create a new partial conversation inside our conversations folder name it `_conversation.html.erb`
+```erb
+#app/views/conversations/_conversation.html.erb
 
 <div class="media">
   <div class="media-left">
@@ -715,24 +718,26 @@ _conversation.html.erb (app/views/conversations/_conversation.html.erb)
     <%= link_to "View", conversation_path(conversation)  %>
   </div>
 </div>
-view raw_conversation.html.erb hosted with ❤ by GitHub
+```
 Updating our inbox, sent and trash views
-
-inbox.html.erb
+```erb
+#app/views/inbox.html.erb
 
 <%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @inbox } %>
-view rawinbox1.html.erb hosted with ❤ by GitHub
-sent.html.erb
+```
+```erb
+#app/views/sent.html.erb
 
 <%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @sent } %>
-view rawsent1.html.erb hosted with ❤ by GitHub
-trash.html.erb
+``` 
+```erb
+#app/views/trash.html.erb
 
 <%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @trash } %>
-view rawtrash1.html.erb hosted with ❤ by GitHub
+```
 In all of our three views, we pass in messages as a locale to our folder_view partial which represents messages from either our inbox, sentbox or trash. Finally lets update our folder_view partial to use the messages locale and consequently render the conversation partial we just created.
-
-_folder_view.html.erb (app/views/mailbox/_folder_view.html.erb)
+```erb
+#app/views/mailbox/_folder_view.html.erb
 
 <div class="row">
  <!--[...]-->
@@ -748,14 +753,14 @@ _folder_view.html.erb (app/views/mailbox/_folder_view.html.erb)
     </div>
   </div>
 </div>
-view rawfolder_view1.html.erb hosted with ❤ by GitHub
+```
 You should now be able to see your messages, if any, when you click the inbox and sent links in any view. One last part is remaining, as you can guess, that is ability to delete messages and send them to the trash and also ability to untrash messages which we might have deleted by mistake.
 
-TRASHING AND UNTRASHING MESSAGES
+### Deleating and undeleating messages
 
 We will now need to add a "Move to trash" button in each conversation that is not yet deleted. For those already deleted, we need to show an "Untrash" button.
-
-_conversation.html.erb (app/views/conversations/_conversation.html.erb)
+```erb
+#app/views/conversations/_conversation.html.erb
 
 <div class="row">
   <div class="spacer"></div>
@@ -801,10 +806,10 @@ _conversation.html.erb (app/views/conversations/_conversation.html.erb)
   </div>
 
 </div>
-view rawconversation_show2.html.erb hosted with ❤ by GitHub
+```
 We now add the corresponding trash and untrash methods in our controller
-
-conversations_controller.rb (app/controllers/conversations_controller.rb)
+```ruby
+#app/controllers/conversations_controller.rb
 
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
@@ -823,23 +828,23 @@ class ConversationsController < ApplicationController
   private
   # [..]
 end
-view rawconversations_controller_3.rb hosted with ❤ by GitHub
+```
 As you can see Mailboxer provides handful methods move_to_trash to send messages to the current users's trash box and untrash to move back the message back to the users inbox.
 
-ENHANCEMENTS
+### Additional features
 
 As you many have noted, the current method of selecting recipients is not very efficient especially when the number of users increase, finding a user can become way too tedious. We can improve on this by use of a jQuery plugin called Chosen which makes it dead simple to select from a large list and is more user-friendly. Fortunately for us, there is a chosen-rails gem that makes integrating this plugin into Rails app very easy.
 
 To Install the gem in our rails app, add chosen-rails to your Gemfile and run bundle install
-
-Gemfile
+```ruby
+#Gemfile
 
 # [...]
 gem 'chosen-rails'
-view rawGemfile_1 hosted with ❤ by GitHub
+```
 We then need to add Chosen to application.js and application.css.scss files:
-
-application.js
+```javascript
+# app/assets/javascripts/application.js
 
 # [....]
 
@@ -848,8 +853,10 @@ application.js
 //= require chosen-jquery
 //= require turbolinks
 //= require_tree .
-view rawapplication.js hosted with ❤ by GitHub
-application.css
+```
+
+```css
+# app/assets/stylesheets/application.css
 
  /* [...] */
  *
@@ -860,10 +867,10 @@ application.css
 
 @import 'bootstrap';
 @import 'bootstrap/theme';
-view rawapplication.css.scss hosted with ❤ by GitHub
+```
 We then add the chosen-select class to our select dropdown in our conversation's form select field
-
-_form.html.erb (app/views/conversations/_form.html.erb)
+```erb
+app/views/conversations/_form.html.erb
 
 <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
     <div class="form-group">
@@ -874,9 +881,9 @@ _form.html.erb (app/views/conversations/_form.html.erb)
     <%= f.submit "Send Message", class: "btn btn-success" %>
 
 <% end %>
-view rawconversations_form1.html.erb hosted with ❤ by GitHub
+```
 Lastly, lets equip our multiple-select dropdown with some Chosen magic. As we will be using plain jquery, rename conversations.js.coffee to conversations.js and paste in the following code
-
+```javascript
 conversations.js (app/assets/conversations.js)
 
 var ready;
@@ -891,12 +898,12 @@ ready = function(){
 $(document).ready(ready);
 // if using turbolinks
 $(document).on("page:load",ready);
-view rawconversations.js hosted with ❤ by GitHub
+```
 Reload the page with your form and you should see jQuery Chosen in action.
 
 
 
-CONCLUSION
+###Wrap up
 
-That wraps it up for this tutorial and I hope I did a good job of trying to explain the nitty-gritty of implementing a private messaging system using the Mailboxer Gem. Its my hope that this post was useful and as always let me know what you think in the comments section below. Happy Coding!!
+That wraps it up for this tutorial and I hope I did a good job of trying to explain the nitty-gritty of implementing a private messaging system using the Mailboxer Gem.  Happy Coding!!
 
