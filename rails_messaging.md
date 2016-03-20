@@ -322,8 +322,9 @@ Let's now create a view file for each of the actions in the mailbox controller. 
 #app/views/mailbox/sent.html.erb
 
 <%= render partial: 'mailbox/folder_view' %>
-view rawsent.html.erb hosted with ❤ by GitHub
-trash.html.erb (app/views/mailbox/trash.html.erb)
+```
+```erb
+#app/views/mailbox/trash.html.erb
 
 <%= render partial: 'mailbox/folder_view' %>
 ```
