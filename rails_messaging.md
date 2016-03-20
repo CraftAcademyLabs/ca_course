@@ -1,15 +1,15 @@
 # Rails Messaging
 
-####Objective
+###Objective
 
-We want to create a simple application that lets logged in users send and receive messages privately between themselves. Our application should keep a list of messages organized into folders: sentbox, inbox and trash and also ability to send notifications via mail.
+We will be building an application that allows users send and receive messages  between themselves. Our application should keep a list of messages organized into folders: `sentbox`, `inbox` and `trash` and also ability to send notifications via mail.
 
-Lets start out by creating a new rails app, lets name it messenger
+Let's start out by creating a new rails application and call it `rails_messaging`
 
 ```
 $ rails new rails_messaging
 ```
-We'll be using **[Bootstrap](http://getbootstrap.com/)** css under the hood for some quick styling. Next up, we will need to set up and authentication mechanism, we'll use **[Devise](https://github.com/plataformatec/devise)** for that. Let's also throw in the **[Mailboxer](https://github.com/mailboxer/mailboxer)** gem at this point and leave it to simmer for a while while we work on authentication.
+We'll be using the **[Bootstrap](http://getbootstrap.com/)** css framework under the hood for some quick styling. Next up, we will need to set up and authentication mechanism, we'll use **[Devise](https://github.com/plataformatec/devise)** for that. Let's also throw in the **[Mailboxer](https://github.com/mailboxer/mailboxer)** gem at this point and leave it to simmer for a while while we work on authentication.
 
 ```ruby
 gem 'bootstrap-sass'
@@ -20,7 +20,7 @@ We then install our gems using the bundle command
 ```
 $ bundle install
 ```
-AUTHENTICATION
+### Authentication
 
 We now need to run Devise's generator to install an initializer that will describe all options available to configure Devise.
 ```
@@ -30,7 +30,7 @@ Completing the additional steps as described on the post-install messages that a
 ```
 $ rails g controller welcome index
 ```
-Lets make the root path of our application point to the index action of our newly created welcome controller
+Let's make the root path of our application point to the index action of our newly created welcome controller
 ```ruby
 # config/routes.rb
 
