@@ -4,10 +4,10 @@
 
 We will be building an application that allows users send and receive messages  between themselves. Our application should keep a list of messages organized into folders: `sentbox`, `inbox` and `trash` and also ability to send notifications via mail.
 
-Let's start out by creating a new rails application and call it `rails_messaging`
+Let's start out by creating a new rails application and call it `rails_messaging`. We will use PostgreSQL and skip the Test Unit gem (We'll be seting up Cucumber for acceptance testing.
 
 ```
-$ rails new rails_messaging
+$ rails new rails_messaging --database=postgresql --skip-test-unit
 ```
 We'll be using the **[Bootstrap](http://getbootstrap.com/)** css framework under the hood for some quick styling. Next up, we will need to set up and authentication mechanism, we'll use **[Devise](https://github.com/plataformatec/devise)** for that. Let's also throw in the **[Mailboxer](https://github.com/mailboxer/mailboxer)** gem at this point and leave it to simmer for a while while we work on authentication.
 
