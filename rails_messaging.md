@@ -854,7 +854,7 @@ As you can see Mailboxer provides handful methods move_to_trash to send messages
 
 ### Additional features
 
-As you many have noted, the current method of selecting recipients is not very efficient especially when the number of users increase, finding a user can become way too tedious. We can improve on this by use of a jQuery plugin called Chosen which makes it dead simple to select from a large list and is more user-friendly. Fortunately for us, there is a chosen-rails gem that makes integrating this plugin into Rails app very easy.
+As you many have noted, the current method of selecting recipients is not very efficient especially when the number of users increase, finding a user can become way too tedious. We can improve on this by use of a jQuery plugin called Chosen which makes it dead simple to select from a large list and is more user-friendly. Fortunately for us, there is a [`chosen-rails`](https://github.com/tsechingho/chosen-rails) gem that makes integrating this plugin into Rails app very easy.
 
 To Install the gem in our rails app, add chosen-rails to your Gemfile and run bundle install
 ```ruby
