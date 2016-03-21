@@ -5,6 +5,23 @@ The concept of Behaviour Driven Development (BDD) is pretty simple. You describe
 
 The tools we will be using to test our application are RSpec and Cucumber. Those are the two so called testing frameworks that will help us to write good code. During the development process, we'll take an approach that combines high level acceptance tests and low level unit tests to both drive the development process and make sure that we build a robust and well structured application.
 
+###Testing/Development Cycle
+
+A good cycle to follow for BDD is this outside-in approach:
+
+* Write a high-level (outside) business value example (using Cucumber or RSpec/Capybara) that goes red
+* Write a lower-level (inside) RSpec example for the first step of implementation that goes red
+* Implement the minimum code to pass that lower-level example, see it go green
+* Write the next lower-level RSpec example pushing towards passing #1
+* Repeat steps #3 and #4 until the high-level test (#1) goes green
+* During the process think of your red/green state as a permission status:
+
+When your low-level tests are green, you have permission to write new examples or refactor existing implementation. You must not, in the context of that refactoring, add new functionality/flexibility.
+
+When your low-level tests are red, you have permission to write or change implmentation code only for the purpose of making the existing tests go green. You must resist the urge to write the code to pass your next test, which doesn’t exist, or implement features you’ll need "some day."
+
+
+
 ####Prerequisites
 We assume that you have your Development environment setup according to instructions in this book and that you are working on eaither a Linux or OSX based computer.
 
@@ -202,6 +219,98 @@ Bootstrap the application with Cucumber:
 $ bundle exec rails generate cucumber:install
 ```
 This will generate Cucumber configuration files and set up database for Cucumber tests.
+
+###Is Cucumber working correctly?
+To make sure of that, let's develop a simple feature. In the scenario, a user will visit the homepage and see that a post is displayed:
+
+```gherkin
+# features/home_page.feature
+Feature: Home page
+
+Scenario: Viewing application's home page
+Given there's a post titled "Intro to BDD" with "BDD rocks!" content
+When I am on the homepage
+Then I should see the "Intro to BDD" post
+```
+
+Run the scenario and see it fail.
+```
+$ bundle exec cucumber features/home_page.feature
+```
+
+In the terminal output, you will see snippets for implementing steps:
+```
+You can implement step definitions for undefined steps with these snippets:
+
+Given(/^there's a post titled "(.*?)" with "(.*?)" content$/) do |arg1, arg2|
+  pending # express the regexp above with the code you wish you had
+end
+
+When(/^I am on the homepage$/) do
+  pending # express the regexp above with the code you wish you had
+end
+
+Then(/^I should see the "(.*?)" post$/) do |arg1|
+  pending # express the regexp above with the code you wish you had
+end
+```
+Let's copy those steps into features/step_definitions/home_page_steps.rb and edit them:
+```ruby
+# features/step_definitions/home_page_steps.rb
+Given(/^there's a post titled "(.*?)" with "(.*?)" content$/) do |title, content|
+  @post = FactoryGirl.create(:post, title: title, content: content)
+end
+
+When(/^I am on the homepage$/) do
+  visit "/"
+end
+
+Then(/^I should see the "(.*?)" post$/) do |title|
+  @post = Post.find_by_title(title)
+  expect(page).to have_content(@post.title)
+  expect(page).to have_content(@post.content)
+end
+```
+In these steps we create a post using `factory_girl`, visit the homepage and check if the post is displayed.
+
+If you run the scenario again, you will see that it fails since the route is not defined. Let's add it to our `routes.rb` file:
+```ruby
+# config/routes.rb
+Myapp::Application.routes.draw do
+  root to: "posts#index"
+end
+```
+Now implement the controller that will serve the /posts route:
+```
+# app/controllers/posts_controller.rb
+class PostsController < ApplicationController
+  def index
+    @posts = Post.all
+  end
+end
+```
+And create the view that will render Posts#index action and list all posts:
+```
+<!-- app/views/posts/index.html.erb -->
+<ul>
+<% @posts.each do |post| %>
+<li>
+<%= post.title %><br />
+<%= post.content %>
+</li>
+<% end %>
+</ul>
+```
+Now run the feature file and you should see it pass:
+```
+$ bundle exec cucumber features/home_page.feature
+...
+
+1 scenario (1 passed)
+3 steps (3 passed)
+```
+####Wrap up
+You should now be fully equipped to work in the BDD cycle and deliver clean, working code.
 
 
 
