@@ -665,7 +665,7 @@ Creating a new conversation should successfully redirect you to that specific co
 
 Now that we can successfully send a message, we need to mechanism to reply, right? We  need to add a reply form on this page and a subsequent reply action in our conversations controller.
 ```erb 
-#app/views/conversations/show.html.erb
+# app/views/conversations/show.html.erb
 
 <div class="row">
    <!--[...]-->
@@ -693,7 +693,7 @@ Now that we can successfully send a message, we need to mechanism to reply, righ
 view rawconversations_show_1.html.erb hosted with ❤ by GitHub
 Now lets add the reply action to our controller
 ```ruby 
-#app/controllers/conversations_controller.rb
+# app/controllers/conversations_controller.rb
 
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
@@ -713,9 +713,9 @@ class ConversationsController < ApplicationController
   end
 end
 ```
-Mailboxer's reply_to_conversation method makes replying to conversations a breeze. It takes in a conversation and the message body and optionally a subject as arguments. If you want users to change the subject during reply, then remember to add the subject text field in the reply form and also in the reply_to_conversation method above as the third argument.
+Mailboxer's `reply_to_conversation` method makes replying to conversations a breeze. It takes in a conversation and the message body and optionally a subject as arguments. If you want users to change the subject during reply, then remember to add the subject text field in the reply form and also in the reply_to_conversation method above as the third argument.
 
-DISPLAYING MESSAGES IN OUR MAILBOX FOLDERS
+###Displaying messages
 
 Our mailbox controller views are lonely and we need to show contents in each of them from which users can click on a snippet and view the full message. In this folders, we want to show a snippet of the last message in each unique conversation.
 
