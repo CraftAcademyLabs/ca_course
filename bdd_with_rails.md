@@ -290,8 +290,8 @@ class PostsController < ApplicationController
 end
 ```
 And create the view that will render Posts#index action and list all posts:
-```
-<!-- app/views/posts/index.html.erb -->
+```erb
+# app/views/posts/index.html.erb
 <ul>
 <% @posts.each do |post| %>
 <li>
