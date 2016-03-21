@@ -1,6 +1,21 @@
 # Rails Messaging
 
 ###Objective
+The main objective for this challenge is to practice the workflow that we want to use in our projects with focus on:
+1. Agile methods for software development
+2. Pair Programming 
+3. Collaboration using Git and GitHub
+4. Test- and Behaivior Driven Development
+
+We will provide you with a lot of implementation code so you wont get stuck on that. To make that application work is the easy part. Your responsibility is to make sure you understand the entire process and make use of it. We will be evaluation you on that and not if you get the application up and running.
+
+This is a non-trivial application and even if the gems we will be using will provide most of the functionality we will need, it is still a hard challenge. The only way you will succeed is if you pay close attention to details and focus on the right tasks in the right time.
+
+At some point during this week you will be asked to explain your workflow to the coaches. We will evaluate each and every commit you make to GitHub and we will pay close attention to the sequence in which you do things. Documenting all aspects of your application in your README file is, of course, important.  
+
+In the steps below we have not taken into account anything that has to do with writing tests. The code snippets are for your convenience only, and you might choose NOT to use them. It is important however that you focus on practicing what me mention abowe and not get stuck on implementation.
+
+###The scope
 
 We will be building an application that allows users send and receive messages  between themselves. Our application should keep a list of messages organized into folders: `sentbox`, `inbox` and `trash` and also ability to send notifications via mail.
 
