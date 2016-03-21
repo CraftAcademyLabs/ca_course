@@ -268,6 +268,7 @@ end
 We will be using two controllers to handle the messaging system.
 
 **MailboxController** - This controller will hold our top-level folders (inbox, sentbox and trash) and be responsible for displaying the messages in each of this folders.
+
 **ConversationsController** - This controller will handle various actions including creating conversations, replies and deletion of messages etc.
 
 
