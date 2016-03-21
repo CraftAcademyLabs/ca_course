@@ -15,9 +15,11 @@ This is a non-trivial application and even if the gems we will be using will pro
 
 At some point during this week you will be asked to explain your workflow to the coaches. We will evaluate each and every commit you make to GitHub and we will pay close attention to the sequence in which you do things. Documenting all aspects of your application in your README file is, of course, important.  
 
-In the steps below we have not taken into account anything that has to do with writing tests. The code snippets are for your convenience only, and you might choose NOT to use them. It is important however that you focus on practicing what me mention above and not get stuck on implementation.
+In the steps below we have not taken into account anything that has to do with writing tests. The code snippets are for your convenience only, and you might choose NOT to use them. It is important however that you focus on practicing what me mention above and not get stuck on implementation. **Also, as with every other material, there might be errors in the provided code. It's up tou you to find and correct them if you choose to use the provided snippets. Don't come blaming the authors of this challenge if you run into trouble ;-)**
 
-**Remember, It’s not just about the code. This challenge is about practicing the workflow.**
+**Finally, remember, It’s not just about the code. This challenge is about practicing the workflow.**
+
+
 
 ###The scope
 
@@ -380,7 +382,7 @@ Lets create the folder_view partial, in our mailbox folder, create a new file na
 ```
 Inside here, we also make use of another partial called folders. Lets also, in the same mailbox folder create a new file `_folders.html.erb` and have the following contents
 ```erb
-#app/views/mailbox/_folders.html.erb
+# app/views/mailbox/_folders.html.erb
 
 <ul class="nav nav-pills nav-stacked">
   <li class="<%= active_page(:inbox) %>">
