@@ -742,17 +742,17 @@ Lets create a new partial conversation inside our conversations folder name it `
 ```
 Updating our inbox, sent and trash views
 ```erb
-#app/views/inbox.html.erb
+# app/views/inbox.html.erb
 
 <%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @inbox } %>
 ```
 ```erb
-#app/views/sent.html.erb
+# app/views/sent.html.erb
 
 <%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @sent } %>
 ``` 
 ```erb
-#app/views/trash.html.erb
+# app/views/trash.html.erb
 
 <%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @trash } %>
 ```
