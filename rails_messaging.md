@@ -756,7 +756,7 @@ Updating our inbox, sent and trash views
 
 <%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @trash } %>
 ```
-In all of our three views, we pass in messages as a locale to our folder_view partial which represents messages from either our inbox, sentbox or trash. Finally lets update our folder_view partial to use the messages locale and consequently render the conversation partial we just created.
+In all of our three views, we pass in messages as a locale to our folder_view partial which represents messages from either our `inbox`, `sentbox` or `trash`. Finally lets update our `folder_view` partial to use the messages locale and consequently render the conversation partial we just created.
 ```erb
 #app/views/mailbox/_folder_view.html.erb
 
@@ -781,7 +781,7 @@ You should now be able to see your messages, if any, when you click the inbox an
 
 We will now need to add a "Move to trash" button in each conversation that is not yet deleted. For those already deleted, we need to show an "Untrash" button.
 ```erb
-#app/views/conversations/_conversation.html.erb
+# app/views/conversations/_conversation.html.erb
 
 <div class="row">
   <div class="spacer"></div>
@@ -830,7 +830,7 @@ We will now need to add a "Move to trash" button in each conversation that is no
 ```
 We now add the corresponding trash and untrash methods in our controller
 ```ruby
-#app/controllers/conversations_controller.rb
+# app/controllers/conversations_controller.rb
 
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
@@ -858,7 +858,7 @@ As you many have noted, the current method of selecting recipients is not very e
 
 To Install the gem in our rails app, add chosen-rails to your `Gemfile` and run bundle install
 ```ruby
-#Gemfile
+# Gemfile
 
 # [...]
 gem 'chosen-rails'
