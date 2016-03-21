@@ -9,12 +9,12 @@ The tools we will be using to test our application are RSpec and Cucumber. Those
 
 A good cycle to follow for BDD is this outside-in approach:
 
-* Write a high-level (outside) business value example (using Cucumber or RSpec/Capybara) that goes red
-* Write a lower-level (inside) RSpec example for the first step of implementation that goes red
-* Implement the minimum code to pass that lower-level example, see it go green
-* Write the next lower-level RSpec example pushing towards passing #1
-* Repeat steps #3 and #4 until the high-level test (#1) goes green
-* During the process think of your red/green state as a permission status:
+1. Write a high-level (outside) business value example (using Cucumber or RSpec/Capybara) that goes red
+2. Write a lower-level (inside) RSpec example for the first step of implementation that goes red
+3. Implement the minimum code to pass that lower-level example, see it go green
+4. Write the next lower-level RSpec example pushing towards passing #1
+5. Repeat steps #3 and #4 until the high-level test (#1) goes green
+6. During the process think of your red/green state as a permission status:
 
 When your low-level tests are green, you have permission to write new examples or refactor existing implementation. You must not, in the context of that refactoring, add new functionality/flexibility.
 
