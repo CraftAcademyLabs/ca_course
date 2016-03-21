@@ -13,7 +13,7 @@ This is a non-trivial application and even if the gems we will be using will pro
 
 At some point during this week you will be asked to explain your workflow to the coaches. We will evaluate each and every commit you make to GitHub and we will pay close attention to the sequence in which you do things. Documenting all aspects of your application in your README file is, of course, important.  
 
-In the steps below we have not taken into account anything that has to do with writing tests. The code snippets are for your convenience only, and you might choose NOT to use them. It is important however that you focus on practicing what me mention abowe and not get stuck on implementation.
+In the steps below we have not taken into account anything that has to do with writing tests. The code snippets are for your convenience only, and you might choose NOT to use them. It is important however that you focus on practicing what me mention above and not get stuck on implementation.
 
 ###The scope
 
