@@ -891,7 +891,7 @@ We then need to add Chosen to application.js and application.css.scss files:
 ```
 We then add the chosen-select class to our select dropdown in our conversation's form select field
 ```erb
-app/views/conversations/_form.html.erb
+# app/views/conversations/_form.html.erb
 
 <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
     <div class="form-group">
