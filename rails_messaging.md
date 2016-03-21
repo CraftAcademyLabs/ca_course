@@ -903,9 +903,9 @@ We then add the chosen-select class to our select dropdown in our conversation's
 
 <% end %>
 ```
-Lastly, lets equip our multiple-select dropdown with some Chosen magic. As we will be using plain jquery, rename conversations.js.coffee to conversations.js and paste in the following code
+Lastly, lets equip our multiple-select dropdown with some Chosen magic. As we will be using plain jquery, rename `conversations.js.coffee` to `conversations.js` and paste in the following code
 ```javascript
-conversations.js (app/assets/conversations.js)
+# app/assets/conversations.js
 
 var ready;
 
