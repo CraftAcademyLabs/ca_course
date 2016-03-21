@@ -775,7 +775,7 @@ In all of our three views, we pass in messages as a locale to our folder_view pa
   </div>
 </div>
 ```
-You should now be able to see your messages, if any, when you click the inbox and sent links in any view. One last part is remaining, as you can guess, that is ability to delete messages and send them to the trash and also ability to untrash messages which we might have deleted by mistake.
+You should now be able to see your messages, if any, when you click the inbox and sent links in any view. One last part is remaining, as you can guess, that is ability to delete messages and send them to the trash and also ability to undelete messages which we might have deleted by mistake.
 
 ### Deleating and undeleating messages
 
