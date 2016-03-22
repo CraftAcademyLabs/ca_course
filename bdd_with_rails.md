@@ -222,7 +222,7 @@ class Post < ActiveRecord::Base
 end
 ```
 
-Please notice that after youve added the lenght validation on `:content`  your post factory might fail when you run RSpec. 
+Please notice that after you've added the length validation on `:content`  your post factory might fail when you run RSpec. 
 ```
      Failure/Error: expect(FactoryGirl.create(:post)).to be_valid
      
