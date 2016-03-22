@@ -151,8 +151,9 @@ $ bundle exec rails generate model Post title:string content:text
 ```
 Notice, the generator also creates a model spec and a Post factory. That's the reason why we included the `rspec-rails` and `factory_girl_rails` gems in the development group of the Gemfile.
 
-Run the migration that will add the new posts table to the database:
+Create the database and run the migration that will add the new posts table to the database:
 ```
+$ bundle exec rake db:create
 $ bundle exec rake db:migrate
 ```
 Define a post factory:
