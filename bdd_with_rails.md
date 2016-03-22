@@ -288,7 +288,7 @@ Let's copy those steps into features/step_definitions/home_page_steps.rb and edi
 ```ruby
 # features/step_definitions/home_page_steps.rb
 Given(/^there's a post titled "(.*?)" with "(.*?)" content$/) do |title, content|
-  @post = FactoryGirl.create(:post, title: title, content: content)
+  post = FactoryGirl.create(:post, title: title, content: content)
 end
 
 When(/^I am on the homepage$/) do
@@ -296,9 +296,9 @@ When(/^I am on the homepage$/) do
 end
 
 Then(/^I should see the "(.*?)" post$/) do |title|
-  @post = Post.find_by_title(title)
-  expect(page).to have_content(@post.title)
-  expect(page).to have_content(@post.content)
+  post = Post.find_by_title(title)
+  expect(page).to have_content(post.title)
+  expect(page).to have_content(post.content)
 end
 ```
 In these steps we create a post using `factory_girl`, visit the homepage and check if the post is displayed.
