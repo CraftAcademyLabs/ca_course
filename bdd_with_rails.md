@@ -234,8 +234,10 @@ Why is that and how can we fix it?
 ###Cucumber
 Add `cucumber-rails` and `database_cleaner` gems to the test group of the Gemfile:
 ```ruby
-group :test do
+group :development, :test do
+  gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
 end
