@@ -229,7 +229,7 @@ Please notice that after you've added the length validation on `:content`  your 
      ActiveRecord::RecordInvalid:
        Validation failed: Content is too short (minimum is 10 characters)
 ```
-How can we fix that?
+Why is that and how can we fix it?
 
 ###Cucumber
 Add `cucumber-rails` and `database_cleaner` gems to the test group of the Gemfile:
