@@ -18,12 +18,12 @@ A good cycle to follow for BDD is this outside-in approach:
 
 When your low-level tests are green, you have permission to write new examples or refactor existing implementation. You must not, in the context of that refactoring, add new functionality/flexibility.
 
-When your low-level tests are red, you have permission to write or change implmentation code only for the purpose of making the existing tests go green. You must resist the urge to write the code to pass your next test, which doesn’t exist, or implement features you’ll need "some day."
+When your low-level tests are red, you have permission to write or change implementation code only for the purpose of making the existing tests go green. You must resist the urge to write the code to pass your next test, which doesn't exist, or implement features you’ll need "some day."
 
 
 
 ####Prerequisites
-We assume that you have your Development environment setup according to instructions in this book and that you are working on eaither a Linux or OSX based computer.
+We assume that you have your Development environment setup according to instructions in this book and that you are working on either a Linux or OSX based computer.
 
 ###Setting up the application
 
