@@ -222,6 +222,15 @@ class Post < ActiveRecord::Base
 end
 ```
 
+Please notice that after youve added the lenght validation on `:content`  your post factory might fail when you run RSpec. 
+```
+     Failure/Error: expect(FactoryGirl.create(:post)).to be_valid
+     
+     ActiveRecord::RecordInvalid:
+       Validation failed: Content is too short (minimum is 10 characters)
+```
+How can we fix that?
+
 ###Cucumber
 Add `cucumber-rails` and `database_cleaner` gems to the test group of the Gemfile:
 ```ruby
