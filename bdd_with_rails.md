@@ -156,7 +156,7 @@ Create the database and run the migration that will add the new posts table to t
 $ bundle exec rake db:create
 $ bundle exec rake db:migrate
 ```
-Define a post factory:
+A basic post factory has been defined for you and you can modify it if you like:
 
 ```ruby
 # spec/factories/posts.rb
