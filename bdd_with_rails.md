@@ -141,21 +141,22 @@ Finished in 0.00023 seconds (files took 0.5029 seconds to load)
 Let's create an example Post model and write specs that will verify that RSpec is working correctly:
 ```
 $ bundle exec rails generate model Post title:string content:text
-invoke active_record
-create db/migrate/20160320125040_create_posts.rb
-create app/models/post.rb
-invoke rspec
-create spec/models/post_spec.rb
-invoke factory_girl
-create spec/factories/posts.rb
+  invoke  active_record
+  create    db/migrate/20160322065708_create_posts.rb
+  create    app/models/post.rb
+  invoke    rspec
+  create      spec/models/post_spec.rb
+  invoke      factory_girl
+  create        spec/factories/posts.rb
 ```
 Notice, the generator also creates a model spec and a Post factory. That's the reason why we included the `rspec-rails` and `factory_girl_rails` gems in the development group of the Gemfile.
 
-Run the migration that will add the new posts table to the database:
+Create the database and run the migration that will add the new posts table to the database:
 ```
+$ bundle exec rake db:create
 $ bundle exec rake db:migrate
 ```
-Define a post factory:
+A basic post factory has been defined for you and you can modify it if you like:
 
 ```ruby
 # spec/factories/posts.rb
@@ -192,7 +193,25 @@ RSpec.describe Post, type: :model do
   end
 end
 ```
+Head over to your Terminal and run the `rspec` command. You will see that some of the test have passed and some have gone red - failed. 
+```
+Post
+  DB table
+    should have db column named id
+    should have db column named title
+    should have db column named content
+  Validations
+    should validate that :title cannot be empty/falsy (FAILED - 1)
+    should validate that the length of :title is at least 5 (FAILED - 2)
+    should validate that :content cannot be empty/falsy (FAILED - 3)
+    should validate that the length of :content is at least 10 (FAILED - 4)
+  Fixtures
+    should have valid Factory
 
+Failures:
+...
+```
+We have failing specs that concern the validations. We haven't defined them yet.
 Update the Post model with validation definitions:
 
 ```ruby
@@ -203,11 +222,22 @@ class Post < ActiveRecord::Base
 end
 ```
 
+Please notice that after you've added the length validation on `:content`  your post factory might fail when you run RSpec. 
+```
+     Failure/Error: expect(FactoryGirl.create(:post)).to be_valid
+     
+     ActiveRecord::RecordInvalid:
+       Validation failed: Content is too short (minimum is 10 characters)
+```
+Why is that and how can we fix it?
+
 ###Cucumber
 Add `cucumber-rails` and `database_cleaner` gems to the test group of the Gemfile:
 ```ruby
-group :test do
+group :development, :test do
+  gem 'rspec-rails'
   gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
 end
@@ -258,7 +288,7 @@ Let's copy those steps into `features/step_definitions/home_page_steps.rb` and e
 ```ruby
 # features/step_definitions/home_page_steps.rb
 Given(/^there's a post titled "(.*?)" with "(.*?)" content$/) do |title, content|
-  @post = FactoryGirl.create(:post, title: title, content: content)
+  post = FactoryGirl.create(:post, title: title, content: content)
 end
 
 When(/^I am on the homepage$/) do
@@ -266,9 +296,9 @@ When(/^I am on the homepage$/) do
 end
 
 Then(/^I should see the "(.*?)" post$/) do |title|
-  @post = Post.find_by_title(title)
-  expect(page).to have_content(@post.title)
-  expect(page).to have_content(@post.content)
+  post = Post.find_by_title(title)
+  expect(page).to have_content(post.title)
+  expect(page).to have_content(post.content)
 end
 ```
 In these steps we create a post using `factory_girl`, visit the homepage and check if the post is displayed.
