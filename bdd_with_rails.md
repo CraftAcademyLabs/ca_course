@@ -141,13 +141,13 @@ Finished in 0.00023 seconds (files took 0.5029 seconds to load)
 Let's create an example Post model and write specs that will verify that RSpec is working correctly:
 ```
 $ bundle exec rails generate model Post title:string content:text
-invoke active_record
-create db/migrate/20160320125040_create_posts.rb
-create app/models/post.rb
-invoke rspec
-create spec/models/post_spec.rb
-invoke factory_girl
-create spec/factories/posts.rb
+  invoke  active_record
+  create    db/migrate/20160322065708_create_posts.rb
+  create    app/models/post.rb
+  invoke    rspec
+  create      spec/models/post_spec.rb
+  invoke      factory_girl
+  create        spec/factories/posts.rb
 ```
 Notice, the generator also creates a model spec and a Post factory. That's the reason why we included the `rspec-rails` and `factory_girl_rails` gems in the development group of the Gemfile.
 
