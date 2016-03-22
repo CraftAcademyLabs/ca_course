@@ -254,7 +254,7 @@ Then(/^I should see the "(.*?)" post$/) do |arg1|
   pending # express the regexp above with the code you wish you had
 end
 ```
-Let's copy those steps into features/step_definitions/home_page_steps.rb and edit them:
+Let's copy those steps into `features/step_definitions/home_page_steps.rb` and edit them:
 ```ruby
 # features/step_definitions/home_page_steps.rb
 Given(/^there's a post titled "(.*?)" with "(.*?)" content$/) do |title, content|
