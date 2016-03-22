@@ -193,7 +193,25 @@ RSpec.describe Post, type: :model do
   end
 end
 ```
+Head over to your Terminal and run the `rspec` command. You will see that some of the test have passed and some have gone red - failed. 
+```
+Post
+  DB table
+    should have db column named id
+    should have db column named title
+    should have db column named content
+  Validations
+    should validate that :title cannot be empty/falsy (FAILED - 1)
+    should validate that the length of :title is at least 5 (FAILED - 2)
+    should validate that :content cannot be empty/falsy (FAILED - 3)
+    should validate that the length of :content is at least 10 (FAILED - 4)
+  Fixtures
+    should have valid Factory
 
+Failures:
+...
+```
+We have failing specs that concern the validations. We haven't defined them yet.
 Update the Post model with validation definitions:
 
 ```ruby
