@@ -2,10 +2,11 @@
 
 ###Objective
 **The main objective for this challenge is to practice the workflow that we want to use in our projects with focus on:**
-1. **Agile methods for software development**
-2. **Pair Programming**
-3. **Collaboration using Git and GitHub**
-4. **Test- and Behaivior Driven Development**
+
+1. **Agile methods for software development**  
+2. **Pair Programming**  
+3. **Collaboration using Git and GitHub**  
+4. **Test- and Behaviour Driven Development**  
 
 Also, setting up a tool that allows you to plan your work ([Pivotal Tracker](https://www.pivotaltracker.com/) or [Waffle.io](https://waffle.io/)) in this projects is not a bad idea. 
 
