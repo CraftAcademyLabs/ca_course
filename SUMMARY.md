@@ -26,5 +26,5 @@
    * [Working in the Cloud](working_in_the_cloud/working_in_the_cloud.md)
    * [Naming Standards](extras/naming_standards.md)
    * [Domain Model from User stories](extras/domain_model_from_user_stories.md)
-* [Going mobiel with Ionic](going_mobiel_with_ionic.md)
+* [Going mobie with Ionic](going_mobiel_with_ionic.md)
 
