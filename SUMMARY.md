@@ -19,6 +19,7 @@
    * [Setup Middleman](middleman/setup_middleman.md)
 * [BDD with Rails](bdd_with_rails.md)
 * [Rails Messaging](rails_messaging.md)
+* [Going mobile with Ionic](going_mobiel_with_ionic.md)
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * [Extras](extras/extras.md)
@@ -26,5 +27,4 @@
    * [Working in the Cloud](working_in_the_cloud/working_in_the_cloud.md)
    * [Naming Standards](extras/naming_standards.md)
    * [Domain Model from User stories](extras/domain_model_from_user_stories.md)
-* [Going mobile with Ionic](going_mobiel_with_ionic.md)
 
