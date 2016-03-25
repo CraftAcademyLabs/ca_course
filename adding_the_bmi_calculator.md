@@ -4,11 +4,11 @@ In order to add the view where we will be displaying our calculator, we need to 
  1. Create a tab that will display the view
  2. Add a route and point it to a template and a controller.
  2. Create a controller (we will call it `BmiContoller`)
- 3. Add a html template for the view
+ 3. Add a HTML template for the view
 
 Let's open the `www/templates/tabs.html` file and add the markup for the tab:
 ```html
-# www/templates/tabs.html
+<!-- www/templates/tabs.html -->
 
 <!-- BmiTab -->
 <ion-tab title="BMI Calculator" icon-off="ion-ios-compose-outline" icon-on="ion-ios-compose" href="#/tab/bmi">
@@ -42,7 +42,7 @@ Create the route in `www/js/app.js` by adding the following ABOVE the About rout
   }
 });
 ```
-Now, let's create the controller in the `www/js/controllers.js`. (Again, watch the semicolon!) 
+Now, let's create the controller in `www/js/controllers.js`. (Again, watch the semicolon!) 
 
 ```javascript
 // www/js/controllers.js
@@ -57,9 +57,11 @@ And finally, let's create the template.
 $ mkdir www/templates/calculator
 $ touch www/templates/calculator/calculator.html
 ```
+
 Open the file and add some basic content:
+
 ```html
-# www/templates/calculator/calculator.html
+<!-- www/templates/calculator/calculator.html -->
 
 <ion-view title="BMI Calculator">
   <ion-content>
@@ -75,8 +77,7 @@ Open the file and add some basic content:
 
 At this point you should be able to navigate between the two tabs we've set up if you visit your app in the browser. 
 
-
-
+![BMI View](images/bmi_calc_add_bmi_view.png)
 
 
 
