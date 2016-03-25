@@ -5,7 +5,8 @@ Open up the application code in your editor. We are using Atom so we will run th
 ```
 $ atom .
 ```
-![BMI Calculator source code in Atom](../images/bmi_calc_app_js.png)
+![BMI Calculator source code in Atom](images/bmi_calc_app_js.png)
+
 The folder I want you to focus on is the `www` folder. That is where we will do most of our work. But let's start with adding the following two lines to your `.gitignore` file. It is located in the project root.
 
 !FILENAME .gitignore
