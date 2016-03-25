@@ -165,7 +165,7 @@ Open up the `templates/tabs.html` file again and add the markup for the About ta
 </ion-tab>
 ```
 
-Create a route by adding it to the `js/app.js` where we define `$stateProvider` 
+Create a route by adding this code to the `js/app.js` where we define `$stateProvider` 
 
 !FILENAME www/js/app.js
 ```javascript
