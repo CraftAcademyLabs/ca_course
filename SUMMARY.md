@@ -24,7 +24,7 @@
    * [Cleaning up and adding views](cleaning_up_and_adding_views.md)
    * [Adding the calculator tab](adding_the_bmi_calculator.md)
    * [Adding functionality](adding_functionality.md)
-   * Extras - Source code
+   * [Extras - Source code](extras_-_source_code.md)
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * [Extras](extras/extras.md)
