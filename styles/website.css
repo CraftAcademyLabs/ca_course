@@ -11,3 +11,15 @@ pre {
 code {
     word-wrap:break-word;
 }
+
+.code-block {
+    background-color: ##f7f7f7;
+    font-size: 12px !important;
+    font-weight: 500;
+    margin-left: 23px;
+    margin-bottom: -10px;
+    border-right-color: 1px;
+    border-style: solid !important;
+    border-color: grey !important;
+    border-width: 1px !important;
+}
