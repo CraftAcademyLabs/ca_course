@@ -80,6 +80,15 @@ Some explanation
 You can head over to the browser and try it out. Remember that we have set up the **metric** method of calculatin the users BMI. There is a method to calculate BMI using the **imperial** method in the `bmi_calculator.js` code. You can easily make the switch or add functionality that allows the user to switch between the two methods. 
 
 That is however outside the scope of this walkthrough. ;-)
+The final app should look something like this.
+![BMI Calculator](../images/bmi_calc.png)
+###Wrap up
+
+There are plenty of other little things you can do in order to update the UI and add functionality to this little application. 
+
+One final thing before we call it quits is to publish your app to Ionic View. 
+
+
 
 
  
