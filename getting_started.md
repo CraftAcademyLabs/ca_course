@@ -26,7 +26,7 @@ $ npm install -g cordova ionic
 iOS development requires iOS simulator which can be installed with 
 
 ```
-$ sudo npm -g install ios-sim
+$ npm -g install ios-sim
 ```
 
 Better yet, you should make sure that you have [Xcode installed](https://developer.apple.com/xcode/download/) on your system. 
