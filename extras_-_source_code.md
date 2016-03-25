@@ -2,9 +2,8 @@
 
 If you haven't completed the BMI Challenge, you can get the code for the `person.js` and the `bmi_calculator.js` right here. 
 
+!FILENAME person.js
 ```javascript
-// person.js
-
 function Person(attr) {
   this.weight = attr.weight;
   this.height = attr.height;
@@ -22,9 +21,8 @@ Person.prototype.calculate_bmi_imp = function() {
 
 ```
 
+!FILENAME bmi_calculator.js
 ```javascript
-// bmi_calculator.js
-
 function BMICalculator(){
 };
 
