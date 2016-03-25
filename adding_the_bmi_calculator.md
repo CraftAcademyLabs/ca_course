@@ -1,22 +1,6 @@
 ## Adding the calculator tab
 
-Okay, let's move on to the BMI Calculator. 
-
-Copy the `person.js` and `bmi_calculator.js` files into your `www/js` folder. If you don't have the source files, you can find them here: [TODO: Add link to the assets]
-
-Reference those files in your main template file (`www/index.html`) in the block where you are including your other `js` files.
-```html
-# www/index.html
-
-  <!-- your app's js -->
-  <script src="js/app.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/services.js"></script>
-  <script src="js/person.js"></script>
-  <script src="js/bmi_calculator.js"></script>
- ```
- 
- Now we need to go through same steps that we did when adding the About view.
+In order to add the view where we will be displaying our calculator, we need to go through same steps that we did when adding the About view.
  1. Create a tab that will display the view
  2. Add a route and point it to a template and a controller.
  2. Create a controller (we will call it `BmiContoller`)
