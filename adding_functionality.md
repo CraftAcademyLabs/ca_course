@@ -83,7 +83,7 @@ You can head over to the browser and try it out. Remember that we have set up th
 That is however outside the scope of this walkthrough. ;-)
 The final app should look something like this.
 
-![BMI Calculator](../images/bmi_calc.png)
+![BMI Calculator](images/bmi_calc.png)
 ###Wrap up
 
 There are plenty of other little things you can do in order to update the UI and add functionality to this little application. 
