@@ -79,9 +79,8 @@ Add `rspec-rails` gem to the development and test groups of your Gemfile.
 
 `factory_girl` is a library for setting up Ruby objects as test data. It's essentially a fixtures replacement. It allows you to create objects that are needed in tests without providing a value for each required attribute. If you don't provide a value for a required attribute factory_girl will use the default value that you defined in factory's definition.
 
+!FILENAME Gemfile
 ```ruby
-# Gemfile
-
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
@@ -98,6 +97,7 @@ Why `bundle exec` before a command?  `bundle exec` executes a command in the con
 
 Before you can use `shoulda-matchers`, you need to configure it by choosing the test framework and features of `shoulda-matchers` you want to use. Open `spec/rails_helper.rb` and add the following block.
 
+!FILENAME spec/rails_helper.rb
 ```ruby 
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
@@ -111,8 +111,8 @@ Before we move on we need to add another configuration to the Rails application 
 
 First I want you to make sure that you remove the `coffee-rails` gem from the applications `Gemfile`. Once you've done that, make the following modification to the `config/application.rb` file:
 
+!FILENAME config/application.rb
 ```ruby
-# config/application.rb
 class Application < Rails::Application
   # Disable generation of helpers, javascripts, css, and view specs
   config.generators do |generate|
@@ -120,10 +120,11 @@ class Application < Rails::Application
     generate.assets false
     generate.view_specs false
   end
-
-  # ...
+# ...
 ```
 One last thing in this setup process, open the `.rspec` file (it is located in your main project folder but it is a hidden file, so your text editor might not show it) and modify it so that the first line is set to:
+
+  !FILENAME .rspec
 ```
 --format documentation
 ```
@@ -158,8 +159,8 @@ $ bundle exec rake db:migrate
 ```
 A basic post factory has been defined for you and you can modify it if you like:
 
+!FILENAME spec/factories/posts.rb
 ```ruby
-# spec/factories/posts.rb
 FactoryGirl.define do
   factory :post do
     title "My first post"
@@ -167,9 +168,10 @@ FactoryGirl.define do
   end
 end
 ``` 
-Update the spec to test the db table, the Factory and the validations of post's title and content:
+Update the spec to test the db table, the Factory and the validations of post's title and content.
+
+!FILENAME spec/models/post_spec.rb
 ```ruby 
-# spec/models/post_spec.rb
 require 'rails_helper'
 
 RSpec.describe Post, type: :model do
@@ -193,7 +195,8 @@ RSpec.describe Post, type: :model do
   end
 end
 ```
-Head over to your Terminal and run the `rspec` command. You will see that some of the test have passed and some have gone red - failed. 
+Head over to your Terminal and run the `rspec` command. You will see that some of the test have passed and some have gone red - failed.
+
 ```
 Post
   DB table
@@ -212,10 +215,10 @@ Failures:
 ...
 ```
 We have failing specs that concern the validations. We haven't defined them yet.
-Update the Post model with validation definitions:
+Update the Post model with validation definitions.
 
+!FILENAME app/models/post.rb
 ```ruby
-# app/models/post.rb
 class Post < ActiveRecord::Base
   validates :title, presence: true, length: { minimum: 5 }
   validates :content, presence: true, length: { minimum: 10 }
@@ -224,15 +227,17 @@ end
 
 Please notice that after you've added the length validation on `:content`  your post factory might fail when you run RSpec. 
 ```
-     Failure/Error: expect(FactoryGirl.create(:post)).to be_valid
-     
-     ActiveRecord::RecordInvalid:
-       Validation failed: Content is too short (minimum is 10 characters)
+Failure/Error: expect(FactoryGirl.create(:post)).to be_valid
+
+ActiveRecord::RecordInvalid:
+ Validation failed: Content is too short (minimum is 10 characters)
 ```
 Why is that and how can we fix it?
 
 ###Cucumber
-Add `cucumber-rails` and `database_cleaner` gems to the test group of the Gemfile:
+Add `cucumber-rails` and `database_cleaner` gems to the test group of the Gemfile.
+
+!FILENAME Gemfile
 ```ruby
 group :development, :test do
   gem 'rspec-rails'
@@ -253,8 +258,8 @@ This will generate Cucumber configuration files and set up database for Cucumber
 ###Is Cucumber working correctly?
 To make sure of that, let's develop a simple feature. In the scenario, a user will visit the homepage and see that a post is displayed:
 
+!FILENAME features/home_page.feature
 ```gherkin
-# features/home_page.feature
 Feature: Home page
 
 Scenario: Viewing application's home page
@@ -285,8 +290,9 @@ Then(/^I should see the "(.*?)" post$/) do |arg1|
 end
 ```
 Let's copy those steps into `features/step_definitions/home_page_steps.rb` and edit them:
+
+!FILENAME features/step_definitions/basic_steps.rb
 ```ruby
-# features/step_definitions/home_page_steps.rb
 Given(/^there's a post titled "(.*?)" with "(.*?)" content$/) do |title, content|
   post = FactoryGirl.create(:post, title: title, content: content)
 end
@@ -304,24 +310,27 @@ end
 In these steps we create a post using `factory_girl`, visit the homepage and check if the post is displayed.
 
 If you run the scenario again, you will see that it fails since the route is not defined. Let's add it to our `routes.rb` file:
+
+!FILENAME config/routes.rb
 ```ruby
-# config/routes.rb
 Myapp::Application.routes.draw do
   root to: "posts#index"
 end
 ```
-Now implement the controller that will serve the /posts route:
+Now implement the controller that will serve the /posts route.
+
+!FILENAME app/controllers/posts_controller.rb
 ```
-# app/controllers/posts_controller.rb
 class PostsController < ApplicationController
   def index
     @posts = Post.all
   end
 end
 ```
-And create the view that will render Posts#index action and list all posts:
+And create the view that will render Posts#index action and list all posts.
+
+!FILENAME app/views/posts/index.html.erb
 ```erb
-# app/views/posts/index.html.erb
 <ul>
 <% @posts.each do |post| %>
 <li>
@@ -340,7 +349,9 @@ $ bundle exec cucumber features/home_page.feature
 3 steps (3 passed)
 ```
 ####Wrap up
-You should now be fully equipped to work in the BDD cycle and deliver clean, working code.
+You should now be fully equipped to work in the BDD cycle and deliver clean, robust and working code.
+
+
 
 
 
