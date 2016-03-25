@@ -1,4 +1,4 @@
-## Adding the BMI calculator
+## Adding the calculator tab
 
 Okay, let's move on to the BMI Calculator. 
 
@@ -76,6 +76,7 @@ $ touch www/templates/calculator/calculator.html
 Open the file and add some basic content:
 ```html
 # www/templates/calculator/calculator.html
+
 <ion-view title="BMI Calculator">
   <ion-content>
     <div class="row">
