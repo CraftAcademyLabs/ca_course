@@ -1,7 +1,7 @@
 # BDD with Rails
 ###Working with BDD
 
-The concept of Behaviour Driven Development (BDD) is pretty simple. You describe what you want the system to do by describing potential users interactions with the different parts of the application. You work outside-in to implement features using the examples to validate that you're building the right thing at the right time. During this workshop you will see BDD in action and will experience, at least partially, the benefits of this method.
+The concept of Behavior Driven Development (BDD) is pretty simple. You describe what you want the system to do by describing potential users interactions with the different parts of the application. You work outside-in to implement features using the examples to validate that you're building the right thing at the right time. During this workshop you will see BDD in action and will experience, at least partially, the benefits of this method.
 
 The tools we will be using to test our application are RSpec and Cucumber. Those are the two so called testing frameworks that will help us to write good code. During the development process, we'll take an approach that combines high level acceptance tests and low level unit tests to both drive the development process and make sure that we build a robust and well structured application.
 
