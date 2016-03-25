@@ -17,20 +17,19 @@ Reference those files in your main template file (`www/index.html`) in the block
 ```
  
 Let's create a form on the `calculator.html` template that will allow the user to input his/her weight and height and return the calculated values. 
- 
- ```html
- <!-- www/templates/calculator/calculator.html -->
- [...]
- <div class="list">
-    <label class="item item-input">
-      <input type="number" class="item item-input" placeholder="Weight" ng-model="data.weight">
-    </label>
-    <label class="item item-input">
-      <input type="number" class="item item-input" placeholder="Height" ng-model="data.height">
-    </label>
-    <button class="button button-full button-calm" ng-click="calculateBMI()">Calculate</button>
- </div>
 
+!FILENAME www/templates/calculator/calculator.html
+```html
+[...]
+<div class="list">
+  <label class="item item-input">
+    <input type="number" class="item item-input" placeholder="Weight" ng-model="data.weight">
+  </label>
+  <label class="item item-input">
+    <input type="number" class="item item-input" placeholder="Height" ng-model="data.height">
+  </label>
+  <button class="button button-full button-calm" ng-click="calculateBMI()">Calculate</button>
+</div>
 ```
 
 When submitted, the form will send the values from the input fields and store it in the controllers `$scope` as `data` and execute the `calculateBMI()` function. Given that there is a function defined. There isn't at the moment, so let's define it. 
@@ -39,9 +38,8 @@ Head over to the `BmiController` in your `www/js/controllers.js` file.
 
 We need to add `$scope` to the controller and define the `calculateBMI()` function.
 
+!FILENAME www/js/controllers.js
 ```javascript
-// www/js/controllers.js
-
 .controller('BmiController', function($scope) {
   $scope.data = {};
   $scope.calculateBMI = function() {
@@ -58,10 +56,9 @@ We need to add `$scope` to the controller and define the `calculateBMI()` functi
 
 This will make the object `person` accessible in the HTML template for us to show. Lets add the following code to `calculator.html` 
 
+!FILENAME www/templates/calculator/calculator.html
 ```html
-<!-- www/templates/calculator/calculator.html -->
 [...]
-
 <div class="card" ng-if="person">
   <div class="item item-divider">
     BMI Calculation
