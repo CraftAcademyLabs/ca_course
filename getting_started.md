@@ -44,8 +44,7 @@ Once that is completed run the following commands to add support for Ios and And
 ```
 $ cd bmi_calculator
 $ ionic platform add ios
-$ ionic build ios
-$ ionic emulate ios
+$ ionic platform add android
 ```
 
 At this point, inside the project folder, you should initiate a git repository using `git init` and start using version control.
