@@ -151,7 +151,7 @@ $ git commit -am "clean up scaffolded code"
 
 ###Adding views
 
-Now that we have cleaned up the code base we are ready to add our own stuff. We'll be making use of two tabs. One About tab that will route us to an About page, and one BMI Calculator tab that will be displaying the view where we will be doing the calculations. 
+Now that we have cleaned up the code base we are ready to add our own stuff. We'll be making use of two tabs. One About tab that will route us to an "About page", and one "BMI Calculator" tab that will be displaying the view where we will be doing the calculations. 
 
 Let's start with creating the About page.
 
