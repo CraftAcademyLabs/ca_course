@@ -6,16 +6,19 @@ Open up the application code in your editor. We are using Atom so we will run th
 $ atom .
 ```
 ![BMI Calculator source code in Atom](../images/bmi_calc_app_js.png)
-The folder I want you to focus on is the `www` folder. That is where we will do most of our work. But let's start with adding the following two lines to your `.gitignore`file. It is located in the project root.
+The folder I want you to focus on is the `www` folder. That is where we will do most of our work. But let's start with adding the following two lines to your `.gitignore` file. It is located in the project root.
+
 ```
 # .gitignore
 
 .idea/
 .DS_Store
 ```
-This makes sure that no unnecessary files are placed under version control.
+
+This ensures that no unnecessary files tracked under version control.
 
 Find `app.js` in the `www/js` folder and locate the following parts:
+
 ```javascript
 // www/js/app.js
 
@@ -138,19 +141,21 @@ www/templates/tab-dash.html
 The only file we want to keep is the `templates/tabs.html` 
 
 Make sure you commit your changes with:
+
 ```
 $ git add . 
-$ git commit -am "cleaned up scaffolded code"
+$ git commit -am "clean up scaffolded code"
 ```
 
 ###Adding views
+
 Now that we have cleaned up the code base we are ready to add our own stuff. We'll be making use of two tabs. One About tab that will route us to an About page, and one BMI Calculator tab that will be displaying the view where we will be doing the calculations. 
 
 Let's start with creating the About page.
 
 Open up the `templates/tabs.html` file again and add the markup for the About tab
 ```html
-# templates/tabs.html
+<!-- templates/tabs.html -->
 
 <!-- AboutTab -->
 <ion-tab title="About" icon-off="ion-ios-compose-outline" icon-on="ion-ios-compose" href="#/tab/about">
@@ -161,7 +166,7 @@ Open up the `templates/tabs.html` file again and add the markup for the About ta
 Create a route by adding it to the `js/app.js` where we define `$stateProvider` 
 
 ```javascript
-// www/ja/app.js
+// www/js/app.js
 [...]
   .state('tab.about', {
     url: '/about',
@@ -177,13 +182,13 @@ Create a route by adding it to the `js/app.js` where we define `$stateProvider`
 Also, in the same file, at the bottom of the `$stateProvider` block, change the following code to point to the About page as default. 
 
 ```javascript
-// www/ja/app.js
+// www/js/app.js
 [...]
- // if none of the above states are matched, use this as the fallback
-    $urlRouterProvider.otherwise('/tab/about');
+// if none of the above states are matched, use this as the fallback
+$urlRouterProvider.otherwise('/tab/about');
 ```
 
-Okay, time to add a html template we want to display then that tab is called upon. 
+Okay, time to add a HTML template we want to display then that tab is called upon. 
 
 In your `templates` folder create a new folder named `about` and add a new template inside that folder. Call it `about.html`.
 
@@ -194,16 +199,18 @@ $ mkdir www/templates/about
 $ touch www/templates/about/about.html
 ```
 
-Head over to the `controllers.js` firle in your `www/js` folder and create an `AboutController`
+Head over to the `controllers.js` file in your `www/js` folder and create an `AboutController`
 
 ```javascript
 .controller('AboutController', function () {
 
 });
 ```
-Finally, open up the `about.html` template and add some content.
+
+And finally, open up the `about.html` template and add some content.
+
 ```html
-# www/templates/about/about.html
+<!-- www/templates/about/about.html -->
 
 <ion-view title="BMI Mobile">
   <ion-content>
@@ -217,9 +224,4 @@ Finally, open up the `about.html` template and add some content.
 ```
 At this stage you can start the server again (you can keep it running in the background on a separate Terminal tab. It is reloading your code as you make the changes) and head over to the browser. You should see your new About page as the default view. 
 
-
-
-
-
-
-
+![BMI Calculator About view](images/bmi_calc_initial_about_view.png)
