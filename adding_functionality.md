@@ -54,21 +54,21 @@ We need to add `$scope` to the controller and define the `calculateBMI()` functi
 
 This will make the object `person` accessible in the html template for us to show. Lets add the following code to `calculator.html` 
 
- ```html
- # www/templates/calculator/calculator.html
- [...]
- 
- <div class="card" ng-if="person">
-    <div class="item item-divider">
-      BMI Calculation
-    </div>
-    <div class="item item-text-wrap">
-      <p>Person: Weight {{person.weight}}, Height {{person.height}}</p>
-      <p>BMI: {{person.bmiValue}}</p>
-      <p><strong>You are {{person.bmiMessage}}</strong></p>
-    </div>
- </div>
- ```
+```html
+# www/templates/calculator/calculator.html
+[...]
+
+<div class="card" ng-if="person">
+  <div class="item item-divider">
+    BMI Calculation
+  </div>
+  <div class="item item-text-wrap">
+    <p>Person: Weight {{person.weight}}, Height {{person.height}}</p>
+    <p>BMI: {{person.bmiValue}}</p>
+    <p><strong>You are {{person.bmiMessage}}</strong></p>
+  </div>
+</div>
+```
  
 Some explanation
 1. The `ng-if="person"` makes sure that the div element is only displayed IF the `$scope.person` object defined.
