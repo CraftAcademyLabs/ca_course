@@ -129,10 +129,10 @@ There is also a `tabs.html` file in the `templates` folder. Open it up and delet
 
 Also, make sure to delete the following files:
 ```
-templates/chat-detail.html
-templates/tab-account.html
-templates/tab-chats.html
-templates/tab-dash.html
+www/templates/chat-detail.html
+www/templates/tab-account.html
+www/templates/tab-chats.html
+www/templates/tab-dash.html
 ```
 The only file we want to keep is the `templates/tabs.html` 
 
