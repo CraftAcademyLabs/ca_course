@@ -60,7 +60,7 @@ In your terminal run the following command to start a local server and run the a
 ```
 $ ionic serve -c --lab
 ```
-A browser window will open and you'll be presented with a view of both the iOS and the Android version of the application. Pretty cool, ey?
+A browser window will open and you'll be presented with a view of both the iOS and the Android version of the application. **Pretty cool, ey?**
 
 
 
