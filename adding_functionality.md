@@ -99,7 +99,7 @@ Once this is finished, you will receive output like the following:
 Uploading App...
 App Uploaded (xxxxxxx) #that will be your application code
 ```
-Once this message is shown, your app has been uploaded to the Ionic platform.
+Once this message is shown, your app has been uploaded to the Ionic platform and ready to go.
 
 If you want to view your Ionic App on an iOS or Android device you need to install the ‘Ionic View’ app from the App Store/Google Play. Log in with your credentials. Once logged in, you should see your uploaded app
 
