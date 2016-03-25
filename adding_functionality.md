@@ -63,16 +63,16 @@ This will make the object `person` accessible in the html template for us to sho
     BMI Calculation
   </div>
   <div class="item item-text-wrap">
-    <p>Person: Weight {% raw %} {{person.weight}}{% endraw %} , Height {% raw %}{{person.height}}{% endraw %}</p>
-    <p>BMI: {% raw %}{{person.bmiValue}}{% endraw %}</p>
-    <p><strong>You are {% raw %}{{person.bmiMessage}}{% endraw %}</strong></p>
+    <p>Person: Weight {{person.weight}}, Height {{person.height}}</p>
+    <p>BMI: {{person.bmiValue}}</p>
+    <p><strong>You are {{person.bmiMessage}}</strong></p>
   </div>
 </div>
 ```
  
 Some explanation
 1. The `ng-if="person"` makes sure that the div element is only displayed IF the `$scope.person` object defined.
-2. The `{{}}` brackets are a way to display variables/objects passed in to the template from the controller. 
+2. The {% raw %} `{{}}` {% endraw %} brackets are a way to display variables/objects passed in to the template from the controller. 
 
 You can head over to the browser and try it out. Remember that we have set up the **metric** method of calculatin the users BMI. There is a method to calculate BMI using the **imperial** method in the `bmi_calculator.js` code. You can easily make the switch or add functionality that allows the user to switch between the two methods. 
 
