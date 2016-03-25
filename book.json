@@ -1,6 +1,7 @@
 {
     "plugins": [
-        "image-captions"
+        "image-captions",
+        "codeblock-filename"
     ],
     "pluginsConfig": {}
 }
