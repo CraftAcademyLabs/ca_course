@@ -172,6 +172,18 @@ Create a route by adding it to the `js/app.js` where we define `$stateProvider`
     }
   })
 ```
+
+Also, in the same file, at the bottom of the `$stateProvider` block, change the following code to point to the About page as default. 
+
+```javascript
+// www/ja/app.js
+[...]
+ // if none of the above states are matched, use this as the fallback
+    $urlRouterProvider.otherwise('/tab/about');
+```
+
+Okay, time to add a html template we want to display then that tab is called upon. 
+
 In your `templates` folder create a new folder named `about` and add a new template inside that folder. Call it `about.html`.
 
 (Note, I prefer to keep my templates in separate folders for better readability)
@@ -202,7 +214,8 @@ Finally, open up the `about.html` template and add some content.
   </ion-content>
 </ion-view>
 ```
-At this stage you can start the server again (you can keep it running in the background on a separate Terminal tab. It is reloading your code as you make the changes) and head over to the browser. 
+At this stage you can start the server again (you can keep it running in the background on a separate Terminal tab. It is reloading your code as you make the changes) and head over to the browser. You should see your new About page as the default view. 
+
 
 
 
