@@ -16,7 +16,7 @@ Let's open the `www/templates/tabs.html` file and add the markup for the tab:
 </ion-tab>
 ```
 
-Create the route in `www/js/app.js` by adding the following ABOVE the About rout (the reason for that is that you might mess up some semicolon settings at the end of the block) 
+Create the route in `www/js/app.js` by adding the following ABOVE the About route (the reason for that is that you might mess up some semicolon settings at the end of the block) 
 
 !FILENAME www/js/app.js
 ```javascript
