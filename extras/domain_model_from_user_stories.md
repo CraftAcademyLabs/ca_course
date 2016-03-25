@@ -8,3 +8,7 @@ User stories are a quick way to manage requirements definition without having to
 ### Definition of 'done'
 Before a user story is implemented, its acceptance criteria should be defined to ensure that the objectives of the user story met.
 
+###Format
+*“As a < specific user/persona/role >” I want < desired feature/issue that needs to be solved >, so that < benefit from implementing the feature >” + Acceptance Criteria*
+
+
