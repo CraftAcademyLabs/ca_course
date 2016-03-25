@@ -915,8 +915,6 @@ $(document).on("page:load",ready);
 ```
 Reload the page with your form and you should see jQuery Chosen in action.
 
-
-
 ###Wrap up
 
 That wraps it up for this tutorial and I hope I did a good job of trying to explain the nitty-gritty of implementing a private messaging system using the Mailboxer Gem.  Happy Coding!!
