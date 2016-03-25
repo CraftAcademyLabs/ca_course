@@ -139,7 +139,7 @@ The only file we want to keep is the `templates/tabs.html`
 Make sure you commit your changes with:
 ```
 $ git add . 
-$ git commit -am "cleaned up scaffolded code
+$ git commit -am "cleaned up scaffolded code"
 ```
 
 ###Adding views
