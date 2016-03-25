@@ -42,12 +42,15 @@ We need to add `$scope` to the controller and define the `calculateBMI()` functi
 // www/js/controllers.js
 
 .controller('BmiController', function($scope) {
-    $scope.data = {};
-    $scope.calculateBMI = function(){
-      var person = new Person({weight: $scope.data.weight, height: $scope.data.height});
-      person.calculate_bmi_met();
-      $scope.person = person;
-    };
+  $scope.data = {};
+  $scope.calculateBMI = function() {
+    var person = new Person({
+      weight: $scope.data.weight,
+      height: $scope.data.height
+    });
+    person.calculate_bmi_met();
+    $scope.person = person;
+  };
 });
 
 ```
@@ -77,6 +80,36 @@ Some explanation
 You can head over to the browser and try it out. Remember that we have set up the **metric** method of calculatin the users BMI. There is a method to calculate BMI using the **imperial** method in the `bmi_calculator.js` code. You can easily make the switch or add functionality that allows the user to switch between the two methods. 
 
 That is however outside the scope of this walkthrough. ;-)
+The final app should look something like this.
+![BMI Calculator](../images/bmi_calc.png)
+###Wrap up
+
+There are plenty of other little things you can do in order to update the UI and add functionality to this little application. 
+
+One final thing before we call it quits is to publish your app to [Ionic View](http://view.ionic.io/). Head over to our Ionic platform [signup](https://apps.ionic.io/signup) page to get signed up. 
+In your project folder, run the following command:
+```
+$ ionic upload
+```
+
+You will be prompted for your username and password (the one you received when you signed up). Once this is done, your app will be uploaded to the Ionic platform.
+
+Once this is finished, you will receive output like the following:
+```
+Uploading App...
+App Uploaded (xxxxxxx) #that will be your application code
+```
+Once this message is shown, your app has been uploaded to the Ionic platform and ready to go.
+
+If you want to view your Ionic App on an iOS or Android device you need to install the ‘Ionic View’ app from the App Store/Google Play. Log in with your credentials. Once logged in, you should see your uploaded app
+
+In order to share your Ionic app with your friends share the app number with them and ask them to download the Ionic View app. If they input that number in the Ionic View app they will be given access to your app. 
+
+
+
+
+
+
 
 
  
