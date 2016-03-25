@@ -19,7 +19,7 @@
    * [Setup Middleman](middleman/setup_middleman.md)
 * [BDD with Rails](bdd_with_rails.md)
 * [Rails Messaging](rails_messaging.md)
-* [Going mobile with Ionic](going_mobiel_with_ionic.md)
+* [Going mobile with Ionic](going_mobile_with_ionic.md)
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * [Extras](extras/extras.md)
