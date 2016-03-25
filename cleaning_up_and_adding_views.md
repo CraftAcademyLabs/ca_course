@@ -8,9 +8,8 @@ $ atom .
 ![BMI Calculator source code in Atom](../images/bmi_calc_app_js.png)
 The folder I want you to focus on is the `www` folder. That is where we will do most of our work. But let's start with adding the following two lines to your `.gitignore` file. It is located in the project root.
 
+!FILENAME .gitignore
 ```
-# .gitignore
-
 .idea/
 .DS_Store
 ```
@@ -19,9 +18,7 @@ This ensures that no unnecessary files tracked under version control.
 
 Find `app.js` in the `www/js` folder and locate the following parts:
 
-```javascript
-// www/js/app.js
-
+```javascript:www/js/app.js
   .state('tab.dash', {
     url: '/dash',
     views: {
@@ -63,9 +60,9 @@ Find `app.js` in the `www/js` folder and locate the following parts:
  ```
  
 Delete that entire block of code. Now head over to the `controllers.js` file and delete the following code: 
-```javascript
-// www/js/controllers.js
 
+!FILENAME www/js/controllers.js
+```javascript
 .controller('DashCtrl', function($scope) {})
 
 .controller('ChatsCtrl', function($scope, Chats) {
@@ -95,6 +92,8 @@ Delete that entire block of code. Now head over to the `controllers.js` file and
 ```
 
 In the `js` folder, you'll also find the `services.js` file. Open it up and delete the `Chats` factory.
+
+!FILENAME www/js/services.js
 ```javascript
 .factory('Chats', function() {
   // Might use a resource here that returns a JSON array
@@ -114,6 +113,8 @@ In the `js` folder, you'll also find the `services.js` file. Open it up and dele
 ```
 
 There is also a `tabs.html` file in the `templates` folder. Open it up and delete the following code:
+
+!FILENAME www/templates/tabs.html
 ```html
   <!-- Dashboard Tab -->
   <ion-tab title="Status" icon-off="ion-ios-pulse" icon-on="ion-ios-pulse-strong" href="#/tab/dash">
@@ -154,9 +155,9 @@ Now that we have cleaned up the code base we are ready to add our own stuff. We'
 Let's start with creating the About page.
 
 Open up the `templates/tabs.html` file again and add the markup for the About tab
-```html
-<!-- templates/tabs.html -->
 
+!FILENAME www/templates/tabs.html
+```html
 <!-- AboutTab -->
 <ion-tab title="About" icon-off="ion-ios-compose-outline" icon-on="ion-ios-compose" href="#/tab/about">
   <ion-nav-view name="tab-about"></ion-nav-view>
@@ -165,8 +166,8 @@ Open up the `templates/tabs.html` file again and add the markup for the About ta
 
 Create a route by adding it to the `js/app.js` where we define `$stateProvider` 
 
+!FILENAME www/js/app.js
 ```javascript
-// www/js/app.js
 [...]
   .state('tab.about', {
     url: '/about',
@@ -181,8 +182,8 @@ Create a route by adding it to the `js/app.js` where we define `$stateProvider`
 
 Also, in the same file, at the bottom of the `$stateProvider` block, change the following code to point to the About page as default. 
 
+!FILENAME www/js/app.js
 ```javascript
-// www/js/app.js
 [...]
 // if none of the above states are matched, use this as the fallback
 $urlRouterProvider.otherwise('/tab/about');
@@ -209,9 +210,8 @@ Head over to the `controllers.js` file in your `www/js` folder and create an `Ab
 
 And finally, open up the `about.html` template and add some content.
 
+!FILENAME www/templates/about/about.html
 ```html
-<!-- www/templates/about/about.html -->
-
 <ion-view title="BMI Mobile">
   <ion-content>
     <div class="row">
