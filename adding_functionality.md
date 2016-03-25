@@ -2,7 +2,7 @@
 
 Okay, let's move on to implementing the BMI Calculator. 
 
-Copy the `person.js` and `bmi_calculator.js` files into your `www/js` folder. If you don't have the source files, you can find them here: [TODO: Add link to the assets]
+Copy the `person.js` and `bmi_calculator.js` files into your `www/js` folder. If you don't have the source files, you can find them in the Extras chapter of this walkthrough.
 
 Reference those files in your main template file (`www/index.html`) in the block where you are including your other `js` files.
 ```html
