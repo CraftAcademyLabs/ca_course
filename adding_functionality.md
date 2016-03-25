@@ -63,9 +63,9 @@ This will make the object `person` accessible in the html template for us to sho
     BMI Calculation
   </div>
   <div class="item item-text-wrap">
-    <p>Person: Weight {{person.weight}}, Height {{person.height}}</p>
-    <p>BMI: {{person.bmiValue}}</p>
-    <p><strong>You are {{person.bmiMessage}}</strong></p>
+    <p>Person: Weight {% raw %} {{person.weight}}{% endraw %} , Height {% raw %}{{person.height}}{% endraw %}</p>
+    <p>BMI: {% raw %}{{person.bmiValue}}{% endraw %}</p>
+    <p><strong>You are {% raw %}{{person.bmiMessage}}{% endraw %}</strong></p>
   </div>
 </div>
 ```
