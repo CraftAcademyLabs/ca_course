@@ -22,6 +22,7 @@
 * [Going mobile with Ionic](going_mobile_with_ionic.md)
    * [Getting started](getting_started.md)
    * [Cleaning up and adding views](cleaning_up_and_adding_views.md)
+   * Adding the BMI calculator
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * [Extras](extras/extras.md)
