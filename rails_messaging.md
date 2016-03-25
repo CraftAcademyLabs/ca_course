@@ -52,18 +52,17 @@ Completing the additional steps as described on the post-install messages that a
 $ rails g controller welcome index
 ```
 Let's make the root path of our application point to the index action of our newly created welcome controller
-```ruby
-# config/routes.rb
 
+!FILENAME config/routes.rb
+```ruby
 Rails.application.routes.draw do
   root 'welcome#index'
 end
 ```
 We need to tweak the application.html layout file a bit to add the flash messages
 
+!FILENAME app/views/layoits/application.html.erb
 ```erb
-# app/views/layoits/application.html.erb
-
 <!DOCTYPE html>
 <html>
 <head>
@@ -93,9 +92,8 @@ We need to tweak the application.html layout file a bit to add the flash message
 ```
 You'll notice the use of the flash_class function that takes the key as an argument, that's actually a helper method I define in the application_helper.rb in the helpers folder. Used to return the appropriate bootstrap classes based on the flash key.
 
+!FILENAME app/helpers/application_helper.rb
 ```ruby
-# app/helpers/application_helper.rb
-
 module ApplicationHelper
   def flash_class(level)
     case level.to_sym
@@ -109,9 +107,8 @@ end
 ````
 We'll also add `_nav` partial that holds our applications navigation in the layouts folder.
 
+!FILENAME views/layouts/_nav.html.erb
 ```erb
-#views/layouts/_nav.html.erb
-
 <!-- Fixed navbar -->
 <nav class="navbar navbar-inverse navbar-fixed-top">
   <div class="container">
@@ -142,11 +139,10 @@ Let's create a `User` model configured with Devise modules, Devise has an awesom
 $ rails generate devise User
 $ rake db:migrate
 ```
-The generator also configures your `config/routes.rb` file to point to the Devise controller. You can check the User model for any additional configuration options you might want to add but for our case we will leave it at its defaults. At this point we can update the login and sign up links in our _nav partial to point to the appropriate routes.
+The generator also configures your `config/routes.rb` file to point to the Devise controller. You can check the User model for any additional configuration options you might want to add but for our case we will leave it at its defaults. At this point we can update the login and sign up links in our `_nav` partial to point to the appropriate routes.
 
+!FILENAME views/layouts/_nav.html.erb
 ```erb
-#views/layouts/_nav.html.erb
-
 <!-- truncated -->
   <ul class="nav navbar-nav pull-right">
     <% if user_signed_in? %>
@@ -159,15 +155,15 @@ The generator also configures your `config/routes.rb` file to point to the Devis
   </ul>
 <!-- truncated -->
 ```
-For our application, we want users to provide their names during registration, lets create a migration to add a name attribute to our users.
+We want users to provide their names during registration, lets create a migration to add a name attribute to our users.
 ```
 $ rails g migration AddNameToUsers name:string
 $ rake db:migrate
 ```
-We then add the name input field to Devise's views
-```erb
-#app/views/devise/registrations/new.html.erb
+We then add the name input field to Devise's views.
 
+!FILENAME app/views/devise/registrations/new.html.erb
+```erb
 <h2>Sign up</h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
@@ -183,9 +179,8 @@ We then add the name input field to Devise's views
 <% end %>
 ````
 
+!FILENAME app/views/devise/registrations/edit.html.erb
 ```erb
-#app/views/devise/registrations/edit.html.erb
-
 <h2>Edit <%= resource_name.to_s.humanize %></h2>
 
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
@@ -203,9 +198,9 @@ We then add the name input field to Devise's views
 <!-- [...] -->
 ````
 Since we are running this app on Rails 4, we will need to whitelist the name parameter. In our application controller file:
-```ruby
-# app/controllers/application_controller.rb
 
+!FILENAME app/controllers/application_controller.rb
+```ruby
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -229,9 +224,9 @@ $ rails g mailboxer:install
 $ rake db:migrate
 ```
 The generator creates an initializer file mailboxer.rb which you should use this to edit the default mailboxer settings. The options are quite straight forward, tweak them to your liking. We will then change the default name_method since we already have the name attribute in our user model to prevent conflict.
-```ruby
-#config/initializers/mailboxer.rb
 
+!FILENAME config/initializers/mailboxer.rb
+```ruby
 Mailboxer.setup do |config|
   # [...]
 
@@ -244,12 +239,12 @@ end
 ```
 ### The Model
 
-For us to equip our User model with Mailboxer functionalities we have to add `acts_as_messageable`. This will enable us send user-to-user messages. We also need to add an identity defined by a name and an email in our User model as required by Mailboxer.
+For us to equip our User model with Mailboxer functionalities we have to add `acts_as_messageable` to it. This will enable us send user-to-user messages. We also need to add an identity defined by a name and an email in our User model as required by Mailboxer.
 
 Our model must therefore have this specific methods. These methods are: mailboxer_email and mailboxer_name as stated in our mailboxer initializer file. You should make sure to change this when you edit their names in the initializer.
-```ruby
-#app/models/user.rb
 
+!FILENAME app/models/user.rb
+```ruby
 class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
@@ -278,10 +273,10 @@ Let's start by creating the mailbox controller
 ```
 $ rails g controller mailbox
 ```
-We will then add some custom routes for inbox, sentbox and trash in our routes.rb file
-```ruby 
-routes.rb (config/routes.rb)
+We will then add some custom routes for inbox, sentbox and trash in our routes.rb file.
 
+!FILENAME config/routes.rb
+```ruby 
 Rails.application.routes.draw do
   devise_for :users
   root 'welcome#index'
@@ -292,10 +287,10 @@ Rails.application.routes.draw do
   get "mailbox/trash" => "mailbox#trash", as: :mailbox_trash
 end
 ```
-Let's define this methods in our mailbox controller
-```ruby
-#app/controllers/mailbox_controller.rb
+Let's define this methods in our mailbox controller.
 
+!FILENAME app/controllers/mailbox_controller.rb
+```ruby
 class MailboxController < ApplicationController
   before_action :authenticate_user!
 
@@ -316,9 +311,9 @@ class MailboxController < ApplicationController
 end
 ```
 We will use the `@active` variable to highlight the currently selected folder in our view. We can now define the mailbox method as a helper method in our application_controller.rb file.
-```
-#app/controllers/application_controller.rb
 
+!FILENAME app/controllers/application_controller.rb
+```
 class ApplicationController < ActionController::Base
   # [...]
   helper_method :mailbox
@@ -334,26 +329,26 @@ class ApplicationController < ActionController::Base
   # [...]
 end
 ```
-Let's now create a view file for each of the actions in the mailbox controller. Each of this will share the same partial to navigate between the mailbox folders
+Let's now create a view file for each of the actions in the mailbox controller. Each of this will share the same partial to navigate between the mailbox folders.
+
+!FILENAME app/views/mailbox/inbox.html.erb
 ```erb 
-#app/views/mailbox/inbox.html.erb
-
 <%= render partial: 'mailbox/folder_view' %>
 ```
+
+!FILENAME app/views/mailbox/sent.html.erb
 ```erb 
-#app/views/mailbox/sent.html.erb
-
 <%= render partial: 'mailbox/folder_view' %>
 ```
-```erb
-#app/views/mailbox/trash.html.erb
 
+!FILENAME app/views/mailbox/trash.html.erb
+```erb
 <%= render partial: 'mailbox/folder_view' %>
 ```
-Lets create the folder_view partial, in our mailbox folder, create a new file name it `_folder_view.html.erb` and paste the following contents.
-```erb
-#app/views/mailbox/_folder_view.html.erb
+Let's create the `folder_view` partial, in our mailbox folder, create a new file name it `_folder_view.html.erb` and paste the following contents.
 
+!FILENAME app/views/mailbox/_folder_view.html.erb
+```erb
 <div class="row">
   <div class="spacer"></div>
   <div class="col-md-12">
@@ -380,10 +375,10 @@ Lets create the folder_view partial, in our mailbox folder, create a new file na
 
 </div>
 ```
-Inside here, we also make use of another partial called folders. Lets also, in the same mailbox folder create a new file `_folders.html.erb` and have the following contents
-```erb
-# app/views/mailbox/_folders.html.erb
+Inside here, we also make use of another partial called folders. Lets also, in the same mailbox folder create a new file `_folders.html.erb` and have the following contents.
 
+!FILENAME app/views/mailbox/_folders.html.erb
+```erb
 <ul class="nav nav-pills nav-stacked">
   <li class="<%= active_page(:inbox) %>">
     <%= link_to mailbox_inbox_path do  %>
@@ -408,9 +403,9 @@ Inside here, we also make use of another partial called folders. Lets also, in t
 </ul>
 ```
 Remember the `@active` instance variable we instantiated in our mailbox controller? lets make a helper method that makes use of that variable to highlight the current page. In our `application_helper.rb` file add the following method.
-```ruby
-#app/helpers/application_helper.rb
 
+!FILENAME app/helpers/application_helper.rb
+```ruby
 module ApplicationHelper
   # [...] 
   def active_page(active_page)
@@ -419,9 +414,9 @@ module ApplicationHelper
 end
 ```
 For our inbox, it would be a good idea to display the number of unread messages. We will define a helper method in our mailbox_helper.rb file in the helpers directory.
-```ruby
-#app/helpers/mailbox_helper.rb
 
+!FILENAME app/helpers/mailbox_helper.rb
+```ruby
 module MailboxHelper
   def unread_messages_count
     # how to get the number of unread messages for the current user
@@ -430,10 +425,10 @@ module MailboxHelper
   end
 end
 ```
-We can now add a link in our navigation bar to link to our inbox page
-```erb 
-#app/views/layous/_nav.html.erb
+We can now add a link in our navigation bar to link to our inbox page.
 
+!FILENAME app/views/layous/_nav.html.erb
+```erb 
 <!-- [...] -->
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav pull-right">
@@ -460,9 +455,9 @@ With our mailbox ready to show messages from our inbox, sent and trash folders, 
 $ rails g controller conversations
 ```
 Let's not forget to add a resources route for our conversations which will also hold other 3 member routes to handle reply, trash and untrashing of messages.
-```ruby
-config/routes.rb
 
+!FILENAME config/routes.rb
+```ruby
 Rails.application.routes.draw do
   # [...]
   
@@ -477,9 +472,9 @@ Rails.application.routes.draw do
 end
 ```
 With the conversations routes in place, lets edit our compose button link in our folder_view partial to point to the new action of our conversations controller.
-```erb 
-#app/views/mailbox/_folder_view.html.erb
 
+!FILENAME app/views/mailbox/_folder_view.html.erb
+```erb 
 <div class="row">
   <div class="spacer"></div>
   <div class="col-md-12">
@@ -490,9 +485,9 @@ With the conversations routes in place, lets edit our compose button link in our
 </div>
 ```
 We now need to create the new method in our conversations controller and its corresponding view file
-```ruby
-#app/controllers/conversations_controller.rb
 
+!FILENAME app/controllers/conversations_controller.rb
+```ruby
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
 
@@ -500,17 +495,17 @@ class ConversationsController < ApplicationController
   end
 end
 ``` 
-```erb
-#app/views/conversations/new.html.erb
 
+!FILENAME app/views/conversations/new.html.erb
+```erb
 <%= render partial: 'mailbox/folder_view', locals: { is_conversation: true } %>
 ```
-Notice we are still using our folder_view partial which is in our mailbox folder. This partial will be responsible for displaying different contents based on the current view. To start with, we are passing in a locale called is_conversation. When this is set to true, we will render the form to create new conversations and messages, else we will show contents for each mailbox folder.
+Notice we are still using our `folder_view` partial which is in our `mailbox` folder. This partial will be responsible for displaying different contents based on the current view. To start with, we are passing in a locale called `is_conversation`. When this is set to true, we will render the form to create new conversations and messages, else we will show contents for each mailbox folder.
 
 In our views folder, conversations folder, create a form partial called `_form.html.erb`, that will hold the form to create new conversations.
-```erb 
-#app/views/conversations/_form.html.erb
 
+!FILENAME app/views/conversations/_form.html.erb
+```erb 
 <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
     <div class="form-group">
       <%= f.label :recipients %>
@@ -530,9 +525,9 @@ In our views folder, conversations folder, create a form partial called `_form.h
 <% end %>
 ```
 We then need to update our folder_view partial to render our conversation form if the is_conversation variable is set to true.
-```erb 
-#app/views/mailbox/_folder_view.html.erb
 
+!FILENAME app/views/mailbox/_folder_view.html.erb
+```erb 
 <div class="row">
   <!-- [...] -->
   <div class="col-md-8">
@@ -549,20 +544,18 @@ We then need to update our folder_view partial to render our conversation form i
 
 </div>
 ```
-Let's not forget to update your mailboxes passing the is_conversation locale as false. Update your mailbox view files (`inbox.html.erb`,`sent.html.erb`,`trash.html.erb`) to read
-```erb
-`inbox.html.erb`,`sent.html.erb`,`trash.html.erb` (in the `app/views/mailbox/`folder )
+Let's not forget to update your mailboxes passing the is_conversation locale as false. Update your mailbox view files (`inbox.html.erb`,`sent.html.erb`,`trash.html.erb`) to read.
 
+!FILENAME `inbox.html.erb`,`sent.html.erb`,`trash.html.erb` (in the `app/views/mailbox/`folder )
+```erb
 <%= render partial: 'mailbox/folder_view', locals: { is_conversation: false } %>
 ```
 With this, clicking on the Compose button on either page should take you to the new view of our conversations controller and you should have a beautiful form ready to send messages
 
-
-
 With our form up and running, we need to implement the create action in our conversations controller to save the messages to the database. We call Mailboxer's send_message method on the current user and that takes in an array of recipients, the message body and message subject after which we redirect to the show action of our conversations controller.
-```ruby 
-#app/controllers/conversations_controller.rb
 
+!FILENAME app/controllers/conversations_controller.rb
+```ruby 
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
 
@@ -590,10 +583,10 @@ class ConversationsController < ApplicationController
   end
 end
 ```
-As you can see in the show action, we query all messages in the current conversation for the current user and store that in the @reciepts variable. Also, the conversation is actually a helper method we need to define in our application controller to help us get the current conversation.
-```ruby
-#app/controllers/application_controller.rb
+As you can see in the show action, we query all messages in the current conversation for the current user and store that in the `@reciepts` variable. Also, the conversation is actually a helper method we need to define in our application controller to help us get the current conversation.
 
+!FILENAME app/controllers/application_controller.rb
+```ruby
 class ApplicationController < ActionController::Base
   # [...]
   helper_method :mailbox, :conversation
@@ -609,9 +602,9 @@ class ApplicationController < ActionController::Base
 end
 ```
 Creating the show view of the show action:
-```erb
-#app/views/conversations/show.html.erb
 
+!FILENAME app/views/conversations/show.html.erb
+```erb
 <div class="row">
   <div class="spacer"></div>
   <div class="col-md-12">
@@ -638,9 +631,9 @@ Creating the show view of the show action:
 </div>
 ``` 
 Notice we call another partial messages in our new view. Create a new partial `_messages` in the `conversations` folder.
-```erb
-#app/views/conversations/_messages.html.erb
 
+!FILENAME app/views/conversations/_messages.html.erb
+```erb
 <% @receipts.each do |receipt| %>
     <% message = receipt.message %>
     <div class="media">
@@ -666,9 +659,9 @@ Creating a new conversation should successfully redirect you to that specific co
 
 
 Now that we can successfully send a message, we need to mechanism to reply, right? We  need to add a reply form on this page and a subsequent reply action in our conversations controller.
-```erb 
-# app/views/conversations/show.html.erb
 
+!FILENAME app/views/conversations/show.html.erb
+```erb 
 <div class="row">
    <!--[...]-->
 
@@ -692,11 +685,10 @@ Now that we can successfully send a message, we need to mechanism to reply, righ
 
 </div>
 ```
-view rawconversations_show_1.html.erb hosted with ❤ by GitHub
-Now lets add the reply action to our controller
-```ruby 
-# app/controllers/conversations_controller.rb
+Now lets add the reply action to our controller.
 
+!FILENAME app/controllers/conversations_controller.rb
+```ruby 
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
   # [...]
@@ -722,9 +714,9 @@ Mailboxer's `reply_to_conversation` method makes replying to conversations a bre
 Our mailbox controller views are lonely and we need to show contents in each of them from which users can click on a snippet and view the full message. In this folders, we want to show a snippet of the last message in each unique conversation.
 
 Lets create a new partial conversation inside our conversations folder name it `_conversation.html.erb`
-```erb
-#app/views/conversations/_conversation.html.erb
 
+!FILENAME app/views/conversations/_conversation.html.erb
+```erb
 <div class="media">
   <div class="media-left">
     <a href="#">
@@ -743,25 +735,25 @@ Lets create a new partial conversation inside our conversations folder name it `
 </div>
 ```
 Updating our inbox, sent and trash views
-```erb
-# app/views/inbox.html.erb
 
+!FILENAME app/views/inbox.html.erb
+```erb
 <%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @inbox } %>
 ```
-```erb
-# app/views/sent.html.erb
 
+!FILENAME app/views/sent.html.erb
+```erb
 <%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @sent } %>
 ``` 
-```erb
-# app/views/trash.html.erb
 
+!FILENAME app/views/trash.html.erb
+```erb
 <%= render partial: 'mailbox/folder_view', locals: { is_conversation: false, messages: @trash } %>
 ```
 In all of our three views, we pass in messages as a locale to our folder_view partial which represents messages from either our `inbox`, `sentbox` or `trash`. Finally lets update our `folder_view` partial to use the messages locale and consequently render the conversation partial we just created.
-```erb
-#app/views/mailbox/_folder_view.html.erb
 
+!FILENAME app/views/mailbox/_folder_view.html.erb
+```erb
 <div class="row">
  <!--[...]-->
   <div class="col-md-8">
@@ -782,9 +774,9 @@ You should now be able to see your messages, if any, when you click the inbox an
 ### Deleating and undeleating messages
 
 We will now need to add a "Move to trash" button in each conversation that is not yet deleted. For those already deleted, we need to show an "Untrash" button.
-```erb
-# app/views/conversations/_conversation.html.erb
 
+!FILENAME app/views/conversations/_conversation.html.erb
+```erb
 <div class="row">
   <div class="spacer"></div>
   <div class="col-md-6">
@@ -830,10 +822,10 @@ We will now need to add a "Move to trash" button in each conversation that is no
 
 </div>
 ```
-We now add the corresponding trash and untrash methods in our controller
-```ruby
-# app/controllers/conversations_controller.rb
+We now add the corresponding trash and untrash methods in our controller.
 
+!FILENAME app/controllers/conversations_controller.rb
+```ruby
 class ConversationsController < ApplicationController
   before_action :authenticate_user!
   # [...]
@@ -858,17 +850,17 @@ As you can see Mailboxer provides handful methods move_to_trash to send messages
 
 As you many have noted, the current method of selecting recipients is not very efficient especially when the number of users increase, finding a user can become way too tedious. We can improve on this by use of a jQuery plugin called [Chosen](https://harvesthq.github.io/chosen/) which makes it simple to select items from a large list and is more user-friendly. Fortunately for us, there is a [`chosen-rails`](https://github.com/tsechingho/chosen-rails) gem that makes integrating this plugin into Rails app very easy.
 
-To Install the gem in our rails app, add chosen-rails to your `Gemfile` and run bundle install
-```ruby
-# Gemfile
+To Install the gem in our rails app, add chosen-rails to your `Gemfile` and run bundle install.
 
+!FILENAME GEMFILE
+```ruby
 # [...]
 gem 'chosen-rails'
 ```
 We then need to add Chosen to application.js and application.css.scss files:
-```javascript
-# app/assets/javascripts/application.js
 
+!FILENAME app/assets/javascripts/application.js
+```javascript
 # [....]
 
 //= require jquery
@@ -878,10 +870,9 @@ We then need to add Chosen to application.js and application.css.scss files:
 //= require_tree .
 ```
 
+!FILENME app/assets/stylesheets/application.css
 ```css
-# app/assets/stylesheets/application.css
-
- /* [...] */
+/* [...] */
  *
  *= require_tree .
  *= require chosen
@@ -891,10 +882,10 @@ We then need to add Chosen to application.js and application.css.scss files:
 @import 'bootstrap';
 @import 'bootstrap/theme';
 ```
-We then add the chosen-select class to our select dropdown in our conversation's form select field
-```erb
-# app/views/conversations/_form.html.erb
+We then add the chosen-select class to our select dropdown in our conversation's form select field.
 
+!FILENAME app/views/conversations/_form.html.erb
+```erb
 <%= form_for :conversation, url: :conversations, html: { class: "" } do |f| %>
     <div class="form-group">
       <%= f.label :recipients %>
@@ -905,10 +896,10 @@ We then add the chosen-select class to our select dropdown in our conversation's
 
 <% end %>
 ```
-Lastly, lets equip our multiple-select dropdown with some Chosen magic. As we will be using plain jquery, rename `conversations.js.coffee` to `conversations.js` and paste in the following code
-```javascript
-# app/assets/conversations.js
+Lastly, lets equip our multiple-select dropdown with some Chosen magic. As we will be using plain jquery, rename `conversations.js.coffee` to `conversations.js` and paste in the following code.
 
+!FILENAME app/assets/conversations.js
+```javascript
 var ready;
 
 ready = function(){
@@ -923,8 +914,6 @@ $(document).ready(ready);
 $(document).on("page:load",ready);
 ```
 Reload the page with your form and you should see jQuery Chosen in action.
-
-
 
 ###Wrap up
 

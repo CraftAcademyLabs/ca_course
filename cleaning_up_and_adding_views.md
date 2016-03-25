@@ -1,11 +1,12 @@
 ## Cleaning up and adding views
-As you could see in the preview, the scaffolded app comes with some initial views, tabs, services and controllers. We will not be using them so we might as well delete those files and clean up the code. 
+As you could see in the preview, the scaffolded app comes with some initial views, tabs, services and controllers. We will not be using them so we might as well delete those files and clean up the code.
 
 Open up the application code in your editor. We are using Atom so we will run this command from our project folder:
 ```
 $ atom .
 ```
 ![BMI Calculator source code in Atom](images/bmi_calc_app_js.png)
+
 The folder I want you to focus on is the `www` folder. That is where we will do most of our work. But let's start with adding the following two lines to your `.gitignore` file. It is located in the project root.
 
 !FILENAME .gitignore
@@ -57,9 +58,9 @@ Find `app.js` in the `www/js` folder and locate the following parts:
     }
   }
 });
- ```
- 
-Delete that entire block of code. Now head over to the `controllers.js` file and delete the following code: 
+```
+
+Delete that entire block of code. Now head over to the `controllers.js` file and delete the following code:
 
 !FILENAME www/js/controllers.js
 ```javascript
@@ -139,18 +140,18 @@ www/templates/tab-account.html
 www/templates/tab-chats.html
 www/templates/tab-dash.html
 ```
-The only file we want to keep is the `templates/tabs.html` 
+The only file we want to keep is the `templates/tabs.html`
 
 Make sure you commit your changes with:
 
 ```
-$ git add . 
+$ git add .
 $ git commit -am "clean up scaffolded code"
 ```
 
 ###Adding views
 
-Now that we have cleaned up the code base we are ready to add our own stuff. We'll be making use of two tabs. One About tab that will route us to an About page, and one BMI Calculator tab that will be displaying the view where we will be doing the calculations. 
+Now that we have cleaned up the code base we are ready to add our own stuff. We'll be making use of two tabs. One About tab that will route us to an "About page", and one "BMI Calculator" tab that will be displaying the view where we will be doing the calculations.
 
 Let's start with creating the About page.
 
@@ -164,7 +165,7 @@ Open up the `templates/tabs.html` file again and add the markup for the About ta
 </ion-tab>
 ```
 
-Create a route by adding it to the `js/app.js` where we define `$stateProvider` 
+Create a route by adding this code to the `js/app.js` where we define `$stateProvider`
 
 !FILENAME www/js/app.js
 ```javascript
@@ -180,7 +181,7 @@ Create a route by adding it to the `js/app.js` where we define `$stateProvider`
   })
 ```
 
-Also, in the same file, at the bottom of the `$stateProvider` block, change the following code to point to the About page as default. 
+Also, in the same file, at the bottom of the `$stateProvider` block, change the following code to point to the About page as default.
 
 !FILENAME www/js/app.js
 ```javascript
@@ -189,7 +190,7 @@ Also, in the same file, at the bottom of the `$stateProvider` block, change the 
 $urlRouterProvider.otherwise('/tab/about');
 ```
 
-Okay, time to add a HTML template we want to display then that tab is called upon. 
+Okay, time to add a HTML template we want to display then that tab is called upon.
 
 In your `templates` folder create a new folder named `about` and add a new template inside that folder. Call it `about.html`.
 
@@ -222,6 +223,6 @@ And finally, open up the `about.html` template and add some content.
   </ion-content>
 </ion-view>
 ```
-At this stage you can start the server again (you can keep it running in the background on a separate Terminal tab. It is reloading your code as you make the changes) and head over to the browser. You should see your new About page as the default view. 
+At this stage you can start the server again (you can keep it running in the background on a separate Terminal tab. It is reloading your code as you make the changes) and head over to the browser. You should see your new About page as the default view.
 
 ![BMI Calculator About view](images/bmi_calc_initial_about_view.png)
