@@ -32,5 +32,5 @@
    * [Working in the Cloud](working_in_the_cloud/working_in_the_cloud.md)
    * [Naming Standards](extras/naming_standards.md)
    * [Domain Model from User stories](extras/domain_model_from_user_stories.md)
-* The Cooper test challenge
+* [The Cooper test challenge](ionic/cooper_test_challenge.md)
 
