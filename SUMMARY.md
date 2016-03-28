@@ -33,5 +33,5 @@
    * [Naming Standards](extras/naming_standards.md)
    * [Domain Model from User stories](extras/domain_model_from_user_stories.md)
 * [The Cooper test challenge](ionic/cooper_test_challenge.md)
-   * Results tables
+   * [Results tables](ionic/results_tables.md)
 
