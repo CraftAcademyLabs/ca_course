@@ -312,7 +312,7 @@ describe 'User Registrtion' do
   describe 'POST /api/v1/auth/' do
     describe 'register a user' do
       it 'with valid sign up returns user & token' do
-        post '/api/v1/auth', {email: 'thomas@craft.com',
+        post '/api/v1/auth', {email: 'thomas@craftacademy.se',
                               password: 'password',
                               password_confirmation: 'password'}, headers
         expect(response_json['status']).to eq('success')
@@ -339,7 +339,7 @@ describe 'User Registrtion' do
         User.create(email: 'thomas@craftacademy.se',
                     password: 'password',
                     password_confirmation: 'password')
-        post '/api/v1/auth', {email: 'thomas@craft.com',
+        post '/api/v1/auth', {email: 'thomas@craftacademy.se',
                                password: 'password',
                                password_confirmation: 'password'}, headers
         expect(response_json['errors']['email']).to eq(['already in use'])
