@@ -180,6 +180,14 @@ Remember to migrate your database in order to create the `users` table (the Devi
 ```
 $ rake db:migrate --all
 ```
+
+Another generator we need to run is to create a Factory for User. Generally, Rails generators invoke the Factory generators but not in the case of Devise Token Auth. 
+Run the generator from your terminal.
+```
+$ rails g factory_girl:model User email, password, password_confirmation
+```
+You can add more attributes to the User factory if you like, we added just the minimal required attributes at the moment. 
+
 We need to add a new namespace to our `raous.rb` and move the generated Devise route into that namespace. We also want to tell Devise to skip `omniauth_callbacks`.
 
 !FILENAME config/routes.rb
@@ -196,15 +204,14 @@ We need to add a new namespace to our `raous.rb` and move the generated Devise r
   end
 ```
 
-In our User model (`app/models/user.rb`) we want to make sure that Devise is set up for our needs. We will remove the OAuth methods. 
+In our User model (`app/models/user.rb`) we want to make sure that Devise is set up for our needs. We will remove the OAuth and Confirmation methods. 
 
 !FILENAME app/models/user.rb
 ```ruby 
 class User < ActiveRecord::Base
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :trackable, :validatable,
-          :confirmable
+          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 end
 ```
