@@ -204,7 +204,7 @@ end
 ```
 Make sure to open up the migration file and change the datatype for Tokens to `text`.
 
-!FILENAME XXXXXX_
+!FILENAME db/migrate/2016XXXXXXXX_devise_token_auth_create_users.rb
 ```ruby
   ## Tokens
   t.text :tokens
