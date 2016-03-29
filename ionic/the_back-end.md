@@ -320,7 +320,7 @@ describe 'User Registrtion' do
       end
 
       it 'with an invalid password confirmation returns error message' do
-        post '/api/v1/auth', {email: 'thomas@craft.com',
+        post '/api/v1/auth', {email: 'thomas@craftacademy.se',
                               password: 'password',
                               password_confirmation: 'wrong_password'}, headers
         expect(response_json['errors']['password_confirmation']).to eq(['doesn\'t match Password'])
@@ -336,7 +336,7 @@ describe 'User Registrtion' do
       end
 
       it 'with an already registered email returns error message' do
-        User.create(email: 'thomas@craft.com',
+        User.create(email: 'thomas@craftacademy.se',
                     password: 'password',
                     password_confirmation: 'password')
         post '/api/v1/auth', {email: 'thomas@craft.com',
