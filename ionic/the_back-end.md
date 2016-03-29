@@ -103,6 +103,9 @@ I your `spec` folder create a folder named `requests`. Within that folder we nee
 $ mkdir spec/requests
 $ mkdir spec/requests/api
 $ mkdir spec/requests/api/v0
+
+# or use the -p flag (stand for 'parents'
+$ mkdir -p spec/requests/api/v0
 ```
 
 Create a `ping_spec.rb` file and add the following code.
