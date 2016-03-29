@@ -9,14 +9,12 @@ Before moving on, make sure you scaffold an new Rails application. If you need a
 
 There are some steps that we need to undertake to prepare the application before we can start adding our api-endpoints. 
 
-First, we need to create a custom `ApiController` that we will use to inherit from. 
+First, we need to modify the `ApplicationController`. 
 
-```
-$ touch app/controllers/api_controller.rb
-```
-!FILENAME app/controllers/api_controller.rb
+
+!FILENAME app/controllers/application_controller.rb
 ```ruby
-class ApiController < ActionController::Base
+class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
   skip_before_filter :verify_authenticity_token
 end
@@ -50,7 +48,7 @@ module YourApp
   end
 end
 ```
-There are plenty of settings you can add to enchance security of your application. read about it in the `rack-cors` gem documentation.
+There are plenty of settings you can add to enhance security of your application. read about it in the `rack-cors` gem documentation.
 
 ###Testing with RSpec
 We will be using request specs to test our api endpoints. 
@@ -81,19 +79,14 @@ Inside that folder, we want to create our dummy controller.
 ```
 $ touch app/controllers/api/v0/ping_controller.rb
 ```
-We will let it inherit from our `ApiController` 
+We will let it inherit from our modified `ApplicationController` 
 
 !FILENAME app/controllers/api/v0/ping_controller.rb
 ```ruby
-class Api::V0::PingController < ApiController
+class Api::V0::PingController < ApplicationController
 
 end
 ``` 
-
-** *Note: You can delete the scaffolded `ApplicationController`* **
-```
-$ rm app/controllers/application_controller.rb
-```
 
 Let's write our first spec to see if we can get a response from our endpoint. 
 
