@@ -184,7 +184,7 @@ $ rake db:migrate --all
 Another generator we need to run is to create a Factory for User. Generally, Rails generators invoke the Factory generators but not in the case of Devise Token Auth. 
 Run the generator from your terminal.
 ```
-$ rails g factory_girl:model User email, password, password_confirmation
+$ rails g factory_girl:model User email password password_confirmation
 ```
 You can add more attributes to the User factory if you like, we added just the minimal required attributes at the moment. 
 
@@ -375,6 +375,8 @@ end
 The first spec is the happy path testing that user registration with the minimum of required fields works. The next specs are exposing the error messages we'll get if something goes wrong. 
 
 What other possible scenarios in the context of user registration should we test for?
+
+
 
 
 
