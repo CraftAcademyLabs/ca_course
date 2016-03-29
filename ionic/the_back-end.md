@@ -302,7 +302,7 @@ end
 
 Okay, there will be plenty of opportunity to write more specs for the User model. But let's focus on adding some request specs to test our endpoints.
 
-!FILENAME 
+!FILENAME spec/requests/api/v1/registrations_spec.rb
 ```ruby
 require 'rails_helper'
 
