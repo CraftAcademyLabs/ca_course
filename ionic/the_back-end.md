@@ -159,7 +159,18 @@ Using a generator that the gem provides we can create a user model, define route
 $ rails g devise_token_auth:install auth
 ```
 
-Migrate your database.
+The generator will complain that we do not have a default `application_controller`. It's a good thing that we deleated it. If we haven't we could easily missed that we need to update the controller our other controllers will inherit from. Add the following `include` to the `ApiController`.
+
+!FILENAME app/controllers/api_controller.rb
+```ruby
+class ApiController < ActionController::Base
+  include DeviseTokenAuth::Concerns::SetUserByToken
+  protect_from_forgery with: :null_session
+  skip_before_filter :verify_authenticity_token
+end
+```
+
+Remember to migrate your database in order to create the `users` table (the Devise generator created an migration for you).
 ```
 $ rake db:migrate --all
 ```
@@ -191,6 +202,41 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 end
 ```
+Make sure to open up the migration file and change the datatype for Tokens to `text`.
+
+!FILENAME XXXXXX_
+```ruby
+  ## Tokens
+  t.text :tokens
+```
+Now, we can run the `rake routes` command in the terminal to make sure we are set up correctly. 
+
+```
+$ rake routes
+                         Prefix Verb   URI Pattern                             Controller#Action
+              api_v0_ping_index GET    /api/v0/ping(.:format)                  api/v0/ping#index {:format=>/(json)/}
+        new_api_v1_user_session GET    /api/v1/auth/sign_in(.:format)          devise_token_auth/sessions#new
+            api_v1_user_session POST   /api/v1/auth/sign_in(.:format)          devise_token_auth/sessions#create
+    destroy_api_v1_user_session DELETE /api/v1/auth/sign_out(.:format)         devise_token_auth/sessions#destroy
+           api_v1_user_password POST   /api/v1/auth/password(.:format)         devise_token_auth/passwords#create
+       new_api_v1_user_password GET    /api/v1/auth/password/new(.:format)     devise_token_auth/passwords#new
+      edit_api_v1_user_password GET    /api/v1/auth/password/edit(.:format)    devise_token_auth/passwords#edit
+                                PATCH  /api/v1/auth/password(.:format)         devise_token_auth/passwords#update
+                                PUT    /api/v1/auth/password(.:format)         devise_token_auth/passwords#update
+cancel_api_v1_user_registration GET    /api/v1/auth/cancel(.:format)           devise_token_auth/registrations#cancel
+       api_v1_user_registration POST   /api/v1/auth(.:format)                  devise_token_auth/registrations#create
+   new_api_v1_user_registration GET    /api/v1/auth/sign_up(.:format)          devise_token_auth/registrations#new
+  edit_api_v1_user_registration GET    /api/v1/auth/edit(.:format)             devise_token_auth/registrations#edit
+                                PATCH  /api/v1/auth(.:format)                  devise_token_auth/registrations#update
+                                PUT    /api/v1/auth(.:format)                  devise_token_auth/registrations#update
+                                DELETE /api/v1/auth(.:format)                  devise_token_auth/registrations#destroy
+       api_v1_user_confirmation POST   /api/v1/auth/confirmation(.:format)     devise_token_auth/confirmations#create
+   new_api_v1_user_confirmation GET    /api/v1/auth/confirmation/new(.:format) devise_token_auth/confirmations#new
+                                GET    /api/v1/auth/confirmation(.:format)     devise_token_auth/confirmations#show
+     api_v1_auth_validate_token GET    /api/v1/auth/validate_token(.:format)   devise_token_auth/token_validations#validate_token
+```
+
+
 
 
 
