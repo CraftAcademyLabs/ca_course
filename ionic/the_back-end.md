@@ -188,6 +188,19 @@ $ rails g factory_girl:model User email, password, password_confirmation
 ```
 You can add more attributes to the User factory if you like, we added just the minimal required attributes at the moment. 
 
+Let's add a spec for the User factory we just created.
+
+!FILENAME spec/models/user_spec.rb
+```ruby
+require 'rails_helper'
+
+RSpec.describe User, type: :model do
+  it 'should have valid Fixture Factory' do
+    expect(FactoryGirl.create(:user)).to be_valid
+  end
+end
+```
+
 We need to add a new namespace to our `raous.rb` and move the generated Devise route into that namespace. We also want to tell Devise to skip `omniauth_callbacks`.
 
 !FILENAME config/routes.rb
