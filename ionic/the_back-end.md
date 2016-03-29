@@ -236,7 +236,7 @@ cancel_api_v1_user_registration GET    /api/v1/auth/cancel(.:format)           d
      api_v1_auth_validate_token GET    /api/v1/auth/validate_token(.:format)   devise_token_auth/token_validations#validate_token
 ```
 
-Now, we can add some basic model specs for User. 
+Now, we can add some basic model specs for User that will test the Devise setup.
 
 !FILENAME spec/models/user_spec.rb
 ```ruby
