@@ -236,6 +236,43 @@ cancel_api_v1_user_registration GET    /api/v1/auth/cancel(.:format)           d
      api_v1_auth_validate_token GET    /api/v1/auth/validate_token(.:format)   devise_token_auth/token_validations#validate_token
 ```
 
+Now, we can add some basic model specs for User. 
+
+!FILENAME spec/models/user_spec.rb
+```ruby
+require 'rails_helper'
+
+RSpec.describe User, type: :model do
+  describe 'Database table' do
+    it { is_expected.to have_db_column :id }
+    it { is_expected.to have_db_column :provider }
+    it { is_expected.to have_db_column :uid }
+    it { is_expected.to have_db_column :encrypted_password }
+    it { is_expected.to have_db_column :reset_password_token }
+    it { is_expected.to have_db_column :reset_password_sent_at }
+    it { is_expected.to have_db_column :remember_created_at }
+    it { is_expected.to have_db_column :sign_in_count }
+    it { is_expected.to have_db_column :current_sign_in_at }
+    it { is_expected.to have_db_column :last_sign_in_at }
+    it { is_expected.to have_db_column :current_sign_in_ip }
+    it { is_expected.to have_db_column :last_sign_in_ip }
+    it { is_expected.to have_db_column :confirmation_token }
+    it { is_expected.to have_db_column :confirmed_at }
+    it { is_expected.to have_db_column :confirmation_sent_at }
+    it { is_expected.to have_db_column :unconfirmed_email }
+    it { is_expected.to have_db_column :nickname }
+    it { is_expected.to have_db_column :image }
+    it { is_expected.to have_db_column :email }
+    it { is_expected.to have_db_column :tokens }
+    it { is_expected.to have_db_column :created_at }
+    it { is_expected.to have_db_column :updated_at }
+  end
+end
+
+```
+
+
+
 
 
 
