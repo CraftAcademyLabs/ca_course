@@ -67,14 +67,64 @@ namespace :api do
   end
 end
 ```
+Run `rake routes` in your terminal to see if the route has been added properly. 
 
 In the `app/controllers` folder, create the following folder structure.
 ```
 $ mkdir app/controllers/api
 $ mkdir app/controllers/api/v0
 ```
+** *Note: The actual API controllers will be placed in anothe namespace that we will call `V1`.* **
 
-Inside that folder, we want to create the 
+Inside that folder, we want to create our dummy controller. 
+
+```
+$ touch app/controllers/api/v0/ping_controller.rb
+```
+We will let it inherit from our `ApiController` 
+
+!FILENAME app/controllers/api/v0/ping_controller.rb
+```ruby
+class Api::V0::PingController < ApiController
+
+end
+``` 
+
+Lets write our first spec to see if we can get a response from our endpoint. 
+
+I your `spec` folder create a folder named `requests`. Within that folder we need to add a folder structure that corresponds to the one we have in our `app/controllers` folder. 
+
+```
+$ mkdir spec/requests
+$ mkdir spec/requests/api
+$ mkdir spec/requests/api/v0
+```
+
+Create a `ping_spec.rb` file and add the following code.
+
+```
+$ touch spec/requests/api/v0/ping_spec.rb
+```
+
+!FILENAME spec/requests/api/v0/ping_spec.rb
+```ruby
+require 'rails_helper'
+
+describe Api::V0::PingController do
+  describe 'GET /v0/ping' do
+    it 'should return Pong' do
+      get '/api/v0/ping'
+      expect(response.status).to eq 200
+      expect(JSON.parse(response.body['message'])).to eq 'Pong'
+    end
+  end
+end
+```
+
+
+
+
+
  
 
 
