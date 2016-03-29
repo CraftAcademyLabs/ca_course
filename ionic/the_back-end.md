@@ -121,7 +121,16 @@ describe Api::V0::PingController do
 end
 ```
 
-In order to make this 
+In order to make this spec to pass, we need to add an `index` method to the `Api::V0::PingController`.
+
+!FILENAME app/controllers/api/v0/ping_controller.rb
+```ruby
+class Api::V0::PingController < ApiController
+  def index
+    render json: {message: 'Pong'}
+  end
+end
+``` 
 
 
 
