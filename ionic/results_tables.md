@@ -4,7 +4,7 @@
 
 To undertake this test you will require:
 
-* 400 metre track
+* 400 meter track
 * Stopwatch
 * Whistle
 * Assistant
