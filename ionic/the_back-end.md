@@ -52,6 +52,30 @@ end
 ```
 There are plenty of settings you can add to enchance security of your application. read about it in the `rack-cors` gem documentation.
 
+###Testing with RSpec
+We will be using request specs to test our api endpoints. 
+Let's create a dummy endpoint just to make sure everything is okay in terms of security settings. 
+
+In your `routes.rb` create an API namespece and add V0 within it. 
+
+!FILENAME config/routes.rb
+```ruby 
+# [...]
+namespace :api do
+  namespace :v0 do
+    resources :ping, only: [:index], constraints: {format: /(json)/}
+  end
+end
+```
+
+In the `app/controllers` folder, create the following folder structure.
+```
+$ mkdir app/controllers/api
+$ mkdir app/controllers/api/v0
+```
+
+Inside that folder, we want to create the 
+ 
 
 
 
