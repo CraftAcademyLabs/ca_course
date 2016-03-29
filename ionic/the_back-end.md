@@ -180,7 +180,28 @@ Remember to migrate your database in order to create the `users` table (the Devi
 ```
 $ rake db:migrate --all
 ```
-We need to add a new namespace to our `raous.rb` and move the generated Devise route into that namespace. We also want to tell Devise to skip `omniauth_callbacks`.
+
+Another generator we need to run is to create a Factory for User. Generally, Rails generators invoke the Factory generators but not in the case of Devise Token Auth. 
+Run the generator from your terminal.
+```
+$ rails g factory_girl:model User email password password_confirmation
+```
+You can add more attributes to the User factory if you like, we added just the minimal required attributes at the moment. 
+
+Let's add a spec for the User factory we just created.
+
+!FILENAME spec/models/user_spec.rb
+```ruby
+require 'rails_helper'
+
+RSpec.describe User, type: :model do
+  it 'should have valid Fixture Factory' do
+    expect(FactoryGirl.create(:user)).to be_valid
+  end
+end
+```
+
+We need to add a new namespace to our `routes.rb` and move the generated Devise route into that namespace. We also want to tell Devise to skip `omniauth_callbacks`.
 
 !FILENAME config/routes.rb
 ```ruby
@@ -196,15 +217,14 @@ We need to add a new namespace to our `raous.rb` and move the generated Devise r
   end
 ```
 
-In our User model (`app/models/user.rb`) we want to make sure that Devise is set up for our needs. We will remove the OAuth methods. 
+In our User model (`app/models/user.rb`) we want to make sure that Devise is set up for our needs. We will remove the OAuth and Confirmation methods. 
 
 !FILENAME app/models/user.rb
 ```ruby 
 class User < ActiveRecord::Base
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :trackable, :validatable,
-          :confirmable
+          :recoverable, :rememberable, :trackable, :validatable
   include DeviseTokenAuth::Concerns::User
 end
 ```
@@ -243,6 +263,7 @@ Now, we can add some basic model specs for User that will test the Devise setup.
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+#[...]
   describe 'Database table' do
     it { is_expected.to have_db_column :id }
     it { is_expected.to have_db_column :provider }
@@ -302,7 +323,7 @@ end
 
 Okay, there will be plenty of opportunity to write more specs for the User model. But let's focus on adding some request specs to test our endpoints.
 
-!FILENAME 
+!FILENAME spec/requests/api/v1/registrations_spec.rb
 ```ruby
 require 'rails_helper'
 
@@ -354,6 +375,50 @@ end
 The first spec is the happy path testing that user registration with the minimum of required fields works. The next specs are exposing the error messages we'll get if something goes wrong. 
 
 What other possible scenarios in the context of user registration should we test for?
+
+Let's write some specs for logging in the user.
+
+!FILENAME spec/requests/api/v1/sessions_spec.rb
+```ruby
+require 'rails_helper'
+
+describe 'Sessions' do
+
+  let(:user) { FactoryGirl.create(:user) }
+  let(:headers) { {HTTP_ACCEPT: 'application/json'} }
+
+  describe 'POST /api/v1/auth/sign_in' do
+    it 'valid credentials returns user' do
+      post '/api/v1/auth/sign_in', {email: user.email, password: user.password}, headers
+
+      expect(response_json).to eq(
+                                   {'data' =>
+                                        {'id' => user.id,
+                                         'provider' => 'email',
+                                         'uid' => user.email,
+                                         'name' => nil,
+                                         'nickname' => nil,
+                                         'image' => nil,
+                                         'email' => user.email}}
+                               )
+    end
+
+    it 'invalid password returns error message' do
+      post '/api/v1/auth/sign_in', {user: {email: user.email, password: 'wrong_password'}}, headers
+      expect(response_json['errors']).to eq ['Invalid login credentials. Please try again.']
+      expect(response.status).to eq 401
+    end
+
+    it 'invalid email returns error message' do
+      post '/api/v1/auth/sign_in', {user: {email: 'wrong@email.com', password: user.password}}, headers
+      expect(response_json['errors']).to eq ['Invalid login credentials. Please try again.']
+      expect(response.status).to eq 401
+    end
+  end
+  
+end
+```
+
 
 
 
