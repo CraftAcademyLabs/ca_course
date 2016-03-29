@@ -90,7 +90,12 @@ class Api::V0::PingController < ApiController
 end
 ``` 
 
-Lets write our first spec to see if we can get a response from our endpoint. 
+** *Note: You can delete the scaffolded `ApplicationController`* **
+```
+$ rm app/controllers/application_controller.rb
+```
+
+Let's write our first spec to see if we can get a response from our endpoint. 
 
 I your `spec` folder create a folder named `requests`. Within that folder we need to add a folder structure that corresponds to the one we have in our `app/controllers` folder. 
 
