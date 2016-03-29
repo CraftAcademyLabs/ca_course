@@ -201,7 +201,7 @@ RSpec.describe User, type: :model do
 end
 ```
 
-We need to add a new namespace to our `raous.rb` and move the generated Devise route into that namespace. We also want to tell Devise to skip `omniauth_callbacks`.
+We need to add a new namespace to our `routes.rb` and move the generated Devise route into that namespace. We also want to tell Devise to skip `omniauth_callbacks`.
 
 !FILENAME config/routes.rb
 ```ruby
@@ -263,6 +263,7 @@ Now, we can add some basic model specs for User that will test the Devise setup.
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
+#[...]
   describe 'Database table' do
     it { is_expected.to have_db_column :id }
     it { is_expected.to have_db_column :provider }
