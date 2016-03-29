@@ -19,7 +19,7 @@ This test requires the athlete to run as far as possible in 12 minutes.
 
 ###Assessment
 
-The following normative data, Cooper (1968)[1], is available for this test:
+The following normative data is available for this test:
 
 
 
