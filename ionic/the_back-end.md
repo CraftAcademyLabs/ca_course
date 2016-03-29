@@ -156,7 +156,40 @@ gem 'devise_token_auth'
 ```
 Using a generator that the gem provides we can create a user model, define routes, etc. Run the following command for an easy one-step installation.
 ```
-$ rails g devise_token_auth:install User api/v1/auth
+$ rails g devise_token_auth:install auth
+```
+
+Migrate your database.
+```
+$ rake db:migrate --all
+```
+We need to add a new namespace to our `raous.rb` and move the generated Devise route into that namespace. We also want to tell Devise to skip `omniauth_callbacks`.
+
+!FILENAME config/routes.rb
+```ruby
+# [...]
+  namespace :api do
+    namespace :v0 do
+      resources :ping, only: [:index], constraints: { format: /(json)/ }
+    end
+
+    namespace :v1 do
+      mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
+    end
+  end
+```
+
+In our User model (`app/models/user.rb`) we want to make sure that Devise is set up for our needs. We will remove the OAuth methods. 
+
+!FILENAME app/models/user.rb
+```ruby 
+class User < ActiveRecord::Base
+  # Include default devise modules.
+  devise :database_authenticatable, :registerable,
+          :recoverable, :rememberable, :trackable, :validatable,
+          :confirmable
+  include DeviseTokenAuth::Concerns::User
+end
 ```
 
 
