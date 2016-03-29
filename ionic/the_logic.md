@@ -16,7 +16,7 @@ Here are the steps you need to complete at this stage:
 * Set up Jasmine ([see this section](bmi_challenge/jasmine_set_up.html)).
 * Write a JavaScript program that returnes an assessment given the users gender, age and completed distance. Store that program in `cooper.js`
 * Make the software accessible in your browsers console
-* You DON'T need to create a UI at this point.
+* **You DON'T need to create a UI at this point.**
 
 
 
