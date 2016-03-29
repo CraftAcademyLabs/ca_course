@@ -170,7 +170,13 @@ class ApiController < ActionController::Base
 end
 ```
 
-Remember to migrate your database in order to create the `users` table (the Devise generator created an migration for you).
+Remember to migrate your database in order to create the `users` table (the Devise generator created an migration for you). But before you do that, make sure to open up the migration file and change the datatype for Tokens to `text`.
+
+!FILENAME db/migrate/2016XXXXXXXX_devise_token_auth_create_users.rb
+```ruby
+  ## Tokens
+  t.text :tokens
+```
 ```
 $ rake db:migrate --all
 ```
@@ -202,13 +208,7 @@ class User < ActiveRecord::Base
   include DeviseTokenAuth::Concerns::User
 end
 ```
-Make sure to open up the migration file and change the datatype for Tokens to `text`.
 
-!FILENAME db/migrate/2016XXXXXXXX_devise_token_auth_create_users.rb
-```ruby
-  ## Tokens
-  t.text :tokens
-```
 Now, we can run the `rake routes` command in the terminal to make sure we are set up correctly. 
 
 ```
