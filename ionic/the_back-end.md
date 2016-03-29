@@ -139,6 +139,19 @@ We know that we will be accessing our Rails app from an api and that we will req
 
 As usual, we will be testing our units with RSpec and in order to make writing our specs a breeze, we will use `shoulda-matchers`, but this is probably onl news for you at this stage in our Bootcamp. Again, if you need some pointers please go back in this documentation and revisit the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter.
 
+Make sure you install the `devise_token_auth` gem by adding it to your `Gemfile` and run `bundle install`.
+
+!FILENAME Gemfile
+```ruby
+gem 'devise_token_auth'
+```
+Using a generator that the gem provides we can create a user model, define routes, etc. Run the following command for an easy one-step installation.
+```
+$ rails g devise_token_auth:install User api/v1/auth
+```
+
+
+
 
 
 
