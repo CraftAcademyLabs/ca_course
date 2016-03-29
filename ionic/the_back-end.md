@@ -21,5 +21,38 @@ class ApiController < ActionController::Base
   skip_before_filter :verify_authenticity_token
 end
 ```
+We use `protect_from_forgery with: :null_session` to avoid running into an `ActionController::InvalidAuthenticityToken` exception. 
+
+When you make a request from some other client, like a Angular app accessing a REST service, you will get errors by default, since you do not have the secret token. Rails allows you to alter the behavior when the secret isn't sent in your request.  By default it throws an exception, but you can change it to just set the session to NULL
+
+We also need to add `skip_before_filter :verify_authenticity_token` because Rails will return 422 status code and error message ‘Can’t verify CSRF token authenticity’ (**TODO: move to a section AFTER we have added Devise?**) 
+
+We also want to add the [`rack-cors`](https://github.com/cyu/rack-cors) gem to allow external clients to access our application. Add the dependency to your Gemfile:
+
+!FILENAME Gemfile
+```ruby
+gem 'rack-cors', :require => 'rack/cors'
+```
+
+Put something like the code below in `config/application.rb` of your Rails application. For example, this will allow GET, POST, PUT and DELETE requests from any origin on any resource.
+
+!FILENAME config/application.rb
+```ruby
+module YourApp
+  class Application < Rails::Application
+    # [...]
+    config.middleware.insert_before 0, "Rack::Cors" do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :put, :delete, :post]
+      end
+    end
+  end
+end
+```
+There are plenty of settings you can add to enchance security of your application. read about it in the `rack-cors` gem documentation.
+
+
+
 
 
