@@ -353,7 +353,7 @@ end
 
 The first spec is the happy path testing that user registration with the minimum of required fields works. The next specs are exposing the error messages we'll get if something goes wrong. 
 
-What other possible scenarios should we test for?
+What other possible scenarios in the context of user registration should we test for?
 
 
 
