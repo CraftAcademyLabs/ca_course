@@ -5,4 +5,4 @@ The challenge is to set up an API-only application that will make it possible to
 
 We will be using RSpec as out testing framework and PostgreSQL as out database. 
 
-
+Before moving on, make sure you scaffold an new Rails application. If you need assistance you can check out the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter.  
