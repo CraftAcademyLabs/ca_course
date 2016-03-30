@@ -1,9 +1,10 @@
 # The Back-end - Step 2
+
 We will be using Ruby on Rails as the stack for our back-end.
 
 The challenge is to set up an API-only application that will make it possible to store information about users and their historical data. 
 
-We will be using RSpec as out testing framework and PostgreSQL as out database. 
+We will be using RSpec as out testing framework and PostgreSQL as our database. 
 
 Before moving on, make sure you scaffold an new Rails application. If you need assistance you can check out the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter. **Note that we WILL NOT be using Cucumber, so you don't have to install that framework.** 
 
@@ -49,11 +50,12 @@ end
 There are plenty of settings you can add to enhance security of your application. Read about it in the `rack-cors` and `devise_token_auth` gem documentation.
 
 ###Testing with RSpec
+
 We will be using request specs to test our api endpoints. 
 
 Let's create a dummy endpoint just to make sure everything is okay in terms of security settings. 
 
-In your `routes.rb` create an API namespece and add V0 within it. 
+In your `routes.rb` create an API namespace and add `V0` within it. 
 
 !FILENAME config/routes.rb
 ```ruby 
@@ -71,7 +73,7 @@ In the `app/controllers` folder, create the following folder structure.
 $ mkdir app/controllers/api
 $ mkdir app/controllers/api/v0
 ```
-** *Note: The actual API routes will be placed in anothe namespace that we will call `V1`.* **
+** *Note: The actual API routes will be placed in another namespace that we will call `V1`.* **
 
 Inside that folder, we want to create our dummy controller. 
 
@@ -136,6 +138,7 @@ end
 Does it work? 
 
 ### Adding a User class
+
 We know that we will be accessing our Rails app from an api and that we will require authentication. At this point you are familiar with Devise - one of the most popular authentication libraries for Rails applications. We will be using [`devise_token_auth`](https://github.com/lynndylanhurley/devise_token_auth) a token based authentication gem for Rails JSON APIs. It is designed to work well with [`ng-token-auth`](https://github.com/lynndylanhurley/ng-token-auth) the token based authentication module for AngularJS.
 
 As usual, we will be testing our units with RSpec and in order to make writing our specs a breeze, we will use `shoulda-matchers`, but this is probably old news for you at this stage. Again, if you need some pointers please go back in this documentation and revisit the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter.
@@ -150,7 +153,7 @@ Using a generator that the gem provides we can create a user model, define route
 ```
 $ rails g devise_token_auth:install auth
 ```
-Remember to migrate your database in order to create the `users` table (the Devise generator created an migration for you). But before you do that, make sure to open up the migration file and change the datatype for Tokens to `text`.
+Remember to migrate your database in order to create the `users` table (the Devise generator created an migration for you). But before you do that, make sure to open up the migration file and change the data type for Tokens to `text`.
 
 !FILENAME db/migrate/XXX_devise_token_auth_create_users.rb
 ```ruby
@@ -317,7 +320,7 @@ end
 
 Okay, there will be plenty of opportunity to write more specs for the User model. But let's focus on adding some request specs to test our endpoints.
 
-First we need to add a helper method that will parse the response to Json. Create a `support` folder in the `spec` folder. Add a new file named `response_json.rb`. In that file we will create a module that will parse the `response.body` to Json and allow us to DRY out our request specs.
+First we need to add a helper method that will parse the response to JSON. Create a `support` folder in the `spec` folder. Add a new file named `response_json.rb`. In that file we will create a module that will parse the `response.body` to JSON and allow us to DRY out our request specs.
 
 !FILENAME spec/support/response_json.rb
 ```ruby
