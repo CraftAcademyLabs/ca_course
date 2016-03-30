@@ -16,14 +16,12 @@ First, we need to modify the `ApplicationController`.
 ```ruby
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
-  skip_before_filter :verify_authenticity_token
+  respond_to :json
 end
 ```
 We use `protect_from_forgery with: :null_session` to avoid running into an `ActionController::InvalidAuthenticityToken` exception. 
 
 When you make a request from some other client, like a Angular app accessing a REST service, you will get errors by default, since you do not have the secret token. Rails allows you to alter the behavior when the secret isn't sent in your request.  By default it throws an exception, but you can change it to just set the session to NULL
-
-We also need to add `skip_before_filter :verify_authenticity_token` because Rails will return 422 status code and error message ‘Can’t verify CSRF token authenticity’ (**TODO: move to a section AFTER we have added Devise?**) 
 
 We also want to add the [`rack-cors`](https://github.com/cyu/rack-cors) gem to allow external clients to access our application. Add the dependency to your `Gemfile`.
 
@@ -442,6 +440,88 @@ describe 'Sessions' do
 
 end
 ```
+
+### Add PerformanceData model
+
+Let's add a way to store historical data for each user.
+
+Run the following generator.
+```
+rails g model PerformanceData user:references data:hstore --force-plural
+```
+
+Open up the migration and add a line that adds `hstore` as a datatype and enables the database to store hashes.
+
+!FILENAME db/migrate/XXXX_create_performance_data.rb
+```ruby
+class CreatePerformanceData < ActiveRecord::Migration
+  def change
+    execute 'CREATE EXTENSION IF NOT EXISTS hstore'
+    create_table :performance_data do |t|
+      t.references :user, index: true, foreign_key: true
+      t.hstore :data
+
+      t.timestamps null: false
+    end
+  end
+end
+```
+
+In your User model, add the following relationship.
+
+!FILENAME app/models/user.rb
+```ruby
+class User < ActiveRecord::Base
+  # [...]
+  has_many :performance_data, class_name: 'PerformanceData'
+end
+
+```
+
+Run the new migration.
+
+```
+$ rake db:migrate
+```
+
+Add the following specs.
+
+!FILENAME spec/models/user_spec.rb
+```ruby
+
+RSpec.describe User, type: :model do
+  #[...]
+
+  describe 'Relations' do
+    it { is_expected.to have_many :performance_data }
+  end
+  
+end
+```
+And to the newly created `spec/models/performance_data_spec.rb`.
+
+!FILENAME spec/models/performance_data_spec.rb
+```ruby
+
+require 'rails_helper'
+
+RSpec.describe PerformanceData, type: :model do
+
+  describe 'Database table' do
+    it { is_expected.to have_db_column :id }
+    it { is_expected.to have_db_column :data }
+  end
+
+  describe 'Relations' do
+    it { is_expected.to belong_to :user }
+  end
+end
+```
+
+
+
+
+
 
 
 
