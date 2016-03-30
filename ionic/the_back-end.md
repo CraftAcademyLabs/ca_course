@@ -16,14 +16,12 @@ First, we need to modify the `ApplicationController`.
 ```ruby
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
-  skip_before_filter :verify_authenticity_token
+  respond_to :json
 end
 ```
 We use `protect_from_forgery with: :null_session` to avoid running into an `ActionController::InvalidAuthenticityToken` exception. 
 
 When you make a request from some other client, like a Angular app accessing a REST service, you will get errors by default, since you do not have the secret token. Rails allows you to alter the behavior when the secret isn't sent in your request.  By default it throws an exception, but you can change it to just set the session to NULL
-
-We also need to add `skip_before_filter :verify_authenticity_token` because Rails will return 422 status code and error message ‘Can’t verify CSRF token authenticity’ (**TODO: move to a section AFTER we have added Devise?**) 
 
 We also want to add the [`rack-cors`](https://github.com/cyu/rack-cors) gem to allow external clients to access our application. Add the dependency to your `Gemfile`.
 
