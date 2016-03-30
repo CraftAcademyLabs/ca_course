@@ -195,6 +195,84 @@ Entering values using the keyboard is always hard on a mobile device. We will do
 
 Let's change the input fields to a select field for gender and sliders for age and distance. We will also do a small refactoring of the initial values and move those settings to our controller. It feels better to have them stored there. 
 
+Replace the input fields in the `test.html` template with this form.
+
+!FILENAME
+```javascript
+#[...]
+<form name="testdata">
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Gender
+    </div>
+    <select
+    ng-model="data.gender"
+    ng-options="option as option for option in gender"
+    required></select>
+  </label>
+
+  <div class="item item-divider">Age
+    <output name="agevalue" for="age"></output>
+  </div>
+  <div class="item range range-positive">
+    <input
+    name="age"
+    type="range"
+    min="{{ageValues.min}}"
+    max="{{ageValues.max}}"
+    value="{{ageValues.value}}"
+    ng-model="data.age"
+    oninput="agevalue.value = age.value"
+    required>{{ageValues.min}}/{{ageValues.max}} yrs
+  </div>
+
+  <div class="item item-divider">Distance
+    <output name="distvalue" for="distance"></output>
+  </div>
+  <div class="item range range-positive">
+    <input
+    name="distance"
+    type="range"
+    min="{{distanceValues.min}}"
+    max="{{distanceValues.max}}"
+    value="{{distanceValues.value}}"
+    ng-model="data.distance"
+    oninput="distvalue.value = distance.value"
+    required>{{distanceValues.min}} - {{distanceValues.max}} m
+  </div>
+
+  <button
+  class="button button-full button-calm"
+  ng-click="calculateCooper()"
+  ng-disabled="testdata.$invalid">Get results</button>
+</form>
+#[...]
+```
+And modify your controller with predefined values for `gender`, `age` and `distance` 
+
+!FILENAME www/js/controllers.js
+```javascript
+#[...]
+.controller('TestController', function($scope) {
+  $scope.gender = ['Male', 'Female']
+  $scope.ageValues = {
+    min: 20,
+    max: 90,
+    value: 20
+  };
+  $scope.distanceValues = {
+    min: 1000,
+    max: 4500,
+    value: 1000
+  };
+  $scope.data = {};
+  #[...]
+  };
+```
+
+
+
+
 
 
 
