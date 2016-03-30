@@ -78,6 +78,23 @@ Finally, in the `app.js` file, delete unused routes. We will also ADD a route to
   $urlRouterProvider.otherwise('/app/about');
 });
 ```
+Create a new folder named `about` in the `www/templates` folder. We will place a new template called `about.html` in that folder.
+
+!FILENAME www/templates/about/about.html
+```html
+<ion-view title="About">
+  <ion-content>
+    <div class="row">
+      <div class="col">
+        Craft Academy Cooper Test Callenge - Mobile Client.
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+```
+
+
+
 
 
 
