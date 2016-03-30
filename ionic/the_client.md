@@ -92,6 +92,17 @@ Create a new folder named `about` in the `www/templates` folder. We will place a
   </ion-content>
 </ion-view>
 ```
+If you head over to your browser you should see something like this.
+![The new About view](/images/cooper-mobile-about-template.png)
+This will do for now. We will add the Login functionality further down the road. Right now, we want to focus on the main functionality of this application - to calculate the test results and give the user some feedback. 
+
+###Adding the logic
+
+The next step is to add the `cooper.js` code to your application.
+1. Import the code and place it in the `www/js` folder.
+2. Include it in the main application view (`www/index.html)
+
+
 
 
 
