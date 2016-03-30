@@ -441,6 +441,27 @@ describe 'Sessions' do
 end
 ```
 
+### Add PerformanceData model
+
+Let's add a way to store historical data for each user.
+
+Run the following generator.
+```
+rails g model PerformanceData user:references data:hstore --force-plural
+```
+
+In your User model, add the following relationship.
+
+!FILENAME app/models/user.rb
+```ruby
+class User < ActiveRecord::Base
+  # [...]
+  has_many :performance_data, class_name: 'PerformanceData'
+end
+
+```
+
+
 
 
 
