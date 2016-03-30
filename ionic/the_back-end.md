@@ -530,7 +530,9 @@ RSpec.describe PerformanceData, type: :model do
 end
 ```
 
-Let's make use of the Rails generator to scaffold the controller we vill use for...
+Let's make use of the Rails generator to scaffold the controller we will use for the CRUD actions on PerformanceData.
+
+For this step we will make use of the `scaffold_controller ` generator and see how that works out for us. Have a close look at the command below and try to figure out what it does before you run it. 
 
 ```
 $ rails g scaffold_controller Api::V1::PerformanceData --no-controller-specs --no-template-engine --no-controller-specs --request-specs --no-routing-specs
