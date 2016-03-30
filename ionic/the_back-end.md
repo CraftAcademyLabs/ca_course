@@ -535,7 +535,7 @@ Let's make use of the Rails generator to scaffold the controller we vill use for
 ```
 $ rails g scaffold_controller Api::V1::PerformanceData --no-controller-specs --no-template-engine --no-controller-specs --request-specs --no-routing-specs
 ```
-
+The output should look something like this.
 ```
 create  app/controllers/api/v1/performance_data_controller.rb
 invoke  rspec
