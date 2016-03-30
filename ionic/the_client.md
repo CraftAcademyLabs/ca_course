@@ -100,10 +100,49 @@ This will do for now. We will add the Login functionality further down the road.
 
 The next step is to add the `cooper.js` code to your application.
 1. Import the code and place it in the `www/js` folder.
-2. Include it in the main application view (`www/index.html)
+2. Include it in the main application view (`www/index.html`)
+
+###The test view
+
+Create a template for the test view in the `www/templates/test/ folder (you need to create it first). Call it `test.html`and add the following markup to it.
+
+!FILENAME www/templates/test/test.html
+```html
+<ion-view title="Cooper Test">
+  <ion-content>
+    <div class="row">
+      <div class="col">
+        <div class="list">
+          <label class="item item-input">
+            <input type="text" class="item item-input" placeholder="Gender" ng-model="data.gender">
+          </label>
+          <label class="item item-input">
+            <input type="number" class="item item-input" placeholder="Age" ng-model="data.age">
+          </label>
+          <label class="item item-input">
+            <input type="number" class="item item-input" placeholder="Distance" ng-model="data.distance">
+          </label>
+            <button class="button button-full button-calm" ng-click="calculateCooper()">Send</button>
+        </div>
 
 
+        <div class="card" ng-if="person">
+          <div class="item item-divider">
+            Cooper Test results
+          </div>
+          <div class="item item-text-wrap">
+            <p>Person: Age {{person.age}}, Gender {{person.gender}}</p>
+            <p>Result: {{person.cooperMessage}}</p>
+          </div>
+        </div>
+      </div>
 
+    </div>
+
+  </ion-content>
+</ion-view>
+
+```
 
 
 
