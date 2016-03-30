@@ -1,4 +1,5 @@
 # The Client - Step 3
+
 We will be using Ionic to build our mobile client. If you are not familiar with Ionic yet, please go back in the documentation and complete the [Going mobile with Ionic](https://craftacademy.gitbooks.io/coding-as-a-craft/content/going_mobile_with_ionic.html) chapter.
 
 The objective for this step is to allow the user to calculate his results. We will NOT be accessing the API yet. The login functionality will not work once we are finished with this step. That will be the objective of the next chapter. 
@@ -26,11 +27,12 @@ You should see something like this.
 ![Ionic Sidemenu template](/images/ionic-sidemenu-template.png)
 
 ###Clean up the code
+
 The template comes with a lot of scaffold functions and views that we will not be using. 
 
 Open the code in your editor and delete the `PlaylistsCtrl` and `PlaylistCtrl` from the `www/js/controllers.js` file.
 
-You also want to remove all files in the `www/templates` folder accept the `login.html` and `menu.html`.
+You also want to remove all files in the `www/templates` folder except the `login.html` and `menu.html`.
 
 Edit the `menu.html` and delete unused menu items. Keep the `Login` item
 
@@ -56,7 +58,7 @@ Edit the `menu.html` and delete unused menu items. Keep the `Login` item
     </ion-content>
 ```
 
-Finally, in the `app.js` file, delete unused routes. We will also ADD a route to a new `About` view.  Make sure to modify the default route to thet new `/app/about` route. Your `.config`block should look like this.
+Finally, in the `app.js` file, delete unused routes. We will also ADD a route to a new `About` view.  Make sure to modify the default route to the new `/app/about` route. Your `.config` block should look like this.
 
 !FILENAME www/js/app,js
 ```javascript
@@ -195,6 +197,7 @@ Let's focus on the controller. We need to create a new controller in `www/js/con
 Run the app and input some test data and click `Send`. You should see the results displayed on the page. 
 
 ###The user interface
+
 Entering values using the keyboard is always hard on a mobile device. We will do some refactoring to make the user experience a little better, although there is much more you can do on your own to make this application more appealing to the user (we are mainly focusing on the basic functionality at the moment). 
 
 Let's change the input fields to a select field for gender and sliders for age and distance. We will also do a small refactoring of the initial values and move those settings to our controller. It feels better to have them stored there. 
