@@ -35,5 +35,6 @@
 * [The Cooper test challenge](ionic/cooper_test_challenge.md)
    * [The logic](ionic/the_logic.md)
    * [The Back-end](ionic/the_back-end.md)
+   * [The Client](ionic/the_client.md)
    * [Results tables](ionic/results_tables.md)
 
