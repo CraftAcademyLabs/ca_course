@@ -29,7 +29,7 @@ We also want to add the [`rack-cors`](https://github.com/cyu/rack-cors) gem to a
 
 !FILENAME Gemfile
 ```ruby
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'
 ```
 
 Put something like the code below in `config/application.rb` of your Rails application. For example, this will allow GET, POST, PUT and DELETE requests from any origin on any resource.
@@ -48,10 +48,11 @@ module YourApp
   end
 end
 ```
-There are plenty of settings you can add to enhance security of your application. read about it in the `rack-cors` gem documentation.
+There are plenty of settings you can add to enhance security of your application. Read about it in the `rack-cors` gem documentation.
 
 ###Testing with RSpec
 We will be using request specs to test our api endpoints. 
+
 Let's create a dummy endpoint just to make sure everything is okay in terms of security settings. 
 
 In your `routes.rb` create an API namespece and add V0 within it. 
@@ -72,7 +73,7 @@ In the `app/controllers` folder, create the following folder structure.
 $ mkdir app/controllers/api
 $ mkdir app/controllers/api/v0
 ```
-** *Note: The actual API controllers will be placed in anothe namespace that we will call `V1`.* **
+** *Note: The actual API routes will be placed in anothe namespace that we will call `V1`.* **
 
 Inside that folder, we want to create our dummy controller. 
 
@@ -90,7 +91,7 @@ end
 
 Let's write our first spec to see if we can get a response from our endpoint. 
 
-I your `spec` folder create a folder named `requests`. Within that folder we need to add a folder structure that corresponds to the one we have in our `app/controllers` folder. 
+In your `spec` folder create a folder named `requests`. Within that folder we need to add a folder structure that corresponds to the one we have in our `app/controllers` folder. 
 
 ```
 $ mkdir spec/requests
@@ -315,6 +316,35 @@ end
 ```
 
 Okay, there will be plenty of opportunity to write more specs for the User model. But let's focus on adding some request specs to test our endpoints.
+
+First we need to add a helper method that will parse the response to Json. Create a `support` folder in the `spec` folder. Add a new file named `response_json.rb`. In that file we will create a module that will parse the `response.body` to Json and allow us to DRY out our request specs.
+
+!FILENAME spec/support/response_json.rb
+```ruby
+
+module ResponseJSON
+  def response_json
+    JSON.parse(response.body)
+  end
+end
+```
+
+Update your `rails_helper.rb` with the following code.
+
+!FILENAME spec/rails_helper.rb
+```ruby
+#[...]
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+#[...]
+RSpec.configure do |config|
+  config.include(Shoulda::Matchers::ActiveRecord, type: :model)
+  config.include FactoryGirl::Syntax::Methods
+  config.include ResponseJSON
+  #[...]
+end
+```
+
+Okay, let's write some specs for user registration.
 
 !FILENAME spec/requests/api/v1/registrations_spec.rb
 ```ruby
