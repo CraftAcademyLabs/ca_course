@@ -170,6 +170,30 @@ In the `www/templates/menu.html` we need to add a new menu item so we can naviga
 #[...]
 ```
 
+Let's focus on the controller. We need to create a new controller in `www/js/controllers.js` 
+
+!FILENAME www/js/controllers.js
+```javascript
+#[...]
+.controller('TestController', function($scope) {
+  $scope.data = {};
+  $scope.calculateCooper = function() {
+    var person = new Person({
+      gender: $scope.data.gender,
+      age: $scope.data.age
+    });
+    person.assessCooper($scope.data.distance);
+    $scope.person = person;
+    console.log($scope.person)
+  };
+```
+
+Run the app and input some test data and click `Send`. You should see the results displayed on the page. 
+
+###The user interface
+Entering values using the keyboard is always hard on a mobile device. We will do some refactoring to make the user experience a little better, although there is much more you can do on your own to make this application more appealing to the user (we are mainly focusing on the basic functionality at the moment). 
+
+Let's change the input fields to a select field for gender and sliders for age and distance. We will also do a small refactoring of the initial values and move those settings to our controller. It feels better to have them stored there. 
 
 
 
