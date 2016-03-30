@@ -36,4 +36,5 @@
    * [The logic](ionic/the_logic.md)
    * [The Back-end](ionic/the_back-end.md)
    * [Results tables](ionic/results_tables.md)
+   * The Client
 
