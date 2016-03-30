@@ -1,4 +1,4 @@
-# The Back-end
+# The Back-end - Step 2
 We will be using Ruby on Rails as the stack for our back-end.
 
 The challenge is to set up an API-only application that will make it possible to store information about users and their historical data. 
