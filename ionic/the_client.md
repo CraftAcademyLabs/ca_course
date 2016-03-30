@@ -86,7 +86,7 @@ Create a new folder named `about` in the `www/templates` folder. We will place a
   <ion-content>
     <div class="row">
       <div class="col">
-        Craft Academy Cooper Test Callenge - Mobile Client.
+        Craft Academy Cooper Test Challenge - Mobile Client.
       </div>
     </div>
   </ion-content>
