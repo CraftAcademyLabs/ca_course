@@ -524,6 +524,24 @@ RSpec.describe PerformanceData, type: :model do
 end
 ```
 
+Let's make use of the Rails generator to scaffold the controller we vill use for...
+
+```
+$ rails g scaffold_controller Api::V1::PerformanceData --no-controller-specs --no-template-engine --no-controller-specs --request-specs --no-routing-specs
+```
+
+```
+create  app/controllers/api/v1/performance_data_controller.rb
+invoke  rspec
+invoke    rspec
+create      spec/requests/api/v1/api_v1_performance_data_spec.rb
+invoke  jbuilder
+create    app/views/api/v1/performance_data/index.json.jbuilder
+create    app/views/api/v1/performance_data/show.json.jbuilder
+```
+
+
+
 
 
 
