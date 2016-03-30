@@ -269,6 +269,9 @@ And modify your controller with predefined values for `gender`, `age` and `dista
   #[...]
   };
 ```
+If you run the application you should see this interface.
+
+![Cooper Test Viev UI](/images/cooper-client-ui.png)
 
 
 
