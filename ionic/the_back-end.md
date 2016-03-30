@@ -450,6 +450,23 @@ Run the following generator.
 rails g model PerformanceData user:references data:hstore --force-plural
 ```
 
+Open up the migration and add a line that adds `hstore` as a datatype and enables the database to store hashes.
+
+!FILENAME db/migrate/XXXX_create_performance_data.rb
+```ruby
+class CreatePerformanceData < ActiveRecord::Migration
+  def change
+    execute 'CREATE EXTENSION IF NOT EXISTS hstore'
+    create_table :performance_data do |t|
+      t.references :user, index: true, foreign_key: true
+      t.hstore :data
+
+      t.timestamps null: false
+    end
+  end
+end
+```
+
 In your User model, add the following relationship.
 
 !FILENAME app/models/user.rb
@@ -459,6 +476,12 @@ class User < ActiveRecord::Base
   has_many :performance_data, class_name: 'PerformanceData'
 end
 
+```
+
+Run the new migration.
+
+```
+$ rake db:migrate
 ```
 
 Add the following specs.
