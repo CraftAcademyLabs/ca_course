@@ -2,15 +2,15 @@
 
 We will be using Ruby on Rails as the stack for our back-end.
 
-The challenge is to set up an API-only application that will make it possible to store information about users and their historical data. 
+The challenge is to set up an API-only application that will make it possible to store information about users and their historical data.
 
-We will be using RSpec as out testing framework and PostgreSQL as our database. 
+We will be using RSpec as out testing framework and PostgreSQL as our database.
 
-Before moving on, make sure you scaffold an new Rails application. If you need assistance you can check out the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter. **Note that we WILL NOT be using Cucumber, so you don't have to install that framework.** 
+Before moving on, make sure you scaffold an new Rails application. If you need assistance you can check out the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter. **Note that we WILL NOT be using Cucumber, so you don't have to install that framework.**
 
-There are some steps that we need to undertake to prepare the application before we can start adding our api endpoints. 
+There are some steps that we need to undertake to prepare the application before we can start adding our api endpoints.
 
-First, we need to modify the `ApplicationController`. 
+First, we need to modify the `ApplicationController`.
 
 
 !FILENAME app/controllers/application_controller.rb
@@ -20,9 +20,9 @@ class ApplicationController < ActionController::Base
   respond_to :json
 end
 ```
-We use `protect_from_forgery with: :null_session` to avoid running into an `ActionController::InvalidAuthenticityToken` exception. 
+We use `protect_from_forgery with: :null_session` to avoid running into an `ActionController::InvalidAuthenticityToken` exception.
 
-When you make a request from some other client, like a Angular app accessing a REST service, you will get errors by default, since you do not have the secret token. Rails allows you to alter the behavior when the secret isn't sent in your request.  By default it throws an exception, but you can change it to just set the session to NULL
+When you make a request from an external client, like a Angular app accessing a REST service, you will get errors by default, since you do not have the secret token. Rails allows you to alter the behavior when the secret isn't sent in your request.  By default it throws an exception, but you can change it to just set the session to NULL
 
 We also want to add the [`rack-cors`](https://github.com/cyu/rack-cors) gem to allow external clients to access our application. Add the dependency to your `Gemfile`.
 
@@ -51,14 +51,16 @@ There are plenty of settings you can add to enhance security of your application
 
 ###Testing with RSpec
 
-We will be using request specs to test our api endpoints. 
+We will be using request specs to test our api endpoints.
 
-Let's create a dummy endpoint just to make sure everything is okay in terms of security settings. 
+Let's create a dummy endpoint just to make sure everything is okay in terms of security settings.
 
-In your `routes.rb` create an API namespace and add `V0` within it. 
+
+In your `routes.rb` create an API namespace and add V0 within it. Nested in that namespace we want to add a `:ping` resource with one single `:index` action.
+
 
 !FILENAME config/routes.rb
-```ruby 
+```ruby
 # [...]
 namespace :api do
   namespace :v0 do
@@ -66,7 +68,7 @@ namespace :api do
   end
 end
 ```
-Run `rake routes` in your terminal to see if the route has been added properly. 
+Run `rake routes` in your terminal to see if the route has been added properly.
 
 In the `app/controllers` folder, create the following folder structure.
 ```
@@ -75,23 +77,23 @@ $ mkdir app/controllers/api/v0
 ```
 ** *Note: The actual API routes will be placed in another namespace that we will call `V1`.* **
 
-Inside that folder, we want to create our dummy controller. 
+Inside that folder, we want to create our dummy controller.
 
 ```
 $ touch app/controllers/api/v0/ping_controller.rb
 ```
-We will let it inherit from our modified `ApplicationController` 
+We will let it inherit from our modified `ApplicationController`
 
 !FILENAME app/controllers/api/v0/ping_controller.rb
 ```ruby
 class Api::V0::PingController < ApplicationController
 
 end
-``` 
+```
 
-Let's write our first spec to see if we can get a response from our endpoint. 
+Let's write our first spec to see if we can get a response from our endpoint.
 
-In your `spec` folder create a folder named `requests`. Within that folder we need to add a folder structure that corresponds to the one we have in our `app/controllers` folder. 
+In your `spec` folder create a folder named `requests`. Within that folder we need to add a folder structure that corresponds to the one we have in our `app/controllers` folder.
 
 ```
 $ mkdir spec/requests
@@ -124,7 +126,7 @@ describe Api::V0::PingController do
 end
 ```
 
-In order to make this spec to pass, we need to add an `index` method to the `Api::V0::PingController`.
+In order to make this spec to pass, we need to add an `index` method to the `Api::V0::PingController`. When called, that method will respond with Json object with a single entry: `{message: 'Pong'}`.
 
 !FILENAME app/controllers/api/v0/ping_controller.rb
 ```ruby
@@ -133,23 +135,25 @@ class Api::V0::PingController < ApiController
     render json: {message: 'Pong'}
   end
 end
-``` 
+```
 
-Does it work? 
+Does it work? Fire up your server with `rails s` and visit `http://localhost:3000/api/v0/ping`
 
 ### Adding a User class
 
-We know that we will be accessing our Rails app from an api and that we will require authentication. At this point you are familiar with Devise - one of the most popular authentication libraries for Rails applications. We will be using [`devise_token_auth`](https://github.com/lynndylanhurley/devise_token_auth) a token based authentication gem for Rails JSON APIs. It is designed to work well with [`ng-token-auth`](https://github.com/lynndylanhurley/ng-token-auth) the token based authentication module for AngularJS.
+We know that we will be accessing our Rails app from an external client and that we will require authentication. At this point you are familiar with Devise - one of the most popular authentication libraries for Rails applications. We will be using [`devise_token_auth`](https://github.com/lynndylanhurley/devise_token_auth) a token based authentication gem for Rails JSON APIs. It is designed to work well with [`ng-token-auth`](https://github.com/lynndylanhurley/ng-token-auth) the token based authentication module for AngularJS.
 
 As usual, we will be testing our units with RSpec and in order to make writing our specs a breeze, we will use `shoulda-matchers`, but this is probably old news for you at this stage. Again, if you need some pointers please go back in this documentation and revisit the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter.
 
-Make sure you install the `devise_token_auth` gem by adding it to your `Gemfile` and run `bundle install`.
+Make sure you install the `devise_token_auth` gem by adding it to your `Gemfile` and run `bundle install`. Note that you don't need to add `gem 'devise'` since `devise_token_auth` requires it automatically.
 
 !FILENAME Gemfile
 ```ruby
 gem 'devise_token_auth'
 ```
-Using a generator that the gem provides we can create a user model, define routes, etc. Run the following command for an easy one-step installation.
+Using a generator that the gem provides, we can create a user model, define routes, etc.
+
+Run the following command for an easy one-step installation.
 ```
 $ rails g devise_token_auth:install auth
 ```
@@ -164,16 +168,16 @@ Remember to migrate your database in order to create the `users` table (the Devi
 $ rake db:migrate --all
 ```
 
-Another generator we need to run is to create a Factory for User. Generally, Rails generators invoke the Factory generators but not in the case of Devise Token Auth.
+Another generator we need to run is a Factory generator for User. Generally, Rails generators invokes the Factory generators once that gem is installed, but not in the case of Devise Token Auth.
 
 Run the generator from your terminal.
 ```
 $ rails g factory_girl:model User email password password_confirmation
 ```
-Make sure that the factory is properly configured with an valid email and password (if you don't you will get into trouble when validating the objects it creates). 
+Make sure that the factory is properly configured with an valid email and password (if you don't you will get into trouble when validating the objects it creates).
 
 !FILENAME spec/factories/users.rb
-```ruby 
+```ruby
 FactoryGirl.define do
   factory :user do
     email  'random@random.com'
@@ -183,7 +187,7 @@ FactoryGirl.define do
 end
 ```
 
-You can add more attributes to the User factory if you like, we added just the minimal required attributes at the moment. 
+You can add more attributes to the User factory if you like, we added just the minimal required attributes at the moment.
 
 Let's add a spec for the User factory we just created.
 
@@ -214,10 +218,10 @@ We need to add a new namespace to our `routes.rb` and move the generated Devise 
   end
 ```
 
-In our User model (`app/models/user.rb`) we want to make sure that Devise is set up for our needs. We will remove the OAuth and Confirmation methods. 
+In our User model (`app/models/user.rb`) we want to make sure that Devise is set up for our needs. We will remove the OAuth and Confirmation methods.
 
 !FILENAME app/models/user.rb
-```ruby 
+```ruby
 class User < ActiveRecord::Base
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
@@ -226,7 +230,7 @@ class User < ActiveRecord::Base
 end
 ```
 
-Now, we can run the `rake routes` command in the terminal to make sure we are set up correctly. 
+Now, we can run the `rake routes` command in the terminal to make sure we are set up correctly.
 
 ```
 $ rake routes
@@ -320,7 +324,10 @@ end
 
 Okay, there will be plenty of opportunity to write more specs for the User model. But let's focus on adding some request specs to test our endpoints.
 
-First we need to add a helper method that will parse the response to JSON. Create a `support` folder in the `spec` folder. Add a new file named `response_json.rb`. In that file we will create a module that will parse the `response.body` to JSON and allow us to DRY out our request specs.
+
+###Testing the endpoints - request specs
+
+First we need to add a helper method that will parse the server response body to JSON. Create a `support` folder in the `spec` folder. Add a new file named `response_json.rb`. In that file we will create a module that will parse the `response.body` to JSON and allow us to DRY out our request specs.
 
 !FILENAME spec/support/response_json.rb
 ```ruby
@@ -347,6 +354,7 @@ RSpec.configure do |config|
 end
 ```
 
+###User registration
 Okay, let's write some specs for user registration.
 
 !FILENAME spec/requests/api/v1/registrations_spec.rb
@@ -398,11 +406,12 @@ end
 
 ```
 
-The first spec is the happy path testing that user registration with the minimum of required fields works. The next specs are exposing the error messages we'll get if something goes wrong. 
+The first spec is the happy path testing that user registration with the minimum of required fields works. The next specs are exposing the error messages we'll get if something goes wrong.
 
 What other possible scenarios in the context of user registration should we test for?
 
-Let's write some specs for logging in the user.
+###User authentication
+Let's write some specs for logging in.
 
 !FILENAME spec/requests/api/v1/sessions_spec.rb
 ```ruby
@@ -498,7 +507,7 @@ RSpec.describe User, type: :model do
   describe 'Relations' do
     it { is_expected.to have_many :performance_data }
   end
-  
+
 end
 ```
 And to the newly created `spec/models/performance_data_spec.rb`.
@@ -521,28 +530,20 @@ RSpec.describe PerformanceData, type: :model do
 end
 ```
 
+Let's make use of the Rails generator to scaffold the controller we vill use for...
 
+```
+$ rails g scaffold_controller Api::V1::PerformanceData --no-controller-specs --no-template-engine --no-controller-specs --request-specs --no-routing-specs
+```
 
+```
+create  app/controllers/api/v1/performance_data_controller.rb
+invoke  rspec
+invoke    rspec
+create      spec/requests/api/v1/api_v1_performance_data_spec.rb
+invoke  jbuilder
+create    app/views/api/v1/performance_data/index.json.jbuilder
+create    app/views/api/v1/performance_data/show.json.jbuilder
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
+Generators are good but they scaffold too much code at times. We need to do some cleaning. I'll leave it up to you to decide if using the `scaffold_controller` is worth it.
