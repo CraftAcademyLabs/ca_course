@@ -1,6 +1,10 @@
 # The Client - Step 3
 We will be using Ionic to build our mobile client. If you are not familiar with Ionic yet, please go back in the documentation and complete the [Going mobile with Ionic](https://craftacademy.gitbooks.io/coding-as-a-craft/content/going_mobile_with_ionic.html) chapter.
 
+The objective for this step is to allow the user to calculate his results. We will NOT be accessing the API yet. The login functionality will not work once we are finished with this step. That will be the objective of the next chapter. 
+
+###Set up
+
 For this app we will be using the `sidemenu` template. 
 
 Run this command it your terminal to create the application.
