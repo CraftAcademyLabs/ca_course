@@ -5,9 +5,9 @@ The challenge is to set up an API-only application that will make it possible to
 
 We will be using RSpec as out testing framework and PostgreSQL as out database. 
 
-Before moving on, make sure you scaffold an new Rails application. If you need assistance you can check out the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter. 
+Before moving on, make sure you scaffold an new Rails application. If you need assistance you can check out the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter. **Note that we WILL NOT be using Cucumber, so you don't have to install that framework.** 
 
-There are some steps that we need to undertake to prepare the application before we can start adding our api-endpoints. 
+There are some steps that we need to undertake to prepare the application before we can start adding our api endpoints. 
 
 First, we need to modify the `ApplicationController`. 
 
@@ -25,14 +25,14 @@ When you make a request from some other client, like a Angular app accessing a R
 
 We also need to add `skip_before_filter :verify_authenticity_token` because Rails will return 422 status code and error message ‘Can’t verify CSRF token authenticity’ (**TODO: move to a section AFTER we have added Devise?**) 
 
-We also want to add the [`rack-cors`](https://github.com/cyu/rack-cors) gem to allow external clients to access our application. Add the dependency to your Gemfile:
+We also want to add the [`rack-cors`](https://github.com/cyu/rack-cors) gem to allow external clients to access our application. Add the dependency to your `Gemfile`.
 
 !FILENAME Gemfile
 ```ruby
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors', require: 'rack/cors'
 ```
 
-Put something like the code below in `config/application.rb` of your Rails application. For example, this will allow GET, POST, PUT and DELETE requests from any origin on any resource.
+Put something like the code below in `config/application.rb` of your Rails application. This will allow GET, POST, PUT and DELETE requests from any origin on any resource.
 
 !FILENAME config/application.rb
 ```ruby
@@ -48,10 +48,11 @@ module YourApp
   end
 end
 ```
-There are plenty of settings you can add to enhance security of your application. read about it in the `rack-cors` gem documentation.
+There are plenty of settings you can add to enhance security of your application. Read about it in the `rack-cors` and `devise_token_auth` gem documentation.
 
 ###Testing with RSpec
 We will be using request specs to test our api endpoints. 
+
 Let's create a dummy endpoint just to make sure everything is okay in terms of security settings. 
 
 In your `routes.rb` create an API namespece and add V0 within it. 
@@ -72,7 +73,7 @@ In the `app/controllers` folder, create the following folder structure.
 $ mkdir app/controllers/api
 $ mkdir app/controllers/api/v0
 ```
-** *Note: The actual API controllers will be placed in anothe namespace that we will call `V1`.* **
+** *Note: The actual API routes will be placed in anothe namespace that we will call `V1`.* **
 
 Inside that folder, we want to create our dummy controller. 
 
@@ -90,7 +91,7 @@ end
 
 Let's write our first spec to see if we can get a response from our endpoint. 
 
-I your `spec` folder create a folder named `requests`. Within that folder we need to add a folder structure that corresponds to the one we have in our `app/controllers` folder. 
+In your `spec` folder create a folder named `requests`. Within that folder we need to add a folder structure that corresponds to the one we have in our `app/controllers` folder. 
 
 ```
 $ mkdir spec/requests
@@ -139,7 +140,7 @@ Does it work?
 ### Adding a User class
 We know that we will be accessing our Rails app from an api and that we will require authentication. At this point you are familiar with Devise - one of the most popular authentication libraries for Rails applications. We will be using [`devise_token_auth`](https://github.com/lynndylanhurley/devise_token_auth) a token based authentication gem for Rails JSON APIs. It is designed to work well with [`ng-token-auth`](https://github.com/lynndylanhurley/ng-token-auth) the token based authentication module for AngularJS.
 
-As usual, we will be testing our units with RSpec and in order to make writing our specs a breeze, we will use `shoulda-matchers`, but this is probably onl news for you at this stage in our Bootcamp. Again, if you need some pointers please go back in this documentation and revisit the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter.
+As usual, we will be testing our units with RSpec and in order to make writing our specs a breeze, we will use `shoulda-matchers`, but this is probably old news for you at this stage. Again, if you need some pointers please go back in this documentation and revisit the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter.
 
 Make sure you install the `devise_token_auth` gem by adding it to your `Gemfile` and run `bundle install`.
 
@@ -151,21 +152,9 @@ Using a generator that the gem provides we can create a user model, define route
 ```
 $ rails g devise_token_auth:install auth
 ```
-
-The generator will complain that we do not have a default `application_controller`. It's a good thing that we deleated it. If we haven't we could easily missed that we need to update the controller our other controllers will inherit from. Add the following `include` to the `ApiController`.
-
-!FILENAME app/controllers/api_controller.rb
-```ruby
-class ApiController < ActionController::Base
-  include DeviseTokenAuth::Concerns::SetUserByToken
-  protect_from_forgery with: :null_session
-  skip_before_filter :verify_authenticity_token
-end
-```
-
 Remember to migrate your database in order to create the `users` table (the Devise generator created an migration for you). But before you do that, make sure to open up the migration file and change the datatype for Tokens to `text`.
 
-!FILENAME db/migrate/2016XXXXXXXX_devise_token_auth_create_users.rb
+!FILENAME db/migrate/XXX_devise_token_auth_create_users.rb
 ```ruby
   ## Tokens
   t.text :tokens
@@ -174,11 +163,25 @@ Remember to migrate your database in order to create the `users` table (the Devi
 $ rake db:migrate --all
 ```
 
-Another generator we need to run is to create a Factory for User. Generally, Rails generators invoke the Factory generators but not in the case of Devise Token Auth. 
+Another generator we need to run is to create a Factory for User. Generally, Rails generators invoke the Factory generators but not in the case of Devise Token Auth.
+
 Run the generator from your terminal.
 ```
 $ rails g factory_girl:model User email password password_confirmation
 ```
+Make sure that the factory is properly configured with an valid email and password (if you don't you will get into trouble when validating the objects it creates). 
+
+!FILENAME spec/factories/users.rb
+```ruby 
+FactoryGirl.define do
+  factory :user do
+    email  'random@random.com'
+    password  'password'
+    password_confirmation 'password'
+  end
+end
+```
+
 You can add more attributes to the User factory if you like, we added just the minimal required attributes at the moment. 
 
 Let's add a spec for the User factory we just created.
@@ -188,7 +191,7 @@ Let's add a spec for the User factory we just created.
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  it 'should have valid Fixture Factory' do
+  it 'should have valid Factory' do
     expect(FactoryGirl.create(:user)).to be_valid
   end
 end
@@ -316,6 +319,35 @@ end
 
 Okay, there will be plenty of opportunity to write more specs for the User model. But let's focus on adding some request specs to test our endpoints.
 
+First we need to add a helper method that will parse the response to Json. Create a `support` folder in the `spec` folder. Add a new file named `response_json.rb`. In that file we will create a module that will parse the `response.body` to Json and allow us to DRY out our request specs.
+
+!FILENAME spec/support/response_json.rb
+```ruby
+
+module ResponseJSON
+  def response_json
+    JSON.parse(response.body)
+  end
+end
+```
+
+Update your `rails_helper.rb` with the following code.
+
+!FILENAME spec/rails_helper.rb
+```ruby
+#[...]
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+#[...]
+RSpec.configure do |config|
+  config.include(Shoulda::Matchers::ActiveRecord, type: :model)
+  config.include FactoryGirl::Syntax::Methods
+  config.include ResponseJSON
+  #[...]
+end
+```
+
+Okay, let's write some specs for user registration.
+
 !FILENAME spec/requests/api/v1/registrations_spec.rb
 ```ruby
 require 'rails_helper'
@@ -383,7 +415,6 @@ describe 'Sessions' do
   describe 'POST /api/v1/auth/sign_in' do
     it 'valid credentials returns user' do
       post '/api/v1/auth/sign_in', {email: user.email, password: user.password}, headers
-
       expect(response_json).to eq(
                                    {'data' =>
                                         {'id' => user.id,
@@ -397,18 +428,18 @@ describe 'Sessions' do
     end
 
     it 'invalid password returns error message' do
-      post '/api/v1/auth/sign_in', {user: {email: user.email, password: 'wrong_password'}}, headers
+      post '/api/v1/auth/sign_in', {email: user.email, password: 'wrong_password'}, headers
       expect(response_json['errors']).to eq ['Invalid login credentials. Please try again.']
       expect(response.status).to eq 401
     end
 
     it 'invalid email returns error message' do
-      post '/api/v1/auth/sign_in', {user: {email: 'wrong@email.com', password: user.password}}, headers
+      post '/api/v1/auth/sign_in', {email: 'wrong@email.com', password: user.password}, headers
       expect(response_json['errors']).to eq ['Invalid login credentials. Please try again.']
       expect(response.status).to eq 401
     end
   end
-  
+
 end
 ```
 
