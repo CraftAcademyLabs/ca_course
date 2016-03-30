@@ -461,6 +461,44 @@ end
 
 ```
 
+Add the following specs.
+
+!FILENAME spec/models/user_spec.rb
+```ruby
+
+RSpec.describe User, type: :model do
+  #[...]
+
+  describe 'Relations' do
+    it { is_expected.to have_many :performance_data }
+  end
+  
+end
+```
+And to the newly created `spec/models/performance_data_spec.rb`.
+
+!FILENAME spec/models/performance_data_spec.rb
+```ruby
+
+require 'rails_helper'
+
+RSpec.describe PerformanceData, type: :model do
+
+  describe 'Database table' do
+    it { is_expected.to have_db_column :id }
+    it { is_expected.to have_db_column :data }
+  end
+
+  describe 'Relations' do
+    it { is_expected.to belong_to :user }
+  end
+end
+```
+
+
+
+
+
 
 
 
