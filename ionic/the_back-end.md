@@ -21,7 +21,7 @@ end
 ```
 We use `protect_from_forgery with: :null_session` to avoid running into an `ActionController::InvalidAuthenticityToken` exception. 
 
-When you make a request from some other client, like a Angular app accessing a REST service, you will get errors by default, since you do not have the secret token. Rails allows you to alter the behavior when the secret isn't sent in your request.  By default it throws an exception, but you can change it to just set the session to NULL
+When you make a request from an external client, like a Angular app accessing a REST service, you will get errors by default, since you do not have the secret token. Rails allows you to alter the behavior when the secret isn't sent in your request.  By default it throws an exception, but you can change it to just set the session to NULL
 
 We also want to add the [`rack-cors`](https://github.com/cyu/rack-cors) gem to allow external clients to access our application. Add the dependency to your `Gemfile`.
 
@@ -53,7 +53,7 @@ We will be using request specs to test our api endpoints.
 
 Let's create a dummy endpoint just to make sure everything is okay in terms of security settings. 
 
-In your `routes.rb` create an API namespece and add V0 within it. 
+In your `routes.rb` create an API namespece and add V0 within it. Nested in that namespace we want to add a `:ping` resource with one single `:index` action.
 
 !FILENAME config/routes.rb
 ```ruby 
@@ -71,7 +71,7 @@ In the `app/controllers` folder, create the following folder structure.
 $ mkdir app/controllers/api
 $ mkdir app/controllers/api/v0
 ```
-** *Note: The actual API routes will be placed in anothe namespace that we will call `V1`.* **
+** *Note: The actual API routes will be placed in another namespace that we will call `V1`.* **
 
 Inside that folder, we want to create our dummy controller. 
 
@@ -122,7 +122,7 @@ describe Api::V0::PingController do
 end
 ```
 
-In order to make this spec to pass, we need to add an `index` method to the `Api::V0::PingController`.
+In order to make this spec to pass, we need to add an `index` method to the `Api::V0::PingController`. When called, that method will respond with Json object with a single entry: `{message: 'Pong'}`.
 
 !FILENAME app/controllers/api/v0/ping_controller.rb
 ```ruby
@@ -133,20 +133,22 @@ class Api::V0::PingController < ApiController
 end
 ``` 
 
-Does it work? 
+Does it work? Fire up ypur server with `rails s` and visit `http://localhost:3000/api/v0/ping`
 
 ### Adding a User class
-We know that we will be accessing our Rails app from an api and that we will require authentication. At this point you are familiar with Devise - one of the most popular authentication libraries for Rails applications. We will be using [`devise_token_auth`](https://github.com/lynndylanhurley/devise_token_auth) a token based authentication gem for Rails JSON APIs. It is designed to work well with [`ng-token-auth`](https://github.com/lynndylanhurley/ng-token-auth) the token based authentication module for AngularJS.
+We know that we will be accessing our Rails app from an external client and that we will require authentication. At this point you are familiar with Devise - one of the most popular authentication libraries for Rails applications. We will be using [`devise_token_auth`](https://github.com/lynndylanhurley/devise_token_auth) a token based authentication gem for Rails JSON APIs. It is designed to work well with [`ng-token-auth`](https://github.com/lynndylanhurley/ng-token-auth) the token based authentication module for AngularJS.
 
 As usual, we will be testing our units with RSpec and in order to make writing our specs a breeze, we will use `shoulda-matchers`, but this is probably old news for you at this stage. Again, if you need some pointers please go back in this documentation and revisit the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter.
 
-Make sure you install the `devise_token_auth` gem by adding it to your `Gemfile` and run `bundle install`.
+Make sure you install the `devise_token_auth` gem by adding it to your `Gemfile` and run `bundle install`. Note that you don't need to add `gem 'devise'` since `devise_token_auth` requires it automatically. 
 
 !FILENAME Gemfile
 ```ruby
 gem 'devise_token_auth'
 ```
-Using a generator that the gem provides we can create a user model, define routes, etc. Run the following command for an easy one-step installation.
+Using a generator that the gem provides, we can create a user model, define routes, etc. 
+
+Run the following command for an easy one-step installation.
 ```
 $ rails g devise_token_auth:install auth
 ```
@@ -161,7 +163,7 @@ Remember to migrate your database in order to create the `users` table (the Devi
 $ rake db:migrate --all
 ```
 
-Another generator we need to run is to create a Factory for User. Generally, Rails generators invoke the Factory generators but not in the case of Devise Token Auth.
+Another generator we need to run is a Factory generator for User. Generally, Rails generators invokes the Factory generators once that gem is installed, but not in the case of Devise Token Auth.
 
 Run the generator from your terminal.
 ```
@@ -317,7 +319,9 @@ end
 
 Okay, there will be plenty of opportunity to write more specs for the User model. But let's focus on adding some request specs to test our endpoints.
 
-First we need to add a helper method that will parse the response to Json. Create a `support` folder in the `spec` folder. Add a new file named `response_json.rb`. In that file we will create a module that will parse the `response.body` to Json and allow us to DRY out our request specs.
+###Testing the endpoints - request specs
+
+First we need to add a helper method that will parse the server response body to Json. Create a `support` folder in the `spec` folder. Add a new file named `response_json.rb`. In that file we will create a module that will parse the `response.body` to Json and allow us to DRY out our request specs.
 
 !FILENAME spec/support/response_json.rb
 ```ruby
@@ -344,6 +348,7 @@ RSpec.configure do |config|
 end
 ```
 
+###User registration
 Okay, let's write some specs for user registration.
 
 !FILENAME spec/requests/api/v1/registrations_spec.rb
@@ -399,7 +404,8 @@ The first spec is the happy path testing that user registration with the minimum
 
 What other possible scenarios in the context of user registration should we test for?
 
-Let's write some specs for logging in the user.
+###User authentication
+Let's write some specs for logging in.
 
 !FILENAME spec/requests/api/v1/sessions_spec.rb
 ```ruby
