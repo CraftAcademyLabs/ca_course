@@ -144,6 +144,36 @@ Create a template for the test view in the `www/templates/test/ folder (you need
 
 ```
 
+Create a new route in the `www/js/app.js` to point to the template and a  new controller we will be creating in a minute.
+
+!FILENAME www/js/app.js
+```javascript
+  .state('app.test', {
+    url: '/test',
+    views: {
+      'menuContent': {
+        templateUrl: 'templates/test/test.html',
+        controller: 'TestController'
+      }
+    },
+  })
+```
+
+In the `www/templates/menu.html` we need to add a new menu item so we can navigate to that view.
+
+!FILENAME www/templates/menu.html
+```html
+#[...]
+  <ion-item menu-close href="#/app/test">
+    Cooper Test
+  </ion-item>
+#[...]
+```
+
+
+
+
+
 
 
 
