@@ -32,7 +32,7 @@
    * [Results tables](ionic/results_tables.md)
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
-* [Extras](extras/extras.md)
+* [Extras](ror/ruby_on_rails_-_introduction.md)
    * [Development Environment Setup](Development Environment Setup/development_environment_setup.md)
    * [Working in the Cloud](working_in_the_cloud/working_in_the_cloud.md)
    * [Naming Standards](extras/naming_standards.md)
