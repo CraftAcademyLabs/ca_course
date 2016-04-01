@@ -164,6 +164,19 @@ Remember to migrate your database in order to create the `users` table (the Devi
   ## Tokens
   t.text :tokens
 ```
+
+In our User model (`app/models/user.rb`) we want to make sure that Devise is set up for our needs. We will remove the OAuth and Confirmation methods.
+
+!FILENAME app/models/user.rb
+```ruby
+class User < ActiveRecord::Base
+  # Include default devise modules.
+  devise :database_authenticatable, :registerable,
+          :recoverable, :rememberable, :trackable, :validatable
+  include DeviseTokenAuth::Concerns::User
+end
+```
+
 ```
 $ rake db:migrate --all
 ```
@@ -218,17 +231,7 @@ We need to add a new namespace to our `routes.rb` and move the generated Devise 
   end
 ```
 
-In our User model (`app/models/user.rb`) we want to make sure that Devise is set up for our needs. We will remove the OAuth and Confirmation methods.
 
-!FILENAME app/models/user.rb
-```ruby
-class User < ActiveRecord::Base
-  # Include default devise modules.
-  devise :database_authenticatable, :registerable,
-          :recoverable, :rememberable, :trackable, :validatable
-  include DeviseTokenAuth::Concerns::User
-end
-```
 
 Now, we can run the `rake routes` command in the terminal to make sure we are set up correctly.
 
