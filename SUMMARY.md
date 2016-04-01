@@ -17,6 +17,7 @@
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
 * [Static Website with Middleman](middleman/static_website_with_middleman.md)
    * [Setup Middleman](middleman/setup_middleman.md)
+* Ruby On Rails introduction
 * [BDD with Rails](bdd_with_rails.md)
 * [Rails Messaging](rails_messaging.md)
 * [Going mobile with Ionic](going_mobile_with_ionic.md)
@@ -37,5 +38,4 @@
    * [Working in the Cloud](working_in_the_cloud/working_in_the_cloud.md)
    * [Naming Standards](extras/naming_standards.md)
    * [Domain Model from User stories](extras/domain_model_from_user_stories.md)
-* Ruby On Rails introduction
 
