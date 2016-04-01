@@ -37,5 +37,5 @@
    * [Working in the Cloud](working_in_the_cloud/working_in_the_cloud.md)
    * [Naming Standards](extras/naming_standards.md)
    * [Domain Model from User stories](extras/domain_model_from_user_stories.md)
-* Ruby on Rails - Introduction
+* [Ruby on Rails - Introduction](ror/ruby_on_rails_-_introduction.md)
 
