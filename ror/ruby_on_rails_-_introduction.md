@@ -101,13 +101,9 @@ The default directory structure of a generated Ruby on Rails application:
  *   Helper scripts for automation and generation.
 
 `test` or `spec`
- *   Unit and functional tests along with fixtures. When using the rails generate
-    command, template test files will be generated for you and placed in this
-    directory.
+ *   Unit and functional tests along with fixtures. When using the `rails generate` command, test files will be generated for you and placed in this folder.
 
 `vendor`
-*    External libraries that the application depends on. Also includes the plugins
-    subdirectory. If the app has frozen rails, those gems also go here, under
-    vendor/rails/. This directory is in the load path.
+* External libraries that the application depends on. Also includes the plugins subfolder. 
 
 
