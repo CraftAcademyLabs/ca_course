@@ -66,13 +66,14 @@ $ git commit -am "new rails application"
 $ git push origin master
 ```
 
-IF you encounter some problems you might need to `pull` from the remote repo before you make a `push`. This can occur if you initiated a repo with a README file or `.gitignore`
+IF you encounter some problems you might need to `pull` from the remote repository before you make a `push`. This can occur if you initiated a repository with a README file or `.gitignore`
 
 Just do `git pull origin master` and do a `push` afterwards. 
 
 Remember one of the most common pieces of advice you hear during this bootcamp: ***you should commit early and often***. 
 
 ###Add RSpec and shoulda-matchers
+
 Add `rspec-rails` gem to the development and test groups of your Gemfile.
 
 [`shoulda-matchers`](http://matchers.shoulda.io/) allows us to test common Rails functionality, like validations and associations, with less code. 
@@ -93,7 +94,7 @@ Run the RSpec generator to add the testing framework to your rails application
 ```
 $ bundle exec rails generate rspec:install
 ```
-Why `bundle exec` before a command?  `bundle exec` executes a command in the context of your bundle. That means it uses the gems specified in your Gemfile. It basically standardizes the environment under which the program is run. This helps avoid version hell and makes life much easier.
+Why `bundle exec` before a command?  `bundle exec` executes a command in the context of your bundle. That means it uses the gems specified in your Gemfile. It basically standardizes the environment under which the program runs. This helps avoid version hell and makes life much easier.
 
 Before you can use `shoulda-matchers`, you need to configure it by choosing the test framework and features of `shoulda-matchers` you want to use. Open `spec/rails_helper.rb` and add the following block.
 
@@ -124,12 +125,12 @@ class Application < Rails::Application
 ```
 One last thing in this setup process, open the `.rspec` file (it is located in your main project folder but it is a hidden file, so your text editor might not show it) and modify it so that the first line is set to:
 
-  !FILENAME .rspec
+!FILENAME .rspec
 ```
 --format documentation
 ```
 
-Now, in your terminal, type in rspec and hit enter.
+Now, in your terminal, type in `rspec` and hit enter.
 The output you see should be something like:
 ```
 No examples found.
@@ -235,6 +236,7 @@ ActiveRecord::RecordInvalid:
 Why is that and how can we fix it?
 
 ###Cucumber
+
 Add `cucumber-rails` and `database_cleaner` gems to the test group of the Gemfile.
 
 !FILENAME Gemfile
