@@ -139,6 +139,13 @@ end
 
 Does it work? Fire up your server with `rails s` and visit `http://localhost:3000/api/v0/ping`
 
+> Note: If you get the following error when running the application
+```
+The controller-level `respond_to' feature has been extracted to the `responders` gem. Add it to your Gemfile to continue using this feature: (NoMethodError)`
+```
+> Add `gem 'responders', '~> 2.0'` to your Gemfile and it should solve the issue.
+
+
 ### Adding a User class
 
 We know that we will be accessing our Rails app from an external client and that we will require authentication. At this point you are familiar with Devise - one of the most popular authentication libraries for Rails applications. We will be using [`devise_token_auth`](https://github.com/lynndylanhurley/devise_token_auth) a token based authentication gem for Rails JSON APIs. It is designed to work well with [`ng-token-auth`](https://github.com/lynndylanhurley/ng-token-auth) the token based authentication module for AngularJS.
