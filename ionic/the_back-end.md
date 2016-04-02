@@ -162,7 +162,7 @@ Using a generator that the gem provides, we can create a user model, define rout
 
 Run the following command for an easy one-step installation.
 ```
-$ rails g devise_token_auth:install auth
+$ rails g devise_token_auth:install User auth
 ```
 Remember to migrate your database in order to create the `users` table (the Devise generator created an migration for you). But before you do that, make sure to open up the migration file and change the data type for Tokens to `text`.
 
