@@ -579,11 +579,24 @@ So far so good...
 
 Now, let's create a request spec and start adding functionality to our controller. 
 
-In the `spec/requests/api/v1/` folder we want to create a new test file. Let's call it `performance_data_spec.rb` 
+In the `spec/requests/api/v1/` folder we want to create a new test file. Let's call it `performance_data_spec.rb`. We can start with a simple test to see if our entry will be saved to the database (it WILL fail at first, but that is the way we do it, right?)
 
 !FILENAME spec/requests/api/v1/performance_data_spec.rb
 ```ruby
+require 'rails_helper'
 
+describe 'Performance Data' do
+  let(:headers) { {HTTP_ACCEPT: 'application/json'} }
+
+  describe 'POST /api/v1/data/' do
+    it 'creates a data entry' do
+      post '/api/v1/data/', {data: {message: 'Average'}}, headers
+      entry = PerformanceData.last
+      expect(entry.data).to eq({message: 'Average'})
+    end
+
+  end
+end
 
 ```
 
