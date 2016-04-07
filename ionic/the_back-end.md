@@ -700,6 +700,15 @@ If you run your specs now, you should not be getting any errors as the `Performa
 
 You need, however, add some tests that hits the sad path and makes sure you have full control of what kind of error messages is being displayed if the object you are trying to create fails validation. 
 
+Now, let us move on and create a method that will retrieve a collection of PerformanceData objects, but only for the user that makes the request. Let's start by setting the stage for a request spec. 
+
+!FILENAME spec/requests/api/v1/performance_data_spec.rb
+
+```ruby
+
+
+```
+
 
 
 
