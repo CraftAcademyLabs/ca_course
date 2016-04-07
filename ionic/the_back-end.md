@@ -679,7 +679,7 @@ class Api::V1::PerformanceDataController < ApplicationController
   before_action :authenticate_api_v1_user!
 
   def create
-    @data = PerformanceData.new(performance_data_params.merge!({user: @current_api_v1_user}))
+    @data = PerformanceData.new(performance_data_params.merge!({user: current_api_v1_user}))
     if @data.save
       render json: ({message: 'all good'})
     else
@@ -699,6 +699,8 @@ end
 If you run your specs now, you should not be getting any errors as the `PerformanceData` entry is connected to a `User` and no validation errors should be present. 
 
 You need, however, add some tests that hits the sad path and makes sure you have full control of what kind of error messages is being displayed if the object you are trying to create fails validation. 
+
+
 
 
 
