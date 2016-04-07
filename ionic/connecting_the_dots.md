@@ -98,7 +98,7 @@ Change the input fiels `Username` to `Email`
 //...
 ```
 And add a placeholder for display of error messages
-!FILENAME
+!FILENAME www/templates/login.html
 ```html
 //...
 <ion-content>
@@ -109,6 +109,25 @@ And add a placeholder for display of error messages
   </div>
   //...
 ```
+
+We also want to create a `currentUser` object. In the`AppCtrl` add this method to create the `currentUser` on successful authentication. 
+
+!FILENAME www/js/controllers.js
+```javascript
+//...
+$rootScope.$on('auth:login-success', function(ev, user) {
+  $scope.currentUser = user;
+});
+//...
+```
+And make use of this object on the `about.html` template.
+!FILENAME
+```html
+//...
+
+//...
+```
+
 
 
 
