@@ -29,15 +29,17 @@ $ heroku run rake db:migrate
 ```
 You can manually test the API using Postman by doing a POST request to the registration endpoint. 
 
+**As a matter of fact, you need to create at leas one user this way in order to move forward.**
+
 ![Register a user](/images/cooper_api_postman_sucess.png)
 And if you try to send the request again, that should fail.
 ![Registration failure](/images/cooper_api_postman_failure.png)
 
 Alright, if that works we should shift our focus to the Ionic application. 
 
-We will be using [ng_token_auth](https://github.com/lynndylanhurley/ng-token-auth) - a token based authentication module for AngularJS that works really well wit `devise_token_auth`.
+We will be using [ng_token_auth](https://github.com/lynndylanhurley/ng-token-auth) - a token based authentication module for AngularJS that works really well with `devise_token_auth`.
 
-We'll start by installing the library using Bower. Run the install command frpm your Terminal. 
+We'll start by installing the library using Bower. Run the install command from your Terminal. 
 ```
 $ bower install ng-token-auth --save
 ```
@@ -84,9 +86,9 @@ $scope.doLogin = function () {
 };
 //...
 ```
-Now, we need to make some small changes and additions to out view templates.
+Now, we need to make some small changes and additions to our view templates.
 
-Change the input fiels `Username` to `Email` 
+Change the input field `Username` to `Email` and the `ng-model` from `loginData.username` to `loginData.email`.
 
 !FILENAME www/templates/login.html
 ```html
@@ -130,6 +132,8 @@ And make use of this object on the `about.html` template.
  </div>
 //...
 ```
+
+At this stage we have a method to login the user. The next step will be to add an interface to create and update users. That is something that we leave up to you. Just a friendly reminder, make sure that you read the [ng_token_auth](https://github.com/lynndylanhurley/ng-token-auth) documentation. Everything you need to know is well documented in the README file of the project. 
 
 
 
