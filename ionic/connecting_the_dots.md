@@ -121,10 +121,13 @@ $rootScope.$on('auth:login-success', function(ev, user) {
 //...
 ```
 And make use of this object on the `about.html` template.
-!FILENAME
+!FILENAME www/templates/about/about.html
 ```html
 //...
-
+ <div class="col">
+    Craft Academy Cooper Test Challenge - Mobile Client.
+    <p ng-if="currentUser">Logged in as {{currentUser.email}}</p>
+ </div>
 //...
 ```
 
