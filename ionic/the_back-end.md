@@ -577,6 +577,14 @@ api_v1_create POST   /api/v1/data(.:format)                api/v1/performance_da
 
 So far so good...
 
+Now, let's create a request spec and start adding functionality to our controller. 
 
+In the `spec/requests/api/v1/` folder we want to create a new test file. Let's call it `performance_data_spec.rb` 
+
+!FILENAME spec/requests/api/v1/performance_data_spec.rb
+```ruby
+
+
+```
 
 
