@@ -745,7 +745,10 @@ class Api::V1::PerformanceDataController < ApplicationController
 # [...]
 end
 ```
+We would need to add a few more specs to make sure that the `index` method works the way it is intended - to only return `PerformanceData` that belongs to the current user. But I'll leave that for you to add. 
+
 Note that we are NOT building any views or templates to display data. We MIGHT need more control of how the json response looks like and for that we will use the template capabilities of `JBuilder`. But for now, returning a rather uncomplicated json object will do.
+
 
 That's it! We don't need to create the `update` and `delete` actions. There could be a use-case for them in the future, but at this stage they are not needed. 
 
