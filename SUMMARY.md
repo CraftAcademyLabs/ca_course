@@ -30,7 +30,7 @@
    * [The Back-end](ionic/the_back-end.md)
    * [The Client](ionic/the_client.md)
    * [Results tables](ionic/results_tables.md)
-   * Connecting the dots
+   * [Connecting the dots](ionic/connecting_the_dots.md)
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * [Extras](extras/extras.md)
