@@ -674,10 +674,10 @@ class PerformanceData < ActiveRecord::Base
 end
 ```
 
-If you run your request spec again, it will fail. We need to pass in information about the user in our post request.
+If you run your request spec again, it will fail. The application does not know what user it should reference to the new object. .
 
 
-We also need to update out controller to retrieve that information. That we can do with the, slightly modified, built in Devise method `authenticate_user!`. We also need to add the user information to the `performance_data_params`. This can be done with a `merge!` command. Review the following code before you implement it in your `performance_data_controller.rb`.
+We  need to update out controller to retrieve that information. We can do that with the built in Devise method `authenticate_user!`. We also need to add the user information to the `performance_data_params`. This can be done with a `merge!` command. Review the following code before you implement it in your `performance_data_controller.rb`.
 
 !FILENAME  app/controllers/api/v1/performance_data_controller.rb
 
@@ -699,13 +699,12 @@ class Api::V1::PerformanceDataController < ApplicationController
   def performance_data_params
     params.require(:performance_data).permit!
   end
-
 end
 ```
 
 If you run your specs now, you should not be getting any errors as the `PerformanceData` entry is connected to a `User` and no validation errors should be present. 
 
-You need, however, add some tests that hits the sad path and makes sure you have full control of what kind of error messages is being displayed if the object you are trying to create fails validation. 
+You need, however, add some tests that hits the sad path and makes sure you have full control of what kind of error messages are being returned if the object you are trying to create fails validation. 
 
 Now, let us move on and create a method that will retrieve a collection of PerformanceData objects, but only for the user that makes the request. Let's start by setting the stage for a request spec and test if we get the right response. 
 
