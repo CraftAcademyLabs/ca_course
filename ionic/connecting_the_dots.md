@@ -50,7 +50,6 @@ Make sure that `angular-cookie`, and `ng-token-auth` are included in your `index
 ```html
 <!-- ionic/angularjs js -->
 <script src="lib/ionic/js/ionic.bundle.js"></script>
-<script src="lib/angular/angular.js"></script>
 <script src="lib/angular-cookie/angular-cookie.js"></script>
 <script src="lib/ng-token-auth/dist/ng-token-auth.js"></script>
 ``` 
