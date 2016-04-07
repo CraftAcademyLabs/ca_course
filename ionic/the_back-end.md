@@ -656,6 +656,10 @@ end
 ```
 Note: We can use the `permit!` method for now, but there might be some security issues involved with that. Can you figure out a better way? 
 
+Okay, so that should work by now. The problem is that we are not assigning a `user` to the created entry. 
+
+
+
 
 
 
