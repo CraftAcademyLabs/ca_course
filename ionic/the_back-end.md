@@ -745,6 +745,8 @@ class Api::V1::PerformanceDataController < ApplicationController
 # [...]
 end
 ```
+Note that we are NOT building any views or templates to display data. We MIGHT need more control of how the json response looks like and for that we will use the template capabilities of `JBuilder`. But for now, returning a rather uncomplicated json object will do. 
+
 
 
 
