@@ -124,6 +124,7 @@ $rootScope.$on('auth:login-success', function(ev, user) {
 //...
 ```
 And make use of this object on the `about.html` template.
+
 !FILENAME www/templates/about/about.html
 ```html
 //...
