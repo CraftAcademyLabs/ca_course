@@ -83,6 +83,28 @@ $scope.doLogin = function () {
     });
 };
 //...
+```
+Now, we need to make some small changes and additions to out view templates.
+
+Change the input fiels `Username` to `Email` 
+
+!FILENAME www/templates/login.html
+```html
+//...
+<label class="item item-input">
+  <span class="input-label">Email</span>
+  <input type="text" ng-model="loginData.email">
+</label>
+//...
+```
+And add a placeholder for display of error messages
+!FILENAME
+```html
+//...
+  <ion-content>
+    <div ng-if="errorMessage">{{errorMessage}}</div>
+    //...
+```
 
 
 
