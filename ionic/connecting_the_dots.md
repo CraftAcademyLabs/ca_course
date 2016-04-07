@@ -101,9 +101,13 @@ And add a placeholder for display of error messages
 !FILENAME
 ```html
 //...
-  <ion-content>
-    <div ng-if="errorMessage">{{errorMessage}}</div>
-    //...
+<ion-content>
+  <div class="row" ng-if="errorMessage">
+    <p ng-repeat="error in errorMessage.errors">
+      {{error}}
+    </p>
+  </div>
+  //...
 ```
 
 
