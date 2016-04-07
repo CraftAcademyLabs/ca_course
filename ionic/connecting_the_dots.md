@@ -86,7 +86,7 @@ $scope.doLogin = function () {
 };
 //...
 ```
-Now, we need to make some small changes and additions to out view templates.
+Now, we need to make some small changes and additions to our view templates.
 
 Change the input field `Username` to `Email` and the `ng-model` from `loginData.username` to `loginData.email`.
 
@@ -133,7 +133,9 @@ And make use of this object on the `about.html` template.
 //...
 ```
 
-At this stage we have a method to login the user. The next step will be to add an interface to create and update users. That is something that we leave up to you. 
+At this stage we have a method to login the user. The next step will be to add an interface to create and update users. That is something that we leave up to you. Just a friendly reminder, make sure that you read the [ng_token_auth](https://github.com/lynndylanhurley/ng-token-auth) documentation. Everything you need to know is well documented in the README file of the project. 
+
+
 
 
 
