@@ -599,17 +599,18 @@ describe 'Performance Data' do
 end
 ```
 
-In our controller we need to update the `create`method in order to get this test to pass. 
+In our controller we need to update the `create` method in order to get this test to pass. 
 
-!FILENAME 
+!FILENAME  app/controllers/api/v1/performance_data_controller.rb
 
 ```ruby
+# [...]
 def create
-    @data = PerformanceData.new(params[:performance_data])
-    if @data.save
-      render json: ({message: 'all good'})
-    end
+  @data = PerformanceData.new(params[:performance_data])
+  if @data.save
+    render json: ({message: 'all good'})
   end
+end
 ```
 
 When you run the test now you will get an error with Rails complaining about `ForbiddenAttributesError`
@@ -633,6 +634,28 @@ That is due to our params not being whitelisted. Some explanation is in place. A
 
 Action Controller parameters are forbidden to be used in Active Model mass assignments until they have been whitelisted. Strong Parameters provides an interface for protecting attributes from end-user assignment. 
 
-In addition, parameters can be marked as required and flow through a predefined raise/rescue flow to end up as a 400 Bad Request with no effort.
+So we need to whitelist our params. There are many different approaches for doing that. For now we will whitelist all params contained on the `:performance_data` key and update the `create`method to use them.  Modify the `performance_data_controller.rb` with this code. 
+
+!FILENAME  app/controllers/api/v1/performance_data_controller.rb
+
+```ruby
+# [...]
+def create
+  @data = PerformanceData.new(performance_data_params)
+  if @data.save
+    render json: ({message: 'all good'})
+  else
+    render json: ({error: @data.errors.full_messages})
+  end
+end
+
+private
+def performance_data_params
+  params.require(:performance_data).permit!
+end
+```
+Note: We can use the `permit!` method for now, but there might be some security issues involved with that. Can you figure out a better way? 
+
+
 
 
