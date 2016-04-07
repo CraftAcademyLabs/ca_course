@@ -658,6 +658,18 @@ Note: We can use the `permit!` method for now, but there might be some security 
 
 Okay, so that should work by now. The problem is that we are not assigning a `user` to the created entry. 
 
+What we want to do is to set the relationship between `PerformanceData` and `User` to `required`. Let's modify our `PerformaceData` model.
+
+!FILENAME app/models/performance_data.rb
+```
+class PerformanceData < ActiveRecord::Base
+  belongs_to :user, required: true
+end
+```
+
+If you run your request spec again, it will fail. We need to pass in information about the user in our post request. 
+
+
 
 
 
