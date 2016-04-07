@@ -533,6 +533,50 @@ RSpec.describe PerformanceData, type: :model do
 end
 ```
 ###The controller
-Let's create the  controller we will use for the CRUD actions on PerformanceData.
+Let's create the  controller we will use to create, update and retrieve users historical data.
+
+Create a new file in the following path: `app/controllers/api/v1/` Call it `performance_data_controller.rb` and add the class definition to it. 
+
+!FILENAME app/controllers/api/v1/performance_data_controller.rb
+```ruby
+class Api::V1::PerformanceDataController < ApplicationController
+  
+end
+```
+This is where we will be performing our CRUD actions.
+
+The first thing we want to be able to do is to save data. 
+Lets start by adding a `create` method to our new controller. 
+
+!FILENAME app/controllers/api/v1/performance_data_controller.rb
+```ruby
+class Api::V1::PerformanceDataController < ApplicationController
+  def create
+  
+  end
+end
+```
+
+We also need to create a route for that so let's modify our `routes.rb`  by adding a `post` route to it. 
+
+!FILENAME config/routes.rb
+```ruby 
+#[...]
+namespace :v1 do
+  mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
+  post 'data', controller: :performance_data, action: :create, as: :create
+end
+#[...]
+```
+
+In your terminal, run `$ rake routes` to make sure everything is working. You should have a new route pointing to the `performance_data_controller.rb`'s `create` method.
+
+```
+api_v1_create POST   /api/v1/data(.:format)                api/v1/performance_data#create
+```
+
+So far so good...
+
+
 
 
