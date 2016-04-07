@@ -37,9 +37,9 @@ And if you try to send the request again, that should fail.
 
 Alright, if that works we should shift our focus to the Ionic application. 
 
-We will be using [ng_token_auth](https://github.com/lynndylanhurley/ng-token-auth) - a token based authentication module for AngularJS that works really well wit `devise_token_auth`.
+We will be using [ng_token_auth](https://github.com/lynndylanhurley/ng-token-auth) - a token based authentication module for AngularJS that works really well with `devise_token_auth`.
 
-We'll start by installing the library using Bower. Run the install command frpm your Terminal. 
+We'll start by installing the library using Bower. Run the install command from your Terminal. 
 ```
 $ bower install ng-token-auth --save
 ```
@@ -88,7 +88,7 @@ $scope.doLogin = function () {
 ```
 Now, we need to make some small changes and additions to out view templates.
 
-Change the input fiels `Username` to `Email` 
+Change the input field `Username` to `Email` and the `ng-model` from `loginData.username` to `loginData.email`.
 
 !FILENAME www/templates/login.html
 ```html
