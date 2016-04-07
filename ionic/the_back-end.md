@@ -700,14 +700,54 @@ If you run your specs now, you should not be getting any errors as the `Performa
 
 You need, however, add some tests that hits the sad path and makes sure you have full control of what kind of error messages is being displayed if the object you are trying to create fails validation. 
 
-Now, let us move on and create a method that will retrieve a collection of PerformanceData objects, but only for the user that makes the request. Let's start by setting the stage for a request spec. 
+Now, let us move on and create a method that will retrieve a collection of PerformanceData objects, but only for the user that makes the request. Let's start by setting the stage for a request spec and test if we get the right response. 
 
 !FILENAME spec/requests/api/v1/performance_data_spec.rb
 
 ```ruby
+# [...]
+describe 'GET /api/v1/data/' do
+  before do
+    5.times { user.performance_data.create(data: {message: 'Average'}) }
+  end
 
-
+  it 'returns a collection' do
+    get '/api/v1/data/', {}, headers.merge!(credentials)
+    expect(response_json['entries'].count).to eq 5
+  end
+end
 ```
+
+Go ahead and run this spec just to get a friendly reminder that there is no such route as `GET /api/v1/data/`. Let's add that to our `routes.rb` 
+
+
+!FILENAME config/routes.rb
+```ruby 
+#[...]
+namespace :v1 do
+  #[...]
+  get 'data', controller: :performance_data, action: :index, as: :index
+end
+#[...]
+```
+
+The next error you will see if you run the spec now, tells you that there is no `index` method defined in the controller. Let's create that. 
+
+!FILENAME  app/controllers/api/v1/performance_data_controller.rb
+
+```ruby
+class Api::V1::PerformanceDataController < ApplicationController
+ # [...]
+  def index
+    @collection = current_api_v1_user.performance_data
+    render json: ({entries: @collection})
+  end
+# [...]
+end
+```
+
+
+
 
 
 
