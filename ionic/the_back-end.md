@@ -590,13 +590,20 @@ describe 'Performance Data' do
 
   describe 'POST /api/v1/data/' do
     it 'creates a data entry' do
-      post '/api/v1/data/', {data: {message: 'Average'}}, headers
+      post '/api/v1/data/', {performance_data: {data: {message: 'Average'}}}, headers
       entry = PerformanceData.last
-      expect(entry.data).to eq({message: 'Average'})
+      expect(entry.data).to eq({'message'=>'Average'})
     end
 
   end
 end
+```
+
+In our controller we need to update the `create`method in order to get this test to pass. 
+
+!FILENAME 
+
+```ruby
 
 ```
 
