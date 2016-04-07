@@ -27,6 +27,13 @@ $ heroku addons:create heroku-postgresql
 $ git push heroku master
 $ heroku run rake db:migrate
 ```
+You can manually test the API using Postman by doing a POST request to the registration endpoint. 
+
+![Register a user](/images/cooper_api_postman_sucess.png)
+And if you try to send the request again, that should fail.
+![Registration failure](/images/cooper_api_postman_failure.png)
+
+
 
 
 
