@@ -604,6 +604,12 @@ In our controller we need to update the `create`method in order to get this test
 !FILENAME 
 
 ```ruby
+def create
+    @data = PerformanceData.new(performance_data_params)
+    if @data.save
+      render json: ({message: 'all good'})
+    end
+  end
 
 ```
 
