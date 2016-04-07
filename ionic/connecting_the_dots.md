@@ -62,7 +62,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ng-token-auth'])
         $authProvider.configure({
             apiUrl: 'https://ca-cooper-api.herokuapp.com/api/v1/'
         });
-    });
+    })
 ```
 
 
