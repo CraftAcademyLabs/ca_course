@@ -29,6 +29,8 @@ $ heroku run rake db:migrate
 ```
 You can manually test the API using Postman by doing a POST request to the registration endpoint. 
 
+**As a matter of fact, you need to create at leas one user this way in order to move forward. **
+
 ![Register a user](/images/cooper_api_postman_sucess.png)
 And if you try to send the request again, that should fail.
 ![Registration failure](/images/cooper_api_postman_failure.png)
@@ -131,7 +133,7 @@ And make use of this object on the `about.html` template.
 //...
 ```
 
-
+At this stage we have a method to login the user. The next step will be to add an interface to create and update users. That is something that we leave up to you. 
 
 
 
