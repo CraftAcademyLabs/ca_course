@@ -135,7 +135,7 @@ And make use of this object on the `about.html` template.
 //...
 ```
 
-At this stage we have a method to login the user. The next step will be to add an interface to create and update users. That is something that we leave up to you. Just a friendly reminder, make sure that you read the [ng_token_auth](https://github.com/lynndylanhurley/ng-token-auth) documentation. Everything you need to know is well documented in the README file of the project. 
+At this stage we have a method to login the user. The next step will be to add an interface to create and update users. That is, however, something that we leave up to you. Just a friendly reminder, make sure that you read the [ng_token_auth](https://github.com/lynndylanhurley/ng-token-auth) documentation. Everything you need to know is well documented in the README file of the project. 
 
 
 
