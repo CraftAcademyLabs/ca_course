@@ -605,12 +605,34 @@ In our controller we need to update the `create`method in order to get this test
 
 ```ruby
 def create
-    @data = PerformanceData.new(performance_data_params)
+    @data = PerformanceData.new(params[:performance_data])
     if @data.save
       render json: ({message: 'all good'})
     end
   end
+```
+
+When you run the test now you will get an error with Rails complaining about `ForbiddenAttributesError`
 
 ```
+Performance Data
+  POST /api/v1/data/
+    creates a data entry (FAILED - 1)
+
+Failures:
+
+  1) Performance Data POST /api/v1/data/ creates a data entry
+     Failure/Error: @data = PerformanceData.new(params[:performance_data])
+     
+     ActiveModel::ForbiddenAttributesError:
+       ActiveModel::ForbiddenAttributesError
+     # ./app/controllers/api/v1/performance_data_controller.rb:4:in `create'
+     ....
+```
+That is due to our params not being whitelisted. Some explanation is in place. Also do through [this resource about Action Controller](http://edgeguides.rubyonrails.org/action_controller_overview.html#parameters) to fully understand what is going on in the controllers we create and use in our application.
+
+Action Controller parameters are forbidden to be used in Active Model mass assignments until they have been whitelisted. Strong Parameters provides an interface for protecting attributes from end-user assignment. 
+
+In addition, parameters can be marked as required and flow through a predefined raise/rescue flow to end up as a 400 Bad Request with no effort.
 
 
