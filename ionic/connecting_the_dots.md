@@ -25,7 +25,10 @@ Now let's create a database and push the app to Heroku.
 ```
 $ heroku addons:create heroku-postgresql
 $ git push heroku master
+$ heroku run rake db:migrate
 ```
+
+
 
 
 
