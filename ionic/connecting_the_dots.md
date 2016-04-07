@@ -65,6 +65,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'ng-token-auth'])
     })
 ```
 
+In `controllers.js` `AppCtrl` locate the `doLogin()` method.
+
+!FILENAME www/js/controllers.js
+```javascript
+//...
+// Perform the login action when the user submits the login form
+$scope.doLogin = function () {
+  $auth.submitLogin($scope.loginData)
+    .then(function (resp) {
+      // handle success response
+      $scope.closeLogin();
+    })
+    .catch(function (error) {
+      // handle error response
+      $scope.errorMessage = error;
+    });
+};
+//...
+
 
 
 
