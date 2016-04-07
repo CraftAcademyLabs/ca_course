@@ -33,6 +33,32 @@ You can manually test the API using Postman by doing a POST request to the regis
 And if you try to send the request again, that should fail.
 ![Registration failure](/images/cooper_api_postman_failure.png)
 
+Alright, if that works we should shift our focus to the Ionic application. 
+
+We will be using [ng_token_auth](https://github.com/lynndylanhurley/ng-token-auth) - a token based authentication module for AngularJS that works really well wit `devise_token_auth`.
+
+We'll start by installing the library using Bower. Run the install command frpm your Terminal. 
+```
+$ bower install ng-token-auth --save
+```
+Make sure that `angular-cookie`, and `ng-token-auth` are included in your `index.html`.
+
+
+!FILENAME www/index.html
+```html
+<!-- ionic/angularjs js -->
+<script src="lib/ionic/js/ionic.bundle.js"></script>
+<script src="lib/angular/angular.js"></script>
+<script src="lib/angular-cookie/angular-cookie.js"></script>
+<script src="lib/ng-token-auth/dist/ng-token-auth.js"></script>
+``` 
+
+Include ng-token-auth in your module's dependencies:
+
+!FILENAME www/js/app.js
+```javascript
+angular.module('starter', ['ionic', 'starter.controllers', 'ng-token-auth'])
+```
 
 
 
