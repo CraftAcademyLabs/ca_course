@@ -53,11 +53,16 @@ Make sure that `angular-cookie`, and `ng-token-auth` are included in your `index
 <script src="lib/ng-token-auth/dist/ng-token-auth.js"></script>
 ``` 
 
-Include ng-token-auth in your module's dependencies:
+Include `ng-token-auth` in your module's dependencies and add a basic configuration.
 
 !FILENAME www/js/app.js
 ```javascript
 angular.module('starter', ['ionic', 'starter.controllers', 'ng-token-auth'])
+    .config(function($authProvider) {
+        $authProvider.configure({
+            apiUrl: 'https://ca-cooper-api.herokuapp.com/api/v1/'
+        });
+    });
 ```
 
 
