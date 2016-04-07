@@ -540,6 +540,177 @@ RSpec.describe PerformanceData, type: :model do
 end
 ```
 ###The controller
-Let's create the  controller we will use for the CRUD actions on PerformanceData.
+Let's create the  controller we will use to create, update and retrieve users historical data.
+
+Create a new file in the following path: `app/controllers/api/v1/` Call it `performance_data_controller.rb` and add the class definition to it. 
+
+!FILENAME app/controllers/api/v1/performance_data_controller.rb
+```ruby
+class Api::V1::PerformanceDataController < ApplicationController
+  
+end
+```
+This is where we will be performing our CRUD actions.
+
+The first thing we want to be able to do is to save data. 
+Lets start by adding a `create` method to our new controller. 
+
+!FILENAME app/controllers/api/v1/performance_data_controller.rb
+```ruby
+class Api::V1::PerformanceDataController < ApplicationController
+  def create
+  
+  end
+end
+```
+
+We also need to create a route for that so let's modify our `routes.rb`  by adding a `post` route to it. 
+
+!FILENAME config/routes.rb
+```ruby 
+#[...]
+namespace :v1 do
+  mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
+  post 'data', controller: :performance_data, action: :create, as: :create
+end
+#[...]
+```
+
+In your terminal, run `$ rake routes` to make sure everything is working. You should have a new route pointing to the `performance_data_controller.rb`'s `create` method.
+
+```
+api_v1_create POST   /api/v1/data(.:format)                api/v1/performance_data#create
+```
+
+So far so good...
+
+Now, let's create a request spec and start adding functionality to our controller. 
+
+In the `spec/requests/api/v1/` folder we want to create a new test file. Let's call it `performance_data_spec.rb`. We can start with a simple test to see if our entry will be saved to the database (it WILL fail at first, but that is the way we do it, right?)
+
+!FILENAME spec/requests/api/v1/performance_data_spec.rb
+```ruby
+require 'rails_helper'
+
+describe 'Performance Data' do
+  let(:headers) { {HTTP_ACCEPT: 'application/json'} }
+
+  describe 'POST /api/v1/data/' do
+    it 'creates a data entry' do
+      post '/api/v1/data/', {performance_data: {data: {message: 'Average'}}}, headers
+      entry = PerformanceData.last
+      expect(entry.data).to eq({'message'=>'Average'})
+    end
+
+  end
+end
+```
+
+In our controller we need to update the `create` method in order to get this test to pass. 
+
+!FILENAME  app/controllers/api/v1/performance_data_controller.rb
+
+```ruby
+# [...]
+def create
+  @data = PerformanceData.new(params[:performance_data])
+  if @data.save
+    render json: ({message: 'all good'})
+  end
+end
+```
+
+When you run the test now you will get an error with Rails complaining about `ForbiddenAttributesError`
+
+```
+Performance Data
+  POST /api/v1/data/
+    creates a data entry (FAILED - 1)
+
+Failures:
+
+  1) Performance Data POST /api/v1/data/ creates a data entry
+     Failure/Error: @data = PerformanceData.new(params[:performance_data])
+     
+     ActiveModel::ForbiddenAttributesError:
+       ActiveModel::ForbiddenAttributesError
+     # ./app/controllers/api/v1/performance_data_controller.rb:4:in `create'
+     ....
+```
+That is due to our params not being whitelisted. Some explanation is in place. Also do through [this resource about Action Controller](http://edgeguides.rubyonrails.org/action_controller_overview.html#parameters) to fully understand what is going on in the controllers we create and use in our application.
+
+Action Controller parameters are forbidden to be used in Active Model mass assignments until they have been whitelisted. Strong Parameters provides an interface for protecting attributes from end-user assignment. 
+
+So we need to whitelist our params. There are many different approaches for doing that. For now we will whitelist all params contained on the `:performance_data` key and update the `create`method to use them.  Modify the `performance_data_controller.rb` with this code. 
+
+!FILENAME  app/controllers/api/v1/performance_data_controller.rb
+
+```ruby
+# [...]
+def create
+  @data = PerformanceData.new(performance_data_params)
+  if @data.save
+    render json: ({message: 'all good'})
+  else
+    render json: ({error: @data.errors.full_messages})
+  end
+end
+
+private
+def performance_data_params
+  params.require(:performance_data).permit!
+end
+```
+Note: We can use the `permit!` method for now, but there might be some security issues involved with that. Can you figure out a better way? 
+
+Okay, so that should work by now. The problem is that we are not assigning a `user` to the created entry. 
+
+What we want to do is to set the relationship between `PerformanceData` and `User` to `required`. Let's modify our `PerformaceData` model.
+
+!FILENAME app/models/performance_data.rb
+```
+class PerformanceData < ActiveRecord::Base
+  belongs_to :user, required: true
+end
+```
+
+If you run your request spec again, it will fail. We need to pass in information about the user in our post request.
+
+
+We also need to update out controller to retrieve that information. That we can do with the, slightly modified, built in Devise method `authenticate_user!`. We also need to add the user information to the `performance_data_params`. This can be done with a `merge!` command. Review the following code before you implement it in your `performance_data_controller.rb`.
+
+!FILENAME  app/controllers/api/v1/performance_data_controller.rb
+
+```ruby
+class Api::V1::PerformanceDataController < ApplicationController
+  before_action :authenticate_api_v1_user!
+
+  def create
+    @data = PerformanceData.new(performance_data_params.merge!({user: @current_api_v1_user}))
+    if @data.save
+      render json: ({message: 'all good'})
+    else
+      render json: ({error: @data.errors.full_messages})
+    end
+  end
+
+  private
+
+  def performance_data_params
+    params.require(:performance_data).permit!
+  end
+
+end
+```
+
+If you run your specs now, you should not be getting any errors as the `PerformanceData` entry is connected to a `User` and no validation errors should be present. 
+
+You need, however, add some tests that hits the sad path and makes sure you have full control of what kind of error messages is being displayed if the object you are trying to create fails validation. 
+
+
+
+
+
+
 
 
