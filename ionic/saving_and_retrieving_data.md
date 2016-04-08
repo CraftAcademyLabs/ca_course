@@ -68,13 +68,29 @@ Let's create a new controller for doing that. Remember that we need to include t
 
 ```
 
-Let's start with saving the data. On our view where we do the calculations, we want to display a button that calls the `saveData` function. But we only want to display thet button IF there is a user logged in. 
+Let's start with saving the data. On our view where we do the calculations, we want to display a button that calls the `saveData` function. But we only want to display that button IF there is a user logged in and the calculation has been performed. 
 
 Modify your `test.html` template with this code. 
 
 !FILENAME www/templates/test/test.html
 ```html 
-
+ <div ng-if="person">
+    <div class="card">
+      <div class="item item-divider">
+        Cooper Test results
+      </div>
+      <div class="item item-text-wrap">
+        <p>Person: Age {{person.age}}, Gender {{person.gender}}</p>
+        <p>Result: {{person.cooperMessage}}</p>
+      </div>
+    </div>
+    <button
+      ng-if="currentUser"
+      ng-controller="PerformanceCtrl"
+      class="button button-full button-calm"
+      ng-click="saveData()">Save results
+    </button>
+ </div>
 ```
 
 
