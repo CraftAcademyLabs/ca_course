@@ -33,7 +33,7 @@
    * [Connecting the dots](ionic/connecting_the_dots.md)
    * [Saving and retrieving data](ionic/saving_and_retrieving_data.md)
    * [Display data](ionic/display_data.md)
-   * Wrapping up
+   * [Wrapping up](ionic/wrapping_up.md)
    * [Results tables](ionic/results_tables.md)
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
