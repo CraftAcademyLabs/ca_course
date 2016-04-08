@@ -148,3 +148,16 @@ Yay! First success! Green is GOOD!
 Keep your calm, read the error messages that RSpec so kindly throws at you and make small steps forward. Be thankful that you have a testing framework that helps you to figure out what is wrong with your code. Imagine if you ware coding without it? 
 
 Alright, enough of coding philosophy. Let's move on. This is a great time to do a commit and push up your code (Unless you already did that). 
+
+
+###Doing a withdrawal
+
+Let's add another test to the `atm_spec`. Inside the `describe Atm`block, add this spec.
+
+!FILENAME spec/atm_spec.rb
+```ruby
+it 'balance is reduced at withdraw' do
+  subject.withdraw 50
+  expect(subject.balance).to eq 950
+end
+```
