@@ -26,11 +26,8 @@ $ touch www/js/services.js
 <script src="js/controllers.js"></script>
 <script src="js/services.js"></script>
 ```
-<<<<<<< HEAD
+
 Since we have not used any services of factories before in this application, we need to add our services to our main module in `app.js`. We also need to make sure that `ngResource` is included.
-=======
-Since we have not used any services of factories before in app, we need to add that to our main module in `app.js`. We also need to make sure that `ngResource` is included.
->>>>>>> 608afc20418dcdd2c6a2790cc6d7626a84bd581b
 
 !FILENAME www/js/app.js
 ```javascript
