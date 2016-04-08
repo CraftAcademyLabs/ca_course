@@ -134,6 +134,52 @@ And make use of this object on the `about.html` template.
 //...
 ```
 
+One final touch to enhance the user experience. Sometimes the API endpoint will take some time to respond and the user might be left wondering if his request is actually being processed or not. There is a very simple way to show the user that we are really processing his request by displaying an overlay with some sort of a message. In our case "Logging is..." could do, right?
+
+Ionic provides us with [`$ionicLoading`](http://ionicframework.com/docs/api/service/$ionicLoading/) as a way to display such overlays. Let's imlement it.
+
+Add `$ionicLoading` to the `AppCtrl`.
+
+!FILENAME www/js/controllers.js
+```javascript
+//...
+.controller('AppCtrl', function ($rootScope,
+                                 $scope,
+                                 $ionicModal,
+                                 $timeout,
+                                 $auth,
+                                 $ionicLoading) {
+//...
+```
+
+And update the `doLogin()` function with the following code.
+
+!FILENAME www/js/controllers.js
+```javascript
+//...
+// Perform the login action when the user submits the login form
+  $scope.doLogin = function () {
+    $ionicLoading.show({
+      template: 'Logging in...'
+    });
+    $auth.submitLogin($scope.loginData)
+      .then(function (resp) {
+        // handle success response
+        $ionicLoading.hide();
+        $scope.closeLogin();
+      })
+      .catch(function (error) {
+        $ionicLoading.hide();
+        $scope.errorMessage = error;
+      });
+  };
+//...
+```
+
+With this in place an overlay will be displayed while the app is making the request and hidden when the promise is resolved. 
+
+
+
 At this stage we have a method to login the user. The next step will be to add an interface to create and update users. That is, however, something that we leave up to you. Just a friendly reminder, make sure that you read the [ng_token_auth](https://github.com/lynndylanhurley/ng-token-auth) documentation. Everything you need to know is well documented in the README file of the project. 
 
 
