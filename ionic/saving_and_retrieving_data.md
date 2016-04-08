@@ -116,9 +116,9 @@ So, let's make this work.
 
 The reason we are getting a 401 on the request is because we are not sending any credentials with the request and thus we can not get authorized.
 
-Let's make sure that we get the necessary info stored in the `currentUser` object. 
+Let's make sure that we get the necessary info stored in the `currentUser` object.
 
-At this stage you need to go back to your Rails application for a moment. We need to make an addition to `config/application.rb` in order to make the API include authorization credentials in the response headers. 
+At this stage you need to go back to your Rails application for a moment. We need to make an addition to `config/application.rb` in order to make the API include authorization credentials in the response headers.
 
 !FILENAME `config/application.rb
 ```ruby
@@ -192,7 +192,7 @@ We will also add an `showAlert()` function and refactor our `saveData()` functio
 
 ###Display data
 
-Before we start retrieving any historical data, let's create a route and a view template for showcasing it. 
+Before we start retrieving any historical data, let's create a route and a view template for showcasing it.
 
 First, we start with defining a route in our `www/js/app.js` file.
 
@@ -212,7 +212,7 @@ First, we start with defining a route in our `www/js/app.js` file.
 })
 ```
 
-Next step is to create a new template. 
+Next step is to create a new template.
 
 ```
 $ touch www/templates/test/data.html
@@ -221,16 +221,16 @@ $ touch www/templates/test/data.html
 For starters, let's just add the basic markup before we start adding any content.
 
 !FILENAME www/templates/test/data.html
-```html 
+```html
 <ion-view title="Historical Data">
   <ion-content>
-    
+
   </ion-content>
 </ion-view>
 
 ```
 
-We also want to add an item to the side menu but condition it's display to a state where there is a `currentUser` signed in. We also want to get rid of the `Login` item IF there is a signed in user, right? 
+We also want to add an item to the side menu but condition it's display to a state where there is a `currentUser` signed in. We also want to get rid of the `Login` item IF there is a signed in user, right?
 
 !FILENAME www/templates/menu.html
 ```html
@@ -245,7 +245,7 @@ We also want to add an item to the side menu but condition it's display to a sta
 //...
 ```
 
-Next we want to update the `retrieveData()` function in `PerformanceCtrl`. What we want this function to do, is to get the data using the `performaceData` factory and open the `data.html` while passing in the data to the view (as `savedDataCollection`). 
+Next we want to update the `retrieveData()` function in `PerformanceCtrl`. What we want this function to do, is to get the data using the `performaceData` factory and open the `data.html` while passing in the data to the view (as `savedDataCollection`).
 
 !FILENAME  www/js/controllers.js
 ```javascript
@@ -268,7 +268,7 @@ $scope.retrieveData = function(){
 We also need to create a new controller to handle the view. When the view is entered, we want to retrieve the data sent in params and save it in the current `$scope`.
 
 !FILENAME www/js/controllers.js
-```javascript 
+```javascript
 //...
 .controller('DataCtrl', function($scope, $stateParams){
   $scope.$on('$ionicView.enter', function () {
