@@ -181,10 +181,13 @@ First, we start with defining a route in our `www/js/app.js` file.
 ```javascript
 .state('app.data', {
   url: '/data',
+  params: {
+    savedDataCollection: {}
+  },
   views: {
     'menuContent': {
       templateUrl: 'templates/test/data.html',
-      controller: 'PerformanceCtrl'
+      controller: 'DataCtrl'
     }
   }
 })
