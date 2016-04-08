@@ -88,12 +88,29 @@ Modify your `test.html` template with this code.
       ng-if="currentUser"
       ng-controller="PerformanceCtrl"
       class="button button-full button-calm"
-      ng-click="saveData()">Save results
+      ng-click="saveData(person)">Save results
     </button>
  </div>
 ```
 
+Let's build our `saveData` function with a success ans an error fallback. It can look something like this for the moment. 
 
+!FILENAME 
+
+```javascript
+$scope.saveData = function(person){
+  data = {performace_data: {data: {message: person.cooperMessage}}}
+  performaceData.save(data, function(response){
+    console.log(response);
+  }, function(error){
+    console.log(error);
+  })
+};
+```
+
+If you try this out in the browser while having the console open, you'll see that you'll get an `Unauthorized` error.
+
+```
 
 
 
