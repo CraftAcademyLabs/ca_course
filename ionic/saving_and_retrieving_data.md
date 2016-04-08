@@ -110,9 +110,9 @@ $scope.saveData = function(person){
 
 If you try this out in the browser while having the console open, you'll see that you'll get an `Unauthorized` error.
 
-```
+![](/images/cooper_api_error_1.png)
 
-
+Well, that's a bit of a problem but we'll solve it. At least we know that the API endpoint is within our reach. That IS good progress!
 
 
 
