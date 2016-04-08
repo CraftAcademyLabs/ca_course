@@ -210,3 +210,12 @@ For starters, let's just add the basic markup before we start adding any content
 </ion-view>
 
 ```
+
+We also want to add an item to the side menu but condition it's display to a state where there is a `currentUser` signed in. 
+
+!FILENAME
+```html
+<ion-item ng-if="currentUser" menu-close ng-controller="PerformanceCtrl" ng-click="retrieveData()">
+  Saved results
+</ion-item>
+```
