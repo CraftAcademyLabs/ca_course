@@ -56,9 +56,6 @@ function getCount(arr, value){
   });
   return count;
 }
-      
-      
-
 ```
 
 
