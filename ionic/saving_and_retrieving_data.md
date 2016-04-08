@@ -114,6 +114,10 @@ If you try this out in the browser while having the console open, you'll see tha
 
 So, let's make this work.
 
+The reason we are getting a 401 on the request is because we are not sending any credentials with the request and thus we can not get authorized.
+
+Let's make sure that we get the necessary info stored in the `currentUser` object. 
+
 At this stage you need to go back to your Rails application for a moment. We need to make an addition to `config/application.rb` in order to make the API include authorization credentials in the response headers. 
 
 !FILENAME `config/application.rb
@@ -132,10 +136,7 @@ config.middleware.insert_before 0, 'Rack::Cors' do
 end
 #...
 ```
-
-The reason we are getting a 401 on the request is becouse we are not sending any credentials with the request and thus we can not get authorized.
-
-Let's make sure that we get the necessary info stored in the `currentUser` object. We need to modify the way we store that information.
+Now we'll be getting the right response from the back-end application. We need to modify the way we store that information.
 
 Localize the `'auth:login-success'` function in our `AppCtrl`. We will make a change to store access-token, uid, etc by grabbing that info from the response headers.
 
