@@ -9,12 +9,21 @@ We will use [`ngResource`](https://docs.angularjs.org/api/ngResource) to access 
 $ bower install angular-resource --save
 ```
 
-Create a new file in the `www/js` folder and call it `services.js` 
+Create a new file in the `www/js` folder and call it `services.js` and make sure to reference it in the `index.html` together with all the other dependencies.
+
 ```
 $ touch www/js/services.js
 ```
+!FILENAME www/index.html
+```html
+  <!-- your app's js -->
+  <script src="js/cooper.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/controllers.js"></script>
+  <script src="js/services.js"></script>
+```
 
-That's where we will add our Factory.
+Okay, so now we need to create our Factory.
 
 !FILENAME www/js/services.js
 
@@ -29,6 +38,34 @@ angular.module('starter.services', [])
   });
 });
 ```
+
+With this factory we will be able to both write to and read from our back-end database. 
+
+Let's create a new controller for doing that. Remember that we need to include that factory in our controller in order to make it accessible. We'll also add two methods, one to save the data and a second one to retrieve it. 
+
+!FILENAME
+```javascript
+.controller('PerformanceCtrl', function($scope, performaceData){
+  $scope.saveData = function(){
+
+  };
+  $scope.retrieveData = function(){
+
+  };
+})
+
+```
+
+Let's start with saving the data. On our view where we do the calculations, we want to display a button that calls the `saveData` function. But we only want to display thet button IF there is a user logged in. 
+
+Modify your `test.html` template with this code. 
+
+!FILENAME www/templates/test/test.html
+```html 
+
+```
+
+
 
 
 
