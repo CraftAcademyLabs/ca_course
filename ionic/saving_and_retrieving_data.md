@@ -22,6 +22,14 @@ $ touch www/js/services.js
   <script src="js/controllers.js"></script>
   <script src="js/services.js"></script>
 ```
+Since we have not used any services of factories before in app, we need to add that to our main module in `app.js`
+
+!FILENAME www/js/app.js
+```javascript
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ng-token-auth'])
+// ...
+
+```
 
 Okay, so now we need to create our Factory.
 
