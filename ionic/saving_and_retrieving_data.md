@@ -3,11 +3,26 @@ At this stage we have a possibility to interact with the back and login to the m
 
 We have an API endpoint in our beck-end that can take a POST and a GET request, right? Let's build a service that will give us a way to access it. 
 
-Create a new file in the `www/js` folder and call it `services.js` 
+We will use [`ngResource`](https://docs.angularjs.org/api/ngResource) to access out API and perform out requests. 
 
+```
+$ bower install angular-resource --save
+```
+
+Create a new file in the `www/js` folder and call it `services.js` 
 ```
 $ touch www/js/services.js
 ```
+
+That's where we will add our Factory.
+
+!FILENAME www/js/services.js
+
+```javascript
+
+```
+
+
 
 
 
