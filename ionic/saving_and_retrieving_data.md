@@ -22,11 +22,11 @@ $ touch www/js/services.js
   <script src="js/controllers.js"></script>
   <script src="js/services.js"></script>
 ```
-Since we have not used any services of factories before in app, we need to add that to our main module in `app.js`
+Since we have not used any services of factories before in app, we need to add that to our main module in `app.js`. We also need to make sure that `ngResource` is included. 
 
 !FILENAME www/js/app.js
 ```javascript
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ng-token-auth'])
+angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ng-token-auth', 'ngResource'])
 // ...
 
 ```
