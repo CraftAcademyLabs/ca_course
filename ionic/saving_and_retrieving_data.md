@@ -114,6 +114,25 @@ If you try this out in the browser while having the console open, you'll see tha
 
 So, let's make this work.
 
+At this stage you need to go back to your Rails application for a moment. We need to make an addition to `config/application.rb` in order to make the API include authorization credentials in the response headers. 
+
+!FILENAME `config/application.rb
+```ruby
+# ...
+config.middleware.insert_before 0, 'Rack::Cors' do
+  allow do
+    origins '*'
+    #resource '*', headers: :any, methods: [:get, :put, :delete, :post, :options]
+    resource '*',
+             headers: :any,
+             methods: [:get, :post, :delete, :put, :options, :head],
+             expose: %w(access-token expiry token-type uid client),
+             max_age: 0
+  end
+end
+#...
+```
+
 The reason we are getting a 401 on the request is becouse we are not sending any credentials with the request and thus we can not get authorized.
 
 Let's make sure that we get the necessary info stored in the `currentUser` object. We need to modify the way we store that information.
