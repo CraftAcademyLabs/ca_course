@@ -219,3 +219,51 @@ We also want to add an item to the side menu but condition it's display to a sta
   Saved results
 </ion-item>
 ```
+
+Next we want to update the `retrieveData()` function in `PerformanceCtrl`. What we want this function to do is to get the data using the `performaceData` factory and open the `data.html` while passing in the data to the view (as `savedDataCollection`). 
+
+!FILENAME  www/js/controllers.js
+```javascript
+//...
+$scope.retrieveData = function(){
+  $ionicLoading.show({
+    template: 'Retrieving data...'
+  });
+  performaceData.query({}, function(response){
+    $state.go('app.data', {savedDataCollection: response.entries});
+    $ionicLoading.hide();
+  }, function(error){
+    $ionicLoading.hide();
+    $scope.showAlert('Failure', error.statusText);
+  })
+};
+//...
+```
+
+We also need to create a new controller to handle the view. When the view is entred, we want to retrieve the data sent in params and save it in the current `$scope`.
+
+!FILENAME www/js/controllers.js
+```javascript 
+//...
+.controller('DataCtrl', function($scope, $stateParams){
+  $scope.$on('$ionicView.enter', function () {
+    $scope.savedDataCollection = $stateParams.savedDataCollection;
+  });
+})
+//...
+```
+
+Finally we can update our template and display the data. The way we do that is to iterate through the array of entries and condition the display IF there is a `message` key in the `data` attribute (remember the way we store the results in our database?). 
+
+!FILENAME www/templates/test/data.html
+```html
+<ion-view title="Historical Data">
+  <ion-content>
+    <div ng-if="savedDataCollection" ng-repeat="entry in savedDataCollection ">
+      <p ng-if="entry.data.message">{{entry.data.message}} - {{entry.created_at | date:'mediumDate'}}</p>
+    </div>
+  </ion-content>
+</ion-view>
+
+
+```
