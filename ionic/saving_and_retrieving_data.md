@@ -42,12 +42,8 @@ Okay, so now we need to create our Factory.
 ```javascript
 angular.module('starter.services', [])
 
-.factory('performaceData', function($resource, API_URL){
-  return $resource(API_URL + '/data', {}, {
-    all: {
-      headers: {HTTP_ACCEPT: 'application/json'}
-    }
-  });
+.factory('performaceData', function ($resource, API_URL) {
+  return $resource(API_URL + '/data', {});
 });
 ```
 
@@ -129,6 +125,49 @@ $rootScope.$on('auth:login-success', function (ev, user) {
 });
 
 ```
+
+We also want to add `$ionicLoading, $ionicPopup` to our `PerformanceCtrl`. We will use them those methods to give our user feedback on the requests progress. 
+
+We will also add an `showAlert()` function and refactor our `saveData()` function. Examine the code below to fully understand what it does before you implement it. 
+
+!FILENAME www/js/controllers.js
+```javascript
+//...
+.controller('PerformanceCtrl', function($scope, performaceData, $ionicLoading, $ionicPopup){
+
+  $scope.saveData = function(person){
+    var data = {performance_data: {data: {message: person.cooperMessage}}};
+    $ionicLoading.show({
+      template: 'Saving...'
+    });
+    performaceData.save(data, function(response){
+      $ionicLoading.hide();
+      $scope.showAlert('Sucess', response.message);
+    }, function(error){
+      $ionicLoading.hide();
+      $scope.showAlert('Failure', error.statusText);
+    })
+  };
+
+  $scope.retrieveData = function(){
+  //Still not implemented...
+  };
+
+  $scope.showAlert = function(message, content) {
+    var alertPopup = $ionicPopup.alert({
+      title: message,
+      template: content
+    });
+    alertPopup.then(function(res) {
+    // Place some action here if needed...
+    });
+  };
+})
+//...
+
+```
+
+
 
 
 
