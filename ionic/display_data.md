@@ -58,6 +58,74 @@ function getCount(arr, value){
 }
 ```
 
+All in all, the `DataCtrl` should look something like this.
+
+!FILENAME
+```javascript
+.controller('DataCtrl', function ($scope, $stateParams) {
+  $scope.$on('$ionicView.enter', function () {
+    $scope.savedDataCollection = $stateParams.savedDataCollection;
+    $scope.labels = getLabels($scope.savedDataCollection);
+    $scope.data = [];
+    angular.forEach($scope.labels, function(label){
+      $scope.data.push(getCount($scope.savedDataCollection, label));
+    });
+    $scope.radardata = [$scope.data];
+  });
+
+
+  function getLabels(collection) {
+    var uniqueLabels = [];
+    for (i = 0; i < collection.length; i++) {
+      if (collection[i].data.message && uniqueLabels.indexOf(collection[i].data.message) === -1) {
+        uniqueLabels.push(collection[i].data.message);
+      }
+    }
+    return uniqueLabels;
+  }
+
+  function getCount(arr, value){
+    var count = 0;
+    angular.forEach(arr, function(entry){
+      count += entry.data.message == value ? 1 : 0;
+    });
+    return count;
+  }
+})
+```
+
+Finally let's turn out attention to the view template. 
+
+We want to add markup for the two charts and clear up the data display. 
+
+!FILENAME
+```html
+<ion-view title="Historical Data">
+  <ion-content>
+    <div class="row">
+      <div class="col">
+        <h5>Saved data for {{currentUser.name || currentUser.email}}</h5>
+        <canvas ng-if="savedDataCollection" id="doughnut" class="chart chart-doughnut"
+                chart-data="data" chart-labels="labels" legend="true">
+        </canvas>
+
+        <canvas ng-if="savedDataCollection" id="radar" class="chart chart-radar"
+                chart-data="radardata" chart-labels="labels">
+        </canvas>
+
+        <ion-list>
+          <ion-item ng-repeat="entry in savedDataCollection " ng-if="savedDataCollection && entry.data.message">
+            <span>{{entry.data.message}} - {{entry.created_at | date:'mediumDate'}}</span>
+          </ion-item>
+        </ion-list>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>
+```
+
+
+
 
 
 
