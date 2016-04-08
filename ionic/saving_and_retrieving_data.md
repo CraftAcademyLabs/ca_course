@@ -16,12 +16,15 @@ $ touch www/js/services.js
 ```
 !FILENAME www/index.html
 ```html
-  <script src="lib/angular-resource/angular-resource.js"></script>
-  <!-- your app's js -->
-  <script src="js/cooper.js"></script>
-  <script src="js/app.js"></script>
-  <script src="js/controllers.js"></script>
-  <script src="js/services.js"></script>
+<!-- ionic/angularjs js -->
+/...
+<script src="lib/angular-resource/angular-resource.js"></script>
+/...
+<!-- your app's js -->
+<script src="js/cooper.js"></script>
+<script src="js/app.js"></script>
+<script src="js/controllers.js"></script>
+<script src="js/services.js"></script>
 ```
 Since we have not used any services of factories before in app, we need to add that to our main module in `app.js`. We also need to make sure that `ngResource` is included. 
 
