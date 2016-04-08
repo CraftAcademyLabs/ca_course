@@ -59,11 +59,13 @@ Include `ng-token-auth` in your module's dependencies and add a basic configurat
 !FILENAME www/js/app.js
 ```javascript
 angular.module('starter', ['ionic', 'starter.controllers', 'ng-token-auth'])
-    .config(function($authProvider) {
-        $authProvider.configure({
-            apiUrl: 'https://ca-cooper-api.herokuapp.com/api/v1/'
-        });
-    })
+    .constant('API_URL', 'https://ca-cooper-api.herokuapp.com/api/v1')
+
+  .config(function ($authProvider, API_URL) {
+    $authProvider.configure({
+      apiUrl: API_URL
+    });
+  })
 ```
 
 In `controllers.js` `AppCtrl` locate the `doLogin()` method.
