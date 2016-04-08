@@ -75,15 +75,23 @@ Next, you need to create a `.gitignore` file. That file is used to keep informat
 
 ```
 $ touch .gitignore
+```
+Add at this to that file.
 
 !FILENAME .gitignore
 ```
-Add at this to that file.
-```
 .DS_Store
 ```
+`.DS_Store` (Desktop Services Store) is a OSx file that stores custom attributes of its containing folder, such as the position of icons or the choice of a background image. We don't want to track those files with git.
 
-`.DS_Store`(Desktop Services Store) is a file that stores custom attributes of its containing folder, such as the position of icons or the choice of a background image. We don't want to track those files with git.
+Now, perform the following steps.
+
+```
+$ git remote add origin <your git repo url>
+$ git add . 
+$ git commit -am "<your message>"
+$ git push origin master
+```
 
 
 
