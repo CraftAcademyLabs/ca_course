@@ -13,6 +13,7 @@ As always, make sure to include the library in your `intex.html`.
 ```html
 <!-- ionic/angularjs js -->
 //...
+<script src="lib/Chart.js/Chart.js"></script>
 <script src="lib/angular-chart.js/dist/angular-chart.js"></script>
 
 ```
