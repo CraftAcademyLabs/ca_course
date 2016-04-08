@@ -145,10 +145,9 @@ Localize the `'auth:login-success'` function in our `AppCtrl`. We will make a ch
 $rootScope.$on('auth:login-success', function (ev, user) {
   $scope.currentUser = angular.extend(user, $auth.retrieveData('auth_headers'));
 });
-
 ```
 
-With this setup you should be able to make the POST request and save your data.
+With this setup we should be able to make the POST request and save our data.
 
 We also want to add `$ionicLoading, $ionicPopup` to our `PerformanceCtrl`. We will use them those methods to give our user feedback on the requests progress.
 
@@ -193,11 +192,11 @@ We will also add an `showAlert()` function and refactor our `saveData()` functio
 
 ###Display data
 
-Before we start retrieving any historical data, let's create a raute and a template for showcasing it. 
+Before we start retrieving any historical data, let's create a route and a view template for showcasing it. 
 
 First, we start with defining a route in our `www/js/app.js` file.
 
-!FILENAME 
+!FILENAME www/js/app.js
 ```javascript
 .state('app.data', {
   url: '/data',
@@ -246,7 +245,7 @@ We also want to add an item to the side menu but condition it's display to a sta
 //...
 ```
 
-Next we want to update the `retrieveData()` function in `PerformanceCtrl`. What we want this function to do is to get the data using the `performaceData` factory and open the `data.html` while passing in the data to the view (as `savedDataCollection`). 
+Next we want to update the `retrieveData()` function in `PerformanceCtrl`. What we want this function to do, is to get the data using the `performaceData` factory and open the `data.html` while passing in the data to the view (as `savedDataCollection`). 
 
 !FILENAME  www/js/controllers.js
 ```javascript
@@ -281,7 +280,7 @@ We also need to create a new controller to handle the view. When the view is ent
 
 Finally we can update our template and display the data. The way we do that is to iterate through the array of entries and condition the display IF there is a `message` key in the `data` attribute (remember the way we store the results in our database?).
 
-We also need to format the date - please read the docs for [`date` in AngularJS](https://docs.angularjs.org/api/ng/filter/date)
+We also need to format the date - please read the docs for [`date` in AngularJS](https://docs.angularjs.org/api/ng/filter/date).
 
 !FILENAME www/templates/test/data.html
 ```html
@@ -293,3 +292,5 @@ We also need to format the date - please read the docs for [`date` in AngularJS]
   </ion-content>
 </ion-view>
 ```
+
+That will do it for now. The next challenge is to present the data as charts. That can be interesting...
