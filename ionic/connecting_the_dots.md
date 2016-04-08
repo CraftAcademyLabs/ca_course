@@ -1,12 +1,12 @@
 # Connecting the dots - step 4
 
-It's time to connect the dots and get the two applications to talk to each other. 
+It's time to connect the dots and get the two applications to talk to each other.
 
 First we need to deploy the Rails application to a production server. As usual, we'll be using the simplest solution available.  
 
 Let's create a Heroku application
 ```
-$ heroku create ca-cooper-api 
+$ heroku create ca-cooper-api
   # where 'ca' are your initials
 ```
 To enable features such as static asset serving and logging on Heroku we need to add the `rails_12factor` gem to our `Gemfile`.
@@ -27,7 +27,7 @@ $ heroku addons:create heroku-postgresql
 $ git push heroku master
 $ heroku run rake db:migrate
 ```
-You can manually test the API using Postman by doing a POST request to the registration endpoint. 
+You can manually test the API using Postman by doing a POST request to the registration endpoint.
 
 **As a matter of fact, you need to create at least one user this way in order to move forward.**
 
@@ -35,11 +35,11 @@ You can manually test the API using Postman by doing a POST request to the regis
 And if you try to send the request again, that should fail.
 ![Registration failure](/images/cooper_api_postman_failure.png)
 
-Alright, if that works we should shift our focus to the Ionic application. 
+Alright, if that works we should shift our focus to the Ionic application.
 
 We will be using [ng_token_auth](https://github.com/lynndylanhurley/ng-token-auth) - a token based authentication module for AngularJS that works really well with `devise_token_auth`.
 
-We'll start by installing the library using Bower. Run the install command from your Terminal. 
+We'll start by installing the library using Bower. Run the install command from your Terminal.
 ```
 $ bower install ng-token-auth --save
 ```
@@ -52,18 +52,20 @@ Make sure that `angular-cookie`, and `ng-token-auth` are included in your `index
 <script src="lib/ionic/js/ionic.bundle.js"></script>
 <script src="lib/angular-cookie/angular-cookie.js"></script>
 <script src="lib/ng-token-auth/dist/ng-token-auth.js"></script>
-``` 
+```
 
 Include `ng-token-auth` in your module's dependencies and add a basic configuration.
 
 !FILENAME www/js/app.js
 ```javascript
 angular.module('starter', ['ionic', 'starter.controllers', 'ng-token-auth'])
-    .config(function($authProvider) {
-        $authProvider.configure({
-            apiUrl: 'https://ca-cooper-api.herokuapp.com/api/v1/'
-        });
-    })
+    .constant('API_URL', 'https://ca-cooper-api.herokuapp.com/api/v1')
+
+  .config(function ($authProvider, API_URL) {
+    $authProvider.configure({
+      apiUrl: API_URL
+    });
+  })
 ```
 
 In `controllers.js` `AppCtrl` locate the `doLogin()` method.
@@ -112,7 +114,7 @@ And add a placeholder for display of error messages.
   //...
 ```
 
-We also want to create a `currentUser` object. In the`AppCtrl` add this method to create the `currentUser` on successful authentication. 
+We also want to create a `currentUser` object. In the`AppCtrl` add this method to create the `currentUser` on successful authentication.
 
 !FILENAME www/js/controllers.js
 ```javascript
@@ -134,16 +136,49 @@ And make use of this object on the `about.html` template.
 //...
 ```
 
-At this stage we have a method to login the user. The next step will be to add an interface to create and update users. That is, however, something that we leave up to you. Just a friendly reminder, make sure that you read the [ng_token_auth](https://github.com/lynndylanhurley/ng-token-auth) documentation. Everything you need to know is well documented in the README file of the project. 
+One final touch to enhance the user experience. Sometimes the API endpoint will take some time to respond and the user might be left wondering if his request is actually being processed or not. There is a very simple way to show the user that we are really processing his request by displaying an overlay with some sort of a message. In our case "Logging is..." could do, right?
+
+Ionic provides us with [`$ionicLoading`](http://ionicframework.com/docs/api/service/$ionicLoading/) as a way to display such overlays. Let's imlement it.
+
+Add `$ionicLoading` to the `AppCtrl`.
+
+!FILENAME www/js/controllers.js
+```javascript
+//...
+.controller('AppCtrl', function ($rootScope,
+                                 $scope,
+                                 $ionicModal,
+                                 $timeout,
+                                 $auth,
+                                 $ionicLoading) {
+//...
+```
+
+And update the `doLogin()` function with the following code.
+
+!FILENAME www/js/controllers.js
+```javascript
+//...
+// Perform the login action when the user submits the login form
+  $scope.doLogin = function () {
+    $ionicLoading.show({
+      template: 'Logging in...'
+    });
+    $auth.submitLogin($scope.loginData)
+      .then(function (resp) {
+        // handle success response
+        $ionicLoading.hide();
+        $scope.closeLogin();
+      })
+      .catch(function (error) {
+        $ionicLoading.hide();
+        $scope.errorMessage = error;
+      });
+  };
+//...
+```
+
+With this in place an overlay will be displayed while the app is making the request and hidden when the promise is resolved.
 
 
-
-
-
-
-
-
-
-
-
-
+At this stage we have a method to login the user. The next step will be to add an interface to create and update users. That is, however, something that we leave up to you. Just a friendly reminder, make sure that you read the [ng_token_auth](https://github.com/lynndylanhurley/ng-token-auth) documentation. Everything you need to know is well documented in the README file of the project.
