@@ -240,7 +240,7 @@ $scope.retrieveData = function(){
 //...
 ```
 
-We also need to create a new controller to handle the view. When the view is entred, we want to retrieve the data sent in params and save it in the current `$scope`.
+We also need to create a new controller to handle the view. When the view is entered, we want to retrieve the data sent in params and save it in the current `$scope`.
 
 !FILENAME www/js/controllers.js
 ```javascript 
