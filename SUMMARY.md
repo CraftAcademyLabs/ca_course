@@ -5,6 +5,7 @@
 * [ATM Challenge - Ruby basics](atm_challenge/atm_challenge.md)
    * [Step 1](atm_challenge/step1.md)
    * [Step 2](atm_challenge/step_2.md)
+   * Step 3
 * [BMI Challenge - JavaScript basics](bmi_challenge/bmi_challenge.md)
    * [Jasmine - Set up](bmi_challenge/jasmine_set_up.md)
    * [First tests](bmi_challenge/step_1_first_tests.md)
