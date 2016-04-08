@@ -127,6 +127,7 @@ We want to add markup for the two charts and clear up the data display.
 If you run the application now it should look something like this.
 
 ![Cooper Client - Final UI](/images/cooper_client_final.png)
+That looks pretty cool, right? ;-)
 
 
 
