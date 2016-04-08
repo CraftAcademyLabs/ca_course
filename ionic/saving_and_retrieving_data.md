@@ -26,7 +26,7 @@ $ touch www/js/services.js
 <script src="js/controllers.js"></script>
 <script src="js/services.js"></script>
 ```
-Since we have not used any services of factories before in app, we need to add that to our main module in `app.js`. We also need to make sure that `ngResource` is included. 
+Since we have not used any services of factories before in this application, we need to add our services to our main module in `app.js`. We also need to make sure that `ngResource` is included. 
 
 !FILENAME www/js/app.js
 ```javascript
@@ -126,8 +126,10 @@ $rootScope.$on('auth:login-success', function (ev, user) {
 
 ```
 
-We also want to add `$ionicLoading, $ionicPopup` to our `PerformanceCtrl`. We will use them those methods to give our user feedback on the requests progress. 
+With this setup you should be able to make the POST request and save your data.
 
+We also want to add `$ionicLoading, $ionicPopup` to our `PerformanceCtrl`. We will use them those methods to give our user feedback on the requests progress. 
+ 
 We will also add an `showAlert()` function and refactor our `saveData()` function. Examine the code below to fully understand what it does before you implement it. 
 
 !FILENAME www/js/controllers.js
@@ -166,6 +168,8 @@ We will also add an `showAlert()` function and refactor our `saveData()` functio
 //...
 
 ```
+
+
 
 
 
