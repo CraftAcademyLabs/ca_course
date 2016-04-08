@@ -211,13 +211,19 @@ For starters, let's just add the basic markup before we start adding any content
 
 ```
 
-We also want to add an item to the side menu but condition it's display to a state where there is a `currentUser` signed in. 
+We also want to add an item to the side menu but condition it's display to a state where there is a `currentUser` signed in. We also want to get rid of the `Login` item IF there is a signed in user, right? 
 
 !FILENAME
 ```html
+//...
+<ion-item ng-if="!currentUser" menu-close ng-click="login()">
+  Login
+</ion-item>
+//...
 <ion-item ng-if="currentUser" menu-close ng-controller="PerformanceCtrl" ng-click="retrieveData()">
   Saved results
 </ion-item>
+//...
 ```
 
 Next we want to update the `retrieveData()` function in `PerformanceCtrl`. What we want this function to do is to get the data using the `performaceData` factory and open the `data.html` while passing in the data to the view (as `savedDataCollection`). 
