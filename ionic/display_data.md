@@ -18,14 +18,21 @@ As always, make sure to include the library in your `intex.html`.
 
 ```
 
-And also, make it available to your app by adding it to the main module.
+And add the css file to the `index.html` file as well.
+
+!FILENAME www/index.html
+```html
+<link rel="stylesheet" href="lib/angular-chart.js/dist/angular-chart.css">
+```
+
+And also, make `chart.js` available to your app by adding it to the main module.
 
 !FILENAME www/js/app.js
 ```javascript
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ng-token-auth', 'ngResource', 'chart.js'])
 ```
 
-Okay, here comes the tricky part. We want to display two charts on our view. One Doughnut Chart and one Radar Chart. The tricky part is that we only want to display labels for values that are actually stored in the collection of historical data. Meaning for instance that if a user has stored several "Average" and "Above Averege" entries, then we should only show those two labels with a value. Nothing else. Same thing goes for both chart types. 
+Okay, here comes the tricky part. We want to display two charts on our view. One Doughnut Chart and one Radar Chart. The tricky part is that we only want to display labels for values that are actually stored in the collection of historical data. Meaning for instance that if a user has stored several "Average" and "Above Averege" entries, then we should only show those two labels with a value. Nothing else. Same thing goes for both chart types.
 
 So what we need to do is to go through the `savedDataCollection` and get unique values from `data.message` and store them in an array. This is the responsibility of the following function.
 
@@ -42,7 +49,7 @@ function getLabels(collection) {
 ```
 We are going to store that array in `$scope.labels`. 
 
-The second thing we need to do is to get the value of how many times each message i present in the collection. For thet we add another function that we use when iteratin over `$scope.labels` and store the results in `$scope.data` 
+The second thing we need to do is to get the value of how many times each message i present in the collection. For that we add another function that we use when iterating over `$scope.labels` and store the results in `$scope.data`
 
 ```javascript
 angular.forEach($scope.labels, function(label){
