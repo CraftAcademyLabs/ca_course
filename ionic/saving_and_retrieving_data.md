@@ -112,7 +112,23 @@ If you try this out in the browser while having the console open, you'll see tha
 
 ![](/images/cooper_api_error_1.png)
 
-Well, that's a bit of a problem but we'll solve it. At least we know that the API endpoint is within our reach. That IS good progress!
+**Well, that's a bit of a problem but we'll solve it. At least we know that the API endpoint is within our reach. That IS good progress!**
+
+So, let's make this work.
+
+The reason we are getting a 401 on the request is becouse we are not sending any credentials with the request and thus we can not get authorized. 
+
+Let's make sure that we get the necessary info stored in the `currentUser` object. We need to modify the way we store that information. 
+
+Localize the `'auth:login-success'` function in our `AppCtrl`. We will make a change to store access-token, uid, etc by grabbing that info from the response headers. 
+
+!FILENAME www/js/controllers.js
+```javascript
+$rootScope.$on('auth:login-success', function (ev, user) {
+  $scope.currentUser = angular.extend(user, $auth.retrieveData('auth_headers'));
+});
+
+```
 
 
 
