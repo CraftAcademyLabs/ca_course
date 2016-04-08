@@ -170,3 +170,40 @@ We will also add an `showAlert()` function and refactor our `saveData()` functio
 //...
 
 ```
+
+###Display data
+
+Before we start retrieving any historical data, let's create a raute and a template for showcasing it. 
+
+First, we start with defining a route in our `www/js/app.js` file.
+
+!FILENAME 
+```javascript
+.state('app.data', {
+  url: '/data',
+  views: {
+    'menuContent': {
+      templateUrl: 'templates/test/data.html',
+      controller: 'PerformanceCtrl'
+    }
+  }
+})
+```
+
+Next step is to create a new template. 
+
+```
+$ touch www/templates/test/data.html
+```
+
+For starters, let's just add the basic markup before we start adding any content.
+
+!FILENAME www/templates/test/data.html
+```html 
+<ion-view title="Historical Data">
+  <ion-content>
+    
+  </ion-content>
+</ion-view>
+
+```
