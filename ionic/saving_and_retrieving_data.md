@@ -253,7 +253,9 @@ We also need to create a new controller to handle the view. When the view is ent
 //...
 ```
 
-Finally we can update our template and display the data. The way we do that is to iterate through the array of entries and condition the display IF there is a `message` key in the `data` attribute (remember the way we store the results in our database?). 
+Finally we can update our template and display the data. The way we do that is to iterate through the array of entries and condition the display IF there is a `message` key in the `data` attribute (remember the way we store the results in our database?).
+
+We also need to format the date - please read the docs for [`date` in AngularJS](https://docs.angularjs.org/api/ng/filter/date)
 
 !FILENAME www/templates/test/data.html
 ```html
@@ -264,6 +266,4 @@ Finally we can update our template and display the data. The way we do that is t
     </div>
   </ion-content>
 </ion-view>
-
-
 ```
