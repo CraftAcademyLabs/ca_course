@@ -16,6 +16,7 @@ $ touch www/js/services.js
 ```
 !FILENAME www/index.html
 ```html
+  <script src="lib/angular-resource/angular-resource.js"></script>
   <!-- your app's js -->
   <script src="js/cooper.js"></script>
   <script src="js/app.js"></script>
