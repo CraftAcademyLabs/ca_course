@@ -3,6 +3,7 @@
 We will use [Angular Chart](http://jtblin.github.io/angular-chart.js/) to display users historical data. 
 
 ```
+$ bower install Chart.js --save
 $ bower install angular-chart.js --save
 ```
 
