@@ -161,3 +161,78 @@ it 'balance is reduced at withdraw' do
   expect(subject.balance).to eq 950
 end
 ```
+
+In my spec file that `it` block starts at line 7. What I can do is to run JUST that particular block, instead of the entire spec file. It might seem trivial right now, but further down the road we'll have dozens of specs and trust me, you don't want to keep running them all at once. 
+
+```
+$ rspec spec/atm_spec.rb:7
+Run options: include {:locations=>{"./spec/atm_spec.rb"=>[7]}}
+
+Atm
+  balance is reduced at withdraw (FAILED - 1)
+
+Failures:
+
+  1) Atm balance is reduced at withdraw
+     Failure/Error: subject.withdraw 50
+     
+     NoMethodError:
+       undefined method `withdraw' for #<Atm:0x007fac30e79378 @balance=1000>
+...
+```
+Shoots! New error. Yes, yes, yes. That is supposed to happen! ;-)
+
+So, we have an `undefined method 'withdraw'`. Alright. let's create the `withdraw` method and let it take one argument - the amount we want to withdraw from the Atm. 
+
+!FILENAME lib/atm.rb
+```ruby
+class Atm
+  attr_accessor :balance
+  
+  def initialize
+    @balance = 1000
+  end
+  
+  def withdraw(amount) 
+  end
+end
+```
+
+Run RSpec just to see another error message. 
+
+```
+$ rspec spec/atm_spec.rb:7
+Run options: include {:locations=>{"./spec/atm_spec.rb"=>[7]}}
+
+Atm
+  balance is reduced at withdraw (FAILED - 1)
+
+Failures:
+
+  1) Atm balance is reduced at withdraw
+     Failure/Error: expect(subject.balance).to eq 950
+     
+       expected: 950
+            got: 1000
+...
+```
+
+Okay, I think you get the point now. We don't have to follow the error messages in such detail from now on.
+
+Let's add some functionality to the `withdraw` method that actually adjust the `balance`. 
+
+!FILENAME lib/atm.rb
+```ruby
+class Atm
+  #...
+  
+  def withdraw(amount) 
+    @balance -= amount
+  end
+end
+```
+
+And when you run RSpec again, the test passes. Another one bites the dust!
+
+
+
