@@ -114,9 +114,29 @@ If you try this out in the browser while having the console open, you'll see tha
 
 So, let's make this work.
 
-The reason we are getting a 401 on the request is becouse we are not sending any credentials with the request and thus we can not get authorized.
+The reason we are getting a 401 on the request is because we are not sending any credentials with the request and thus we can not get authorized.
 
-Let's make sure that we get the necessary info stored in the `currentUser` object. We need to modify the way we store that information.
+Let's make sure that we get the necessary info stored in the `currentUser` object. 
+
+At this stage you need to go back to your Rails application for a moment. We need to make an addition to `config/application.rb` in order to make the API include authorization credentials in the response headers. 
+
+!FILENAME `config/application.rb
+```ruby
+# ...
+config.middleware.insert_before 0, 'Rack::Cors' do
+  allow do
+    origins '*'
+    #resource '*', headers: :any, methods: [:get, :put, :delete, :post, :options]
+    resource '*',
+             headers: :any,
+             methods: [:get, :post, :delete, :put, :options, :head],
+             expose: %w(access-token expiry token-type uid client),
+             max_age: 0
+  end
+end
+#...
+```
+Now we'll be getting the right response from the back-end application. We need to modify the way we store that information.
 
 Localize the `'auth:login-success'` function in our `AppCtrl`. We will make a change to store access-token, uid, etc by grabbing that info from the response headers.
 
@@ -125,10 +145,9 @@ Localize the `'auth:login-success'` function in our `AppCtrl`. We will make a ch
 $rootScope.$on('auth:login-success', function (ev, user) {
   $scope.currentUser = angular.extend(user, $auth.retrieveData('auth_headers'));
 });
-
 ```
 
-With this setup you should be able to make the POST request and save your data.
+With this setup we should be able to make the POST request and save our data.
 
 We also want to add `$ionicLoading, $ionicPopup` to our `PerformanceCtrl`. We will use them those methods to give our user feedback on the requests progress.
 
@@ -170,3 +189,108 @@ We will also add an `showAlert()` function and refactor our `saveData()` functio
 //...
 
 ```
+
+###Display data
+
+Before we start retrieving any historical data, let's create a route and a view template for showcasing it. 
+
+First, we start with defining a route in our `www/js/app.js` file.
+
+!FILENAME www/js/app.js
+```javascript
+.state('app.data', {
+  url: '/data',
+  params: {
+    savedDataCollection: {}
+  },
+  views: {
+    'menuContent': {
+      templateUrl: 'templates/test/data.html',
+      controller: 'DataCtrl'
+    }
+  }
+})
+```
+
+Next step is to create a new template. 
+
+```
+$ touch www/templates/test/data.html
+```
+
+For starters, let's just add the basic markup before we start adding any content.
+
+!FILENAME www/templates/test/data.html
+```html 
+<ion-view title="Historical Data">
+  <ion-content>
+    
+  </ion-content>
+</ion-view>
+
+```
+
+We also want to add an item to the side menu but condition it's display to a state where there is a `currentUser` signed in. We also want to get rid of the `Login` item IF there is a signed in user, right? 
+
+!FILENAME
+```html
+//...
+<ion-item ng-if="!currentUser" menu-close ng-click="login()">
+  Login
+</ion-item>
+//...
+<ion-item ng-if="currentUser" menu-close ng-controller="PerformanceCtrl" ng-click="retrieveData()">
+  Saved results
+</ion-item>
+//...
+```
+
+Next we want to update the `retrieveData()` function in `PerformanceCtrl`. What we want this function to do, is to get the data using the `performaceData` factory and open the `data.html` while passing in the data to the view (as `savedDataCollection`). 
+
+!FILENAME  www/js/controllers.js
+```javascript
+//...
+$scope.retrieveData = function(){
+  $ionicLoading.show({
+    template: 'Retrieving data...'
+  });
+  performaceData.query({}, function(response){
+    $state.go('app.data', {savedDataCollection: response.entries});
+    $ionicLoading.hide();
+  }, function(error){
+    $ionicLoading.hide();
+    $scope.showAlert('Failure', error.statusText);
+  })
+};
+//...
+```
+
+We also need to create a new controller to handle the view. When the view is entered, we want to retrieve the data sent in params and save it in the current `$scope`.
+
+!FILENAME www/js/controllers.js
+```javascript 
+//...
+.controller('DataCtrl', function($scope, $stateParams){
+  $scope.$on('$ionicView.enter', function () {
+    $scope.savedDataCollection = $stateParams.savedDataCollection;
+  });
+})
+//...
+```
+
+Finally we can update our template and display the data. The way we do that is to iterate through the array of entries and condition the display IF there is a `message` key in the `data` attribute (remember the way we store the results in our database?).
+
+We also need to format the date - please read the docs for [`date` in AngularJS](https://docs.angularjs.org/api/ng/filter/date).
+
+!FILENAME www/templates/test/data.html
+```html
+<ion-view title="Historical Data">
+  <ion-content>
+    <div ng-if="savedDataCollection" ng-repeat="entry in savedDataCollection ">
+      <p ng-if="entry.data.message">{{entry.data.message}} - {{entry.created_at | date:'mediumDate'}}</p>
+    </div>
+  </ion-content>
+</ion-view>
+```
+
+That will do it for now. The next challenge is to present the data as charts. That can be interesting...
