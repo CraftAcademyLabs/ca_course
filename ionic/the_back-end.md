@@ -701,6 +701,26 @@ class Api::V1::PerformanceDataController < ApplicationController
   end
 end
 ```
+We also need to update our spec and create a user (using Factory Girl) and sent that users credentials with the request (in headers).  We will use the DeviseTokenAuth method `create_new_auth_token` to generate the necessary credentials. Make sure to use your debugger and break the test at some point to run this command on the user object manually to see it in action. 
+
+Anyway, your spec should look something like this.
+
+!FILENAME spec/requests/api/v1/performance_data_spec.rb
+```ruby
+# [...]
+let(:user) { FactoryGirl.create(:user) }
+let(:headers) { {HTTP_ACCEPT: 'application/json'} }
+let(:credentials) { user.create_new_auth_token }
+
+describe 'POST /api/v1/data/' do
+  it 'creates a data entry' do
+    post '/api/v1/data/', {performance_data: {data: {message: 'Average'}}}, headers.merge!(credentials)
+    entry = PerformanceData.last
+    expect(entry.data).to eq({'message' => 'Average'})
+  end
+end
+# [...]
+```
 
 If you run your specs now, you should not be getting any errors as the `PerformanceData` entry is connected to a `User` and no validation errors should be present. 
 
