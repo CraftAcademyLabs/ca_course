@@ -19,6 +19,19 @@ Here are the steps you need to complete at this stage:
 * Make the software accessible in your browsers console
 * **You DON'T need to create a UI at this point.**
 
+You need to create a `Person` object with a minimum of 2 attributes in order to be able to make the calculation - **gender** and **age** are required to be present. 
+
+```javascript
+function Person(attr) {
+  this.gender = attr.gender;
+  this.age = attr.age;
+};
+```
+
+Then, you need to add a function that takes the ** distance** of the 12-minute run and makes the calculation and fetches the results depending on **gender**. 
+
+There are several ways to achieve that. If you need some inspiration you can review [this repo](https://github.com/tochman/cooper_js_src) where you'll find two solutions. One using a `case` method and the second one that uses array index and ranges to set the message (written by Raoul). 
+
 
 
 
