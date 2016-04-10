@@ -32,6 +32,8 @@ Then, you need to add a function that takes the ** distance** of the 12-minute r
 
 There are several ways to achieve that. If you need some inspiration you can review [this repo](https://github.com/tochman/cooper_js_src) where you'll find two solutions. One using a `case` method and the second one that uses array index and ranges to set the message (written by Raoul). 
 
+Remember, try to write your own implementation rather than just copying the provided code. It's all about learning. When the course is over, you'll be on your own solving problems.
+
 
 
 
