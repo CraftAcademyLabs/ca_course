@@ -15,9 +15,9 @@ The metric formula accepts height measurements in meters and weight in kilograms
 
 For example, a person who is 183 cm tall is 1.83 m tall (183 cm / 100 = 1.83 m).
 
-Multiply your height by itself.
-Divide your weight in kilograms by the value calculated in step 1.
-The resulting number is your BMI. Compare this BMI value with the weight status table below.
+* Multiply your height by itself.
+* Divide your weight in kilograms by the value calculated in step 1.
+* The resulting number is your BMI. Compare this BMI value with the weight status table below.
 
 #### Imperial Method
 
