@@ -31,10 +31,12 @@ Now we have the right measurements we can use them in the formula.
 
 There are three simple steps for computing BMI with imperial values:
 
-Multiply your weight in pounds by 703.
-Multiply your height in inches by itself
-Divide the figure from step 1 by the figure in step 3.
-The resulting number is your BMI. Compare this BMI value with the weight status table below.
+1. Multiply your weight in pounds by 703.
+2. Multiply your height in inches by itself
+3. Divide the figure from step 1 by the figure in step 2.
+The resulting number is your BMI. 
+
+Compare this BMI value with the weight status table below.
 
 #### BMI Weight Status Categories
 | BMI         	| Weight Status 	|
