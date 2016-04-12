@@ -13,7 +13,6 @@
    * [Web interface](bmi_challenge/step_3_web_interface.md)
    * [Acceptance tests](bmi_challenge/step_4_acceptance_tests.md)
    * [Moving on](bmi_challenge/step_5_moving_on.md)
-   * [Extra challenge](bmi_challenge/step_5_moving_on.md)
 * [Library challenge - Advanced Ruby](library_challenge/library_challenge.md)
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
@@ -35,6 +34,7 @@
    * [Connecting the dots](ionic/connecting_the_dots.md)
    * [Saving and retrieving data](ionic/saving_and_retrieving_data.md)
    * [Results tables](ionic/results_tables.md)
+   * Display charts
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 
