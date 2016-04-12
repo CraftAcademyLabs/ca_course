@@ -49,7 +49,7 @@ function getLabels(collection) {
 ```
 We are going to store that array in `$scope.labels`.
 
-The second thing we need to do is to get the value of how many times each message i present in the collection. For that we add another function that we use when iterating over `$scope.labels` and store the results in `$scope.data`
+The second thing we need to do is to get the value of how many times each message is present in the collection. For that we add another function that we use when iterating over `$scope.labels` and store the results in `$scope.data`
 
 
 ```javascript
@@ -102,7 +102,7 @@ All in all, the `DataCtrl` should look something like this.
 })
 ```
 
-Finally let's turn out attention to the view template.
+Finally, let's turn out attention to the view template.
 
 We want to add markup for the two charts and clear up the data display.
 
@@ -136,3 +136,5 @@ If you run the application now it should look something like this.
 
 ![Cooper Client - Final UI](/images/cooper_client_final.png)
 That looks pretty cool, right? ;-)
+
+There is of course many more charts that you can display on this view if you like. Especially if you make the choice of storing not only the `cooperMessage` but also the distance for each entry.
