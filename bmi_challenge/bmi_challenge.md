@@ -15,9 +15,9 @@ The metric formula accepts height measurements in meters and weight in kilograms
 
 For example, a person who is 183 cm tall is 1.83 m tall (183 cm / 100 = 1.83 m).
 
-Multiply your height by itself.
-Divide your weight in kilograms by the value calculated in step 1.
-The resulting number is your BMI. Compare this BMI value with the weight status table below.
+1. Multiply your height by itself.
+2. Divide your weight in kilograms by the value calculated in step 1.
+3. The resulting number is your BMI. Compare this BMI value with the weight status table below.
 
 #### Imperial Method
 
@@ -31,10 +31,12 @@ Now we have the right measurements we can use them in the formula.
 
 There are three simple steps for computing BMI with imperial values:
 
-Multiply your weight in pounds by 703.
-Multiply your height in inches by itself
-Divide the figure from step 1 by the figure in step 3.
-The resulting number is your BMI. Compare this BMI value with the weight status table below.
+1. Multiply your weight in pounds by 703.
+2. Multiply your height in inches by itself
+3. Divide the figure from step 1 by the figure in step 2.
+The resulting number is your BMI. 
+
+Compare this BMI value with the weight status table below.
 
 #### BMI Weight Status Categories
 | BMI         	| Weight Status 	|
@@ -43,3 +45,46 @@ The resulting number is your BMI. Compare this BMI value with the weight status 
 | 18.5 - 24.9 	| Normal        	|
 | 25 - 29.9   	| Overweight    	|
 | Over 30.0   	| Obese         	|
+
+
+Since you already know some ruby, here's the implementation of the Person class with a module that calculates BMI using the metric method. We enclose it here for referance only, going over that code might help you get started with your JavaScript code.
+
+```ruby
+class Person
+  attr_accessor :bmi_value, :bmi_message, :weight, :height
+  
+  def initialize(options={})
+    @weight = options[:weight]
+    @height = options[:height]
+  end
+  
+  def calculate_bmi_met
+    results = BMICalculator.metric_bmi(self)
+  end
+end
+
+module BMICalculator
+  def self.metric_bmi(object)
+    weight = object.weight.to_f
+    height = object.height.to_f
+    
+    if weight > 0 && height > 0
+      final_bmi = weight / (height / 100 * height / 100)
+      object.bmi_value =  final_bmi.round(2)
+      set_bmi_message(object)
+    end
+  end
+  
+  def self.set_bmi_message(object)
+    if object.bmi_value < 18.5
+      object.bmi_message = "Underweight"
+    elsif object.bmi_value > 18.5 && object.bmi_value < 25
+      object.bmi_message = "Normal"
+    elsif object.bmi_value > 25 && object.bmi_value < 30
+      object.bmi_message = "Overweight" 
+    else object.bmi_value > 30
+      object.bmi_message = "Obese" 
+    end 
+  end
+end
+```
