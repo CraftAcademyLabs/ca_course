@@ -1,4 +1,4 @@
-# Display data - step 7
+# Display charts - step 7
 
 We will use [Angular Chart](http://jtblin.github.io/angular-chart.js/) to display users historical data.
 
