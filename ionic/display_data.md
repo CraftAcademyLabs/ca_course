@@ -49,15 +49,8 @@ function getLabels(collection) {
 ```
 We are going to store that array in `$scope.labels`.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 The second thing we need to do is to get the value of how many times each message i present in the collection. For that we add another function that we use when iterating over `$scope.labels` and store the results in `$scope.data`
-=======
-The second thing we need to do is to get the value of how many times each message i present in the collection. For that we add another function that we use when iterating over `$scope.labels` and store the results in `$scope.data`
->>>>>>> bd161c0... Update ionic/display_data.md
-=======
-The second thing we need to do is to get the value of how many times each message i present in the collection. For that we add another function that we use when iterating over `$scope.labels` and store the results in `$scope.data`
->>>>>>> 7eade8a... Cooper charts - small fixes (#32)
+
 
 ```javascript
 angular.forEach($scope.labels, function(label){
