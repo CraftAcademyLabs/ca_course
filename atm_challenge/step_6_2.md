@@ -69,6 +69,30 @@ subject.withdraw(50, '1234', account)
 [...]
 ```
 
+We also need to change our `class_double` we are using for `account`. 
+
+!FILENAME spec/atm_spec.rb
+```ruby
+[...]
+let(:account) { class_double('Account', pin_code: '1234') }
+[...]
+```
+
+Okay, make sure that all the tests you have written up until now are passing before you move on. 
+
+Next, introduce this test.
+
+!FILENAME spec/atm_spec.rb
+```ruby
+it 'reject withdraw if pin is wrong' do
+  output = { status: false, message: 'wrong_pin', date: Date.today }
+  expect(subject.withdraw(50, 9999, account)).to eq output
+end
+```
+
+
+
+
 
 
 
