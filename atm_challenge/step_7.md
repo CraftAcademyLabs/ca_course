@@ -135,6 +135,8 @@ end
 [...]
 ```
 
+With this we are closing to the end of the line with the Atm class. 
+
 
 
 
