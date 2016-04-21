@@ -1,12 +1,12 @@
 ## Step 7 - Cash is King
 
-Yeah, remember when we kind of skipped adding bills to our successful output? We can't ignore that requirement any linger. After all, the cash is the reason we use Atm's.
+Yeah, remember when we kind of skipped adding bills to our successful output? We can't ignore that requirement any longer. After all, the cash is the reason we use Atm's.
 
-A prat of the output our program i supposed to return on successful withdrawal is an array of bills. We know that the Atm is supposed to hold 5, 10 & 20$ bills, right? 
+A part of the output our program i supposed to return on successful withdrawal, is an array of bills. We also know that the Atm holds 5, 10 & 20$ bills, right? 
 
-We also know that one of the conditions for a successful transaction is that the amount a user can withdraw must be divisible by 5. 
+Another thing we know is that one of the conditions for a successful transaction is that the amount a user can withdraw is divisible by 5. 
 
-Knowing this we can build a method that tells us what bills we will get from the Atm. 
+Knowing all this, we can build a method that tells us what bills we will get from the Atm. 
 
 Let's try some stuff out in irb. **As always, read the comments as carefully as anything else in this documentation.**
 
