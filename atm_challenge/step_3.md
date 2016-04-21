@@ -115,8 +115,24 @@ def withdraw(amount, account)
   end
 end
 ```
+Run your specs again. 
 
-Note that your first spec, the one that was passing just a moment ago is failing now. The error message tells you that you have passed in 1 arbument but the method expects 2. Why is that? 
+Note that your first spec, the one that was passing just a moment ago is failing now. The error message tells you that you have passed in 1 argument but the method expects 2. Why is that? 
+
+Well, we have modified the `withdraw` method since we wrote that first spec. Not the method is expecting the `account` object as well as the amount we want to withdraw to be passed in as arguments. So we need to modify that spec and add account as an argument. (See the modified `expect` statement below). 
+
+!FILENAME spec/atm_spec.rb
+```ruby
+[...]
+it 'funds are reduced at withdraw' do
+  subject.withdraw(50, account)
+  expect(subject.funds).to eq 950
+end
+[...]
+```
+
+**Now, everything should go green when you run your tests.**
+
 
 
 
