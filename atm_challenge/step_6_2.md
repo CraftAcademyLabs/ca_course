@@ -85,8 +85,8 @@ Next, introduce this test.
 !FILENAME spec/atm_spec.rb
 ```ruby
 it 'reject withdraw if pin is wrong' do
-  output = { status: false, message: 'wrong_pin', date: Date.today }
-  expect(subject.withdraw(50, 9999, account)).to eq output
+  expected_output = { status: false, message: 'wrong pin', date: Date.today }
+  expect(subject.withdraw(50, 9999, account)).to eq expected_output
 end
 ```
 
@@ -98,8 +98,8 @@ And implement a new `when` in the `withdraw` method.
 def withdraw(amount, account)
   case
   [...]
-  when incorrect_pin?(pin_code, account.pin) then
-    { status: true, message: 'wrong pin', date: Date.today }
+  when incorrect_pin?(pin_code, account.pin_code) then
+    { status: false, message: 'wrong pin', date: Date.today }
   else
 [...]
 ```
