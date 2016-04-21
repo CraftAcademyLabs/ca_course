@@ -90,6 +90,34 @@ it 'reject withdraw if pin is wrong' do
 end
 ```
 
+And implement a new `when` in the `withdraw` method.
+
+!FILENAME lib/atm.rb
+```ruby
+[...]
+def withdraw(amount, account)
+  case
+  [...]
+  when incorrect_pin?(pin, account.pin) then
+    { status: true, message: 'wrong pin', date: Date.today }
+  else
+[...]
+```
+
+And again, we need to create a new private method, just as we did with the previous example.
+
+!FILENAME lib/atm.rb
+```ruby
+[...]
+private 
+
+def incorrect_pin?(pin_code, actual_pin)
+ pin_code != actual_pin
+end
+
+```
+
+
 
 
 
