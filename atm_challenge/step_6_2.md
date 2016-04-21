@@ -167,6 +167,26 @@ end
 
 Can you understand what we are doing here? 
 
+###More checks
+
+It is time for you to start to write code on your own. There is yet another one check we need to perform. The `account_status` attribute will tell us if an account is `active` or `disabled`. 
+
+Our `class_double` will be updated with this attribute to look like this. 
+
+!FILENAME spec/atm_spec.rb
+```ruby
+[...]
+let(:account) { class_double('Account', pin_code: '1234', exp_date: '04/17', account_status: :active) }
+[...]
+```
+
+**Things to you to consider (in random order)**
+* Note that we are using a Symbol rather than a String to set `account_status`.
+* You need to write a test for what happens if an account is `:disabled` 
+* You need to  
+
+
+
 
 
 
