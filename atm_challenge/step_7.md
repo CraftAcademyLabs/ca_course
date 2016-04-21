@@ -67,23 +67,33 @@ A few words about this type of loops in general and specifically the `while` loo
 A loop is a flow control method that will make code run a number of times until some condition is met.   
 ####The while loop
 `while` allows you to specify the condition that must be `true` to keep looping, then the condition is evaluated to `false` the loop exits. An example
+```
+count = 0
+while count < 5
+  print '- The count is now ', count, '. '
+  count = count + 1
+end
+```
+Result: 
+```
+- The count is now 0. 
+- The count is now 1. 
+- The count is now 2. 
+- The count is now 3. 
+- The count is now 4.
+```
 
-    count = 0
-    while count < 5
-      print 'The count is now ', count, '. '
-      count = count + 1
-    end
-    Result: The count is now 0. The count is now 1. The count is now 2. The count is now 3. The count is now 4.
 ####The until loop
 The until loop is a variation on the while loop but reverse. ;-)
 
-    count = 0
-    until count == 5
-      print 'The count is now ', count, '. '
-      count = count + 1
-    end
-    
-    Result: same as above.
+```ruby
+count = 0
+until count == 5
+  print 'The count is now ', count, '. '
+  count = count + 1
+end
+ ```   
+Result: same as above.
 
 ** *Pay attention to the double equal signs. In Ruby `a == 5` means "Compare a to 5", and `a = 5` means "Set the value of a to 5".* **
 
