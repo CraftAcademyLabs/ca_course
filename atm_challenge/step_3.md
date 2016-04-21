@@ -101,7 +101,12 @@ def withdraw(amount, account)
     # the balance on the account
     break
   else
-    # If it's not, we return a responce for a successfull withdraw.
+    # If it's not, we perform the transaction
+    # We DEDUCT the amount from the Atm's funds
+    @funds = @funds - amount
+    # We also DEDUCT the amount from the accounts balance
+    account.balance = account.balance - amount
+    # and we return a responce for a successfull withdraw.
     { status: true, message: 'success', date: '2016-01-30', amount: amount]}
 end
 ```
