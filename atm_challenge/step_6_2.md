@@ -117,6 +117,49 @@ end
 
 ```
 
+### Expired card
+
+Let's tackle the check for card expiration date. 
+
+First, let's modify our `double`.
+
+!FILENAME spec/atm_spec.rb
+```ruby
+[...]
+let(:account) { class_double('Account', pin_code: '1234', exp_date: '04/17') }
+[...]
+```
+
+And, as always, we write a test.
+
+!FILENAME spec/atm_spec.rb
+```ruby
+it 'reject withdraw if card is expired' do
+  expected_output = { status: false, message: 'card expired', date: Date.today }
+  expect(subject.withdraw(6, '1234', account)).to eq expected_output
+end
+```
+
+And again, we need to modify the `withdraw` method. 
+
+!FILENAME lib/atm.rb
+```ruby
+[...]
+def withdraw(amount, account)
+  case
+  [...]
+  when card_expired?(account.exp_date) then
+    { status: false, message: 'card expired', date: Date.today }
+  else
+[...]
+```
+
+
+
+
+
+
+
 
 
 
