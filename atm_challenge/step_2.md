@@ -116,7 +116,7 @@ Failures:
 
 Okay, so we expected `balance` to be `1000` but it was `nil`. Let's make it so that every time an Atm object is instantiated whe balance is automatically set to 1000. 
 
-We can do that by setting that value in the `initialize` method. 
+We can do that by setting that value in the `initialize` method. `initialize` is a constructor method that will be run every time an instance of a class is created. 
 
 !FILENAME lib/atm.rb
 ```ruby
