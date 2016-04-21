@@ -108,6 +108,7 @@ def withdraw(amount, account)
     account.balance = account.balance - amount
     # and we return a responce for a successfull withdraw.
     { status: true, message: 'success', date: '2016-01-30', amount: amount}
+  end
 end
 ```
 
