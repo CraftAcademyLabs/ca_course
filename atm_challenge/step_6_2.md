@@ -47,3 +47,26 @@ def insufficient_fund_in_atm?(amount)
 end
 
 ```
+
+###The PIN code
+
+The next check will be to make sure that the user passes in the right pin code when trying to withdraw money from his account - just as in normal life. 
+
+We will need to modify the `withdraw` to accept a `pin_code` at one of the arguments. This will have an effect on all our tests. 
+
+!FILENAME lib/atm.rb
+```ruby
+def withdraw(amount, account) -> withdraw(amount, pin_code, account)
+```
+So, after that change most of the tests will fail. 
+
+Change every call to the `withdraw` method to include `1234` as the second argument. 
+
+!FILENAME spec/atm_spec.rb
+```ruby
+[...]
+subject.withdraw(50, '1234', account)
+[...]
+```
+
+
