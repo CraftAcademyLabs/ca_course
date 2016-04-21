@@ -27,7 +27,7 @@ Let's try some stuff out in irb. **As always, read the comments as carefully as 
 2.2.1 :003 > amount = 65
  => 65 
 
-# here comes the tricky part with the `while` operator. 
+# here comes the tricky part with the `while` loop. 
 # for each value in the `denominations` array, we subtract it
 # from `amount` until amount is lower than zero.
 # at the same time we `push` the value into the `bills` array.
@@ -84,7 +84,57 @@ The until loop is a variation on the while loop but reverse. ;-)
     end
     
     Result: same as above.
-Pay attention to the double equal signs. In Ruby and many other programming languages a == 5 means Compare a to 5, and a = 5 means Make a point to a value of 5.
+
+** *Pay attention to the double equal signs. In Ruby `a == 5` means "Compare a to 5", and `a = 5` means "Set the value of a to 5".* **
+
+Back to our implementation. 
+
+As usual, let's start with our test. We don't necessarily need to add any new specs but rather modify the ones we already have written. 
+
+Let's revisit this spec.
+
+!FILENAME  spec/atm_spec.rb
+```ruby
+it 'allow withdraw if account has enough balance.' do
+  expected_output = { 
+      status: true, 
+      message: 'success', 
+      date: Date.today, 
+      amount: 45,
+      bills: [20, 20, 5]}
+  expect(subject.withdraw(45, '1234', account)).to eq expected_output
+end
+```
+
+Apart from a slightly updated formatting, we've added `bills: [20, 20, 5]` to the `expected_output`. 
+
+If you run this spec now, it will go red. 
+
+Let's add `bills:` to the output and create a method that builds upon our experimental code above and populates the array. 
+
+!FILENAME  lib/atm.rb
+```ruby
+[...]
+def perform_transaction(amount, account)
+  @funds -= amount
+  account.balance = account.balance - amount
+  { status: true, message: 'success', date: Date.today, amount: amount, bills: add_bills(amount) }
+end
+
+def add_bills(amount)
+  denominations = [20, 10, 5]
+  bills = []
+  denominations.each do |bill|
+    while amount - bill >= 0
+      amount -= bill
+      bills << bill
+    end
+  end
+  bills
+end
+```
+
+
 
 
 
