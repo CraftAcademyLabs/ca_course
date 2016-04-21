@@ -132,6 +132,7 @@ def add_bills(amount)
   end
   bills
 end
+[...]
 ```
 
 
