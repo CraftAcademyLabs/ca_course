@@ -130,11 +130,12 @@ let(:account) { class_double('Account', pin_code: '1234', exp_date: '04/17') }
 [...]
 ```
 
-And, as always, we write a test.
+And, as always, we write a test. (I will not include comments. By now you know what we need to do to build a test)
 
 !FILENAME spec/atm_spec.rb
 ```ruby
 it 'reject withdraw if card is expired' do
+  allow(account).to receive(:exp_date).and_return('12/15')
   expected_output = { status: false, message: 'card expired', date: Date.today }
   expect(subject.withdraw(6, '1234', account)).to eq expected_output
 end
@@ -163,6 +164,8 @@ def card_expired?(exp_date)
   Date.strptime(exp_date, '%m/%y') < Date.today
 end
 ```
+
+Can you understand what we are doing here? 
 
 
 
