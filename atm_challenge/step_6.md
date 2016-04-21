@@ -1,6 +1,13 @@
 ## Step 6 - Testing the sad path
 
-Okay, so now we can do a withdrawal IF there is money in the account. But what if there is no money? At this point we only `return` from the method without any feedback for the user. 
+Okay, so now we can do a withdrawal IF there is money in the account.  
+
+Let's start thinking about everything that can go wrong with a withdrawal. 
+
+For starters, what if there is not enough money in the account? At this point we only `return` from the method without any feedback for the user.
+
+Let's change that.
+
 
 !FILENAME spec/atm_spec.rb
 ```ruby
