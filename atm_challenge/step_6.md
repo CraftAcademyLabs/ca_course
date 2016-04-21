@@ -1,4 +1,4 @@
-## Step 6 - Testing the sad path
+## Step 5 - Testing the sad path
 
 Okay, so now we can do a withdrawal IF there is money in the account.  
 
