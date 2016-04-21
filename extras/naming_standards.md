@@ -4,6 +4,10 @@ You are free to set your own class and methods names.
 Class and Module names starts with an uppercase letter, by convention they are named using `MixedCase`, e.g. `module Withdraval`, `class AccountHolder`.
 
 ### Methods
+
+When naming methods the goal is to be descriptive but short. Name based on what it will return or what the major intended side effect will be. You shouldn't be missing any parts from the name because the method should only do one thing anyway. If you can't tell what the method will return based on the name, you probably need a better name. If your method name seems insanely long, your method may be trying to do more than one thing. End with a question mark ? if it will return true/false.
+
+
 Method names should begin with a lowercase letter (or an underscore). Apart from letters, only `?`, `!` and `=` characters are allowed as method name suffixes. This is a list of suggestions on naming standards for different kind of methods:
 - Methods that do something should be verbs:
   - `obj.calculate`
