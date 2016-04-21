@@ -98,7 +98,7 @@ And implement a new `when` in the `withdraw` method.
 def withdraw(amount, account)
   case
   [...]
-  when incorrect_pin?(pin, account.pin) then
+  when incorrect_pin?(pin_code, account.pin) then
     { status: true, message: 'wrong pin', date: Date.today }
   else
 [...]
