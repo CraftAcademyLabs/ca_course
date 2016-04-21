@@ -183,7 +183,8 @@ let(:account) { class_double('Account', pin_code: '1234', exp_date: '04/17', acc
 **Things to you to consider (in random order)**
 * Note that we are using a Symbol rather than a String to set `account_status`.
 * You need to write a test for what happens if an account is `:disabled` 
-* You need to  
+* You need to update the output of every test that assumes that withdrawal was successful. 
+ 
 
 
 
