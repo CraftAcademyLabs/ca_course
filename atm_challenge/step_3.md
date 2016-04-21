@@ -86,6 +86,29 @@ describe Atm do
 end
 ```
 
+Now, make sure you run this spec and study the error messages from Rspec carefully. 
+
+In order to make this pass, we need to modify the `withdraw` method in our implementation code. Again, be mindful of the comments in the code below.
+
+!FILENAME spec/atm_spec.rb
+```ruby
+def withdraw(amount, account)
+  # We will be using Ruby's `case`- `when` - `then` flow control statement
+  # and check if there is enough funds in the account
+  case
+  when amount > account.balance then
+    # we exit the method if the amount we want to withdraw is bigger than 
+    # the balance on the account
+    break
+  else
+    # If it's not, we return a responce for a successfull withdraw.
+    { status: true, message: 'success', date: '2016-01-30', amount: amount]}
+end
+```
+
+
+
+
 
 
 
