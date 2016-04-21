@@ -26,7 +26,7 @@ Let's add the following test to that file. Note the keywords `describe` and `it`
 require './lib/atm.rb'
 describe Atm do
   it 'has 1000$ on intitialize' do
-    expect(subject.balance).to eq 1000
+    expect(subject.funds).to eq 1000
   end
 end
 ```
@@ -83,17 +83,17 @@ Failures:
      Failure/Error: expect(subject.balance).to eq 1000
      
      NoMethodError:
-       undefined method `balance' for #<Atm:0x007f8043fdf2a8>
+       undefined method `funds' for #<Atm:0x007f8043fdf2a8>
 ```
 
 New error message? Cool!
 
-Yes, there is no method `balance` for the `Atm` class. Let's add that by adding a `attr_accessor :balance` to the class. What is `attr_accessor`? You can read about it in this [Stack Overflow answer](http://stackoverflow.com/a/5046915/1354994). 
+Yes, there is no method `funds` for the `Atm` class. Let's add that by adding a `attr_accessor :funds` to the class. What is `attr_accessor`? You can read about it in this [Stack Overflow answer](http://stackoverflow.com/a/5046915/1354994). 
 
 !FILENAME lib/atm.rb
 ```ruby
 class Atm
-  attr_accessor :balance
+  attr_accessor :funds
 end
 ```
 
@@ -114,17 +114,17 @@ Failures:
             got: nil
 ```
 
-Okay, so we expected `balance` to be `1000` but it was `nil`. Let's make it so that every time an Atm object is instantiated whe balance is automatically set to 1000. 
+Okay, so we expected `funds` to be `1000` but it was `nil`. Let's make it so that every time an Atm object is instantiated whe balance is automatically set to 1000. 
 
 We can do that by setting that value in the `initialize` method. `initialize` is a constructor method that will be run every time an instance of a class is created. 
 
 !FILENAME lib/atm.rb
 ```ruby
 class Atm
-  attr_accessor :balance
+  attr_accessor :funds
   
   def initialize
-    @balance = 1000
+    @funds = 1000
   end
 end
 ```
@@ -156,9 +156,9 @@ Let's add another test to the `atm_spec`. Inside the `describe Atm`block, add th
 
 !FILENAME spec/atm_spec.rb
 ```ruby
-it 'balance is reduced at withdraw' do
+it 'funds are reduced at withdraw' do
   subject.withdraw 50
-  expect(subject.balance).to eq 950
+  expect(subject.funds).to eq 950
 end
 ```
 
@@ -169,11 +169,11 @@ $ rspec spec/atm_spec.rb:7
 Run options: include {:locations=>{"./spec/atm_spec.rb"=>[7]}}
 
 Atm
-  balance is reduced at withdraw (FAILED - 1)
+  funds are reduced at withdraw (FAILED - 1)
 
 Failures:
 
-  1) Atm balance is reduced at withdraw
+  1) Atm funds are reduced at withdraw
      Failure/Error: subject.withdraw 50
      
      NoMethodError:
@@ -205,11 +205,11 @@ $ rspec spec/atm_spec.rb:7
 Run options: include {:locations=>{"./spec/atm_spec.rb"=>[7]}}
 
 Atm
-  balance is reduced at withdraw (FAILED - 1)
+  funds are reduced at withdraw (FAILED - 1)
 
 Failures:
 
-  1) Atm balance is reduced at withdraw
+  1) Atm funds are reduced at withdraw
      Failure/Error: expect(subject.balance).to eq 950
      
        expected: 950
@@ -227,7 +227,7 @@ class Atm
   #...
   
   def withdraw(amount) 
-    @balance -= amount
+    @funds -= amount
   end
 end
 ```
