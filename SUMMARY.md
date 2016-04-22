@@ -10,7 +10,7 @@
    * [Step 5](atm_challenge/step_6.md)
    * [Step 6](atm_challenge/step_6_2.md)
    * [Step 7](atm_challenge/step_7.md)
-   * Step 8
+   * [Step 8](atm_challenge/step_8.md)
 * [BMI Challenge - JavaScript basics](bmi_challenge/bmi_challenge.md)
    * [Jasmine - Set up](bmi_challenge/jasmine_set_up.md)
    * [First tests](bmi_challenge/step_1_first_tests.md)
