@@ -80,6 +80,25 @@ end
 ```
 (Do you really need `Account::STANDARD_VALIDITY_YRS`? Perhaps `STANDARD_VALIDITY_YRS` in enought? Try it out...)
 
+## Account status
+
+Another check that the Atm does on the Account is to check the `:account_status`. That will be the next thing we implement on the class. 
+
+We start with a spec.
+
+!FILENAME spec/account_spec.rb
+```ruby
+it 'is expected to have a balance of 0 on initialize' do
+  expect(subject.account_status).to eq :active
+end
+```
+
+Notice that we are using the datatype Symbol to set the `:account_status`. 
+
+
+
+
+
 
 
 
