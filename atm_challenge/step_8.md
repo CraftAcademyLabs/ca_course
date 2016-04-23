@@ -133,6 +133,26 @@ end
 
 **Use the one that you find best in your implementation but please be ready to make an argument about your choice.** 
 
+## The Account Owner
+
+Each account that we create should have an owner. The owner should have a class of his own. For the moment that class is not defined so we will go ahead and pretend again that there is an instance of Person by using an `instance_double`.
+
+
+!FILENAME spec/account_spec.rb
+```ruby
+# we create the double in our `describe` block and give him one sigle attribute
+let(:person) {instance_double('Person', name: 'Thomas')}
+```
+
+And add a test for a mandatory owner for each instance of Account.
+
+!FILENAME spec/account_spec.rb
+```ruby
+it 'requires an owner' do
+    expect(subject.owner).to eq person
+end
+```
+
 
 
 
