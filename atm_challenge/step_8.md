@@ -149,7 +149,7 @@ And add a test for a mandatory owner for each instance of Account.
 !FILENAME spec/account_spec.rb
 ```ruby
 it 'requires an owner' do
-    expect(subject.owner).to eq person
+    TODO: Test for error
 end
 ```
 
