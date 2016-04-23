@@ -148,10 +148,36 @@ And add a test for a mandatory owner for each instance of Account.
 
 !FILENAME spec/account_spec.rb
 ```ruby
-it 'requires an owner' do
-    TODO: Test for error
+it 'is expected to raise error if no owner is set' do
+  expect { described_class.new }.to raise_error 'An Account owner is required'
 end
 ```
+
+Note that we are using a new matcher (`raise_error`). There are many more matchers we can use when writing our tests. Take some time to read through the documentation about [RSpec's built-in matchers](https://www.relishapp.com/rspec/rspec-expectations/v/3-4/docs/built-in-matchers/). 
+
+Moving on to the implementation to make this pass (as usual, this is a suggestion, examine the code closely before using it).
+
+!FILENAME lib/account.rb
+```ruby
+[...]
+def initialize(attrs = {})
+  [...]
+  set_owner(attrs[:owner])
+end
+
+private
+  def set_owner(obj)
+  obj == nil ?  missing_owner : @owner = obj
+end
+
+def missing_owner
+  raise "An Account owner is required"
+end
+```
+
+
+
+
 
 
 
