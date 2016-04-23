@@ -69,9 +69,9 @@ class Account
   STANDARD_VALIDITY_YRS = 5
 end
 ```
-(I would like you to find out why I use capital letters in the variable name) 
+(I would like you to find out why I use capital letters in the variable name and find out what we mean when we say that you need to avoid Magic Numbers in your code.) 
 
-And when we set the `:exp_date` value, we can start with today's date and add the value of the constant and finish off by formatting the date the way we want it. It could look something like this.
+When we set the `:exp_date` value, we can start with today's date and add the value of the constant and finish off by formatting the date the way we want it. It could look something like this.
 
 ```ruby 
 def set_expire_date
@@ -79,6 +79,8 @@ def set_expire_date
 end
 ```
 (Do you really need `Account::STANDARD_VALIDITY_YRS`? Perhaps `STANDARD_VALIDITY_YRS` in enought? Try it out...)
+
+
 
 
 
