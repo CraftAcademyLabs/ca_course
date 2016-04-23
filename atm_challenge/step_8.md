@@ -97,8 +97,12 @@ Notice that we are using the datatype Symbol to set the `:account_status`.
 
 And again we need to set that attribute in our `initialize` method.
 
+!FILENAME lib/account.rb
 ```ruby
-
+  def initialize
+    [...]
+    @account_status = :active
+  end
 ```
 
 
