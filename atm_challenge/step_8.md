@@ -62,7 +62,7 @@ end
 
 So, how can we implement a method to set an expiry date when an account object is created?
 
-To do that, we can set a type of variable called constant with the default value of how many years a new card should be valid for. It can look something like this.
+First of all, we need to tell the class that the default validity of the card is 5 yrs. To do that, we can set a type of variable called constant with the default value of how many years a new card should be valid for. It can look something like this.
 
 ```ruby 
 class Account 
