@@ -38,9 +38,29 @@ Also, I would suggest that we randomize the pin code when we initialize a new Ac
 rand(1000..9999)
 ```
 
+
+###Programming showcase -  Pin and Balance
+
+<iframe width="420" height="315" src="https://www.youtube.com/embed/WTS_o121xIo" frameborder="0" allowfullscreen></iframe>
+
+##Expiry date
+
 The **expiry date** on atm cards (and other credit cards) is generally stored in the format of month/year - like "04/16" that translates to April 2016.
 
 When we set the :exp_date we need to make the calculation of today's date and add a predefined amount of years that we want the card to be valid for (remember that for the purpose of this exercise, the account symbolizes BOTH a bank account AND an atm card)  
+
+Let's write a test to see if the `:exp_date` is set in `initialize`. 
+
+!FILENAME spec/account_spec.rb
+```ruby
+it 'is expected to have an expiry date on initialize' do
+    # Here we set the validity of the card to 5 yrs as default
+    expected_date = Date.today.next_year(5).strftime("%m/%y")
+    expect(subject.exp_date).to eq expected_date
+end
+```
+
+So, how can we implement a method to set an expiry date when an account object is created?
 
 To do that, we can set a type of variable called constant with the default value of how many years a new card should be valid for. It can look something like this.
 
@@ -60,22 +80,8 @@ end
 ```
 (Do you really need `Account::STANDARD_VALIDITY_YRS`? Perhaps `STANDARD_VALIDITY_YRS` in enought? Try it out...)
 
-###Programming showcase -  Pin and Balance
 
-<iframe width="420" height="315" src="https://www.youtube.com/embed/WTS_o121xIo" frameborder="0" allowfullscreen></iframe>
 
-##Expiry date
-
-Let's write a test to see if the `:exp_date` is set in `initialize`. 
-
-!FILENAME spec/account_spec.rb
-```ruby
-it 'is expected to have an expiry date on initialize' do
-    # Here we set the validity of the card to 5 yrs as default
-    expected_date = Date.today.next_year(5).strftime("%m/%y")
-    expect(subject.exp_date).to eq expected_date
-end
-```
 
 
 
