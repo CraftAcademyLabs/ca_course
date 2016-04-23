@@ -40,14 +40,14 @@ Let's start with preparing our test.
 
 The Atm needs to interact with another class - we will call it `Account`. The Account class will symbolize both the bank account and a card we can use in the Atm (there is no need to create both an Account class and a Card class for the sake of this prototype).
 
-However, we have not created that class yes, so in out `atm_spec` we will use a so called `class_double` in order to be able to test the functionality. Doubles are objects that can be used as stand-ins for other objects (hence the name `class_double`). We will go over doubles more extensivly further down the road in the camp.
+However, we have not created that class yes, so in out `atm_spec` we will use a so called `class_double` in order to be able to test the functionality. Doubles are objects that can be used as stand-ins for instances of other classes (hence the name `instance_double`). Even if they still are not defined (as in our case). We will go over doubles more extensively further down the road in the camp.
 
-For now, let's define a `class_double` in our spec and give it a name od `account`
+For now, let's define a `class_double` in our spec and give it a name of `account`
 
 !FILENAME spec/atm_spec.rb
 ```ruby
 describe Atm do
-  let(:account) { class_double('Account') }
+  let(:account) { instance_double('Account') }
 
   before do
     # Before each test we need to add an attribute of `balance`
