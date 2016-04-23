@@ -64,6 +64,20 @@ end
 
 <iframe width="420" height="315" src="https://www.youtube.com/embed/WTS_o121xIo" frameborder="0" allowfullscreen></iframe>
 
+##Expiry date
+
+Let's write a test to see if the `:exp_date` is set in `initialize`. 
+
+!FILENAME spec/account_spec.rb
+```ruby
+it 'is expected to have an expiry date on initialize' do
+    # Here we set the validity of the card to 5 yrs as default
+    expected_date = Date.today.next_year(5).strftime("%m/%y")
+    expect(subject.exp_date).to eq expected_date
+end
+```
+
+
 
 
 
