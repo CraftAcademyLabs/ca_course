@@ -69,12 +69,12 @@ subject.withdraw(50, '1234', account)
 [...]
 ```
 
-We also need to change our `class_double` we are using for `account`. 
+We also need to change our `instance_double` we are using for `account`. 
 
 !FILENAME spec/atm_spec.rb
 ```ruby
 [...]
-let(:account) { class_double('Account', pin_code: '1234') }
+let(:account) { instance_double('Account', pin_code: '1234') }
 [...]
 ```
 
@@ -126,7 +126,7 @@ First, let's modify our `double`.
 !FILENAME spec/atm_spec.rb
 ```ruby
 [...]
-let(:account) { class_double('Account', pin_code: '1234', exp_date: '04/17') }
+let(:account) { instance_double('Account', pin_code: '1234', exp_date: '04/17') }
 [...]
 ```
 
@@ -176,7 +176,7 @@ Our `class_double` will be updated with this attribute to look like this.
 !FILENAME spec/atm_spec.rb
 ```ruby
 [...]
-let(:account) { class_double('Account', pin_code: '1234', exp_date: '04/17', account_status: :active) }
+let(:account) { instance_double('Account', pin_code: '1234', exp_date: '04/17', account_status: :active) }
 [...]
 ```
 
