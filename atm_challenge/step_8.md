@@ -88,14 +88,18 @@ We start with a spec.
 
 !FILENAME spec/account_spec.rb
 ```ruby
-it 'is expected to have a balance of 0 on initialize' do
+it 'is expected to have :active status on initialize' do
   expect(subject.account_status).to eq :active
 end
 ```
 
 Notice that we are using the datatype Symbol to set the `:account_status`. 
 
+And again we need to set that attribute in our `initialize` method.
 
+```ruby
+
+```
 
 
 
