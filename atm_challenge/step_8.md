@@ -108,14 +108,30 @@ And again we need to set that attribute in our `initialize` method.
 Okay, so an account has status of `:active` when it is instantiated (created) . But how about if we would like to deactivate an account. We could simply set the value of the `:account_status` attribute to `:deactivated`. But we can (and should) create a method for that. The question is if we should create a **Class method** or an **Instance method**. You need to research the difference between this type of methods but consider this two different approaches.
 
 ```ruby
-def self.deactivate
-  @account_status = :deactivated
+def self.deactivate(account)
+  account.account_status = :deactivated
 end 
 
 def deactivate
   @account_status = :deactivated
 end 
 ```
+
+Examine the two following ways of using the methods above.
+
+```ruby
+it 'deactivates account using Class method' do
+  Account.deactivate(subject)
+  expect(subject.account_status).to eq :deactivated
+end
+
+it 'deactivates account using Instance method' do
+  subject.deactivate
+  expect(subject.account_status).to eq :deactivated
+end
+```
+
+**Use the one that you find best in your implementation but please be ready to make an argument about your choice.** 
 
 
 
