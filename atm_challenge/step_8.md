@@ -71,7 +71,7 @@ end
 ```
 (I would like you to find out why I use capital letters in the variable name) 
 
-And when we set the `:exp_date` value, we can start with todays date and add the value of the constant and finish off by formating the date the way we want it. It could look something like this.
+And when we set the `:exp_date` value, we can start with today's date and add the value of the constant and finish off by formatting the date the way we want it. It could look something like this.
 
 ```ruby 
 def set_expire_date
