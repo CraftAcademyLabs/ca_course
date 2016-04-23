@@ -144,6 +144,13 @@ Each account that we create should have an owner. The owner should have a class 
 let(:person) {instance_double('Person', name: 'Thomas')}
 ```
 
+First let's see if the owner is being set.
+
+```ruby
+it 'is expected to have an owner' do
+  expect(subject.owner).to eq person
+end
+```
 And add a test for a mandatory owner for each instance of Account.
 
 !FILENAME spec/account_spec.rb
@@ -155,7 +162,7 @@ end
 
 Note that we are using a new matcher (`raise_error`). There are many more matchers we can use when writing our tests. Take some time to read through the documentation about [RSpec's built-in matchers](https://www.relishapp.com/rspec/rspec-expectations/v/3-4/docs/built-in-matchers/). 
 
-Moving on to the implementation to make this pass (as usual, this is a suggestion, examine the code closely before using it).
+Moving on to the implementation to make these two specs to pass (as usual, this is a suggestion, examine the code closely before using it).
 
 !FILENAME lib/account.rb
 ```ruby
@@ -167,6 +174,9 @@ end
 
 private
   def set_owner(obj)
+  # here we are using a Ternary Operator for the first time
+  # take a look at this StackOverflow aswer to find out more
+  # http://stackoverflow.com/a/4252945
   obj == nil ?  missing_owner : @owner = obj
 end
 
