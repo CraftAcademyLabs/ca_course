@@ -21,6 +21,7 @@
    * [Acceptance tests](bmi_challenge/step_4_acceptance_tests.md)
    * [Moving on](bmi_challenge/step_5_moving_on.md)
 * [Library challenge - Advanced Ruby](library_challenge/library_challenge.md)
+   * Important topics
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
 * [Static Website with Middleman](middleman/static_website_with_middleman.md)
