@@ -142,6 +142,8 @@ Each account that we create should have an owner. The owner should have a class 
 ```ruby
 # we create the double in our `describe` block and give him one sigle attribute
 let(:person) {instance_double('Person', name: 'Thomas')}
+# and modify our `subject` 
+subject { described_class.new({owner: person}) }
 ```
 
 First let's see if the owner is being set.
