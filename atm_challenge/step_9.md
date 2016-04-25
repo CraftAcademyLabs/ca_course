@@ -65,5 +65,7 @@ end
 
 ```
 
+**Making all of these tests pass will bring you closer to completing this challenge.**
+
 
 
