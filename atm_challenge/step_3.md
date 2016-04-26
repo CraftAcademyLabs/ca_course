@@ -34,7 +34,7 @@ Let's break this down.
 - An array of bills that was dispached by the Atm. This symbolize the actual cash you would get in real life. 
 
 ###Testing the happy path
-The first test we will write is the so called "Happy Path". We know that a transaction can either bu successful or rejected for some reason. We'll get back to the rejections (that is the lionshare of the work that lies ahead of us). At this stage, let's focus on a simple successfull transaction. 
+The first test we will write is the so called "Happy Path". We know that a transaction can either bu successful or rejected for some reason. We'll get back to the rejections (that is the lionshare of the work that lies ahead of us). At this stage, let's focus on a simple successful transaction. 
 
 Let's start with preparing our test.
 

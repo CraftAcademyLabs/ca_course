@@ -4,7 +4,7 @@ The first thing we need to do is to set up the necessary tools we'll be using. W
 
 We also know that we'll be trying to write our application using Test Driven Development - or at least try to do that. For that we'll need a testing framework. Enter RSpec - the most frequently used testing library for Ruby applications. Even though it has a very rich and powerful DSL (domain-specific language), at its core it is a simple tool which you can start using rather quickly. 
 
-In order to be able to use it we need to install it. There are two ways to install libraries (gems). A direct install from your terminal (`gem install rspec`) or by adding a gem as a dependancy to your application using [Bundler](http://bundler.io/). It is pretty simple, you just add a gem to a specific file named `Gemfile`. 
+In order to be able to use it we need to install it. There are two ways to install libraries (gems). A direct install from your terminal (`gem install rspec`) or by adding a gem as a dependency to your application using [Bundler](http://bundler.io/). It is pretty simple, you just add a gem to a specific file named `Gemfile`. 
 
 Let's do that. 
 
@@ -39,7 +39,7 @@ The next step is to initialize RSpec and configure it for our needs.
 $ rspec --init
 ```
 
-Edit the .rspec file and add --format documentation to see a more verbose rspec output. Your .rspec file needs to look like this.
+Edit the `.rspec` file and add --format documentation to see a more verbose rspec output. Your `.rspec` file needs to look like this.
 
 !FILENAME .rspec
 ```
@@ -64,7 +64,7 @@ Let me put down some ground rules about version control. Commit often, write goo
 
 At this stage you need to set up a git repository. I suggest that you create a GitHub repository, copy the address and add it as a remote to your local repository (We are about to create one). 
 
-In your terminal, initialize a new git repo with the `init` command.
+In your terminal, initialize a new git repository with the `init` command.
 
 ```
 $ git init
@@ -82,7 +82,7 @@ Add at this to that file.
 ```
 .DS_Store
 ```
-`.DS_Store` (Desktop Services Store) is a OSx file that stores custom attributes of its containing folder, such as the position of icons or the choice of a background image. We don't want to track those files with git.
+`.DS_Store` (Desktop Services Store) is a OSX file that stores custom attributes of its containing folder, such as the position of icons or the choice of a background image. We don't want to track those files with git.
 
 Now, perform the following steps.
 

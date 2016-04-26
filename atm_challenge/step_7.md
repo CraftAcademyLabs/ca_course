@@ -8,7 +8,7 @@ Another thing we know is that one of the conditions for a successful transaction
 
 Knowing all this, we can build a method that tells us what bills we will get from the Atm. 
 
-Let's try some stuff out in irb. **As always, read the comments as carefully as anything else in this documentation.**
+Let's try some stuff out in `irb`. **As always, read the comments as carefully as anything else in this documentation.**
 
 ```ruby 
 18:05 $ irb
@@ -47,7 +47,7 @@ Let's try some stuff out in irb. **As always, read the comments as carefully as 
 2.2.1 :012 > 
 ```
 
-The same code without my comments and the irb linenumbers.
+The same code without my comments and the irb line numbers.
 
 ```ruby
 denominations = [20, 10, 5]

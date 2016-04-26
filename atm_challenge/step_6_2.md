@@ -155,7 +155,7 @@ def withdraw(amount, account)
 [...]
 ```
 
-Now, the method `card_expired?` is a little tricky. We need to make use of Ruby's `Date` object. `account.exp_date` is of String class. We need to transform it to a Date object and compare it to todays date. Examine the following implementation closely before implementing it. 
+Now, the method `card_expired?` is a little tricky. We need to make use of Ruby's `Date` object. `account.exp_date` is of String class. We need to transform it to a Date object and compare it to today's date. Examine the following implementation closely before implementing it. 
 
 !FILENAME lib/atm.rb
 ```ruby

@@ -16,7 +16,7 @@ Remember the `class_double` we used while testing the `Atm`'s functionality? If 
 
 There is one thing that the `Account` should have, that was never needed in the interaction wit `Atm` but that should be a part of it. That is an account owner. 
 
-we'll let you code on your own but provide an recording that showcase a possible workflow. 
+We'll let you code on your own but provide an recording that showcase a possible workflow. 
 
 Some tips for testing.
 
@@ -78,7 +78,7 @@ def set_expire_date
   Date.today.next_year(Account::STANDARD_VALIDITY_YRS).strftime('%m/%Y')
 end
 ```
-(Do you really need `Account::STANDARD_VALIDITY_YRS`? Perhaps `STANDARD_VALIDITY_YRS` in enought? Try it out...)
+(Do you really need `Account::STANDARD_VALIDITY_YRS`? Perhaps `STANDARD_VALIDITY_YRS` in enough? Try it out...)
 
 ## Account status
 

@@ -50,7 +50,7 @@ end
 
 ```
 
-Note that we have NOT made any changes to our testand if you run them now, they should all pass green. 
+Note that we have NOT made any changes to our test and if you run them now, they should all pass green. 
 
 **Refactoring is all about that. You make your code better WITHOUT introducing any new functionality. **
 
