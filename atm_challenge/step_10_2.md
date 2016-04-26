@@ -26,12 +26,12 @@ describe 'can manage funds if an account been created' do
     expect(command.call).to be_truthy
   end
 
-  it 'withdraw is expected to raise error if no ATM is passwd in' do
+  it 'withdraw is expected to raise error if no ATM is passed in' do
     command = lambda { subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account) }
     expect { command.call }.to raise_error 'An ATM is required'
   end
 
-  it 'funds are added to cash - deducted from accounst balance' do
+  it 'funds are added to cash - deducted from account balance' do
     subject.cash = 100
     subject.deposit(100)
     subject.withdraw(amount: 100, pin: subject.account.pin_code, account: subject.account, atm: atm)
