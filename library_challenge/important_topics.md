@@ -1,4 +1,4 @@
-# Important topics
+## Important topics
 
 A person needs to have an attribute where we can store books/items he or she has checked out from the library (I called it `book_shelf`). 
 
@@ -43,8 +43,8 @@ All the items in the library must be stored in a `yml` file. The file feeds to b
   :available: true
   :return_date: 
 ```
-
-Now, this can be parsed to a collection. Open Irb.
+### Reading a YML file
+The YML file can be parsed as an object and stored in a variable. Let's try that and call the variable `collection`. Open IRB.
 
 ```bash
 $ irb
@@ -53,6 +53,67 @@ $ irb
 2.2.3 :002 > collection = YAML.load_file('./lib/data.yml')
  => [{:item=>{:title=>"Alfons och soldatpappan", :author=>"Gunilla Bergström"}, :available=>true, :return_date=>nil}, {:item=>{:title=>"Skratta lagom! Sa pappa Åberg", :author=>"Gunilla Bergström"}, :available=>false, :return_date=>"2016-05-25"}, {:item=>{:title=>"Osynligt med Alfons", :author=>"Gunilla Bergström"}, :available=>true, :return_date=>nil}, {:item=>{:title=>"Pippi Långstrump", :author=>"Astrid Lindgren"}, :available=>true, :return_date=>nil}, {:item=>{:title=>"Pippi Långstrump går ombord", :author=>"Astrid Lindgren"}, :available=>true, :return_date=>nil}]
 ```
+
+**Knowing this you can create a collection of books for your library. **
+
+### Writing to a YML file
+If we introduce any changes to the object (in out `collection` variable), we would like to make then persistent.  We need to update (write) to the same file where we got the data from. For example, if we do this in IRB
+
+```bash
+# To start with, we mogify the first object in the collection
+# by setting `:available` to `false`
+2.2.3 :019 > collection[0][:available] = false
+ => false
+ # And now, we open the YML file and store the entire `collection` again. 
+2.2.3 :020 > File.open('./lib/data.yml', 'w') { |f| f.write collection.to_yaml }
+ => 567
+ ```
+ 
+** Knowing this, you will be able to build a method to update the collection of books in the libarary after th check-out has been performed.**
+
+
+### Searching in a Hash
+
+Let's say that you heve the above `collection` of books or whatever. Now you want to search for a specific item. Let's say we would like to search for "Pippi Långstrump". We could do something like this.
+
+```bash
+2.2.3 :002 > collection.detect { |obj| obj[:item][:title] == "Pippi Långstrump"  }
+ => {:item=>{:title=>"Pippi Långstrump", :author=>"Astrid Lindgren"}, :available=>true, :return_date=>nil} 
+```
+
+So `collection` is of class: Hash. We are calling `#detect` on it. What does the `#detect` method do?
+
+Note that this will return an exact match, so it requires that you know the exact value of the key you are searching for. 
+
+How about if you just know part of the title of the book you are searching for? In the method above we use the equal operator (`==`), but what if there is a nother way? Well, we can make use of `#include?`. 
+
+Try this out (Note that we are only passing in "Pippi"). 
+
+```bash
+2.2.3 :004 > collection.detect { |obj| obj[:item][:title].include? "Pippi"  }
+ => {:item=>{:title=>"Pippi Långstrump", :author=>"Astrid Lindgren"}, :available=>true, :return_date=>nil} 
+```
+
+This searchies through the collection and returnes the first object it finds that matches the criteria - in this case the part of the title. But wait, in our collection we have 2 books with the word "Pippi" in the title.
+
+Perhaps it would be better if we returned both of them with our search method?
+
+Try this and note that I'm using `#select` rather than `#detect` on my `collection`.
+
+```bash
+2.2.3 :005 > collection.select { |obj| obj[:item][:title].include? "Pippi"  }
+ => [{:item=>{:title=>"Pippi Långstrump", :author=>"Astrid Lindgren"}, :available=>true, :return_date=>nil}, {:item=>{:title=>"Pippi Långstrump går ombord", :author=>"Astrid Lindgren"}, :available=>true, :return_date=>nil}]
+```
+
+And now I get both objects back. 
+
+**Knowing this you can build a `search` method that will allow users to find a book the want to check out.**
+
+```
+
+ 
+
+
 
 
  
