@@ -38,10 +38,10 @@ All the items in the library must be stored in a `yml` file. The file feeds to b
   :available: true
   :return_date: 
 - :item:
-  :title: Pippi Långstrump går ombord
-  :author: Astrid Lindgren
-:available: true
-:return_date: 
+    :title: Pippi Långstrump går ombord
+    :author: Astrid Lindgren
+  :available: true
+  :return_date: 
 ```
 
 Now, this can be parsed to a collection. Open Irb.
@@ -51,7 +51,7 @@ $ irb
 2.2.3 :001 > require 'yaml'
  => true 
 2.2.3 :002 > collection = YAML.load_file('./lib/data.yml')
- => [{:item=>{:title=>"Alfons bråkar", :author=>"T. Ochman"}, :available=>true, :return_date=>nil}, {:item=>{:title=>"Alfons leker", :author=>"A. Andersson"}, :available=>false, :return_date=>"2016-05-25"}, {:item=>{:title=>"Alfons bygger koja", :author=>"T. Ochman"}, :available=>true, :return_date=>nil}, {:item=>{:title=>"Bible", :author=>"TGAOTU"}, :available=>true, :return_date=>nil}]
+ => [{:item=>{:title=>"Alfons och soldatpappan", :author=>"Gunilla Bergström"}, :available=>true, :return_date=>nil}, {:item=>{:title=>"Skratta lagom! Sa pappa Åberg", :author=>"Gunilla Bergström"}, :available=>false, :return_date=>"2016-05-25"}, {:item=>{:title=>"Osynligt med Alfons", :author=>"Gunilla Bergström"}, :available=>true, :return_date=>nil}, {:item=>{:title=>"Pippi Långstrump", :author=>"Astrid Lindgren"}, :available=>true, :return_date=>nil}, {:item=>{:title=>"Pippi Långstrump går ombord", :author=>"Astrid Lindgren"}, :available=>true, :return_date=>nil}]
 ```
 
 
