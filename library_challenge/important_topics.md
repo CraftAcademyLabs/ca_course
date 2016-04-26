@@ -74,7 +74,7 @@ If we introduce any changes to the object (in out `collection` variable), we wou
 
 ### Searching in a Hash
 
-Let's say that you heve the above `collection` of books or whatever. Now you want to search for a specific item. Let's say we would like to search for "Pippi Långstrump". We could do something like this.
+Let's say that you have the above collection of books or whatever. Now you want to search for a specific item. If we would like to search for "Pippi Långstrump", we could do something like this
 
 ```bash
 2.2.3 :002 > collection.detect { |obj| obj[:item][:title] == "Pippi Långstrump"  }
@@ -85,7 +85,7 @@ So `collection` is of class: Hash. We are calling `#detect` on it. What does the
 
 Note that this will return an exact match, so it requires that you know the exact value of the key you are searching for. 
 
-How about if you just know part of the title of the book you are searching for? In the method above we use the equal operator (`==`), but what if there is a nother way? Well, we can make use of `#include?`. 
+How about if you just know part of the title of the book you are searching for? In the method above we use the equal operator (`==`), but what if there is another way? Well, we can make use of `#include?`. 
 
 Try this out (Note that we are only passing in "Pippi"). 
 
