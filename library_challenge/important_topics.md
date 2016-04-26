@@ -18,25 +18,30 @@ All the items in the library must be stored in a `yml` file. The file feeds to b
 ```yml
 ---
 - :item:
-    :title: Alfons bråkar
-    :author: T. Ochman
+    :title: Alfons och soldatpappan
+    :author: Gunilla Bergström
   :available: true
   :return_date: 
 - :item:
-    :title: Alfons leker
-    :author: A. Andersson
+    :title: Skratta lagom! Sa pappa Åberg
+    :author: Gunilla Bergström
   :available: false
   :return_date: '2016-05-25'
 - :item:
-    :title: Alfons bygger koja
-    :author: T. Ochman
+    :title: Osynligt med Alfons
+    :author: Gunilla Bergström
   :available: true
   :return_date: 
 - :item:
-    :title: Bible
-    :author: TGAOTU
+    :title: Pippi Långstrump
+    :author: Astrid Lindgren
   :available: true
   :return_date: 
+- :item:
+  :title: Pippi Långstrump går ombord
+  :author: Astrid Lindgren
+:available: true
+:return_date: 
 ```
 
 Now, this can be parsed to a collection. Open Irb.
