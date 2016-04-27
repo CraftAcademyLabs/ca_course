@@ -5,7 +5,7 @@ User stories are written by or for the client and as the client's main method of
 
 User stories are a quick way to manage requirements definition without having to create formal specifications and administrative overhead to keep them updated. User stories can also be written by developers to describe non-functional requirements (security, performance, etc.)
 
-### Definition of 'done'
+### Acceptance Criteria - Definition of 'done'
 Before a user story is implemented, its acceptance criteria should be defined to ensure that the objectives of the user story met.
 
 ###Format
