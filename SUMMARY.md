@@ -47,4 +47,5 @@
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * [Extras](extras.md)
+   * Naming Standards
 
