@@ -48,4 +48,5 @@
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * [Extras](extras.md)
    * [Naming Standards](extras/naming_standards.md)
+   * Classes vs Modules
 
