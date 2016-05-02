@@ -9,7 +9,7 @@ $ touch spec/person_spec.js
 
 *** Note that I use the `snake case` format for my file names. You are free to use any format you want but be consistent. ***
 
-We are going to write two test for our Person object. In order to calculate the BMI we will be needing a Person to have two attributes, `weight` and `hight`.
+We are going to write two test for our Person object. In order to calculate the BMI, we will be needing a Person to have two attributes, `weight` and `hight`.
 
 ```javascript
 # spec/person_spec.js
@@ -51,11 +51,11 @@ If you run your tests again, by reloading `SpecRunner.html` you'll see that our 
 
 ![Jasmine - passing tests](../images/jasmine_passing_tests.png)
 
-Okay, the next thing I want you to do is to right click anywhere on the browser window and choose `Inspect` from the pop-up menu. That opens the developer console. Try creating a new instance of a `Person` by following the example below.
+Okay, the next thing I want you to do is to right-click anywhere on the browser window and choose `Inspect` from the pop-up menu. That opens the developer console. Try creating a new instance of a `Person` by following the example below.
 
 ![Creating a Person in the browsers console](../images/jasmine_console_2.png)
 
-Cool, the browsers console can function as a way to manually tests your units and functions - similarly to rubys `irb`. 
+Cool, the browsers console can function as a way to manually tests your units and functions - similarly to ruby's `irb`. 
 
 Let's write some more tests. 
 
@@ -73,7 +73,7 @@ it("should have a BMI Message", function() {
 });
 ```
 
-In those tests we are calling a `calculate_bmi()` function on the `person` object we have created. This will fail since we have no such function defined. 
+In those tests, we are calling a `calculate_bmi()` function on the `person` object we have created. This will fail since we have no such function defined. 
 
 ```javascript
 # src/person.js
@@ -84,7 +84,7 @@ Person.prototype.calculate_bmi = function() {
 };
 ```
 
-That implementation will make the test pass, but it is not what we want, is it? We have just passed in some hard coded values in to that function. 
+That implementation will make the test pass, but it is not what we want, is it? We have just passed in some hard coded values into that function. 
 
 Let's instead call the `BMICalculator` to do the calculation for us by changing the code to:
 
@@ -96,7 +96,7 @@ Person.prototype.calculate_bmi = function() {
   calculator.metric_bmi(this);
 };
 ```
-Here we are instantiating a new `BMICalculator` object and calling a function we call `metric_bmi` on it. We are also passing in the current instance of Person to that function. At this point we need to shift our attention to the other spec file we need and test the behaviour of the `BMICalculator`.
+Here we are instantiating a new `BMICalculator` object and calling a function we call `metric_bmi` on it. We are also passing in the current instance of Person to that function. At this point, we need to shift our attention to the other spec file we need and test the behaviour of the `BMICalculator`.
 
 ### Review and reflect
 

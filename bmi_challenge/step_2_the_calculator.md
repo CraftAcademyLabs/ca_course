@@ -47,7 +47,7 @@ BMICalculator.prototype.metric_bmi = function(obj) {
 
 
 
-We still have not set the `bmiMessage` on the `Person`. In order to do that we need to create a function that sets that message depending on what `bmiValue` the person has.
+We still have not set the `bmiMessage` on the `Person`. In order to do that, we need to create a function that sets that message depending on what `bmiValue` the person has.
 
 Add this function to the `bmi_calculator.js` file.
 

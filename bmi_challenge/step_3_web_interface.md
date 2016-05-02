@@ -2,14 +2,14 @@
 
 The next step is to create a web page that will allow for both input of data (create an instance of `Person`) and display the calculated results. 
 
-For that we will be using HTML an jQuery. We will also make sure that we have automated tests for out interface so that we can be sure that everything behaves as we want it to behave.
+For that, we will be using HTML and jQuery. We will also make sure that we have automated tests for out interface so that we can be sure that everything behaves as we want it to behave.
 
 ### Testing jQuery
 First, we need to make some adjustments to the Jasmine framework by extending Jasmine with Jasmine-jQuery: a set of jQuery helpers for Jasmine tests. 
  
 Download/Copy Jasmine-jQuery from [this location](https://raw.githubusercontent.com/velesin/jasmine-jquery/master/lib/jasmine-jquery.js) and save to `lib/jasmine-jquery.js` 
 
-In your `SpecRunner.html` locate where you include the Jasmine `boot.js`. Right underneath, make sure to include both `jasmine-jquery` and `jquery` (we will get that from a remote location rather then including it in the file structure). 
+In your `SpecRunner.html` locate where you include the Jasmine `boot.js`. Right underneath, make sure to include both `jasmine-jquery` and `jquery` (we will get that from a remote location rather than including it in the file structure). 
 
 ```html
 # SpecRunner.html
@@ -46,7 +46,7 @@ describe('BMI_UI - index.html', function() {
 });
 ```
 
-Create the `index.html` file in the main project folder and add a htm form that we need to input the data we need to create a `Person` and calculate the BMI. We also need to include jQuery (as we did in the `SpecRunner.html`) and make sure that the source files for `Person` and `BMICalculator` are loaded. 
+Create the `index.html` file in the main project folder and add an HTML form that we need to input the data we need to create a `Person` and calculate the BMI. We also need to include jQuery (as we did in the `SpecRunner.html`) and make sure that the source files for `Person` and `BMICalculator` are loaded. 
 
 **Go over the code below and make sure that you understand what is going on before you implement it.**
 
@@ -83,7 +83,7 @@ To open the web page go to your terminal and use the `open` command to fire up t
 $ open index.html
 ```
 
-The page is still very static and nothing happens if you fill in values in the form and click `Calculate`. We need to add some jQuery code in order to tell the interface what to do. There are two ways to do that. We can eather create a new `js` file and include it in our code, or we can insert the script directly in the html. Let's do the latter. In order for HTML to understand that it is dealing with JavaScript, we need to wrap it in `<script></script>` tags. 
+The page is still very static and nothing happens if you fill in values in the form and click `Calculate`. We need to add some jQuery code in order to tell the interface what to do. There are two ways to do that. We can either create a new `js` file and include it in our code, or we can insert the script directly in the HTML. Let's do the latter. In order for HTML to understand that it is dealing with JavaScript, we need to wrap it in `<script></script>` tags. 
 
 Have a look at the code below and once you understand what it does, add it to the `index.html` file.
 

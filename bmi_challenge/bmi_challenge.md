@@ -47,7 +47,7 @@ Compare this BMI value with the weight status table below.
 | Over 30.0   	| Obese         	|
 
 
-Since you already know some ruby, here's the implementation of the Person class with a module that calculates BMI using the metric method. We enclose it here for referance only, going over that code might help you get started with your JavaScript code.
+Since you already know some ruby, here's the implementation of the Person class with a module that calculates BMI using the metric method. We enclose it here for reference only, going over that code might help you get started with your JavaScript code.
 
 ```ruby
 class Person

@@ -1,6 +1,6 @@
 ## Acceptance tests
 
-In order to be able to load the `index.html` as a fixture in Jasmine, we need to have a local web server up and running locally. If we don't we simply can not run tests for the web interface due to CORS conflicts. 
+In order to be able to load the `index.html` as a fixture in Jasmine, we need to have a local web server up and running locally. If we don't we simply can not run tests on the web interface due to CORS conflicts. 
 
 In your main project folder, create a file called `Gemfile` (note that there is no suffix and that the file name starts with a capital 'G') and add the following lines.
 
@@ -11,7 +11,7 @@ gem 'rack'
 gem 'sinatra'
 ```
 
-Also create two other files in the main project folder:
+Also, create two other files in the main project folder:
 * `config.ru` ** <- Note the suffix!**
 * `server.rb`
 
@@ -48,7 +48,7 @@ You can go ahead and enter some values in the fields and see if everything is wo
 
 **To stop the server in your terminal, just press the `ctrl` + `C` keys on your keyboard. To start it again, just type `rackup` and press enter.**
 
-At this point we are ready to add some tests to our `bmi_ui_spec.js`. 
+At this point, we are ready to add some tests to our `bmi_ui_spec.js`. 
 
 What we want Jasmine to do is to:
 1. Fill in the fields for Weight and Height with values.
