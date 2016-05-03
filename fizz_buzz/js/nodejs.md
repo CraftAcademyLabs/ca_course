@@ -17,6 +17,6 @@ You can check your version by going to your terminal and typing in this command
 ```bash
 $ node -v
 ```
-![](/images/node_js_version.png)
+![](/images/node_js_version_right.png)
 
 
