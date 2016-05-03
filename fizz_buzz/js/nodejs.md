@@ -19,6 +19,8 @@ $ node -v
 ```
 ![](/images/node_js_version_right.png)
 
+Now you are ready to start using `npm`. You can find more documentation about packages on the [NPM website](https://www.npmjs.com/npm/open-source). 
+
 
 
 
