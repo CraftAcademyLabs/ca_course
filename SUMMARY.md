@@ -20,6 +20,8 @@
    * [Web interface](bmi_challenge/step_3_web_interface.md)
    * [Acceptance tests](bmi_challenge/step_4_acceptance_tests.md)
    * [Moving on](bmi_challenge/step_5_moving_on.md)
+* [Fizz Buzz in JavaScript](fizz_buzz/js/fizzbuzz_js_challenge.md)
+   * [NodeJS](fizz_buzz/js/nodejs.md)
 * [Library challenge - Advanced Ruby](library_challenge/library_challenge.md)
    * [Important topics](library_challenge/important_topics.md)
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
@@ -49,6 +51,4 @@
 * [Extras](extras.md)
    * [Naming Standards](extras/naming_standards.md)
    * [Classes vs Modules](extras/classes_and_modules.md)
-* [Fizz Buzz in JavaScript](fizz_buzz/js/fizzbuzz_js_challenge.md)
-   * [NodeJS](fizz_buzz/js/nodejs.md)
 
