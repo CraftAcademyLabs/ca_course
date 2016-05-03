@@ -1,6 +1,12 @@
 ## FizzBuzz Challenge
+Do you remember the Fizz Buzz game we ware working on in the Prep-course? First time around, we wrote the program using Ruby. Let's do it in JavaScript and implement a web interface using HTML and jQuery.
+
+*- Will this Fizz Buzz bulls^^t ever end?*, you ask yourself. Well, the Fizz Buzz kata is a very common programming challenge when learning a new language. It's a kind of "Hello World" program, but slightly more advanced. 
+
+**The idea with this challenge is that since you have written this code in Ruby, you'll be able to spot both similarities and differences the JavaScript implementation compared to Ruby.**
+
 ### Week 2 JavaScript/Jasmine challenge
-**Do you remember the Fizz Buzz game we ware working on in the Prep-course? At that time we wrote the program using Ruby. Let's do it in JavaScript and implement a web interface using HTML and jQuery. To successfully complete the challenge, I want you to deploy it using GitHub pages (also something we've done during the Prep-course, remember?)**
+**To successfully complete the challenge, We want you to deploy it using GitHub pages (also something we've done during the Prep-course, remember?)**
 
 We have prepared this repository for you with all the necessary tools in terms of a testing framework, the  basic folder structure, some spec files, etc.  What you need to do it to make it all work together.
 
@@ -9,16 +15,15 @@ Read this entire README carefully and follow all instructions.
 - Challenge time: this weekend, until Monday 9.30am
 - Feel free to use Google, Stack Overflow, your notes, previously written code, books, etc. but work on your own
 - If you refer to or have in whole or partially used the solution of another coach or student, please put a link to that in your README
-- If you have a partial solution, **still check in a partial solution to GitHub and create a Pull Request**
-- You must submit a Pull Request to this repository with your code by 9.30am Monday morning - before the stand-up
+- If you have a partial solution, **push up your code and check in a partial solution under the assignment submission section**
+- You must submit your assignment submission by 9.30am Monday morning - before the stand-up
 - **NOTE! Place all your production code in the `src` folder (html files directly in that folder and JavaScript files in `src/js`)**
-- **Make sure that you have a close look at the `Gemfile` to see what libraries will be used. That will have an impact on how you will be running your tests.**
-- **Make sure you read the documentation for the gems used.**
 
 ### Learning objective
  
 --------------------------------------------------------------------------------
 
+- 
 - To write Unit tests with Jasmine
 - To write Acceptance tests with Jasmine-jQuery
 - To add HTML elements and get user data
