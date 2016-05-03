@@ -7,20 +7,27 @@ Our client is a Restaurant owner that needs a website where he can list his menu
 The first version of the application has limited functionality
 
 * The owner need to access a protected part of the application to set up information about his Restaurant and his Menu
-* Menu needs to consist of many Dishes
-* Each Dish is a Starter, Main course or Dessert
+* A Menu needs to consist of many Dishes
+* Each Dish has a Category. It is either a Starter, a Main course or an Dessert
 * Visitors of the site can add Dishes to an Order
+* In order to finalize an Order (Check out) a Visitor needs to become a Registered User
 * Order need to calculate a Total price and a Pick up time (30 minutes)
 
-Nothing else should be considered or implemented.
+**Nothing else should be considered or implemented.**
 
 #### Tools
-* Sinatra as web framework
-* Foundation6 as CSS framework
-* PostgreSQL for database
-* Warden for user authentication
-* Cucumber for acceptance tests
-* RSpec for unit tests
+During this project you will be using a variety of tools. You have used some of them in other challenges, but many will be new to you. 
+* [Sinatra](http://www.sinatrarb.com/) as web framework
+* [ZURB Foundation6](http://foundation.zurb.com/sites/docs/) as CSS framework
+* [PostgreSQL](http://www.postgresql.org/) as a database with DataMapper as ORM
+* [Warden](https://github.com/hassox/warden) for user authentication
+* [Cucumber](https://cucumber.io/) for Acceptance tests
+* [RSpec](http://rspec.info/) for Unit tests
+* [Pony](https://editor.ponyorm.com/) for creating end editing Entity-Relationship diagrams
+* [GitHub](https://github.com/) to store your code and make it available for the entire team
+* [Waffle.io](https://waffle.io/) as Project Management tool for tracking features, issues, bugs, etc.
+
+The purpose of this exercise is to simulate a real project and prepare you for the mid course project that you will be working on in week 6 and/or 7 of the Bootcamp.  
 
 
 We have set up a repo for the project at https://github.com/CraftAcademy/slow_food_sinatra
