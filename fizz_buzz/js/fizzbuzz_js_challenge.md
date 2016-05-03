@@ -40,11 +40,10 @@ the output according to the FizzBuzz rules.
 -------------------------------------------------------------------------------
 #### TODO:
 
-- Fork the challenge repo: [https://github.com/CraftAcademy/fizz_buzz_js_challenge](https://github.com/CraftAcademy/fizz_buzz_js_challenge)
-- Run the command 'bundle' in the project directory to ensure you have all the gems
-- Write your specs and implementation
+- Have a look at the [karma-jquery-jasmine_boilerplate](https://github.com/CraftAcademy/karma-jquery-jasmine_boilerplate) and fillow the instructions on **next section**.
+- Write your specs and implementation for the Fizz Buzz game as you did in the initial Ruby challenge - but in JavaScript
 - Be smart about using Git: commit and push often. Use feature branches.
-- Create a Pull Request as soon as possible
+- Submit your work in using the assignment section in this chapter. 
 
 #### Review and reflect
 Compare this implementation to the Ruby version we wrote a while back during the prep-course. 
@@ -63,7 +62,8 @@ Compare this implementation to the Ruby version we wrote a while back during the
 - You understand how to modify DOM elements using jQuery.
 - I can track your work by following you commit history - so please commit as soon you are done with a feature or when you have made a test pass.
 
-#### In your Pull Request, I'm hoping to see:
+#### On your repository, I'm hoping to see:
+- That you know how to set up and configure 3rd party services for Continuous Integration and test coverage metrics (TravisCI and Coveralls).
 - That you are testing the right thing in the right spec file.
 - That all tests passing - green is good!
 - High test coverage (above 95% is accepted)
