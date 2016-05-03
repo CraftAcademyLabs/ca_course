@@ -16,14 +16,13 @@ Read this entire README carefully and follow all instructions.
 - Feel free to use Google, Stack Overflow, your notes, previously written code, books, etc. but work on your own
 - If you refer to or have in whole or partially used the solution of another coach or student, please put a link to that in your README
 - If you have a partial solution, **push up your code and check in a partial solution under the assignment submission section**
-- You must submit your assignment submission by 9.30am Monday morning - before the stand-up
-- **NOTE! Place all your production code in the `src` folder (html files directly in that folder and JavaScript files in `src/js`)**
+- **You must submit your assignment submission by 9.30am Monday morning - before the stand-up.**
+
 
 ### Learning objective
  
 --------------------------------------------------------------------------------
 
-- 
 - To write Unit tests with Jasmine
 - To write Acceptance tests with Jasmine-jQuery
 - To add HTML elements and get user data
@@ -45,7 +44,8 @@ the output according to the FizzBuzz rules.
 -------------------------------------------------------------------------------
 #### TODO:
 
-- Have a look at the [karma-jquery-jasmine_boilerplate](https://github.com/CraftAcademy/karma-jquery-jasmine_boilerplate) and fillow the instructions on **next section**.
+- Have a look at the [karma-jquery-jasmine_boilerplate](https://github.com/CraftAcademy/karma-jquery-jasmine_boilerplate) and follow the set up instructions.
+- Use the code in the Karma-jQuery-Jasmine-Boilerplate but **set the project and repository name to `fizz_buzz_js`**.
 - Write your specs and implementation for the Fizz Buzz game as you did in the initial Ruby challenge - but in JavaScript
 - Be smart about using Git: commit and push often. Use feature branches.
 - Submit your work in using the assignment section in this chapter. 
@@ -77,39 +77,4 @@ Compare this implementation to the Ruby version we wrote a while back during the
 
 **Happy coding!**
 
-Here is the Fizz Buzz game in JavaScript:
 
-```js
-function FizzBuzz() {
-};
-
-FizzBuzz.prototype._hasZeroReminder = function (number, divisor) {
-    return (number % divisor === 0);
-};
-
-FizzBuzz.prototype.divisibleByThree = function (number) {
-    return this._hasZeroReminder(number, 3);
-};
-
-FizzBuzz.prototype.divisibleByFive = function (number) {
-    return this._hasZeroReminder(number, 5);
-};
-
-FizzBuzz.prototype.divisibleByFifteen = function (number) {
-    return this._hasZeroReminder(number, 15);
-};
-
-FizzBuzz.prototype.fizz_buzz = function (number) {
-    if (this.divisibleByFifteen(number)) {
-        return "FizzBuzz";
-    }
-    else if (this.divisibleByFive(number)) {
-        return "Buzz";
-    }
-    else if (this.divisibleByThree(number)) {
-        return "Fizz";
-    }
-    else
-        return number;
-};
-```
