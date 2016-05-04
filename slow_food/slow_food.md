@@ -2,7 +2,7 @@
 
 Our client is a Restaurant owner that needs a website where he can list his menu and allow visitors to place orders.
 
-#### Scope (v1)
+#### Scope
 
 The first version of the application has limited functionality
 
