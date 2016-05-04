@@ -30,7 +30,7 @@ During this project you will be using a variety of tools. You have used some of 
 The purpose of this exercise is to simulate a real project and prepare you for the mid course project that you will be working on in week 6 and/or 7 of the Bootcamp.  
 
 
-We have set up a repo for the project at https://github.com/CraftAcademy/slow_food_sinatra
+We have set up a repository for the project at https://github.com/CraftAcademy/slow_food_sinatra
 
 **Remember, the code you get to start with is not necessarily right. It is up to you to make this work.**
 
@@ -39,14 +39,15 @@ Fork that repo and go over the code and gems already included in the Gemfile. Yo
 After that you need to create some User stories to cover the above feature requirements. 
 
 
-Next, I want you to draw an ERD (Entity Relationship Diagram) of the system the way you see it fit. ER-modeling is a data modeling technique used in software engineering to produce a conceptual data model of a information system. Diagrams created using this ER-modeling technique are called Entity-Relationship Diagrams, or ER diagrams or ERDs. So you can say that Entity Relationship Diagrams illustrate the logical structure of databases.
+Next, I want you to draw an ERD (Entity Relationship Diagram) of the system the way you see it fit. ER-modeling is a data modeling technique used in software engineering to produce a conceptual data model of a information system. Diagrams created using this ER-modeling technique are called Entity-Relationship Diagrams, or ER diagrams or ERDs. You can say that **Entity Relationship Diagrams illustrate the logical structure of databases**.
+
+ERD's show entities in a database and relationships between tables within that database. It is essential to have ER-Diagrams if you want to create a good database design. The diagrams help focus on how the database actually works.
 
 There are three basic elements in ER-Diagrams:
 
-Entities are the "things" for which we want to store information. An entity is a person, place, thing or event.
-* Attributes are the data we want to collect for an entity.
-* Relationships describe the relations between the entities.
-* ERD's show entities in a database and relationships between tables within that database. It is essential to have ER-Diagrams if you want to create a good database design. The diagrams help focus on how the database actually works.
+* **Entities** are the "things" for which we want to store information. An entity is a person, place, thing or event.
+* **Attributes** are the data we want to collect for an entity.
+* **Relationships** describe the relations between the entities.
 * 
 You can use this ERD Tool: https://editor.ponyorm.com/
 
