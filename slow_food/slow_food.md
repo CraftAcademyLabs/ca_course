@@ -30,12 +30,6 @@ During this project you will be using a variety of tools. You have used some of 
 The purpose of this exercise is to simulate a real project and prepare you for the mid course project that you will be working on in week 6 and/or 7 of the Bootcamp.  
 
 
-We have set up a repository for the project at https://github.com/CraftAcademy/slow_food_sinatra
-
-**Remember, the code you get to start with is not necessarily right. It is up to you to make this work.**
-
-Fork that repo and go over the code and gems already included in the Gemfile. Your very fist assignment is the get that code working. **Make use of all the previous challenges including the Workshop to find answers to obstacles you might encounter.**
-
 After that you need to create some User stories to cover the above feature requirements. 
 
 
