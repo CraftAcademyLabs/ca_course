@@ -26,7 +26,7 @@
    * [NodeJS](fizz_buzz/js/nodejs.md)
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
-   * Step 1 - Setting up the project
+   * [Step 1 - Setting up the project](slow_food/setting_up_the_project.md)
    * Step 2 - Adding user stories
    * Step 3 - Entity Relashionship Diagrams
 * [Static Website with Middleman](middleman/static_website_with_middleman.md)
