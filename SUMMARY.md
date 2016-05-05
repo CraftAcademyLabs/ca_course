@@ -27,6 +27,7 @@
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
    * Step 1 - Setting up the project
+   * Step 2 - User adding user stories
 * [Static Website with Middleman](middleman/static_website_with_middleman.md)
    * [Setup Middleman](middleman/setup_middleman.md)
 * [Ruby On Rails introduction](ror/ruby_on_rails_-_introduction.md)
