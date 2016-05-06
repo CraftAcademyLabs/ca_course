@@ -10,7 +10,9 @@ Each table contains data in predefined columns. Each row contains a unique insta
 
 **ERD (Entity Relationship Diagram)** is a data modeling technique to graphically represent a conceptual data model of a information system. They allow you to display your database structure and show entities and relationships between tables within that database. 
 
-It is essential to have ER-Diagrams if you want to create a good database design. The diagrams help focus on how the database actually works. ER-modeling  You can say that **Entity Relationship Diagrams illustrate the logical structure of databases**.
+Many developers argue that it is essential to have ER-Diagrams if you want to create a good database design. My personal take  is that an ERD is a great thing to spend some time on in the initial phase of the project (The Design Sprint) but we should also accept that requirements WILL change during the development process and so will the database structure. Therefore, be prepared to make continuous updates to your ERD and don't spend too much time on the parts of the database that you are uncertain about.   
+
+The diagrams help focus on how the database actually works. ER-modeling  You can say that **Entity Relationship Diagrams illustrate the logical structure of databases**.
 
 There are three basic elements in ER-Diagrams:
 
