@@ -29,6 +29,7 @@
    * [Step 1 - Setting up the project](slow_food/setting_up_the_project.md)
    * [Step 2 - Adding user stories](slow_food/adding_user_stories.md)
    * [Step 3 - Entity Relationship Diagrams](slow_food/entity_relashionship_diagrams.md)
+   * Step 4 - Implementing the core features
 * [Static Website with Middleman](middleman/static_website_with_middleman.md)
    * [Setup Middleman](middleman/setup_middleman.md)
 * [Ruby On Rails introduction](ror/ruby_on_rails_-_introduction.md)
