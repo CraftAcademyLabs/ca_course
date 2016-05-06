@@ -1,10 +1,10 @@
 ## Step 2 - Adding user stories
 
-BDD asks questions about behavior of a system before and during development to reduce miscommunication. 
+**UX design** is the process used to determine what the experience will be like when a user interacts with your application. **BDD** asks questions about the UX of your system before and during development to reduce miscommunication. 
 
 * Requirements are written down as **user stories**
 * Low Fidelity sketches provide a lightweight flow of how a user interacts with the system.
-* BDD concentrates on behavior vs. implementation (TDD)
+* BDD concentrates on UX vs. implementation (TDD)
 
 ###The “Connextra” format
 
