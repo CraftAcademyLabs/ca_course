@@ -1,2 +1,2 @@
-# Step 4 - Implementing the core features
+## Step 4 - Implementing the core features
 
