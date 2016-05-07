@@ -14,11 +14,12 @@
   I want to <feature>
 ```
 The above user story format is the one we will be using to describe the application. It is centered around three important questions:
+
 * Who's using the system?
 * What are they doing?
 * Why do they care?
 
-A user story can be formulated as an **acceptance test** (BDD) before code is written. The same feature can be described by viewing it from a different stakeholder perspective.
+A user story can be formulated as an **acceptance test** before code is written. The same feature can be described by viewing it from a different stakeholder perspective.
 
 See dishes that are available
 ```
