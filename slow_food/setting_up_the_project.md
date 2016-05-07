@@ -7,9 +7,29 @@ We have set up a [repository for the project](https://github.com/CraftAcademy/sl
 Finally, it’s not just about the code. This challenge is about practicing the workflow.**
 
 
+###Agile principles
+
+There are different Agile methodologies you can use in your projects and we will be talking a lot about that and introducing different agile techniques as we move along in the course. For now, you should always follow these core Agile principles:
+
+* focus on user needs
+* deliver iteratively
+* keep improving how your team works
+* fail fast and learn quickly
+* keep planning
+
 ###Planning your work
+Your team should plan together, review these plans regularly and change them based on your progress and any new facts and requirements that arise during the development process. 
+
+Features
+Chores
+Bugs
+
 
 Both [Waffle.io](https://waffle.io/) and [ZenHub.io](https://www.zenhub.io/) is a project management tools powered by your GitHub Issues & Pull Requests. Waffle.io is the tool of choice for many AgileVentures projects and provides a web based interface for managing Issues and track Pull Requests. ZenHub provides similar functionality (and more) as a browser extension. It is up to you to decide what tool your team want to use.
+
+Introduction to Waffle.io: https://youtu.be/yEbRaA3rYuA
+
+Introduction to ZenHub.io: https://youtu.be/TRu7vKCg920
 
 
 
