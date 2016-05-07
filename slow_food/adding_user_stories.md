@@ -2,7 +2,7 @@
 
 **UX design** is the process used to determine what the experience will be like when a user interacts with your application. 
 
-You can find a partially developed version of the SlowFood app deploysed to Heroku at this URL: https://mazen-slow-food.herokuapp.com/
+You can find a partially developed version of the SlowFood app deployyed to Heroku at this URL: https://mazen-slow-food.herokuapp.com/
 
 If UX is the experience that a user has while interacting with your product, then UX Design is, by definition, the process by which we determine what that experience will be. **BDD** asks questions about the UX of your system before and during development to reduce miscommunication. 
 
