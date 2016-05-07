@@ -27,7 +27,7 @@
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
    * [Step 1 - Setting up the project](slow_food/setting_up_the_project.md)
-   * [Step 2 - Adding user stories](slow_food/adding_user_stories.md)
+   * [Step 2 - Focus on the user experience](slow_food/adding_user_stories.md)
    * [Step 3 - Entity Relationship Diagrams](slow_food/entity_relashionship_diagrams.md)
    * [Step 4 - Implementing the core features](slow_food/implementing_the_core_features.md)
 * [Static Website with Middleman](middleman/static_website_with_middleman.md)
