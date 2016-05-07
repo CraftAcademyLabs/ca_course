@@ -24,7 +24,7 @@ During this project you will be using a variety of tools. You have used some of 
 * [RSpec](http://rspec.info/) for Unit tests
 * [Pony](https://editor.ponyorm.com/) for creating end editing Entity-Relationship diagrams
 * [GitHub](https://github.com/) to store your code and make it available for the entire team
-* [Waffle.io](https://waffle.io/) as Project Management tool for tracking features, issues, bugs, etc.
+* [Waffle.io](https://waffle.io/) or [ZenHub.io](https://www.zenhub.io/) as Project Management tool for tracking features, issues, bugs, etc.
 
 **The purpose of this exercise is to simulate a real project and prepare you for the mid course project that you will be working on in week 6 and/or 7 of the Bootcamp.**  
 
