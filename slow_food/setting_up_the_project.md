@@ -9,6 +9,8 @@ Finally, it’s not just about the code. This challenge is about practicing the 
 
 ###Planning your work
 
+Both [Waffle.io](https://waffle.io/) and [ZenHub.io](https://www.zenhub.io/) is a project management tools powered by your GitHub Issues & Pull Requests. Waffle.io is the tool of choice for many AgileVentures projects and provides a web based interface for managing Issues and track Pull Requests. ZenHub provides similar functionality (and more) as a browser extension. It is up to you to decide what tool your team want to use.
+
 
 
 
