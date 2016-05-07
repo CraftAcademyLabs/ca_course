@@ -8,6 +8,8 @@
 
 ###The “Connextra” format
 
+**User stories** are used with agile methodologies as the basis for defining the functions a  system must provide and to manage requirements. They captures the "who", "what" and "why" of a requirement in a simple, concise way, often limited in detail by what can be hand-written on a small card.
+
 ```
   As a <role>
   So that/In order to <business value>
