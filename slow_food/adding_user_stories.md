@@ -1,4 +1,4 @@
-## Step 2 - BDD Focus on the user
+## Step 2 - Focus on the user experience
 
 **UX design** is the process used to determine what the experience will be like when a user interacts with your application. If UX is the experience that a user has while interacting with your product, then UX Design is, by definition, the process by which we determine what that experience will be. **BDD** asks questions about the UX of your system before and during development to reduce miscommunication. 
 
