@@ -20,10 +20,14 @@ There are different Agile methodologies you can use in your projects and we will
 ###Planning your work
 Your team should plan together, review these plans regularly and change them based on your progress and any new facts and requirements that arise during the development process. 
 
-Features
-Chores
-Bugs
+####Features
+Features are stories that provide verifiable business value to the team's customer. Examples of features include "add a 'special instructions' field to the checkout page", "purchase history should load in half a second", and "add a new method addToInventory to the public API". Features are worth points and therefore must be estimated
 
+####Chores
+Chores are stories that are necessary, but provide no direct, obvious value to the customer. Examples include "sign up for access to geocoding service" and "Find out why the detailed test suite takes so long". Chores can represent "code debt", and/or points of dependency on other teams.
+
+####Bugs
+Bugs represent unintended behavior that can be related to features, for example "login box is wrong color", and "price should be non-negative".
 
 Both [Waffle.io](https://waffle.io/) and [ZenHub.io](https://www.zenhub.io/) is a project management tools powered by your GitHub Issues & Pull Requests. Waffle.io is the tool of choice for many AgileVentures projects and provides a web based interface for managing Issues and track Pull Requests. ZenHub provides similar functionality (and more) as a browser extension. It is up to you to decide what tool your team want to use.
 
