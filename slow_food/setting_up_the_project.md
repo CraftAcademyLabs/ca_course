@@ -20,6 +20,25 @@ There are different Agile methodologies you can use in your projects and we will
 ###Planning your work
 Your team should plan together, review these plans regularly and change them based on your progress and any new facts and requirements that arise during the development process. 
 
+Both [Waffle.io](https://waffle.io/) and [ZenHub.io](https://www.zenhub.io/) is a project management tools powered by your GitHub Issues & Pull Requests. Waffle.io is the tool of choice for many AgileVentures projects and provides a web based interface for managing Issues and track Pull Requests. ZenHub provides similar functionality (and more) as a browser extension. It is up to you to decide what tool your team want to use.
+
+###Structure
+
+We will make use of 4 columns in Waffle (or ZenHub if you choose to use that tool) to 
+
+####Backlog
+Any issue that we see as important for the near future lives in the **Backlog**. Issues in this column are generally prioritized from top to bottom with the top items having the highest priority.
+
+####Ready
+Any issue that we would like to work on soon is moved to **Ready**. As we move ahead, we pull issues from Backlog into Ready, so we have an idea of the most important items to work on for at the moment.
+
+####In Progress
+Any issue that is currently being worked on is put into the **In Progress** column and assigned to a developer. By limiting the number of issues you work on at one time helps you focus on what needs to be done.
+
+####Done
+Any issues that have been closed are reflected in the **Done** column. For pull requests, this means that the code has been merged and deployed.
+
+###Stories
 We will use 3 types of stories in our project plan: Features, Chores and Bugs
 
 ####Features
@@ -30,8 +49,6 @@ Chores are stories that are necessary, but provide no direct, obvious value to t
 
 ####Bugs
 Bugs represent unintended behavior that can be related to features, for example "login box is wrong color", and "price should be non-negative".
-
-Both [Waffle.io](https://waffle.io/) and [ZenHub.io](https://www.zenhub.io/) is a project management tools powered by your GitHub Issues & Pull Requests. Waffle.io is the tool of choice for many AgileVentures projects and provides a web based interface for managing Issues and track Pull Requests. ZenHub provides similar functionality (and more) as a browser extension. It is up to you to decide what tool your team want to use.
 
 Introduction to Waffle.io: https://youtu.be/yEbRaA3rYuA
 
