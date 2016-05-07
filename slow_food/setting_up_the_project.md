@@ -20,6 +20,8 @@ There are different Agile methodologies you can use in your projects and we will
 ###Planning your work
 Your team should plan together, review these plans regularly and change them based on your progress and any new facts and requirements that arise during the development process. 
 
+We will use 3 types of stories in our project plan: Features, Chores and Bugs
+
 ####Features
 Features are stories that provide verifiable business value to the team's customer. Examples of features include "add a 'special instructions' field to the checkout page", "purchase history should load in half a second", and "add a new method addToInventory to the public API". Features are worth points and therefore must be estimated
 
