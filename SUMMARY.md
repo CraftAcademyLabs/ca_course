@@ -31,6 +31,7 @@
    * [Step 3 - Entity Relationship Diagrams](slow_food/entity_relashionship_diagrams.md)
    * [Step 4 - Implementing the core features](slow_food/implementing_the_core_features.md)
    * [Step 5 - Working with the database](slow_food/working_with_the_database.md)
+   * Extra - Setting up RSpec
 * [Static Website with Middleman](middleman/static_website_with_middleman.md)
    * [Setup Middleman](middleman/setup_middleman.md)
 * [Ruby On Rails introduction](ror/ruby_on_rails_-_introduction.md)
