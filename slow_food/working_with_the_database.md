@@ -76,10 +76,10 @@ Now let's create some classes using this ERD as a blueprint.
 
 We already have a `User` class defined. Now we need to expand it with a relation to an `Restaurant`. 
 
-Before we move on, we need to install RSpec and initiate it. 
+Before we move on, we need to install RSpec and initiate it (see a separate section of the course documentation on how to set up testing frameworks for this project)
 
 
-Let's write some tests. 
+Let's write some tests by following our entities design of the ERD. 
 
 !FILENAME spec/user_spec.rb
 ```
@@ -96,18 +96,20 @@ end
 
 And a spec for the `Restaurant` class
 
-!FILENAME spec/user_spec.rb
+!FILENAME spec/restaurant_spec.rb
 ```
-require './lib/models/model'
+require './lib/models/restaurant'
 
-describe User do
+describe Restaurand do
   it { is_expected.to have_property :id }
-  it { is_expected.to have_property :username }
-  it { is_expected.to have_property :password }
+  it { is_expected.to have_property :name }
   
-  it { is_expected.to have_one :restaurant }
+  it { is_expected.to belong_to :user }
 end
 ```
+
+Your job will be to make those tests to pass. Use the DataMapper documentation to find out how to set up relationships between entities/classes. 
+
 
 
 
