@@ -37,7 +37,7 @@ For example, let's say that we want to test our user registration feature. In th
 ```shell
 $ touch features/user_management.feature
 ```
-Open that file and add the following code:
+Open that file and add the following code (this is a feature description AND the first of many scenarios that constitutes acceptance criteria of this feature) 
 
 !FILENAME features/user_management.feature
 ```gherkin
@@ -45,9 +45,30 @@ Feature: As a visitor
 So that I can log in to the system and place orders
 I would like to see a 'log in' or 'register' button on the home page.
 
-Scenario: Display "Log in" button on navigation bar
+Scenario: Allows a visitor to access a registration page
   Given I am on the "home page"
-  Then I should see a "Log in" link
+  And I click on the "Log in" link
+  Then I should be on the "registrtion" page
 ```
+
+Now, run cucumber in your terminal. You will get a lot of errors that you should go over carefully. 
+
+```shell
+$ cucumber
+Feature: As a visitor
+So that I can log in to the system and place orders
+I would like to see a 'log in' or 'register' button on the home page.
+
+  Scenario: Display "Log in" button on navigation bar # features/user_management.feature:5
+    Given I am on the "home page"                     # features/user_management.feature:6
+    Then I should see a "Log in" link                 # features/user_management.feature:7
+
+1 scenario (1 undefined)
+2 steps (2 undefined)
+0m0.147s
+```
+
+
+
 
 
