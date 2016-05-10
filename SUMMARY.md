@@ -30,6 +30,7 @@
    * [Step 2 - Focus on the user experience](slow_food/adding_user_stories.md)
    * [Step 3 - Entity Relationship Diagrams](slow_food/entity_relashionship_diagrams.md)
    * [Step 4 - Implementing the core features](slow_food/implementing_the_core_features.md)
+   * Step 5 - Working with the database
 * [Static Website with Middleman](middleman/static_website_with_middleman.md)
    * [Setup Middleman](middleman/setup_middleman.md)
 * [Ruby On Rails introduction](ror/ruby_on_rails_-_introduction.md)
