@@ -7,7 +7,8 @@ There are several differant ways to install Postgres on your computer and there 
 The setup is fairly straight forward. In the documetation, we can read that the setup for Sinatra requires two gems and a single line of code. 
 
 * Install and require the `datamapper` and `do_postgres` gems, and create a database connection:
-* 
+
+
 ```ruby
 
 DataMapper.setup(:default, ENV['DATABASE_URL'] || "postgres://localhost/[YOUR_DATABASE_NAME]")
