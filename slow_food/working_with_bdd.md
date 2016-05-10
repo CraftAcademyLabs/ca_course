@@ -59,13 +59,14 @@ Feature: As a visitor
 So that I can log in to the system and place orders
 I would like to see a 'log in' or 'register' button on the home page.
 
-  Scenario: Display "Log in" button on navigation bar # features/user_management.feature:5
-    Given I am on the "home page"                     # features/user_management.feature:6
-    Then I should see a "Log in" link                 # features/user_management.feature:7
+  Scenario: Allows a visitor to access a registration page # features/user_management.feature:5
+    Given I am on the "home page"                          # features/user_management.feature:6
+    And I click on the "Log in" link                       # features/user_management.feature:7
+    Then I should be on the "registrtion" page             # features/user_management.feature:8
 
 1 scenario (1 undefined)
-2 steps (2 undefined)
-0m0.147s
+3 steps (3 undefined)
+0m0.033s
 ```
 
 
