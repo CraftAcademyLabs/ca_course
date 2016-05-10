@@ -148,6 +148,8 @@ If you save your work and run cucumber again you should see something like this.
 ![](slow_food_cucumber_terminal_green.png)
 Seems like good progress, right? 
 
+This is passing becouse we are testing views that are alredy defined in the legacy code. As usual, if you introduce any changes your tests needs to reflect them. If the don't you'll find yourself in a messy situation. ;-) 
+
 You probably recognize the `expect` command from your work with RSpec. What is new is the Capybara commands. So far, we only make use of 2 of quite many commads that are to our disposal. 
 
 Here is a summary of the most common commands
