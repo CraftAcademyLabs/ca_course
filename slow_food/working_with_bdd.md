@@ -39,4 +39,15 @@ $ touch features/user_management.feature
 ```
 Open that file and add the following code:
 
+!FILENAME features/user_management.feature
+```gherkin
+Feature: As a visitor
+So that I can log in to the system and place orders
+I would like to see a 'log in' or 'register' button on the home page.
+
+Scenario: Display "Log in" button on navigation bar
+  Given I am on the "home page"
+  Then I should see a "Log in" link
+```
+
 
