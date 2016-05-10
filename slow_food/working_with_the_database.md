@@ -56,7 +56,7 @@ That will open the IRB console with all your gems and dependencies loaded. Now y
 2.2.3 :001 > User.count
  => 1 
 2.2.3 :002 > my_user = User.new
- => #<User @id=nil @username=nil @password=nil> 
+ => #\<User @id=nil @username=nil @password=nil> 
 2.2.3 :003 > my_user.username = "Tochman"
  => "Tochman" 
 2.2.3 :004 > my_user.password = "my_secret_password"
@@ -64,7 +64,7 @@ That will open the IRB console with all your gems and dependencies loaded. Now y
 2.2.3 :005 > my_user.save
  => true 
 2.2.3 :006 > my_user
- => #<User @id=2 @username="Tochman" @password="$2a$10$Lz6uIslKglmzGiiGyjjfh.EfGA1Bp2h4PCjo7W0A2M4s/PIJSVOb6"> 
+ => #\<User @id=2 @username="Tochman" @password="$2a$10$Lz6uIslKglmzGiiGyjjfh.EfGA1Bp2h4PCjo7W0A2M4s/PIJSVOb6"> 
 2.2.3 :007 > 
 ```
 
