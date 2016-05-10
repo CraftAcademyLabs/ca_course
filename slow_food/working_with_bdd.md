@@ -69,6 +69,38 @@ I would like to see a 'log in' or 'register' button on the home page.
 0m0.033s
 ```
 
+And you should also see something like this on your terminal:
+
+![](slow_food_cucumber_terminal.png)
+This is perfectly normal. What Cucumber is doing is helping you in defining so called **step definitions**, that are the actual implementation of your tests so that they can be understood by ruby. 
+
+Confusing? Let me get you started by implementing the steps above. 
+
+Create a new file in the `features/step_definitions` folder. 
+
+```shell
+$ touch features/step_definitions/basic_steps.rb`
+```
+
+Add the following code to that file 
+
+!FILENAME features/step_definitions/basic_steps.rb
+```ruby
+You can implement step definitions for undefined steps with these snippets:
+
+Given(/^I am on the "([^"]*)"$/) do |arg1|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Given(/^I click on the "([^"]*)" link$/) do |arg1|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^I should be on the "([^"]*)" page$/) do |arg1|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+```
+
 
 
 
