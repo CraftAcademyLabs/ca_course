@@ -1,4 +1,6 @@
-## Setting up RSpec
+## Setting up RSpec & Cucumber
+
+###RSpec
 
 Add the following gems to your `Gemfile`, unless they are allready included. 
 
@@ -141,5 +143,37 @@ Finished in 0.00032 seconds (files took 0.72891 seconds to load)
 0 examples, 0 failures
 ```
 
-Okay, this means that you have successfully added and set up `RSpec` as a testing framework.
+**Okay, this means that you have successfully added and set up `RSpec` as a testing framework.**
+
+###Cucumber
+Make sure that cucumber is added to your `Gemfile`'s `:development, :test` group as a depenency. 
+
+!FILENAME Gemfile
+```ruby
+group :development, :test do
+  gem 'cucumber'
+end
+```
+If it's not, add it and run `bundle install`. Once that is complete I'd like you to initiate Cucumber by simply typing in:
+```shell
+$ cucumber --init
+```
+That will create some files and folders for you:
+```
+create   features
+create   features/step_definitions
+create   features/support
+create   features/support/env.rb
+```
+Okay, now, in your terminal, you type in:
+```
+$ cucumber
+```
+The output you will see should look something like this:
+```
+0 scenarios
+0 steps
+0m0.000s
+```
+Alright, we have installed and initiated the first testing framework. Big step.
 
