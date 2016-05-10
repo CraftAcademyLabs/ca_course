@@ -47,8 +47,8 @@ I would like to see a 'log in' or 'register' button on the home page.
 
 Scenario: Allows a visitor to access a registration page
   Given I am on the "home page"
-  And I click on the "Log in" link
-  Then I should be on the "registrtion" page
+  And I click on the "Log In" link
+  Then I should be on the registration page
 ```
 
 Now, run cucumber in your terminal. You will get a lot of errors that you should go over carefully. 
@@ -62,7 +62,7 @@ I would like to see a 'log in' or 'register' button on the home page.
   Scenario: Allows a visitor to access a registration page # features/user_management.feature:5
     Given I am on the "home page"                          # features/user_management.feature:6
     And I click on the "Log in" link                       # features/user_management.feature:7
-    Then I should be on the "registrtion" page             # features/user_management.feature:8
+    Then I should be on the registration page             # features/user_management.feature:8
 
 1 scenario (1 undefined)
 3 steps (3 undefined)
@@ -76,10 +76,36 @@ This is perfectly normal. What Cucumber is doing is helping you in defining so c
 
 Confusing? Let me get you started by implementing the steps above. 
 
+Modify the `fetures/support/env.rb` file to make cucumber actually start your application and load the necessary dependencies.
+
+!FILENAME fetures/support/env.rb
+```ruby
+ENV['RACK_ENV'] = 'test'
+
+require File.join(File.dirname(__FILE__), '..', '..', 'lib/controller.rb')
+
+require 'capybara'
+require 'capybara/cucumber'
+require 'rspec'
+require 'pry'
+
+Capybara.app = SlowFood
+
+class SlowFoodWorld
+  include Capybara::DSL
+  include RSpec::Expectations
+  include RSpec::Matchers
+end
+
+World do
+  SlowFoodWorld.new
+end
+```
+
 Create a new file in the `features/step_definitions` folder. 
 
 ```shell
-$ touch features/step_definitions/basic_steps.rb`
+$ touch features/step_definitions/basic_steps.rb
 ```
 
 Add the following code to that file 
@@ -96,10 +122,29 @@ Given(/^I click on the "([^"]*)" link$/) do |arg1|
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-Then(/^I should be on the "([^"]*)" page$/) do |arg1|
+Then(/^I should be on the registration page$/) do |arg1|
   pending # Write code here that turns the phrase above into concrete actions
 end
 ```
+
+At the moment all the above step definitions are empty, so we need to add some commands for each of the steps. I will introduce some Capybara commands to the **Given** steps and an assersion to the **Then** step. 
+
+!FILENAME features/step_definitions/basic_steps.rb
+```ruby
+Given(/^I am on the "([^"]*)"$/) do |page|
+  visit '/'
+end
+
+Given(/^I click on the "([^"]*)" link$/) do |link|
+  click_link_or_button link
+end
+
+Then(/^I should be on the registration page$/) do
+  expect(current_path).to eq '/auth/login'
+end
+```
+
+
 
 
 
