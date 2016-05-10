@@ -20,8 +20,23 @@ What we want to do at this stage is to get the user stories we have defined toge
 
 In short, we want to take each user story and break it down to scenarios that each represents a use case in the application. Sounds confusing? It is, but look at it as a form of a blue print that you will use when we start to actually build the app.
 
+*Cucumber is not installed on your system so we need to do that as a first step (see the Setup section)* 
 
+A **feature** is one of your already defined **user stories**. It consists of one ore many  **scenarios**. A scenario is a sequence of **steps** through the feature that exercises one path.
 
-Cucumber is not installed on your system so we need to do that as a first step (see the Setup section)
+A **scenario** is made up of 3 sections related to the 3 types of steps:
+
+* **Given:** This sets up preconditions, or context, for the scenario.
+* **When:** This is what the feature is talking about, the action, the behavior that we're focused on.
+* **Then:** This checks postconditions. It verifies that the right thing happen in the When stage.
+* 
+There is yet another type of step you can use in a scenario path, and that is the **And** keyword. **And** can be used in any of the three sections. It serves as a nice shorthand for repeating the **Given**, **When**, or **Then**. **And** stands in for whatever the most recent explicitly named step was.
+
+For example, let's say that we want to test our user registration feature. In the newly created features folder, please create a `user_management.feature` by returning to your terminal window and typing in:
+
+```shell
+$ touch features/user_management.feature
+```
+Open that file and add the following code:
 
 
