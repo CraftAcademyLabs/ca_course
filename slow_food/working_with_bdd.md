@@ -12,7 +12,7 @@ Cucumber (cucumber.io) is a testing framework used to describe high level functi
 
 During the development process, we'll take an approach that combines high level acceptance tests and low level unit tests to both drive the development process and make sure that we build a robust and well structured application.
 
-###Test first
+###Test first - as we always do
 
 Let's start with writing some high level acceptance tests.
 
@@ -22,5 +22,6 @@ In short, we want to take each user story and break it down to scenarios that ea
 
 
 
-Cucumber is not installed on your system so we need to do that as a first step (see the 
+Cucumber is not installed on your system so we need to do that as a first step (see the Setup section)
+
 
