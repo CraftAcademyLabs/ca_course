@@ -108,7 +108,8 @@ end
 
 Not so bad, ey?
 
-Alright, we need to add some of the libraries/gems we want to use in our `spec_helper`. Modify your file to include:
+Alright, we need to add some of the libraries/gems we want to use in our `spec_helper`. Modify your file to include the settings below.
+
 !FILENAME spec/spec_helper.rb
 ```ruby
 ENV['RACK_ENV'] = 'test'
