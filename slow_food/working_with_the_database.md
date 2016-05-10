@@ -49,4 +49,66 @@ In order to be able to open an interactive console that will allow you to access
 $ bundle exec irb -r ./lib/controller.rb
 ```
 
-That will open the IRB console with all your gems and dependencies loaded. 
+That will open the IRB console with all your gems and dependencies loaded. Now you can try to create a new user using the class definition in the legacy code. 
+
+```shell
+2.2.3 :001 > User.count
+ => 1 
+2.2.3 :002 > my_user = User.new
+ => #<User @id=nil @username=nil @password=nil> 
+2.2.3 :003 > my_user.username = "Tochman"
+ => "Tochman" 
+2.2.3 :004 > my_user.password = "my_secret_password"
+ => "my_secret_password" 
+2.2.3 :005 > my_user.save
+ => true 
+2.2.3 :006 > my_user
+ => #<User @id=2 @username="Tochman" @password="$2a$10$Lz6uIslKglmzGiiGyjjfh.EfGA1Bp2h4PCjo7W0A2M4s/PIJSVOb6"> 
+2.2.3 :007 > 
+```
+
+### ERD to Datamapper classes
+
+In previous steps, you have created an ERD. 
+![](SlowFood.png)
+
+Now let's create some classes using this ERD as a blueprint. 
+
+We already have a `User` class defined. Now we need to expand it with a relation to an `Restaurant`. 
+
+Before we move on, we need to install RSpec and initiate it. 
+
+
+Let's write some tests. 
+
+!FILENAME spec/user_spec.rb
+```
+require './lib/models/model'
+
+describe User do
+  it { is_expected.to have_property :id }
+  it { is_expected.to have_property :username }
+  it { is_expected.to have_property :password }
+  
+  it { is_expected.to have_one :restaurant }
+end
+```
+
+And a spec for the `Restaurant` class
+
+!FILENAME spec/user_spec.rb
+```
+require './lib/models/model'
+
+describe User do
+  it { is_expected.to have_property :id }
+  it { is_expected.to have_property :username }
+  it { is_expected.to have_property :password }
+  
+  it { is_expected.to have_one :restaurant }
+end
+```
+
+
+
+
