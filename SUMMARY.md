@@ -55,4 +55,5 @@
 * [Extras](extras.md)
    * [Naming Standards](extras/naming_standards.md)
    * [Classes vs Modules](extras/classes_and_modules.md)
+   * Code structure
 
