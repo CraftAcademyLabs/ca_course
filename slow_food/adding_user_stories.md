@@ -43,8 +43,8 @@ I want to be able to display a list of available dishes
 Think about these two User stories, they seem to be almost identical. But are they in fact identical? 
 
 ###Lo-Fi's
-Low-fidelity prototypes (LoFi's) of the systems views are rough representations of concepts that help us  validate those concepts early on in the design process. Working with transforming user stories to low-fidelity prototypes is a unique way to radically improve your work and to build an UX in which users’ needs can be truly realized.
+Low-fidelity prototypes (LoFi's) of the systems views are rough representations of concepts that help us  validate those concepts early on in the design process. Working with transforming user stories to low-fidelity prototypes is a unique way to radically improve your work and to build a UX in which user's needs can be truly realized.
 
-* Design thinking advocates for “thinking with your hands” as a way to build empathetic solutions.
+* Design thinking advocates for "thinking with your hands" as a way to build empathetic solutions.
 * Lean startup relies on early validation and the development of a minimum viable product to iterate on.
-* User-centered design calls for a collaborative design process where users deliver continual feedback based on their reactions to a product’s prototype.
+* User-centered design calls for a collaborative design process where users deliver continual feedback based on their reactions to a product's prototype.
