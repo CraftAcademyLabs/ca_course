@@ -871,7 +871,7 @@ We then need to add Chosen to application.js and application.css.scss files:
 //= require_tree .
 ```
 
-!FILENME app/assets/stylesheets/application.css
+!FILENAME app/assets/stylesheets/application.css
 ```css
 /* [...] */
  *
