@@ -28,7 +28,7 @@ A **scenario** is made up of 3 sections related to the 3 types of steps:
 
 * **Given:** This sets up preconditions, or context, for the scenario.
 * **When:** This is what the feature is talking about, the action, the behavior that we're focused on.
-* **Then:** This checks postconditions. It verifies that the right thing happen in the When stage.
+* **Then:** This checks post-conditions. It verifies that the right thing happen in the When stage.
 * 
 There is yet another type of step you can use in a scenario path, and that is the **And** keyword. **And** can be used in any of the three sections. It serves as a nice shorthand for repeating the **Given**, **When**, or **Then**. **And** stands in for whatever the most recent explicitly named step was.
 
@@ -127,7 +127,7 @@ Then(/^I should be on the registration page$/) do |arg1|
 end
 ```
 
-At the moment all the above step definitions are empty, so we need to add some commands for each of the steps. I will introduce some Capybara commands to the **Given** steps and an assersion to the **Then** step. 
+At the moment all the above step definitions are empty, so we need to add some commands for each of the steps. I will introduce some Capybara commands to the **Given** steps and an assertion to the **Then** step. 
 
 !FILENAME features/step_definitions/basic_steps.rb
 ```ruby
@@ -148,9 +148,9 @@ If you save your work and run cucumber again you should see something like this.
 ![](slow_food_cucumber_terminal_green.png)
 Seems like good progress, right? 
 
-This is passing becouse we are testing views that are alredy defined in the legacy code. As usual, if you introduce any changes your tests needs to reflect them. If the don't you'll find yourself in a messy situation. ;-) 
+This is passing because we are testing views that are already defined in the legacy code. As usual, if you introduce any changes your tests needs to reflect them. If the don't you'll find yourself in a messy situation. ;-) 
 
-You probably recognize the `expect` command from your work with RSpec. What is new is the Capybara commands. So far, we only make use of 2 of quite many commads that are to our disposal. 
+You probably recognize the `expect` command from your work with RSpec. What is new is the Capybara commands. So far, we only make use of 2 of quite many commands that are to our disposal. 
 
 Here is a summary of the most common commands
 ```

@@ -2,7 +2,7 @@
 
 ###RSpec
 
-Add the following gems to your `Gemfile`, unless they are allready included. 
+Add the following gems to your `Gemfile`, unless they are already included. 
 
 !FILENAME Gemfile
 ```ruby
@@ -90,8 +90,8 @@ Finished in 0.00023 seconds (files took 0.5029 seconds to load)
 
 **We are not quite done yet. Sorry. :-(**
 
-I want you to open the `spec/spec_helper.rb` file. You'll se a lot of lines. Most of them are not needed so I would like you to delete all lines that begin with the `#`sign.
-These are comments and we don't need them - for now, they are just a distraction. .
+I want you to open the `spec/spec_helper.rb` file. You'll see a lot of lines. Most of them are not needed so I would like you to delete all lines that begin with the `#`sign.
+These are comments and we don't need them - for now, they are just a distraction.
 
 When you are done you should see something like this:
 
@@ -146,7 +146,7 @@ Finished in 0.00032 seconds (files took 0.72891 seconds to load)
 **Okay, this means that you have successfully added and set up `RSpec` as a testing framework.**
 
 ###Cucumber
-Make sure that cucumber is added to your `Gemfile`'s `:development, :test` group as a depenency. 
+Make sure that cucumber is added to your `Gemfile`'s `:development, :test` group as a dependency. 
 
 !FILENAME Gemfile
 ```ruby

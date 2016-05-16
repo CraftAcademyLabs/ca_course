@@ -2,9 +2,9 @@
 
 It's time to introduce the database connection. As you've already noticed (if you have reviewed the gems in your `Gemfile`) we'll be using Postgres as a database. 
 
-There are several differant ways to install Postgres on your computer and there is a bid risk that you will run into some issues while doing it. The simplest way is to head over to http://postgresapp.com/ and download and run the installer. 
+There are several different ways to install Postgres on your computer and there is a bid risk that you will run into some issues while doing it. The simplest way is to head over to http://postgresapp.com/ and download and run the installer. 
 
-The setup is fairly straight forward. In the documetation, we can read that the setup for Sinatra requires two gems and a single line of code. 
+The setup is fairly straight forward. In the documentation, we can read that the setup for Sinatra requires two gems and a single line of code. 
 
 * Install and require the `datamapper` and `do_postgres` gems, and create a database connection:
 
