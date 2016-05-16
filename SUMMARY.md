@@ -36,6 +36,7 @@
 * [Static Website with Middleman](middleman/static_website_with_middleman.md)
    * [Setup Middleman](middleman/setup_middleman.md)
    * [HAML - HTML abstraction markup language](middleman/html_abstraction_markup_language.md)
+   * Week lab
 * [Ruby On Rails introduction](ror/ruby_on_rails_-_introduction.md)
 * [BDD with Rails](bdd_with_rails.md)
 * [Rails Messaging](rails_messaging.md)
