@@ -193,6 +193,120 @@ HTML:
 </div>
 ```
 
+##Outputting Ruby in HAML
+
+So how do we embed Ruby in our HAML? In ERB we might have:
+
+```html
+<p class='flash'><%= flash[:notice] %></p>
+```
+Given what you’ve seen from the `H1`, you would imagine the `<p></p>` becomes `%p`. But what about the Ruby injection?
+
+###Ruby Injections
+
+HAML’s approach is to reduce `<%= %>` to just `=`. The HAML engine assumes that if the content starts with an `=`, that the entire rest of the line is Ruby. For example, the flash paragraph above would be rewritten like this:
+
+```haml
+%p= flash[:notice]
+```
+Note that the `=` must be placed against the `%p` tag.
+
+###Adding a CSS Class
+
+But what about the class? There are two options. The verbose syntax uses a hash-like format:
+
+```haml
+%p{class: 'flash'}= flash[:notice]
+```
+But we can also use a CSS-like shorthand syntax:
+
+```haml
+%p.flash= flash[:notice]
+```
+The latter is easier and more commonly used.
+
+###Mixing Plain Text and Ruby
+
+Consider a chunk of content that has both plain text and Ruby like this:
+
+```erb
+<div id="sidebar">
+Filter by Tag: <%= tag_links(Tag.all) %>
+</div>
+```
+Given what we've seen so far, you might imagine it goes like this:
+
+```haml
+%div#sidebar Filter by Tag: = tag_links(Tag.all)
+```
+But HAML won't recognize the Ruby code there. Since the element's content starts with plain text, it will assume the whole line is plain text.
+
+####Breaking Ruby and Text into Separate Lines
+
+One solution in HAML is to put the plain text and the Ruby on their own lines, each indented under the DIV:
+
+```haml
+%div#sidebar
+  Filter by Tag:
+  = tag_links(Tag.all)
+```
+Since version 3, HAML supports an interpolation syntax for mixing plain text and Ruby:
+
+```haml
+%div#sidebar
+  Filter by Tag: #{tag_links(Tag.all)}
+```
+And it can be pushed back up to one line:
+
+```haml
+%div#sidebar Filter by Tag: #{tag_links(Tag.all)}
+```
+
+###Ruby commands
+
+We've seen plain text, HTML elements, and printing Ruby. Now let’s focus on non-printing Ruby.
+
+One of the most common uses of non-printing Ruby in a view template is iterating through a collection. In ERB we might have:
+
+```erb
+<ul id='articles'>
+  <% @articles.each do |article| %>
+    <li><%= article.title %></li>
+  <% end %>
+</ul>
+```
+The second and fourth lines are non-printing because they omit the equals sign. HAML’s done away with the <%. So you might be tempted to write this:
+
+```haml
+%ul#articles
+  @articles.each do |article|
+    %li= article.title
+```
+Content with no marker is interpreted as plain text, so the `@articles` line will be output as plain text and the third line would cause a parse error.
+
+###Marking Non-Printing Lines
+
+We need a new symbol to mark non-printing lines. In HAML these lines begin with a hyphen `(-)`:
+
+```haml
+%ul#articles
+  - @articles.each do |article|
+    %li= article.title
+```
+No `end`!
+
+What about the `end` that we use in our ruby files and in erb? HAML uses that significant whitespace to reduce the syntax of HTML and Ruby. The end for the do is not only unnecessary, **it will raise an exception if you try to use it.**
+
+##Conclusion
+HAML templates are cleaner, easier to read, easier to maintain, and easier to develop on.
+
+An anonymous developers opinion will close this section:
+
+
+> HAML makes me faster. A lot faster. Not having to track down where a closing tag was omitted, never accidentally crossing tag scope, and being able to trivially ascertain the selector path of a given bit of markup makes templating fast. I do a lot of it "the old way" too, and...it's just not as fun. It's frustrating, and slow, and it's not because I'm bad at it - I did it for years before HAML - it's because if you take the time to learn it, HAML is genuinely better.
+
+**Happy HAML coding!**
+
 
 
 
