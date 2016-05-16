@@ -35,6 +35,7 @@
    * [Extra - Setting up RSpec & Cucumber](slow_food/setting_up_rspec.md)
 * [Static Website with Middleman](middleman/static_website_with_middleman.md)
    * [Setup Middleman](middleman/setup_middleman.md)
+   * HAML - HTML abstraction markup language
 * [Ruby On Rails introduction](ror/ruby_on_rails_-_introduction.md)
 * [BDD with Rails](bdd_with_rails.md)
 * [Rails Messaging](rails_messaging.md)
