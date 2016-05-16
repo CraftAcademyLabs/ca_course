@@ -12,6 +12,5 @@ The weekly challenge is an individual one. You are supposed to build an individu
 8. Use HAML as the templating engine
 9. Set up Google Analytics
 
-
 **Note: You are welcome to work in pairs if you like, but it is not a requirement and if you do, you need to figure out how to complete your individual sites and still be able to pair program. **
 
