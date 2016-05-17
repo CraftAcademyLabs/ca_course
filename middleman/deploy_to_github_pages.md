@@ -2,7 +2,7 @@
 
 Now that you are done building your portfolio, it's time to publish it and brag about it to your friends 🙂 .
 
-First thing you need to do if you haven't already is create a repository for your project on github. For the purpose of this walkthrough, we'll assume our repository on github is `my_portfolio`.
+First thing you need to do if you haven't already is create a repository for your project on Github. For the purpose of this walkthrough, we'll assume our repository on Github is `my_portfolio`.
 
 
 There are numerous ways of setting up deployment of middleman sites. We'll make use of the gem [middleman-deploy](https://github.com/middleman-contrib/middleman-deploy) to get this done. A quick search on the internet will show you other ways of deploying your application if your interested.
