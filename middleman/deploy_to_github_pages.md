@@ -11,14 +11,14 @@ There are numerous ways of setting up deployment of middleman sites. We'll make 
 
 Head over to your Gemfile, and add the following line to it then run `bundle install`
 
-!#FILENAME Gemfile
+!FILENAME Gemfile
 ```ruby
 gem 'middleman-deploy', '= 2.0.0.pre.alpha'
 ```
 
 Next, in your `config.rb` file, add the following code bloc.
 
-!#FILENAME config.rb
+!FILENAME config.rb
 ```ruby
 activate :deploy do |deploy|
   deploy.build_before = true
@@ -30,7 +30,7 @@ There have been some reports of troubles while publishing the site to Github usi
 
 Create a new file `extensions/build_cleaner.rb` and add the following content to it:
 
-!#FILENAME extensions/build_cleaner.rb
+!FILENAME extensions/build_cleaner.rb
 ```ruby
 # extensions/build_cleaner.rb
 class BuildCleaner < Middleman::Extension
@@ -46,7 +46,7 @@ end
 Now let's activate the extension in the `config.rb` file. Add the following code within the `:build` block
 
 
-!#FILENAME config.rb
+!FILENAME config.rb
 ```ruby
   activate :relative_assets
   activate :build_cleaner
