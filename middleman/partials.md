@@ -36,3 +36,5 @@ If you run your specs now, the one we just added should go green.
 **Knowing this, you can add a more complex partials to your application and keep your code DRY**
 
 
+
+
