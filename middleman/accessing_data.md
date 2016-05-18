@@ -38,4 +38,6 @@ In order to make this test go green, we need to got through some steps:
     %p= project[:description]
 ```
 
+Note that Middleman knows how to access the data folder and the `projects.yml` file as long as you use the right file name in your code.
+
 **Knowing this, you can extract information about your projects from the template and store it in a YAML file and display it on any page you want.** 
