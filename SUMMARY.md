@@ -38,7 +38,7 @@
    * [Setup Middleman](middleman/setup_middleman.md)
    * [HAML - HTML abstraction markup language](middleman/html_abstraction_markup_language.md)
    * [SASS](middleman/sass.md)
-   * Accessing data
+   * [Accessing data](middleman/accessing_data.md)
    * [Deploy to Github pages](middleman/deploy_to_github_pages.md)
 * [Ruby On Rails introduction](ror/ruby_on_rails_-_introduction.md)
 * [BDD with Rails](bdd_with_rails.md)
