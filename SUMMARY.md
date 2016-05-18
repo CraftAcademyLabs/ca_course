@@ -40,6 +40,7 @@
    * [SASS](middleman/sass.md)
    * [Accessing data](middleman/accessing_data.md)
    * [Deploy to Github pages](middleman/deploy_to_github_pages.md)
+   * Partials
 * [Ruby On Rails introduction](ror/ruby_on_rails_-_introduction.md)
 * [BDD with Rails](bdd_with_rails.md)
 * [Rails Messaging](rails_messaging.md)
