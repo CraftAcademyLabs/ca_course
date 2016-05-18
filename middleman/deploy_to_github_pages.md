@@ -49,8 +49,11 @@ Now let's activate the extension in the `config.rb` file. Add the following code
 ```ruby
 require 'extensions/build_cleaner'
 
-activate :relative_assets
-activate :build_cleaner
+configure :build do
+  activate :relative_assets
+  activate :build_cleaner
+end
+
 ```
 
 Great now we're all set to deploy the application.
