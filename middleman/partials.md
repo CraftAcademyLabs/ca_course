@@ -22,7 +22,7 @@ In that folder, let's create a file called `_footer.html.haml`. **Note the under
 ```haml 
 %footer
   %h3 My Portfolio
-  %p Built usin
+  %p Built using the awesome Middleman framework
 ```
 
 Under the `= yield` command in your main layout file, place the call to render the footer partial. 
