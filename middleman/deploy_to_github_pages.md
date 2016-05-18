@@ -32,7 +32,6 @@ Create a new file `extensions/build_cleaner.rb` and add the following content to
 
 !FILENAME extensions/build_cleaner.rb
 ```ruby
-# extensions/build_cleaner.rb
 class BuildCleaner < Middleman::Extension
   def initialize(app, options_hash = {}, &block)
     super
@@ -48,8 +47,10 @@ Now let's activate the extension in the `config.rb` file. Add the following code
 
 !FILENAME config.rb
 ```ruby
-  activate :relative_assets
-  activate :build_cleaner
+require 'extensions/build_cleaner'
+
+activate :relative_assets
+activate :build_cleaner
 ```
 
 Great now we're all set to deploy the application.
