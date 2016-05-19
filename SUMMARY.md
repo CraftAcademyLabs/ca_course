@@ -44,6 +44,7 @@
 * [Ruby On Rails introduction](ror/ruby_on_rails_-_introduction.md)
 * [BDD with Rails](bdd_with_rails.md)
 * [Rails Messaging](rails_messaging.md)
+   * Working with Legacy Code
 * [Going mobile with Ionic](going_mobile_with_ionic.md)
    * [Getting started](getting_started.md)
    * [Cleaning up and adding views](cleaning_up_and_adding_views.md)
