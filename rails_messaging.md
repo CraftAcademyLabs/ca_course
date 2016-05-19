@@ -91,7 +91,7 @@ We need to tweak the application.html layout file a bit to add the flash message
 </body>
 </html>
 ```
-You'll notice the use of the flash_class function that takes the key as an argument, that's actually a helper method I define in the application_helper.rb in the helpers folder. Used to return the appropriate bootstrap classes based on the flash key.
+You'll notice the use of the `flash_class` function that takes the key as an argument, that's actually a helper method I define in the application_helper.rb in the helpers folder. Used to return the appropriate bootstrap classes based on the flash key.
 
 !FILENAME app/helpers/application_helper.rb
 ```ruby
@@ -144,7 +144,7 @@ The generator also configures your `config/routes.rb` file to point to the Devis
 
 !FILENAME views/layouts/_nav.html.erb
 ```erb
-<!-- truncated -->
+<!-- [.....] -->
   <ul class="nav navbar-nav pull-right">
     <% if user_signed_in? %>
         <li><%= link_to "Hello, #{current_user.name}", "#" %></li>
@@ -154,7 +154,7 @@ The generator also configures your `config/routes.rb` file to point to the Devis
         <li><%= link_to "Sign up", new_user_registration_path %></li>
     <% end %>
   </ul>
-<!-- truncated -->
+<!-- [.....] -->
 ```
 We want users to provide their names during registration, lets create a migration to add a name attribute to our users.
 ```
