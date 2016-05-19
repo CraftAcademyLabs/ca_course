@@ -12,6 +12,27 @@ You are asked to use a service of your choice in order to get  metrics on how we
 
 You are free to use any service you want in order to document your work.
 
+###Objective
+**The main objective for this challenge is to practice the workflow that we want to use in our projects with focus on:**
+
+1. **Agile methods for software development**  
+2. **Pair Programming**  
+3. **Collaboration using Git and GitHub**  
+4. **Test- and Behaviour Driven Development**  
+
+Also, setting up a tool that allows you to plan your work ([Pivotal Tracker](https://www.pivotaltracker.com/) or [Waffle.io](https://waffle.io/)) in this projects is not a bad idea. 
+
+This is a non-trivial application and even if the gems we will be using will provide most of the functionality we will need, it is still a hard challenge. The only way you will succeed is if you pay close attention to details and focus on the right tasks in the right time.
+
+At some point during this week you will be asked to explain your workflow to the coaches. We will evaluate each and every commit you make to GitHub and we will pay close attention to the sequence in which you do things. 
+
+Documenting all aspects of your application in your README file is, of course, important.  
+ 
+**As with every other material, there might be errors in the provided code. It's up to you to find and correct them.**
+
+**Finally, remember, It’s not just about the code. This challenge is about practicing the workflow.**
+
+
 ###Resources
 
 Deployed application
