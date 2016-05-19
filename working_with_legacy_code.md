@@ -18,7 +18,7 @@ You are free to use any service you want in order to document your work.
 1. **Agile methods for software development**  
 2. **Pair Programming**  
 3. **Collaboration using Git and GitHub**  
-4. **Test- and Behaviour Driven Development**  
+4. **Test- and Behavior Driven Development**  
 
 Also, setting up a tool that allows you to plan your work ([Pivotal Tracker](https://www.pivotaltracker.com/) or [Waffle.io](https://waffle.io/)) in this projects is not a bad idea. 
 
