@@ -1,4 +1,10 @@
 ## Working with Legacy Code
+This week is all about Rails and legacy code! Working with largely untested legacy code base is a quite common situation you'll might find yourself in as a junior developer - so grasping the skills needed to get to know an existing code base, write new tests and perform refactoring will make your life much easier in the future.
+
+
+From our perspective we feel that throwing you out on deep waters is challenging way to introduce you to a new framework, but it is a method that will give you a solid foundation to build upon when it is time to move ahead and build your own applications.
+
+Happy coding!
 
 ###Your assignment
 You are assigned by your Project Manager to work on an application that is totally undocumented and not actively maintained. Your and your teammates task is to get the code base, deploy it to a staging server and get it to a state where adding new functionality is possible. 
