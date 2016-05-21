@@ -1,26 +1,5 @@
 # Rails Messaging
 
-###Objective
-**The main objective for this challenge is to practice the workflow that we want to use in our projects with focus on:**
-
-1. **Agile methods for software development**  
-2. **Pair Programming**  
-3. **Collaboration using Git and GitHub**  
-4. **Test- and Behaviour Driven Development**  
-
-Also, setting up a tool that allows you to plan your work ([Pivotal Tracker](https://www.pivotaltracker.com/) or [Waffle.io](https://waffle.io/)) in this projects is not a bad idea. 
-
-We will provide you with a lot of implementation code so you wont get stuck on that. To make that application work is the easy part. Your responsibility is to make sure you understand the entire process and make use of it. We will be evaluation you on that and not if you get the application up and running.
-
-This is a non-trivial application and even if the gems we will be using will provide most of the functionality we will need, it is still a hard challenge. The only way you will succeed is if you pay close attention to details and focus on the right tasks in the right time.
-
-At some point during this week you will be asked to explain your workflow to the coaches. We will evaluate each and every commit you make to GitHub and we will pay close attention to the sequence in which you do things. Documenting all aspects of your application in your README file is, of course, important.  
-
-In the steps below we have not taken into account anything that has to do with writing tests. The code snippets are for your convenience only, and you might choose NOT to use them. It is important however that you focus on practicing what me mention above and not get stuck on implementation. No matter what, only pull in the code that you need - try to avoid premature optimization, use code that you know you will need. **Also, as with every other material, there might be errors in the provided code. It's up to you to find and correct them if you choose to use the provided snippets. Don't come blaming the authors of this challenge if you run into trouble ;-)**
-
-**Finally, remember, It’s not just about the code. This challenge is about practicing the workflow.**
-
-
 
 ###The scope
 
