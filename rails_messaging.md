@@ -221,7 +221,7 @@ end
 
 For us to equip our User model with Mailboxer functionalities we have to add `acts_as_messageable` to it. This will enable us send user-to-user messages. We also need to add an identity defined by a name and an email in our User model as required by Mailboxer.
 
-Our model must therefore have this specific methods. These methods are: mailboxer_email and mailboxer_name as stated in our mailboxer initializer file. You should make sure to change this when you edit their names in the initializer.
+Our model must therefore have this specific methods. These methods are: `mailboxer_email` and `mailboxer_name` as stated in our mailboxer initializer file. You should make sure to change this when you edit their names in the initializer.
 
 !FILENAME app/models/user.rb
 ```ruby
@@ -244,7 +244,7 @@ end
 
 We will be using two controllers to handle the messaging system.
 
-**MailboxController** - This controller will hold our top-level folders (inbox, sentbox and trash) and be responsible for displaying the messages in each of this folders.
+**MailboxController** - This controller will hold our top-level folders (`inbox`, `sentbox` and `trash`) and be responsible for displaying the messages in each of this folders.
 
 **ConversationsController** - This controller will handle various actions including creating conversations, replies and deletion of messages etc.
 
@@ -253,7 +253,7 @@ Let's start by creating the mailbox controller
 ```
 $ rails g controller mailbox
 ```
-We will then add some custom routes for inbox, sentbox and trash in our routes.rb file.
+We will then add some custom routes for `inbox`, `sentbox` and `trash` in our `routes.rb` file.
 
 !FILENAME config/routes.rb
 ```ruby 
@@ -290,7 +290,7 @@ class MailboxController < ApplicationController
   end
 end
 ```
-We will use the `@active` variable to highlight the currently selected folder in our view. We can now define the mailbox method as a helper method in our application_controller.rb file.
+We will use the `@active` variable to highlight the currently selected folder in our view. We can now define the mailbox method as a helper method in our `application_controller.rb` file.
 
 !FILENAME app/controllers/application_controller.rb
 ```
@@ -355,7 +355,7 @@ Let's create the `folder_view` partial, in our mailbox folder, create a new file
 
 </div>
 ```
-Inside here, we also make use of another partial called folders. Lets also, in the same mailbox folder create a new file `_folders.html.erb` and have the following contents.
+Inside here, we also make use of another partial called `_folders`. Let's also, in the same mailbox folde, create a new file `_folders.html.erb` and have the following contents.
 
 !FILENAME app/views/mailbox/_folders.html.erb
 ```erb
@@ -382,7 +382,7 @@ Inside here, we also make use of another partial called folders. Lets also, in t
   </li>
 </ul>
 ```
-Remember the `@active` instance variable we instantiated in our mailbox controller? lets make a helper method that makes use of that variable to highlight the current page. In our `application_helper.rb` file add the following method.
+Remember the `@active` instance variable we instantiated in our mailbox controller? Let's make a helper method that makes use of that variable to highlight the current page. In our `application_helper.rb` file add the following method.
 
 !FILENAME app/helpers/application_helper.rb
 ```ruby
@@ -393,7 +393,7 @@ module ApplicationHelper
   end
 end
 ```
-For our inbox, it would be a good idea to display the number of unread messages. We will define a helper method in our mailbox_helper.rb file in the helpers directory.
+For our `inbox`, it would be a good idea to display the number of unread messages. We will define a helper method in our mailbox_helper.rb file in the helpers directory.
 
 !FILENAME app/helpers/mailbox_helper.rb
 ```ruby
@@ -405,7 +405,7 @@ module MailboxHelper
   end
 end
 ```
-We can now add a link in our navigation bar to link to our inbox page.
+We can now add a link in our navigation bar to link to our `inbox` page.
 
 !FILENAME app/views/layous/_nav.html.erb
 ```erb 
@@ -424,13 +424,13 @@ We can now add a link in our navigation bar to link to our inbox page.
     </div><!--/.nav-collapse -->
 <!-- [...] -->
 ```
-Clicking the inbox link should take you to our up and running inbox page with navigation already in place for the inbox, sent and trash folders.
+Clicking the `inbox` link should take you to our inbox page with navigation already in place for the `inbox`, `sent` and `trash` folders.
 
 
 
 ### Conversations
 
-With our mailbox ready to show messages from our inbox, sent and trash folders, its now time we created functionality to create and send new messages to other users. Let's go ahead and create our second controller (conversations)
+With our mailbox ready to show messages from our `inbox`, `sent` and `trash` folders, it's now time we create functionality to create and send new messages to other users. Let's go ahead and create our second controller (conversations).
 ```
 $ rails g controller conversations
 ```
@@ -451,7 +451,7 @@ Rails.application.routes.draw do
   end
 end
 ```
-With the conversations routes in place, lets edit our compose button link in our folder_view partial to point to the new action of our conversations controller.
+With the conversations routes in place, let's edit our compose button link in our folder_view partial to point to the new action of our conversations controller.
 
 !FILENAME app/views/mailbox/_folder_view.html.erb
 ```erb 
@@ -897,5 +897,5 @@ Reload the page with your form and you should see jQuery Chosen in action.
 
 ###Wrap up
 
-That wraps it up for this tutorial and I hope I did a good job of trying to explain the nitty-gritty of implementing a private messaging system using the Mailboxer Gem.  Happy Coding!!
+At this stage the application has the core functionality of the mailboxer gemimplemented. 
 
