@@ -897,5 +897,5 @@ Reload the page with your form and you should see jQuery Chosen in action.
 
 ###Wrap up
 
-At this stage the application has the core functionality of the mailboxer gemimplemented. 
+At this stage the application has the core functionality of the mailboxer gem implemented. 
 
