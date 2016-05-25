@@ -45,7 +45,7 @@
 * [BDD with Rails](bdd_with_rails.md)
 * [Rails Messaging](rails_messaging.md)
    * [Working with Legacy Code](working_with_legacy_code.md)
-   * Tips and Tricks
+   * [Tips and Tricks](tips_and_tricks.md)
 * [Going mobile with Ionic](going_mobile_with_ionic.md)
    * [Getting started](getting_started.md)
    * [Cleaning up and adding views](cleaning_up_and_adding_views.md)
