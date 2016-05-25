@@ -135,4 +135,47 @@ Scenario: Deleting a message
 ```
 
 
+###Mailboxer methods
+You can use methods available by the Mailboxer gem in your step definitions to make them run faster.
 
+Let's say you have a scenario like this:
+
+```gherkin  
+Background:
+  Given following users exists
+    | name   | email             | password |
+    | Jenny  | jenny@ranom.com   | password |
+    | Daniel | daniel@random.com | password |
+      
+Scenario: Deleting a message
+  Given I am logged in as "Daniel"
+  And I send a mail to "Jenny"
+  And I am on the "home page"
+  And I click on the "Logout" link
+  Given I am logged-in as "Jenny"
+  And I am on the "home page"
+  And I click on the "Inbox" link
+  Then I should have "1" messages
+  And I click on the "View" link
+  And I click on the "Move to trash" link
+  Then I should have "0" messages
+```
+
+You can use some mailboxer methods
+```ruby
+Given(/^I am logged in as "([^"]*)"$/) do |name|
+  @user = User.find_by(name: name)
+  login_as(@user, scope: :user)
+end
+
+And(/^I send a mail to "([^"]*)"$/) do |name|
+  @receiver = User.find_by(name: name)
+  @user.send_message(@receiver, 'Lorem ipsum...', 'Subject')
+end
+
+
+Then(/^I should have "([^"]*)" messages$/) do |expected_count|
+  count = @receiver.mailbox.inbox.count
+  expect(count).to eq expected_count.to_i
+end
+```
