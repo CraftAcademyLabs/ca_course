@@ -104,3 +104,35 @@ end
  
 Much cleaner and DRY. 
 
+###Testing JavaScript
+
+Add bothe Poltergeist and PhantomJS to your `Gemfile`.
+
+!FILENAME Gemfile
+```ruby
+gem 'poltergeist'
+gem 'phantomjs', require: 'phantomjs/poltergeist'
+```
+In your `features/support/env.rb` add `poltergeist` as a dependancy.
+
+!FILENAME features/support/env.rb
+```ruby
+require 'capybara/poltergeist'
+...
+Capybara.javascript_driver = :poltergeist
+
+```
+
+With this setup you have access to a full set of [Poltergeist commands](https://github.com/teampoltergeist/poltergeist) you can use in your step definitions. To activate the JavaScript driver on a scenario you have to tag your scenario with `@javascript`.
+
+```gherkin
+@javascript
+Scenario: Deleting a message
+  Given I am logged-in as "Daniel"
+  And I send a mail to "Jenny"
+  And I am on the "home page"
+  ...
+```
+
+
+
