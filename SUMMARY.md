@@ -67,4 +67,5 @@
    * [Naming Standards](extras/naming_standards.md)
    * [Classes vs Modules](extras/classes_and_modules.md)
    * [Code structure](code_structure.md)
+* Mid Course Project
 
