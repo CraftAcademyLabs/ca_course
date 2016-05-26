@@ -18,6 +18,7 @@ Put all of the skills you  have picked up to use in a group project.
 * Make use of a payment gateway (PayPal, Klarna, Stripe)
 * Make use of the geo-coding and maps (Google Maps, OpenStreet Map) for vendors or service providers.
 * Implement a rating system (for products, vendors or something else)
+* Set up 
 
 
 
