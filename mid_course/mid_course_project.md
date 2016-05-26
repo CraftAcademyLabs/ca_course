@@ -16,7 +16,7 @@ Put all of the skills you  have picked up to use in a group project.
 * Implement OAuth authentication
 * Implement some sort of market place functionality (services or products)
 * Make use of a payment gateway (PayPal, Klarna, Stripe)
-* Make use of the geo-coding and maps (Google Maps, OpenStreet Map) for vendors or service providers.
+* Make use of the geocoding and maps (Google Maps, OpenStreet Map) for vendors or service providers.
 * Implement a rating system (for products, vendors or something else)
 * Set up 
 
