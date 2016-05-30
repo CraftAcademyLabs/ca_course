@@ -10,6 +10,7 @@ Assign a team member to be responsible for deployment. That person can have mult
 
 End each day with a deploy to a development server and a short demo in a stand up format. Plan the evening's or the next day's activities. 
 
+###Tips and Tricks
 1. Create pairs to work on features or assign individual team members to a feature. 
 2. Make sure to flag your Waffle issues as a `feature`, `chore` or `bug`
 3. Write as many tests as you can. You will be tempted to skip some tests but that will lead to a lot of manual testing that is really inefficient use of your time. 
