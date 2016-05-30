@@ -68,4 +68,5 @@
    * [Classes vs Modules](extras/classes_and_modules.md)
    * [Code structure](code_structure.md)
 * [Mid Course Project](mid_course/mid_course_project.md)
+   * Project Schedule
 
