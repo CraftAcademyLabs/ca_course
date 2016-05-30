@@ -16,6 +16,7 @@ End each day with a deploy to a development server and a short demo in a stand u
 3. Write as many tests as you can. You will be tempted to skip some tests but that will lead to a lot of manual testing that is really inefficient use of your time. 
 4. Ask for help. We are here to help you. If there is a feature that you would like to implement but lack knowledge on how, don't hesitate to ask us for help. DO your own research first but don't stay stuck on anything for more than 30 minutes. 
 5. Remember that this is a simulation, so play pretend. This week can mean a lot of fun if you make a bit of a theatratical game out of it. ;-)
+6. Remember that there is NO project that does not include some level of chaos. If you think that all professional projects runs smoothly, forget about that. Remember everything we have thought you and make use of it this week and you'll be fine!
 
 
 
