@@ -20,6 +20,8 @@ End each day with a deploy to a development server and a short demo in a stand u
 
 ###Feature descriptions - User stories
 
+Use the following guidance when describing features.
+
 | Field               | Description                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 |---------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Description         | For user stories, provide enough detail for estimating how much work will be required to implement the story. Focus on who the feature is for, what users want to accomplish, and why. Don't describe how the feature should be developed. Do provide sufficient details so that your team can write tasks and test cases to implement the item.                                                                                                                                             |
