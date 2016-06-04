@@ -2,7 +2,7 @@
 
 If you haven't completed the BMI Challenge, you can get the code for the `person.js` and the `bmi_calculator.js` right here. Make sure you place them in the right folder.
 
-!FILENAME person.js
+#### person.js
 ```javascript
 function Person(attr) {
   this.weight = attr.weight;
@@ -21,7 +21,7 @@ Person.prototype.calculate_bmi_imp = function() {
 
 ```
 
-!FILENAME bmi_calculator.js
+#### bmi_calculator.js
 ```javascript
 function BMICalculator(){
 };
