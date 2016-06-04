@@ -85,7 +85,14 @@ The final app should look something like this.
 
 There are plenty of other little things you can do in order to update the UI and add functionality to this little application. 
 
-One final thing before we call it quits is to publish your app to [Ionic View](http://view.ionic.io/). Head over to our Ionic platform [signup](https://apps.ionic.io/signup) page to get signed up. 
+One final thing before we call it quits is to publish your app to [Ionic View](http://view.ionic.io/). 
+
+![](le-dveloppement-mobile-hybride-sort-du-bois-chti-jug-le-15042015-3-638.jpg)
+
+Head over to the Ionic platform [signup](https://apps.ionic.io/signup) page to get signed up and to get your Ionic ID. 
+
+![](create_ionic_id.png)
+
 In your project folder, run the following command:
 
 ```
