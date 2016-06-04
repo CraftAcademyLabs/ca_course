@@ -1,6 +1,6 @@
 ## Extras - Source code
 
-If you haven't completed the BMI Challenge, you can get the code for the `person.js` and the `bmi_calculator.js` right here. 
+If you haven't completed the BMI Challenge, you can get the code for the `person.js` and the `bmi_calculator.js` right here. Make sure you place them in the right folder.
 
 !FILENAME person.js
 ```javascript
