@@ -36,6 +36,8 @@ Make sure you review the specs in order to understand how those method differ an
 
 Remember, try to write your own implementation rather than just copying the provided code. It's all about learning. When the course is over, you'll be on your own solving problems.
 
+**Once you are done, put that code aside. Even though it is the core of the application, we will not be using it for the next step - the back end. That part does not care about HOW we come up with the results, just THAT we do. The calculation will be used in our mobile app - not in the back-end.**
+
 
 
 
