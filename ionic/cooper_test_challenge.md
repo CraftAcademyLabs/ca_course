@@ -16,6 +16,8 @@ We will be using Ruby on Rails (back-end/API) and Ionic (mobile client) as frame
 * Learn how to set consume an API from a mobile client
 * Learn about Factories and Controllers in AngularJS
 * Make use of knowledge of JavaScript and Jasmine to build application logic
+
+####Extra challenge
 * Learn about acceptance testing using Protractor
 
 
