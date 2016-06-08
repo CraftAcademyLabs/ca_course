@@ -2,7 +2,7 @@
 
 We will be using Ionic to build our mobile client. If you are not familiar with Ionic yet, please go back in the documentation and complete the [Going mobile with Ionic](https://craftacademy.gitbooks.io/coding-as-a-craft/content/going_mobile_with_ionic.html) chapter.
 
-The objective for this step is to allow the user to calculate his results. We will NOT be accessing the API yet. The login functionality will not work once we are finished with this step. That will be the objective of the next chapter. 
+The objective of this step is to allow the user to calculate his results. We will NOT be accessing the API yet. The login functionality will not work once we are finished with this step. That will be the objective of the next chapter. 
 
 ###Set up
 
@@ -39,23 +39,23 @@ Edit the `menu.html` and delete unused menu items. Keep the `Login` item
 !FILENAME www/templates/menu.html
 ```html
 <ion-content>
-      <ion-list>
-        <ion-item menu-close ng-click="login()">
-          Login
-        </ion-item>
-        <!-- Detlete this block below: -->
-        <ion-item menu-close href="#/app/search">
-          Search
-        </ion-item>
-        <ion-item menu-close href="#/app/browse">
-          Browse
-        </ion-item>
-        <ion-item menu-close href="#/app/playlists">
-          Playlists
-        </ion-item>
-        <!-- end of deleted block -->
-      </ion-list>
-    </ion-content>
+  <ion-list>
+    <ion-item menu-close ng-click="login()">
+      Login
+    </ion-item>
+    <!-- Detlete this block below: -->
+    <ion-item menu-close href="#/app/search">
+      Search
+    </ion-item>
+    <ion-item menu-close href="#/app/browse">
+      Browse
+    </ion-item>
+    <ion-item menu-close href="#/app/playlists">
+      Playlists
+    </ion-item>
+    <!-- end of deleted block -->
+  </ion-list>
+</ion-content>
 ```
 
 Finally, in the `app.js` file, delete unused routes. We will also ADD a route to a new `About` view.  Make sure to modify the default route to the new `/app/about` route. Your `.config` block should look like this.
