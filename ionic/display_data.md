@@ -1,4 +1,4 @@
-# Display charts - step 7
+# Display charts - step 6
 
 We will use [Angular Chart](http://jtblin.github.io/angular-chart.js/) to display users historical data.
 
@@ -32,7 +32,7 @@ And also, make `chart.js` available to your app by adding it to the main module.
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ng-token-auth', 'ngResource', 'chart.js'])
 ```
 
-Okay, here comes the tricky part. We want to display two charts on our view. One Doughnut Chart and one Radar Chart. The tricky part is that we only want to display labels for values that are actually stored in the collection of historical data. Meaning for instance that if a user has stored several "Average" and "Above Averege" entries, then we should only show those two labels with a value. Nothing else. Same thing goes for both chart types.
+Okay, here comes the tricky part. We want to display two charts on our view. One Doughnut Chart and one Radar Chart. The tricky part is that we only want to display labels for values that are actually stored in the collection of historical data. Meaning for instance that if a user has stored several "Average" and "Above Average" entries, then we should only show those two labels with a value. Nothing else. Same thing goes for both chart types.
 
 So what we need to do is to go through the `savedDataCollection` and get unique values from `data.message` and store them in an array. This is the responsibility of the following function.
 
