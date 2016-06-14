@@ -1,8 +1,8 @@
-##Library Challenge
-###Week 1 Ruby challenge
+## Library Challenge
+### Week 1 Ruby challenge
 
-Instructions
--------
+### Instructions
+
 Read this entire README carefully and follow all instructions. Go to [CraftAcademy/library-challenge](https://github.com/CraftAcademy/library-challenge) and fork that repository to your own GitHub account.
 
 * Challenge time: this weekend, until Monday 9am
@@ -12,8 +12,16 @@ Read this entire README carefully and follow all instructions. Go to [CraftAcade
 * You must submit a Pull Request to this repository with your code by 9.30am Monday morning - before the stand-up
 
 
-###Learning objective
-----
+### Learning objective
+This challenge will provide you with an opporunity to practice a lot of your newly acquired technical skills.
+* Practice TDD to drive your development process
+* Adopt to a new domain
+* Work with data stored in hashes and perform 
+* Learn about YAML
+* Learn about storing information in a text file
+* Practice writing documentation
+
+### Requirements
 #####Write a Library program with the following user stories:
 
 ```
