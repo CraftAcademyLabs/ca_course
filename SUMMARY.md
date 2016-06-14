@@ -66,7 +66,7 @@
 * [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
    * [Main features](slow_food_online/main_features.md)
    * [Design Sprint](slow_food_online/design_sprint.md)
-   * Pivotal Tracker
+   * [Pivotal Tracker](slow_food_online/pivotal_tracker.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * [Extras](extras.md)
    * [Naming Standards](extras/naming_standards.md)
