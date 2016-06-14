@@ -43,8 +43,10 @@ Okay, so now we need to create our Factory.
 ```javascript
 angular.module('starter.services', [])
 
-.factory('performaceData', function ($resource, API_URL) {
-  return $resource(API_URL + '/data', {});
+.factory('performanceData', function ($resource, API_URL) {
+  return $resource(API_URL + '/data', {}, {
+    query: {method: 'GET', isArray: false}
+  });
 });
 ```
 
