@@ -14,7 +14,7 @@ Visit www.pivotaltracker.com
 2. Click **Create Project** on the Dashboard. Enter a name to create a project.
 
 ### Project view
-We have used Pivotal Tracker for many projects withing Agile Ventures. Here is an example of a dashboard for Project Unify. It is a public project and can visit that dashboard on https://www.pivotaltracker.com/n/projects/1525675
+We have used Pivotal Tracker for many projects within Agile Ventures. Here is an example of a dashboard for Project Unify. It is a public project and can visit that dashboard on https://www.pivotaltracker.com/n/projects/1525675
 
 ![](pt_overview.png)
 ### Feature view
