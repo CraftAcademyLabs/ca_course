@@ -12,6 +12,8 @@ Visit www.pivotaltracker.com
 1. Sign up for an unlimited 30-Day Free Trial (no credit card required) or click the link in a project invitation email to set your password and sign in.
 
 2. Click **Create Project** on the Dashboard. Enter a name to create a project.
+
+
 ### The Basics
 The core unit of projects is called a **story**. Stories will usually be one-line descriptions of features that should be implemented in the project. The description can be further expanded in the story's details.
 
