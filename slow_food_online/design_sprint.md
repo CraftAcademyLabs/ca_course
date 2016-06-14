@@ -24,7 +24,7 @@ A task that will require more than a day to develop, test and ship, or a feature
 
 A task that will require implementation through the entire stack (new models with relation, controllers and views) and features that relies on many conditions that needs to be met, should be considered **complex** and given **3 points**.
 
-During this process you might find yourselves in a situation where the complexity of a specific feature or a chore won't fit in the three point scale. In this case you need to split the task into two or more separate features or chores and assess them individually. 
+Note that during this process you might find yourselves in a situation where the complexity of a specific feature or a chore won't fit in the three point scale. In this case you need to split the task into two or more separate features or chores and assess them individually. 
 
 
 
