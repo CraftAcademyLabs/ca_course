@@ -1,7 +1,7 @@
 # Summary
 
 * [Introduction](README.md)
-   * Learning objectives
+   * [Learning objectives](learning_objectives.md)
 * [Your first website](first_deploy/first_deploy.md)
 * [ATM Challenge - Ruby basics](atm_challenge/atm_challenge.md)
    * [Step 1](atm_challenge/step1.md)
