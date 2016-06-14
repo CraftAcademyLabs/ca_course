@@ -3,7 +3,7 @@ At this stage we have a possibility to interact with the back and login to the m
 
 We have an API endpoint in our beck-end that can take a POST and a GET request, right? Let's build a service that will give us a way to access it.
 
-We will use [`ngResource`](https://docs.angularjs.org/api/ngResource) to access out API and perform out requests.
+We will use [`ngResource`](https://docs.angularjs.org/api/ngResource) to access out API and perform our requests.
 
 ```
 $ bower install angular-resource --save
@@ -14,7 +14,7 @@ Create a new file in the `www/js` folder and call it `services.js` and make sure
 ```
 $ touch www/js/services.js
 ```
-!FILENAME www/index.html
+*www/index.html*
 ```html
 <!-- ionic/angularjs js -->
 /...
@@ -29,7 +29,7 @@ $ touch www/js/services.js
 
 Since we have not used any services of factories before in this application, we need to add our services to our main module in `app.js`. We also need to make sure that `ngResource` is included.
 
-!FILENAME www/js/app.js
+*www/js/app.js*
 ```javascript
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ng-token-auth', 'ngResource'])
 // ...
@@ -38,7 +38,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
 
 Okay, so now we need to create our Factory.
 
-!FILENAME www/js/services.js
+*www/js/services.js*
 
 ```javascript
 angular.module('starter.services', [])
@@ -54,7 +54,7 @@ With this factory we will be able to both write to and read from our back-end da
 
 Let's create a new controller for doing that. Remember that we need to include that factory in our controller in order to make it accessible. We'll also add two methods, one to save the data and a second one to retrieve it.
 
-!FILENAME
+*www/js/controllers.js*
 ```javascript
 .controller('PerformanceCtrl', function($scope, performaceData){
   $scope.saveData = function(){
@@ -71,7 +71,7 @@ Let's start with saving the data. On our view where we do the calculations, we w
 
 Modify your `test.html` template with this code.
 
-!FILENAME www/templates/test/test.html
+*www/templates/test/test.html*
 ```html
  <div ng-if="person">
     <div class="card">
@@ -92,9 +92,9 @@ Modify your `test.html` template with this code.
  </div>
 ```
 
-Let's build our `saveData` function with a success ans an error fallback. It can look something like this for the moment.
+Let's build our `saveData` function with a success and an error fallback. It can look something like this for the moment.
 
-!FILENAME
+*www/js/controllers.js*
 
 ```javascript
 $scope.saveData = function(person){
@@ -122,7 +122,7 @@ Let's make sure that we get the necessary info stored in the `currentUser` objec
 
 At this stage you need to go back to your Rails application for a moment. We need to make an addition to `config/application.rb` in order to make the API include authorization credentials in the response headers.
 
-!FILENAME `config/application.rb
+*config/application.rb*
 ```ruby
 # ...
 config.middleware.insert_before 0, 'Rack::Cors' do
@@ -142,7 +142,7 @@ Now we'll be getting the right response from the back-end application. We need t
 
 Localize the `'auth:login-success'` function in our `AppCtrl`. We will make a change to store access-token, uid, etc by grabbing that info from the response headers.
 
-!FILENAME www/js/controllers.js
+*www/js/controllers.js*
 ```javascript
 $rootScope.$on('auth:login-success', function (ev, user) {
   $scope.currentUser = angular.extend(user, $auth.retrieveData('auth_headers'));
@@ -155,7 +155,7 @@ We also want to add `$ionicLoading, $ionicPopup` to our `PerformanceCtrl`. We wi
 
 We will also add an `showAlert()` function and refactor our `saveData()` function. Examine the code below to fully understand what it does before you implement it.
 
-!FILENAME www/js/controllers.js
+*www/js/controllers.js*
 ```javascript
 //...
 .controller('PerformanceCtrl', function($scope, performaceData, $ionicLoading, $ionicPopup){
@@ -198,7 +198,7 @@ Before we start retrieving any historical data, let's create a route and a view 
 
 First, we start with defining a route in our `www/js/app.js` file.
 
-!FILENAME www/js/app.js
+*www/js/app.js*
 ```javascript
 .state('app.data', {
   url: '/data',
@@ -222,7 +222,7 @@ $ touch www/templates/test/data.html
 
 For starters, let's just add the basic markup before we start adding any content.
 
-!FILENAME www/templates/test/data.html
+*www/templates/test/data.html*
 ```html
 <ion-view title="Historical Data">
   <ion-content>
@@ -234,7 +234,7 @@ For starters, let's just add the basic markup before we start adding any content
 
 We also want to add an item to the side menu but condition it's display to a state where there is a `currentUser` signed in. We also want to get rid of the `Login` item IF there is a signed in user, right?
 
-!FILENAME www/templates/menu.html
+*www/templates/menu.html*
 ```html
 //...
 <ion-item ng-if="!currentUser" menu-close ng-click="login()">
@@ -249,7 +249,7 @@ We also want to add an item to the side menu but condition it's display to a sta
 
 Next we want to update the `retrieveData()` function in `PerformanceCtrl`. What we want this function to do, is to get the data using the `performaceData` factory and open the `data.html` while passing in the data to the view (as `savedDataCollection`).
 
-!FILENAME  www/js/controllers.js
+*www/js/controllers.js*
 ```javascript
 //...
 $scope.retrieveData = function(){
@@ -269,7 +269,7 @@ $scope.retrieveData = function(){
 
 We also need to create a new controller to handle the view. When the view is entered, we want to retrieve the data sent in params and save it in the current `$scope`.
 
-!FILENAME www/js/controllers.js
+*www/js/controllers.js*
 ```javascript
 //...
 .controller('DataCtrl', function($scope, $stateParams){
@@ -284,7 +284,7 @@ Finally, we can update our template and display the data. The way we do that is 
 
 We also need to format the date - please read the docs for [`date` in AngularJS](https://docs.angularjs.org/api/ng/filter/date).
 
-!FILENAME www/templates/test/data.html
+*www/templates/test/data.html*
 ```html
 <ion-view title="Historical Data">
   <ion-content>
@@ -295,4 +295,4 @@ We also need to format the date - please read the docs for [`date` in AngularJS]
 </ion-view>
 ```
 
-That will do it for now. The next challenge is to present the data as charts. That can be interesting...
+**That will do it for now. The next challenge is to present the data as charts. That can be interesting...**
