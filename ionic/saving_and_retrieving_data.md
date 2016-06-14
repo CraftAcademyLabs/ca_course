@@ -158,7 +158,7 @@ We will also add an `showAlert()` function and refactor our `saveData()` functio
 *www/js/controllers.js*
 ```javascript
 //...
-.controller('PerformanceCtrl', function($scope, performaceData, $ionicLoading, $ionicPopup){
+.controller('PerformanceCtrl', function($scope, $state, performaceData, $ionicLoading, $ionicPopup, $state){
 
   $scope.saveData = function(person){
     var data = {performance_data: {data: {message: person.cooperMessage}}};
