@@ -75,4 +75,5 @@
    * [Code structure](code_structure.md)
    * [Bower](bower.md)
    * [Code Review Instructions](code_review_instructions.md)
+   * About README's
 
