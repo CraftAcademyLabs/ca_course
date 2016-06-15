@@ -74,5 +74,5 @@
    * [Classes vs Modules](extras/classes_and_modules.md)
    * [Code structure](code_structure.md)
    * [Bower](bower.md)
-   * Code Review Instructions
+   * [Code Review Instructions](code_review_instructions.md)
 
