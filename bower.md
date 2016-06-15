@@ -159,11 +159,7 @@ It's possible to remove multiple packages at once by listing the package names.
 ```
 bower uninstall Chart.js ng-token-auth angular-resource
 ```
-Final Thoughts
 
-Package managers have revolutionised how we share code. They’ve made using code libraries easier than ever before, and have taken away much of the headache of dealing with updates.
-
-For a long time front-end developers looked at projects like RubyGems with envy; wishing that one day we too would have a straight-forward way of managing project dependencies. Bower has provided us with that tool. As more great libraries become common-place among our web applications, the complexity of our projects will inevitably increase. Bower provides us with a way of managing this complexity.
 
 
 
