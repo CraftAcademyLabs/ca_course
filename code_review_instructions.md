@@ -30,6 +30,10 @@ What you want to be looking for is:
 ### The Code
 Now, go over the code and ...
 
+https://github.com/eliotsykes/rails-code-review
+https://github.com/CraftAcademy/airport_challenge/blob/master/docs/review.md
+
+
 
 
 
