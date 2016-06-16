@@ -6,10 +6,13 @@ The **5 Challenges in 1 Week** is all about stepping outside of the technologies
 
 #### 2 Aggregated Social Feeds app in Ionic
 
-
 #### 3 Rails based rich media fan application
+##### Objective
+Create a website for a band or a celebrity or what have you using content pulled from third party API's like Instagram, Facebook and some of the many [News service API's](http://www.programmableweb.com/category/News%20Services/apis?category=20250) available. 
 
 #### 4 Custom payment module with CC and PayPal
+
+#### 5 Booking app with Google calendar integration
 
 
 
