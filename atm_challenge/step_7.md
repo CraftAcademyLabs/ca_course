@@ -1,19 +1,19 @@
 ## Step 7 - Cash is King
 
-Yeah, remember when we kind of skipped adding bills to our successful output? We can't ignore that requirement any longer. After all, the cash is the reason we use Atm's.
+Yeah, remember when we kind of skipped adding bills to our successful output? We can't ignore that requirement any longer. After all, the cash is the reason we use ATM's.
 
-A part of the output our program i supposed to return on successful withdrawal, is an array of bills. We also know that the Atm holds 5, 10 & 20$ bills, right? 
+A part of the output our program is supposed to return on successful withdrawal, is an array of bills. We also know that the ATM holds 5, 10 & 20$ bills, right? 
 
 Another thing we know is that one of the conditions for a successful transaction is that the amount a user can withdraw is divisible by 5. 
 
-Knowing all this, we can build a method that tells us what bills we will get from the Atm. 
+Knowing all this, we can build a method that tells us what bills we will get from the ATM. 
 
 Let's try some stuff out in `irb`. **As always, read the comments as carefully as anything else in this documentation.**
 
 ```ruby 
 18:05 $ irb
 # create an array of denominations. We need to start with the biggest value. 
-# wnat to know why? Try the other way around for yourself.
+# want to know why? Try the other way around for yourself.
 2.2.1 :001 > denominations = [20, 10, 5]
  => [20, 10, 5]
  
@@ -54,20 +54,21 @@ denominations = [20, 10, 5]
 bills = []
 amount = 65	
 denominations.each do |bill|
-    while amount - bill >= 0
-      amount -= bill
-      bills << bill
-    end
-    bills
+  while amount - bill >= 0
+    amount -= bill
+    bills << bill
+  end
+  bills
 end
 bills
 ```
 
 A few words about this type of loops in general and specifically the `while` loop.
-A loop is a flow control method that will make code run a number of times until some condition is met.   
+A loop is a flow control method that will make code run a number of times until some condition is met.
+
 ####The while loop
 `while` allows you to specify the condition that must be `true` to keep looping, then the condition is evaluated to `false` the loop exits. An example
-```
+```ruby
 count = 0
 while count < 5
   print '- The count is now ', count, '. '
@@ -107,11 +108,11 @@ Let's revisit this spec.
 ```ruby
 it 'allow withdraw if account has enough balance.' do
   expected_output = { 
-      status: true, 
-      message: 'success', 
-      date: Date.today, 
-      amount: 45,
-      bills: [20, 20, 5]}
+    status: true, 
+    message: 'success', 
+    date: Date.today, 
+    amount: 45,
+    bills: [20, 20, 5]}
   expect(subject.withdraw(45, '1234', account)).to eq expected_output
 end
 ```
