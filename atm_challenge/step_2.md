@@ -37,7 +37,7 @@ $ rspec spec/atm_spec.rb
 
 What will follow now is a series of steps that aims at showing you how testing can drive your development. In the future you will probably skip some of this steps but for now, bear with me. 
 
-If you examine the terminal output, you'll se a line like this one.
+If you examine the terminal output, you'll see a line like this one.
 
 ```
 /your/path/atm/spec/atm_spec.rb:1:in `require': cannot load such file -- ./lib/atm.rb (LoadError)
@@ -114,7 +114,7 @@ Failures:
             got: nil
 ```
 
-Okay, so we expected `funds` to be `1000` but it was `nil`. Let's make it so that every time an Atm object is instantiated the balance is automatically set to 1000. 
+Okay, so we expected `funds` to be `1000` but it was `nil`. Let's make it so that every time an ATM object is instantiated the balance is automatically set to 1000. 
 
 We can do that by setting that value in the `initialize` method. `initialize` is a constructor method that will be run every time an instance of a class is created. 
 
@@ -145,7 +145,7 @@ Yay! First success! Green is GOOD!
 
 **Lesson learned:**  Every feature, no matter how small, will lead to a series of failures. Until it doesn't. This goes for new, inexperienced programmers, as well as for those of us who has been doing this for a long time. There's nothing wrong with you. Just get used to it and see everything you do as a learning experience. 
 
-Keep your calm, read the error messages that RSpec so kindly throws at you and make small steps forward. Be thankful that you have a testing framework that helps you to figure out what is wrong with your code. Imagine if you ware coding without it? 
+Keep your calm, read the error messages that RSpec so kindly throws at you and make small steps forward. Be thankful that you have a testing framework that helps you to figure out what is wrong with your code. Imagine if you were coding without it? 
 
 Alright, enough of coding philosophy. Let's move on. This is a great time to do a commit and push up your code (Unless you already did that). 
 

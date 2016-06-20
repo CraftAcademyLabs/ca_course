@@ -2,7 +2,7 @@
 
 Okay, we will stop here for a moment ad do some changes to our code to make it more readable and to follow the principle that each method should only have one responsibility. In our case, the way we have written the `withdraw` method, the method perform several tasks. Since we will be developing that method further, we want to introduce a better, more readable structure.
 
-I practical terms, we want to extract some of this methods responsibilities to separate, so called `private` methods. 
+In practical terms, we want to extract some of this methods responsibilities to separate, so called `private` methods. 
 
 1. We want to extract the check of `account.balance` to a separate method.
 2. We want to extract the transaction to a separate method.

@@ -1,8 +1,8 @@
 ## Step 6 - More checks
 
-Another check we need to do in the `withdraw` method is to see if there are funds in the Atm, right?  We can not perform a transaction if there are no funds in the machine. 
+Another check we need to do in the `withdraw` method is to see if there are funds in the ATM, right?  We can not perform a transaction if there are no funds in the machine. 
 
-The Atm has a `funds` attribute. We can perform a check if the `amount` we try to withdraw is larger then the `funds` available. 
+The ATM has a `funds` attribute. We can perform a check if the `amount` we try to withdraw is larger then the `funds` available. 
 
 Let's add a spec for that.
 
