@@ -160,6 +160,72 @@ It's possible to remove multiple packages at once by listing the package names.
 bower uninstall Chart.js ng-token-auth angular-resource
 ```
 
+### Bower and Rails
+
+After reading terms like CSS, Javascript and HTML, you are already having nightmares thinking at the idea of bringing a 3rd party tool into the dreaded asset pipeline but fear not as Bower and the asset pipeline actually play very well together. Without further ado, here's how to set the whole thing up.
+
+#### Install Bower
+
+Make sure you have bower installed (see above) 
+
+#### Configuring Bower
+
+By default Bower install the components (what it calls JS/CSS libraries) in `bower_components` folder, which doesn't really play with the standard Rails folder hierarchy. To change that, simply create a .bowerrc (bower's config file) file at the root of your Rails app and add this:
+
+{
+  "directory": "vendor/assets/bower_components"
+}
+This will tell Bower to save all of the component files in that directory which follow Rails' convention on storing assets.
+
+### `package.json`
+
+From the root of your Rails app, run `bower init` to create your `bower.json` file. 
+
+
+Depending on your answers, your `bower.json` should look something like this:
+```json
+{
+  name: 'MyApp',
+  version: '0.0.1',
+  authors: [ ],
+  description: 'Your description',
+  license: 'MIT',
+  homepage: 'http://whatever.com',
+  ignore: [
+    '**/.*',
+    'node_modules',
+    'bower_components',
+    'test',
+    'tests'
+  ],
+  "dependencies": {
+    "angular": "~1.2.16"
+  }
+}
+```
+Now if I run `bower install`in your terminal, it will pull Angular 1.2.16 from the Github repo into `vendor/assets/bower_components`.
+
+#### Configuring Rails
+
+Now that Bower is installed and working, you need to make sure that Rails play nice with it. 
+
+To do so, head to your `config/application.rb` file to let the asset pipeline about it. Simple add the following line to your file and save it.
+```ruby
+config.assets.paths << Rails.root.join('vendor', 'assets', 'components')
+```
+
+#### Including assets
+
+To require the components downloaded using Bower, open up `app/assets/javascripts/application.js` and require the necessary JS file like you would usually do. In the example with Angular, you do so by adding this one line to it.
+```
+//= require angular/angular
+```
+For CSS frameworks and libraries like Bootstrap or Foundation, you can pop in the following line to `app/assets/css/application.css`.
+```
+*= require bootstrap/dist/css/bootstrap
+```
+That's it! You can now use Bower to manage all of the 3rd party CSS & Javascript libraries you want to use in your project and Rails' asset pipeline will take care of the rest for you.
+
 
 
 
