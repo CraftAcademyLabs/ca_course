@@ -16,7 +16,7 @@ Information you might want to include is:
 * An outline of the technologies in the project.programming language, frameworks, important gems, database, ORM, etc.
 * Links to any related projects
 * Links to online tools related to the application (e.g.: Links to the CI server, Pivotal Tracker or Waffle board, development and staging servers, the production site, etc.  
-* 
+
 #### Getting Started
 
 The **Getting Started** section outlines the process of getting the app installed for a new developer. 
