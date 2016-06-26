@@ -11,11 +11,17 @@ In addition to dividing the application into three kinds of components, the MVC 
 
 ## The flow of request & response
 
-It's more fun to imagine a story with “fat model, skinny controller” instead of a sterile “3-tiered architecture”. Models do the grunt work, views are the happy face, and controllers are the masterminds behind it all.
+Alright, so you already know the basics of the Request response pattern - the MVC pattern deals with what is happening with the request by your web- and application server and the application itself. At the and, an appropotiate responce is sent back to the client (the browser or whatever has made the request) and forgotten about. 
+
+
+
+It's more fun to imagine a story with **“fat model, skinny controller, dumb view”** instead of a sterile **“3-tiered architecture”**. 
+
+**Models** do the *grunt work*, **Views** are the *happy face*, and **Controllers** are the *masterminds* behind it all.
 
 Think about this flow:
 
-* The **browser** makes a request, such as http://localhost:9292/project/show/15
+* The **browser** makes a request (such as http://localhost:9292/dish/15)
 
 * The **web server** (WEBrick, etc.) receives the request. It uses **routes** to find out which **controller** to use. The web server then uses the **dispatcher** to create a new controller, call the action and pass the parameters.
 
