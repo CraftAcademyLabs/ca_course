@@ -14,7 +14,7 @@ In addition to dividing the application into three kinds of components, the MVC 
 Alright, so you already know the basics of the Request response pattern - the MVC pattern deals with what is happening with the request by your web- and application server and the application itself. At the and, an appropotiate responce is sent back to the client (the browser or whatever has made the request) and forgotten about. 
 
 
-It's more fun to imagine a story with **“fat model, skinny controller, dumb view”** instead of a sterile **“3-tiered architecture”**. 
+Instead of a sterile **“3-tiered architecture”** walkthrough, it's more fun to imagine a story with **“fat model, skinny controller, dumb view”** . 
 
 **Models** do the *grunt work*, **Views** are the *happy face*, and **Controllers** are the *masterminds* behind it all.
 
@@ -30,7 +30,7 @@ Think about this flow:
 
 * **Views** are what the user sees: HTML, CSS, JavaScript, JSON. They're the sales rep putting up flyers and collecting surveys, at the managers direction. Views are merely puppets reading what the controller gives them. They don't know what happens in the back room.
 
-* Finally, the **Controller** returns the response body (HTML, XML, etc.) & metadata (caching headers, redirects) to the server. The server combines the raw data into a proper HTTP response and sends it to the user.
+* Finally, the **Controller** returns the **response body** (HTML, XML, etc.) and **metadata** (caching headers, redirects) to the server. The server combines the raw data into a proper **HTTP response** and sends it to the client to be presented to the user.
 
 * The **web server** is the invisible gateway, shuttling data back and forth (users never interact with the controller directly).
 
