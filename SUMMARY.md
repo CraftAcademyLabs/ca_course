@@ -76,6 +76,6 @@
    * [Bower](bower.md)
    * [Code Review Instructions](code_review_instructions.md)
    * [About README's](about_readme.md)
-   * MVC
+   * [MVC](extras/model_view_controller.md)
 * [5 Challenges in 1 Week](5_challenges_in_1_week.md)
 
