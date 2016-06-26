@@ -17,7 +17,23 @@ There are different Agile methodologies you can use in your projects and we will
 * fail fast and learn quickly
 * keep planning
 
-###Planning your work
+###Planning and Communication
+
+##### Get Organezized
+
+
+
+> *Travis*: I should get one of those signs that says "One of these days I'm gonna get organezized".
+> 
+> *Betsy*: You mean organized?
+>
+> *Travis*: Organezized. Organezized. It's a joke. **O-R-G-A-N-E-Z-I-Z-E-D**...
+>
+> Betsy: Oh, you mean **organezized**. Like those little signs they have in offices that says, "Thimk"?
+
+[Taxi Driver](http://www.imdb.com/title/tt0075314/) (1976) 
+
+
 Your team should plan together, review these plans regularly and change them based on your progress and any new facts and requirements that arise during the development process. 
 
 Both [Waffle.io](https://waffle.io/) and [ZenHub.io](https://www.zenhub.io/) is a project management tools powered by your GitHub Issues & Pull Requests. Waffle.io is the tool of choice for many AgileVentures projects and provides a web based interface for managing Issues and track Pull Requests. ZenHub provides similar functionality (and more) as a browser extension. It is up to you to decide what tool your team want to use.
