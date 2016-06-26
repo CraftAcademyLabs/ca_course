@@ -1,5 +1,5 @@
 ## Model View Controller
-Model View Controller (MVC) is a 3-tiered architectural software design pattern for implementing user interfaces. It divides a given software application into three interconnected parts, to separate internal representations of information from the ways that information is presented to or accepted from the user.
+**Model View Controller (MVC)** is a **3-tiered architectural software design pattern** for implementing user interfaces. It divides a given software application into three interconnected parts, to separate internal representations of information from the ways that information is presented to or accepted from the user.
 
 In addition to dividing the application into three kinds of components, the MVC design pattern defines the interactions between them.
 
