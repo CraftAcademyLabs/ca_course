@@ -9,6 +9,8 @@ In addition to dividing the application into three kinds of components, the MVC 
 
 ![Model View Controller](../images/MVC.png)
 
+## The flow of request & response
+
 It's more fun to imagine a story with “fat model, skinny controller” instead of a sterile “3-tiered architecture”. Models do the grunt work, views are the happy face, and controllers are the masterminds behind it all.
 
 Think about this flow:
