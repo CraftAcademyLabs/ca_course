@@ -77,6 +77,6 @@
    * [Code Review Instructions](code_review_instructions.md)
    * [About README's](about_readme.md)
    * [MVC](extras/model_view_controller.md)
-   * Three-Tier Architecture
+   * [Three-Tier Architecture](extras/three-tier_architecture.md)
 * [5 Challenges in 1 Week](5_challenges_in_1_week.md)
 
