@@ -30,7 +30,7 @@ Think about this flow:
 
 * **Views** are what the user sees: HTML, CSS, JavaScript, JSON. They're the sales rep putting up flyers and collecting surveys, at the managers direction. Views are merely puppets reading what the controller gives them. They don't know what happens in the back room.
 
-* Finally, the **Controller** returns the **response body** (HTML, XML, etc.) and **metadata** (caching headers, redirects) to the server. The server combines the raw data into a proper **HTTP response** and sends it to the client to be presented to the user.
+* Finally, the **Controller** returns the **response body** (HTML, XML, etc.) and **metadata** (caching headers, redirects) to the server. The **server** combines the raw data into a proper **HTTP response** and sends it to the client to be presented to the user.
 
 * The **web server** is the invisible gateway, shuttling data back and forth (users never interact with the controller directly).
 
