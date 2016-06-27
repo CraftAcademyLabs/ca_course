@@ -9,7 +9,7 @@ Three-tier application architecture is characterized by the functional decomposi
 Using this architecture the software is divided into 3 different tiers: **Presentation**, **Logic** (also refereed to as "business logic", "data access tier", or "middle tier"), and **Data**. Each tier is developed and maintained as an independent tier.
 
 #### Presentation tier
-This is the topmost level of the application. The presentation layer provides the application's user interface (UI). Typically, this involves the use of Graphical User Interface for smart client interaction, and Web based technologies for browser-based interaction. The presentation tier displays information related to such services as browsing merchandise, purchasing, and shopping cart contents. It communicates with other tiers by outputting results to the browser/client tier and all other tiers in the network.
+This is the topmost level of the application. The presentation layer provides the application's user interface (UI). This communicates with other tiers by outputting results to the browser/client tier and all other tiers in the network.
 
 #### Logic tier 
 The Logic tier controls an application's functionality by performing detailed processing. Logic tier is where mission-critical business problems are solved. 
