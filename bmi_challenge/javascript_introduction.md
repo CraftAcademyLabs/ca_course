@@ -75,7 +75,7 @@ person.name
     // "Thomas"
 
 person.details["favorite color"]
-    // "ornage"
+    // "orange"
 
 person.details.age
     // 44
