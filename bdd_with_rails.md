@@ -1,86 +1,60 @@
-# BDD with Rails
-###Working with BDD
+# Acceptance-Unit Test Cycle
 
-The concept of Behavior Driven Development (BDD) is pretty simple. You describe what you want the system to do by describing potential users interactions with the different parts of the application. You work outside-in to implement features using the examples to validate that you're building the right thing at the right time. During this workshop you will see BDD in action and will experience, at least partially, the benefits of this method.
+The concept of Acceptance-Unit Test Cycle is pretty simple. You describe what you want the system to do by describing potential users interactions with the different parts of the application. You work outside-in to implement features using the examples to validate that you're building the right thing at the right time. During this workshop you will see this workflow in action and will experience, at least partially, its benefits.
 
-The tools we will be using to test our application are RSpec and Cucumber. Those are the two so called testing frameworks that will help us to write good code. During the development process, we'll take an approach that combines high level acceptance tests and low level unit tests to both drive the development process and make sure that we build a robust and well structured application.
+For the purpose of this workshop, we will use [Ruby on Rails](https://rubyonrails.org/) as the framework for our application. But the workflow can be applied to any stack or framework of your choice.
 
 ###Testing/Development Cycle
 
-A good cycle to follow for BDD is this outside-in approach:
+A good cycle to follow is this **outside-in approach**:
 
-1. Write a high-level (outside) business value example (using Cucumber or RSpec/Capybara) that goes red
-2. Write a lower-level (inside) RSpec example for the first step of implementation that goes red
-3. Implement the minimum code to pass that lower-level example, see it go green
-4. Write the next lower-level RSpec example pushing towards passing #1
-5. Repeat steps #3 and #4 until the high-level test (#1) goes green
-6. During the process think of your red/green state as a permission status:
+1. Write a **high-level** (outside) business value example (using Cucumber) that goes red
+2. Write a **lower-level** (inside) RSpec example for the first step of implementation that **goes red**
+3. Implement the minimum code to pass that lower-level example, see it **go green**
+4. Write the next lower-level RSpec example pushing towards passing step 1
+5. Repeat steps 3 and 4 until the high-level test (1) **goes green**
+6. Start over by writing a new **high-level** test
 
-When your low-level tests are green, you have permission to write new examples or refactor existing implementation. You must not, in the context of that refactoring, add new functionality/flexibility.
+During the process think of your **red-green state** as a permission status:
+- When your low-level tests are green, you have permission to write new examples or refactor existing implementation. You must not, in the context of that refactoring, add new functionality/flexibility.
+- When your low-level tests are red, you have permission to write or change implementation code only for the purpose of making the existing tests go green. You must resist the urge to write the code to pass your next test, which doesn't exist, or implement features you’ll need "some day."
 
-When your low-level tests are red, you have permission to write or change implementation code only for the purpose of making the existing tests go green. You must resist the urge to write the code to pass your next test, which doesn't exist, or implement features you’ll need "some day."
+The tools we will be using to test our application are [RSpec](http://rspec.info/) and [Cucumber](https://cucumber.io/). Those are the two testing frameworks that will help us to write good code. By now, you've had a chance to use both tools in your previous projects, so this is not entirely new to you.
 
+#### Prerequisites
 
-
-####Prerequisites
 We assume that you have your Development environment setup according to instructions in this book and that you are working on either a Linux or OSX based computer.
 
-###Setting up the application
+### Setting up the application
 
 If you don't have Rails installed beforehand, it is time to install it now. Rails is a ruby gem, so you can install it as any other gem:
-```
+
+```shell
 $ gem install rails
 ```
+
 Once you are done it is time to scaffold the Rails application we will be working with.
 
+```shell
+$ rails new rails_demo --database=postgresql --skip-test --skip-bundle
 ```
-$ rails new rails_bdd --database=postgresql --skip-test-unit  --skip-bundle
-```
-* The `--database=postgresql` selects PostgreSQL as the database (The out-of-the-box setting is MySQL)-
-* The `--skip-test-unit` option skips configuring test.unit. In the tutorial, we use RSpec instead.
-* The `--skip-bundle` option prevent running bundle install automatically. 
+
+* The `--database=postgresql` selects PostgreSQL as the database (The out-of-the-box setting is MySQL)
+* The `--skip-test` option skips configuring for the default testing tool.
+* The `--skip-bundle` option prevents the generator from running `bundle install` automatically.
 
 ```
 $ cd rails_bdd
-$ bundle install
-```
-###Setting up Version Control
-
-As in all other projects during the course we will be storing our work using git. 
-
-Initialize a git repository inside the projects folder.
-
-```
-$ git init
 ```
 
-At this point you should head over to GitHub and create a new repository called `rails_bdd`. Copy the new repositories `https` or `git` address (depending if you have set up your SSH keys on GitHub) and add that as a remote to your local repo. 
+### RSpec and shoulda-matchers
 
-```
-$ git remote add origin <repo url>
-```
-Do your first commit and push your code with this sequence of git commands:
-```
-$ git add .
-$ git commit -am "new rails application"
-$ git push origin master
-```
+Add `rspec-rails` gem to the `development` and `test` groups of your Gemfile.
 
-IF you encounter some problems you might need to `pull` from the remote repository before you make a `push`. This can occur if you initiated a repository with a README file or `.gitignore`
+The RSpec extension library [`shoulda-matchers`](http://matchers.shoulda.io/) allows us to test common Rails functionality, like validations and associations, with less code.
 
-Just do `git pull origin master` and do a `push` afterwards. 
+The gem `factory_girl` is a library for setting up Ruby objects as test data. It's essentially a fixtures replacement. It allows you to create objects that are needed in tests without providing a value for each required attribute. If you don't provide a value for a required attribute factory_girl will use the default value that you defined in factory's definition.
 
-Remember one of the most common pieces of advice you hear during this bootcamp: ***you should commit early and often***. 
-
-###Add RSpec and shoulda-matchers
-
-Add `rspec-rails` gem to the development and test groups of your Gemfile.
-
-[`shoulda-matchers`](http://matchers.shoulda.io/) allows us to test common Rails functionality, like validations and associations, with less code. 
-
-`factory_girl` is a library for setting up Ruby objects as test data. It's essentially a fixtures replacement. It allows you to create objects that are needed in tests without providing a value for each required attribute. If you don't provide a value for a required attribute factory_girl will use the default value that you defined in factory's definition.
-
-!FILENAME Gemfile
 ```ruby
 group :development, :test do
   gem 'rspec-rails'
@@ -88,56 +62,119 @@ group :development, :test do
   gem 'factory_girl_rails'
 end
 ```
-Install the new dependencies with `bundle install`.
+
+Now, we can install all the new dependencies with `bundle install`.
+
+```shell
+$ bundle install
+```
 
 Run the RSpec generator to add the testing framework to your rails application
-```
+
+```shell
 $ bundle exec rails generate rspec:install
 ```
-Why `bundle exec` before a command?  `bundle exec` executes a command in the context of your bundle. That means it uses the gems specified in your Gemfile. It basically standardizes the environment under which the program runs. This helps avoid version hell and makes life much easier.
 
-Before you can use `shoulda-matchers`, you need to configure it by choosing the test framework and features of `shoulda-matchers` you want to use. Open `spec/rails_helper.rb` and add the following block.
+Why `bundle exec` before a command? `bundle exec` executes a command in the context of your bundle. That means it uses the gems specified in your Gemfile. It basically standardizes the environment under which the program runs. This helps avoid version hell and makes life much easier.
 
-!FILENAME spec/rails_helper.rb
-```ruby 
+Before you can use `shoulda-matchers`, you need to configure it by choosing the test framework and features of `shoulda-matchers` you want to use.
+
+Open `spec/rails_helper.rb` and add the following block.
+
+```ruby
 Shoulda::Matchers.configure do |config|
   config.integrate do |with|
     with.test_framework :rspec
-    with.library :rails
+    with.library :rails 
   end
 end
 ```
 
-Before we move on we need to add another configuration to the Rails application to avoid the generators to scaffold too many files. 
+Before we move on we need to add another configuration to the Rails application to avoid the generators to scaffold too many files. Make the following modification to the `config/application.rb` file:
 
-First I want you to make sure that you remove the `coffee-rails` gem from the applications `Gemfile`. Once you've done that, make the following modification to the `config/application.rb` file:
-
-!FILENAME config/application.rb
 ```ruby
 class Application < Rails::Application
-  # Disable generation of helpers, javascripts, css, and view specs
+  # Disable generation of helpers, javascripts, css, and view, helper, routing and controller specs
   config.generators do |generate|
-    generate.helper false
+    generate.helper false 
     generate.assets false
     generate.view_specs false
+    generate.helper_specs false
+    generate.routing_specs false
+    generate.controller_specs false
   end
-# ...
+  # ...
 ```
+
 One last thing in this setup process, open the `.rspec` file (it is located in your main project folder but it is a hidden file, so your text editor might not show it) and modify it so that the first line is set to:
 
-!FILENAME .rspec
-```
+```shell
 --format documentation
 ```
 
-Now, in your terminal, type in `rspec` and hit enter.
-The output you see should be something like:
-```
+Now, in your terminal, type in `bundle exec rspec` and hit enter.The output you see should be something like:
+
+```shell
+$ bundle exec rspec
 No examples found.
 
 Finished in 0.00023 seconds (files took 0.5029 seconds to load)
 0 examples, 0 failures
 ```
+
+### Cucumber
+Add `cucumber-rails` and `database_cleaner` gems to the test group of the Gemfile.
+
+```ruby
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  gem 'cucumber-rails', require: false
+  gem 'database_cleaner'
+end
+```
+
+The [`database_cleaner`](https://github.com/DatabaseCleaner/database_cleaner) gem is used to ensure a clean database state for testing and will make your development easier.
+
+Run this command to bootstrap the application with Cucumber:
+
+```shell
+$ bundle exec rails generate cucumber:install
+```
+
+This will generate Cucumber configuration files and set up the database for Cucumber tests. The generator will also create all the code you need to integrate [DatabaseCleaner](https://github.com/DatabaseCleaner/database_cleaner#cucumber-example) into your Rails project.
+
+As a last step, you will need to create the database and run the `migrate` command (even if we have not created any tables and columns yet)
+
+```shell
+$ rails db:create --all
+$ rails db:migrate
+```
+
+Just as a sanity check, we want to run Cucumber to see if everything is working properly.
+
+```shell
+$ bundle exec cucumber
+Using the default profile...
+0 scenarios
+0 steps
+0m0.000s
+Run options: --seed 44264
+
+# Running:
+
+
+Finished in 0.001691s, 0.0000 runs/s, 0.0000 assertions/s.
+
+0 runs, 0 assertions, 0 failures, 0 errors, 0 skips
+```
+
+You should now be fully equiped to drive your Rails application using the Acceptance-Unit Test Cycle. Next up, we will go through the cycle of developing a feature using this approach.
+
+
+> **Note:** As in all other projects during the course we will be storing our work using git. Initialize a git repository inside the application's directory and remember ***you should commit early and often***
+
 
 ###Are we good?
 Let's create an example Post model and write specs that will verify that RSpec is working correctly:
