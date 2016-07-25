@@ -1,4 +1,4 @@
-# Acceptance-Unit Test Cycle
+# Acceptance-Unit Test Cycle 
 
 The concept of Acceptance-Unit Test Cycle is pretty simple. You describe what you want the system to do by describing potential users interactions with the different parts of the application. You work outside-in to implement features using the examples to validate that you're building the right thing at the right time. During this workshop you will see this workflow in action and will experience, at least partially, its benefits.
 
@@ -123,6 +123,7 @@ Finished in 0.00023 seconds (files took 0.5029 seconds to load)
 ```
 
 ### Cucumber
+
 Add `cucumber-rails` and `database_cleaner` gems to the test group of the Gemfile.
 
 ```ruby
@@ -175,6 +176,149 @@ You should now be fully equiped to drive your Rails application using the Accept
 
 > **Note:** As in all other projects during the course we will be storing our work using git. Initialize a git repository inside the application's directory and remember ***you should commit early and often***
 
+
+### Our first Acceptance-Unit Test Cycle
+
+Let's develop a simple feature. In the scenario, a user will visit the applications landing page and see a list of news articles displayed.
+
+Let's start by creating a high-level test file.
+
+```gherkin
+Feature: As a visitor, 
+         when I visit the applications landing page,
+         I would like to see a list of articles
+ 
+  Scenario: Viewing list of articles on application's landing page
+    When I am on the landing page
+    Then I should see the "A breaking news item"
+    And I should see the "Some really breaking action"
+```
+
+Run the scenario and see it fail.
+
+```shell
+$ bundle exec cucumber features/list_posts.feature
+```
+
+In the terminal output, you will see snippets for implementing steps:
+
+```shell
+You can implement step definitions for undefined steps with these snippets:
+
+When(/^I am on the landing page$/) do
+  pending # Write code here that turns the phrase above into concrete actions
+end
+
+Then(/^I should see the "([^"]*)"$/) do |arg1|
+  pending # Write code here that turns the phrase above into concrete actions
+end
+```
+
+Let's copy those steps into `features/step_definitions/landing_page_steps.rb` and edit them:
+
+```ruby
+When(/^I am on the landing page$/) do
+  visit root_path
+end
+
+Then(/^I should see the "([^"]*)"$/) do |content|
+  expect(page).to have_content content
+end
+```
+
+If you run the scenario again, you will see that it fails since the route `root_path` is not defined. Let's add it to our `routes.rb` file:
+
+```ruby
+Rails.application.routes.draw do
+  root controller: :landing, action: :index
+end
+```
+
+Now implement the controller that will serve the `/` route. For that we will use a Rails Generator.
+
+```shell
+$ rails generate controller landing index
+      create app/controllers/landing_controller.rb
+      route get 'landing/index'
+      invoke erb
+      create app/views/landing
+      create app/views/landing/index.html.erb
+      invoke rspec
+```
+
+Running our tests will result in a changed error message. That's progress.
+
+Now, we need to modify the controller as well as the view to actually display (or try to display) our articles.
+```ruby
+class LandingController < ApplicationController
+  def index @articles = Article.all
+  end
+end
+```
+
+And create the view that will render Posts#index action and list all posts.
+
+```erb
+<ul> 
+  <% @articles.each do |article| %>
+    <li>
+      <%= article.title %><br />
+      <%= article.content %>
+    </li>
+  <% end %>
+</ul>
+```
+
+Now run the feature file and see a new error message:
+
+```shell
+uninitialized constant LandingController::Article (NameError)
+...
+
+Failing Scenarios:
+cucumber features/list_posts.feature:3 # Scenario: Viewing list of articles on application's landing page
+
+1 scenario (1 failed)
+2 steps (1 failed, 1 skipped)
+```
+
+**This is a very crucial step in our development process.** This is as far as you can go in the high level tests - at this point we need to shift our attention to the process of creating our units (Article) using tests as a blueprint. It's time to focus on the **lower-level** (inside) tests using RSpec.
+
+Let's think about how we want our Articles to be structured:
+
+* We need to be able to store Articles in our database - meaning we need to create a Model
+* We want each article to have a `title` and `content` - we need to add these attributes to our Article model
+* We don't want to store articles that don't have `title` and `content` present - meaning we need to add a validation that these attributes are not empty
+* We want to make sure that there is a valid Factory to use in our test environment
+
+The first thing we want to do is to create a spec file in the `spec/models` folder called `article_spec.rb`. Let's add some tests (we will use the matchers provided to us by the `shoulda-matchers` gem that extends the built-in RSpec matchers).
+
+```ruby
+require 'rails_helper'
+
+RSpec.describe Article, type: :model do
+  describe 'DB table' do
+    it { is_expected.to have_db_column :id }
+    it { is_expected.to have_db_column :title }
+    it { is_expected.to have_db_column :content }
+  end
+ 
+  describe 'Validations' do
+    it { is_expected.to validate_presence_of :title }
+    it { is_expected.to validate_presence_of :content } 
+  end
+  
+  describe 'Factory' do
+    it 'should have valid Factory' do
+      expect(FactoryGirl.create(:article)).to be_valid 
+    end
+  end
+end
+```
+
+If you run RSpec (and you should) now you will see the tests fail - we haven't created the model yet.
+
+It's time to do that. We'll make use of another rails generator to create the Article model. That will create the class, a migration and a factory (if you are prompted to overwrite the `atricle_spec`just type `n`)
 
 ###Are we good?
 Let's create an example Post model and write specs that will verify that RSpec is working correctly:
