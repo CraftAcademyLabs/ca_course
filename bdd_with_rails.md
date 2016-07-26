@@ -1,6 +1,6 @@
 # Acceptance-Unit Test Cycle
 
-The concept of Acceptance-Unit Test Cycle is pretty simple. You describe what you want the system to do by describing potential users interactions with the different parts of the application. You work outside-in to implement features using the examples to validate that you're building the right thing at the right time. During this workshop you will see this workflow in action and will experience, at least partially, its benefits.
+The concept of Acceptance-Unit Test Cycle is pretty simple. You describe what you want the system to do by describing potential users interactions with the different parts of the application. You work outside-in to implement features using the examples to validate that you're building the right thing at the right time. During this workshop, you will see this workflow in action and will experience, at least partially, its benefits.
 
 For the purpose of this workshop, we will use [Ruby on Rails](https://rubyonrails.org/) as the framework for our application. But the workflow can be applied to any stack or framework of your choice.
 
@@ -105,6 +105,7 @@ class Application < Rails::Application
     generate.controller_specs false
   end
   # ...
+end
 ```
 
 One last thing in this setup process, open the `.rspec` file \(it is located in your main project folder but it is a hidden file, so your text editor might not show it\) and modify it so that the first line is set to:
@@ -170,7 +171,7 @@ Finished in 0.001691s, 0.0000 runs/s, 0.0000 assertions/s.
 0 runs, 0 assertions, 0 failures, 0 errors, 0 skips
 ```
 
-You should now be fully equiped to drive your Rails application using the Acceptance-Unit Test Cycle. Next up, we will go through the cycle of developing a feature using this approach.
+You should now be fully equipped to drive your Rails application using the Acceptance-Unit Test Cycle. Next up, we will go through the cycle of developing a feature using this approach.
 
 > **Note:** As in all other projects during the course we will be storing our work using git. Initialize a git repository inside the application's directory and remember _**you should commit early and often**_
 
@@ -221,7 +222,7 @@ When(/^I am on the landing page$/) do
   visit root_path
 end
 
-Then(/^I should see the "([^"]*)"$/) do |content|
+Then(/^I should see "([^"]*)"$/) do |content|
   expect(page).to have_content content
 end
 ```
@@ -236,7 +237,7 @@ Rails.application.routes.draw do
 end
 ```
 
-Now implement the controller that will serve the `/` route. For that we will use a Rails Generator.
+Now implement the controller that will serve the `/` route. For that, we will use a Rails Generator.
 
 ```shell
 $ rails generate controller landing index
@@ -269,7 +270,7 @@ cucumber features/list_articles.feature:6 # Scenario: Viewing list of articles o
 3 steps (1 failed, 1 skipped, 1 passed)
 0m0.533s
 ```
-Let's get the remaining steps to a green state too. Looking at the previous output of cucumber, we note that it expected to see some text on the page, but didn't find any that was specified. It also points us to the file that was supposed to render the text in question, `app/views/landing/index.html.erb`.
+Let's get the remaining steps to a green state too. Looking at the previous output of cucumber, we note that it expected to see some text on the page, but didn't find any that was specified. It also points us to the file that was supposed to render the text in question `app/views/landing/index.html.erb`.
 
 All we need to do at this stage to get the remaining tests to pass is add the respective texts to that view file. Edit `app/views/landing/index.html.erb` and replace the file's content with:
 
@@ -344,7 +345,7 @@ cucumber features/list_articles.feature:12 # Scenario: Viewing list of articles 
 0m0.155s
 ```
 
-**This is a very crucial step in our development process.** This is as far as you can go in the high level tests - at this point we need to shift our attention to the process of creating our units \(Article\) using tests as a blueprint. It's time to focus on the **lower-level** \(inside\) tests using RSpec.
+**This is a very crucial step in our development process.** This is as far as you can go in the high-level tests - at this point, we need to shift our attention to the process of creating our units \(Article\) using tests as a blueprint. It's time to focus on the **lower-level** \(inside\) tests using RSpec.
 
 Let's think about how we want our Articles to be structured:
 
@@ -386,7 +387,7 @@ It's time to do that. We'll make use of another rails generator to create the Ar
 ```shell
 $ rails generate model Article title:string content:text
 ```
-Following that you need to run the `migrate` command to update your database.
+Following that, you need to run the `migrate` command to update your database.
 
 ```shell
 $ rails db:migrate
@@ -398,7 +399,7 @@ $ rails db:migrate
 
 Running the spec now you will see that we are moving in the right direction but there are still some failing tests - we have not set up any validations and those assertions are giving us errors.
 
-Open the model file and add validation for presence of both `title` and `content`.
+Open the model file and add validation for the presence of both `title` and `content`.
 
 **`app/models/article.rb`**
 ```ruby
@@ -410,7 +411,7 @@ end
 
 Running your specs now (`rspec`) will result in all green tests.
 
-At this point we can go back to our acceptance test and run Cucumber again. We are still not in the green, but we should have a different error message.
+At this point, we can go back to our acceptance test and run Cucumber again. We are still not in the green, but we should have a different error message.
 
 Now, we need to modify the controller as well as the view to actually display \(or try to display\) our articles.
 
@@ -435,15 +436,15 @@ And replace the content of the view that will render `LandingController#index` a
 </ul>
 ```
 
-At this point, if you run `cucumber` you should have see all tests passing green.
+At this point, if you run `cucumber` you should see all tests passing green.
 
 #### Wrap up
 
-During this walkthrough we have completed one Acceptance-Unit Cycle (without the refactoring part) and added a simple feature that allows visitors to view articles on the landing page of the application.
+During this walkthrough, we have completed one Acceptance-Unit Cycle (without the refactoring part) and added a simple feature that allows visitors to view articles on the landing page of the application.
 
-Using our tests we ware able to craft out some some functionality and delivered the objective of the feature: To list articles on the landing page.
+Using our tests we were able to craft out some functionality and delivered the objective of the feature: To list articles on the landing page.
 
-- We created a route (url)
+- We created a route (URL)
 - We created an Article model with attributes and validations
 - We created a controller with an index method that fetches all articles from the database and stores the collection in a variable that is made available to the view template
 - We created a view that iterates through a collection of articles
