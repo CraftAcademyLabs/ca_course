@@ -12,6 +12,7 @@ The functionality we are looking for is pretty simple yet not in any way trivial
 
 ### Learning objective
 - Learn how to get hold of data from an external source.
+- Learn about JSON objects
 - Learn about AJAX and DOM manipulation
 - Learn how to stub network calls in Jasmine
  
