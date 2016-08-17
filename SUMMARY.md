@@ -80,5 +80,5 @@
     * [MVC](extras/model_view_controller.md)
     * [Three-Tier Architecture](extras/three-tier_architecture.md)
     * [AngularJS](angular_js.md)
-* [Open Weather Challenge](open-weather-challenge.md)
+
 
