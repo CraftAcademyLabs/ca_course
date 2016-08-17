@@ -5,7 +5,7 @@ You are challenged with building a simple one page application that allows the u
 
 ### Functionality
 The functionality we are looking for is pretty simple yet not in any way trivial.
-1. When the web page is being accessed, get the users current position using the `navigator.geolocation.getCurrentPosition` method.
+1. When the web page is being accessed, get the users current position using the `navigator.geolocation.getCurrentPosition()` method.
 2. Get the weather info for the obtained position by querying the OWM API
 3. Parse the response
 4. Display appropriate information on the web page without reloding the page. 
