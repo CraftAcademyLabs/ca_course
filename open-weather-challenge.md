@@ -76,3 +76,10 @@ Valid API call for Gothenburg, Sweden will result in following response:
 }
 ```
 
+### Extended functionality
+If you are finished with the above implementation and it is fully tested, you can go on and implement the following: 
+1. Add a map display to the page
+2. Add a possibility to manually set the location and update the results.
+
+One good way of setting the location manually is to use the Google Places API Web Service. There are libraries you can use to activate autocomplete on an input field in your UI. You might want to trigger an event on selecting a location in the pulldown and update the map AND query the OWM API. 
+
