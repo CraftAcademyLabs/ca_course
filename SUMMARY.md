@@ -25,6 +25,7 @@
     * [Moving on](bmi_challenge/step_5_moving_on.md)
 * [Fizz Buzz in JavaScript](fizz_buzz/js/fizzbuzz_js_challenge.md)
     * [NodeJS](fizz_buzz/js/nodejs.md)
+* [Open Weather Challenge](open-weather-challenge.md)
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
     * [Step 1 - Setting up the project](slow_food/setting_up_the_project.md)
@@ -43,7 +44,7 @@
     * [Partials](middleman/partials.md)
     * [Deploy to Github pages](middleman/deploy_to_github_pages.md)
 * [Ruby On Rails introduction](ror/ruby_on_rails_-_introduction.md)
-* [Acceptance-Unit Test Cycle](bdd_with_rails.md)
+* [BDD with Rails](bdd_with_rails.md)
 * [Rails Messaging](rails_messaging.md)
     * [Working with Legacy Code](working_with_legacy_code.md)
     * [Tips and Tricks](tips_and_tricks.md)
@@ -79,5 +80,5 @@
     * [MVC](extras/model_view_controller.md)
     * [Three-Tier Architecture](extras/three-tier_architecture.md)
     * [AngularJS](angular_js.md)
-* [5 Challenges in 1 Week](5_challenges_in_1_week.md)
+
 
