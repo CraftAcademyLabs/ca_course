@@ -772,7 +772,7 @@ end
 ```
 
 When you run the test now you will get an error with Rails complaining about `ForbiddenAttributesError`
-
+```shell
     Performance Data
       POST /api/v1/performance_data/
         creates a data entry (FAILED - 1)
@@ -786,6 +786,7 @@ When you run the test now you will get an error with Rails complaining about `Fo
            ActiveModel::ForbiddenAttributesError
          # ./app/controllers/api/v1/performance_data_controller.rb:4:in `create'
          ....
+```
 
 That is due to our params not being whitelisted. Some explanation is in place. Also do through [this resource about Action Controller](http://edgeguides.rubyonrails.org/action_controller_overview.html#parameters) to fully understand what is going on in the controllers we create and use in our application.
 
@@ -817,7 +818,9 @@ end
 
 Note: We can use the `permit!` method for now, but there might be some security issues involved with that. Can you figure out a better way?
 
-Okay, at this stage if you run your tests again you'll get a different error ```
+Okay, at this stage if you run your tests again you'll get a different error 
+
+```shell
 undefined method `data' for nil:NilClass
 ```
 
