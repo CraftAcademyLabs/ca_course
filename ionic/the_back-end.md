@@ -480,32 +480,20 @@ cancel_api_v1_user_registration GET    /api/v1/auth/cancel(.:format)           d
 
 First we need to add a helper method that will parse the server response body to JSON. Create a `support` folder in the `spec` folder. Add a new file named `response_json.rb`. In that file we will create a module that will parse the `response.body` to JSON and allow us to DRY out our request specs.
 
-!FILENAME spec\/support\/response\_json.rb
+!FILENAME spec/support/response_json.rb
 
 ```ruby
-
 module ResponseJSON
   def response_json
     JSON.parse(response.body)
   end
 end
-```
 
-Update your `rails_helper.rb` with the following code.
-
-!FILENAME spec\/rails\_helper.rb
-
-```ruby
-#[...]
-Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
-#[...]
 RSpec.configure do |config|
-  config.include(Shoulda::Matchers::ActiveRecord, type: :model)
-  config.include FactoryGirl::Syntax::Methods
   config.include ResponseJSON
-  #[...]
 end
 ```
+
 
 ### User registration
 
