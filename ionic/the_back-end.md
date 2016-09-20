@@ -4,31 +4,57 @@ We will be using Ruby on Rails as the stack for our back-end.
 
 The challenge is to set up an API-only application that will make it possible to store information about users and their historical data.
 
-We will be using RSpec as out testing framework and PostgreSQL as our database.
+We will be using RSpec as out testing framework and PostgreSQL as our database. 
+> Note that we **WILL NOT** be using Cucumber, so you don't have to install that framework. We are also using **Rails 5** in this walkthrough.
 
-Before moving on, make sure you scaffold an new Rails application. If you need assistance you can check out the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter. **Note that we WILL NOT be using Cucumber, so you don't have to install that framework.**
+Let's go ahead and scaffold our application
 
-There are some steps that we need to undertake to prepare the application before we can start adding our api endpoints.
-
-First, we need to modify the `ApplicationController`.
-
-
-!FILENAME app/controllers/application_controller.rb
-```ruby
-class ApplicationController < ActionController::Base
-  protect_from_forgery with: :null_session
-  respond_to :json
-end
+```shell
+rails new cooper_api --api --database=postgresql --skip-test --skip-bundle
 ```
-We use `protect_from_forgery with: :null_session` to avoid running into an `ActionController::InvalidAuthenticityToken` exception.
 
-When you make a request from an external client, like a Angular app accessing a REST service, you will get errors by default, since you do not have the secret token. Rails allows you to alter the behavior when the secret isn't sent in your request.  By default it throws an exception, but you can change it to just set the session to NULL
+This will do a couple of things for you:
+
+* Configure your application to start with a limited set of middleware than normal.
+* Make ApplicationController inherit from ActionController::API instead of ActionController::Base. As with middleware, this will leave out any Action Controller modules that provide functionalities primarily used by browser applications.
+* Configure the generators to skip generating views, helpers and assets when you generate a new resource.
+* `--database=postgresql` selects PostgreSQL as the database
+* `--skip-test` option skips configuring for the default testing tool.
+* `--skip-bundle` option prevents the generator from running bundle install automatically.
+
+
+Next, update your `Gemfile` to have the following:
+
+```ruby
+source 'https://rubygems.org'
+ruby '2.3.1'
+
+gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'pg', '~> 0.18'
+gem 'puma', '~> 3.0'
+gem 'jbuilder', '~> 2.5'
+
+group :development, :test do
+ gem 'pry'
+ gem 'pry-byebug'
+end
+
+group :development do
+ gem 'listen', '~> 3.0.5'
+ gem 'spring'
+ gem 'spring-watcher-listen', '~> 2.0.0'
+end
+
+```
 
 We also want to add the [`rack-cors`](https://github.com/cyu/rack-cors) gem to allow external clients to access our application. Add the dependency to your `Gemfile`.
 
 !FILENAME Gemfile
 ```ruby
+# Use Rack CORS for handling Cross-Origin Resource Sharing (CORS),
+# making cross-origin AJAX possible 
 gem 'rack-cors', require: 'rack/cors'
+
 ```
 
 Put something like the code below in `config/application.rb` of your Rails application. This will allow GET, POST, PUT and DELETE requests from any origin on any resource.
@@ -38,10 +64,10 @@ Put something like the code below in `config/application.rb` of your Rails appli
 module YourApp
   class Application < Rails::Application
     # [...]
-    config.middleware.insert_before 0, "Rack::Cors" do
+    config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '*', headers: :any, methods: [:get, :put, :delete, :post]
+        resource '*', headers: :any, methods: [:get, :post, :put, :delete]
       end
     end
   end
@@ -49,58 +75,112 @@ end
 ```
 There are plenty of settings you can add to enhance security of your application. Read about it in the `rack-cors` and `devise_token_auth` gem documentation.
 
-###Testing with RSpec
+Next, we are now going to setup our testing framework.
 
-We will be using request specs to test our api endpoints.
+Update your `Gemfile` with the following gems,
+
+```ruby
+group :development, :test do
+  gem 'rspec-rails'
+  gem 'shoulda-matchers'
+  gem 'factory_girl_rails'
+  # [...]
+end
+```
+
+> Remember to run `bundle install` everytime you update your `Gemfile`.
+
+Run `rails generate rspec:install` to install rspec for your rails project. Update the following file with respective code provided below:
+
+- `spec/rails_helper.rb`
+
+```ruby
+ENV['RAILS_ENV'] ||= 'test'
+require File.expand_path('../../config/environment', __FILE__)
+
+abort('The Rails environment is running in production mode!') if Rails.env.production?
+require 'spec_helper'
+require 'rspec/rails'
+
+ActiveRecord::Migration.maintain_test_schema!
+
+Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
+
+RSpec.configure do |config|
+  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.use_transactional_fixtures = true
+  config.infer_spec_type_from_file_location!
+  config.filter_rails_from_backtrace!
+end
+```
+
+- `spec/spec_helper.rb`
+
+```ruby
+RSpec.configure do |config|
+  config.expect_with :rspec do |expectations|
+    expectations.include_chain_clauses_in_custom_matcher_descriptions = true
+  end
+
+  config.mock_with :rspec do |mocks|
+    mocks.verify_partial_doubles = true
+  end
+
+  config.shared_context_metadata_behavior = :apply_to_host_groups
+end
+```
+
+- `.rspec`
+
+```ruby
+--color
+--require rails_helper
+```
+
+Create the following files:
+
+- `spec/support/factory_girl.rb`
+
+```ruby
+RSpec.configure do |config|
+  config.include FactoryGirl::Syntax::Methods
+end
+```
+
+- `spec/support/shoulda_matcher.rb`
+
+```ruby
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  endend
+
+RSpec.configure do |config|
+  config.include(Shoulda::Matchers::ActiveRecord, type: :model)
+end
+```
+
+That's all for the setup. Next up, we will test-drive the creation of a test endpoint.
+
+###Testing APIs with RSpec
+
+We will be using [request specs](https://www.relishapp.com/rspec/rspec-rails/v/3-5/docs/request-specs/request-spec) to test our api endpoints.
 
 Let's create a dummy endpoint just to make sure everything is okay in terms of security settings.
 
-
-In your `routes.rb` create an API namespace and add V0 within it. Nested in that namespace we want to add a `:ping` resource with one single `:index` action.
-
-
-!FILENAME config/routes.rb
-```ruby
-# [...]
-namespace :api do
-  namespace :v0 do
-    resources :ping, only: [:index], constraints: {format: /(json)/}
-  end
-end
-```
-Run `rake routes` in your terminal to see if the route has been added properly.
-
-In the `app/controllers` folder, create the following folder structure.
-```
-$ mkdir app/controllers/api
-$ mkdir app/controllers/api/v0
-```
-** *Note: The actual API routes will be placed in another namespace that we will call `V1`.* **
-
-Inside that folder, we want to create our dummy controller.
-
-```
-$ touch app/controllers/api/v0/ping_controller.rb
-```
-We will let it inherit from our modified `ApplicationController`
-
-!FILENAME app/controllers/api/v0/ping_controller.rb
-```ruby
-class Api::V0::PingController < ApplicationController
-
-end
-```
-
 Let's write our first spec to see if we can get a response from our endpoint.
+
+
 
 In your `spec` folder create a folder named `requests`. Within that folder we need to add a folder structure that corresponds to the one we have in our `app/controllers` folder.
 
-```
-$ mkdir spec/requests
+```shell
+$ mkdir -p spec/requests/api/v0
 $ mkdir spec/requests/api
 $ mkdir spec/requests/api/v0
 
-# or use the -p flag (stand for 'parents'
+# or use the -p flag (stand for 'parents')
 $ mkdir -p spec/requests/api/v0
 ```
 
@@ -111,13 +191,15 @@ $ touch spec/requests/api/v0/ping_spec.rb
 ```
 
 !FILENAME spec/requests/api/v0/ping_spec.rb
+
 ```ruby
 require 'rails_helper'
 
-describe Api::V0::PingController do
+RSpec.describe Api::V0::PingController, type: :request do
   describe 'GET /v0/ping' do
     it 'should return Pong' do
       get '/api/v0/ping'
+
       json_response = JSON.parse(response.body)
       expect(response.status).to eq 200
       expect(json_response['message']).to eq 'Pong'
@@ -126,24 +208,73 @@ describe Api::V0::PingController do
 end
 ```
 
+At this stage if we run this test, it will eventually fail. Let's work on getting that to pass.
+
+> Note that if this is the first time you're running the test or the application, rails will throw you an error about non-existant database. Now would be a good time to set them up. Run `rails db:setup --all` then `rails db:migrate` to take care of this.
+
+What we need to do next is create our `PingController`. 
+
+In the `app/controllers` folder, create the following folder structure.
+
+```shell
+$ mkdir app/controllers/api
+$ mkdir app/controllers/api/v0
+```
+
+** *Note: The actual API routes will be placed in another namespace that we will call `V1`.* **
+
+Inside that folder, we want to create our dummy controller.
+
+```shell
+$ touch app/controllers/api/v0/ping_controller.rb
+```
+
+We will let it inherit from our modified `ApplicationController`
+
+!FILENAME app/controllers/api/v0/ping_controller.rb
+```ruby
+class Api::V0::PingController < ApplicationController
+
+end
+```
+
+If we run the test now, the error about undefined constant `Api::V0::PingController` is gone and RSpec should now throw you a `No route matches [GET] "/api/v0/ping"` error.
+
+In your `routes.rb` create an API namespace and add V0 within it. Nested in that namespace we want to add a `:ping` resource with one single `:index` action.
+
+
+!FILENAME config/routes.rb
+```ruby
+Rails.application.routes.draw do
+  namespace :api do
+    namespace :v0 do
+      resources :ping, only: [:index], constraints: { format: 'json' }
+    end
+  end
+end
+```
+
+Run `rake routes` in your terminal to see if the route has been added properly.
+
+With our route in place, the test now throws the following error
+
+```shell
+AbstractController::ActionNotFound:
+  The action 'index' could not be found for Api::V0::PingController
+```
+
 In order to make this spec to pass, we need to add an `index` method to the `Api::V0::PingController`. When called, that method will respond with Json object with a single entry: `{message: 'Pong'}`.
 
 !FILENAME app/controllers/api/v0/ping_controller.rb
 ```ruby
-class Api::V0::PingController < ApiController
+class Api::V0::PingController < ApplicationController
   def index
-    render json: {message: 'Pong'}
+    render json: { message: 'Pong' }
   end
 end
 ```
 
 Does it work? Fire up your server with `rails s` and visit `http://localhost:3000/api/v0/ping`
-
-> Note: If you get the following error when running the application
-```
-The controller-level `respond_to' feature has been extracted to the `responders` gem. Add it to your Gemfile to continue using this feature: (NoMethodError)`
-```
-> Add `gem 'responders', '~> 2.0'` to your Gemfile and it should solve the issue.
 
 
 ### Adding a User class
