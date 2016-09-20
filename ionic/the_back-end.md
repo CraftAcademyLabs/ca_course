@@ -621,16 +621,16 @@ Let's add a way to store historical data for each user.
 
 Run the following generator.
 
-```
+```shell
 rails g model PerformanceData user:references data:hstore --force-plural
 ```
 
 Open up the migration and add a line that adds `hstore` as a datatype and enables the database to store hashes.
 
-!FILENAME db\/migrate\/XXXX\_create\_performance\_data.rb
+!FILENAME db/migrate/XXXX_create_performance_data.rb
 
 ```ruby
-class CreatePerformanceData < ActiveRecord::Migration
+class CreatePerformanceData < ActiveRecord::Migration[5.0]
   def change
     execute 'CREATE EXTENSION IF NOT EXISTS hstore'
     create_table :performance_data do |t|
@@ -645,7 +645,7 @@ end
 
 In your User model, add the following relationship.
 
-!FILENAME app\/models\/user.rb
+!FILENAME app/models/user.rb
 
 ```ruby
 class User < ActiveRecord::Base
@@ -658,35 +658,31 @@ end
 Run the new migration.
 
 ```
-$ rake db:migrate
+$ rails db:migrate
 ```
 
 Add the following specs.
 
-!FILENAME spec\/models\/user\_spec.rb
+!FILENAME spec/models/user_spec.rb
 
 ```ruby
-
 RSpec.describe User, type: :model do
-  #[...]
+  # [...]
 
   describe 'Relations' do
     it { is_expected.to have_many :performance_data }
   end
-
 end
 ```
 
 And to the newly created `spec/models/performance_data_spec.rb`.
 
-!FILENAME spec\/models\/performance\_data\_spec.rb
+!FILENAME spec/models/performance_data_spec.rb
 
 ```ruby
-
 require 'rails_helper'
 
 RSpec.describe PerformanceData, type: :model do
-
   describe 'Database table' do
     it { is_expected.to have_db_column :id }
     it { is_expected.to have_db_column :data }
