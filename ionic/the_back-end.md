@@ -177,7 +177,7 @@ Let's write our first spec to see if we can get a response from our endpoint.
 In your `spec` folder create a folder named `requests`. Within that folder we need to add a folder structure that corresponds to the one we have in our `app/controllers` folder.
 
 ```shell
-$ mkdir -p spec/requests/api/v0
+$ mkdir spec/requests
 $ mkdir spec/requests/api
 $ mkdir spec/requests/api/v0
 
