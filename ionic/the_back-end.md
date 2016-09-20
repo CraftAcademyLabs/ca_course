@@ -324,7 +324,7 @@ end
 ```
 
 ```
-$ rake db:migrate --all
+$ rails db:migrate --all
 ```
 
 Another generator we need to run is a Factory generator for User. Generally, Rails generators invokes the Factory generators once that gem is installed, but not in the case of Devise Token Auth.
@@ -499,54 +499,62 @@ end
 
 Okay, let's write some specs for user registration.
 
-!FILENAME spec\/requests\/api\/v1\/registrations\_spec.rb
+```shell
+$ mkdir -p spec/requests/api/v1
+$ touch spec/requests/api/v1/registrations_spec.rb
+```
+
+!FILENAME spec/requests/api/v1/registrations_spec.rb
 
 ```ruby
-require 'rails_helper'
+RSpec.describe 'User Registration', type: :request do
+  let(:headers) { { HTTP_ACCEPT: 'application/json' } }
 
-describe 'User Registrtion' do
-  let(:headers) { {HTTP_ACCEPT: 'application/json'} }
+  context 'with valid credentials' do
+    it 'returns a user and token' do
+      post '/api/v1/auth', params: {
+        email: 'example@craftacademy.se', password: 'password',
+        password_confirmation: 'password'
+      }, headers: headers
 
-  describe 'POST /api/v1/auth/' do
-    describe 'register a user' do
-      it 'with valid sign up returns user & token' do
-        post '/api/v1/auth', {email: 'thomas@craftacademy.se',
-                              password: 'password',
-                              password_confirmation: 'password'}, headers
-        expect(response_json['status']).to eq('success')
-        expect(response.status).to eq 200
-      end
+      expect(response_json['status']).to eq 'success'      expect(response.status).to eq 200    end   end
 
-      it 'with an invalid password confirmation returns error message' do
-        post '/api/v1/auth', {email: 'thomas@craftacademy.se',
-                              password: 'password',
-                              password_confirmation: 'wrong_password'}, headers
-        expect(response_json['errors']['password_confirmation']).to eq(['doesn\'t match Password'])
-        expect(response.status).to eq 403
-      end
+  context 'returns an error message when user submits' do
+    it 'non-matching password confirmation' do
+      post '/api/v1/auth', params: {
+        email: 'example@craftacademy.se', password: 'password',
+        password_confirmation: 'wrong_password'
+      }, headers: headers
 
-      it 'with an invalid email returns error message' do
-        post '/api/v1/auth', {email: 'thomas@craft',
-                              password: 'password',
-                              password_confirmation: 'password'}, headers
-        expect(response_json['errors']['email']).to eq(['is not an email'])
-        expect(response.status).to eq 403
-      end
+      expect(response_json['errors']['password_confirmation'])
+        .to eq ["doesn't match Password"]
+      expect(response.status).to eq 422
+    end
 
-      it 'with an already registered email returns error message' do
-        User.create(email: 'thomas@craftacademy.se',
-                    password: 'password',
-                    password_confirmation: 'password')
-        post '/api/v1/auth', {email: 'thomas@craftacademy.se',
-                               password: 'password',
-                               password_confirmation: 'password'}, headers
-        expect(response_json['errors']['email']).to eq(['already in use'])
-        expect(response.status).to eq 403
-      end
+    it 'an invalid email address' do
+      post '/api/v1/auth', params: {
+        email: 'example@craft', password: 'password',
+        password_confirmation: 'password'
+      }, headers: headers
+
+      expect(response_json['errors']['email']).to eq ['is not an email']
+      expect(response.status).to eq 422    end
+
+    it 'an already registered email' do
+      FactoryGirl.create(:user, email: 'example@craftacademy.se',
+                                password: 'password',
+                                password_confirmation: 'password')
+
+      post '/api/v1/auth', params: {
+        email: 'example@craftacademy.se', password: 'password',
+        password_confirmation: 'password'
+      }, headers: headers
+
+      expect(response_json['errors']['email']).to eq ['already in use']
+      expect(response.status).to eq 422
     end
   end
 end
-
 ```
 
 The first spec is the happy path testing that user registration with the minimum of required fields works. The next specs are exposing the error messages we'll get if something goes wrong.
@@ -557,44 +565,53 @@ What other possible scenarios in the context of user registration should we test
 
 Let's write some specs for logging in.
 
-!FILENAME spec\/requests\/api\/v1\/sessions\_spec.rb
+```shell
+$ touch spec/requests/api/v1/sessions_spec.rb
+```
+
+!FILENAME spec/requests/api/v1/sessions_spec.rb
 
 ```ruby
-require 'rails_helper'
-
-describe 'Sessions' do
-
+RSpec.describe 'Sessions', type: :request do
   let(:user) { FactoryGirl.create(:user) }
-  let(:headers) { {HTTP_ACCEPT: 'application/json'} }
+  let(:headers) { { HTTP_ACCEPT: 'application/json' } }
 
   describe 'POST /api/v1/auth/sign_in' do
     it 'valid credentials returns user' do
-      post '/api/v1/auth/sign_in', {email: user.email, password: user.password}, headers
-      expect(response_json).to eq(
-                                   {'data' =>
-                                        {'id' => user.id,
-                                         'provider' => 'email',
-                                         'uid' => user.email,
-                                         'name' => nil,
-                                         'nickname' => nil,
-                                         'image' => nil,
-                                         'email' => user.email}}
-                               )
+      post '/api/v1/auth/sign_in', params: {
+        email: user.email, password: user.password
+      }, headers: headers
+
+      expected_response = {
+        'data' => {
+          'id' => user.id, 'uid' => user.email, 'email' => user.email,
+          'provider' => 'email', 'name' => nil, 'nickname' => nil,
+          'image' => nil
+        }      }
+
+      expect(response_json).to eq expected_response
     end
 
     it 'invalid password returns error message' do
-      post '/api/v1/auth/sign_in', {email: user.email, password: 'wrong_password'}, headers
-      expect(response_json['errors']).to eq ['Invalid login credentials. Please try again.']
+      post '/api/v1/auth/sign_in', params: {
+        email: user.email, password: 'wrong_password'
+      }, headers: headers
+
+      expect(response_json['errors'])
+        .to eq ['Invalid login credentials. Please try again.']
       expect(response.status).to eq 401
     end
 
     it 'invalid email returns error message' do
-      post '/api/v1/auth/sign_in', {email: 'wrong@email.com', password: user.password}, headers
-      expect(response_json['errors']).to eq ['Invalid login credentials. Please try again.']
+      post '/api/v1/auth/sign_in', params: {
+        email: 'wrong@email.com', password: user.password
+      }, headers: headers
+
+      expect(response_json['errors'])
+        .to eq ['Invalid login credentials. Please try again.']
       expect(response.status).to eq 401
     end
   end
-
 end
 ```
 
