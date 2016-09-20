@@ -281,7 +281,7 @@ Does it work? Fire up your server with `rails s` and visit `http://localhost:300
 
 ### Adding a User class
 
-We know that we will be accessing our Rails app from an external client and that we will require authentication. At this point you are familiar with Devise - one of the most popular authentication libraries for Rails applications. We will be using `devise_token_auth` a token based authentication gem for Rails JSON APIs. It is designed to work well with `ng-token-auth` the token based authentication module for AngularJS.
+We know that we will be accessing our Rails app from an external client and that we will require authentication. At this point, you are familiar with Devise - one of the most popular authentication libraries for Rails applications. We will be using `devise_token_auth` a token-based authentication gem for Rails JSON APIs. It is designed to work well with `ng-token-auth` the token based authentication module for AngularJS.
 
 As usual, we will be testing our units with RSpec and in order to make writing our specs a breeze, we will use `shoulda-matchers`, but this is probably old news for you at this stage. Again, if you need some pointers please go back in this documentation and revisit the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter.
 
@@ -301,7 +301,7 @@ Run the following command for an easy one-step installation.
 $ rails g devise_token_auth:install User auth
 ```
 
-Remember to migrate your database in order to create the `users` table (the Devise generator created an migration for you). But before you do that, make sure to open up the migration file and change the data type for Tokens to `text`.
+Remember to migrate your database in order to create the `users` table (the Devise generator created a migration for you). But before you do that, make sure to open up the migration file and change the data type for `tokens` to `text`.
 
 !FILENAME db/migrate/XXX_devise_token_auth_create_users.rb
 
@@ -327,7 +327,7 @@ end
 $ rails db:migrate --all
 ```
 
-Another generator we need to run is a Factory generator for User. Generally, Rails generators invokes the Factory generators once that gem is installed, but not in the case of Devise Token Auth.
+Another generator we need to run is a Factory generator for User. Generally, Rails generator invokes the Factory generators once that gem is installed, but not in the case of Devise Token Auth.
 
 Run the generator from your terminal.
 
@@ -335,7 +335,7 @@ Run the generator from your terminal.
 $ rails g factory_girl:model User email password password_confirmation
 ```
 
-Make sure that the factory is properly configured with an valid email and password (if you don't you will get into trouble when validating the objects it creates).
+Make sure that the factory is properly configured with a valid email and password (if you don't you will get into trouble when validating the objects it creates).
 
 !FILENAME spec/factories/users.rb
 
@@ -430,7 +430,7 @@ RSpec.describe User, type: :model do
 end
 ```
 
-Okay, there will be plenty of opportunity to write more specs for the User model. But let's focus on adding some request specs to test our endpoints.
+Okay, there will be plenty of opportunities to write more specs for the User model. But let's focus on adding some request specs to test our endpoints.
 
 Next up, we need to add a new namespace to our `routes.rb` and move the generated Devise route into that namespace. We also want to tell Devise to skip `omniauth_callbacks`.
 
@@ -451,7 +451,7 @@ end
 Now, we can run the `rails routes` command in the terminal to make sure we are set up correctly.
 
 ```
-$ rake routes
+$ rails routes
                          Prefix Verb   URI Pattern                             Controller#Action
               api_v0_ping_index GET    /api/v0/ping(.:format)                  api/v0/ping#index {:format=>/(json)/}
         new_api_v1_user_session GET    /api/v1/auth/sign_in(.:format)          devise_token_auth/sessions#new
@@ -517,7 +517,10 @@ RSpec.describe 'User Registration', type: :request do
         password_confirmation: 'password'
       }, headers: headers
 
-      expect(response_json['status']).to eq 'success'      expect(response.status).to eq 200    end   end
+      expect(response_json['status']).to eq 'success'
+      expect(response.status).to eq 200
+    end
+  end
 
   context 'returns an error message when user submits' do
     it 'non-matching password confirmation' do
