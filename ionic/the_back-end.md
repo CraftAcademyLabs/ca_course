@@ -60,7 +60,7 @@ gem 'rack-cors', require: 'rack/cors'
 
 Put something like the code below in `config/application.rb` of your Rails application. This will allow GET, POST, PUT and DELETE requests from any origin on any resource.
 
-!FILENAME config\/application.rb
+!FILENAME config/application.rb
 
 ```ruby
 module CooperApi
@@ -661,7 +661,7 @@ end
 Run the new migration.
 
 ```
-$ rails db:migrate
+$ rails db:migrate --all
 ```
 
 Add the following specs.
@@ -699,87 +699,74 @@ end
 
 ### The controller
 
-Let's create the  controller we will use to create, update and retrieve users historical data.
-
-Create a new file in the following path: `app/controllers/api/v1/` Call it `performance_data_controller.rb` and add the class definition to it.
-
-!FILENAME app\/controllers\/api\/v1\/performance\_data\_controller.rb
-
-```ruby
-class Api::V1::PerformanceDataController < ApplicationController
-
-end
-```
+Let's create the controller we will use to create, update and retrieve users historical data.
 
 This is where we will be performing our CRUD actions.
 
 The first thing we want to be able to do is to save data. 
-Lets start by adding a `create` method to our new controller.
 
-!FILENAME app\/controllers\/api\/v1\/performance\_data\_controller.rb
+Let's create a request spec and start adding functionality to our controller.
 
+In the `spec/requests/api/v1/` folder we want to create a new test file. Let's call it `performance_data_spec.rb`. We can start with a simple test to see if our entry will be saved to the database (it WILL fail at first, but that is the way we do it, right?)
+
+
+!FILENAME spec/requests/api/v1/performance_data_spec.rb
 ```ruby
-class Api::V1::PerformanceDataController < ApplicationController
-  def create
+RSpec.describe Api::V1::PerformanceDataController, type: :request do
+  let(:headers) { { HTTP_ACCEPT: 'application/json' } }
 
+  describe 'POST /api/v1/performance_data' do
+    it 'creates a data entry' do
+      post '/api/v1/performance_data', params: {
+        performance_data: { data: { message: 'Average' } }
+      }, headers: headers
+
+      entry = PerformanceData.last
+      expect(entry.data).to eq 'message' => 'Average'
+    end
   end
 end
 ```
 
-We also need to create a route for that so let's modify our `routes.rb`  by adding a `post` route to it.
+Create a new file in the following path: `app/controllers/api/v1/` Call it `performance_data_controller.rb` and add the class definition to it.
+
+!FILENAME app/controllers/api/v1/performance_data_controller.rb
+```ruby
+class Api::V1::PerformanceDataController < ApplicationController
+
+end
+```
+
+We also need to create a route for that so let's modify our `routes.rb` by adding a `post` route to it. Update your `config/routes.rb` with the following code. Note the addition of `defaults: { format: :json }` to our `v1` namespace. This will constraint the application to respond to `json` requests only.
 
 !FILENAME config\/routes.rb
-
 ```ruby
-#[...]
-namespace :v1 do
-  mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
-  post 'data', controller: :performance_data, action: :create, as: :create
+namespace :v1, defaults: { format: :json } do
+  # [...]
+  resources :performance_data, only: [:create]
 end
-#[...]
 ```
 
-In your terminal, run `$ rake routes` to make sure everything is working. You should have a new route pointing to the `performance_data_controller.rb`'s `create` method.
+In your terminal, run `$ rails routes` to make sure everything is working. You should have a new route pointing to the `performance_data_controller.rb`'s `create` method.
 
-```
-api_v1_create POST   /api/v1/data(.:format)                api/v1/performance_data#create
+```shell
+api_v1_performance_data POST /api/v1/performance_data(.:format) api/v1/performance_data#create {:format=>:json}
+
 ```
 
 So far so good...
 
-Now, let's create a request spec and start adding functionality to our controller.
+Next, lets add a `create` method with the following code to our new controller in order to get the test to pass.
 
-In the `spec/requests/api/v1/` folder we want to create a new test file. Let's call it `performance_data_spec.rb`. We can start with a simple test to see if our entry will be saved to the database \(it WILL fail at first, but that is the way we do it, right?\)
-
-!FILENAME spec\/requests\/api\/v1\/performance\_data\_spec.rb
+!FILENAME app/controllers/api/v1/performance_data_controller.rb
 
 ```ruby
-require 'rails_helper'
-
-describe 'Performance Data' do
-  let(:headers) { {HTTP_ACCEPT: 'application/json'} }
-
-  describe 'POST /api/v1/data/' do
-    it 'creates a data entry' do
-      post '/api/v1/data/', {performance_data: {data: {message: 'Average'}}}, headers
-      entry = PerformanceData.last
-      expect(entry.data).to eq({'message'=>'Average'})
+class Api::V1::PerformanceDataController < ApplicationController
+  def create
+    @data = PerformanceData.new(params[:performance_data])
+    if @data.save
+      render json: { message: 'all good' }
     end
-
-  end
-end
-```
-
-In our controller we need to update the `create` method in order to get this test to pass.
-
-!FILENAME  app\/controllers\/api\/v1\/performance\_data\_controller.rb
-
-```ruby
-# [...]
-def create
-  @data = PerformanceData.new(params[:performance_data])
-  if @data.save
-    render json: ({message: 'all good'})
   end
 end
 ```
@@ -787,12 +774,12 @@ end
 When you run the test now you will get an error with Rails complaining about `ForbiddenAttributesError`
 
     Performance Data
-      POST /api/v1/data/
+      POST /api/v1/performance_data/
         creates a data entry (FAILED - 1)
 
     Failures:
 
-      1) Performance Data POST /api/v1/data/ creates a data entry
+      1) Performance Data POST /api/v1/performance_data/ creates a data entry
          Failure/Error: @data = PerformanceData.new(params[:performance_data])
 
          ActiveModel::ForbiddenAttributesError:
@@ -809,37 +796,32 @@ So we need to whitelist our params. There are many different approaches for doin
 !FILENAME  app\/controllers\/api\/v1\/performance\_data\_controller.rb
 
 ```ruby
-# [...]
-def create
-  @data = PerformanceData.new(performance_data_params)
-  if @data.save
-    render json: ({message: 'all good'})
-  else
-    render json: ({error: @data.errors.full_messages})
-  end
-end
+class Api::V1::PerformanceDataController < ApplicationController
+  def create
+    @data = PerformanceData.new(performance_data_params)
 
-private
-def performance_data_params
-  params.require(:performance_data).permit!
+    if @data.save
+      render json: { message: 'all good' }
+    else
+      render json: { error: @data.errors.full_messages }
+    end
+  end
+
+  private
+
+  def performance_data_params
+    params.require(:performance_data).permit!
+  end
 end
 ```
 
 Note: We can use the `permit!` method for now, but there might be some security issues involved with that. Can you figure out a better way?
 
-Okay, so that should work by now. The problem is that we are not assigning a `user` to the created entry.
-
-What we want to do is to set the relationship between `PerformanceData` and `User` to `required`. Let's modify our `PerformaceData` model.
-
-!FILENAME app\/models\/performance\_data.rb
-
-```
-class PerformanceData < ActiveRecord::Base
-  belongs_to :user, required: true
-end
+Okay, at this stage if you run your tests again you'll get a different error ```
+undefined method `data' for nil:NilClass
 ```
 
-If you run your request spec again, it will fail. The application does not know what user it should reference to the new object. .
+The problem is that we are not assigning a `user` to the created entry, thus resulting in the entry not being created in the DB. The application does not know what user it should reference to the new object.
 
 We  need to update out controller to retrieve that information. We can do that with the built in Devise method `authenticate_user!`. We also need to add the user information to the `performance_data_params`. This can be done with a `merge!` command. Review the following code before you implement it in your `performance_data_controller.rb`.
 
@@ -850,11 +832,12 @@ class Api::V1::PerformanceDataController < ApplicationController
   before_action :authenticate_api_v1_user!
 
   def create
-    @data = PerformanceData.new(performance_data_params.merge!({user: current_api_v1_user}))
+    @data = PerformanceData.new(performance_data_params.merge(user: current_api_v1_user))
+
     if @data.save
-      render json: ({message: 'all good'})
+      render json: { message: 'all good' }
     else
-      render json: ({error: @data.errors.full_messages})
+      render json: { error: @data.errors.full_messages }
     end
   end
 
@@ -870,71 +853,93 @@ We also need to update our spec and create a user \(using Factory Girl\) and sen
 
 Anyway, your spec should look something like this.
 
-!FILENAME spec\/requests\/api\/v1\/performance\_data\_spec.rb
+!FILENAME spec/requests/api/v1/performance_data_spec.rb
 
 ```ruby
-# [...]
-let(:user) { FactoryGirl.create(:user) }
-let(:headers) { {HTTP_ACCEPT: 'application/json'} }
-let(:credentials) { user.create_new_auth_token }
+RSpec.describe Api::V1::PerformanceDataController, type: :request do
+  let(:user) { FactoryGirl.create(:user) }
+  let(:credentials) { user.create_new_auth_token }
+  let(:headers) { { HTTP_ACCEPT: 'application/json' }.merge!(credentials) }
 
-describe 'POST /api/v1/data/' do
-  it 'creates a data entry' do
-    post '/api/v1/data/', {performance_data: {data: {message: 'Average'}}}, headers.merge!(credentials)
-    entry = PerformanceData.last
-    expect(entry.data).to eq({'message' => 'Average'})
+  describe 'POST /api/v1/performance_data' do
+    it 'creates a data entry' do
+      post '/api/v1/performance_data', params: {
+        performance_data: { data: { message: 'Average' } }
+      }, headers: headers
+
+      entry = PerformanceData.last
+      expect(entry.data).to eq 'message' => 'Average'
+    end
   end
 end
-# [...]
 ```
 
 If you run your specs now, you should not be getting any errors as the `PerformanceData` entry is connected to a `User` and no validation errors should be present.
 
 You need, however, add some tests that hits the sad path and makes sure you have full control of what kind of error messages are being returned if the object you are trying to create fails validation.
 
-Now, let us move on and create a method that will retrieve a collection of PerformanceData objects, but only for the user that makes the request. Let's start by setting the stage for a request spec and test if we get the right response.
+But before we continue, let's update our `cors` configuration to allow more headers keys from user authentication.
 
-!FILENAME spec\/requests\/api\/v1\/performance\_data\_spec.rb
+!FILENAME config/application.rb
+```ruby
+module CooperApi
+  class Application < Rails::Application
+    # [...]
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :put, :delete]
+                      expose: %w(access-token expiry token-type uid client),
+                      max_age: 0
+      end
+    end
+  end
+end
+```
+
+We are almost done now with our basic CRUD actions. Let us move on and create a method that will retrieve a collection of PerformanceData objects, but only for the user that makes the request. Let's start by setting the stage for a request spec and test if we get the right response.
+
+!FILENAME spec/requests/api/v1/performance_data_spec.rb
 
 ```ruby
 # [...]
-describe 'GET /api/v1/data/' do
+describe 'GET /api/v1/performance_data' do
   before do
-    5.times { user.performance_data.create(data: {message: 'Average'}) }
+    5.times { user.performance_data.create(data: { message: 'Average' }) }
   end
 
-  it 'returns a collection' do
-    get '/api/v1/data/', {}, headers.merge!(credentials)
+  it 'returns a collection of performance data' do
+    get '/api/v1/performance_data', headers: headers
     expect(response_json['entries'].count).to eq 5
   end
 end
 ```
 
-Go ahead and run this spec just to get a friendly reminder that there is no such route as `GET /api/v1/data/`. Let's add that to our `routes.rb`
+Go ahead and run this spec just to get a friendly reminder that there is no such route as `GET /api/v1/performance_data/`. Let's add that to our `routes.rb`
 
-!FILENAME config\/routes.rb
+!FILENAME config/routes.rb
 
 ```ruby
-#[...]
 namespace :v1 do
   #[...]
-  get 'data', controller: :performance_data, action: :index, as: :index
+  resources :performance_data, only: [:create, :index]  
 end
-#[...]
 ```
 
 The next error you will see if you run the spec now, tells you that there is no `index` method defined in the controller. Let's create that.
 
-!FILENAME  app\/controllers\/api\/v1\/performance\_data\_controller.rb
+!FILENAME  app/controllers/api/v1/performance_data_controller.rb
 
 ```ruby
 class Api::V1::PerformanceDataController < ApplicationController
- # [...]
+  # [...]
+
   def index
     @collection = current_api_v1_user.performance_data
-    render json: ({entries: @collection})
+    render json: { entries: @collection }
   end
-# [...]
+
+  # [...]
 end
 ```
 
