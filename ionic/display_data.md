@@ -3,7 +3,7 @@
 We will use [Angular Chart](http://jtblin.github.io/angular-chart.js/) to display users historical data.
 
 ```
-$ npm install chart.js --save
+$ bower install chart.js#2.3.0-rc.1 --save
 $ bower install angular-chart.js --save
 ```
 
@@ -13,8 +13,8 @@ As always, make sure to include the library in your `intex.html`.
 ```html
 <!-- ionic/angularjs js -->
 //...
-<script src="../node_modules/chart.js/dist/Chart.js"></script>
-<script src="lib/angular-chart.js/dist/angular-chart.js"></script>
+<script src="lib/chart.js/dist/Chart.min.js"></script>
+<script src="lib/angular-chart.js/dist/angular-chart.min.js"></script>
 ```
 
 And also, make `chart.js` available to your app by adding it to the main module.
