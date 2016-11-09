@@ -1,9 +1,12 @@
 ## Ruby basics - ATM Challenge
 
 ### Learning experience
-- Learn about Ruby classes, modules and methods
-- Learn about unit testing with RSpec
+- Review fundamentals learned in the prep course
+- Learn about Ruby classes, modules, methods and attributes
+- Learn about unit testing with RSpec and the benefits of writing automated tests
 - Learn about naming standards
+- Learn about using double, class_double and instance_double
+- Learn about debugging and common techniques
 
 ### The challenge
 Our client is a financial institution that wants to allow its customers to withdraw funds from their accounts using an Automatic Teller Machine (ATM). They have turned to us for a prototype of a system with limited functionality. Our job is to write a simple Ruby program that can be run in the Interactive Ruby Shell (IRB).
