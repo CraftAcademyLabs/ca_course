@@ -30,7 +30,7 @@ The following implementation is needed.
 ```ruby
 def withdraw(amount, account)
   case
-  when insufficient_funds_in_account?(amount, account) then
+  when insufficient_funds_in_account?(amount, account)
     { status: false, message: 'insufficient funds', date: Date.today }
   else
     perform_transaction(amount, account)
