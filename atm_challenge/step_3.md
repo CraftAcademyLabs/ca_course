@@ -51,12 +51,12 @@ describe Atm do
   let(:account) { instance_double('Account') }
 
   before do
-    # Before each test we need to add an attribute of `balance`
+    # Before each test we need to add an attribute of `funds`
     # to the `account` object and set the value to `100`
-    allow(account).to receive(:balance).and_return(100)
+    allow(account).to receive(:funds).and_return(100)
     # We also need to allow `account` to receive the new balance
-    # using the setter method `balance=`
-    allow(account).to receive(:balance=)
+    # using the setter method `funds=`
+    allow(account).to receive(:funds=)
   end
   [...]
 end
