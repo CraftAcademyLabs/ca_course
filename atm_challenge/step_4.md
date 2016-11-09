@@ -35,7 +35,7 @@ class Atm
   private
 
   def insufficient_funds_in_account?(amount, account)
-    amount > account.funds
+    amount > account.balance
   end
 
   def perform_transaction(amount, account)
