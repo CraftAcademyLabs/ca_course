@@ -55,8 +55,8 @@ describe Atm do
     # to the `account` object and set the value to `100`
     allow(account).to receive(:funds).and_return(100)
     # We also need to allow `account` to receive the new balance
-    # using the setter method `funds=`
-    allow(account).to receive(:funds=)
+    # using the setter method `balance=`
+    allow(account).to receive(:balance=)
   end
   [...]
 end
@@ -101,7 +101,7 @@ def withdraw(amount, account)
   # We will be using Ruby's `case`- `when` - `then` flow control statement
   # and check if there is enough funds in the account
   case
-  when amount > account.balance then
+  when amount > account.balance
     # we exit the method if the amount we want to withdraw is 
     # bigger than the balance on the account
     return
