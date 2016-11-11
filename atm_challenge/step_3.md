@@ -35,7 +35,7 @@ Let's break this down.
 
 ### Testing the happy path
 
-The first test we will write is the so called "Happy Path". We know that a transaction can either be successful or rejected for some reason. We'll get back to the rejections (that is the lion-share of the work that lies ahead of us). At this stage, let's focus on a simple successfull transaction. 
+The first test we will write is the so called "Happy Path". We know that a transaction can either be successful or rejected for some reason. We'll get back to the rejections (that is the lion-share of the work that lies ahead of us). At this stage, let's focus on a simple successful transaction. 
 
 Let's start with preparing our test.
 
