@@ -41,7 +41,7 @@ Let's start with preparing our test.
 
 The ATM needs to interact with another class - we will call it `Account`. The Account class will symbolize both the bank account and a card we can use in the ATM (there is no need to create both an Account class and a Card class for the sake of this prototype).
 
-However, we have not created that class yes, so in out `atm_spec` we will use a so called `instance_double` in order to be able to test the functionality. Doubles are objects that can be used as stand-ins for instances of other classes (hence the name `instance_double`). Even if they still are not defined (as in our case). We will go over doubles more extensively further down the road in the camp. You can think of doubles as "fake" objects that we use for testing. We don't want to build the `Account` class yet, so we'll just make a fake one for now.
+However, we have not created that class yet, so in out `atm_spec` we will use a so called `instance_double` in order to be able to test the functionality. Doubles are objects that can be used as stand-ins for instances of other classes (hence the name `instance_double`). Even if they still are not defined (as in our case). We will go over doubles more extensively further down the road in the camp. You can think of doubles as "fake" objects that we use for testing. We don't want to build the `Account` class yet, so we'll just make a fake one for now.
 
 Let's define a `class_double` in our spec and give it a name of `account`. We'll give our `account` a `@balance` of `100`. Then we'll be able to use this in our testing.
 
