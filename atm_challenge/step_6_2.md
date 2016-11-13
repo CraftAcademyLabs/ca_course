@@ -27,9 +27,9 @@ And implement a new `when` in the `withdraw` method.
 [...]
 def withdraw(amount, account)
   case
-  when insufficient_funds_in_account?(amount, account) then
+  when insufficient_funds_in_account?(amount, account)
     { status: false, message: 'insufficient funds in account', date: Date.today }
-  when insufficient_funds_in_atm?(amount) then
+  when insufficient_funds_in_atm?(amount)
 { status: false, message: 'insufficient funds in ATM', date: Date.today }
   else
 [...]
@@ -98,7 +98,7 @@ And implement a new `when` in the `withdraw` method.
 def withdraw(amount, account)
   case
   [...]
-  when incorrect_pin?(pin_code, account.pin_code) then
+  when incorrect_pin?(pin_code, account.pin_code)
     { status: false, message: 'wrong pin', date: Date.today }
   else
 [...]
@@ -149,7 +149,7 @@ And again, we need to modify the `withdraw` method.
 def withdraw(amount, account)
   case
   [...]
-  when card_expired?(account.exp_date) then
+  when card_expired?(account.exp_date)
     { status: false, message: 'card expired', date: Date.today }
   else
 [...]

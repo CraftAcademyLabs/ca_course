@@ -75,12 +75,12 @@ Let's have another go at the spec.
 $ rspec spec/atm_spec.rb
 
 Atm
-  has 1000$ on intitialize (FAILED - 1)
+  has 1000$ on initialize (FAILED - 1)
 
 Failures:
 
-  1) Atm has 1000$ on intitialize
-     Failure/Error: expect(subject.balance).to eq 1000
+  1) Atm has 1000$ on initialize
+     Failure/Error: expect(subject.funds).to eq 1000
      
      NoMethodError:
        undefined method `funds' for #<Atm:0x007f8043fdf2a8>
@@ -108,7 +108,7 @@ Atm
 Failures:
 
   1) Atm has 1000$ on intitialize
-     Failure/Error: expect(subject.balance).to eq 1000
+     Failure/Error: expect(subject.funds).to eq 1000
      
        expected: 1000
             got: nil
@@ -135,7 +135,7 @@ And now, when you run RSpec, the test passes.
 $ rspec spec/atm_spec.rb
 
 Atm
-  has 1000$ on intitialize
+  has 1000$ on initialize
 
 Finished in 0.00195 seconds (files took 0.67858 seconds to load)
 1 example, 0 failures
@@ -187,10 +187,10 @@ So, we have an `undefined method 'withdraw'`. Alright. let's create the `withdra
 !FILENAME lib/atm.rb
 ```ruby
 class Atm
-  attr_accessor :balance
+  attr_accessor :funds
   
   def initialize
-    @balance = 1000
+    @funds = 1000
   end
   
   def withdraw(amount) 
@@ -210,7 +210,7 @@ Atm
 Failures:
 
   1) Atm funds are reduced at withdraw
-     Failure/Error: expect(subject.balance).to eq 950
+     Failure/Error: expect(subject.funds).to eq 950
      
        expected: 950
             got: 1000
