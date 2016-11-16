@@ -24,7 +24,7 @@ num = 19;
     // note lack of ""
 
 num = 0xfe + 2.343 + 2.5e3;       
-    // hex, floats, exp
+    // hex, floats, exponents
 ```
 
 ###Objects
@@ -56,12 +56,13 @@ var person = {
     }
 }
     // create object using JSON (Javascript Object Notation)
+    // note the difference between age: and "favorite color" - one is a symbol and one is a string. They are accessed differently.
 
 person.name
     // "Thomas"
 
 person.details["favorite color"]
-    // "ornage"
+    // "orange"
 
 person.details.age
     // 44
