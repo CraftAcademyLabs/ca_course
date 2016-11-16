@@ -48,6 +48,6 @@ Not all browsers are JavaScript enabled. You might want to be prepared for that 
 
 ```html
 <noscript>
-    <meta http-equiv="refresh" content="0; URL=http://example.com/noscript.html"/>
+    <meta http-equiv="refresh" content="0"; URL="http://example.com/noscript.html"/>
 </noscript>
 ```
