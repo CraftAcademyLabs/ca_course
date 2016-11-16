@@ -17,6 +17,7 @@
 * [Library challenge - Advanced Ruby](library_challenge/library_challenge.md)
    * [Important topics](library_challenge/important_topics.md)
 * [Javascript Introduction](javascript_introduction.md)
+   * Variables, objects and arrays
 * [BMI Challenge - JavaScript basics](bmi_challenge/bmi_challenge.md)
    * [Jasmine - Set up](bmi_challenge/jasmine_set_up.md)
    * [First tests](bmi_challenge/step_1_first_tests.md)
