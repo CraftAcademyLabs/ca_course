@@ -23,7 +23,6 @@
    * [Prototypes & Classes](prototypes_&_classes.md)
    * [Miscellaneous](miscellaneous.md)
    * [The Document-Object Model](the_document-object_model.md)
-   * Introduction to Javascript
 * [BMI Challenge - JavaScript basics](bmi_challenge/bmi_challenge.md)
    * [Jasmine - Set up](bmi_challenge/jasmine_set_up.md)
    * [First tests](bmi_challenge/step_1_first_tests.md)
