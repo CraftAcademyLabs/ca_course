@@ -20,7 +20,7 @@ function bar(a,b){
     var n = a;                  
         // local var
     function helper(x) {            
-        // inner function...
+        // defining a function inside of another function
         return 1/Math.sqrt(x + n);  
         // can use local vars
     }
@@ -33,3 +33,6 @@ foo(1,2) == fn(1,2) == 3;
 bar(1,3);
     // 0.5
 ```
+##Javascript Exercises #2
+1. Write a function that returns your first name. Call it.
+2. Write a new function that takes your name as an input. The function should return your first name, plus your last name, as one string. (Hint: strings can be combined with a `+`)
