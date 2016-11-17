@@ -28,8 +28,8 @@ function bar(a,b){
         // avoid need for global function
 }
 
-foo(1,2) == fn(1,2) == 3;   
-    // true
+foo(1,2) == fn(1,2)   
+    // true (3)
 bar(1,3);
     // 0.5
 ```
