@@ -8,13 +8,13 @@ JavaScript has some 'weird' datatypes and comparisons.
 typeof("text") == "string"
     // true
 
-typeof(3) == typeof(3.4) == typeof(0x34) == "number"
+typeof(3) == typeof(3.4) && typeof(0x34) == "number"
     // true
 
-typeof(myObject) == typeof(myArray) == "object" 
+typeof(myArray) == "object" 
     // true (arrays are objects)
 
-typeof(true) == typeof(1 == 2) == "boolean"
+typeof(true) == "boolean"
     // true
 
 typeof(Math.sin) == "function"
