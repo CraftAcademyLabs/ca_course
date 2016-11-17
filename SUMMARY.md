@@ -19,7 +19,7 @@
 * [Javascript Introduction](javascript_introduction.md)
    * [Variables, objects and arrays](variables,_objects_and_arrays.md)
    * [Comparisons and Manipulations](comparisons_and_manipulations.md)
-   * Javascript Sample Problems
+   * [Javascript Sample Problems](javascript_sample_problems.md)
    * [Defining Functions](defining_functions.md)
    * [Prototypes & Classes](prototypes_&_classes.md)
    * [Miscellaneous](miscellaneous.md)
