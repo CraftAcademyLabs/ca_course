@@ -53,3 +53,6 @@ Not all browsers are JavaScript enabled. You might want to be prepared for that 
 ```
 
 ##Javascript Exercises #4
+1. Open up a website (yes, any website). It might be easier to understand a very simple website - perhaps the one you created in the prep course. Select elements in the page by right-clicking on them and selecting "inspect".
+2. Find a div. Give it a border. Change its background color. You can change any of its properties - font colors, sizes, and weights, colors, etc.
+3. How would you hide an element? Show it again?
