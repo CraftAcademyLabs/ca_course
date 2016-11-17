@@ -19,6 +19,7 @@
 * [Javascript Introduction](javascript_introduction.md)
    * [Variables, objects and arrays](variables,_objects_and_arrays.md)
    * [Comparisons and Manipulations](comparisons_and_manipulations.md)
+       * javascript-lessons-one
    * [Defining Functions](defining_functions.md)
    * [Prototypes & Classes](prototypes_&_classes.md)
    * [Miscellaneous](miscellaneous.md)
