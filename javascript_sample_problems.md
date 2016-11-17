@@ -1,4 +1,4 @@
-# Javascript Sample Problems
+# Javascript Exercises #1
 
   1. Create an array and add three numbers to it.
   2. Use your array to return the second number.
