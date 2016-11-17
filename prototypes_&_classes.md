@@ -1,15 +1,9 @@
 # Prototypes & Classes
 
 ###JavaScript Prototypes
-All JavaScript objects inherit the properties and methods from their prototype.
+All JavaScript objects inherit the properties and methods from their prototype (`Date, Array, RegExp, Function`, ....).
 
-Objects created using an object literal, or with new `Object()`, inherit from a prototype called `Object.prototype`.
-
-Objects created with new `Date()` inherit the `Date.prototype`.
-
-The `Object.prototype` is on the top of the prototype chain.
-
-All JavaScript objects (`Date, Array, RegExp, Function`, ....) inherit from the `Object.prototype`.
+We use `.prototype` to group methods together, not unlike a Ruby class.
 
 ###Javascript "Classes"
 
@@ -45,3 +39,5 @@ var bob = new Person("Thomas", "Ochman");
 bob.fullName();               
     // "Thomas Ochman"
 ```
+##Javascript Exercise #3
+1. What is `this`? Does it have an equivalent in Ruby?
