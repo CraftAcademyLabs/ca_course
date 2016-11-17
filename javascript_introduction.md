@@ -1,6 +1,6 @@
 # Javascript Introduction
 
-This week you'll learn a completely new programming language: Javascript. While many developers use Javascript for all three layers of an application (data/persistence, logic, and presentation), we'll be using Ruby for logic and data and often both Ruby and Javascript elements for presentation.
+This week you'll learn a completely new programming language: Javascript. While many developers use Javascript for all three layers of an application (data/persistence, logic, and presentation), in this camp we'll mostly be using Ruby for logic and data and often both Ruby and Javascript elements for presentation. During this week, we will use Javascript for both logic and presentation.
 
 ###Learning Objectives
 - Practice pair programming & collaboration using Git and GitHub
