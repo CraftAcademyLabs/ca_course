@@ -2,6 +2,14 @@
 
 This week you'll learn a completely new programming language: Javascript. While many developers use Javascript for all three layers of an application (data/persistence, logic, and presentation), we'll be using Ruby for logic and data and often both Ruby and Javascript elements for presentation.
 
+###Learning Objectives
+- Practice pair programming & collaboration using Git and GitHub
+- Basic understanding of JavaScript
+- Introduction to JQuery and DOM manipulation
+- Jasmine testing framework & comparison to RSpec
+- Observe differences and similarities between Ruby and Javascript
+- Understand difference between running code on the server vs. in the browser
+
 Javascript and Ruby (and most programming languages) have a lot in common. They both have variables, functions, arrays, and hashes. And thousands of other matching structures. But in many cases these are used slightly differently amongst languages. For instance, in Ruby a variable is declared like so:
 
 ```ruby
