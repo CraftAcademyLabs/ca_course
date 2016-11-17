@@ -19,11 +19,11 @@
 * [Javascript Introduction](javascript_introduction.md)
    * [Variables, objects and arrays](variables,_objects_and_arrays.md)
    * [Comparisons and Manipulations](comparisons_and_manipulations.md)
+   * Javascript Sample Problems
    * [Defining Functions](defining_functions.md)
    * [Prototypes & Classes](prototypes_&_classes.md)
    * [Miscellaneous](miscellaneous.md)
    * [The Document-Object Model](the_document-object_model.md)
-   * Javascript Sample Problems
 * [BMI Challenge - JavaScript basics](bmi_challenge/bmi_challenge.md)
    * [Jasmine - Set up](bmi_challenge/jasmine_set_up.md)
    * [First tests](bmi_challenge/step_1_first_tests.md)
