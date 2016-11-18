@@ -1,5 +1,5 @@
 ## FizzBuzz Challenge
-Do you remember the Fizz Buzz game we ware working on in the Prep-course? First time around, we wrote the program using Ruby. Let's do it in JavaScript and implement a web interface using HTML and jQuery.
+Do you remember the Fizz Buzz game we were working on in the Prep-course? First time around, we wrote the program using Ruby. Let's do it in JavaScript and implement a web interface using HTML and jQuery.
 
 *- Will this Fizz Buzz bulls^^t ever end?*, you ask yourself. Well, the Fizz Buzz kata is a very common programming challenge when learning a new language. It's a kind of "Hello World" program, but slightly more advanced. 
 
@@ -12,7 +12,7 @@ We have prepared this repository for you with all the necessary tools in terms o
 
 ### Instructions
 Read this entire README carefully and follow all instructions.
-- Challenge time: this weekend, until Monday 9.30am
+- Challenge time: this weekend, until Monday 9am
 - Feel free to use Google, Stack Overflow, your notes, previously written code, books, etc. but work on your own
 - If you refer to or have in whole or partially used the solution of another coach or student, please put a link to that in your README
 - If you have a partial solution, **push up your code and check in a partial solution under the assignment submission section**
