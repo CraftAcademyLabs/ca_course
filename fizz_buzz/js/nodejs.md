@@ -2,7 +2,7 @@
 
 `npm`, short for Node Package Manager, is two things: first and foremost, it is an online repository for the publishing of open-source Node.js projects; second, it is a command-line utility for interacting with said repository that aids in package installation, version management, and dependency management. 
 
-`npm` is pre-installed with Node. ** *We will not be covering NodeJS in this chapter, but will do so further down the road in this course. * **
+`npm` is pre-installed with Node. ** *We will not be covering NodeJS in this chapter or using it in this course. It is a popular Javascript framework for back-end development. We are just using it here to access some of its tools. * **
 
 If you have Node, you already have npm! If not, install Node - it's as easy as downloading and then running an installer.
 
