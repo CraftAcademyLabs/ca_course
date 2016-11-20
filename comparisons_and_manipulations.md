@@ -94,7 +94,7 @@ c = a > b ? a : b;
 
 switch (name){      
   case "Thomas":
-    alert("Hi Thomes!")
+    alert("Hi Thomas!")
     break
   case "John":
     alert("Hi John.")
