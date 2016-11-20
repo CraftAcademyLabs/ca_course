@@ -31,11 +31,10 @@
    * [Web interface](bmi_challenge/step_3_web_interface.md)
    * [Acceptance tests](bmi_challenge/step_4_acceptance_tests.md)
    * [Moving on](bmi_challenge/step_5_moving_on.md)
-   * Javascript Introduction
 * [Fizz Buzz in JavaScript](fizz_buzz/js/fizzbuzz_js_challenge.md)
    * [NodeJS](fizz_buzz/js/nodejs.md)
-* [Open Weather Challenge](open-weather-challenge.md)
 * [Checkout challenge](checkout_challenge/checkout_challenge.md)
+* [Open Weather Challenge](open-weather-challenge.md)
 * [SlowFood challenge - OO & TDD](slow_food/slow_food.md)
    * [Step 1 - Setting up the project](slow_food/setting_up_the_project.md)
    * [Step 2 - Focus on the user experience](slow_food/adding_user_stories.md)
