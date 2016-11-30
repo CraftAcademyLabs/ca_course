@@ -3,6 +3,17 @@
 
 We have set up a [repository for the project](https://github.com/CraftAcademy/slow_food_sinatra) with some basic functionality regarding user authentication. Your team should make use of that code and pull it in. Fork that repo and go over the code and the gems already included in the `Gemfile`.  Your very fist assignment is the get that code working. Make use of all the previous challenges to find answers to obstacles you might encounter.
 
+#### RVM help
+You will find that you need to use a different version of Ruby to run this code. Run:
+```shell
+$ rvm use 2.2.3
+```
+This will prompt you to run some more commands. Run them. You'll need to bundle before you can do anything else. But what happened to your `bundle` command!? You've just changed to a new version of Ruby. That means you need to re-install all of your gems, including bundler. Run:
+```shell
+$ gem install bundler
+```
+Now you have `bundle` back and can install the other gems.
+
 **Remember, as with every other material, there might be errors in the provided code. It's up to you to find and correct them if you choose to use the provided snippets. Don't come blaming the authors of this challenge if you run into trouble 😉**
 
 **Finally, it's not just about the code. This challenge is about practicing the workflow.**
