@@ -1,4 +1,4 @@
-## Getting started
+## Getting started with Ionic
 ### Prerequisites
 
 We will build a simple application that allows the user to enter his weight and height and calculate his personal BMI value. This  requires you to have completed the previously described [BMI Challenge](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bmi_challenge/bmi_challenge.html). If you haven't completed that challenge, please go back and do it before you proceed or grab the source code to get the necessary files from the Extras chapter of this walkthrough. You will need to get your hands on `person.js` and `bmi_calculator.js`.
