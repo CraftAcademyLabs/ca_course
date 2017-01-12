@@ -30,3 +30,9 @@ So what is actually happening here?
 
 2. The **`ng-app`** directive tells AngularJS that the `<div>` element is the owner of the application.
 
+3. The **`ng-init`** directive initializes AngularJS application variable `message`.
+
+4. AngularJS outputs data stored in the variable `message` where the **expression** is written.
+
+
+
