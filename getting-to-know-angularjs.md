@@ -1,6 +1,6 @@
 ### AngularJS
 
-AngularJS is a framework for building dynamic web applications. It lets you use HTML as your template language and extend HTML's syntax to express your application's components. AngularJS is added to an HTML page with a <script> tag.
+AngularJS is a framework for building dynamic web applications. It lets you use HTML as your template language and extend HTML's syntax to express your application's components. AngularJS is added to an HTML page with a `<script>` tag.
 
 AngularJS extends HTML attributes with Directives, and binds data to HTML with Expressions.
 
