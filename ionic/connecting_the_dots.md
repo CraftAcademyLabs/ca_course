@@ -27,7 +27,7 @@ $ heroku addons:create heroku-postgresql
 $ git push heroku master
 $ heroku run rake db:migrate
 ```
-You can manually test the API using Postman by doing a POST request to the registration endpoint.
+You can manually test the API using [Postman](https://www.getpostman.com/) by doing a POST request to the registration endpoint.
 
 **As a matter of fact, you need to create at least one user this way in order to move forward.**
 

@@ -18,6 +18,10 @@ $ ionic start cooper_client sidemenu
 $ npm install
 $ bower install
 ```
+
+> Note: If you don't have **`bower`** installed on your computer you can install it with **`npm install -g bower`**
+
+
 Once that is ready, you might want to start the Ionic server to see if everything is set up correctly.
 ```
 $ ionic serve -c --lab
@@ -205,7 +209,7 @@ Let's change the input fields to a select field for gender and sliders for age a
 Replace the input fields in the `test.html` template with this form.
 
 !FILENAME
-```javascript
+```html
 #[...]
 <form name="testdata">
   <label class="item item-input item-select">

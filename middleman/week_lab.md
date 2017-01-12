@@ -14,3 +14,13 @@ The weekly challenge is an individual one. You are supposed to build an individu
 
 **Note: You are welcome to work in pairs if you like, but it is not a requirement and if you do, you need to figure out how to complete your individual sites and still be able to pair program. **
 
+## Learning Objectives
+
+* The Middleman framework
+  - Using ruby to create static websites
+* HAML
+  - How can HAML improve your workflow
+  - Write less code and avoid the html mess
+* Deployment
+  - learn about deployment of static sites.
+

@@ -21,8 +21,8 @@ In Haml, we prefix HTML tags with a "%" and it takes care of the rest. But wait 
 Haml:
 
 ```haml
-%h2 This Is a Headline
-%a This is a paragraph.
+%h2 This is a Headline
+%a This is a link.
 %ul
 	%li List item one
 	%li List item two
@@ -31,7 +31,8 @@ Haml:
 ```
 This markup will render:
 ```html
-<a>This is a paragraph.</a>
+<h2>This is a Headline</h2>
+<a>This is a link.</a>
 <ul>
   <li>List item one</li>
   <li>List item two</li>
