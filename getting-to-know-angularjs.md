@@ -40,7 +40,6 @@ So what is actually happening here?
 <small>A CDN (Content Delivery Network) ​is a collection of global servers that caches and delivers content such as images, videos and Javascript files. By pulling AngularJS from a remote server we avoid having to store it loacally on our computers. This technique is good to use during the development process but advised against for production code.</small> 
 
 
-From: https://www.maxcdn.com/one/visual-glossary/cdn/?utm_source=text 
 ### Interacting with a user
 
 Let's see if we can make the AngularJS application to interact with an user action. Closely examine this code, type it in your editor and run it in your browser.
