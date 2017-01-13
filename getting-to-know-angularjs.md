@@ -122,7 +122,9 @@ demoApp.controller("mainController", function($scope) {
         $scope.lastName = "Ochman";
       });
 ```
-There's much more to say about `$scope` but for the sake of this introduction we'll stop here. 
+We only make use of properties here but know that `$scope` can contain objects and functions as well. 
+
+**_There's much more to say about `$scope` but for the sake of this introduction we'll stop here. _**
 
 ### Adding Directives
 
@@ -184,6 +186,58 @@ With this in place, we can use the directive like this:
 And the result should look something like this.
 
 ![](/assets/angular_hi_thomas.png)
+
+### Services
+In AngularJS **services** are objects or functions that carry out specific tasks. Services can be used as a way to keep and communicate data across the lifetime of the angular app
+To use an AngularJS service, you add it as a dependency for the component (controller, directive, etc) that depends on that service.
+
+Let's create a service that returns a collection of users and add it to our implementation.
+
+```javascript
+demoApp.service('userService', function(){
+   var collection = [
+     {firstName: 'Thomas', lastName: 'Ochman'},
+     {firstName: 'Amber', lastName: 'Wilkie'},
+     {firstName: 'Raoul', lastName: 'Diffouo'}
+   ];
+   return {
+     users: function(){
+       return collection;
+     }
+   }
+});
+``` 
+
+In order for this service to be available in our controller, we need to add it as a dependency. We also need to call the service in order to store the data it returns in the controller's `$scope` 
+
+```javascript
+demoApp.controller("mainController", function($scope, userService) {
+  $scope.users = userService.users();
+});
+```
+
+And finally we want to show the data on our page, right? We will introduce another AngularJS directive in order to do that: **`ng-repeat`**. The **`ng-repeat`** directive repeats a set of HTML, a given number of times (once per item in a collection).
+
+```html 
+<div ng-repeat="user in users">
+  <say-hello message="Hi"></say-hello>
+</div>
+```
+
+If you update your code with these snippets and run it in your browser, you'll probably notice that you are not getting the desired output. The reason for that is that our directive is not calling the right objects. One way of fixing it is to update the directive with the following (but there are other, better ways to do this, can you figure out how?)
+
+```javascript
+demoApp.directive("sayHello", function() {
+  return {
+    scope: false,
+    link: function(scope, element, attrs){
+      scope.message = attrs.message;
+    },
+    template: "<h1> {{[message, user.firstName, user.lastName].join(' ')}}!</h1>"
+  };
+});
+``` 
+
 
 
 
