@@ -2,7 +2,9 @@
 
 AngularJS is a framework for building dynamic web applications. It lets you use HTML as your template language and extend HTML's syntax to express your application's components. AngularJS is added to an HTML page with a `<script>` tag.
 
-AngularJS extends HTML attributes with Directives, and binds data to HTML with Expressions.
+AngularJS extends HTML attributes with **Directives**, and binds data to HTML with **Expressions**.
+
+**_What follows is a very basic introduction to AngularJS. The purpose of this chapter is to give you a basic understanding of the framework and provide you with a foundation to move on to more advanced techniques when working with Ionic._ **
 
 Let's have a look at a very basic AngularJS application
 
@@ -104,6 +106,23 @@ So, let's go over the code.
 3. Within a `<script>` tag, we define the `angular.module` and a `controller` and give them each a name (to be able to reference them). 
 4. In the `mainController` we add two attributes to the `$scope` object (`firstName` & `lastName`).
 5. We add an expression to the `<h1>` tag where we evaluate some JS code, joining the string "Hello" with the two values we assigned to `$scope` and display **"Hello Thomas Ochman"** on the page (we also add an exclamation mark outside of the expression).
+
+### What is `$scope`? 
+Scope (`$scope`) is a JavaScript object that joins the controller with the view and contains the model data. Every controller has an associated `$scope` object.
+
+As an object, `$scope` can have properties and functions.
+
+The scope object is available for both the view and the controller.
+
+In our example we've added 2 properties to `$scope` and we can access them in our view. 
+
+```javascript
+demoApp.controller("mainController", function($scope) {
+        $scope.firstName = "Thomas";
+        $scope.lastName = "Ochman";
+      });
+```
+There's much more to say about `$scope` but for the sake of this introduction we'll stop here. 
 
 ### Adding Directives
 
