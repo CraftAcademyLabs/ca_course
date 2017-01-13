@@ -245,14 +245,46 @@ Let's start with adding a `<form>` element with 2 `<input>fields to out HTML.
 
 ```html
   <form ng-submit="addUser()" >
-    <input type="text" ng-model="user.firstName" placeholder="Give me a first name...">
-    <input type="text" ng-model="user.lastName" placeholder="Give me a last name...">
+    <input type="text" ng-model="newUser.firstName" placeholder="Give me a first name...">
+    <input type="text" ng-model="newUser.lastName" placeholder="Give me a last name...">
     <button type="submit">ADD</button>
   </form> 
 ```
 
 1. The **`ng-submit`** directive specifies a function to run when the form is submitted.
-2. The **`ng-model`** directive binds the value of
+2. The **`ng-model`** directive binds the value of the `newUser` object (part of `$scope`)
+
+We also need to update our controller by adding the `newUser` object and the `addUser` function.
+
+```javascript
+demoApp.controller("mainController", function($scope, userService) {
+  $scope.users = userService.users();
+  $scope.newUser = {}
+  $scope.addUser = function(){
+    userService.add($scope.newUser);
+  }
+});
+```
+
+Consequently, we also need to modify our `userService` to with an `add` function that will take the object we pass in (`newUser` that now holds the values we added to it) and `push` into the collection of users. As a result the content on our page will be updated with the new data.
+
+```javascript
+demoApp.service('userService', function(){
+   var collection = [
+     {firstName: 'Thomas', lastName: 'Ochman'},
+     {firstName: 'Amber', lastName: 'Wilkie'},
+     {firstName: 'Raoul', lastName: 'Diffouo'}
+   ];
+   return {
+     users: function(){
+       return collection;
+     },
+     add: function(object){
+       collection.push(object);
+     }
+   }
+});
+``` 
 
 
 
