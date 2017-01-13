@@ -238,6 +238,24 @@ demoApp.directive("sayHello", function() {
 });
 ``` 
 
+### Adding functions to a Service
+Let's try adding some functionality to our 'Hello...' app. At the moment we are getting a collection of people/users from the `userService`. How about we try to add somebody to that collection? 
+
+Let's start with adding a `<form>` element with 2 `<input>fields to out HTML.
+
+```html
+  <form ng-submit="addUser()" >
+    <input type="text" ng-model="user.firstName" placeholder="Give me a first name...">
+    <input type="text" ng-model="user.lastName" placeholder="Give me a last name...">
+    <button type="submit">ADD</button>
+  </form> 
+```
+
+1. The **`ng-submit`** directive specifies a function to run when the form is submitted.
+2. The **`ng-model`** directive binds the value of
+
+
+
 
 
 
