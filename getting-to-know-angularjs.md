@@ -291,6 +291,69 @@ This is the final state of our "Hello ... " application. We have not touched upo
 **We will stop here and move on to Ionic and look at using AngularJS extended with a series of custom directives that makes it possible for us to buildapplications for mobile platforms.** 
 
 
+The code we created in this walkthrough looks like this:
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+  </head>
+  <body>
+    <div ng-app="demoApp" ng-controller="mainController">
+      <form ng-submit="addUser()" >
+        <input type="text" ng-model="newUser.firstName" placeholder="Give me a first name...">
+        <input type="text" ng-model="newUser.lastName" placeholder="Give me a last name...">
+        <button type="submit">ADD</button>
+      </form>
+
+      <div ng-repeat="user in users">
+        <say-hello message="Hi"></say-hello>
+      </div>
+    </div>
+
+    <script>
+      var demoApp = angular.module("demoApp", []);
+
+      demoApp.controller("mainController", function($scope, userService) {
+        $scope.users = userService.users();
+        $scope.newUser = {}
+        $scope.addUser = function(){
+          userService.add($scope.newUser);
+        }
+      });
+
+      demoApp.service('userService', function(){
+         var collection = [
+           {firstName: 'Thomas', lastName: 'Ochman'},
+           {firstName: 'Amber', lastName: 'Wilkie'},
+           {firstName: 'Raoul', lastName: 'Diffouo'}
+         ];
+         return {
+           users: function(){
+             return collection;
+           },
+           add: function(object){
+             collection.push(object);
+           }
+         }
+      });
+
+      demoApp.directive("sayHello", function() {
+        return {
+          scope: false,
+          link: function(scope, element, attrs){
+            scope.message = attrs.message;
+          },
+          template: "<h1> {{[message, user.firstName, user.lastName].join(' ')}}!</h1>"
+        };
+      });
+    </script>
+  </body>
+</html>
+```
+
 
 
 
