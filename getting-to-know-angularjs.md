@@ -286,8 +286,9 @@ demoApp.service('userService', function(){
 });
 ```
 ![](/assets/angular_new_guy.gif) 
+This is the final state of our "Hello ... " application. We have not touched upon how we can store data and a bunch of other things. But as for an introduction, you should be okay for now. 
 
-
+**We will stop here and move on to Ionic and look at using AngularJS extended with a series of custom directives that makes it possible for us to buildapplications for mobile platforms.** 
 
 
 
