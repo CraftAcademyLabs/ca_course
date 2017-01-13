@@ -79,6 +79,8 @@ describe('BMI_UI - index.html', function() {
     });
 });
 ```
+Why do we need the `beforeEach` block? What are the last three lines of that block doing?
+
 Now, run your tests by pointing your browser to the following URL.
 
 

@@ -22,7 +22,7 @@ class Atm
     # We will be using Ruby's `case`- `when` - `then` flow control statement
     # and check if there is enough funds in the account
     case
-    when insufficient_funds_in_account?(amount, account) then
+    when insufficient_funds_in_account?(amount, account)
       # we exit the method if the amount we want to withdraw is bigger than
       # the balance on the account
       return

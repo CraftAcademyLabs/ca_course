@@ -47,7 +47,7 @@ function Person(attr) {
 };
 ```
 
-If you run your tests again, by reloading `SpecRunner.html` you'll see that our two initial tests are passing. 
+If you run your tests again, by reloading `SpecRunner.html` you'll see that our two initial tests are passing. Can you see why? 
 
 ![Jasmine - passing tests](../images/jasmine_passing_tests.png)
 
@@ -73,7 +73,9 @@ it("should have a BMI Message", function() {
 });
 ```
 
-In those tests, we are calling a `calculate_bmi()` function on the `person` object we have created. This will fail since we have no such function defined. 
+In those tests, we are calling a `calculate_bmi()` function on the `person` object we have created. This will fail since we have no such function defined.
+
+We extend the `Person` function by using `prototype`, similar to class methods in Ruby.
 
 ```javascript
 # src/person.js

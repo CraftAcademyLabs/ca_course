@@ -44,7 +44,9 @@ BMICalculator.prototype.metric_bmi = function(obj) {
   }
 };
 ```
+Why do we need to condition the `finalBMI`? (Why do we need an `if` statement?)
 
+Run your tests again.
 
 
 We still have not set the `bmiMessage` on the `Person`. In order to do that, we need to create a function that sets that message depending on what `bmiValue` the person has.
@@ -54,7 +56,7 @@ Add this function to the `bmi_calculator.js` file.
 ```javascript
 # src/bmi_calculator.js
 
-function setBMIMessage (obj, value){
+function setBMIMessage (obj){
   if (obj.bmiValue < 18.5) {
     obj.bmiMessage = "Underweight"
   }
