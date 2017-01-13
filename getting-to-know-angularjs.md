@@ -28,13 +28,18 @@ Let's have a look at a very basic AngularJS application
 
 So what is actually happening here? 
 
-1. Your vary basic HTML page is extended with AngularJS **directives** by loading it from a CDN. AngularJS starts automatically when the web page has loaded.
+1. Your vary basic HTML page is extended with AngularJS **directives** by loading it from a CDN (see explenation below)explanation. AngularJS starts automatically when the web page has loaded.
 2. The **`ng-app`** directive tells AngularJS that the `<div>` element is the owner of the application.
 3. The **`ng-init`** directive initializes AngularJS application variable `message`.
 4. AngularJS outputs data stored in the variable `message` where the **expression** is written. In this case `<h1>{{message}}</h1>`.
 
 **That's it. You have a basic AngularJS Hello World application. Let's try something slightly more advanced.** 
 
+
+<small>A CDN (Content Delivery Network) ​is a collection of global servers that caches and delivers content such as images, videos and Javascript files. By pulling the AngularJS from a remote server we avoid having to store it loacally on our computers. This technique is good to use during the development process but advised against for production code.</small> 
+
+
+From: https://www.maxcdn.com/one/visual-glossary/cdn/?utm_source=text 
 ### Interacting with a user
 
 Let's see if we can make the AngularJS application to interact with an user action. Closely examine this code, type it in your editor and run it in your browser.
