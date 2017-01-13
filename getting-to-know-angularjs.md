@@ -28,7 +28,7 @@ Let's have a look at a very basic AngularJS application
 
 So what is actually happening here? 
 
-1. Your very basic HTML page is extended with AngularJS **directives** by loading it from a CDN (see explenation below)explanation. AngularJS starts automatically when the web page has loaded.
+1. Your very basic HTML page is extended with AngularJS **directives** by loading it from a CDN (see explenation below). AngularJS starts automatically when the web page has loaded.
 2. The **`ng-app`** directive tells AngularJS that the `<div>` element is the owner of the application.
 3. The **`ng-init`** directive initializes AngularJS application variable `message`.
 4. AngularJS outputs data stored in the variable `message` where the **expression** is written. In this case `<h1>{{message}}</h1>`.
