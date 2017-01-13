@@ -8,6 +8,7 @@ AngularJS extends HTML attributes with **Directives**, and binds data to HTML wi
 
 Let's have a look at a very basic AngularJS application
 
+!FILENAME index.html
 ```html
 <!DOCTYPE html>
 <html>
@@ -43,6 +44,8 @@ From: https://www.maxcdn.com/one/visual-glossary/cdn/?utm_source=text
 ### Interacting with a user
 
 Let's see if we can make the AngularJS application to interact with an user action. Closely examine this code, type it in your editor and run it in your browser.
+
+!FILENAME index.html
 ```html
 <!DOCTYPE html>
 <html>
@@ -80,6 +83,7 @@ You can add modules and controllers using the `<script>` tag or store them in se
 
 Let's examine some code, write it into our `index.html` and run it in the browser. It's yet another version of the **Hello ...** application but please note that we are moving some of the logic from the html markup (using `ng-` directives) to the controller. 
 
+!FILENAME index.html
 ```html
 <!DOCTYPE html>
 <html>
@@ -135,6 +139,8 @@ We only make use of properties here but know that `$scope` can contain objects a
 
 Apart from all the built-in AngularJS directives, you can also create your own. Custom directives can be used for a variety of purposes, here we will demonstrate a way to extract some logic from the view and use a directive instead.
 
+
+!FILENAME index.html
 ```html
 <!DOCTYPE html>
 <html>
@@ -185,6 +191,8 @@ demoApp.directive("sayHello", function() {
 ``` 
 
 With this in place, we can use the directive like this: 
+
+!FILENAME index.html
 ```html
 <say-hello message="Hi"></say-hello>
 ```
@@ -223,6 +231,7 @@ demoApp.controller("mainController", function($scope, userService) {
 
 And finally we want to show the data on our page, right? We will introduce another AngularJS directive in order to do that: **`ng-repeat`**. The **`ng-repeat`** directive repeats a set of HTML, a given number of times (once per item in a collection). You can think of it is a counterpart to Ruby's `each` method.
 
+!FILENAME index.html
 ```html 
 <div ng-repeat="user in users">
   <say-hello message="Hi"></say-hello>
@@ -248,12 +257,13 @@ Let's try adding some functionality to our 'Hello...' app. At the moment we are 
 
 Let's start with adding a `<form>` element with 2 `<input>fields to out HTML.
 
+!FILENAME index.html
 ```html
-  <form ng-submit="addUser()" >
-    <input type="text" ng-model="newUser.firstName" placeholder="Give me a first name...">
-    <input type="text" ng-model="newUser.lastName" placeholder="Give me a last name...">
-    <button type="submit">ADD</button>
-  </form> 
+<form ng-submit="addUser()" >
+  <input type="text" ng-model="newUser.firstName" placeholder="Give me a first name...">
+  <input type="text" ng-model="newUser.lastName" placeholder="Give me a last name...">
+  <button type="submit">ADD</button>
+</form> 
 ```
 
 1. The **`ng-submit`** directive specifies a function to run when the form is submitted.
@@ -291,13 +301,15 @@ demoApp.service('userService', function(){
 });
 ```
 ![](/assets/angular_new_guy.gif) 
+
 This is the final state of our "Hello ... " application. We have not touched upon how we can store data and a bunch of other things. But as for an introduction, you should be okay for now. 
 
 **We will stop here and move on to Ionic and look at using AngularJS extended with a series of custom directives that makes it possible for us to buildapplications for mobile platforms.** 
 
 
-The code we created in this walkthrough looks like this:
+The entire code we created in this walkthrough should look like this:
 
+!FILENAME index.html
 ```html
 <!DOCTYPE html>
 <html>
