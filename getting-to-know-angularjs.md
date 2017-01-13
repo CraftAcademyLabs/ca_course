@@ -28,7 +28,7 @@ Let's have a look at a very basic AngularJS application
 
 So what is actually happening here? 
 
-1. Your vary basic HTML page is extended with AngularJS **directives** by loading it from a CDN (see explenation below)explanation. AngularJS starts automatically when the web page has loaded.
+1. Your very basic HTML page is extended with AngularJS **directives** by loading it from a CDN (see explenation below)explanation. AngularJS starts automatically when the web page has loaded.
 2. The **`ng-app`** directive tells AngularJS that the `<div>` element is the owner of the application.
 3. The **`ng-init`** directive initializes AngularJS application variable `message`.
 4. AngularJS outputs data stored in the variable `message` where the **expression** is written. In this case `<h1>{{message}}</h1>`.
@@ -221,7 +221,7 @@ demoApp.controller("mainController", function($scope, userService) {
 });
 ```
 
-And finally we want to show the data on our page, right? We will introduce another AngularJS directive in order to do that: **`ng-repeat`**. The **`ng-repeat`** directive repeats a set of HTML, a given number of times (once per item in a collection).
+And finally we want to show the data on our page, right? We will introduce another AngularJS directive in order to do that: **`ng-repeat`**. The **`ng-repeat`** directive repeats a set of HTML, a given number of times (once per item in a collection). You can think of it is a counterpart to Ruby's `each` method.
 
 ```html 
 <div ng-repeat="user in users">
@@ -271,7 +271,7 @@ demoApp.controller("mainController", function($scope, userService) {
 });
 ```
 
-Consequently, we also need to modify our `userService` to with an `add` function that will take the object we pass in (`newUser` that now holds the values we added to it) and `push` into the collection of users. As a result the content on our page will be updated with the new data.
+Consequently, we also need to modify our `userService` with an `add` function that will take the object we pass in (`newUser` that now holds the values we added to it) and `push` into the collection of users. As a result the content on our page will be updated with the new data.
 
 ```javascript
 demoApp.service('userService', function(){
