@@ -284,7 +284,10 @@ demoApp.service('userService', function(){
      }
    }
 });
-``` 
+```
+![](/assets/angular_new_guy.gif) 
+
+
 
 
 
