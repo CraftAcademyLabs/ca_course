@@ -294,11 +294,12 @@ demoApp.controller("mainController", function($scope, userService) {
   $scope.newUser = {}
   $scope.addUser = function(){
     userService.add($scope.newUser);
+    $scope.newUser = {};
   }
 });
 ```
 
-Consequently, we also need to modify our `userService` with an `add` function that will take the object we pass in (`newUser` that now holds the values we added to it) and `push` into the collection of users. As a result the content on our page will be updated with the new data.
+Consequently, we also need to modify our `userService` with an `add` function that will take the object we pass in (`newUser` that now holds the values we added to it) and `push` into the collection of users. As a result the content on our page will be updated with the new data. Also, once we have called the `userService.add()` we clear the `newUser` object. 
 
 !FILENAME index.html
 ```javascript
@@ -484,6 +485,7 @@ In order to produce more readable code that is easier to debug , the guide tells
         $scope.newUser = {}
         $scope.addUser = function () {
             userService.add($scope.newUser);
+            $scope.newUser = {};
         }
     }
 })();
