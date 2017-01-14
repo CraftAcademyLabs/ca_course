@@ -308,6 +308,9 @@ This is the final state of our "Hello ... " application. We have not touched upo
 **We will stop here and move on to Ionic and look at using AngularJS extended with a series of custom directives that makes it possible for us to buildapplications for mobile platforms.** 
 
 ### Refactoring
+**_Note: This is an advanced section. The suggestions outlined in this section allows you to get to know some recommended techniques and practice the process of refactoring. It can be quite tricky to get everything in place so take your time, pay attention to details and make sure to run your code after every change you introduce. _**
+
+
 The code we created in this walkthrough is in an desperate need of an overview. This is the time where we look at the implementation and make sure that we follow the conventions and best-practices. A good reference guide is to be found at: https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#angular-1-style-guide. Reading through the **"Angular 1 Style Guide"** and looking at our current implementation in the "Hello ... " application we quickly notice that there's a need for some refactoring. 
 
 #### Single Responsibility
@@ -327,6 +330,19 @@ project folder
 
 #### Definitions
 The guide tells us that it is better to use the setter syntax rater than declare modules with a variable.
+
+A module should only be created once (using a **setter**) and then retrieved from that point and after (using a **getter**).
+
+```javascript
+
+// setter
+angular.module('demoApp', []);
+
+// getter
+angular.module('demoApp');
+```
+
+The empty array in the **setter** (second argument) is very important and tells AngularJS to create a new module and include a collection of dependencies. In our case, we have no further dependencies therefore there is nothing for AngularJS to include but it still needs to be there.
 
 In our current implementation we store our module in a variable called `demoApp` and chain our components to that variable. 
 
@@ -359,11 +375,9 @@ The same syntax needs to be applied to all components of our "Hello ..." applica
 
 
 
-
-
 #### IIFE JavaScript Scopes
 
-The guide tells us that we should wrap all AngularJS components in an Immediately Invoked Function Expression (IIFE). IIFE are be used to avoid variable hoisting from within blocks, protect against polluting the global environment and allow public access to methods while retaining privacy for variables defined within the function. 
+The guide tells us that we should wrap all AngularJS components in an Immediately Invoked Function Expression (IIFE). IIFE are used to avoid variable hoisting from within blocks, protect against polluting the global environment and allow public access to methods while retaining privacy for variables defined within the function. 
 
 In practical terms we need to drop our components into an IIFE that looks like this:
 
@@ -388,6 +402,8 @@ As an example, our **`sayHello` directive** should look like this using IIFE:
 })();
 ```
 
+**The same format needs to be applied to all other components as well.
+**
 #### The `use strict` Directive
 Chained method calls on a single line without line breaks are harder to read but we can neaten things up using the **`'use strict';` directive**. This directive defines that JavaScript code should be executed in strict mode and is recommended by the **"Angular 1 Style Guide"**. 
 
@@ -400,7 +416,7 @@ In our case, using `'use strict';` makes it safe to write code on new lines and 
     'use strict';
     angular
         .module("demoApp")
-        .directive("sayHello", function sayHello() {
+        .directive("sayHello", function () {
             return {
                 scope: false,
                 link: function (scope, element, attrs) {
@@ -413,14 +429,41 @@ In our case, using `'use strict';` makes it safe to write code on new lines and 
 
 })();
 ```
+**The same format needs to be applied to all other components as well.
+**
 
 
+#### Named vs Anonymous Functions
+In order to produce more readable code that is easier to debug , the guide tells us that we should use **named functions** instead of passing an anonymous function in as a callback into our components. In practical terms, in the case of our directive, we should refactor it to look like this. 
 
+```javascript
+(function () {
+    'use strict';
+    angular
+        .module("demoApp")
+        .directive("sayHello", sayHello);
 
+    function sayHello() {
+        return {
+            scope: false,
+            link: function (scope, element, attrs) {
+                scope.message = attrs.message;
+            },
+            template: "<h1> {{[message, user.firstName, user.lastName].join(' ')}}!</h1>"
+        };
+    }
+    
+})();
+```
 
+**The same format needs to be applied to all other components as well.
+**
 
+### Wrap up
+This was a quick introduction to AngularJS. There's much more that you will need to know in order to be a productive developer but at this point you do have the necessary skills to move on to working with the Ionic framework and start to build applications for mobile devices. 
 
-##### Named vs Anonymous Functions
+You can find the "Hello ..." application code on https://github.com/CraftAcademy/angular_demo
+
 
 
 
