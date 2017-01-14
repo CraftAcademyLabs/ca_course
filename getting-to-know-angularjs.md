@@ -54,7 +54,7 @@ So what is actually happening here?
 
 ### Interacting with a user
 
-Let's see if we can make the AngularJS application to interact with some user generated data. How about letting the user add a name and have the "Hello"-mesage customized with that name? 
+Let's see if we can make the AngularJS application to interact with some user generated data. How about letting the user add a name and have the "Hello"-message customized with that name? 
 
 Closely examine this code, type it in your editor and run it in your browser.
 
@@ -213,7 +213,7 @@ And the result should look something like this.
 
 ### Services
 In AngularJS **services** are objects or functions that carry out specific tasks. Services can be used as a way to keep and communicate data across the lifetime of the angular app
-To use an AngularJS service, you need to inject it as a dependency for the component (controller, directive, etc) that will use that perticular service.
+To use an AngularJS service, you need to inject it as a dependency for the component (controller, directive, etc) that will use that particular service.
 
 _**Dependency Injection (DI) is a software design pattern that deals with how components get hold of their dependencies.**_
 
@@ -495,7 +495,7 @@ In order to produce more readable code that is easier to debug , the guide tells
 ### Wrap up
 You can find the "Hello ..." application code on https://github.com/CraftAcademy/angular_demo That code has been updated with syntax that will make it pass the validator (see the beginning of this chapter). 
 
-This was a quick introduction to AngularJS. There's much more that you will need to know in order to be a productive developer but at this point you do have the necessary skills to move on to working with the Ionic framework and start to build applications for mobile devices. 
+**This was a quick introduction to AngularJS. There's much more that you will need to know in order to be a productive developer but at this point you do have the necessary skills to move on to working with the Ionic framework and start to build applications for mobile devices. **
 
 
 
