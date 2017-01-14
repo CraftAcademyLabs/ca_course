@@ -351,7 +351,7 @@ var demoApp = angular.module("demoApp", []);
 ```
 This should be refactored into:
 
-!FILENAME app.js
+!FILENAME js/app.js
 
 ```javascript
 angular.module("demoApp", []);
@@ -359,6 +359,7 @@ angular.module("demoApp", []);
 
 Consequently, when using a module, we will not use a variable but instead use chaining with the **getter** syntax. Our **directive**, for example, will need to be refactored into this: 
 
+!FILENAME js/directives.js
 ```javascript
 angular.module("demoApp").directive("sayHello", function sayHello() {
     return {
@@ -388,6 +389,7 @@ In practical terms we need to drop our components into an IIFE that looks like t
 ```
 As an example, our **`sayHello` directive** should look like this using IIFE:
 
+!FILENAME js/directives.js
 ```javascript
 (function () {
     angular.module("demoApp").directive("sayHello", function sayHello() {
@@ -411,6 +413,7 @@ Strict mode makes it easier to write "secure" JavaScript and changes previously 
 
 In our case, using `'use strict';` makes it safe to write code on new lines and produce more readable code. Our directive can be formatted like this:
 
+!FILENAME js/directives.js
 ```javascript
 (function () {
     'use strict';
@@ -434,25 +437,23 @@ In our case, using `'use strict';` makes it safe to write code on new lines and 
 
 
 #### Named vs Anonymous Functions
-In order to produce more readable code that is easier to debug , the guide tells us that we should use **named functions** instead of passing an anonymous function in as a callback into our components. In practical terms, in the case of our directive, we should refactor it to look like this. 
+In order to produce more readable code that is easier to debug , the guide tells us that we should use **named functions** instead of passing an anonymous function in as a callback into our components. In practical terms, in the case of our mainController``, we should refactor it to look like this. 
 
+!FILENAME js/controllers.js
 ```javascript
 (function () {
     'use strict';
     angular
         .module("demoApp")
-        .directive("sayHello", sayHello);
+        .controller("mainController", mainController);
 
-    function sayHello() {
-        return {
-            scope: false,
-            link: function (scope, element, attrs) {
-                scope.message = attrs.message;
-            },
-            template: "<h1> {{[message, user.firstName, user.lastName].join(' ')}}!</h1>"
-        };
+    function mainController($scope, userService) {
+        $scope.users = userService.users();
+        $scope.newUser = {}
+        $scope.addUser = function () {
+            userService.add($scope.newUser);
+        }
     }
-    
 })();
 ```
 
