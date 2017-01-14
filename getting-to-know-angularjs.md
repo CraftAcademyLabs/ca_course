@@ -1,6 +1,6 @@
 ## AngularJS
 
-AngularJS is a framework for building dynamic web applications - often reffered to as a **single-page application (SPA)**. It lets you use HTML as your template language and extend HTML's syntax to express your application's components. AngularJS is added to an HTML page with a `<script>` tag.
+AngularJS is a framework for building dynamic web applications - often reffered to as a **single-page applications (SPA)**. It lets you use HTML as your template language and extend HTML's syntax to express your application's components. AngularJS is added to an HTML page with a `<script>` tag.
 
 AngularJS extends HTML attributes with **Directives**, and binds data to HTML with **Expressions**. **Data binding** is an automatic way of updating the view whenever the model changes, as well as updating the model whenever the view changes.
 
@@ -13,7 +13,7 @@ What follows is a very basic introduction to AngularJS using common programming 
 * Understand the design of single-page applications using AngularJS
 * Build AngularJS forms and bind data to objects
 
-You are challenged with implementing the code examples as you move forward, commit after every section and puch your code to GitHub. As you know, reading about code will not make you a good programmer. Take the opportunity to write as much code as possible. Also, your submissions and commits will be evaluated by your coach.
+You are challenged with implementing the code examples as you move forward, commit after every section and push your code to GitHub. As you know, reading about code will not make you a good programmer. Take the opportunity to write as much code as possible. Also, your submissions and commits will be evaluated by your coach.
 
 ### Hello World!
 
@@ -45,10 +45,11 @@ So what is actually happening here?
 3. The **`ng-init`** directive initializes AngularJS application variable `message`.
 4. AngularJS outputs data stored in the variable `message` where the **expression** is written. In this case `<h1>{{message}}</h1>`.
 
-**That's it. You have a basic AngularJS Hello World application. Let's try something slightly more advanced.** 
-
 
 <small>A CDN (Content Delivery Network) ​is a collection of global servers that caches and delivers content such as images, videos and Javascript files. By pulling AngularJS from a remote server we avoid having to store it loacally on our computers. This technique is good to use during the development process but advised against for production code.</small> 
+
+**That's it. You have a basic AngularJS Hello World application. Let's try something slightly more advanced.** 
+
 
 
 ### Interacting with a user
