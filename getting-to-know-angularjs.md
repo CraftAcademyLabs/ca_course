@@ -8,7 +8,16 @@ What follows is a very basic introduction to AngularJS using common programming 
 
 **_The purpose of this chapter is to give you a basic understanding of the framework and provide you with a foundation to move on to more advanced techniques when working with Ionic._ **
 
-Let's have a look at a very basic AngularJS application
+### Learning objectives
+* Understand basic AngularJS components such as Modules, Directives, Expressions, Controllers and Services
+* Understand the design of single-page applications using AngularJS
+* Build AngularJS forms and bind data to objects
+
+You are challenged with implementing the code examples as you move forward, commit after every section and puch your code to GitHub. As you know, reading about code will not make you a good programmer. Take the opportunity to write as much code as possible. Also, your submissions and commits will be evaluated by your coach.
+
+### Hello World!
+
+Let's have a look at a very basic AngularJS application. A good place to start is a "Hello World" app.
 
 !FILENAME index.html
 ```html
@@ -245,8 +254,8 @@ If you update your code with these snippets and run it in your browser, you'll p
 demoApp.directive("sayHello", function() {
   return {
     scope: false,
-    link: function(scope, element, attrs){
-      scope.message = attrs.message;
+    link: function($scope, element, attrs){
+      $scope.message = attrs.message;
     },
     template: "<h1> {{[message, user.firstName, user.lastName].join(' ')}}!</h1>"
   };
@@ -327,6 +336,20 @@ project folder
     └─── directives.js
     └─── services.js
 ```
+In order to make these new files available to your application, you need to include them in the `<head>` of your `index.html` 
+
+!FILENAME index.html
+```html
+<head>
+    <meta charset="utf-8">
+    <title>Hello World</title>
+    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/services.js"></script>
+</head>
+```
 
 #### Definitions
 The guide tells us that it is better to use the setter syntax rater than declare modules with a variable.
@@ -334,7 +357,6 @@ The guide tells us that it is better to use the setter syntax rater than declare
 A module should only be created once (using a **setter**) and then retrieved from that point and after (using a **getter**).
 
 ```javascript
-
 // setter
 angular.module('demoApp', []);
 
@@ -344,15 +366,17 @@ angular.module('demoApp');
 
 The empty array in the **setter** (second argument) is very important and tells AngularJS to create a new module and include a collection of dependencies. In our case, we have no further dependencies therefore there is nothing for AngularJS to include but it still needs to be there.
 
+In the **getter**, omitting the second argument of the `.module()` method tells AngularJS we just want to get an existing module, rather than setting a new one.
+
 In our current implementation we store our module in a variable called `demoApp` and chain our components to that variable. 
 
+!FILENAME js/app.js
 ```javascript
 var demoApp = angular.module("demoApp", []);
 ```
 This should be refactored into:
 
 !FILENAME js/app.js
-
 ```javascript
 angular.module("demoApp", []);
 ```
@@ -364,8 +388,8 @@ Consequently, when using a module, we will not use a variable but instead use ch
 angular.module("demoApp").directive("sayHello", function sayHello() {
     return {
         scope: false,
-        link: function (scope, element, attrs) {
-            scope.message = attrs.message;
+        link: function ($scope, element, attrs) {
+            $scope.message = attrs.message;
         },
         template: "<h1> {{[message, user.firstName, user.lastName].join(' ')}}!</h1>"
     };
@@ -461,9 +485,11 @@ In order to produce more readable code that is easier to debug , the guide tells
 **
 
 ### Wrap up
+You can find the "Hello ..." application code on https://github.com/CraftAcademy/angular_demo That code has been updated with syntax that will make it pass the validator (see the beginning of this chapter). 
+
 This was a quick introduction to AngularJS. There's much more that you will need to know in order to be a productive developer but at this point you do have the necessary skills to move on to working with the Ionic framework and start to build applications for mobile devices. 
 
-You can find the "Hello ..." application code on https://github.com/CraftAcademy/angular_demo
+
 
 
 
