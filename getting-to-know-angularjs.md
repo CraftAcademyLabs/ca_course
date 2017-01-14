@@ -338,6 +338,8 @@ demoApp.filter('sortByFirstName', function () {
     }
 });
 ```
+Here, we are making use of some custom JS code to sort the array using the objects attributes. This function is influenced by a StackOverflow question found here: http://stackoverflow.com/q/1129216/1354994
+
 We also need to add the filted to our `ng-repeat` directive. 
 
 !FILENAME index.html
@@ -349,8 +351,6 @@ We also need to add the filted to our `ng-repeat` directive.
 If we run the application now we should see the following. 
 
 ![](/assets/angular_sorted_list.gif)
-
-Here, we are making use of some custom JS code to sort the array using the objects attributes. This function is influenced by a StackOverflow question found here: http://stackoverflow.com/q/1129216/1354994
  
 
 This is the final state of our "Hello ... " application. We have not touched upon how we can store data and a bunch of other things. But as for an introduction, you should be okay for now. 
@@ -529,6 +529,10 @@ In order to produce more readable code that is easier to debug , the guide tells
 **
 
 ### Wrap up
+
+
+**We will stop here and move on to Ionic and look at using AngularJS extended with a series of custom directives that makes it possible for us to build applications for mobile platforms.** 
+
 You can find the "Hello ..." application code on https://github.com/CraftAcademy/angular_demo That code has been updated with syntax that will make it pass the validator (see the beginning of this chapter). 
 
 **This was a quick introduction to AngularJS. There's much more that you will need to know in order to be a productive developer but at this point you do have the necessary skills to move on to working with the Ionic framework and start to build applications for mobile devices. **
