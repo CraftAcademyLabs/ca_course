@@ -1,3 +1,4 @@
+![](/assets/angularjs-logo1.png)
 ## AngularJS
 
 AngularJS is a framework for building dynamic web applications - often reffered to as a **single-page applications (SPA)**. It lets you use HTML as your template language and extend HTML's syntax to express your application's components. AngularJS is added to an HTML page with a `<script>` tag.
