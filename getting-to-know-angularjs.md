@@ -17,7 +17,7 @@ You are challenged with implementing the code examples as you move forward, comm
 
 ### Hello World!
 
-Let's have a look at a very basic AngularJS application. A good place to start is a "Hello World" app.
+Let's create a very basic AngularJS application. A good place to start is a "Hello World" app.
 
 !FILENAME index.html
 ```html
@@ -77,7 +77,7 @@ Closely examine this code, type it in your editor and run it in your browser.
 
 Again, let's have a look on what's going on.
 
-1. We are loading AnguarJS from a CDN as we did in the first example.
+1. We are loading AngularJS from a CDN as we did in the first example.
 2. The **ng-model** directive binds the value of the `<input>` control to application data and stores it in the `name` variable.
 3. The **ng-if** directive conditions the display of the `<h1>` tag if the `name` variable actually contains any data. 
 
@@ -322,7 +322,7 @@ demoApp.service('userService', function(){
 
 This is the final state of our "Hello ... " application. We have not touched upon how we can store data and a bunch of other things. But as for an introduction, you should be okay for now. 
 
-**We will stop here and move on to Ionic and look at using AngularJS extended with a series of custom directives that makes it possible for us to buildapplications for mobile platforms.** 
+**We will stop here and move on to Ionic and look at using AngularJS extended with a series of custom directives that makes it possible for us to build applications for mobile platforms.** 
 
 ### Refactoring
 **_Note: This is an advanced section. The suggestions outlined in this section allows you to get to know some recommended techniques and practice the process of refactoring. It can be quite tricky to get everything in place so take your time, pay attention to details and make sure to run your code after every change you introduce. _**
