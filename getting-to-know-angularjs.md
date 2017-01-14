@@ -1,8 +1,8 @@
 ## AngularJS
 
-AngularJS is a framework for building dynamic web applications. It lets you use HTML as your template language and extend HTML's syntax to express your application's components. AngularJS is added to an HTML page with a `<script>` tag.
+AngularJS is a framework for building dynamic web applications - often reffered to as a **single-page application (SPA)**. It lets you use HTML as your template language and extend HTML's syntax to express your application's components. AngularJS is added to an HTML page with a `<script>` tag.
 
-AngularJS extends HTML attributes with **Directives**, and binds data to HTML with **Expressions**.
+AngularJS extends HTML attributes with **Directives**, and binds data to HTML with **Expressions**. **Data binding** is an automatic way of updating the view whenever the model changes, as well as updating the model whenever the view changes.
 
 What follows is a very basic introduction to AngularJS using common programming techniques. At the end of this chapter we will have a small "Hello ..." application up and running. Initially we will place all our code in one single file (`index.html`). As a last step, we will take a closer look at some best practices and refactor our code. 
 
