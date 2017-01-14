@@ -422,8 +422,8 @@ In our case, using `'use strict';` makes it safe to write code on new lines and 
         .directive("sayHello", function () {
             return {
                 scope: false,
-                link: function (scope, element, attrs) {
-                    scope.message = attrs.message;
+                link: function ($scope, element, attrs) {
+                    $scope.message = attrs.message;
                 },
                 template: "<h1> {{[message, user.firstName, user.lastName].join(' ')}}!</h1>"
             };
