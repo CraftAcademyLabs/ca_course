@@ -54,7 +54,9 @@ So what is actually happening here?
 
 ### Interacting with a user
 
-Let's see if we can make the AngularJS application to interact with an user action. Closely examine this code, type it in your editor and run it in your browser.
+Let's see if we can make the AngularJS application to interact with some user generated data. How about letting the user add a name and have the "Hello"-mesage customized with that name? 
+
+Closely examine this code, type it in your editor and run it in your browser.
 
 !FILENAME index.html
 ```html
@@ -86,13 +88,13 @@ You can use `data-ng-` instead of `ng-` if you want to make your page HTML valid
 
 ### Modules and Controllers
 
-So far so good, but there's not much of an application here. Let's introduce modules and controllers and see what they give us.
+So far so good, but there's not much of an application here. Let's introduce some other components like **modules** and **controllers** and see what they give us.
 
 In AngularJS **modules** define applications while **controllers** control the data and logic. Controllers always belong to a module.
 
 You can add modules and controllers using the `<script>` tag or store them in separate files.
 
-Let's examine some code, write it into our `index.html` and run it in the browser. It's yet another version of the **Hello ...** application but please note that we are moving some of the logic from the html markup (using `ng-` directives) to the controller. 
+Let's examine some code, write it into our `index.html` and run it in the browser. It's yet another version of the **"Hello ..."** application but please note that we are moving some of the logic from the html markup (using `ng-` directives) to the controller. 
 
 !FILENAME index.html
 ```html
@@ -130,9 +132,7 @@ So, let's go over the code.
 ### What is `$scope`? 
 Scope (`$scope`) is a JavaScript object that joins the controller with the view and contains the model data. Every controller has an associated `$scope` object.
 
-As an object, `$scope` can have properties and functions.
-
-The scope object is available for both the view and the controller.
+As an object, `$scope` can have properties and functions and is available to both the view and the controller.
 
 In our example we've added 2 properties to `$scope` and we can access them in our view. 
 
@@ -213,10 +213,13 @@ And the result should look something like this.
 
 ### Services
 In AngularJS **services** are objects or functions that carry out specific tasks. Services can be used as a way to keep and communicate data across the lifetime of the angular app
-To use an AngularJS service, you add it as a dependency for the component (controller, directive, etc) that depends on that service.
+To use an AngularJS service, you need to inject it as a dependency for the component (controller, directive, etc) that will use that perticular service.
+
+_**Dependency Injection (DI) is a software design pattern that deals with how components get hold of their dependencies.**_
 
 Let's create a service that returns a collection of users and add it to our implementation.
 
+!FILENAME index.html
 ```javascript
 demoApp.service('userService', function(){
    var collection = [
@@ -232,8 +235,9 @@ demoApp.service('userService', function(){
 });
 ``` 
 
-In order for this service to be available in our controller, we need to add it as a dependency. We also need to call the service in order to store the data it returns in the controller's `$scope` 
+In order for this service to be available in our controller, we need to inject it as a dependency (see the second argument in the in the controllers callback function below). We also need to call the service in order to store the data it returns in the controller's `$scope`. Take a close look at this snippet and implement it in your code.  
 
+!FILENAME index.html
 ```javascript
 demoApp.controller("mainController", function($scope, userService) {
   $scope.users = userService.users();
@@ -251,6 +255,7 @@ And finally we want to show the data on our page, right? We will introduce anoth
 
 If you update your code with these snippets and run it in your browser, you'll probably notice that you are not getting the desired output. The reason for that is that our directive is not calling the right objects. One way of fixing it is to update the directive with the following (but there are other, better ways to do this, can you figure out how?)
 
+!FILENAME index.html
 ```javascript
 demoApp.directive("sayHello", function() {
   return {
@@ -266,7 +271,7 @@ demoApp.directive("sayHello", function() {
 ### Adding functions to a Service
 Let's try adding some functionality to our 'Hello...' app. At the moment we are getting a collection of people/users from the `userService`. How about we try to add somebody to that collection? 
 
-Let's start with adding a `<form>` element with 2 `<input>fields to out HTML.
+Let's start with adding a `<form>` element with 2 `<input>` fields to our HTML.
 
 !FILENAME index.html
 ```html
@@ -282,6 +287,7 @@ Let's start with adding a `<form>` element with 2 `<input>fields to out HTML.
 
 We also need to update our controller by adding the `newUser` object and the `addUser` function.
 
+!FILENAME index.html
 ```javascript
 demoApp.controller("mainController", function($scope, userService) {
   $scope.users = userService.users();
@@ -294,6 +300,7 @@ demoApp.controller("mainController", function($scope, userService) {
 
 Consequently, we also need to modify our `userService` with an `add` function that will take the object we pass in (`newUser` that now holds the values we added to it) and `push` into the collection of users. As a result the content on our page will be updated with the new data.
 
+!FILENAME index.html
 ```javascript
 demoApp.service('userService', function(){
    var collection = [
