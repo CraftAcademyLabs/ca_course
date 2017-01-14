@@ -90,11 +90,11 @@ You can use `data-ng-` instead of `ng-` if you want to make your page HTML valid
 
 So far so good, but there's not much of an application here. Let's introduce some other components like **modules** and **controllers** and see what they give us.
 
-In AngularJS **modules** define applications while **controllers** control the data and logic. Controllers always belong to a module.
+In AngularJS **modules** define applications while **controllers** control the data. Controllers always belong to a module.
 
 You can add modules and controllers using the `<script>` tag or store them in separate files.
 
-Let's examine some code, write it into our `index.html` and run it in the browser. It's yet another version of the **"Hello ..."** application but please note that we are moving some of the logic from the html markup (using `ng-` directives) to the controller. 
+Let's examine some code, write it into our `index.html` and run it in the browser. It's yet another version of the **"Hello ..."** application but please note that we are no longer adding data in the view but rather in the controller. 
 
 !FILENAME index.html
 ```html
