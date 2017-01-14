@@ -321,6 +321,32 @@ demoApp.service('userService', function(){
 ```
 ![](/assets/angular_new_guy.gif) 
 
+### Format your data with Filters
+
+AngularJS **filters** are used to format data. Filters can be added to expressions and `ng-`directives by using the pipe character `|`, followed by a filter. There are a a few built-in filters in AngularJS (i.e. currency, date, uppercase, etc) but you can also define your own filter and add it to your application. 
+
+In our application we can make use of a filter to sort the user collection alphabetically on first name. That way, if we add a user named `Anders Karlsson` then his name should appear on top of the list , while `Zeb McCahan` should end up on the bottom.
+
+!FILENAME index.html
+```javascript
+demoApp.filter('sortByFirstName', function () {
+    return function (array) {
+        function compare(a, b) {
+            return a.firstName.localeCompare(b.firstName)
+        }
+        return array.sort(compare);
+    }
+});
+```
+
+```html
+<div ng-repeat="user in users | sortByFirstName">
+    <say-hello message="Hello"></say-hello>
+</div>
+```
+Here, we are making use of some custom JS code to sort the array using the objects attributes. This function is influenced by a StackOverflow answer found here: http://stackoverflow.com/a/1129270/1354994
+ 
+
 This is the final state of our "Hello ... " application. We have not touched upon how we can store data and a bunch of other things. But as for an introduction, you should be okay for now. 
 
 **We will stop here and move on to Ionic and look at using AngularJS extended with a series of custom directives that makes it possible for us to build applications for mobile platforms.** 
