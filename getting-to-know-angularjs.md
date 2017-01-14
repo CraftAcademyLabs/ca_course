@@ -481,7 +481,7 @@ Strict mode makes it easier to write "secure" JavaScript and changes previously 
 
 In our case, using `'use strict';` makes it safe to write code on new lines and produce more readable code. For example, our **filter** can be formatted like this:
 
-!FILENAME js/directives.js
+!FILENAME js/filters.js
 ```javascript
 (function () {
     'use strict';
