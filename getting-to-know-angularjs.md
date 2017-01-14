@@ -1,10 +1,12 @@
-### AngularJS
+## AngularJS
 
 AngularJS is a framework for building dynamic web applications. It lets you use HTML as your template language and extend HTML's syntax to express your application's components. AngularJS is added to an HTML page with a `<script>` tag.
 
 AngularJS extends HTML attributes with **Directives**, and binds data to HTML with **Expressions**.
 
-**_What follows is a very basic introduction to AngularJS. The purpose of this chapter is to give you a basic understanding of the framework and provide you with a foundation to move on to more advanced techniques when working with Ionic._ **
+What follows is a very basic introduction to AngularJS using common programming techniques. At the end of this chapter we will have a small "Hello ..." application up and running. Initially we will place all our code in one single file (`index.html`). As a last step, we will take a closer look at some best practices and refactor our code. 
+
+**_The purpose of this chapter is to give you a basic understanding of the framework and provide you with a foundation to move on to more advanced techniques when working with Ionic._ **
 
 Let's have a look at a very basic AngularJS application
 
@@ -305,70 +307,129 @@ This is the final state of our "Hello ... " application. We have not touched upo
 
 **We will stop here and move on to Ionic and look at using AngularJS extended with a series of custom directives that makes it possible for us to buildapplications for mobile platforms.** 
 
+### Refactoring
+The code we created in this walkthrough is in an desperate need of an overview. This is the time where we look at the implementation and make sure that we follow the conventions and best-practices. A good reference guide is to be found at: https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#angular-1-style-guide. Reading through the **"Angular 1 Style Guide"** and looking at our current implementation in the "Hello ... " application we quickly notice that there's a need for some refactoring. 
 
-The entire code we created in this walkthrough should look like this:
+#### Single Responsibility
+The first principle we want to take a look at is about [Single Responsibility](https://github.com/johnpapa/angular-styleguide/blob/master/a1/README.md#single-responsibility) and the **Rule of 1** telling us that we should define one component per file for easier maintenance, testing and readability.
 
-!FILENAME index.html
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
-  </head>
-  <body>
-    <div ng-app="demoApp" ng-controller="mainController">
-      <form ng-submit="addUser()" >
-        <input type="text" ng-model="newUser.firstName" placeholder="Give me a first name...">
-        <input type="text" ng-model="newUser.lastName" placeholder="Give me a last name...">
-        <button type="submit">ADD</button>
-      </form>
+In our case, this folder and file structure should be sufficient. Meaning that we need to create a `js` folder and add 4 files for our components and move each component into the corresponding file.
 
-      <div ng-repeat="user in users">
-        <say-hello message="Hi"></say-hello>
-      </div>
-    </div>
-
-    <script>
-      var demoApp = angular.module("demoApp", []);
-
-      demoApp.controller("mainController", function($scope, userService) {
-        $scope.users = userService.users();
-        $scope.newUser = {}
-        $scope.addUser = function(){
-          userService.add($scope.newUser);
-        }
-      });
-
-      demoApp.service('userService', function(){
-         var collection = [
-           {firstName: 'Thomas', lastName: 'Ochman'},
-           {firstName: 'Amber', lastName: 'Wilkie'},
-           {firstName: 'Raoul', lastName: 'Diffouo'}
-         ];
-         return {
-           users: function(){
-             return collection;
-           },
-           add: function(object){
-             collection.push(object);
-           }
-         }
-      });
-
-      demoApp.directive("sayHello", function() {
-        return {
-          scope: false,
-          link: function(scope, element, attrs){
-            scope.message = attrs.message;
-          },
-          template: "<h1> {{[message, user.firstName, user.lastName].join(' ')}}!</h1>"
-        };
-      });
-    </script>
-  </body>
-</html>
 ```
+project folder
+└─── index.html
+└─── js
+    └─── app.js
+    └─── controllers.js
+    └─── directives.js
+    └─── services.js
+```
+
+#### Definitions
+The guide tells us that it is better to use the setter syntax rater than declare modules with a variable.
+
+In our current implementation we store our module in a variable called `demoApp` and chain our components to that variable. 
+
+```javascript
+var demoApp = angular.module("demoApp", []);
+```
+This should be refactored into:
+
+!FILENAME app.js
+
+```javascript
+angular.module("demoApp", []);
+```
+
+Consequently, when using a module, we will not use a variable but instead use chaining with the **getter** syntax. Our **directive**, for example, will need to be refactored into this: 
+
+```javascript
+angular.module("demoApp").directive("sayHello", function sayHello() {
+    return {
+        scope: false,
+        link: function (scope, element, attrs) {
+            scope.message = attrs.message;
+        },
+        template: "<h1> {{[message, user.firstName, user.lastName].join(' ')}}!</h1>"
+    };
+});
+``` 
+The same syntax needs to be applied to all components of our "Hello ..." application. 
+
+
+
+
+
+
+#### IIFE JavaScript Scopes
+
+The guide tells us that we should wrap all AngularJS components in an Immediately Invoked Function Expression (IIFE). IIFE are be used to avoid variable hoisting from within blocks, protect against polluting the global environment and allow public access to methods while retaining privacy for variables defined within the function. 
+
+In practical terms we need to drop our components into an IIFE that looks like this:
+
+```javascript
+(function () {
+  // your component
+})();
+```
+As an example, our **`sayHello` directive** should look like this using IIFE:
+
+```javascript
+(function () {
+    angular.module("demoApp").directive("sayHello", function sayHello() {
+        return {
+            scope: false,
+            link: function (scope, element, attrs) {
+                scope.message = attrs.message;
+            },
+            template: "<h1> {{[message, user.firstName, user.lastName].join(' ')}}!</h1>"
+        };
+    });
+})();
+```
+
+#### The `use strict` Directive
+Chained method calls on a single line without line breaks are harder to read but we can neaten things up using the **`'use strict';` directive**. This directive defines that JavaScript code should be executed in strict mode and is recommended by the **"Angular 1 Style Guide"**. 
+
+Strict mode makes it easier to write "secure" JavaScript and changes previously accepted "bad syntax" into real errors. As an example, in normal JavaScript, mistyping a variable name creates a new global variable. In strict mode, this will throw an error, making it impossible to accidentally create a global variable. 
+
+In our case, using `'use strict';` makes it safe to write code on new lines and produce more readable code. Our directive can be formatted like this:
+
+```javascript
+(function () {
+    'use strict';
+    angular
+        .module("demoApp")
+        .directive("sayHello", function sayHello() {
+            return {
+                scope: false,
+                link: function (scope, element, attrs) {
+                    scope.message = attrs.message;
+                },
+                template: "<h1> {{[message, user.firstName, user.lastName].join(' ')}}!</h1>"
+            };
+        });
+
+
+})();
+```
+
+
+
+
+
+
+
+##### Named vs Anonymous Functions
+
+
+
+
+
+
+
+
+
 
 
 
