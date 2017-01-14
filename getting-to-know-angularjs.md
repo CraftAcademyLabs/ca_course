@@ -469,7 +469,7 @@ In our case, using `'use strict';` makes it safe to write code on new lines and 
 
 
 #### Named vs Anonymous Functions
-In order to produce more readable code that is easier to debug , the guide tells us that we should use **named functions** instead of passing an anonymous function in as a callback into our components. In practical terms, in the case of our mainController``, we should refactor it to look like this. 
+In order to produce more readable code that is easier to debug , the guide tells us that we should use **named functions** instead of passing an anonymous function in as a callback into our components. In practical terms, in the case of our `mainController`, we should refactor it to look like this. 
 
 !FILENAME js/controllers.js
 ```javascript
