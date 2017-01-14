@@ -9,7 +9,7 @@ What follows is a very basic introduction to AngularJS using common programming 
 **_The purpose of this chapter is to give you a basic understanding of the framework and provide you with a foundation to move on to more advanced techniques when working with Ionic._ **
 
 ### Learning objectives
-* Understand basic AngularJS components such as Modules, Directives, Expressions, Controllers and Services
+* Understand basic AngularJS components such as Modules, Directives, Expressions, Controllers, Services and Filters
 * Understand the design of single-page applications using AngularJS
 * Build AngularJS forms and bind data to objects
 
@@ -323,9 +323,9 @@ demoApp.service('userService', function(){
 
 ### Format your data with Filters
 
-AngularJS **filters** are used to format data. Filters can be added to expressions and `ng-`directives by using the pipe character `|`, followed by a filter. There are a a few built-in filters in AngularJS (i.e. currency, date, uppercase, etc) but you can also define your own filter and add it to your application. 
+AngularJS **filters** are used to format data. Filters can be added to expressions and `ng-`directives by using the pipe character `|`, followed by a filter. There are a a few built-in filters in AngularJS (i.e. currency, date, uppercase, etc) but you can also define your own filters and add it to your application. 
 
-In our application we can make use of a filter to sort the user collection alphabetically on first name. That way, if we add a user named `Anders Karlsson` then his name should appear on top of the list , while `Zeb McCahan` should end up on the bottom.
+In our application we can make use of a filter to sort the user collection alphabetically on first name. That way, if we add a user named `Anders Karlsson`, his name should appear just below `Amber` on the list , while `Zeb McCahan` should end up on the bottom.
 
 !FILENAME index.html
 ```javascript
@@ -338,13 +338,19 @@ demoApp.filter('sortByFirstName', function () {
     }
 });
 ```
+We also need to add the filted to our `ng-repeat` directive. 
 
+!FILENAME index.html
 ```html
 <div ng-repeat="user in users | sortByFirstName">
     <say-hello message="Hello"></say-hello>
 </div>
 ```
-Here, we are making use of some custom JS code to sort the array using the objects attributes. This function is influenced by a StackOverflow answer found here: http://stackoverflow.com/a/1129270/1354994
+If we run the application now we should see the following. 
+
+![](/assets/angular_sorted_list.gif)
+
+Here, we are making use of some custom JS code to sort the array using the objects attributes. This function is influenced by a StackOverflow question found here: http://stackoverflow.com/q/1129216/1354994
  
 
 This is the final state of our "Hello ... " application. We have not touched upon how we can store data and a bunch of other things. But as for an introduction, you should be okay for now. 
@@ -370,6 +376,8 @@ project folder
     └─── controllers.js
     └─── directives.js
     └─── services.js
+    └─── filters.js
+
 ```
 In order to make these new files available to your application, you need to include them in the `<head>` of your `index.html` 
 
@@ -383,6 +391,7 @@ In order to make these new files available to your application, you need to incl
     <script src="js/controllers.js"></script>
     <script src="js/directives.js"></script>
     <script src="js/services.js"></script>
+    <script src="js/filters.js"></script>
 </head>
 ```
 
@@ -434,7 +443,6 @@ The same syntax needs to be applied to all components of our "Hello ..." applica
 
 
 
-
 #### IIFE JavaScript Scopes
 
 The guide tells us that we should wrap all AngularJS components in an Immediately Invoked Function Expression (IIFE). IIFE are used to avoid variable hoisting from within blocks, protect against polluting the global environment and allow public access to methods while retaining privacy for variables defined within the function. 
@@ -463,14 +471,15 @@ As an example, our **`sayHello` directive** should look like this using IIFE:
 })();
 ```
 
-**The same format needs to be applied to all other components as well.
+**The same format needs to be applied to all other components as well. But we leave that refactoring to you. 
+
 **
 #### The `use strict` Directive
 Chained method calls on a single line without line breaks are harder to read but we can neaten things up using the **`'use strict';` directive**. This directive defines that JavaScript code should be executed in strict mode and is recommended by the **"Angular 1 Style Guide"**. 
 
 Strict mode makes it easier to write "secure" JavaScript and changes previously accepted "bad syntax" into real errors. As an example, in normal JavaScript, mistyping a variable name creates a new global variable. In strict mode, this will throw an error, making it impossible to accidentally create a global variable. 
 
-In our case, using `'use strict';` makes it safe to write code on new lines and produce more readable code. Our directive can be formatted like this:
+In our case, using `'use strict';` makes it safe to write code on new lines and produce more readable code. For example, our **filter** can be formatted like this:
 
 !FILENAME js/directives.js
 ```javascript
@@ -478,20 +487,19 @@ In our case, using `'use strict';` makes it safe to write code on new lines and 
     'use strict';
     angular
         .module("demoApp")
-        .directive("sayHello", function () {
-            return {
-                scope: false,
-                link: function ($scope, element, attrs) {
-                    $scope.message = attrs.message;
-                },
-                template: "<h1> {{[message, user.firstName, user.lastName].join(' ')}}!</h1>"
-            };
-        });
+        .filter('sortByFirstName', sortFilter);
 
-
+    function sortFilter() {
+        return function (array) {
+            function compare(a, b) {
+                return a.firstName.localeCompare(b.firstName)
+            }
+            return array.sort(compare);
+        }
+    }
 })();
 ```
-**The same format needs to be applied to all other components as well.
+**The same format needs to be applied to all other components as well. But we leave that refactoring to you. 
 **
 
 
