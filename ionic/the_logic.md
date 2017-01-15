@@ -22,7 +22,7 @@ Here are the steps you need to complete at this stage:
 You need to create a `Person` object with a minimum of 2 attributes in order to be able to make the calculation - **gender** and **age** are required to be present. 
 
 ```javascript
-&&&function Person(attr) {
+function Person(attr) {
   this.gender = attr.gender;
   this.age = attr.age;
 };
