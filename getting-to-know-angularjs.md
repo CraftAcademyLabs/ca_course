@@ -242,7 +242,7 @@ In order for this service to be available in our controller, we need to inject i
 !FILENAME index.html
 ```javascript
 &&&demoApp.controller("mainController", function($scope, userService) {
-  &&&$scope.users = userService.users();
+  $scope.users = userService.users();
 });
 ```
 
