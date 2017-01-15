@@ -3,5 +3,7 @@
         "image-captions",
         "codeblock-filename"
     ],
-    "pluginsConfig": {}
+    "pluginsConfig": {},
+    
+    "pdf.fontFamily": "Arial"
 }

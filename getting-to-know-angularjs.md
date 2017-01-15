@@ -14,7 +14,7 @@ What follows is a very basic introduction to AngularJS using common programming 
 * Understand the design of single-page applications using AngularJS
 * Build AngularJS forms and bind data to objects
 
-You are challenged with implementing the code examples as you move forward, commit after every section and push your code to GitHub. As you know, reading about code will not make you a good programmer. Take the opportunity to write as much code as possible. Also, your submissions and commits will be evaluated by your coach.
+You are challenged with implementing the code examples as you move forward, commit after every section and push your code to GitHub. As you know, reading about code will not make you a good programmer. Take the opportunity to write as much code as possible. Also, your submissions and commits will be evaluated by your coach. 
 
 ### Hello World!
 
