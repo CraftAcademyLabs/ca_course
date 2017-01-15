@@ -9,6 +9,7 @@ What follows is a very basic introduction to AngularJS using common programming 
 
 **_The purpose of this chapter is to give you a basic understanding of the framework and provide you with a foundation to move on to more advanced techniques when working with Ionic._ **
 
+
 ### Learning objectives
 * Understand basic AngularJS components such as Modules, Directives, Expressions, Controllers, Services and Filters
 * Understand the design of single-page applications using AngularJS

@@ -1,9 +1,16 @@
 {
     "plugins": [
         "image-captions",
-        "codeblock-filename"
+        "codeblock-filename",
+        "-highlight", 
+        "code-highlighter"
     ],
-    "pluginsConfig": {},
-    
+    "pluginsConfig": {
+        "fontsettings": {
+            "theme": "sepia",
+            "family": "serif",
+            "size": 2
+        }
+    },
     "pdf.fontFamily": "Arial"
 }
