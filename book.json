@@ -2,21 +2,18 @@
     "plugins": [
         "image-captions",
         "codeblock-filename",
-        "-highlight", 
+        "-highlight",
         "code-highlighter"
     ],
     "pluginsConfig": {
         "fontsettings": {
-            "theme": "sepia",
-            "family": "serif",
+            "theme": "white",
+            "family": "sans",
             "size": 2
         }
     },
     "pdf": {
-         "pageNumbers": true,
-         "fontFamily": "Arial",
-         "headerTemplate": " ",
-         "footerTemplate": " "
-     }
-    
+        "headerTemplate": " ",
+        "footerTemplate": " "
+    }
 }
