@@ -12,5 +12,11 @@
             "size": 2
         }
     },
-    "pdf.fontFamily": "Arial"
+    "pdf": {
+         "pageNumbers": true,
+         "fontFamily": "Arial",
+         "headerTemplate": " ",
+         "footerTemplate": " "
+     }
+    
 }
