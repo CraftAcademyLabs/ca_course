@@ -1,9 +1,7 @@
 {
     "plugins": [
         "image-captions",
-        "codeblock-filename",
-        "-highlight",
-        "code-highlighter"
+        "codeblock-filename"
     ],
     "pluginsConfig": {
         "fontsettings": {
