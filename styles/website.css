@@ -24,3 +24,5 @@ code {
     border-color: grey !important;
     border-width: 1px !important;
 }
+
+.code-line-highlight {background-color: #ffff00;}
