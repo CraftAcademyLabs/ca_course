@@ -249,7 +249,7 @@ In order for this service to be available in our controller, we need to inject i
 And finally we want to show the data on our page, right? We will introduce another AngularJS directive in order to do that: **`ng-repeat`**. The **`ng-repeat`** directive repeats a set of HTML, a given number of times (once per item in a collection). You can think of it is a counterpart to Ruby's `each` method.
 
 !FILENAME index.html
-```html 
+```HTML 
 <div ng-repeat="user in users">
   <say-hello message="Hi"></say-hello>
 </div>
