@@ -431,7 +431,7 @@ Consequently, when using a module, we will not use a variable but instead use ch
 
 !FILENAME js/directives.js
 ```javascript
-angular.module("demoApp").directive("sayHello", function sayHello() {
+angular.module("demoApp").directive("sayHello", function () {
     return {
         scope: false,
         link: function ($scope, element, attrs) {
