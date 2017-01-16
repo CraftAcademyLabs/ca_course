@@ -461,7 +461,7 @@ As an example, our **`sayHello` directive** should look like this using IIFE:
 !FILENAME js/directives.js
 ```javascript
 (function () {
-    angular.module("demoApp").directive("sayHello", function sayHello() {
+    angular.module("demoApp").directive("sayHello", function () {
         return {
             scope: false,
             link: function ($scope, element, attrs) {
