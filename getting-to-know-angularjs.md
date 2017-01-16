@@ -489,16 +489,17 @@ In our case, using `'use strict';` makes it safe to write code on new lines and 
     'use strict';
     angular
         .module("demoApp")
-        .filter('sortByFirstName', sortFilter);
+        .filter('sortByFirstName', function () {
+                return function (array) {
+                    function compare(a, b) {
+                        return a.firstName.localeCompare(b.firstName)
+                    }
 
-    function sortFilter() {
-        return function (array) {
-            function compare(a, b) {
-                return a.firstName.localeCompare(b.firstName)
+                    return array.sort(compare);
+                }
             }
-            return array.sort(compare);
-        }
-    }
+        );
+
 })();
 ```
 **The same format needs to be applied to all other components as well. But we leave that refactoring to you. 
