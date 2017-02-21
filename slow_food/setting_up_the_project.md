@@ -29,6 +29,15 @@ There are different Agile methodologies you can use in your projects and we will
 * fail fast and learn quickly
 * keep planning
 
+Remember, XP supplements the Scrum process with practices like:
+
+* Automated unit testing
+* Refactoring
+* Continuous integration
+* Behavior Driven Design
+* Test Driven Development
+
+
 ### Planning and Communication
 
 ##### Get Organezized
