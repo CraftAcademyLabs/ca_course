@@ -3,13 +3,14 @@
 We will use [Angular Chart](http://jtblin.github.io/angular-chart.js/) to display users historical data.
 
 ```
-$ bower install chart.js#2.3.0-rc.1 --save
+$ bower install chart.js#2.5.0 --save
 $ bower install angular-chart.js --save
 ```
 
 As always, make sure to include the library in your `intex.html`.
 
 !FILENAME www/index.html
+
 ```html
 <!-- ionic/angularjs js -->
 //...
@@ -20,6 +21,7 @@ As always, make sure to include the library in your `intex.html`.
 And also, make `chart.js` available to your app by adding it to the main module.
 
 !FILENAME www/js/app.js
+
 ```javascript
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ng-token-auth', 'ngResource', 'chart.js'])
 ```
@@ -39,10 +41,10 @@ function getLabels(collection) {
   return uniqueLabels;
 }
 ```
+
 We are going to store that array in `$scope.labels`.
 
 The second thing we need to do is to get the value of how many times each message is present in the collection. For that we add another function that we use when iterating over `$scope.labels` and store the results in `$scope.data`
-
 
 ```javascript
 angular.forEach($scope.labels, function(label){
@@ -61,6 +63,7 @@ function getCount(arr, value){
 All in all, the `DataCtrl` should look something like this.
 
 !FILENAME
+
 ```javascript
 .controller('DataCtrl', function ($scope, $stateParams) {
   $scope.$on('$ionicView.enter', function () {
@@ -99,6 +102,7 @@ Finally, let's turn out attention to the view template.
 We want to add markup for the two charts and clear up the data display.
 
 !FILENAME
+
 ```html
 <ion-view title="Historical Data">
   <ion-content>
@@ -126,7 +130,8 @@ We want to add markup for the two charts and clear up the data display.
 
 If you run the application now it should look something like this.
 
-![Cooper Client - Final UI](/images/cooper_client_final.png)
-That looks pretty cool, right? ;-)
+![Cooper Client - Final UI](/images/cooper_client_final.png)  
+That looks pretty cool, right? ;-\)
 
 There is of course many more charts that you can display on this view if you like. Especially if you make the choice of storing not only the `cooperMessage` but also the distance for each entry.
+
