@@ -47,7 +47,7 @@ _www/js/services.js_
 angular.module('starter.services', [])
 
 .factory('performanceData', function ($resource, API_URL) {
-  return $resource(API_URL + '/data', {}, {
+  return $resource(API_URL + '/performance_data', {}, {
     query: {method: 'GET', isArray: false}
   });
 });
@@ -60,7 +60,7 @@ Let's create a new controller for doing that. Remember that we need to include t
 _www/js/controllers.js_
 
 ```javascript
-.controller('PerformanceCtrl', function($scope, performaceData){
+.controller('PerformanceCtrl', function($scope, performanceData){
   $scope.saveData = function(){
 
   };
@@ -102,8 +102,8 @@ _www/js/controllers.js_
 
 ```javascript
 $scope.saveData = function(person){
-  data = {performace_data: {data: {message: person.cooperMessage}}}
-  performaceData.save(data, function(response){
+  data = {performance_data: {data: {message: person.cooperMessage}}}
+  performanceData.save(data, function(response){
     console.log(response);
   }, function(error){
     console.log(error);
@@ -165,14 +165,14 @@ _www/js/controllers.js_
 
 ```javascript
 //...
-.controller('PerformanceCtrl', function($scope, $state, performaceData, $ionicLoading, $ionicPopup, $state){
+.controller('PerformanceCtrl', function($scope, $state, performanceData, $ionicLoading, $ionicPopup, $state){
 
   $scope.saveData = function(person){
     var data = {performance_data: {data: {message: person.cooperMessage}}};
     $ionicLoading.show({
       template: 'Saving...'
     });
-    performaceData.save(data, function(response){
+    performanceData.save(data, function(response){
       $ionicLoading.hide();
       $scope.showAlert('Sucess', response.message);
     }, function(error){
@@ -255,7 +255,7 @@ _www/templates/menu.html_
 //...
 ```
 
-Next we want to update the `retrieveData()` function in `PerformanceCtrl`. What we want this function to do, is to get the data using the `performaceData` factory and open the `data.html` while passing in the data to the view \(as `savedDataCollection`\).
+Next we want to update the `retrieveData()` function in `PerformanceCtrl`. What we want this function to do, is to get the data using the `performanceData` factory and open the `data.html` while passing in the data to the view \(as `savedDataCollection`\).
 
 _www/js/controllers.js_
 
@@ -265,7 +265,7 @@ $scope.retrieveData = function(){
   $ionicLoading.show({
     template: 'Retrieving data...'
   });
-  performaceData.query({}, function(response){
+  performanceData.query({}, function(response){
     $state.go('app.data', {savedDataCollection: response.entries});
     $ionicLoading.hide();
   }, function(error){
