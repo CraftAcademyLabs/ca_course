@@ -128,19 +128,19 @@ At this stage you need to go back to your Rails application for a moment. We nee
 _config/application.rb_
 
 ```ruby
-# ...
-config.middleware.insert_before 0, 'Rack::Cors' do
-  allow do
-    origins '*'
-    #resource '*', headers: :any, methods: [:get, :put, :delete, :post, :options]
-    resource '*',
-             headers: :any,
-             methods: [:get, :post, :delete, :put, :options, :head],
-             expose: %w(access-token expiry token-type uid client),
-             max_age: 0
+module CooperApi
+  class Application < Rails::Application
+    # [...]
+    config.middleware.insert_before 0, Rack::Cors do
+      allow do
+        origins '*'
+        resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options, :head],
+                      expose: %w(access-token expiry token-type uid client),
+                      max_age: 0
+      end
+    end
   end
 end
-#...
 ```
 
 Now we'll be getting the right response from the back-end application. We need to modify the way we store that information.

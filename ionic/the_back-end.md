@@ -44,7 +44,6 @@ group :development do
  gem 'spring'
  gem 'spring-watcher-listen', '~> 2.0.0'
 end
-
 ```
 
 We also want to add the `rack-cors` gem to allow external clients to access our application. Add the dependency to your `Gemfile`.
@@ -55,7 +54,6 @@ We also want to add the `rack-cors` gem to allow external clients to access our 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS),
 # making cross-origin AJAX possible 
 gem 'rack-cors', require: 'rack/cors'
-
 ```
 
 Put something like the code below in `config/application.rb` of your Rails application. This will allow GET, POST, PUT and DELETE requests from any origin on any resource.
@@ -301,16 +299,16 @@ Run the following command for an easy one-step installation.
 $ rails g devise_token_auth:install User auth
 ```
 
-Remember to migrate your database in order to create the `users` table (the Devise generator created a migration for you). But before you do that, make sure to open up the migration file and change the data type for `tokens` to `text`.
+Remember to migrate your database in order to create the `users` table \(the Devise generator created a migration for you\). But before you do that, make sure to open up the migration file and change the data type for `tokens` to `text`.
 
-!FILENAME db/migrate/XXX_devise_token_auth_create_users.rb
+!FILENAME db/migrate/XXX\_devise\_token\_auth\_create\_users.rb
 
 ```ruby
 ## Tokens
 t.text :tokens
 ```
 
-In our User model (`app/models/user.rb`) we want to make sure that Devise is set up for our needs. We will remove the OAuth and Confirmation methods.
+In our User model \(`app/models/user.rb`\) we want to make sure that Devise is set up for our needs. We will remove the OAuth and Confirmation methods.
 
 !FILENAME app/models/user.rb
 
@@ -335,7 +333,7 @@ Run the generator from your terminal.
 $ rails g factory_girl:model User email password password_confirmation
 ```
 
-Make sure that the factory is properly configured with a valid email and password (if you don't you will get into trouble when validating the objects it creates).
+Make sure that the factory is properly configured with a valid email and password \(if you don't you will get into trouble when validating the objects it creates\).
 
 !FILENAME spec/factories/users.rb
 
@@ -353,7 +351,7 @@ You can add more attributes to the User factory if you like, we added just the m
 
 Let's add a spec for the User factory we just created.
 
-!FILENAME spec/models/user_spec.rb
+!FILENAME spec/models/user\_spec.rb
 
 ```ruby
 require 'rails_helper'
@@ -368,6 +366,7 @@ end
 Now, we can add some basic model specs for User that will test the Devise setup.
 
 !FILENAME spec\/models\/user\_spec.rb
+
 ```ruby
 RSpec.describe User, type: :model do
   # [...]
@@ -400,7 +399,7 @@ end
 
 We can also test some basic validations added by Devise.
 
-!FILENAME spec/models/user_spec.rb
+!FILENAME spec/models/user\_spec.rb
 
 ```ruby
 RSpec.describe User, type: :model do
@@ -475,12 +474,11 @@ cancel_api_v1_user_registration GET    /api/v1/auth/cancel(.:format)           d
      api_v1_auth_validate_token GET    /api/v1/auth/validate_token(.:format)   devise_token_auth/token_validations#validate_token
 ```
 
-
 ### Testing the endpoints - request specs
 
 First we need to add a helper method that will parse the server response body to JSON. Create a `support` folder in the `spec` folder. Add a new file named `response_json.rb`. In that file we will create a module that will parse the `response.body` to JSON and allow us to DRY out our request specs.
 
-!FILENAME spec/support/response_json.rb
+!FILENAME spec/support/response\_json.rb
 
 ```ruby
 module ResponseJSON
@@ -494,7 +492,6 @@ RSpec.configure do |config|
 end
 ```
 
-
 ### User registration
 
 Okay, let's write some specs for user registration.
@@ -504,7 +501,7 @@ $ mkdir -p spec/requests/api/v1
 $ touch spec/requests/api/v1/registrations_spec.rb
 ```
 
-!FILENAME spec/requests/api/v1/registrations_spec.rb
+!FILENAME spec/requests/api/v1/registrations\_spec.rb
 
 ```ruby
 RSpec.describe 'User Registration', type: :request do
@@ -572,7 +569,7 @@ Let's write some specs for logging in.
 $ touch spec/requests/api/v1/sessions_spec.rb
 ```
 
-!FILENAME spec/requests/api/v1/sessions_spec.rb
+!FILENAME spec/requests/api/v1/sessions\_spec.rb
 
 ```ruby
 RSpec.describe 'Sessions', type: :request do
@@ -630,7 +627,7 @@ rails g model PerformanceData user:references data:hstore --force-plural
 
 Open up the migration and add a line that adds `hstore` as a datatype and enables the database to store hashes.
 
-!FILENAME db/migrate/XXXX_create_performance_data.rb
+!FILENAME db/migrate/XXXX\_create\_performance\_data.rb
 
 ```ruby
 class CreatePerformanceData < ActiveRecord::Migration[5.0]
@@ -655,7 +652,6 @@ class User < ActiveRecord::Base
   # [...]
   has_many :performance_data, class_name: 'PerformanceData'
 end
-
 ```
 
 Run the new migration.
@@ -666,7 +662,7 @@ $ rails db:migrate --all
 
 Add the following specs.
 
-!FILENAME spec/models/user_spec.rb
+!FILENAME spec/models/user\_spec.rb
 
 ```ruby
 RSpec.describe User, type: :model do
@@ -680,7 +676,7 @@ end
 
 And to the newly created `spec/models/performance_data_spec.rb`.
 
-!FILENAME spec/models/performance_data_spec.rb
+!FILENAME spec/models/performance\_data\_spec.rb
 
 ```ruby
 require 'rails_helper'
@@ -703,14 +699,14 @@ Let's create the controller we will use to create, update and retrieve users his
 
 This is where we will be performing our CRUD actions.
 
-The first thing we want to be able to do is to save data. 
+The first thing we want to be able to do is to save data.
 
 Let's create a request spec and start adding functionality to our controller.
 
-In the `spec/requests/api/v1/` folder we want to create a new test file. Let's call it `performance_data_spec.rb`. We can start with a simple test to see if our entry will be saved to the database (it WILL fail at first, but that is the way we do it, right?)
+In the `spec/requests/api/v1/` folder we want to create a new test file. Let's call it `performance_data_spec.rb`. We can start with a simple test to see if our entry will be saved to the database \(it WILL fail at first, but that is the way we do it, right?\)
 
+!FILENAME spec/requests/api/v1/performance\_data\_spec.rb
 
-!FILENAME spec/requests/api/v1/performance_data_spec.rb
 ```ruby
 RSpec.describe Api::V1::PerformanceDataController, type: :request do
   let(:headers) { { HTTP_ACCEPT: 'application/json' } }
@@ -730,7 +726,8 @@ end
 
 Create a new file in the following path: `app/controllers/api/v1/` Call it `performance_data_controller.rb` and add the class definition to it.
 
-!FILENAME app/controllers/api/v1/performance_data_controller.rb
+!FILENAME app/controllers/api/v1/performance\_data\_controller.rb
+
 ```ruby
 class Api::V1::PerformanceDataController < ApplicationController
 
@@ -740,6 +737,7 @@ end
 We also need to create a route for that so let's modify our `routes.rb` by adding a `post` route to it. Update your `config/routes.rb` with the following code. Note the addition of `defaults: { format: :json }` to our `v1` namespace. This will constraint the application to respond to `json` requests only.
 
 !FILENAME config\/routes.rb
+
 ```ruby
 namespace :v1, defaults: { format: :json } do
   # [...]
@@ -751,14 +749,13 @@ In your terminal, run `$ rails routes` to make sure everything is working. You s
 
 ```shell
 api_v1_performance_data POST /api/v1/performance_data(.:format) api/v1/performance_data#create {:format=>:json}
-
 ```
 
 So far so good...
 
 Next, lets add a `create` method with the following code to our new controller in order to get the test to pass.
 
-!FILENAME app/controllers/api/v1/performance_data_controller.rb
+!FILENAME app/controllers/api/v1/performance\_data\_controller.rb
 
 ```ruby
 class Api::V1::PerformanceDataController < ApplicationController
@@ -772,6 +769,7 @@ end
 ```
 
 When you run the test now you will get an error with Rails complaining about `ForbiddenAttributesError`
+
 ```shell
 Performance Data
   POST /api/v1/performance_data/
@@ -818,7 +816,7 @@ end
 
 Note: We can use the `permit!` method for now, but there might be some security issues involved with that. Can you figure out a better way?
 
-Okay, at this stage if you run your tests again you'll get a different error 
+Okay, at this stage if you run your tests again you'll get a different error
 
 ```shell
 undefined method `data' for nil:NilClass
@@ -856,7 +854,7 @@ We also need to update our spec and create a user \(using Factory Girl\) and sen
 
 Anyway, your spec should look something like this.
 
-!FILENAME spec/requests/api/v1/performance_data_spec.rb
+!FILENAME spec/requests/api/v1/performance\_data\_spec.rb
 
 ```ruby
 RSpec.describe Api::V1::PerformanceDataController, type: :request do
@@ -879,30 +877,11 @@ end
 
 If you run your specs now, you should not be getting any errors as the `PerformanceData` entry is connected to a `User` and no validation errors should be present.
 
-You need, however, add some tests that hits the sad path and makes sure you have full control of what kind of error messages are being returned if the object you are trying to create fails validation.
-
-But before we continue, let's update our `cors` configuration to allow more headers keys from user authentication.
-
-!FILENAME config/application.rb
-```ruby
-module CooperApi
-  class Application < Rails::Application
-    # [...]
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins '*'
-        resource '*', headers: :any, methods: [:get, :post, :put, :delete],
-                      expose: %w(access-token expiry token-type uid client),
-                      max_age: 0
-      end
-    end
-  end
-end
-```
+You need, however, to add some tests that hits the sad path and makes sure you have full control of what kind of error messages are being returned if the object you are trying to create fails validation.
 
 We are almost done now with our basic CRUD actions. Let us move on and create a method that will retrieve a collection of PerformanceData objects, but only for the user that makes the request. Let's start by setting the stage for a request spec and test if we get the right response.
 
-!FILENAME spec/requests/api/v1/performance_data_spec.rb
+!FILENAME spec/requests/api/v1/performance\_data\_spec.rb
 
 ```ruby
 # [...]
@@ -931,7 +910,7 @@ end
 
 The next error you will see if you run the spec now, tells you that there is no `index` method defined in the controller. Let's create that.
 
-!FILENAME  app/controllers/api/v1/performance_data_controller.rb
+!FILENAME  app/controllers/api/v1/performance\_data\_controller.rb
 
 ```ruby
 class Api::V1::PerformanceDataController < ApplicationController
