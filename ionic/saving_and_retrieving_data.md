@@ -1,12 +1,13 @@
 # Saving and retrieving data - step 5
+
 At this stage we have a possibility to interact with the back and login to the mobile application. It is time to set up a mechanism to both save and retrieve our test results.
 
 We have an API endpoint in our beck-end that can take a POST and a GET request, right? Let's build a service that will give us a way to access it.
 
 We will use [`ngResource`](https://docs.angularjs.org/api/ngResource) to access out API and perform our requests.
 
-```
-$ bower install angular-resource --save
+```shell
+$ bower install angular-resource@1.5.3 --save
 ```
 
 Create a new file in the `www/js` folder and call it `services.js` and make sure to reference it in the `index.html` together with all the other dependencies.
@@ -14,7 +15,9 @@ Create a new file in the `www/js` folder and call it `services.js` and make sure
 ```
 $ touch www/js/services.js
 ```
-*www/index.html*
+
+_www/index.html_
+
 ```html
 <!-- ionic/angularjs js -->
 /...
@@ -29,16 +32,16 @@ $ touch www/js/services.js
 
 Since we have not used any services of factories before in this application, we need to add our services to our main module in `app.js`. We also need to make sure that `ngResource` is included.
 
-*www/js/app.js*
+_www/js/app.js_
+
 ```javascript
 angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ng-token-auth', 'ngResource'])
 // ...
-
 ```
 
 Okay, so now we need to create our Factory.
 
-*www/js/services.js*
+_www/js/services.js_
 
 ```javascript
 angular.module('starter.services', [])
@@ -54,7 +57,8 @@ With this factory we will be able to both write to and read from our back-end da
 
 Let's create a new controller for doing that. Remember that we need to include that factory in our controller in order to make it accessible. We'll also add two methods, one to save the data and a second one to retrieve it.
 
-*www/js/controllers.js*
+_www/js/controllers.js_
+
 ```javascript
 .controller('PerformanceCtrl', function($scope, performaceData){
   $scope.saveData = function(){
@@ -64,14 +68,14 @@ Let's create a new controller for doing that. Remember that we need to include t
 
   };
 })
-
 ```
 
 Let's start with saving the data. On our view where we do the calculations, we want to display a button that calls the `saveData` function. But we only want to display that button IF there is a user logged in and the calculation has been performed.
 
 Modify your `test.html` template with this code.
 
-*www/templates/test/test.html*
+_www/templates/test/test.html_
+
 ```html
  <div ng-if="person">
     <div class="card">
@@ -94,7 +98,7 @@ Modify your `test.html` template with this code.
 
 Let's build our `saveData` function with a success and an error fallback. It can look something like this for the moment.
 
-*www/js/controllers.js*
+_www/js/controllers.js_
 
 ```javascript
 $scope.saveData = function(person){
@@ -111,7 +115,6 @@ If you try this out in the browser while having the console open, you'll see tha
 
 ![](/images/cooper_api_error_1.png)
 
-
 **Well, that's a bit of a problem but we'll solve it. At least we know that the API endpoint is within our reach. That IS good progress!**
 
 So, let's make this work.
@@ -122,7 +125,8 @@ Let's make sure that we get the necessary info stored in the `currentUser` objec
 
 At this stage you need to go back to your Rails application for a moment. We need to make an addition to `config/application.rb` in order to make the API include authorization credentials in the response headers.
 
-*config/application.rb*
+_config/application.rb_
+
 ```ruby
 # ...
 config.middleware.insert_before 0, 'Rack::Cors' do
@@ -138,11 +142,13 @@ config.middleware.insert_before 0, 'Rack::Cors' do
 end
 #...
 ```
+
 Now we'll be getting the right response from the back-end application. We need to modify the way we store that information.
 
 Localize the `'auth:login-success'` function in our `AppCtrl`. We will make a change to store access-token, uid, etc by grabbing that info from the response headers.
 
-*www/js/controllers.js*
+_www/js/controllers.js_
+
 ```javascript
 $rootScope.$on('auth:login-success', function (ev, user) {
   $scope.currentUser = angular.extend(user, $auth.retrieveData('auth_headers'));
@@ -155,7 +161,8 @@ We also want to add `$ionicLoading, $ionicPopup` to our `PerformanceCtrl`. We wi
 
 We will also add an `showAlert()` function and refactor our `saveData()` function. Examine the code below to fully understand what it does before you implement it.
 
-*www/js/controllers.js*
+_www/js/controllers.js_
+
 ```javascript
 //...
 .controller('PerformanceCtrl', function($scope, $state, performaceData, $ionicLoading, $ionicPopup, $state){
@@ -189,16 +196,16 @@ We will also add an `showAlert()` function and refactor our `saveData()` functio
   };
 })
 //...
-
 ```
 
-###Display data
+### Display data
 
 Before we start retrieving any historical data, let's create a route and a view template for showcasing it.
 
 First, we start with defining a route in our `www/js/app.js` file.
 
-*www/js/app.js*
+_www/js/app.js_
+
 ```javascript
 .state('app.data', {
   url: '/data',
@@ -222,19 +229,20 @@ $ touch www/templates/test/data.html
 
 For starters, let's just add the basic markup before we start adding any content.
 
-*www/templates/test/data.html*
+_www/templates/test/data.html_
+
 ```html
 <ion-view title="Historical Data">
   <ion-content>
 
   </ion-content>
 </ion-view>
-
 ```
 
 We also want to add an item to the side menu but condition it's display to a state where there is a `currentUser` signed in. We also want to get rid of the `Login` item IF there is a signed in user, right?
 
-*www/templates/menu.html*
+_www/templates/menu.html_
+
 ```html
 //...
 <ion-item ng-if="!currentUser" menu-close ng-click="login()">
@@ -247,9 +255,10 @@ We also want to add an item to the side menu but condition it's display to a sta
 //...
 ```
 
-Next we want to update the `retrieveData()` function in `PerformanceCtrl`. What we want this function to do, is to get the data using the `performaceData` factory and open the `data.html` while passing in the data to the view (as `savedDataCollection`).
+Next we want to update the `retrieveData()` function in `PerformanceCtrl`. What we want this function to do, is to get the data using the `performaceData` factory and open the `data.html` while passing in the data to the view \(as `savedDataCollection`\).
 
-*www/js/controllers.js*
+_www/js/controllers.js_
+
 ```javascript
 //...
 $scope.retrieveData = function(){
@@ -269,7 +278,8 @@ $scope.retrieveData = function(){
 
 We also need to create a new controller to handle the view. When the view is entered, we want to retrieve the data sent in params and save it in the current `$scope`.
 
-*www/js/controllers.js*
+_www/js/controllers.js_
+
 ```javascript
 //...
 .controller('DataCtrl', function($scope, $stateParams){
@@ -280,11 +290,12 @@ We also need to create a new controller to handle the view. When the view is ent
 //...
 ```
 
-Finally, we can update our template and display the data. The way we do that is to iterate through the array of entries and condition the display IF there is a `message` key in the `data` attribute (remember the way we store the results in our database?).
+Finally, we can update our template and display the data. The way we do that is to iterate through the array of entries and condition the display IF there is a `message` key in the `data` attribute \(remember the way we store the results in our database?\).
 
 We also need to format the date - please read the docs for [`date` in AngularJS](https://docs.angularjs.org/api/ng/filter/date).
 
-*www/templates/test/data.html*
+_www/templates/test/data.html_
+
 ```html
 <ion-view title="Historical Data">
   <ion-content>
@@ -296,3 +307,4 @@ We also need to format the date - please read the docs for [`date` in AngularJS]
 ```
 
 **That will do it for now. The next challenge is to present the data as charts. That can be interesting...**
+
