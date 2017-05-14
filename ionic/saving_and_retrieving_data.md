@@ -2,7 +2,7 @@
 
 At this stage we have a possibility to interact with the back and login to the mobile application. It is time to set up a mechanism to both save and retrieve our test results.
 
-We have an API endpoint in our beck-end that can take a POST and a GET request, right? Let's build a service that will give us a way to access it.
+We have an API endpoint in our back-end that can take a POST and a GET request, right? Let's build a service that will give us a way to access it.
 
 We will use [`ngResource`](https://docs.angularjs.org/api/ngResource) to access out API and perform our requests.
 
