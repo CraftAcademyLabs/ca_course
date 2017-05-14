@@ -141,7 +141,7 @@ And make use of this object on the `about.html` template.
 
 One final touch to enhance the user experience. Sometimes the API endpoint will take some time to respond and the user might be left wondering if his request is actually being processed or not. There is a very simple way to show the user that we are really processing his request by displaying an overlay with some sort of a message. In our case "Logging is..." could do, right?
 
-Ionic provides us with [`$ionicLoading`](http://ionicframework.com/docs/api/service/$ionicLoading/) as a way to display such overlays. Let's imlement it.
+Ionic provides us with [`$ionicLoading`](http://ionicframework.com/docs/api/service/$ionicLoading/) as a way to display such overlays. Let's implement it.
 
 Add `$ionicLoading` to the `AppCtrl`.
 
