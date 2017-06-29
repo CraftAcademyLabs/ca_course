@@ -43,10 +43,10 @@ Being able to speak to these issues is important, and verbal communication skill
 
 To quote Albert Einstein, *‘If you can’t explain it simply, you don’t understand it well enough’*
 
-* [General Personality](career/general_personality.md)
-* [Agile](self_assessment/agile.md)
-* [General Ruby questions](self_assessment/general_ruby.md)
-* [Advanced Ruby questions](self_assessment/advanced_ruby.md)
-* [Databases, ORM's, etc.](self_assessment/databases.md)
+* [General Personality](career/general-personality.md)
+* [Agile](career/agile.md)
+* [General Ruby questions](career/general_ruby.md)
+* [Advanced Ruby questions](career/advanced_ruby.md)
+* [Databases, ORM's, etc.](career/databases.md)
 
 **While it’s great to be able to speak to all of these concepts and show that you can carry an in-depth technical conversation, there’s probably nothing more valuable than having a solid portfolio of apps and a demonstrable level of skill.**

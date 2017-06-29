@@ -91,4 +91,5 @@
   * [SOLID Principles](solid-principles.md)
 * [Career](career.md)
   * [General Personality](career/general-personality.md)
+  * [Agile Mindset](career/agile-mindset.md)
 
