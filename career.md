@@ -48,7 +48,7 @@ To quote Albert Einstein, *‘If you can’t explain it simply, you don’t unde
 * [General Ruby questions](career/general_ruby.md)
 * [Advanced Ruby questions](career/advanced_ruby.md)
 * [Databases, ORM's, etc.](career/databases.md)
-* [SOLID Principles.](career/solid.md)
+* [SOLID Principles.](career/solid-principles.md)
 
 
 

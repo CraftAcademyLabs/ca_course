@@ -94,5 +94,5 @@
   * [Basic Ruby](career/basic-ruby.md)
   * [Advanced Ruby](career/advanced-ruby.md)
   * [Databases](career/databases.md)
-  * [SOLID Principles](solid-principles.md)
+  * [SOLID Principles](career/solid-principles.md)
 
