@@ -32,7 +32,6 @@ We should strive for modular designs that make it possible for us to change the 
 ```
 
 
-
 ###Liskov substitution principle - LSP
 ####_Objects in a program should be replaceable with instances of their subtypes without altering the correctness of that program._
 
