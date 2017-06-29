@@ -90,4 +90,5 @@
   * [Three-Tier Architecture](extras/three-tier_architecture.md)
   * [SOLID Principles](solid-principles.md)
 * [Career](career.md)
+  * General Personality
 
