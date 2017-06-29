@@ -43,7 +43,7 @@ Being able to speak to these issues is important, and verbal communication skill
 
 To quote Albert Einstein, *‘If you can’t explain it simply, you don’t understand it well enough’*
 
-* [General Personality](/general_personality.md)
+* [General Personality](career/general_personality.md)
 * [Agile](self_assessment/agile.md)
 * [General Ruby questions](self_assessment/general_ruby.md)
 * [Advanced Ruby questions](self_assessment/advanced_ruby.md)
