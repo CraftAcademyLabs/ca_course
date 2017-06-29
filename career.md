@@ -48,5 +48,8 @@ To quote Albert Einstein, *‘If you can’t explain it simply, you don’t unde
 * [General Ruby questions](career/general_ruby.md)
 * [Advanced Ruby questions](career/advanced_ruby.md)
 * [Databases, ORM's, etc.](career/databases.md)
+* [SOLID Principles.](career/solid.md)
+
+
 
 **While it’s great to be able to speak to all of these concepts and show that you can carry an in-depth technical conversation, there’s probably nothing more valuable than having a solid portfolio of apps and a demonstrable level of skill.**

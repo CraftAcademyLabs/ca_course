@@ -88,11 +88,11 @@
   * [About README's](about_readme.md)
   * [MVC](extras/model_view_controller.md)
   * [Three-Tier Architecture](extras/three-tier_architecture.md)
-  * [SOLID Principles](solid-principles.md)
 * [Career](career.md)
   * [General Personality](career/general-personality.md)
   * [Agile Mindset](career/agile-mindset.md)
   * [Basic Ruby](career/basic-ruby.md)
   * [Advanced Ruby](career/advanced-ruby.md)
   * [Databases](career/databases.md)
+  * [SOLID Principles](solid-principles.md)
 
