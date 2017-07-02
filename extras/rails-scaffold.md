@@ -335,7 +335,7 @@ Now run `heroku create APP_NAME` twice - once for a development server, once for
 
 The next step is to configure Travis to push to your Heroku servers when code is pushed to integrated by the service. Of course, Travis will not only deploy code directly pushed to your GitHub branches but also code merged in using Pull Requests.
 
-You need to obtain your secure Heroku key and encrypt it. If you've never used Travis before, you'll have to `gem install travis`.
+You need to obtain your secure Heroku key and encrypt it. If you've never used Travis before, you’ll have to istall the gem by running `gem install travis` in your terminal
 
   You can now ask Travis to make the necessary modifications to your `.travis.yml`  file:
 
