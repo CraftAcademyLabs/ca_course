@@ -328,7 +328,8 @@ Gem | Description
   If you haven't before, you'll need to install the [Heroku Toolbelt](https://toolbelt.heroku.com/), create an account on Heroku and `heroku login` with those credentials.
 
   Now `heroku create APP_NAME` twice - once for a development server, once for a production server. (If you fail to specify an app name, Heroku will make one for you).
-- You need to obtain your secure Heroku key and encrypt it. If you've never used Travis before, you'll have to `gem install travis`.
+
+You need to obtain your secure Heroku key and encrypt it. If you've never used Travis before, you'll have to `gem install travis`.
 
   You can now ask Travis to make the necessary modifications to your `.travis.yml`  file:
 
