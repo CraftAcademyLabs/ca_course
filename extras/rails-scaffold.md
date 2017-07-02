@@ -249,7 +249,7 @@ It is well outside the scope of this README to explain the benefits of Continuou
 
   Create `lib/tasks/ci.rake`. We'll create a task to merge all test information and send it to coveralls. Add:
 
-  ```
+  ```ruby
     unless Rails.env.production?
       require 'rspec/core/rake_task'
       require 'cucumber/rake/task'
@@ -277,19 +277,19 @@ It is well outside the scope of this README to explain the benefits of Continuou
   - Sign up or login to your existing account.
   - Hit the plus sign, then flip the switch on your new repo. (You probably have to refresh to see it.)
 
-- At the very top of `spec_helper`:
+  At the very top of `spec_helper`:
 
-  ```ruby
+    ```ruby
     require 'coveralls'
     Coveralls.wear!
-  ```
+    ```
 
-- In `/features/support/env.rb`: Delete comments. Add:
+  In `/features/support/env.rb`: Delete comments. Add:
 
-  ```
-  require 'coveralls'
-  Coveralls.wear_merged!("rails")
-  ```
+    ```ruby 
+    require 'coveralls'
+    Coveralls.wear_merged!("rails")
+    ```
   These four lines of code will generate code coverage reports for Coveralls. Access them on the Coveralls website.
 
 - Add `/coverage` to `.gitignore`
