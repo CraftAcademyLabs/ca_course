@@ -6,14 +6,13 @@ It is well outside the scope of this README to explain the benefits of Continuou
 
 - **Create repo on GitHub.** 
 
-  ![](/assets/Skärmavbild 2017-07-02 kl. 20.21.04.png)
+  ![](/assets/rails-scaffold-new-repo.png)
   
  On your GH account crate a new public repository and include Rails `.gitignore` and optional `README`. 
  
  Copy path to repo.
  
-  ![](/assets/Skärmavbild 2017-07-02 kl. 20.21.54.png)
- 
+  ![](/assets/rails-scaffold-get-url.png) 
 
 - **Clone to your local machine.** 
 
@@ -26,7 +25,8 @@ It is well outside the scope of this README to explain the benefits of Continuou
   
   Say `n` to overwrite `.gitignore` (and `README`)
   
-  ![](/assets/Skärmavbild 2017-07-02 kl. 20.25.55.png)
+  ![](/assets/rails-scaffold-new-app.png)
+  
 - **Setup a branch structure**
 
   Switch to a development branch so you can keep your `master` branch clean. (We'll populate it later as we accept code into our production copy). 
@@ -43,14 +43,14 @@ It is well outside the scope of this README to explain the benefits of Continuou
   git commit -m 'scaffolds new rails application'
   ```
   
-  ![](/assets/Skärmavbild 2017-07-02 kl. 20.36.47.png)
+  ![](/assets/rails-scaffold-first-commit.png)
   
   You can also push to your remote repo on GitHub at this stage:
   ```
   git push origin develop
   ```
   
-  ![](/assets/Skärmavbild 2017-07-02 kl. 20.40.01.png)
+  ![](/assets/rails-scaffold-after-push.png)
    
   
 - **Clean up code**
@@ -225,6 +225,8 @@ It is well outside the scope of this README to explain the benefits of Continuou
     - Sign up or whatever you have to do.
     - Hit the little `+` next to `My Repositories`
     - Flip the switch on the repository you just created
+    
+  ![](/assets/rails-scaffold-add-repo-on-travis.png)
   
   Create a file in the root of your folder called `.travis.yml`. Add:
 
@@ -329,15 +331,20 @@ It is well outside the scope of this README to explain the benefits of Continuou
 
   Format your repo like this: `YOUR_GITHUB_NAME/PROJECT_REPO`. This setup will deploy your application after a successful build at develop or master.
   
+  
+That's about it. You now have a basic scaffold application and are ready to build some awesome shit! Work smart, stick to the outside-in testing process and have fun!
+**
+Happy coding!**
+  
 
 #### Gem descriptions
 Gem | Description
 ---------------- | :---------------------------------:
-Rspec | Unit testing
-Shoulda Matchers | Testing matchers for Rspec
-Factory Girl | Easy creation of new table entries
-Pry | Debugging
-Pry-Byebug | Allows you to step through debugger
-Cucumber | Acceptance testing
-DatabaseCleaner | Wipes the database after tests
-Coveralls | Code coverage specs
+[Rspec](https://github.com/rspec/rspec-rails) | Unit testing
+[Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) | Testing matchers for Rspec
+[Factory Girl](https://github.com/thoughtbot/factory_girl) | Easy creation of new table entries
+[Pry](https://github.com/pry/pry) | Debugging
+[Pry-Byebug](https://github.com/deivid-rodriguez/pry-byebug) | Allows you to step through debugger
+[Cucumber](https://github.com/cucumber/cucumber-rails) | Acceptance testing
+[DatabaseCleaner](https://github.com/DatabaseCleaner/database_cleaner) | Wipes the database after tests
+[Coveralls](https://github.com/lemurheavy/coveralls-ruby) | Code coverage specs
