@@ -89,20 +89,20 @@ It is well outside the scope of this README to explain the benefits of Continuou
   
 - **Adding dependencies ** 
 
- Add the following gems to your `Gemfile`(See the bottom of this article for a brief explanation of these gems):
-
-  ```ruby
-  group :development, :test do
-    gem 'rspec-rails'
-    gem 'shoulda-matchers'
-    gem 'factory_girl_rails'
-    gem 'pry'
-    gem 'pry-byebug'
-    gem 'cucumber-rails', require: false
-    gem 'database_cleaner'
-    gem 'coveralls', require: false
-  end
-  ```
+   Add the following gems to your `Gemfile`(See the bottom of this article for a brief explanation of these gems):
+  
+    ```ruby
+    group :development, :test do
+      gem 'rspec-rails'
+      gem 'shoulda-matchers'
+      gem 'factory_girl_rails'
+      gem 'pry'
+      gem 'pry-byebug'
+      gem 'cucumber-rails', require: false
+      gem 'database_cleaner'
+      gem 'coveralls', require: false
+    end
+    ```
  
 - **More cleaning**
 
