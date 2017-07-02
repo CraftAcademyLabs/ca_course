@@ -171,17 +171,17 @@ It is well outside the scope of this README to explain the benefits of Continuou
   
   In `rails_helper`, inside the `RSpec.configure` block add DatabaseCleaner bits:
   
-  ```ruby
-  config.before(:suite) do
-  DatabaseCleaner.strategy = :transaction
-  DatabaseCleaner.clean_with(:truncation)
-  end
-  config.around(:each) do |example|
-  DatabaseCleaner.cleaning do
-  example.run
-  end
-  end
-  ```
+    ```ruby
+    config.before(:suite) do
+      DatabaseCleaner.strategy = :transaction
+      DatabaseCleaner.clean_with(:truncation)
+    end
+    config.around(:each) do |example|
+      DatabaseCleaner.cleaning do
+        example.run
+      end
+    end
+    ```
   
   Again in `rails_helper`, this time outside the `RSpec.configure` block, add ShouldaMatchers configuration:
   
