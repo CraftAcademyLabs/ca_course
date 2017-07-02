@@ -7,9 +7,11 @@ It is well outside the scope of this README to explain the benefits of Continuou
 - **Create repo on GitHub.** 
 
   ![](/assets/Skärmavbild 2017-07-02 kl. 20.21.04.png)
+  
  On your GH account crate a new public repository and include Rails `.gitignore` and optional `README`. 
  
  Copy path to repo.
+ 
   ![](/assets/Skärmavbild 2017-07-02 kl. 20.21.54.png)
  
 
@@ -47,6 +49,7 @@ It is well outside the scope of this README to explain the benefits of Continuou
   ```
   git push origin develop
   ```
+  
   ![](/assets/Skärmavbild 2017-07-02 kl. 20.40.01.png)
    
   
@@ -89,7 +92,7 @@ It is well outside the scope of this README to explain the benefits of Continuou
   
 - **Adding dependencies** 
 
-   Add the following gems to your `Gemfile`(See the bottom of this article for a brief explanation of these gems):
+   Add the following gems to your `Gemfile` (See the bottom of this article for a brief explanation of these gems):
   
     ```ruby
     group :development, :test do
