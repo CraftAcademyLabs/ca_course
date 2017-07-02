@@ -104,34 +104,8 @@ It is well outside the scope of this README to explain the benefits of Continuou
   ```
  
 - **More cleaning**
-  
-  Remove unnecessary comments from `rails_helper` and `spec_helper`.
-  
-  In `rails_helper`, inside the `RSpec.configure` block add DatabaseCleaner bits:
-  ```ruby  
-  config.before(:suite) do
-    DatabaseCleaner.strategy = :transaction
-    DatabaseCleaner.clean_with(:truncation)
-  end
-  config.around(:each) do |example|
-    DatabaseCleaner.cleaning do
-      example.run
-    end
-  end
-```
 
-  Again in `rails_helper`, this time outside the `RSpec.configure` block, add ShouldaMatchers configuration:
-
-  ```ruby
-  Shoulda::Matchers.configure do |config|
-    config.integrate do |with|
-      with.test_framework :rspec
-      with.library :rails
-    end
-  end
-  ```
-
-  In `config/application.rb` remove comments and add inside `class Application`:
+  In `config/application.rb` remove comments and inside `class Application` add:
 
   ```ruby
   config.generators do |generate|
@@ -151,12 +125,15 @@ It is well outside the scope of this README to explain the benefits of Continuou
 
   Run `bundle install`. That installs any missing gems and creates your `Gemfile.lock` to reference them.
   
-- Create your database
+- **Create your database**
 
-  In `config/database.yml` - rename your databases or they will be stuck at "blank_rails_scaffold".
-
-
-
+  Run the following commands to create your database and prepare it for use. 
+  
+  ```
+  rails db:create
+  rails db:migrate
+  ```
+  
   
 - **Install and configure testing frameworks**
 
@@ -171,6 +148,33 @@ It is well outside the scope of this README to explain the benefits of Continuou
   Create the test and development databases: `rails db:create --all`
   Migrate the test and development databases: `rails db:migrate --all`
   Run `bundle exec cucumber`. This should not error and find no examples
+  
+- **More cleaning**
+  Remove unnecessary comments from `rails_helper` and `spec_helper`.
+  In `rails_helper`, inside the `RSpec.configure` block add DatabaseCleaner bits:
+  
+  ```ruby
+  config.before(:suite) do
+  DatabaseCleaner.strategy = :transaction
+  DatabaseCleaner.clean_with(:truncation)
+  end
+  config.around(:each) do |example|
+  DatabaseCleaner.cleaning do
+  example.run
+  end
+  end
+  ```
+  
+  Again in `rails_helper`, this time outside the `RSpec.configure` block, add ShouldaMatchers configuration:
+  
+  ```ruby
+  Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+  with.test_framework :rspec
+  with.library :rails
+  end
+  end
+  ```
   
 - **(Optional) Create pull request template for Github**:
 
