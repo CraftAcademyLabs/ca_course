@@ -118,6 +118,12 @@ It is well outside the scope of this README to explain the benefits of Continuou
     generate.controller_specs false
   end
     ```
+    
+    Also, search for the following comment and setting and remove it: 
+    ```ruby 
+    # Don't generate system test files.
+    config.generators.system_tests = nil
+    ```
 
   Here we're turning off a bunch of auto-generators for things we'll be creating while we build the app. We've turned them all off, but we might want to leave some on if our project is complex or if we are going to have a lot of helpers, etc.
 
@@ -140,7 +146,7 @@ It is well outside the scope of this README to explain the benefits of Continuou
 
   **Install Rspec** (for unit testing) with: `bundle exec rails generate rspec:install`
 
-  Configure the terminal output to show test messages rather than green or red dots when RSpec run: In the hidden file`.rspec`, add: `--format documentation`
+  Configure the terminal output to show test messages rather than green or red dots when RSpec run: In the hidden file `.rspec`, add: `--format documentation`
   
   Run `bundle exec rspec`. This should work now and return no errors (and also no tests, because you haven't written any)
   
