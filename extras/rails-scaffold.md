@@ -147,13 +147,21 @@ It is well outside the scope of this README to explain the benefits of Continuou
   
 - **Install and configure testing frameworks**
 
-  **Install Rspec** (for unit testing) with: `bundle exec rails generate rspec:install`
+  **Install Rspec** (for unit testing) with: 
+  
+  ```
+  bundle exec rails generate rspec:install
+  ```
 
   Configure the terminal output to show test messages rather than green or red dots when RSpec run: In the hidden file `.rspec`, add: `--format documentation`
   
   Run `bundle exec rspec`. This should work now and return no errors (and also no tests, because you haven't written any)
   
-  **Install Cucumber** (for acceptance testing) with: `bundle exec rails g cucumber:install`
+  **Install Cucumber** (for acceptance testing) with: 
+  
+  ```
+  bundle exec rails g cucumber:install
+  ```
 
   Create the test and development databases: `rails db:create --all`
   Migrate the test and development databases: `rails db:migrate --all`
