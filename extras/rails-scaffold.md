@@ -192,9 +192,9 @@ Gem | Description
   
 ### **More cleaning - again**
 
-  Remove unnecessary comments from `rails_helper` and `spec_helper`.
+Remove unnecessary comments from `rails_helper` and `spec_helper`.
   
-  In `rails_helper`, inside the `RSpec.configure` block add DatabaseCleaner bits:
+In `rails_helper`, inside the `RSpec.configure` block add DatabaseCleaner bits:
   
     ```ruby
     config.before(:suite) do
@@ -208,7 +208,7 @@ Gem | Description
     end
     ```
   
-  Again in `rails_helper`, this time outside the `RSpec.configure` block, add ShouldaMatchers configuration:
+Again in `rails_helper`, this time outside the `RSpec.configure` block, add ShouldaMatchers configuration:
   
     ```ruby
     Shoulda::Matchers.configure do |config|
@@ -225,109 +225,110 @@ Gem | Description
   - `touch .github/PULL_REQUEST_TEMPLATE.md`
   - Add :
 
-    ```
-     PT Story: [paste Pivotal Tracker link here]
+```
+ PT Story: [paste Pivotal Tracker link here]
 
-    Changes proposed in this pull request:
+Changes proposed in this pull request:
 
-    [item 1 - replace me]
-    [item 2 - replace me]
+[item 1 - replace me]
+[item 2 - replace me]
 
-    What I have learned working on this feature: [If you don't put anything here you are doing it wrong!]
+What I have learned working on this feature: [If you don't put anything here you are doing it wrong!]
 
-    Screenshots: [If you made some visual changes to the application please upload screenshots here, or remove this section]
+Screenshots: [If you made some visual changes to the application please upload screenshots here, or remove this section]
 
-    ```
+```
 
 ### **Continuous Integration**
   
-  Bump over to Travis to setup Continuous Integration.
-  
-  ![](/assets/travis_ci_landing.jpg)
+Bump over to Travis to setup Continuous Integration.
 
-  Visit [Travis-ci.org](http://www.travis-ci.org):
-  
-    - Sign up or whatever you have to do.
-    - Hit the little `+` next to `My Repositories`
-    - Flip the switch on the repository you just created
-    
-  ![](/assets/rails-scaffold-add-repo-on-travis.png)
-  
-  Create a file in the root of your folder called `.travis.yml`. Add:
+![](/assets/travis_ci_landing.jpg)
 
-    ```yml
-    language: ruby
-    rvm:
-      - 2.4.0
-    before_script:
-      - bundle exec rake db:create --all
-      - bundle exec rake db:migrate
-    script:
-      - bundle exec rake ci:tests
-    services:
-      - postgresql
-    notifications:
-      email: false
-    ```
+Visit [Travis-ci.org](http://www.travis-ci.org):
 
-  (Obviously, if you are using a different version of Ruby, you will put that version under `rvm`. And if you want a thousand emails about your builds passing or failing, don't include the last two lines.)
+  - Sign up or whatever you have to do.
+  - Hit the little `+` next to `My Repositories`
+  - Flip the switch on the repository you just created
+  
+![](/assets/rails-scaffold-add-repo-on-travis.png)
+
+Create a file in the root of your folder called `.travis.yml`. Add:
+
+```yml
+language: ruby
+rvm:
+  - 2.4.0
+before_script:
+  - bundle exec rake db:create --all
+  - bundle exec rake db:migrate
+script:
+  - bundle exec rake ci:tests
+services:
+  - postgresql
+notifications:
+  email: false
+```
+
+(Obviously, if you are using a different version of Ruby, you will put that version under `rvm`. And if you want a thousand emails about your builds passing or failing, don't include the last two lines.)
 
 ### **Code Coverage**
 
-  Create `lib/tasks/ci.rake`. We'll create a task to merge all test information and send it to coveralls. Add:
+Create `lib/tasks/ci.rake`. We'll create a task to merge all test information and send it to coveralls. Add:
 
-  ```ruby
-    unless Rails.env.production?
-      require 'rspec/core/rake_task'
-      require 'cucumber/rake/task'
-      require 'coveralls/rake/task'
-  
-      Coveralls::RakeTask.new
-  
-      namespace :ci do
-        desc 'Run all tests and generate a merged coverage report'
-        task tests: [:spec, :cucumber, 'coveralls:push']
-      end
+```ruby
+  unless Rails.env.production?
+    require 'rspec/core/rake_task'
+    require 'cucumber/rake/task'
+    require 'coveralls/rake/task'
+
+    Coveralls::RakeTask.new
+
+    namespace :ci do
+      desc 'Run all tests and generate a merged coverage report'
+      task tests: [:spec, :cucumber, 'coveralls:push']
     end
-  ```
+  end
+```
 
-  Create a file named `.simplecov` in root folder to bundle test coverage. 
+Create a file named `.simplecov` in root folder to bundle test coverage. 
   
-  Add:
+Add:
 
-  ```ruby
-    SimpleCov.start 'rails'
-  ```
+```ruby
+  SimpleCov.start 'rails'
+```
 
-  Visit [coveralls.io](http://coveralls.io):
+Visit [coveralls.io](http://coveralls.io):
 
   - Sign up or login to your existing account.
   - Hit the plus sign, then flip the switch on your new repo. (You probably have to refresh to see it.)
 
-  At the very top of `spec_helper`:
+At the very top of `spec_helper`:
 
-    ```ruby
-    require 'coveralls'
-    Coveralls.wear!
-    ```
+  ```ruby
+  require 'coveralls'
+  Coveralls.wear!
+  ```
 
-  In `/features/support/env.rb`: Delete comments. Add:
+In `/features/support/env.rb`: Delete comments. Add:
 
-    ```ruby 
-    require 'coveralls'
-    Coveralls.wear_merged!("rails")
-    ```
-  These four lines of code will generate code coverage reports for Coveralls. Access them on the Coveralls website.
+  ```ruby 
+  require 'coveralls'
+  Coveralls.wear_merged!("rails")
+  ```
+
+These four lines of code will generate code coverage reports for Coveralls. Access them on the Coveralls website.
 
 - Add `/coverage` to `.gitignore`
+- `rake` will run both `rspec` and `cucumber`. This should pass with no errors, and no examples
 
-- `rake` will run both `rspec` and `cucumber` --> should pass with no errors, and no examples
 
 ### **Continuous Deployment**
 
-  If you haven't before, you'll need to install the [Heroku Toolbelt](https://toolbelt.heroku.com/), create an account on Heroku and `heroku login` with those credentials.
+If you haven't before, you'll need to install the [Heroku Toolbelt](https://toolbelt.heroku.com/), create an account on Heroku and `heroku login` with those credentials.
 
-  Now `heroku create APP_NAME` twice - once for a development server, once for a production server. (If you fail to specify an app name, Heroku will make one for you).
+Now run `heroku create APP_NAME` twice - once for a development server, once for a production server. (If you fail to specify an app name, Heroku will make one for you).
 
 You need to obtain your secure Heroku key and encrypt it. If you've never used Travis before, you'll have to `gem install travis`.
 
