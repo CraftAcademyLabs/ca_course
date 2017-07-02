@@ -1,10 +1,22 @@
-# Blank Rails Scaffold with Continuous Integration & Development
+# Getting started with Rails Scaffold with Continuous Integration & Deployment
 
-It is well outside the scope of this README to explain the benefits of Continuous Integration and Continuous Deployment. If you're intrigued, start [here](http://www.agilemanifesto.org) and keep reading. Otherwise, here we goooooo
+So you are about to start building your awesome web application. If you are reading this article, you are probably curious about the awesomnes of Ruby on Rails framework. Good for you! 
 
-## Step-by-step to a scaffolded Rails app with Postgres, Travis and Coveralls:
+Let me take a moment and tell you about why Ruby on Rails is popular with the startup community.
 
-- **Create repo on GitHub.** 
+For starters let me point you to Airbnb, Twitter, Groupon, Indiegogo, SoundCloud, Zendesk and GitHub. All these great services ware built and ran on Ruby on Rails. Some of them, like Twitter, have since moved on to other stacks, but it was Rails that carried these startups from an idea to a fully featured service used by millions of users and funded by investors.
+
+It is the nature of the Ruby on Rails framework to change and evolve rapidly and as an entrepreneur you need to stay up to date with the web and new technologies. Facing continued change and development suits the very essence of a startup.
+
+If you’re new to Ruby on Rails, one of the most daunting aspects is knowing what’s the preferred way of accomplishing a given task. There are literally hundreds of coding practices or techniques that can make your life as a Ruby on Rails developer easier. In this article I will focus on how to set up a Rails 5.x application with some common frameworks for testing, test coverage metrics, Continuous Integration and Continuous Deployment. 
+
+It is well outside the scope of this article to explain the benefits of Continuous Integration and Continuous Deployment. If you're intrigued, start [here](http://www.agilemanifesto.org) and keep reading. 
+
+Otherwise, here we goooooo....
+
+## Step-by-step to a scaffolded Rails app with Postgres, Travis, Coveralls and Heroku
+
+### **Create repo on GitHub.** 
 
   ![](/assets/rails-scaffold-new-repo.png)
   
@@ -14,26 +26,27 @@ It is well outside the scope of this README to explain the benefits of Continuou
  
   ![](/assets/rails-scaffold-get-url.png) 
 
-- **Clone to your local machine.** 
+### **Clone to your local machine.** 
 
   `git clone REPO_PATH` locally where you want your project to live.
-- **Create a new Rails app.** 
+
+### **Create a new Rails app.** 
   
   In this setup we will use Postgres in order to be able to deploy to Heroku. We will also skip test because we're going to use Cucumber and RSpec instead of Minitest and skip the bundle for now because we're going to add a bunch of gems. We will use a variant of the `new`command that adds a `.` . This creates the app in the current folder and uses the folder name as application name. 
   
-  Run `rails new . --database=postgresql --skip-test-unit --skip-bundle` in your terminal
+  Run `rails new . --database=postgresql --skip-test --skip-bundle` in your terminal
   
   Say `n` to overwrite `.gitignore` (and `README`)
   
   ![](/assets/rails-scaffold-new-app.png)
   
-- **Setup a branch structure**
+### **Setup a branch structure**
 
   Switch to a development branch so you can keep your `master` branch clean. (We'll populate it later as we accept code into our production copy). 
   
   Run `git checkout -b develop` in your terminal
    
-- **Sync with GH**
+### **Sync with GH**
     
   Stage your new files for version control: `git add .`
 
@@ -53,7 +66,7 @@ It is well outside the scope of this README to explain the benefits of Continuou
   ![](/assets/rails-scaffold-after-push.png)
    
   
-- **Clean up code**
+### **Clean up code**
   
   In `Gemfile` you will find a lot of gems added by the framework. Most of them are useful and important byt there's also a lot of content we don't need. 
   
@@ -90,9 +103,9 @@ It is well outside the scope of this README to explain the benefits of Continuou
    ``` 
   
   
-- **Adding dependencies** 
+### **Adding dependencies** 
 
-   Add the following gems to your `Gemfile` (See the bottom of this article for a brief explanation of these gems):
+   Add the following gems to your `Gemfile`:
   
     ```ruby
     group :development, :test do
@@ -106,8 +119,20 @@ It is well outside the scope of this README to explain the benefits of Continuou
       gem 'coveralls', require: false
     end
     ```
+    
+#### Gem descriptions
+Gem | Description
+---------------- | :---------------------------------:
+[Rspec](https://github.com/rspec/rspec-rails) | Unit testing
+[Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) | Testing matchers for Rspec
+[Factory Girl](https://github.com/thoughtbot/factory_girl) | Easy creation of new table entries
+[Pry](https://github.com/pry/pry) | Debugging
+[Pry-Byebug](https://github.com/deivid-rodriguez/pry-byebug) | Allows you to step through debugger
+[Cucumber](https://github.com/cucumber/cucumber-rails) | Acceptance testing
+[DatabaseCleaner](https://github.com/DatabaseCleaner/database_cleaner) | Wipes the database after tests
+[Coveralls](https://github.com/lemurheavy/coveralls-ruby) | Integration with Coveralls service
  
-- **More cleaning**
+### **More cleaning**
 
   In `config/application.rb` remove comments and inside `class Application` add:
 
@@ -131,11 +156,11 @@ It is well outside the scope of this README to explain the benefits of Continuou
   Here we're turning off a bunch of auto-generators for things we'll be creating while we build the app. We've turned them all off, but we might want to leave some on if our project is complex or if we are going to have a lot of helpers, etc.
 
   
-- **Install dependencies**
+### **Install dependencies**
 
   Run `bundle install`. That installs any missing gems and creates your `Gemfile.lock` to reference them.
   
-- **Create your database**
+### **Create your database**
 
   Run the following commands to create your database and prepare it for use. 
   
@@ -145,7 +170,7 @@ It is well outside the scope of this README to explain the benefits of Continuou
   ```
   
   
-- **Install and configure testing frameworks**
+### **Install and configure testing frameworks**
 
   **Install Rspec** (for unit testing) with: 
   
@@ -165,7 +190,7 @@ It is well outside the scope of this README to explain the benefits of Continuou
   
   Run `bundle exec cucumber`. This should not error and find no examples
   
-- **More cleaning**
+### **More cleaning - again**
 
   Remove unnecessary comments from `rails_helper` and `spec_helper`.
   
@@ -194,7 +219,7 @@ It is well outside the scope of this README to explain the benefits of Continuou
     end
     ```
   
-- **(Optional) Create pull request template for Github**:
+### **(Optional) Create pull request template for Github**:
 
   - `mkdir .github`
   - `touch .github/PULL_REQUEST_TEMPLATE.md`
@@ -214,7 +239,7 @@ It is well outside the scope of this README to explain the benefits of Continuou
 
     ```
 
-- **Continuous Integration**
+### **Continuous Integration**
   
   Bump over to Travis to setup Continuous Integration.
   
@@ -247,7 +272,7 @@ It is well outside the scope of this README to explain the benefits of Continuou
 
   (Obviously, if you are using a different version of Ruby, you will put that version under `rvm`. And if you want a thousand emails about your builds passing or failing, don't include the last two lines.)
 
-- **Add Coveralls for code coverage**
+### **Code Coverage**
 
   Create `lib/tasks/ci.rake`. We'll create a task to merge all test information and send it to coveralls. Add:
 
@@ -298,7 +323,7 @@ It is well outside the scope of this README to explain the benefits of Continuou
 
 - `rake` will run both `rspec` and `cucumber` --> should pass with no errors, and no examples
 
-- **Continuous Deployment**
+### **Continuous Deployment**
 
   If you haven't before, you'll need to install the [Heroku Toolbelt](https://toolbelt.heroku.com/), create an account on Heroku and `heroku login` with those credentials.
 
@@ -333,18 +358,7 @@ It is well outside the scope of this README to explain the benefits of Continuou
   
   
 That's about it. You now have a basic scaffold application and are ready to build some awesome shit! Work smart, stick to the outside-in testing process and have fun!
-**
-Happy coding!**
+
+**Happy coding!**
   
 
-#### Gem descriptions
-Gem | Description
----------------- | :---------------------------------:
-[Rspec](https://github.com/rspec/rspec-rails) | Unit testing
-[Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers) | Testing matchers for Rspec
-[Factory Girl](https://github.com/thoughtbot/factory_girl) | Easy creation of new table entries
-[Pry](https://github.com/pry/pry) | Debugging
-[Pry-Byebug](https://github.com/deivid-rodriguez/pry-byebug) | Allows you to step through debugger
-[Cucumber](https://github.com/cucumber/cucumber-rails) | Acceptance testing
-[DatabaseCleaner](https://github.com/DatabaseCleaner/database_cleaner) | Wipes the database after tests
-[Coveralls](https://github.com/lemurheavy/coveralls-ruby) | Code coverage specs
