@@ -6,28 +6,89 @@ It is well outside the scope of this README to explain the benefits of Continuou
 
 - **Create repo on GitHub.** 
 
- On your GH account crate a new public repository and include Rails `.gitignore` and optional `README`. Copy path to repo.
+  ![](/assets/Skärmavbild 2017-07-02 kl. 20.21.04.png)
+ On your GH account crate a new public repository and include Rails `.gitignore` and optional `README`. 
+ 
+ Copy path to repo.
+  ![](/assets/Skärmavbild 2017-07-02 kl. 20.21.54.png)
+ 
+
 - **Clone to your local machine.** 
 
   `git clone REPO_PATH` locally where you want your project to live.
 - **Create a new Rails app.** 
   
-  Use Postgres if you plan to deploy to Heroku. Skip test because we're going to use Cucumber and RSpec instead of Minitest and skip the bundle for now because we're going to add a bunch of gems. `rails new . --database=postgresql --skip-test --skip-bundle` 
+  In this setup we will use Postgres in order to be able to deploy to Heroku. We will also skip test because we're going to use Cucumber and RSpec instead of Minitest and skip the bundle for now because we're going to add a bunch of gems. We will use a variant of the `new`command that adds a `.` . This creates the app in the current folder and uses the folder name as application name. 
+  
+  Run `rails new . --database=postgresql --skip-test-unit --skip-bundle` in your terminal
   
   Say `n` to overwrite `.gitignore` (and `README`)
+  
+  ![](/assets/Skärmavbild 2017-07-02 kl. 20.25.55.png)
 - **Setup a branch structure**
 
-  Switch to a development branch so you can keep your `master` branch clean. (We'll populate it later as we accept code into our production copy). `git checkout -b develop`
+  Switch to a development branch so you can keep your `master` branch clean. (We'll populate it later as we accept code into our production copy). 
   
+  Run `git checkout -b develop` in your terminal
+   
 - **Sync with GH**
     
   Stage your new files for version control: `git add .`
 
-  Make your first commit: `git commit -m 'Initial commit'`
+  Make your first commit: 
+  
+  ```
+  git commit -m 'scaffolds new rails application'
+  ```
+  
+  ![](/assets/Skärmavbild 2017-07-02 kl. 20.36.47.png)
+  
+  You can also push to your remote repo on GitHub at this stage:
+  ```
+  git push origin develop
+  ```
+  ![](/assets/Skärmavbild 2017-07-02 kl. 20.40.01.png)
+   
   
 - **Clean up code**
   
-  In `Gemfile`, delete comments and everything in `:development, :test` and add:
+  In `Gemfile` you will find a lot of gems added by the framework. Most of them are useful and important byt there's also a lot of content we don't need. 
+  
+  Delete comments and everything in `:development, :test` group. 
+  
+   Your `Gemfile` should look something like this:
+   
+   ```ruby 
+     source 'https://rubygems.org'
+    
+    git_source(:github) do |repo_name|
+      repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+      "https://github.com/#{repo_name}.git"
+    end
+    
+    
+    gem 'rails', '~> 5.1.1'
+    gem 'pg', '~> 0.18'
+    gem 'puma', '~> 3.7'
+    gem 'sass-rails', '~> 5.0'
+    gem 'uglifier', '>= 1.3.0'
+    gem 'turbolinks', '~> 5'
+    gem 'jbuilder', '~> 2.5'
+    
+    group :development, :test do
+    end
+    
+    group :development do
+      gem 'web-console', '>= 3.3.0'
+      gem 'listen', '>= 3.0.5', '< 3.2'
+      gem 'spring'
+      gem 'spring-watcher-listen', '~> 2.0.0'
+    end
+   ``` 
+  
+  
+- **Adding dependencies ** 
+ Add the following gems to your `Gemfile`(See the bottom of this article for a brief explanation of these gems):
 
   ```ruby
   group :development, :test do
@@ -90,6 +151,13 @@ It is well outside the scope of this README to explain the benefits of Continuou
 - **Install dependencies**
 
   Run `bundle install`. That installs any missing gems and creates your `Gemfile.lock` to reference them.
+  
+- Create your database
+
+  In `config/database.yml` - rename your databases or they will be stuck at "blank_rails_scaffold".
+
+
+
   
 - **Install and configure testing frameworks**
 
@@ -228,9 +296,6 @@ It is well outside the scope of this README to explain the benefits of Continuou
 
   Format your repo like this: `YOUR_GITHUB_NAME/PROJECT_REPO`. This setup will deploy your application after a successful build at develop or master.
   
-## Files to Adjust
-- `config/database.yml` - rename your databases or they will be stuck at "blank_rails_scaffold".
-
 
 #### Gem descriptions
 Gem | Description
