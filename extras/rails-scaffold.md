@@ -245,41 +245,43 @@ It is well outside the scope of this README to explain the benefits of Continuou
 
   (Obviously, if you are using a different version of Ruby, you will put that version under `rvm`. And if you want a thousand emails about your builds passing or failing, don't include the last two lines.)
 
-## Now Coveralls for code coverage
+- **Add Coveralls for code coverage**
 
-- Create `lib/tasks/ci.rake`. We'll create a task to merge all test information and send it to coveralls. Add:
+  Create `lib/tasks/ci.rake`. We'll create a task to merge all test information and send it to coveralls. Add:
 
   ```
-  unless Rails.env.production?
-    require 'rspec/core/rake_task'
-    require 'cucumber/rake/task'
-    require 'coveralls/rake/task'
-
-    Coveralls::RakeTask.new
-
-    namespace :ci do
-      desc 'Run all tests and generate a merged coverage report'
-      task tests: [:spec, :cucumber, 'coveralls:push']
+    unless Rails.env.production?
+      require 'rspec/core/rake_task'
+      require 'cucumber/rake/task'
+      require 'coveralls/rake/task'
+  
+      Coveralls::RakeTask.new
+  
+      namespace :ci do
+        desc 'Run all tests and generate a merged coverage report'
+        task tests: [:spec, :cucumber, 'coveralls:push']
+      end
     end
-  end
   ```
 
-- Create `.simplecov` in root folder to bundle test coverage. Add:
+  Create a file named `.simplecov` in root folder to bundle test coverage. 
+  
+  Add:
 
+  ```ruby
+    SimpleCov.start 'rails'
   ```
-  SimpleCov.start 'rails'
-  ```
 
-- Visit [coveralls.io](http://coveralls.io):
+  Visit [coveralls.io](http://coveralls.io):
 
-  - Sign up or whatever.
+  - Sign up or login to your existing account.
   - Hit the plus sign, then flip the switch on your new repo. (You probably have to refresh to see it.)
 
 - At the very top of `spec_helper`:
 
-  ```
-  require 'coveralls'
-  Coveralls.wear!
+  ```ruby
+    require 'coveralls'
+    Coveralls.wear!
   ```
 
 - In `/features/support/env.rb`: Delete comments. Add:
