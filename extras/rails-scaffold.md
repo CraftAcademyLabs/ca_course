@@ -162,13 +162,13 @@ It is well outside the scope of this README to explain the benefits of Continuou
   ```
   bundle exec rails g cucumber:install
   ```
-
-  Create the test and development databases: `rails db:create --all`
-  Migrate the test and development databases: `rails db:migrate --all`
+  
   Run `bundle exec cucumber`. This should not error and find no examples
   
 - **More cleaning**
+
   Remove unnecessary comments from `rails_helper` and `spec_helper`.
+  
   In `rails_helper`, inside the `RSpec.configure` block add DatabaseCleaner bits:
   
   ```ruby
@@ -185,14 +185,14 @@ It is well outside the scope of this README to explain the benefits of Continuou
   
   Again in `rails_helper`, this time outside the `RSpec.configure` block, add ShouldaMatchers configuration:
   
-  ```ruby
-  Shoulda::Matchers.configure do |config|
-  config.integrate do |with|
-  with.test_framework :rspec
-  with.library :rails
-  end
-  end
-  ```
+    ```ruby
+    Shoulda::Matchers.configure do |config|
+      config.integrate do |with|
+        with.test_framework :rspec
+        with.library :rails
+      end
+    end
+    ```
   
 - **(Optional) Create pull request template for Github**:
 
@@ -214,7 +214,7 @@ It is well outside the scope of this README to explain the benefits of Continuou
 
     ```
 
-## Bump over to Travis to setup Continuous Integration
+- Bump over to Travis to setup Continuous Integration
 
 - Visit [Travis-ci.org](http://www.travis-ci.org):
 
