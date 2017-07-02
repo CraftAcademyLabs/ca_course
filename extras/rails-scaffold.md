@@ -134,61 +134,62 @@ Gem | Description
  
 ### **More cleaning**
 
-  In `config/application.rb` remove comments and inside `class Application` add:
+In `config/application.rb` remove comments and inside `class Application` add:
 
-  ```ruby
-  config.generators do |generate|
-    generate.helper false
-    generate.assets false
-    generate.view_specs false
-    generate.helper_specs false
-    generate.routing_specs false
-    generate.controller_specs false
-  end
-    ```
+```ruby
+config.generators do |generate|
+  generate.helper false
+  generate.assets false
+  generate.view_specs false
+  generate.helper_specs false
+  generate.routing_specs false
+  generate.controller_specs false
+end
+  ```
     
-    Also, search for the following comment and setting and remove it: 
-    ```ruby 
-    # Don't generate system test files.
-    config.generators.system_tests = nil
-    ```
+Also, search for the following comment and setting and remove it:
+ 
+```ruby 
+# Don't generate system test files.
+config.generators.system_tests = nil
+```
 
-  Here we're turning off a bunch of auto-generators for things we'll be creating while we build the app. We've turned them all off, but we might want to leave some on if our project is complex or if we are going to have a lot of helpers, etc.
+Here we're turning off a bunch of auto-generators for things we'll be creating while we build the app. We've turned them all off, but we might want to leave some on if our project is complex or if we are going to have a lot of helpers, etc.
 
   
 ### **Install dependencies**
 
-  Run `bundle install`. That installs any missing gems and creates your `Gemfile.lock` to reference them.
+Run `bundle install`. That installs any missing gems and creates your `Gemfile.lock` to reference them.
   
-### **Create your database**
+### Create your database
 
-  Run the following commands to create your database and prepare it for use. 
+Run the following commands to create your database and prepare it for use. 
   
-  ```
-  rails db:create
-  rails db:migrate
-  ```
+```
+rails db:create
+rails db:migrate
+```
   
   
 ### **Install and configure testing frameworks**
 
-  **Install Rspec** (for unit testing) with: 
-  
-  ```
-  bundle exec rails generate rspec:install
-  ```
+**Install Rspec** (for unit testing) with: 
 
-  Configure the terminal output to show test messages rather than green or red dots when RSpec run: In the hidden file `.rspec`, add: `--format documentation`
+```
+bundle exec rails generate rspec:install
+```
+
+Configure the terminal output to show test messages rather than green or red dots when RSpec run: In the hidden file `.rspec`, add: `--format documentation`
   
-  Run `bundle exec rspec`. This should work now and return no errors (and also no tests, because you haven't written any)
+Run `bundle exec rspec`. This should work now and return no errors (and also no tests, because you haven't written any)
   
-  **Install Cucumber** (for acceptance testing) with: 
-  
-  ```
-  bundle exec rails g cucumber:install
-  ```
-  
-  Run `bundle exec cucumber`. This should not error and find no examples
+**Install Cucumber** (for acceptance testing) with: 
+
+```
+bundle exec rails g cucumber:install
+```
+
+Run `bundle exec cucumber`. This should not error and find no examples
   
 ### **More cleaning - again**
 
@@ -196,34 +197,35 @@ Remove unnecessary comments from `rails_helper` and `spec_helper`.
   
 In `rails_helper`, inside the `RSpec.configure` block add DatabaseCleaner bits:
   
-    ```ruby
-    config.before(:suite) do
-      DatabaseCleaner.strategy = :transaction
-      DatabaseCleaner.clean_with(:truncation)
-    end
-    config.around(:each) do |example|
-      DatabaseCleaner.cleaning do
-        example.run
-      end
-    end
-    ```
+```ruby
+config.before(:suite) do
+  DatabaseCleaner.strategy = :transaction
+  DatabaseCleaner.clean_with(:truncation)
+end
+config.around(:each) do |example|
+  DatabaseCleaner.cleaning do
+    example.run
+  end
+end
+```
   
 Again in `rails_helper`, this time outside the `RSpec.configure` block, add ShouldaMatchers configuration:
   
-    ```ruby
-    Shoulda::Matchers.configure do |config|
-      config.integrate do |with|
-        with.test_framework :rspec
-        with.library :rails
-      end
-    end
-    ```
+```ruby
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+```
   
 ### **(Optional) Create pull request template for Github**:
 
   - `mkdir .github`
   - `touch .github/PULL_REQUEST_TEMPLATE.md`
-  - Add :
+
+Add :
 
 ```
  PT Story: [paste Pivotal Tracker link here]
