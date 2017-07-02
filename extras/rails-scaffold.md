@@ -54,10 +54,10 @@ It is well outside the scope of this README to explain the benefits of Continuou
   
   In `Gemfile` you will find a lot of gems added by the framework. Most of them are useful and important byt there's also a lot of content we don't need. 
   
-  Delete comments and everything in `:development, :test` group. 
-  
-   Your `Gemfile` should look something like this:
-   
+  Delete comments and everything in `:development, :test` group. Only delete the Windows gem at the bottom of `Gemfile` if you're not working in Windows
+
+  Your `Gemfile` should look something like this:
+ 
    ```ruby 
      source 'https://rubygems.org'
     
@@ -103,7 +103,7 @@ It is well outside the scope of this README to explain the benefits of Continuou
   end
   ```
  
-  Delete the Windows gem at the bottom of `Gemfile`if you're not working in Windows
+- **More cleaning**
   
   Remove unnecessary comments from `rails_helper` and `spec_helper`.
   
@@ -145,7 +145,6 @@ It is well outside the scope of this README to explain the benefits of Continuou
     ```
 
   Here we're turning off a bunch of auto-generators for things we'll be creating while we build the app. We've turned them all off, but we might want to leave some on if our project is complex or if we are going to have a lot of helpers, etc.
-
 
   
 - **Install dependencies**
