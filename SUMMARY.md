@@ -88,6 +88,7 @@
   * [About README's](about_readme.md)
   * [MVC](extras/model_view_controller.md)
   * [Three-Tier Architecture](extras/three-tier_architecture.md)
+  * [Rails Scaffold](extras/rails-scaffold.md)
 * [Career](career.md)
   * [General Personality](career/general-personality.md)
   * [Agile Mindset](career/agile-mindset.md)
