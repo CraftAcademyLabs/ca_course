@@ -1,4 +1,4 @@
-# Getting started with Rails Scaffold with Continuous Integration & Deployment
+# Getting started with Rails, Tests, Continuous Integration & Deployment
 
 So you are about to start building your awesome web application. If you are reading this article, you are probably curious about the awesomnes of Ruby on Rails framework. Good for you! 
 
@@ -323,7 +323,8 @@ In `/features/support/env.rb`: Delete comments. Add:
 These four lines of code will generate code coverage reports for Coveralls. Access them on the Coveralls website.
 
 - Add `/coverage` to `.gitignore`
-- `rake` will run both `rspec` and `cucumber`. This should pass with no errors, and no examples
+
+The `rake` command will run both rspec and cucumber. This should pass with no errors but also with no examples (you have not added any tests yet…)
 
 
 ### **Continuous Deployment**
