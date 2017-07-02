@@ -296,14 +296,20 @@ It is well outside the scope of this README to explain the benefits of Continuou
 
 - `rake` will run both `rspec` and `cucumber` --> should pass with no errors, and no examples
 
-## Continuous Deployment
+- **Continuous Deployment**
 
-- If you haven't before, you'll need to install the [Heroku Toolbelt](https://toolbelt.heroku.com/), create an account on Heroku and `heroku login` with those credentials.
-- Now `heroku create APP_NAME` twice - once for a development server, once for a production server. (If you fail to specify an app name, Heroku will make one for you).
-- You need to obtain your secure Heroku key and encrypt it. You can do so by:
+  If you haven't before, you'll need to install the [Heroku Toolbelt](https://toolbelt.heroku.com/), create an account on Heroku and `heroku login` with those credentials.
 
-  - `travis encrypt $(heroku auth:token) --add deploy.api_key`
-  - Honestly, this has never worked for me. Instead, you an grab your Heroku key with `heroku auth:token` and run: `travis encrypt YOUR_HEROKU_KEY`. If you've never used Travis before, you'll have to `gem install travis`.
+  Now `heroku create APP_NAME` twice - once for a development server, once for a production server. (If you fail to specify an app name, Heroku will make one for you).
+- You need to obtain your secure Heroku key and encrypt it. If you've never used Travis before, you'll have to `gem install travis`.
+
+You can now ask Travis to make the necessary modifications to your `.travis.yml`  file:
+
+  ```
+  travis encrypt $(heroku auth:token) --add deploy.api_key
+  ```
+  
+  If that fails for you, grab your Heroku key with `heroku auth:token` and run: `travis encrypt YOUR_HEROKU_KEY`. 
 
 - Spin back up that `.travis.yml` file and add:
 
