@@ -1,4 +1,6 @@
-##SOLID Principles with ruby examples
+**Note that there is some good examples of SOLID here: https://rubygarage.org/blog/solid-principles-of-ood**		
+
+## SOLID Principles with ruby examples
 **S.O.L.I.D** is an acronym for the first five object-oriented design(OOD) principles. 
 These principles, when combined together, make it easy for a programmer to develop software that are easy to maintain and extend. They also make it easy for developers to avoid code smells, easily refactor code, and are also a part of the agile or adaptive software development.
 
@@ -8,7 +10,7 @@ These principles, when combined together, make it easy for a programmer to devel
 * **I** - Interface segregation principle
 * **D** - Dependency Inversion Principle
 
-###Single responsibility principle - SRP
+### Single responsibility principle - SRP
 ####_A class should have one and only one reason to change, meaning that a class should have only one job._
 
 Probably the most well known principle, and one that you should try to adhere to most of the time. It helps keep classes and methods small and maintainable.
