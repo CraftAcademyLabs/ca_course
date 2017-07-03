@@ -1,6 +1,6 @@
 # Getting started with Rails, Tests, Continuous Integration & Deployment
 
-So you are about to start building your awesome web application. If you are reading this article, you are probably curious about the awesomnes of Ruby on Rails framework. Good for you! 
+So you are about to start building your awesome web application. If you are reading this article, you are probably curious about the awesomeness of Ruby on Rails framework. Good for you! 
 
 Let me take a moment and tell you about why Ruby on Rails is popular with the startup community.
 
@@ -343,9 +343,9 @@ You need to obtain your secure Heroku key and encrypt it. If you've never used T
   travis encrypt $(heroku auth:token) --add deploy.api_key
   ```
   
-  If that fails for you, grab your Heroku key with `heroku auth:token` and run: `travis encrypt YOUR_HEROKU_KEY`. 
+  If that fails for you, grab your Heroku key manually with `heroku auth:token`, copy it, and run: `travis encrypt YOUR_HEROKU_KEY`. 
 
-  Spin back up that `.travis.yml` file and add:
+  Open up your `.travis.yml` file and add:
 
   ```
   deploy:

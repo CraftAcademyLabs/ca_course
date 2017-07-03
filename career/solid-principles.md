@@ -47,6 +47,10 @@ The principle states that you should be able to replace any instances of a paren
 
 States that no client should be forced to depend on methods it does not use. ISP splits interfaces which are very large into smaller and more specific ones so that clients will only have to know about the methods that are of interest to them. Such shrunken interfaces are also called role interfaces. ISP is intended to keep a system decoupled and thus easier to refactor, change, and redeploy.
 
+```ruby
+[ADD CODE EXAMPLE]
+```
+
 ###Dependency inversion principle - DIP
 ####_Abstractions should not depend upon details. Details should depend upon abstractions._
 
