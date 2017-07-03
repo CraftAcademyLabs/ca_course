@@ -95,4 +95,5 @@
   * [Advanced Ruby](career/advanced-ruby.md)
   * [Databases](career/databases.md)
   * [SOLID Principles](career/solid-principles.md)
+* [Sinatra & SlowFood](sinatra-and-slowfood.md)
 

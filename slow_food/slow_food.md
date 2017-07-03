@@ -1,6 +1,8 @@
 ### SlowFood (Sinatra)
 
-**Welcome to the Week 3 of the Bootcamp and the Slow Food Challenge. Our client is a Restaurant owner that needs a website where he can list his menu and allow visitors to place orders. The challenge is to build an Online Food Ordering System - a web based application that enables customers to order their food online for home delivery or pick up from the restaurant.** 
+**Welcome to the Week 3 of the Bootcamp and the Slow Food Challenge.** 
+
+Our client is a Restaurant owner that needs a website where he can list his menu and allow visitors to place orders. The challenge is to build an Online Food Ordering System - a web based application that enables customers to order their food online for home delivery or pick up from the restaurant. 
 
 This is the first challenge in the Online Food Ordering domain that we will be working on during the course. It constitutes a part of a larger theme that we are using throughout our bootcamp. Further down the road we will challenge you with developing a more extensive application that will have more of a marketplace functionality. The idea is that by building a fully functional service with multiple restaurants, delivery system, payments, ranking, etc, you will learn how to build rather complex systems and learn to use different technologies. Eventually you will be challenged with building an API to expose the applications data to other applications (like a mobile client).
 
