@@ -25,11 +25,71 @@ However, the hard part about putting this principle into practice is figuring ou
 ####_Software entities should be open for extension, but closed for modification. _
 Classes or methods should be open for extension, but closed for modification. An entity can allow its behavior to be extended without modifying its source code. 
 
-We should strive for modular designs that make it possible for us to change the behavior of the system without making modifications to the classes themselves
+We should strive for modular designs that make it possible for us to change the behavior of the system without making modifications to the classes themselves.
+
+Lets take an example with a `Report` class. In order to output the object in a specific format (default: as a JSON object)  we can create a method for it. It could look something like this: 
 
 ```ruby
-[ADD CODE EXAMPLE]
+require 'json'
+
+class Report
+  attr_accessor :body
+  def initialize(body: 'default value')
+    @body = body
+  end
+
+  def parse
+    JSON.generate({body: @body})
+  end
+end
+
+# Usage
+r = Report.new(
+=> #<Report:0x007faf231d8c40 @body="default value">
+r.parse
+=> "{\"body\":\"default value\"}"
 ```
+Now, let's say that we want to add a way to output in XML. With the current structure we would need to add a new method to parse XML. Another way is to refactor the code to be more inline with OCP (and make use of DIP as well).
+
+```ruby
+# More OCP
+
+module JSONParser
+  require 'json'    
+  def self.parse(object)
+    JSON.generate({body: object.body})
+  end
+  
+end
+
+module XMLParser 
+  def self.parse(object)
+    "This will output some xml containing '#{object.body}'"
+  end 
+end
+
+class Report
+  attr_accessor :body
+  def initialize(body: 'default value')
+    @body = body
+  end
+
+  def parse(parser: JSONParser)
+    parser.parse(self)
+  end
+end
+
+# Usage
+r = Report.new
+=> #<Report:0x007faf231d8c40 @body="default value">
+r.parse
+=> "{\"body\":\"default value\"}"
+r.parse(parser: XMLParser)
+=> "This will output some xml containing 'default value'"
+# Note: Parsing actual XML is outside the scope for this example.
+```
+Note that the refactoring did NOT change the way the object behave but rather extended the functionality. 
+
 
 
 ###Liskov substitution principle - LSP
