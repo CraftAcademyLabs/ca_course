@@ -1,3 +1,5 @@
+**Note that there is some good examples of SOLID here: https://rubygarage.org/blog/solid-principles-of-ood**
+
 ##SOLID Principles with ruby examples
 **S.O.L.I.D** is an acronym for the first five object-oriented design(OOD) principles. 
 These principles, when combined together, make it easy for a programmer to develop software that are easy to maintain and extend. They also make it easy for developers to avoid code smells, easily refactor code, and are also a part of the agile or adaptive software development.
@@ -58,8 +60,7 @@ module JSONParser
   require 'json'    
   def self.parse(object)
     JSON.generate({body: object.body})
-  end
-  
+  end 
 end
 
 module XMLParser 
