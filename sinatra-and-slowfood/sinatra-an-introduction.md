@@ -15,9 +15,6 @@ A lot happens in the software development world and there is no definite answer 
 
 This is not a time nor place to have a deeper discussions of all the various web application frameworks out there. The objective should be to understand the concepts of what happens in an application (What is a request to a server? What do the server respond with? How is tha data needed to create an reponse structured, stored and accessed? Etc). Keep in mind that once you learn one specific framework, it’s usually fairly easy to learn a new one. 
 
-We've chosen the Sinatra framework as the first one to introduce to you in this bootcamp. In our opinion Sinatra is rather simple to learn, it has a quite remarkable amount of libraries (ruby gems) you can leverage on while building your application, it's a good choice for basic information systems and rather accessible in terms of documentation and support. 
-
-
-
+**We've chosen the Sinatra framework as the first one to introduce to you in this bootcamp. In our opinion Sinatra is rather simple to learn, it has a quite remarkable amount of libraries (ruby gems) you can leverage on while building your application, it's a good choice for basic information systems and rather accessible in terms of documentation and support.**
 
  
