@@ -43,6 +43,7 @@ end
 ```
 
 Head over to your terminal, stop the server with command + C and restart it with `ruby app.rb`. Reload the browser window. 
+
 ![](/assets/sinatra_hello_world_2.png)
 
 It means that the HTML is being passed in to the view and rendered by the browser, right? That is rather important to know and opens up a lot of possibilities. Lets make use of some Ruby to see if that works. Modify your `get '/'` method to this:
