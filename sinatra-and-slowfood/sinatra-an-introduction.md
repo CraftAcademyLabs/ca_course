@@ -17,4 +17,7 @@ This is not a time nor place to have a deeper discussions of all the various web
 
 We've chosen the Sinatra framework as the first one to introduce to you in this bootcamp. In our opinion Sinatra is rather simple to learn, it has a quite remarkable amount of libraries (ruby gems) you can leverage on while building your application, it's a good choice for basic information systems and rather accessible in terms of documentation and support. 
 
+
+
+
  
