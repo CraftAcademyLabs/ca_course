@@ -118,7 +118,23 @@ $ mkdir assets/images
 $ mkdir assets/fonts
 ```
 
-Also, you are going to need a layout file in your `views` folder
+Also, you are going to need a template file in your `views` folder. We need to create that folder and template file:
+
+```shell
+$ mkdir lib/views
+$ touch lib/views/index.erb
+
+```
+
+
+Add following content to `index.erb`:
+
+```erb
+<p>This is in my index file</p>
+```
+
+
+We still need to create a Layout file to make the second spec pass. 
 ```shell
 $ touch lib/views/layout.erb
 
@@ -131,11 +147,11 @@ Open that file and add:
 <%= yield %>
 ```
 
-Create a `index.erb` file in the `views` folder. Add following content:
+Running RSpec now should make the tests go green. 
 
-```erb
-<p>This is in my index file</p>
-```
+### Basic styling
+
+So we are good on our specs. But lets do a bit more.
 
 Create a file called `app.css` in the `assets/css` folder. Add this code to that file
 
@@ -145,12 +161,12 @@ h1 {
 }
 ```
 
-Modify your `views/layout.erb`
+Modify your `views/layout.erb` to better follow the HTML standards and make sure we actually load the css. 
 ```erb
 <!DOCTYPE html>
 <head>
   <meta charset="utf-8">
-  <title>My Sinatra App</title>
+  <title>My First Sinatra App</title>
   <link rel="stylesheet" href="/css/app.css">
 </head>
 <body>
@@ -159,6 +175,7 @@ Modify your `views/layout.erb`
 </body>
 
 ```
+
 
 ###Reflect and review
 1. Google each and every one of the gems in the `:development, :test` group of your Gemfile. Try the following searches:
