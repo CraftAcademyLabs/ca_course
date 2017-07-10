@@ -3,6 +3,7 @@ We will get started by writing the least amout of code to get a Sinatra applicat
 
 We will start with installing Sinatra on our machine. In your terminal, run `gem install sinatra`. That should be rather 
 Create a project folder called `dancing_with_sinatra`. 
+
 In that folder, create a file named `app.rb` (yes, Sinatra is a framework based on Ruby, so your Ruby skills will come in handy here.) 
 
 Add the following code to `app.rb` 
@@ -31,6 +32,8 @@ As you see the string you passed in to the `get '/'` method is displayed on the 
 * We defined a URI (the '/' is often referred to as a `root path`)
 * We added some content to be displayed on page that the path will render.
 
+### Webpages contain HTML
+
 Let's try something else. How about adding some HTML?
 
 Modify your `get '/'` method to look like this: 
@@ -46,10 +49,30 @@ Head over to your terminal, stop the server with command + C and restart it with
 
 ![](/assets/sinatra_hello_world_2.png)
 
-It means that the HTML is being passed in to the view and rendered by the browser, right? That is rather important to know and opens up a lot of possibilities. Lets make use of some Ruby to see if that works. Modify your `get '/'` method to this:
+It means that the HTML is being passed in to the view and rendered by the browser, right? That is rather important to know and opens up a lot of possibilities. 
+
+
+### A redirect
+This is a "Hello World" application, so the url we should be working with should  reflect this. Lets agree that rather than `root_path` we should work with a `/hello` path. Lets make sure that a user always gets redirected to that path but still make sure that we greet the user. 
 
 ```ruby
 get '/' do
+  redirect '/hello'
+end
+
+get '/hello' do
+  '<h1>Hello World</h1>'
+end
+
+```
+Try it out in your browser
+
+### Some Ruby
+
+Lets make use of some Ruby to see if that works. Modify your `get '/hello'` method to this:
+
+```ruby
+get '/hello' do
   greeting = 'Hello'
   object = 'Earth'
   "<h1>#{greeting} #{object}</h1>"
@@ -64,6 +87,7 @@ Yeah, so Ruby string interpolation works, right? This means that we can ask Sina
 
 
 
+### Developer happiness 1
 
 
 Alright, lets make this more sustainable by adding some settings that will make our development process more sustainable. First of all, the constant restarting of the server needs to stop. Also, we need to keep track of our gems in a better way than installing them directly (what if you need to share the code with another developer for instance? How would she/he know what gems to install?).
@@ -91,7 +115,7 @@ You have to require that extension in your `app.rb` file to get it to work.
 require 'sinatra'
 require 'sinatra/reloader' if development?
 
-get '/' do
+get '/hello' do
   greeting = 'Reloaded'
   object = 'Earth'
   "<h1>#{greeting} #{object}</h1>"
@@ -99,7 +123,9 @@ end
 
 ```
 
-Alright, from now on we can skip the stoping and restarting the server. 
+Alright, from now on we can skip the stoping and restarting the server. Happy? 
+
+
 
 
 
