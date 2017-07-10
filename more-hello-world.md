@@ -16,7 +16,7 @@ In our case our route specifies a path that is a pattern: the last part of the p
 
 Sinatra therefore adds the key `name` to the params hash, and sets the given string from the path (i.e. from the URL) to it.
 
-There are ather ways to pass in params. Lets have a look.
+There are other ways to pass in params. Lets have a look.
 
 ```ruby
 get '/hello/:name' do
@@ -33,4 +33,32 @@ Try these URL's in your browser:
 http://localhost:4567/hello/Thomas
 http://localhost:4567/hello/Thomas?greeting=Hi
 ```
+
+One of the most common way to pass in params to your app is by using forms. We will be covering that in a while.
+
+### View templates
+
+Okay, so we can render HTML in our route methods. What if the HTML grow complex? We would end up with a lot of HTML tags in our method and that is not very readable, right? We can extract the view into a separate file. We refer to these files as Templates or View templates. 
+
+Create a folder called `views` in your project root. In that folder, create a file named `index.erb`. ERB stands for Embedded Ruby. This means that we can embed and execute Ruby code in those HTML files. 
+
+Add the following code to it:
+```erb
+<h1 style="color: red;"><%= @message %></h1>
+```
+(I added the red styling so you will see that this is the file actually rendered)
+
+Modify your `hello_path` to look like this:
+```ruby
+get '/hello/:name' do
+  if params[:greeting]
+    @message = "#{params[:greeting]} #{params[:name]}"
+  else
+    @message = "Hello #{params[:name]}"
+  end
+  erb :index
+end
+
+```
+
 
