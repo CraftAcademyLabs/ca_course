@@ -34,6 +34,9 @@ That means that the request will use the HTTP verb POST.
 
 The `@message` instance variable will be set and passed in to the View Template `:index` that will be rendered by the browser. 
 
+### Refactoring exercise
+The changes we made will result in some code repetition. During my demo I extracted some of the functionality to a separate method. Can you replicate that? 
+
 
 
  
