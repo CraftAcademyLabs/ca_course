@@ -49,12 +49,25 @@ Run `bundle install` in your terminal
 
 Also add `config.include Rack::Test::Methods` to your `Rspec.configure block` in `spec/spec-helper.rb`.
 
-Create a `features` folder in `spec` 
+If you run RSpec now you should see the following output: 
+```shell
+$ rspec
+No examples found.
+
+Finished in 0.00034 seconds (files took 1.6 seconds to load)
+0 examples, 0 failures
 ```
-mkdir spec/features
-``` 
-Create a `my_app_spec.rb` in the `features` folder. 
-Add your first test:
+
+
+### Working with views
+We will introduce the concept of a application Layout File that can be used to wrap around all the other views in our application. The keywor here id the `yield` command. Lets show by an axample. 
+
+Create a `features` folder inside the `spec` folder.
+```shell
+$ mkdir spec/features
+```
+
+First we start to write our test. Create a `my_app_spec.rb` in the `features` folder. Add your first test:
 ```ruby
 describe 'home page' do
 
@@ -72,6 +85,12 @@ describe 'home page' do
 end
 
 ```
+Read through the code carefully. What we are doing here is that we tell RSpec to:
+1. Visit the Root Path. 
+2. Test if we actualy ARE on the Root Path.
+3. Test for some content on the page.
+
+So we have a test but we have no implementation code. 
 
 We need to modify the route in the `my_app.rb` file (that is the file that, among other things, tells the application what to do depending on the request it gets).
 
