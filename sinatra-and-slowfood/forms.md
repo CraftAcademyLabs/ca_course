@@ -25,8 +25,9 @@ end
 
 Okay, so what is happening here? 
 
-The form contains a field with a name attribute called `name` (Pretty confusing, right?). This will result in a params key `:name` being created. 
-The method used when submitted is set to `post`. 
+The form contains a field with a name attribute called `name` (Pretty confusing, right?). 
+
+This will result in a params key `:name` being created. The method used when submitted is set to `post`. 
 
 That means that the request will use the HTTP verb POST. 
 
