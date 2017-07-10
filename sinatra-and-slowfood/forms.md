@@ -37,6 +37,36 @@ The `@message` instance variable will be set and passed in to the View Template 
 ### Refactoring exercise
 The changes we made will result in some code repetition. During my demo I extracted some of the functionality to a separate method. Can you replicate that? 
 
+There is some errors in the code below. Can you fix that? 
+
+```ruby
+require 'sinatra'
+require 'sinatra/reloader' if development?
+require 'pry-byebug'
+
+get '/' do
+  redirect '/hello'
+end
+
+get '/hello/:name' do
+  format_message(params)
+  erb :index
+end
+
+post '/hello' do
+  format_message(params)
+  erb :index
+end
+
+def format_message(params)
+  if params[:greeting]
+    @message = "#{params[:greeting]} #{params[:name]}"
+  else
+    @message = "Hello #{params[:name]}"
+  end
+end
+```
+
 
 
  
