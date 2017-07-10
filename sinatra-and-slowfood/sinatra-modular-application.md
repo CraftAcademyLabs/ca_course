@@ -162,17 +162,20 @@ h1 {
 ```
 
 Modify your `views/layout.erb` to better follow the HTML standards and make sure we actually load the css. 
-```erb
+```html
 <!DOCTYPE html>
-<head>
-  <meta charset="utf-8">
-  <title>My First Sinatra App</title>
-  <link rel="stylesheet" href="/css/app.css">
-</head>
-<body>
-  <h1>This is in my application layout file<h1>
-  <%= yield %>
-</body>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My First Sinatra App</title>
+    <link rel="stylesheet" href="/css/app.css">
+
+  </head>
+  <body>
+    <h1>This is in my application layout file<h1>
+    <%= yield %>
+  </body>
+</html>
 
 ```
 
