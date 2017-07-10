@@ -149,6 +149,18 @@ Open that file and add:
 
 Running RSpec now should make the tests go green. 
 
+```shell
+$ rspec
+
+home page
+  displays text
+  displays layout text
+
+Finished in 0.03739 seconds (files took 0.75569 seconds to load)
+2 examples, 0 failures
+
+```
+
 ### Basic styling
 
 So we are good on our specs. But lets do a bit more.
