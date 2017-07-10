@@ -26,7 +26,11 @@ end
 Okay, so what is happening here? 
 
 The form contains a field with a name attribute called `name` (Pretty confusing, right`). This will result in a params key `:name` being created. 
-The method used when submitted is set to `post`. That means that the request will use the HTTP verb POST. 
+The method used when submitted is set to `post`. 
+
+That means that the request will use the HTTP verb POST. 
+
+
 The `@message` instance variable will be set and passed in to the View Template `:index` that will be rendered by the browser. 
 
 
