@@ -61,4 +61,6 @@ end
 
 ```
 
+Okay, so we are storing the message in a variable and passing it in to the template. The HTML rendered in your browser come from another file that is solely responsible for the page content. 
+
 
