@@ -96,4 +96,8 @@
   * [Advanced Ruby](career/advanced-ruby.md)
   * [Databases](career/databases.md)
   * [SOLID Principles](career/solid-principles.md)
+* [Sinatra & SlowFood](sinatra-and-slowfood.md)
+  * [Sinatra - an introduction](sinatra-and-slowfood/sinatra-an-introduction.md)
+  * [Start small](sinatra-and-slowfood/start-small.md)
+  * [More Hello World](more-hello-world.md)
 
