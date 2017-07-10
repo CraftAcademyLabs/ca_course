@@ -7,7 +7,7 @@ mkdir my_app
 ```
 cd into that folder and run the following command to install `rspec-sinatra` - a gem that will help us scaffold a Modular Sinatra application. This gem is created by a good friend of Craft Academy, Professor Sam Joseph of [Agile Ventures](https://www.agileventures.org/). 
 
-** Note that you need to be on Ruby 2.3.3 in order for this gem to work. Please see [this issue for more in depth discussion](https://github.com/tansaku/rspec-sinatra/issues/2). **
+**Note that you need to be on Ruby 2.3.3 in order for this gem to work. Please see [this issue for more in depth discussion](https://github.com/tansaku/rspec-sinatra/issues/2).**
 
 ```shell
 $ gem install rspec-sinatra
