@@ -67,6 +67,18 @@ def format_message(params)
 end
 ```
 
+And the View Template: 
+
+```erb
+<h1 style="color: red;"><%= @message %></h1>
+
+<form action="/hello" method="post">
+  <input type="text" name="greeting" placeholder ="Greeting">
+  <input type="text" name="name", placeholder="Name">
+  <input type="submit">
+</form>
+```
+
 
 
  
