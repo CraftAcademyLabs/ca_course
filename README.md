@@ -1,4 +1,4 @@
-###Craft Academy Bootcamp
+### Craft Academy Bootcamp
 ##### Coding as a Craft - in 12 weeks
 Craft Academy is a 12-week intensive, practice-oriented course for aspiring junior developers. The course is delivered as a coding bootcamp by Craft Academy in Gothenburg, Sweden. It gives you the basics you need to create, develop and launch web-based applications.
 
