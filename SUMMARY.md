@@ -66,6 +66,7 @@
   * [Adding the calculator tab](adding_the_bmi_calculator.md)
   * [Adding functionality](adding_functionality.md)
   * [Extras - Source code](extras_-_source_code.md)
+  * [Introduction to Angular](introduction-to-angular.md)
 * [The Cooper test challenge](ionic/cooper_test_challenge.md)
   * [The logic](ionic/the_logic.md)
   * [The Back-end](ionic/the_back-end.md)
