@@ -199,38 +199,37 @@ From the files we have just generated, let's identify what we have learnt so far
 
 * where in the file structure is the component file located?
 * what is the decorator, and what information does the decorator have?
-* where is the template file located?
-
-Now add a paragraph with your name in the template, to answer the following questions:
-
+* where is the template file located? Now add a paragraph with your name in the template
 * how do we add our component to a view?
 * can we add our component to the index file?
 * is it possible to add the component to the `app.component.html` file?
 
 ## Summarizing templates and components
 
-**&gt;&gt;TODO: introduction to explanation&lt;&lt;**
+Have a look at the diagram below, we have our root component with respective root template file. This is where all the other components are inserted as you can see `child component A` and `child component B` are both on the root component. `Child A component` has another component in it, we can refer to this as a `grandchild component` since we are inserting it in the `child component`.
 
 ![template component relationship summary](https://angular.io/generated/images/guide/architecture/component-tree.png)
 
-**&gt;&gt;TODO: add explanation&lt;&lt;**
+<!--  **&gt;&gt;TODO: add explanation&lt;&lt;**-->
+<!-- **&gt;&gt;TODO: connect above explanation with reflective review using the screenshot below&lt;&lt;**-->
 
-**&gt;&gt;TODO: connect above explanation with reflective review using the screenshot below&lt;&lt;**
+Lets identify the root component, child components and the grandchildren in the screenshot below. If you are unable to, kindly ask for some help
 
 ![YouTube sections and components with children](http://www.rdcs.se/images/youtube-screenshot-children3.png)
 
-# Data binding &gt;&gt; – should this header be h1?&lt;&lt;
+
+## Data binding
 
 Remember when we said that data is able to flow from the template to the component  
 and vice versa? Let's talk about how to do this by using data binding.
 
-## Data flowing from the template to the component
+### Data flowing from the template to the component
 
 In the YouTube example above, when a user clicks on a particular video suggestion the template passes information to the component related to that suggestion telling it that the suggestion was clicked. It also passes along any other information about that particular suggestion that may be embedded in the template. The user's actions on the page are interpreted as events by functions inside the component that handle events \(event handler functions\). These interpreted user events are used to trigger or perform certain functionality or commands within the app. That is how data flows from the template to the component.
 
 In the code below the `handleClick()` function handles the user's `click` event, so the `handleClick()` function is found in the component related to that template. What other events can you think of when interacting with a web page or app?
 
-### Try it out
+#### Try it out
 
 Add the following to our template `application.compontent.html`
 
@@ -238,8 +237,9 @@ Add the following to our template `application.compontent.html`
 <button (click)="handleClick()">Console log me</button>
 ```
 
-Hint: **&gt;&gt;&gt;&gt;what does "this" refer to here&lt;&lt;&lt;&lt;** this usually uses `()` eg `(click)="doSomething()"` where `doSomething()`  
-is a function in the matching component.
+When data is flowing from template to the component we use `()`. Inside this `()` we have the name of the event the user just triggerd eg `(click)="doSomething()"` where:
+- `(click)`: event wrapped in `()`
+- `doSomething()`: function in the matching component.
 
 Add the following code to our matching component inside our class. You should be able to match  
 components to templates at this point.
@@ -286,8 +286,6 @@ export class AppComponent {
 }
 ```
 
-**&gt;&gt;&gt;&gt; NB SIGU: It is now a 'Like' button in the example above&lt;&lt;&lt;&lt;**
-
 Now that we have created a video in our component, how do we go about to display the video inside the template?  
 In order to achieve this, we create an expression by using double squiggly brackets `{{ }}`!
 
@@ -326,7 +324,7 @@ In order to demo this we need to import Angular form module into our
   })
 ```
 
-Now let's add this to our template: **&gt;&gt;&gt; SIGU: Specify which file to modify here &lt;&lt;&lt;**
+Now let's add this to our root template:
 
 ```html
  <p>Video name: {{video.name}}</p> <!-- keep in mind that '{{ }}' gets data from the compontent -->
@@ -335,17 +333,17 @@ Now let's add this to our template: **&gt;&gt;&gt; SIGU: Specify which file to m
 
 Now if you try to type something \(anything\) into the input field, what happens?
 
-**&gt;&gt;&gt;&gt; NB SIGU: Where does the below image belong to, above or Directives? Also, should we have a review section here&lt;&lt;&lt;&lt;**
+In the diagram below, on the left we have the template while on the right we have the component. We can see data flow direction with the arrows 
 
 ![data binding](https://angular.io/generated/images/guide/architecture/databinding.png)
 
 **&gt;&gt;&gt;&gt; NB SIGU: Suspecting the need for an explanation of the image above plus a review here&lt;&lt;&lt;&lt;**
 
-# Directives &gt;&gt; – should this header be h1?&lt;&lt;
+## Directives
 
-Directives usually change the browser ![DOM](https://en.wikipedia.org/wiki/Document_Object_Model) and have the ability to change elements in the current page. **&gt;&gt;&gt;&gt;Usually you can identify directives by ...&lt;&lt;&lt;&lt;** There are some built-in directives that we will be using more frequently, so let's go ahead and have a look at those.
+Directives usually change the browser ![DOM](https://en.wikipedia.org/wiki/Document_Object_Model) and have the ability to change elements in the current page. There are some built-in directives that we will be using more frequently, so let's go ahead and have a look at those.
 
-## \*ngFor
+### \*ngFor
 
 `*ngFor` is used for looping over a collection of data.  
 In the example below we have a collection of videos in a component and we use `ngFor` to loop over the collection in order to display data about each video.
@@ -359,7 +357,7 @@ In the example below we have a collection of videos in a component and we use `n
 </ul>
 ```
 
-### Try it out
+#### Try it out
 
 Add the code above to your template. Now we only need a collection of videos in  
 in our component for this to work, so let's put some videos in our component.
@@ -378,7 +376,7 @@ export class SuggestionsComponent {
   }
 ```
 
-## \*ngIf
+### \*ngIf
 
 `*ngIf` renders a section of the template but only if a certain condition is valid or true.
 
@@ -388,15 +386,14 @@ export class SuggestionsComponent {
 
 We expect the paragraph above to be shown only if the value of `isShown` is true.  
 If the value of `isShown` is false the paragraph should not be displayed on the  
-page by the template. **&gt;&gt;&gt;&gt; NB SIGU: Is this an ok way to describe it?&lt;&lt;&lt;&lt;**
+page by the template.
 
 We define the value of `isShown` inside the component:
 
 ```typescript
 export class SuggestionsComponent {
  videos = [
-    {name: 'video one', liked: true},
-    {name: 'video two', liked: false}
+  ...
  ]
 
  isShown: boolean = true
@@ -404,10 +401,17 @@ export class SuggestionsComponent {
   constructor() { }
 ```
 
-### Try it out
+#### Try it out
 
-Which of the two videos in the example above will not be shown to the user by the  
-template?  
+- Change the value of `isShown` to false then look at your template. Is the paragraph still shown?
+
+Answer this before moving on and **make sure to try it out**!
+
+
+### Review of concepts so far
+This review will solidify your understanding of `components`, `templates`, `event bindinging` and `directives`
+
+- Create a button below the paragraph we just added. The button should handle user click event and toggles the paragraph - if user clicks on button it hides the paragraph, if they click on it again it shows the paragraph. 
 Answer this before moving on and **make sure to try it out**!
 
 ## Services
@@ -432,10 +436,10 @@ playVideo(){
 }
 ```
 
-The way to inject a dependency is by writing `constructor(private videoService: VideoService){}`. **&gt;&gt;&gt;&gt; NB SIGU: Is it ok to use "The way to inject a dependency" in this text?&lt;&lt;&lt;&lt;** Let's have a look at the different parts of this:
+The way to inject a dependency is by writing `constructor(private videoService: VideoService){}`.  Let's have a look at the different parts of this:
 
 * `VideoService`: is the service that we are instantiating and used with the `videoService` local
-  variable. This must be imported first **&gt;&gt;&gt;&gt; NB SIGU: This fuzzy explanation needs to be clarified, especially that last sentence "This must be imported first" needs to be explained \(what you mean by that\)&lt;&lt;&lt;&lt;**
+  variable. We must import this service into our component before we are able to use it ( remember javascript modules import?) 
 * `private`: shows that whatever we are declaring is private to this class
 * `videoService`: the local variable name that use within the class.
   When used this local variable usually preceded by the `this` keyword as we see in the example above: `this.videoService.play(video)`.
