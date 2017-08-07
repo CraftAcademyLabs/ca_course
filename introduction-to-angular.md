@@ -16,7 +16,7 @@ _**The purpose of this chapter is to give you a basic understanding of the frame
 
 You are challenged with implementing the code examples as you move forward, commit after every section and push your code to GitHub. As you know, reading about code will not make you a good programmer. Take the opportunity to write as much code as possible.
 
-## Modules
+## Angular Modules
 
 Every angular application must have at least one module, the root module, mostly called `AppModule`. In most of our applications this is possibly the only module you will ever use. This file can be found at `src/app/app.component.ts` and it looks like this:
 
