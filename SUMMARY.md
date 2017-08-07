@@ -60,12 +60,6 @@
 * [Mid Course Project](mid_course/mid_course_project.md)
   * [Project Schedule](mid_course/project_schedule.md)
 * [Going mobile with Ionic](going_mobile_with_ionic.md)
-  * [Getting to know AngularJS](getting-to-know-angularjs.md)
-  * [Getting started with Ionic](getting_started.md)
-  * [Cleaning up and adding views](cleaning_up_and_adding_views.md)
-  * [Adding the calculator tab](adding_the_bmi_calculator.md)
-  * [Adding functionality](adding_functionality.md)
-  * [Extras - Source code](extras_-_source_code.md)
   * [Introduction to Angular](introduction-to-angular.md)
   * [Javascript Modules](javascript-modules.md)
   * [Setup](setup-angular.md)
@@ -104,4 +98,6 @@
   * [Sinatra - an introduction](sinatra-and-slowfood/sinatra-an-introduction.md)
   * [Start small](sinatra-and-slowfood/start-small.md)
   * [More Hello World](more-hello-world.md)
+
+
 
