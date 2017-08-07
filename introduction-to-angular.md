@@ -122,7 +122,7 @@ export class SuggestionsComponent {
 Basically, the decorator is used to give us a brief summary about the class, much like  
 the information on hospital wrist bands worn by hospital patients does.
 
-![Hospital wrist band](http://www.globalnerdy.com/wordpress/wp-content/uploads/2016/11/hospital-wristband-2.jpg)
+![Hospital wrist band](/assets/angular/hospital-wrist-band.png)
 
 ```typescript
 @Component({
@@ -183,7 +183,7 @@ at the syntax there. Remove all the unordered list items, as well as the image, 
 * data can flow from the component to the template, from the template to
   the component or both ways
 
-![Diagram of template and component relationship](http://www.rdcs.se/images/diagram-of-template-n-compontent.png)
+![Diagram of template and component relationship](/assets/angular/template-and-components.png)
 
 ### Review how to bring components and templates together
 
@@ -208,7 +208,7 @@ From the files we have just generated, let's identify what we have learnt so far
 
 Have a look at the diagram below, we have our root component with respective root template file. This is where all the other components are inserted as you can see `child component A` and `child component B` are both on the root component. `Child A component` has another component in it, we can refer to this as a `grandchild component` since we are inserting it in the `child component`.
 
-![Template component relationship summary](https://angular.io/generated/images/guide/architecture/component-tree.png)
+![Template component relationship summary](/assets/angular/component-tree.png)
 
 <!--  **&gt;&gt;TODO: add explanation&lt;&lt;**-->
 <!-- **&gt;&gt;TODO: connect above explanation with reflective review using the screenshot below&lt;&lt;**-->
@@ -335,8 +335,7 @@ Now if you try to type something \(anything\) into the input field, what happens
 
 In the diagram below, on the left we have the template while on the right we have the component. The arrows show the direction of data flow.
 
-![data binding](https://angular.io/generated/images/guide/architecture/databinding.png)
-
+![data binding](/assets/angular/data-binding.png)
 
 ## Directives
 
@@ -419,7 +418,7 @@ Services are everything that can act as a data source. For now let's simplify th
 
 Services are also able to validate user input as when the user types it in. The example below shows how the user is denied to use a certain username that is already taken \(yes there are typos in the first screen where a 'C' and a  'T' are missing\).
 
-![Username validation through services](http://www.rdcs.se/images/username.gif)
+![Username validation through services](/assets/angular/username.gif)
 
 ## Dependency injection
 
