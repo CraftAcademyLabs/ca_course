@@ -63,7 +63,7 @@
   * [Introduction to Angular](introduction-to-angular.md)
   * [Javascript Modules](javascript-modules.md)
   * [Setup](setup-angular.md)
-  * [Getting to Know Ionic - BMI Challenge](bmi-calculator-ionic3.md)
+  * [Getting to Know Ionic - BMI Challenge](bmi-calculator-ionic.md)
 * [The Cooper test challenge](ionic/cooper_test_challenge.md)
   * [The logic](ionic/the_logic.md)
   * [The Back-end](ionic/the_back-end.md)
