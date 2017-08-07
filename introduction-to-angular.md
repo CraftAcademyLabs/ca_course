@@ -333,11 +333,10 @@ Now let's add this to our root template:
 
 Now if you try to type something \(anything\) into the input field, what happens?
 
-In the diagram below, on the left we have the template while on the right we have the component. We can see data flow direction with the arrows 
+In the diagram below, on the left we have the template while on the right we have the component. The arrows show the direction of data flow.
 
 ![data binding](https://angular.io/generated/images/guide/architecture/databinding.png)
 
-**&gt;&gt;&gt;&gt; NB SIGU: Suspecting the need for an explanation of the image above plus a review here&lt;&lt;&lt;&lt;**
 
 ## Directives
 
