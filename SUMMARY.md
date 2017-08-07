@@ -63,6 +63,7 @@
   * [Introduction to Angular](introduction-to-angular.md)
   * [Javascript Modules](javascript-modules.md)
   * [Setup](setup-angular.md)
+  * [Getting to Know Ionic - BMI Challenge](bmi-calculator-ionic3.md)
 * [The Cooper test challenge](ionic/cooper_test_challenge.md)
   * [The logic](ionic/the_logic.md)
   * [The Back-end](ionic/the_back-end.md)
@@ -98,6 +99,4 @@
   * [Sinatra - an introduction](sinatra-and-slowfood/sinatra-an-introduction.md)
   * [Start small](sinatra-and-slowfood/start-small.md)
   * [More Hello World](more-hello-world.md)
-
-
 
