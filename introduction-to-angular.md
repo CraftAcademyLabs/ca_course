@@ -18,7 +18,7 @@ You are challenged with implementing the code examples as you move forward, comm
 
 ## Angular Modules
 
-Every angular application must have at least one module, the root module, mostly called `AppModule`. In most of our applications this is possibly the only module you will ever use. This file can be found at `src/app/app.component.ts` and it looks like this:
+Every angular application must have at least one module, the root module, mostly called `AppModule`. In most of our applications this is possibly the only module you will ever use. This file can be found at `src/app/app.module.ts` and it looks like this:
 
 ```typescript
 import { BrowserModule } from '@angular/platform-browser';
@@ -208,7 +208,7 @@ From the files we have just generated, let's identify what we have learnt so far
 
 Have a look at the diagram below, we have our root component with respective root template file. This is where all the other components are inserted as you can see `child component A` and `child component B` are both on the root component. `Child A component` has another component in it, we can refer to this as a `grandchild component` since we are inserting it in the `child component`.
 
-![template component relationship summary](https://angular.io/generated/images/guide/architecture/component-tree.png)
+![Template component relationship summary](https://angular.io/generated/images/guide/architecture/component-tree.png)
 
 <!--  **&gt;&gt;TODO: add explanation&lt;&lt;**-->
 <!-- **&gt;&gt;TODO: connect above explanation with reflective review using the screenshot below&lt;&lt;**-->
@@ -340,7 +340,7 @@ In the diagram below, on the left we have the template while on the right we hav
 
 ## Directives
 
-Directives usually change the browser ![DOM](https://en.wikipedia.org/wiki/Document_Object_Model) and have the ability to change elements in the current page. There are some built-in directives that we will be using more frequently, so let's go ahead and have a look at those.
+Directives usually change the browser [DOM](https://en.wikipedia.org/wiki/Document_Object_Model) and have the ability to change elements in the current page. There are some built-in directives that we will be using more frequently, so let's go ahead and have a look at those.
 
 ### \*ngFor
 
