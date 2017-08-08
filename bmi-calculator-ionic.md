@@ -71,7 +71,7 @@ For the app to function, Ionic will look for the `<ion-app>` tag in your `index.
 
 ### ./src/
 
-Inside the `src` directory, you'll find all your uncompiled code. This is where you'll spend most of your time while building your app. When you run `ionic serve`, all the code inside of `src/` is transpiled into a Javascript version that is supported by most browser. 
+Inside the `src` directory, you'll find all your uncompiled code. This is where you'll spend most of your time while building your app. When you run `ionic serve`, all the code inside of `src/` is transpiled into a Javascript version that is supported by most browser.
 
 Find more details about the [project structure here.](https://ionicframework.com/docs//intro/tutorial/project-structure/) ![](/assets/angular/bmi-code-in-atom.png "BMI Calculator source code in Atom")
 
@@ -83,7 +83,7 @@ We will now remove our home and contact pages, then add a new page called calcul
 $ git checkout -b calculator
 ```
 
-Now, navigate to `src/pages` and delete `home` and `contact`. Then open `src/app.module.ts` \(in your text editor\) and remote both `HomePage` and `ContactPage` from the `declarations` and `entryComponents` properties. You also want to remove respective `import` statements from this file. 
+Now, navigate to `src/pages` and delete `home` and `contact`. Then open `src/app.module.ts` \(in your text editor\) and remote both `HomePage` and `ContactPage` from the `declarations` and `entryComponents` properties. You also want to remove respective `import` statements from this file.
 
 ```typescript
 // Remove the following lines
@@ -114,6 +114,105 @@ Next up, let's see how to add new pages to our app. But before we carry on, let'
 ```shell
 $ git add .
 $ git commit -m 'remove some of the scaffolded pages'
+```
+
+## Adding a Page
+
+Now that we have cleaned up the code base we are ready to add our own stuff. We'll be making use of two tabs. One About tab that will route us to an "About page", and one "BMI Calculator" tab that will be displaying the view where we will be doing the calculations.
+
+Just like with rails and angular, Ionic provide us with a generator to scaffold the most common components to an app. We will be using that to generate a new page.
+
+```shell
+$ ionic g page calculator
+```
+
+If you take a look at your `src/pages/` folder, you'll see that a new folder name calculator has been created.
+
+Every time you created a new page, you need to tell the application about it by importing it in `app.module.ts`. Open it and add the following line at the top of it
+
+```typescript
+import { CalculatorPage } from '../pages/calculator/calculator'
+```
+
+Then add `CalculatorPage` to the `declarations` and `entryComponents` properties. Next, we also import `CalculatorPage` in `src/pages/tabs/tabs.ts` and create a new tab for it.
+
+```typescript
+// Add import statement at top of the file
+import { CalculatorPage } from '../calculator/calculator'
+
+
+export class TabsPage {
+  calculatorTab = CalculatorPage; // Create a calculator's tab
+  aboutTab = AboutPage            // Rename tab2Root to aboutTab
+  ...
+}
+```
+
+Lastly, let's edit the `tabs.html` template file to render the new tab we just created.
+
+```html
+<!-- Your tabs.html file content should be updated to the following -->
+<ion-tabs>
+  <ion-tab [root]="calculatorTab" tabTitle="Calculator" tabIcon="calculator"></ion-tab>
+  <ion-tab [root]="aboutTab" tabTitle="About" tabIcon="information-circle"></ion-tab>
+</ion-tabs>
+```
+
+Now, check your browser to make sure you can see the new tab we just created. If everything looks good, let's commit our changes and in the next section we'll add some functionality to our calculator.
+
+```shell
+$ git add .
+$ git commit -m 'add calculator tab'
+```
+
+## ![](/assets/angular/bmi-add-calculator-tab.png)Adding functionality
+
+Okay, let's move on to implementing the BMI Calculator. Let's create a form on the `calculator.html` template that will allow the user to input his/her weight and height and return the calculated values.
+
+```html
+<!-- type the following content inside <ion-content> tag -->
+<ion-list>
+  <ion-item>
+    <ion-label floating>Weight (kg)</ion-label>
+    <ion-input type="number" [(ngModel)]="weight"></ion-input>
+  </ion-item>
+
+  <ion-item>
+    <ion-label floating>Height (cm)</ion-label>
+    <ion-input type="number" [(ngModel)]="height"></ion-input>
+  </ion-item>
+</ion-list>
+
+<div padding>
+  <button block ion-button (click)="calculateBMI()">Calculate</button>
+</div>
+```
+
+Next, in `scr/pages/calculator/calculator.ts` we'll create two variables, `weight` and `height` that we will use to get information from our view. These two variables should be of type `number`. We also need to declare a function `calculateBMI` in which we'll add some logic later on to calculate the BMI of an individual.
+
+```typescript
+// src/pages/calculator/calculator.ts
+// Edit your file to have the following code
+
+import { Component } from '@angular/core';
+import { IonicPage } from 'ionic-angular';
+
+@IonicPage()
+@Component({
+  selector: 'page-calculator',
+  templateUrl: 'calculator.html',
+})
+export class CalculatorPage {
+  height: number;
+  weight: number;
+
+  constructor() {
+  }
+
+  calculateBMI() {
+    // Add logic to calculate BMI here
+  }
+}
 ```
 
 
