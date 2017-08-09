@@ -6,12 +6,14 @@ The challenge is to set up an API-only application that will make it possible to
 
 We will be using RSpec as out testing framework and PostgreSQL as our database.
 
-> Note that we **WILL NOT** be using Cucumber, so you don't have to install that framework. We are also using **Rails 5** in this walkthrough.
+> Note that we **WILL NOT** be using Cucumber, so you don't have to install that framework. We are also using **Rails 5.0.2** in this walkthrough, so make sure you have that installed on your computer.
+>
+> _Small exercise here for you, figure out how to install a specific version of a gem on your system ;-\)_
 
 Let's go ahead and scaffold our application
 
 ```shell
-rails new cooper_api --api --database=postgresql --skip-test --skip-bundle
+rails _5.0.2_ new cooper_api --api --database=postgresql --skip-test --skip-bundle
 ```
 
 This will do a couple of things for you:
@@ -27,7 +29,7 @@ Next, update your `Gemfile` to have the following:
 
 ```ruby
 source 'https://rubygems.org'
-ruby '2.3.1'
+ruby '2.3.4'
 
 gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
 gem 'pg', '~> 0.18'
@@ -587,7 +589,8 @@ RSpec.describe 'Sessions', type: :request do
           'id' => user.id, 'uid' => user.email, 'email' => user.email,
           'provider' => 'email', 'name' => nil, 'nickname' => nil,
           'image' => nil
-        }      }
+        }    
+      }
 
       expect(response_json).to eq expected_response
     end
