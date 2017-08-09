@@ -2,295 +2,188 @@
 
 We will be using Ionic to build our mobile client. If you are not familiar with Ionic yet, please go back in the documentation and complete the [Going mobile with Ionic](https://craftacademy.gitbooks.io/coding-as-a-craft/content/going_mobile_with_ionic.html) chapter.
 
-The objective of this step is to allow the user to calculate his results. We will NOT be accessing the API yet. The login functionality will not work once we are finished with this step. That will be the objective of the next chapter. 
+The objective of this step is to allow the user to calculate his results. We will NOT be accessing the API yet. The login functionality will not work once we are finished with this step. That will be the objective of the next chapter.
 
-###Set up
+### Set up
 
-For this app we will be using the `sidemenu` template. 
+Last time we generated a new ionic applicatin using the tabs menu, let's do something different this time. For this app we will be using the `sidemenu` template.
 
 Run this command it your terminal to create the application.
+
 ```
 $ ionic start cooper_client sidemenu
 ```
 
-`cd` into the new folder (`cooper_client`) and install the `npm` and `bower` dependencies.
+Navigate into the new folder \(`cooper_client`\) and let's start the application to see what it looks like.
+
 ```
-$ npm install
-$ bower install
+$ ionic serve --lab
 ```
 
-> Note: If you don't have **`bower`** installed on your computer you can install it with **`npm install -g bower`**
+If you see something that looks like this, congratulations, you have just generated your second ionic application.
 
+![](/assets/ionic/cooper-scaffolded-app.png)
 
-Once that is ready, you might want to start the Ionic server to see if everything is set up correctly.
-```
-$ ionic serve -c --lab
-```
-You should see something like this.
+### Where is the side menu coming from?
 
-![Ionic Sidemenu template](/images/ionic-sidemenu-template.png)
+Can you try find out where this menu is located? Look within the \`src\` directory.
 
-###Clean up the code
+Since the menu is available to the entire application, no matter the page we are in, then our first guess would be that it is at the template the is associated with the root component - this assumption is actually right. Our root component is called `app.component.ts` with the matching template being `app.html` - you can tell this by looking at the metadata `selector`
 
-The template comes with a lot of scaffold functions and views that we will not be using. 
+The menu is within the `ion-content` tab
 
-Open the code in your editor and delete the `PlaylistsCtrl` and `PlaylistCtrl` from the `www/js/controllers.js` file.
-
-You also want to remove all files in the `www/templates` folder except the `login.html` and `menu.html`.
-
-Edit the `menu.html` and delete unused menu items. Keep the `Login` item
-
-!FILENAME www/templates/menu.html
 ```html
 <ion-content>
   <ion-list>
-    <ion-item menu-close ng-click="login()">
-      Login
-    </ion-item>
-    <!-- Detlete this block below: -->
-    <ion-item menu-close href="#/app/search">
-      Search
-    </ion-item>
-    <ion-item menu-close href="#/app/browse">
-      Browse
-    </ion-item>
-    <ion-item menu-close href="#/app/playlists">
-      Playlists
-    </ion-item>
-    <!-- end of deleted block -->
+    <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+      {{p.title}}
+    </button>
   </ion-list>
 </ion-content>
 ```
 
-Finally, in the `app.js` file, delete unused routes. We will also ADD a route to a new `About` view.  Make sure to modify the default route to the new `/app/about` route. Your `.config` block should look like this.
+From the above code, we can tell there is a variable called `pages` in our component that we are looping through using the directive `*ngFor` then attaching `click` event to a function in the component.
 
-!FILENAME www/js/app,js
-```javascript
-.config(function($stateProvider, $urlRouterProvider) {
-  $stateProvider
+#### `pages` variable
 
-  .state('app', {
-    url: '/app',
-    abstract: true,
-    templateUrl: 'templates/menu.html',
-    controller: 'AppCtrl'
-  })
+Head over to the component and locate the `pages` variable
 
-  .state('app.about', {
-    url: '/about',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/about/about.html'
-      }
-    }
-  });
-  // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/about');
-});
+```typescript
+pages: Array<{title: string, component: any}>;
 ```
-Create a new folder named `about` in the `www/templates` folder. We will place a new template called `about.html` in that folder.
 
-!FILENAME www/templates/about/about.html
+This declares a variable called `pages` that is an `Array`. This array contains objects with `title` and `component`. Inside ur constructor, the variable is then assigned an array containing two objects.
+
+```typescript
+this.pages = [
+  { title: 'Home', component: HomePage },
+  { title: 'List', component: ListPage }
+];
+```
+
+### Cleaning up
+
+#### Remove the list page
+
+We will now clean up our application a bit by removing some sections that we do not need. Let's get started by deleting the `src/pages/list` folder. Go ahead and remove it from the menu list \(do this from the `app.component.ts` file\)
+
+Remove its imports from the `app.component.ts`. On the `app.module.ts` file remove it from the imports and from the decorator too \(`entryComponents` and `declarations`\) then make sure you are not getting any errors in your terminal
+
+
+
+#### Remote homepage content
+
+Head over to the hompage template and remove everything withing the `ion-content` tag, afterwhich you will see an empty page on the browser
+
+_**Hint**_: Homepage template is located at `src/pages/home/home.html`
+
+The template should now look like this
+
 ```html
-<ion-view title="About">
-  <ion-content>
-    <div class="row">
-      <div class="col">
-        Craft Academy Cooper Test Challenge - Mobile Client.
-      </div>
-    </div>
-  </ion-content>
-</ion-view>
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Home</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+</ion-content>
 ```
-If you head over to your browser you should see something like this.
-![The new About view](/images/cooper-mobile-about-template.png)
-This will do for now. We will add the Login functionality further down the road. Right now, we want to focus on the main functionality of this application - to calculate the test results and give the user some feedback. 
 
-###Adding the logic
+If you head over to your browser you should see something like this.  
+![](/assets/ionic/cooper-clean-home.png)  
+This will do for now. We will add the Login functionality further down the road. Right now, we want to focus on the main functionality of this application - to calculate the test results and give the user some feedback.
 
-The next step is to add the `cooper.js` code to your application.
-1. Import the code and place it in the `www/js` folder.
-2. Include it in the main application view (`www/index.html`)
 
-###The test view
 
-Create a template for the test view in the `www/templates/test/ folder (you need to create it first). Call it `test.html`and add the following markup to it.
+### Accepting user input
 
-!FILENAME www/templates/test/test.html
+At this stage we have a good skeleton app to get started with so we can add a form that asks a user for some details so our app will look like this:
+
+![](/assets/Screenshot 2017-08-09 14.30.29.png)
+
+Type the following markup to your `home.html` file within the `ion-content` tag
+
 ```html
-<ion-view title="Cooper Test">
-  <ion-content>
-    <div class="row">
-      <div class="col">
-        <div class="list">
-          <label class="item item-input">
-            <input type="text" class="item item-input" placeholder="Gender" ng-model="data.gender">
-          </label>
-          <label class="item item-input">
-            <input type="number" class="item item-input" placeholder="Age" ng-model="data.age">
-          </label>
-          <label class="item item-input">
-            <input type="number" class="item item-input" placeholder="Distance" ng-model="data.distance">
-          </label>
-            <button class="button button-full button-calm" ng-click="calculateCooper()">Send</button>
-        </div>
-
-
-        <div class="card" ng-if="person">
-          <div class="item item-divider">
-            Cooper Test results
-          </div>
-          <div class="item item-text-wrap">
-            <p>Person: Age {{person.age}}, Gender {{person.gender}}</p>
-            <p>Result: {{person.cooperMessage}}</p>
-          </div>
-        </div>
-      </div>
-
-    </div>
-
-  </ion-content>
-</ion-view>
-
-```
-
-Create a new route in the `www/js/app.js` to point to the template and a  new controller we will be creating in a minute.
-
-!FILENAME www/js/app.js
-```javascript
-  .state('app.test', {
-    url: '/test',
-    views: {
-      'menuContent': {
-        templateUrl: 'templates/test/test.html',
-        controller: 'TestController'
-      }
-    },
-  })
-```
-
-In the `www/templates/menu.html` we need to add a new menu item so we can navigate to that view.
-
-!FILENAME www/templates/menu.html
-```html
-#[...]
-  <ion-item menu-close href="#/app/test">
-    Cooper Test
+...
+<ion-list>
+  <ion-item>
+    <ion-label floating>Distance</ion-label>
+    <ion-input type="number" [(ngModel)]="user.distance"></ion-input>
   </ion-item>
-#[...]
+  <ion-item>
+    <ion-label>Gender</ion-label>
+    <ion-select [(ngModel)]="user.gender">
+      <ion-option value="female">Female</ion-option>
+      <ion-option value="male">Male</ion-option>
+    </ion-select>
+  </ion-item>
+  <ion-item>
+    <ion-label>Age:
+      <ion-badge *ngIf="user.age"> {{user.age}}</ion-badge>
+    </ion-label>
+    <ion-range min="10" max="120" [(ngModel)]="user.age" >
+      <ion-label range-left>10</ion-label>
+      <ion-label range-right>120</ion-label>
+    </ion-range>
+  </ion-item>
+</ion-list>
+
+<button block ion-button (click)="calculate()">Calculate</button>
+...
 ```
 
-Let's focus on the controller. We need to create a new controller in `www/js/controllers.js` 
+At this stage, if you visit the app in your browser, you will get an error about not being able to read property `distance` or `undefined`. This is because we haven't defined a `user` in our component. Let's fix that. We can assign an empty object to it for now.
 
-!FILENAME www/js/controllers.js
-```javascript
-#[...]
-.controller('TestController', function($scope) {
-  $scope.data = {};
-  $scope.calculateCooper = function() {
-    var person = new Person({
-      gender: $scope.data.gender,
-      age: $scope.data.age
-    });
-    person.assessCooper($scope.data.distance);
-    $scope.person = person;
-    console.log($scope.person)
-  };
+```typescript
+export class HomePage {
+  user: any = {};
+  ...
+
+}
 ```
 
-Run the app and input some test data and click `Send`. You should see the results displayed on the page. 
+Save this change and head back to your browser and everything should work now. 
 
-###The user interface
+Click on the button, what happens? Why do you think it fails? Read through the error and try to figure out what the problem might be here.
 
-Entering values using the keyboard is always hard on a mobile device. We will do some refactoring to make the user experience a little better, although there is much more you can do on your own to make this application more appealing to the user (we are mainly focusing on the basic functionality at the moment). 
+> **IMPORTANT** Try to answer this before you move on to the next step.
 
-Let's change the input fields to a select field for gender and sliders for age and distance. We will also do a small refactoring of the initial values and move those settings to our controller. It feels better to have them stored there. 
 
-Replace the input fields in the `test.html` template with this form.
 
-!FILENAME
-```html
-#[...]
-<form name="testdata">
-  <label class="item item-input item-select">
-    <div class="input-label">
-      Gender
-    </div>
-    <select
-    ng-model="data.gender"
-    ng-options="option as option for option in gender"
-    required></select>
-  </label>
+Incase you were not able to know why it failed, it it because the function tied to the button is not yet defined in the component; let's define it:
 
-  <div class="item item-divider">Age
-    <output name="agevalue" for="age"></output>
-  </div>
-  <div class="item range range-positive">
-    <input
-    name="age"
-    type="range"
-    min="{{ageValues.min}}"
-    max="{{ageValues.max}}"
-    value="{{ageValues.value}}"
-    ng-model="data.age"
-    oninput="agevalue.value = age.value"
-    required>{{ageValues.min}}/{{ageValues.max}} yrs
-  </div>
+```typescript
+export class HomePage {
+  user: any = {};
 
-  <div class="item item-divider">Distance
-    <output name="distvalue" for="distance"></output>
-  </div>
-  <div class="item range range-positive">
-    <input
-    name="distance"
-    type="range"
-    min="{{distanceValues.min}}"
-    max="{{distanceValues.max}}"
-    value="{{distanceValues.value}}"
-    ng-model="data.distance"
-    oninput="distvalue.value = distance.value"
-    required>{{distanceValues.min}} - {{distanceValues.max}} m
-  </div>
+  constructor(public navCtrl: NavController) {}
 
-  <button
-  class="button button-full button-calm"
-  ng-click="calculateCooper()"
-  ng-disabled="testdata.$invalid">Get results</button>
-</form>
-#[...]
+  calculate() {
+    console.log(this.user);
+  }
+}
 ```
-And modify your controller with predefined values for `gender`, `age` and `distance` 
 
-!FILENAME www/js/controllers.js
-```javascript
-#[...]
-.controller('TestController', function($scope) {
-  $scope.gender = ['Male', 'Female']
-  $scope.ageValues = {
-    min: 20,
-    max: 60,
-    value: 20
-  };
-  $scope.distanceValues = {
-    min: 1000,
-    max: 3500,
-    value: 1000
-  };
-  $scope.data = {};
-  #[...]
-  };
+Our function currently logs out the `user` object everytime you click on the button. Open your developer tools console on the browser and play around.
+
+
+
+Did you realize that the app starts with every fields empty? We can give it default values that can then be used when the app starts, we do this by initializing `user` within our constructor function
+
+```typescript
+export class HomePage {
+  ...
+  constructor(public navCtrl: NavController) {
+    this.user = { distance: 1000, age: 20 };
+  }
+
+  ...
+}
 ```
-If you run the application you should see this interface.
 
-![Cooper Test Viev UI](/images/cooper-client-ui.png)
-
-
-
-
-
-
-
-
-
-
+![](/assets/ionic/cooper-intial-values.png)
 
