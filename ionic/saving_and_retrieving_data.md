@@ -1,310 +1,193 @@
 # Saving and retrieving data - step 5
 
-At this stage we have a possibility to interact with the back and login to the mobile application. It is time to set up a mechanism to both save and retrieve our test results.
+## The provider
 
-We have an API endpoint in our back-end that can take a POST and a GET request, right? Let's build a service that will give us a way to access it.
-
-We will use [`ngResource`](https://docs.angularjs.org/api/ngResource) to access out API and perform our requests.
+We need to use a service/provider to achieve this so its time to generate another one, we can call it `perfomance-data` 
 
 ```shell
-$ bower install angular-resource@1.5.3 --save
+$ ionic g provider perfomance-data
 ```
 
-Create a new file in the `www/js` folder and call it `services.js` and make sure to reference it in the `index.html` together with all the other dependencies.
+Clean this provider and import the `Angular2TokenService` module then inject it to the `PerformanceDataProvider`. Your code should now look like this:
 
-```
-$ touch www/js/services.js
-```
+```typescript
+import { Injectable } from '@angular/core';
+import { Angular2TokenService } from 'angular2-token';
+import 'rxjs/add/operator/map';
 
-_www/index.html_
+@Injectable()
+export class PerfomanceDataProvider {
+  constructor(private tokenService: Angular2TokenService) {}
 
-```html
-<!-- ionic/angularjs js -->
-/...
-<script src="lib/angular-resource/angular-resource.js"></script>
-/...
-<!-- your app's js -->
-<script src="js/cooper.js"></script>
-<script src="js/app.js"></script>
-<script src="js/controllers.js"></script>
-<script src="js/services.js"></script>
-```
-
-Since we have not used any services of factories before in this application, we need to add our services to our main module in `app.js`. We also need to make sure that `ngResource` is included.
-
-_www/js/app.js_
-
-```javascript
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ng-token-auth', 'ngResource'])
-// ...
-```
-
-Okay, so now we need to create our Factory.
-
-_www/js/services.js_
-
-```javascript
-angular.module('starter.services', [])
-
-.factory('performanceData', function ($resource, API_URL) {
-  return $resource(API_URL + '/performance_data', {}, {
-    query: {method: 'GET', isArray: false}
-  });
-});
-```
-
-With this factory we will be able to both write to and read from our back-end database.
-
-Let's create a new controller for doing that. Remember that we need to include that factory in our controller in order to make it accessible. We'll also add two methods, one to save the data and a second one to retrieve it.
-
-_www/js/controllers.js_
-
-```javascript
-.controller('PerformanceCtrl', function($scope, performanceData){
-  $scope.saveData = function(){
-
-  };
-  $scope.retrieveData = function(){
-
-  };
-})
-```
-
-Let's start with saving the data. On our view where we do the calculations, we want to display a button that calls the `saveData` function. But we only want to display that button IF there is a user logged in and the calculation has been performed.
-
-Modify your `test.html` template with this code.
-
-_www/templates/test/test.html_
-
-```html
- <div ng-if="person">
-    <div class="card">
-      <div class="item item-divider">
-        Cooper Test results
-      </div>
-      <div class="item item-text-wrap">
-        <p>Person: Age {{person.age}}, Gender {{person.gender}}</p>
-        <p>Result: {{person.cooperMessage}}</p>
-      </div>
-    </div>
-    <button
-      ng-if="currentUser"
-      ng-controller="PerformanceCtrl"
-      class="button button-full button-calm"
-      ng-click="saveData(person)">Save results
-    </button>
- </div>
-```
-
-Let's build our `saveData` function with a success and an error fallback. It can look something like this for the moment.
-
-_www/js/controllers.js_
-
-```javascript
-$scope.saveData = function(person){
-  data = {performance_data: {data: {message: person.cooperMessage}}}
-  performanceData.save(data, function(response){
-    console.log(response);
-  }, function(error){
-    console.log(error);
-  })
-};
-```
-
-If you try this out in the browser while having the console open, you'll see that you'll get an `Unauthorized` error.
-
-![](/images/cooper_api_error_1.png)
-
-**Well, that's a bit of a problem but we'll solve it. At least we know that the API endpoint is within our reach. That IS good progress!**
-
-So, let's make this work.
-
-The reason we are getting a 401 on the request is because we are not sending any credentials with the request and thus we can not get authorized.
-
-Let's make sure that we get the necessary info stored in the `currentUser` object.
-
-At this stage you need to go back to your Rails application for a moment. We need to make an addition to `config/application.rb` in order to make the API include authorization credentials in the response headers.
-
-_config/application.rb_
-
-```ruby
-module CooperApi
-  class Application < Rails::Application
-    # [...]
-    config.middleware.insert_before 0, Rack::Cors do
-      allow do
-        origins '*'
-        resource '*', headers: :any, methods: [:get, :post, :put, :delete, :options, :head],
-                      expose: %w(access-token expiry token-type uid client),
-                      max_age: 0
-      end
-    end
-  end
-end
-```
-
-Now we'll be getting the right response from the back-end application. We need to modify the way we store that information.
-
-Localize the `'auth:login-success'` function in our `AppCtrl`. We will make a change to store access-token, uid, etc by grabbing that info from the response headers.
-
-_www/js/controllers.js_
-
-```javascript
-$rootScope.$on('auth:login-success', function (ev, user) {
-  $scope.currentUser = angular.extend(user, $auth.retrieveData('auth_headers'));
-});
-```
-
-With this setup we should be able to make the POST request and save our data.
-
-We also want to add `$ionicLoading, $ionicPopup` to our `PerformanceCtrl`. We will use them those methods to give our user feedback on the requests progress.
-
-We will also add an `showAlert()` function and refactor our `saveData()` function. Examine the code below to fully understand what it does before you implement it.
-
-_www/js/controllers.js_
-
-```javascript
-//...
-.controller('PerformanceCtrl', function($scope, $state, performanceData, $ionicLoading, $ionicPopup, $state){
-
-  $scope.saveData = function(person){
-    var data = {performance_data: {data: {message: person.cooperMessage}}};
-    $ionicLoading.show({
-      template: 'Saving...'
-    });
-    performanceData.save(data, function(response){
-      $ionicLoading.hide();
-      $scope.showAlert('Sucess', response.message);
-    }, function(error){
-      $ionicLoading.hide();
-      $scope.showAlert('Failure', error.statusText);
-    })
-  };
-
-  $scope.retrieveData = function(){
-  //Still not implemented...
-  };
-
-  $scope.showAlert = function(message, content) {
-    var alertPopup = $ionicPopup.alert({
-      title: message,
-      template: content
-    });
-    alertPopup.then(function(res) {
-    // Place some action here if needed...
-    });
-  };
-})
-//...
-```
-
-### Display data
-
-Before we start retrieving any historical data, let's create a route and a view template for showcasing it.
-
-First, we start with defining a route in our `www/js/app.js` file.
-
-_www/js/app.js_
-
-```javascript
-.state('app.data', {
-  url: '/data',
-  params: {
-    savedDataCollection: {}
-  },
-  views: {
-    'menuContent': {
-      templateUrl: 'templates/test/data.html',
-      controller: 'DataCtrl'
-    }
+  saveData(data) {
+    return this.tokenService.post('performance_data', data).map(data => data);
   }
+}
+```
+
+## The component
+
+When we click on the `Calculate` button on the homepage we need to save the results at the same instance. By now we know that when the button is clicked then the `calculate()` function is executed. Lets add code here that will use our provider above to make call to the backend and save the data to our backend
+
+```typescript
+import { PerfomanceDataProvider } from '../../providers/perfomance-data/perfomance-data';
+
+...
+
+  calculate(user) {
+    this.result = this.person.doAssessment(user, user.distance);
+    this.perfomanceData
+      .saveData({ performance_data: { data: { message: this.result } } })
+      .subscribe(data => console.log(data));
+  }
+```
+
+Now, clicking on the button will be saving our results to the database
+
+You can confirm this by opening up the browser developer tools and looking under network tab, do you see that there is a response from the server
+
+
+
+## Displaying all the previous results \(Retrieving data\)
+
+We need to get all the data from our database and display them. To achieve this we need to:
+
+1. generate page where this will be shown
+2. use the existing \`perfomanceData\` provider to get data from the backend
+3. save the data in our component
+4. Go to our template and display the data
+
+
+
+### generate page for the data
+
+We can call this page \`results\` since it will be used to display our results
+
+```shell
+$ ionic g page results --no-module
+```
+
+What does the `--no-module` do in this case?
+
+
+
+On our homepage template we need to add a button that will this trigger launching of the results page.
+
+```html
+   ...
+      </ion-range>
+    </ion-item>
+  </ion-list>
+
+  <button block ion-button (click)="calculate(user)">Calculate</button>
+  <button block ion-button (click)="showResults()">All Results</button>
+
+  <ion-card *ngIf="result">
+    <ion-card-header>
+    ....
+```
+
+On the `home.ts` component we need to add a method called \`showResults\(\)\` that will launch the results page
+
+Just for diversity we will use modals in this scenario
+
+```typescript
+  showResults() {
+    this.modalCtrl.create(ResultsPage).present();
+  }
+```
+
+**NOTE**: For this to work we need to import the `ModalController` from `'ionic-angular'`  and inject it in the constructor with a name `modalCtrl`
+
+Make sure your app is still working before moving on
+
+
+
+### Add function for getting this data using the provider
+
+We reuse the `perfomanceData` provider in this case and add a function below the existing `saveData()`  function
+
+```typescript
+  ...
+  getResults() {
+    return this.tokenService
+      .get('performance_data')
+      .map(results => results.json());
+  }
+  ...
+
+```
+
+### Store the results in our component
+
+In `results.ts` component file we need to declare a variable `result` and assign it to and empty array. We want the application to fetch all the results from the backend every time the `results` page is loaded. To make this possible we make use of ionic [lifecycle events](http://blog.ionic.io/navigating-lifecycle-events/), in our case we utilize the `ionViewDidLoad` event
+
+Our `results.ts` file should look like this:
+
+```typescript
+...
+
+
+@Component({
+  selector: 'page-results',
+  templateUrl: 'results.html'
 })
+export class ResultsPage {
+  results = [];
+  constructor(
+    private perfomanceData: PerfomanceDataProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams
+  ) {}
+
+  ionViewDidLoad() {
+    this.perfomanceData
+      .getResults()
+      .subscribe(data => (this.results = data.entries));
+  }
+}
+
 ```
 
-Next step is to create a new template.
+In the subscribe function we store what we get to the `results` variable . We can then loop over this `results` in our template and show them in nice ionic cards.
 
-```
-$ touch www/templates/test/data.html
-```
 
-For starters, let's just add the basic markup before we start adding any content.
 
-_www/templates/test/data.html_
+### Display the results in the view
+
+We fetched results from the backend using ionic lifecycle event and assigned what we got to a variable called `results`. Lets loop over this in our template: `results.html`
 
 ```html
-<ion-view title="Historical Data">
-  <ion-content>
+...
+<ion-content padding>
 
-  </ion-content>
-</ion-view>
+  <ion-card  *ngFor="let result of results">
+    <ion-card-header>
+      {{result.created_at | date:'medium'}}
+    </ion-card-header>
+    <ion-card-content>
+      Result: {{result.data.message}}
+    </ion-card-content>
+  </ion-card>
+
+</ion-content>
+
+...
 ```
 
-We also want to add an item to the side menu but condition it's display to a state where there is a `currentUser` signed in. We also want to get rid of the `Login` item IF there is a signed in user, right?
 
-_www/templates/menu.html_
+
+#### Angular Pipes
 
 ```html
-//...
-<ion-item ng-if="!currentUser" menu-close ng-click="login()">
-  Login
-</ion-item>
-//...
-<ion-item ng-if="currentUser" menu-close ng-controller="PerformanceCtrl" ng-click="retrieveData()">
-  Saved results
-</ion-item>
-//...
+    <ion-card-header>
+      {{result.created_at | date:'medium'}}
+    </ion-card-header>
 ```
 
-Next we want to update the `retrieveData()` function in `PerformanceCtrl`. What we want this function to do, is to get the data using the `performanceData` factory and open the `data.html` while passing in the data to the view \(as `savedDataCollection`\).
 
-_www/js/controllers.js_
 
-```javascript
-//...
-$scope.retrieveData = function(){
-  $ionicLoading.show({
-    template: 'Retrieving data...'
-  });
-  performanceData.query({}, function(response){
-    $state.go('app.data', {savedDataCollection: response.entries});
-    $ionicLoading.hide();
-  }, function(error){
-    $ionicLoading.hide();
-    $scope.showAlert('Failure', error.statusText);
-  })
-};
-//...
-```
+You can see that in the date section there is a pipe `|` that has been used. This is what we use to format our date to a more readable format
 
-We also need to create a new controller to handle the view. When the view is entered, we want to retrieve the data sent in params and save it in the current `$scope`.
 
-_www/js/controllers.js_
-
-```javascript
-//...
-.controller('DataCtrl', function($scope, $stateParams){
-  $scope.$on('$ionicView.enter', function () {
-    $scope.savedDataCollection = $stateParams.savedDataCollection;
-  });
-})
-//...
-```
-
-Finally, we can update our template and display the data. The way we do that is to iterate through the array of entries and condition the display IF there is a `message` key in the `data` attribute \(remember the way we store the results in our database?\).
-
-We also need to format the date - please read the docs for [`date` in AngularJS](https://docs.angularjs.org/api/ng/filter/date).
-
-_www/templates/test/data.html_
-
-```html
-<ion-view title="Historical Data">
-  <ion-content>
-    <div ng-if="savedDataCollection" ng-repeat="entry in savedDataCollection ">
-      <p ng-if="entry.data.message">{{entry.data.message}} - {{entry.created_at | date:'mediumDate'}}</p>
-    </div>
-  </ion-content>
-</ion-view>
-```
-
-**That will do it for now. The next challenge is to present the data as charts. That can be interesting...**
 
