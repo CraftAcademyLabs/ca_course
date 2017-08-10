@@ -1,8 +1,8 @@
-# Saving and retrieving data - step 5
+# Saving and retrieving data
 
 ## The provider
 
-We need to use a service/provider to achieve this so its time to generate another one, we can call it `perfomance-data` 
+We need to use a service/provider to achieve this so its time to generate another one, we can call it `perfomance-data`
 
 ```shell
 $ ionic g provider perfomance-data
@@ -46,8 +46,6 @@ Now, clicking on the button will be saving our results to the database
 
 You can confirm this by opening up the browser developer tools and looking under network tab, do you see that there is a response from the server
 
-
-
 ## Displaying all the previous results \(Retrieving data\)
 
 We need to get all the data from our database and display them. To achieve this we need to:
@@ -56,8 +54,6 @@ We need to get all the data from our database and display them. To achieve this 
 2. use the existing \`perfomanceData\` provider to get data from the backend
 3. save the data in our component
 4. Go to our template and display the data
-
-
 
 ### generate page for the data
 
@@ -68,8 +64,6 @@ $ ionic g page results --no-module
 ```
 
 What does the `--no-module` do in this case?
-
-
 
 On our homepage template we need to add a button that will this trigger launching of the results page.
 
@@ -82,8 +76,6 @@ On our homepage template we need to add a button that will this trigger launchin
   <button block ion-button (click)="calculate(user)">Calculate</button>
   <button block ion-button (click)="showResults()">All Results</button>
 
-  <ion-card *ngIf="result">
-    <ion-card-header>
     ....
 ```
 
@@ -101,8 +93,6 @@ Just for diversity we will use modals in this scenario
 
 Make sure your app is still working before moving on
 
-
-
 ### Add function for getting this data using the provider
 
 We reuse the `perfomanceData` provider in this case and add a function below the existing `saveData()`  function
@@ -115,7 +105,6 @@ We reuse the `perfomanceData` provider in this case and add a function below the
       .map(results => results.json());
   }
   ...
-
 ```
 
 ### Store the results in our component
@@ -146,12 +135,9 @@ export class ResultsPage {
       .subscribe(data => (this.results = data.entries));
   }
 }
-
 ```
 
 In the subscribe function we store what we get to the `results` variable . We can then loop over this `results` in our template and show them in nice ionic cards.
-
-
 
 ### Display the results in the view
 
@@ -175,8 +161,6 @@ We fetched results from the backend using ionic lifecycle event and assigned wha
 ...
 ```
 
-
-
 #### Angular Pipes
 
 ```html
@@ -185,9 +169,20 @@ We fetched results from the backend using ionic lifecycle event and assigned wha
     </ion-card-header>
 ```
 
-
-
 You can see that in the date section there is a pipe `|` that has been used. This is what we use to format our date to a more readable format
+
+
+
+### Final touch
+
+Lets create another button for saving the results so the user can save the results only if they wish. 
+
+* This button should only show up after the user has gotten the results.
+* The button should be located below the results card
+
+ **Do not forget to move the saving logic to a seperate function in the component**
+
+![](/assets/show-save-button.gif)
 
 
 
