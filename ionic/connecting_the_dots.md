@@ -27,163 +27,157 @@ You can manually test the API using [Postman](https://www.getpostman.com/) by do
 And if you try to send the request again, that should fail.  
 ![Registration failure](/images/cooper_api_postman_failure.png)
 
-Alright, if that works we should shift our focus to the Ionic application.
+Alright, if that works we can now shift our focus to the Ionic application, and we'll update it to be able to communicate with the backend.
 
-We will be using [ng\_token\_auth](https://github.com/lynndylanhurley/ng-token-auth) - a token based authentication module for AngularJS that works really well with `devise_token_auth`.
+### Authenticating to our backend
 
-We'll start by installing the library using Bower. Run the install command from your Terminal.
+We will be using [Angular2-Token](https://github.com/neroniaky/angular2-token) - a token based authentication module for Angular that works really well with `devise_token_auth`.
+
+We'll start by installing the library using `npm`. Run the install command from your Terminal.
 
 ```
-$ bower install ng-token-auth --save
+$ npm install angular2-token --save
+$ npm install @angular/router --save # we install this as it is required by the package above
 ```
 
-Make sure that `angular-cookie`, and `ng-token-auth` are included in your `index.html`.
+Next we need to import and add `Angular2TokenService` to our main module. Note that `Angular2TokenService` depends on `HttpModule` and `RouterModule`, so make sure you import them too in `src/app/app.module.ts`
 
-!FILENAME www/index.html
+```typescript
+import { HttpModule } from '@angular/http';
+import { RouterModule } from '@angular/router';
+import { Angular2TokenService } from 'angular2-token';
+
+...
+
+@NgModule({
+  imports: [
+    ...
+    HttpModule,
+    RouterModule,
+    ...
+  ],
+  ...
+  providers: [
+    ...
+    Angular2TokenService
+  ]
+})
+```
+
+Next, we have to Inject `Angular2TokenService` into our main component and call its `.init()` function. Remember to import it into the file first.
+
+> **Note**: Setup instruction for `Angular2-token` are available on their readme on GitHub
+
+Update the constructor of the main component \(`src/app/app.component.ts` \) to look like:
+
+```typescript
+constructor(
+  public platform: Platform,
+  public statusBar: StatusBar,
+  public splashScreen: SplashScreen,
+  private _tokenService: Angular2TokenService
+) {
+  this._tokenService.init({
+    apiBase: 'https://your-cooper-api.herokuapp.com/api/v1'
+  });
+  
+  this.initializeApp();
+  
+  // used for an example of ngFor and navigation
+  ...
+}
+```
+
+Now that we have this service setup, we'll add the ability for a user to login and logout.
+
+### Add login ability
+
+Add the login and logout buttons on the menu
 
 ```html
-<!-- ionic/angularjs js -->
-<script src="lib/ionic/js/ionic.bundle.js"></script>
-<script src="lib/angular-cookie/angular-cookie.js"></script>
-<script src="lib/ng-token-auth/dist/ng-token-auth.js"></script>
+<ion-list>
+  ...
+  <button ion-item (click)="loginPopUp()" *ngIf="!currentUser">
+    Login
+  </button>
+  <button ion-item (click)="logout()" *ngIf="currentUser">
+    Logout {{currentUser.email}}
+  </button>
+</ion-list>
 ```
 
-Include `ng-token-auth` in your module's dependencies and add a basic configuration.
+Add the matching `loginPopUp()` and `logout()` functions in the `app.component.ts` file. Also note that in our markup above, we're making use of a `currentUser` variable. This variable will hold the current user's details once logged in.
 
-!FILENAME www/js/app.js
+```typescript
+import { ..., AlertController } from 'ionic-angular';
 
-```javascript
-angular.module('starter', ['ionic', 'starter.controllers', 'ng-token-auth'])
-    .constant('API_URL', 'https://ca-cooper-api.herokuapp.com/api/v1')
+...
 
-  .config(function ($authProvider, API_URL) {
-    $authProvider.configure({
-      apiUrl: API_URL
+export class MyApp {
+  ...
+  pages: Array<{title: string, component: any}>;
+  currentUser: any;
+
+  constructor(
+    ...
+  ) {
+    ...
+  }
+
+  ...
+
+  loginPopUp() {
+    console.log('popup');
+    let confirm = this.alertCtrl.create({
+      title: 'Login',
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'email'
+        },
+        {
+          name: 'password',
+          placeholder: 'password',
+          type: 'password'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Login',
+          handler: data => {
+            this.login(data);
+          }
+        }
+      ]
     });
-  })
+    confirm.present();
+  }
+
+  login(credentials) {
+    this.tokenService
+      .signIn(credentials)
+      .subscribe(
+      res => (this.currentUser = res.json().data),
+      err => console.error('error')
+      );
+  }
+
+  logout() {
+    this.tokenService
+      .signOut()
+      .subscribe(res => console.log(res), err => console.error('error'));
+    this.currentUser = undefined;
+  }
+}
 ```
 
-In `controllers.js` `AppCtrl` locate the `doLogin()` method.
 
-!FILENAME www/js/controllers.js
 
-```javascript
-//...
-// Perform the login action when the user submits the login form
-$scope.doLogin = function () {
-  $auth.submitLogin($scope.loginData)
-    .then(function (resp) {
-      // handle success response
-      $scope.closeLogin();
-    })
-    .catch(function (error) {
-      // handle error response
-      $scope.errorMessage = error;
-    });
-};
-//...
-```
-
-Now, we need to make some small changes and additions to our view templates.
-
-Change the input field `Username` to `Email` and the `ng-model` from `loginData.username` to `loginData.email`.
-
-!FILENAME www/templates/login.html
-
-```html
-//...
-<label class="item item-input">
-  <span class="input-label">Email</span>
-  <input type="text" ng-model="loginData.email">
-</label>
-//...
-```
-
-And add a placeholder for display of error messages.
-
-!FILENAME www/templates/login.html
-
-```html
-//...
-<ion-content>
-  <div class="row" ng-if="errorMessage">
-    <p ng-repeat="error in errorMessage.errors">
-      {{error}}
-    </p>
-  </div>
-  //...
-```
-
-We also want to create a `currentUser` object. In the`AppCtrl` add this method to create the `currentUser` on successful authentication.
-
-!FILENAME www/js/controllers.js
-
-```javascript
-//...
-$rootScope.$on('auth:login-success', function(ev, user) {
-  $scope.currentUser = user;
-});
-//...
-```
-
-And make use of this object on the `about.html` template.
-
-!FILENAME www/templates/about/about.html
-
-```html
-//...
- <div class="col">
-    Craft Academy Cooper Test Challenge - Mobile Client.
-    <p ng-if="currentUser">Logged in as {{currentUser.email}}</p>
- </div>
-//...
-```
-
-One final touch to enhance the user experience. Sometimes the API endpoint will take some time to respond and the user might be left wondering if his request is actually being processed or not. There is a very simple way to show the user that we are really processing his request by displaying an overlay with some sort of a message. In our case "Logging is..." could do, right?
-
-Ionic provides us with [`$ionicLoading`](http://ionicframework.com/docs/api/service/$ionicLoading/) as a way to display such overlays. Let's implement it.
-
-Add `$ionicLoading` to the `AppCtrl`.
-
-!FILENAME www/js/controllers.js
-
-```javascript
-//...
-.controller('AppCtrl', function ($rootScope,
-                                 $scope,
-                                 $ionicModal,
-                                 $timeout,
-                                 $auth,
-                                 $ionicLoading) {
-//...
-```
-
-And update the `doLogin()` function with the following code.
-
-!FILENAME www/js/controllers.js
-
-```javascript
-//...
-// Perform the login action when the user submits the login form
-  $scope.doLogin = function () {
-    $ionicLoading.show({
-      template: 'Logging in...'
-    });
-    $auth.submitLogin($scope.loginData)
-      .then(function (resp) {
-        // handle success response
-        $ionicLoading.hide();
-        $scope.closeLogin();
-      })
-      .catch(function (error) {
-        $ionicLoading.hide();
-        $scope.errorMessage = error;
-      });
-  };
-//...
-```
-
-With this in place an overlay will be displayed while the app is making the request and hidden when the promise is resolved.
-
-At this stage we have a method to login the user. The next step will be to add an interface to create and update users. That is, however, something that we leave up to you. Just a friendly reminder, make sure that you read the [ng\_token\_auth](https://github.com/lynndylanhurley/ng-token-auth) documentation. Everything you need to know is well documented in the README file of the project.
+At this stage we have a method to login the user. The next step will be to add an interface to create and update users. That is, however, something that we leave up to you. Just a friendly reminder, make sure that you read the [Angular2-Token](https://github.com/neroniaky/angular2-token) documentation. Everything you need to know is well documented in the README file of the project.
 
