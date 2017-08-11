@@ -207,8 +207,8 @@ export class PersonProvider {
 
   constructor(private cooper: CooperProvider) {}
 
-  doAssessment(user: any, distance: number): void {
-    this.assessmentMessage = this.cooper.assess(user, distance);
+  doAssessment(distance: number): void {
+    this.assessmentMessage = this.cooper.assess(this, distance);
   }
 }
 ```
@@ -352,7 +352,7 @@ If you now head back to your your browser and set some values then press the cal
 
 ### Display the result on our page
 
-We'll add some markup to the page template and this section of the page should only be displayed once the result of our calculations are available. Add the following snippet just before the closing `</ion-content>` 
+We'll add some markup to the page template and this section of the page should only be displayed once the result of our calculations are available. Add the following snippet just before the closing `</ion-content>`
 
 ```html
 <ion-card *ngIf="person?.assessmentMessage">
@@ -369,7 +369,7 @@ Let's see if that works! Head over to your browser and give it a try. You should
 
 ![](/assets/ionic/cooper-display-result.png)
 
-Feel free to play around with different values. 
+Feel free to play around with different values.
 
-Now that the basic functionality of our application is in place. We can move to the next steps which will involve connecting it to our backend to save the results of our calculations for every users. 
+Now that the basic functionality of our application is in place. We can move to the next steps which will involve connecting it to our backend to save the results of our calculations for every users.
 
