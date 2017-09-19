@@ -17,10 +17,10 @@ import 'rxjs/add/operator/map';
 
 @Injectable()
 export class PerfomanceDataProvider {
-  constructor(private tokenService: Angular2TokenService) {}
+  constructor(private _tokenService: Angular2TokenService) {}
 
   saveData(data) {
-    return this.tokenService.post('performance_data', data).map(data => data);
+    return this._tokenService.post('performance_data', data).map(data => data);
   }
 }
 ```
@@ -35,9 +35,9 @@ import { PerfomanceDataProvider } from '../../providers/perfomance-data/perfoman
 ...
 
   calculate(user) {
-    this.result = this.person.doAssessment(user, user.distance);
+    this.person.doAssessment(user.distance);
     this.perfomanceData
-      .saveData({ performance_data: { data: { message: this.result } } })
+      .saveData({ performance_data: { data: { message: this.person.assessmentMessage } } })
       .subscribe(data => console.log(data));
   }
 ```
@@ -84,9 +84,9 @@ On the `home.ts` component we need to add a method called \`showResults\(\)\` th
 Just for diversity we will use modals in this scenario
 
 ```typescript
-  showResults() {
-    this.modalCtrl.create(ResultsPage).present();
-  }
+showResults() {
+  this.modalCtrl.create(ResultsPage).present();
+}
 ```
 
 **NOTE**: For this to work we need to import the `ModalController` from `'ionic-angular'`  and inject it in the constructor with a name `modalCtrl`
@@ -100,7 +100,7 @@ We reuse the `perfomanceData` provider in this case and add a function below the
 ```typescript
   ...
   getResults() {
-    return this.tokenService
+    return this._tokenService
       .get('performance_data')
       .map(results => results.json());
   }
@@ -171,18 +171,14 @@ We fetched results from the backend using ionic lifecycle event and assigned wha
 
 You can see that in the date section there is a pipe `|` that has been used. This is what we use to format our date to a more readable format
 
-
-
 ### Final touch
 
-Lets create another button for saving the results so the user can save the results only if they wish. 
+Lets create another button for saving the results so the user can save the results only if they wish.
 
 * This button should only show up after the user has gotten the results.
 * The button should be located below the results card
 
- **Do not forget to move the saving logic to a seperate function in the component**
+  **Do not forget to move the saving logic to a seperate function in the component**
 
 ![](/assets/show-save-button.gif)
-
-
 
