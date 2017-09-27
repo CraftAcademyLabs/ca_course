@@ -31,7 +31,9 @@ area = pi * radius * radius; // this is possible since pi has been imported into
 ```
 
 What if we exported the variable with a name \(possibly a vey long name\) but we want to use a different  
-name in the import file? We use the as keyword for this to create an alias
+name in the import file? 
+
+We use the `as` keyword for this to create an alias
 
 ```javascript
 import { ThisVeryLongNameThatIdontLike as shortName } from '../filepath/filename'
