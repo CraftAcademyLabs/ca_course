@@ -31,7 +31,7 @@ area = pi * radius * radius; // this is possible since pi has been imported into
 ```
 
 What if we exported the variable with a name \(possibly a vey long name\) but we want to use a different  
-name in the import file? 
+name in the import file?
 
 We use the `as` keyword for this to create an alias
 
@@ -50,10 +50,27 @@ console.log(formBuilder.empty)
 //By namespacing we mean you go through that name (formBuilder) to get to the variable
 ```
 
+Think about it for a while, why do we need namespaces? The most obvious reason would be to avoid variable names that clash. Have a look at the exports below from two different file
+
+```typescript
+export const age = 14 // exports a age of the car from 'car.ts' file
+export const age = 45 //exports a age of the person from 'person.ts' file
+
+// importing the above
+import * as Car from '../carfile'
+import * as Person from '../personfile'
+
+Car.age // the age of the car
+Person.age //age of the person
+
+// I guess its clear now, or maybe not :-) , if not ask a coach for a little extra help 
+
+```
+
 ## How this is used in angular and ionic
 
 ```javascript
-//example of exports which exports a class that contains a function
+//example of exports which exports a class, The exported class contains a function called `deleteComment()`
 export class CommentsPage {
     deleteComment() {console.log('deleted'}
 }
@@ -66,6 +83,8 @@ Now to import
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import { CommentsPage } from '../../providers/comments';
+
+
 class exampleClass{
   console.log(CommentsPage.deleteComment()) // should output 'deleted'
 }
