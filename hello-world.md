@@ -117,6 +117,37 @@ If you examine the browser window with your test output, you should see that all
 
 ![](/assets/ember-5-tests-passing.png)
 
+We will add a final test to this Hello World application. We want to make sure that the index url of the app redirects to the `/hello-world` url. 
+
+!FILENAME tests/acceptance/hello-world-test.js
+```javascript
+test('visiting "/" redirects to "/hello-world"', function(assert) {
+  visit('/');
+
+  andThen(function() {
+    assert.equal(currentURL(), '/hello-world');
+  });
+});
+```
+
+And in order to get this test to pass, we will add a redirect to the `index`  route. 
+
+We need to create a new file (this time around, without using a generator) and add the following code. 
+
+!FILENAME app/routes/index.js
+```javascript
+import Route from '@ember/routing/route';
+
+export default Route.extend({
+  beforeModel() {
+    this.transitionTo('hello-world'); 
+  }
+});
+```
+
+![](/assets/ember-6-hello-world.gif)
+
+
 
 
 
