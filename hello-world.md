@@ -47,7 +47,7 @@ installing acceptance-test
 This generates a test file for us and adds a test case for accessing the `/hello-world` route. 
 
 
-```
+```javascript
 import { test } from 'qunit';
 import moduleForAcceptance from 'hello-world/tests/helpers/module-for-acceptance';
 
@@ -61,6 +61,53 @@ test('visiting /hello-world', function(assert) {
   });
 });
 ```
+
+We will make a small addition to this test file with a test for the `h1` tag with the words `Hello World` being displayed on the view.
+
+```javascript
+test('template renders "Hello World"', function(assert) {
+  visit('/hello-world');
+
+  andThen(function() {
+    assert.equal(find('h1').text(), 'Hello World');
+  });
+});
+
+``` 
+
+If we run the sets now, they will, of course fail. Let's do it anyway. In your terminal, in a separate tab, run the test command with the `--server` option, and keep it running.
+
+```
+$ ember test --server
+``` 
+
+A browser window will open and you should see the following.
+
+![](/assets/ember-3-failing-tests.png)
+
+The important take away at this stage is the message that `Assertion Failed: The URL '/hello-world' did not match any routes in your application`. There is simply no route `hello-world`. Let's create one and see if we can change the error message. 
+
+Run the following generator to create a route.
+
+```
+$ ember g route hello-world
+```
+
+You will see that your tests will rerun and the browser window with the test output will reload. You should see a different output now. Probably something similar to this:
+
+![](/assets/ember-4-changed-error-message.png)
+
+Alright, the route is in place and one of our test is passing. Now let's make the second test case go green. 
+
+Open up the application layout (`app/templates/application.hbs`) and remove the component that displays Ember's default welcome message. Your `application.hbs` should look like this: 
+
+!FILENAME app/templates/application.hbs
+```javascript
+{{outlet}}
+```
+
+
+
 
 
 
