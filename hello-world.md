@@ -1,7 +1,10 @@
-## Getting started with Ember
-### Say "Hello World" - with acceptance tests
+## Say "Hello World" using Ember
 
-Install ember-cli if not installed
+Install **node.js** (if not installed...)
+
+Node is javascript for writing web applications on a server. You can [install node from this website](https://nodejs.org/en/). We won't be using node directly, but we will be using the node package manager, **npm**, to install the **ember-cli** (Ember Command Line Interface) that we'll use to generate and work with our ember app.
+
+Install **ember-cli** (if not installed...)
 ```
 $ npm install -g ember-cli
 ```
@@ -117,7 +120,7 @@ If you examine the browser window with your test output, you should see that all
 
 ![](/assets/ember-5-tests-passing.png)
 
-We will add a final test to this Hello World application. We want to make sure that the index url of the app redirects to the `/hello-world` url. 
+We will add another small feature to this Hello World application. We want to make sure that the index url of the app redirects to the `/hello-world` url. Let's start with adding a test case.
 
 !FILENAME tests/acceptance/hello-world-test.js
 ```javascript
@@ -130,7 +133,7 @@ test('visiting "/" redirects to "/hello-world"', function(assert) {
 });
 ```
 
-And in order to get this test to pass, we will add a redirect to the `index`  route. 
+In order to get this test to pass, we will add a redirect to the `index`  route. 
 
 We need to create a new file (this time around, without using a generator) and add the following code. 
 
@@ -146,6 +149,9 @@ export default Route.extend({
 ```
 
 ![](/assets/ember-6-hello-world.gif)
+
+## Data bindings
+
 
 
 
