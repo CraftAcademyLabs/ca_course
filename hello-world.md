@@ -46,7 +46,7 @@ installing acceptance-test
 ```
 This generates a test file for us and adds a test case for accessing the `/hello-world` route. 
 
-
+!FILENAME tests/acceptance/hello-world-test.js
 ```javascript
 import { test } from 'qunit';
 import moduleForAcceptance from 'hello-world/tests/helpers/module-for-acceptance';
@@ -64,6 +64,7 @@ test('visiting /hello-world', function(assert) {
 
 We will make a small addition to this test file with a test for the `h1` tag with the words `Hello World` being displayed on the view.
 
+!FILENAME tests/acceptance/hello-world-test.js
 ```javascript
 test('template renders "Hello World"', function(assert) {
   visit('/hello-world');
@@ -105,6 +106,18 @@ Open up the application layout (`app/templates/application.hbs`) and remove the 
 ```javascript
 {{outlet}}
 ```
+
+And finally, let's add some html to the template rendered when we call the `/hello-world` url. 
+
+!FILENAME app/templates/hello-world.hbs
+```html
+<h1>Hello World</h1>
+```
+If you examine the browser window with your test output, you should see that all test are going 'green' (if you experience a different output, restart your test server before debugging your code and searching for typos). 
+
+![](/assets/ember-5-tests-passing.png)
+
+
 
 
 
