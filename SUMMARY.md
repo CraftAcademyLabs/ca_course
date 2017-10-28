@@ -95,4 +95,6 @@
   * [Advanced Ruby](career/advanced-ruby.md)
   * [Databases](career/databases.md)
   * [SOLID Principles](career/solid-principles.md)
+* Ember
+  * [Hello World](hello-world.md)
 
