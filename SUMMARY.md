@@ -99,4 +99,6 @@
   * [Sinatra - an introduction](sinatra-and-slowfood/sinatra-an-introduction.md)
   * [Start small](sinatra-and-slowfood/start-small.md)
   * [More Hello World](more-hello-world.md)
+* Ember
+  * [Hello World](hello-world.md)
 
