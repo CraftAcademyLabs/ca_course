@@ -1,5 +1,11 @@
 ## Say "Hello World" using Ember
 
+[Ember](https://emberjs.com/) is a front-end framework for building ambitious web applications. It uses the MVC pattern to serve data to view templates ([Handlebars](http://handlebarsjs.com/)) that update automatically as the underlying data changes. Ember's components allow you to create your own application-specific HTML tags to use on your view templates. Ember also makes data retrieval and serialization simple.
+
+Ember also comes with testing frameworks and in this little tutorial, weäll be using some of them.
+
+### Let's get started 
+
 Install **node.js** (if not installed...)
 
 Node is javascript for writing web applications on a server. You can [install node from this website](https://nodejs.org/en/). We won't be using node directly, but we will be using the node package manager, **npm**, to install the **ember-cli** (Ember Command Line Interface) that we'll use to generate and work with our ember app.
@@ -135,7 +141,7 @@ test('visiting "/" redirects to "/hello-world"', function(assert) {
 
 In order to get this test to pass, we will add a redirect to the `index`  route. 
 
-We need to create a new file (this time around, without using a generator) and add the following code. 
+We need to create a new file (this time around, without using a generator. Use `$ touch app/routes/index.js`) and add the following code. 
 
 !FILENAME app/routes/index.js
 ```javascript
