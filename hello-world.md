@@ -1,4 +1,4 @@
-## Say "Hello World" using Ember
+## "Hello World" using Ember
 
 [Ember](https://emberjs.com/) is a front-end framework for building ambitious web applications. It uses the MVC pattern to serve data to view templates ([Handlebars](http://handlebarsjs.com/)) that update automatically as the underlying data changes. Ember's components allow you to create your own application-specific HTML tags to use on your view templates. Ember also makes data retrieval and serialization simple.
 
