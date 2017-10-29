@@ -33,8 +33,6 @@ The `ember new` command generates a lot of scaffolded code, installs all necessa
 $ cd hello-world
 ```
 
-![](/assets/ember-1.png)
-
 Now, let's fire up the local server and see what we've got from the application scaffold.
 
 ``` 
