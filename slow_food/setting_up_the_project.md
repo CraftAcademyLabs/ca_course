@@ -1,33 +1,37 @@
 ## Step 1 - Setting up the project
 
 
-We have set up a [repository for the project](https://github.com/CraftAcademy/slow_food_sinatra) with some basic functionality regarding user authentication. Your team should make use of that code and pull it in. Fork that repo and go over the code and the gems already included in the `Gemfile`.  Your very fist assignment is the get that code working. Make use of all the previous challenges to find answers to obstacles you might encounter.
+We have set up a [repository for the project](https://github.com/CraftAcademy/slow_food_sinatra_ar) with a basic, modular Sinatra application scaffold. Your team should make use of that code and pull it in. Fork that repo and go over the code and the gems already included in the `Gemfile`.  
+
+Your very first assignment is the get that code working and run the application on your development machines. Make use of all the previous challenges to find answers to obstacles you might encounter.
 
 #### RVM help
 You will find that you need to use a different version of Ruby to run this code. Run:
 ```shell
-$ rvm use 2.2.3
+$ rvm use 2.4.1
 ```
-This will prompt you to run some more commands. Run them. You'll need to bundle before you can do anything else. But what happened to your `bundle` command!? You've just changed to a new version of Ruby. That means you need to re-install all of your gems, including bundler. Run:
+This will prompt you to run some more commands. Run them. You'll need to bundle before you can do anything else. But what happened to your `bundle` command!? 
+
+You've just changed to a new version of Ruby. That means you need to re-install all of your gems, including bundler. Run:
 ```shell
 $ gem install bundler
 ```
-Now you have `bundle` back and can install the other gems.
+Now you have `bundle` yet again, and install all the gems in your `Gemfile`.
 
 **Remember, as with every other material, there might be errors in the provided code. It's up to you to find and correct them if you choose to use the provided snippets. Don't come blaming the authors of this challenge if you run into trouble 😉**
 
-**Finally, it's not just about the code. This challenge is about practicing the workflow.**
+**Remember, it's not just about the code. This challenge is about practicing the workflow, solving problems, learning how collaborate as a team and much more.**
 
 
 ### Agile principles
 
-There are different Agile methodologies you can use in your projects and we will be talking a lot about that and introducing different agile techniques as we move along in the course. For now, you should always follow these core Agile principles:
+There are different Agile practices you can use in this and other projects, and we will be talking a lot about that and introducing different agile techniques as we move along in the course. For now, you should always follow these core Agile principles:
 
-* focus on user needs
-* deliver iteratively
-* keep improving how your team works
-* fail fast and learn quickly
-* keep planning
+* Focus on user needs
+* Deliver iteratively
+* Keep improving how your team works
+* Fail fast and learn quickly
+* Keep planning and stick to your plan
 
 Remember, XP supplements the Scrum process with practices like:
 
@@ -40,7 +44,7 @@ Remember, XP supplements the Scrum process with practices like:
 
 ### Planning and Communication
 
-##### Get Organezized
+##### Get "Organezized"
 
 > *Travis*: I should get one of those signs that says "One of these days I'm gonna get organezized".
 > 
@@ -55,7 +59,7 @@ Remember, XP supplements the Scrum process with practices like:
 
 Your team should plan together, review these plans regularly and change them based on your progress and any new facts and requirements that arise during the development process. 
 
-Both [Waffle.io](https://waffle.io/) and [ZenHub.io](https://www.zenhub.io/) are project management tools powered by your GitHub Issues & Pull Requests. Waffle.io is the tool of choice for many AgileVentures projects and provides a web based interface for managing Issues and track Pull Requests. ZenHub provides similar functionality (and more) as a browser extension. It is up to you to decide what tool your team want to use.
+Both [Waffle.io](https://waffle.io/) and [ZenHub.io](https://www.zenhub.io/) are project management tools powered by your GitHub Issues & Pull Requests. Waffle.io is the tool of choice for many projects and provides a web based interface for managing Issues and track Pull Requests. ZenHub provides similar functionality (and more) as a browser extension. It is up to you to decide what tool your team want to use.
 
 ### Structure
 

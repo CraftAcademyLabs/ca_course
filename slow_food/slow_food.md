@@ -1,8 +1,8 @@
 ### SlowFood (Sinatra)
 
-**Welcome to the Week 3 of the Bootcamp and the Slow Food Challenge.** 
+**Welcome to the Week 4 of the Bootcamp and the Slow Food Challenge.** 
 
-Our client is a Restaurant owner that needs a website where he can list his menu and allow visitors to place orders. The challenge is to build an Online Food Ordering System - a web based application that enables customers to order their food online for home delivery or pick up from the restaurant. 
+This weeks challenge is to build an Online Food Ordering System - a web based application that enables customers to order their food online for home delivery or pick up from the restaurant. Our client is a Restaurant owner that needs a website where he can list his menu and allow visitors to place orders. 
 
 This is the first challenge in the Online Food Ordering domain that we will be working on during the course. It constitutes a part of a larger theme that we are using throughout our bootcamp. Further down the road we will challenge you with developing a more extensive application that will have more of a marketplace functionality. The idea is that by building a fully functional service with multiple restaurants, delivery system, payments, ranking, etc, you will learn how to build rather complex systems and learn to use different technologies. Eventually you will be challenged with building an API to expose the applications data to other applications (like a mobile client).
 
@@ -46,7 +46,7 @@ During this project you will be using a variety of tools. You have used some of 
 * [Warden](https://github.com/hassox/warden) for user authentication
 * [Cucumber](https://cucumber.io/) for Acceptance tests
 * [RSpec](http://rspec.info/) for Unit tests
-* [Pony](https://editor.ponyorm.com/) for creating end editing Entity-Relationship diagrams
+* [Pony](https://editor.ponyorm.com/) for creating end editing Entity-Relationship Diagrams
 * [GitHub](https://github.com/) to store your code and make it available for the entire team
 * [Waffle.io](https://waffle.io/) or [ZenHub.io](https://www.zenhub.io/) as Project Management tool for tracking features, issues, bugs, etc.
 
