@@ -15,14 +15,15 @@ This challenge introduces a new set of technologies and skills you'll need as a 
 * Collaboration using Git and GitHub
 * Test and Behavior Driven Development
 
+**The purpose of this challenge is to simulate a real project and prepare you for the Mid Course Project that you will be working on in week 6 and/or 7 of the Bootcamp.**  
 
 
 #### Learning Objectives
-* Learn about basic Agile principles
+* Learn about basic Agile practices
   - self organizing teams
   - the importance of planning your work
 * Learn about Sinatra
-  - understand the concept of ORM's vs SQL (DataMapper)
+  - understand the concept of ORM's vs SQL (ActiveRecord)
   - understand the structure of a Sinatra app
     - controllers
     - routes
@@ -48,13 +49,13 @@ During this project you will be using a variety of tools. You have used some of 
 * [RSpec](http://rspec.info/) for Unit tests
 * [Pony](https://editor.ponyorm.com/) for creating end editing Entity-Relationship Diagrams
 * [GitHub](https://github.com/) to store your code and make it available for the entire team
-* [Waffle.io](https://waffle.io/) or [ZenHub.io](https://www.zenhub.io/) as Project Management tool for tracking features, issues, bugs, etc.
+* [Waffle.io](https://waffle.io/) or [ZenHub.io](https://www.zenhub.io/) as Project Management tool for tracking Features, Chores and Bugs.
 
-**The purpose of this exercise is to simulate a real project and prepare you for the mid course project that you will be working on in week 6 and/or 7 of the Bootcamp.**  
+
 
 #### Scope
 
-The first version of the application has limited functionality
+The first version of the application has limited functionality:
 
 * The owner need to access a protected part of the application to set up information about his Restaurant and his Menu
 * A Menu needs to consist of many Dishes
