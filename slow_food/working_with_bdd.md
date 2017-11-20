@@ -24,6 +24,7 @@ In short, we want to take each user story and break it down to scenarios that ea
 
 A **feature** is one of your already defined **user stories**. It consists of one ore many  **scenarios**. A scenario is a sequence of **steps** through the feature that exercises one path.
 
+
 A **scenario** is made up of 3 sections related to the 3 types of steps:
 
 * **Given:** This sets up preconditions, or context, for the scenario.
@@ -32,10 +33,10 @@ A **scenario** is made up of 3 sections related to the 3 types of steps:
 * 
 There is yet another type of step you can use in a scenario path, and that is the **And** keyword. **And** can be used in any of the three sections. It serves as a nice shorthand for repeating the **Given**, **When**, or **Then**. **And** stands in for whatever the most recent explicitly named step was.
 
-For example, let's say that we want to test our user registration feature. In the newly created features folder, please create a `user_management.feature` by returning to your terminal window and typing in:
+For example, let's say that we want to test our user registration feature. In the newly created features folder, please create a `user_registers_an_account.feature` by returning to your terminal window and typing in:
 
 ```shell
-$ touch features/user_management.feature
+$ touch features/user_registers_an_account.feature
 ```
 Open that file and add the following code (this is a feature description AND the first of many scenarios that constitutes acceptance criteria of this feature) 
 
@@ -152,7 +153,7 @@ This is passing because we are testing views that are already defined in the leg
 
 You probably recognize the `expect` command from your work with RSpec. What is new is the Capybara commands. So far, we only make use of 2 of quite many commands that are to our disposal. 
 
-Here is a summary of the most common commands
+Here is a summary of the most common commands that we will be using. 
 ```
 =Navigating=
     visit('/projects')

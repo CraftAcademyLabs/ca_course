@@ -6,7 +6,7 @@ Each table contains data in predefined columns. Each row contains a unique insta
 
 **SQL (Structured Query Language)** is a standard interactive and programming language for getting information from and updating a database. Queries take the form of a command language that lets you select, insert, update and delete data.
 
-**ORM (Object-relational mapping)** is a mechanism that makes it possible to address, access and manipulate objects without having to consider how those objects relate to their data sources. Examples of ORM's that we will use during this course are **Data Mapper** and **Active Record**.
+**ORM (Object-relational mapping)** is a mechanism that makes it possible to address, access and manipulate objects without having to consider how those objects relate to their data sources. Examples of ORM's are **Data Mapper** and **Active Record**.
 
 **ERD (Entity Relationship Diagram)** is a data modeling technique to graphically represent a conceptual data model of a information system. They allow you to display your database structure and show entities and relationships between tables within that database. 
 
