@@ -43,7 +43,7 @@ This challenge introduces a new set of technologies and skills you'll need as a 
 During this project you will be using a variety of tools. You have used some of them in other challenges, but many will be new to you. 
 * [Sinatra](http://www.sinatrarb.com/) as web framework
 * [ZURB Foundation 6](http://foundation.zurb.com/sites/docs/) as CSS framework
-* [PostgreSQL](http://www.postgresql.org/) as a database with [DataMapper](http://datamapper.org) as ORM
+* [PostgreSQL](http://www.postgresql.org/) as a database with ActiveRecord as ORM
 * [Warden](https://github.com/hassox/warden) for user authentication
 * [Cucumber](https://cucumber.io/) for Acceptance tests
 * [RSpec](http://rspec.info/) for Unit tests
