@@ -1,7 +1,7 @@
 ## Step 1 - Setting up the project
 
 
-We have set up a [repository for the project](https://github.com/CraftAcademy/slow_food_sinatra_ar) with a basic, modular Sinatra application scaffold. Your team should make use of that code and pull it in. Fork that repo and go over the code and the gems already included in the `Gemfile`.  
+We have set up a [repository for the project](https://github.com/CraftAcademy/slow_food_sinatra_mvc) with a basic, modular Sinatra application scaffold. Your team should make use of that code and pull it in. Fork that repo and go over the code and the gems already included in the `Gemfile`.  
 
 Your very first assignment is the get that code working and run the application on your development machines. Make use of all the previous challenges to find answers to obstacles you might encounter.
 
