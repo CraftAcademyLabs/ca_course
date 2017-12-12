@@ -3,8 +3,8 @@
 
 1. Learn how to set up a simple ruby based project
 2. Make use of a testing framework 
-3. Connect your project to a GitHub repository
-4. Practice Pair mPrograming and sharing code
+3. Connect your project (local repository) to a GitHub repository
+4. Practice Pair Programing and sharing code
 
 ### Action points
 
