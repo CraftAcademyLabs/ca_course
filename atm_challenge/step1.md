@@ -15,7 +15,7 @@ $ touch Gemfile
 ```
 Add the following content to that file. 
 
-!FILENAME Gemfile
+_Gemfile_
 ```ruby
 source 'https://rubygems.org'
 
@@ -29,6 +29,8 @@ If you get an error message and the system complains about not finding Bundler, 
 ```
 $ gem install bundler
 ```
+**Please note that the gem name is `bundler` while the command used to run it is `bundle`. **
+
 And run `bundle install` again. 
 
 That installs RSpec. 
@@ -41,7 +43,8 @@ $ rspec --init
 
 Edit the `.rspec` file and add --format documentation to see a more verbose rspec output. Your `.rspec` file needs to look like this.
 
-!FILENAME .rspec
+_.rspec_
+
 ```
 --format documentation
 --color
@@ -49,6 +52,7 @@ Edit the `.rspec` file and add --format documentation to see a more verbose rspe
 ```
 
 Now, if you go back to your terminal and run the rspec command, you should see something like this.
+
 ```
 $ rspec
 No examples found.
@@ -59,8 +63,9 @@ Finished in 0.00028 seconds (files took 0.40297 seconds to load)
 
 Alright, that means we are set and ready to test. 
 
-###Using Git
-Let me put down some ground rules about version control. Commit often, write good commit messages and push up to your GitHub account. That is the only way for us coaches to see your progress. It does not matter if the code is working. We still want to see it. **Bad code is better then No code!**
+### Using Git
+
+Let me put down some ground rules about version control. Commit often, write good commit messages and push up to your GitHub account. That is the only way for us coaches to see your progress. It does not matter if the code is working. We still want to see it. **BAD CODE is better then NO CODE!**
 
 At this stage you need to set up a git repository. I suggest that you create a GitHub repository, copy the address and add it as a remote to your local repository (We are about to create one). 
 
@@ -78,10 +83,12 @@ $ touch .gitignore
 ```
 Add at this to that file.
 
-!FILENAME .gitignore
+_.gitignore_
+
 ```
 .DS_Store
 ```
+
 `.DS_Store` (Desktop Services Store) is a OSX file that stores custom attributes of its containing folder, such as the position of icons or the choice of a background image. We don't want to track those files with git.
 
 Now, perform the following steps.
