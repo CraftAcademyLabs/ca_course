@@ -1,11 +1,13 @@
 ## Setting up
-###Learning objectives
+### Learning objectives
+
 1. Learn how to set up a simple ruby based project
 2. Make use of a testing framework 
 3. Connect your project to a GitHub repository
 4. Practice Pair mPrograming and sharing code
 
-###Action points
+### Action points
+
 * Set up a simple project   
     * Create a `Gemfile` and add `rspec` as a dependency.
     2. Initiate `rspec`
@@ -15,7 +17,7 @@
 * Initialize and push a git repository
 * Add your Pair as a `git remote`
 
-###Walkthrough
+### Walkthrough
 
 Create a project folder in your Terminal and `cd` into that folder
 
