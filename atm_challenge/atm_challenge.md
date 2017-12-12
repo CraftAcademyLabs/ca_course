@@ -17,6 +17,7 @@ Our client is a financial institution that wants to allow its customers to withd
 
 ### Scope
 The following objectives must be met:
+
 - An ATM machine can hold up to $1000
 - Withdrawal can be cleared only if 
     - The ATM holds enough funds
@@ -30,13 +31,13 @@ The following objectives must be met:
 
 #### Example output
 ```ruby
-# successful withdrawal
+# Message on successful withdrawal
 { status: true, message: 'success', date: '2016-01-30', amount: 35, bills: [20,10,5]}
 
-# wrong pin
+# Error message - wrong pin
 { status: false, message: 'wrong pin', date: '2016-01-30'}
 
-# expired card
+# Error message - expired card
 { status: false, message: 'card expired', date: '2016-01-30'}
 ```
 
@@ -45,8 +46,8 @@ The following objectives must be met:
 - Don't overdo it. Keep your implementation as simple as possible.
 - Test your code - both manually in IRB but, most importantly with automated tests.
 - You have to examine all tests ** *before* ** you write your production code. See tests as a blueprint for your implementation.
-- **Run one test at the time to avoid a massive output in your terminal. Disable `it` blocks by adding  an `x` before (as in `xit "Should..." do`)
-- Make sure to commit often and switch navigators (the person that writes code) 
+- **Run one test at the time to avoid a massive output in your terminal.** Disable `it` blocks by adding  an `x` before (as in `xit "Should..." do`)
+- Make sure to **commit often** and (if you are Pair Programming) switch navigators (the person that writes code).
 
 This is a good time to read the [Naming Standards](../extras/naming_standards.md) section.
 
