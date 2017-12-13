@@ -7,13 +7,13 @@ Object-relational mapping (ORM, O/RM, and O/R mapping tool) is a technique that 
 ### Explain the difference between a `has_one` and `belongs_to` association
 `has_one`: Indicates a direct 1:1 relationship between objects where each instance of a model contains one instance of another model.
 
-![](http://guides.rubyonrails.org/images/has_one.png)
+![](https://process.filestackapi.com/Ax6CqCJ04Sg6MvuwElEWLz/resize=width:600/http://guides.rubyonrails.org/images/has_one.png)
 
 <small>Source: Rubyonrails.org</small>
 
 `belongs_to`: Represents the inverse of a `has_one` (or `has_many`) association.
 
-![](http://guides.rubyonrails.org/images/belongs_to.png)
+![](https://process.filestackapi.com/Ax6CqCJ04Sg6MvuwElEWLz/resize=width:600/http://guides.rubyonrails.org/images/belongs_to.png)
 <small>Source: Rubyonrails.org</small>
 
 - A good way to remember this is that if a table has foreign keys, its model should have a `belongs_to` association.
