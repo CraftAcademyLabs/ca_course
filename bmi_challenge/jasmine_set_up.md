@@ -16,7 +16,7 @@ $ open SpecRunner.html
 
 That will open the test runner in your default browser and you should see something like this. 
 
-![Default tests fron the `jasmine_standalone` package](../images/jasmine_runner_1.png)
+![Default tests fron the `jasmine_standalone` package](https://github.com/CraftAcademy/ca_course/raw/master/images/jasmine_runner_1.png)
 
 Now, let's have a look at the file structure. Open the content of your project folder in your text editor.
 
@@ -24,7 +24,7 @@ Now, let's have a look at the file structure. Open the content of your project f
 $ atom .
 ``` 
 You should see the basic structure of the example project.
-![](../images/jasmine_standalone_examples.png)
+![](https://github.com/CraftAcademy/ca_course/raw/master/images/jasmine_standalone_examples.png)
 
 You can leave the files as they are if you want, or you can delete them if you want - we will be deleting them at some point down the road anyway.
 

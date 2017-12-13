@@ -16,7 +16,7 @@ When a web page is loaded, the browser creates a Document Object Model of the pa
 The HTML DOM model is constructed as a tree of Objects:
 
 
-![](Screen Shot 2016-11-16 at 1.11.09 PM.png)
+![](https://github.com/CraftAcademy/ca_course/raw/master/Screen Shot 2016-11-16 at 1.11.09 PM.png)
 
 
 With the object model, JavaScript gets all the power it needs to create dynamic HTML:
