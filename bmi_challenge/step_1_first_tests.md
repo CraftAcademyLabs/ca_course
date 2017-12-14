@@ -32,7 +32,10 @@ describe("Person", function() {
 ```
 
 If you reload your `SpecRunner.html` you'll get two errors. 
-![Jasmine - failing tests](https://github.com/CraftAcademy/ca_course/raw/master/images//jasmine_failing_tests.png)
+![Jasmine - failing tests](https://github.com/CraftAcademy/ca_course/raw/master/images//jasmine_failing_tests.png){width=600px}
+
+
+
 
 Let's implement the code that makes this test pass.
 
@@ -49,11 +52,16 @@ function Person(attr) {
 
 If you run your tests again, by reloading `SpecRunner.html` you'll see that our two initial tests are passing. Can you see why? 
 
-![Jasmine - passing tests](https://github.com/CraftAcademy/ca_course/raw/master/images//jasmine_passing_tests.png)
+![Jasmine - passing tests](https://github.com/CraftAcademy/ca_course/raw/master/images//jasmine_passing_tests.png){width=600px}
+
+
+
 
 Okay, the next thing I want you to do is to right-click anywhere on the browser window and choose `Inspect` from the pop-up menu. That opens the developer console. Try creating a new instance of a `Person` by following the example below.
 
-![Creating a Person in the browsers console](https://github.com/CraftAcademy/ca_course/raw/master/images/jasmine_console_2.png)
+![Creating a Person in the browsers console](https://github.com/CraftAcademy/ca_course/raw/master/images/jasmine_console_2.png){width=600px}
+
+
 
 Cool, the browsers console can function as a way to manually tests your units and functions - similarly to ruby's `irb`. 
 
