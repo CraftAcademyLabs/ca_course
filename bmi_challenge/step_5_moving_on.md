@@ -16,6 +16,8 @@ http://craftacademy.github.io/bmi/index.html
 ```
 
 ![BMI Calculator with Foundation 6 css framework](https://github.com/CraftAcademy/ca_course/raw/master/images/deployed_styled_calculator.png){width=100%}
+
+
 You can make any Github repository into a web page. On your repository, click Settings, then scroll down to Github Pages and select a branch (the one with the latest changes is best, probably `master`). Click "save", then Github will show you the link to your new website. That's it!
 
 
