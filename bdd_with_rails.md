@@ -54,13 +54,15 @@ Add `rspec-rails` gem to the `development` and `test` groups of your Gemfile.
 
 The RSpec extension library `shoulda-matchers` allows us to test common Rails functionality, like validations and associations, with less code.
 
-The gem `factory_girl` is a library for setting up Ruby objects as test data. It's essentially a fixtures replacement. It allows you to create objects that are needed in tests without providing a value for each required attribute. If you don't provide a value for a required attribute factory\_girl will use the default value that you defined in factory's definition.
+The gem `factory_bot` is a library for setting up Ruby objects as test data. It's essentially a fixtures replacement. It allows you to create objects that are needed in tests without providing a value for each required attribute. If you don't provide a value for a required attribute factory\_girl will use the default value that you defined in factory's definition.
 
 ```ruby
 group :development, :test do
+  gem 'factory_bot_rails'
+  gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'rspec-rails'
   gem 'shoulda-matchers'
-  gem 'factory_girl_rails'
 end
 ```
 
@@ -80,7 +82,7 @@ Why `bundle exec` before a command? `bundle exec` executes a command in the cont
 
 Before you can use `shoulda-matchers`, you need to configure it by choosing the test framework and features of `shoulda-matchers` you want to use.
 
-Open `spec/rails_helper.rb` and add the following block.
+Open `spec/rails_helper.rb` and add the following block at the end of the file.
 
 ```ruby
 Shoulda::Matchers.configure do |config|
@@ -91,10 +93,12 @@ Shoulda::Matchers.configure do |config|
 end
 ```
 
-Before we move on we need to add another configuration to the Rails application to avoid the generators to scaffold too many files. Make the following modification to the `config/application.rb` file:
+Before we move on we need to add another configuration to the Rails application to avoid the generators to scaffold too many files. Modify the `Application` class in the `config/application.rb` file to have the following code:
 
 ```ruby
 class Application < Rails::Application
+  config.load_defaults 5.1
+
   # Disable generation of helpers, javascripts, css, and view, helper, routing and controller specs
   config.generators do |generate|
     generate.helper false
@@ -103,8 +107,8 @@ class Application < Rails::Application
     generate.helper_specs false
     generate.routing_specs false
     generate.controller_specs false
+    generate.system_tests false
   end
-  # ...
 end
 ```
 
@@ -130,9 +134,9 @@ Add `cucumber-rails` and `database_cleaner` gems to the test group of the Gemfil
 
 ```ruby
 group :development, :test do
-  [...]
   gem 'cucumber-rails', require: false
   gem 'database_cleaner'
+  # ... All the gems that were previously in this block
 end
 ```
 
@@ -184,13 +188,13 @@ Let's start by creating a high-level test file.
 `features/list_articles.feature`
 
 ```gherkin
-Feature: List articles on landing page
-  As a visitor, 
-  when I visit the application's landing page,
-  I would like to see a list of articles
+Feature: List articles on the landing page
+  As a visitor,
+  When I visit the landing page of the application
+  I would like to see a list of all articles
 
-  Scenario: Viewing list of articles on application's landing page
-    When I am on the landing page
+  Scenario: View list of articles on the landing page
+    When I visit the site
     Then I should see "A breaking news item"
     And I should see "Some really breaking action"
 ```
@@ -206,11 +210,11 @@ In the terminal output, you will see snippets for implementing steps:
 ```shell
 You can implement step definitions for undefined steps with these snippets:
 
-When(/^I am on the landing page$/) do
+When("I visit the site") do
   pending # Write code here that turns the phrase above into concrete actions
 end
 
-Then(/^I should see "([^"]*)"$/) do |arg1|
+Then("I should see {string}") do |string|
   pending # Write code here that turns the phrase above into concrete actions
 end
 ```
@@ -218,11 +222,11 @@ end
 Let's copy those steps into `features/step_definitions/landing_page_steps.rb` and edit them:
 
 ```ruby
-When(/^I am on the landing page$/) do
+When("I visit the site") do
   visit root_path
 end
 
-Then(/^I should see "([^"]*)"$/) do |content|
+Then("I should see {string}") do |content|
   expect(page).to have_content content
 end
 ```
@@ -233,43 +237,24 @@ If you run the scenario again, you will see that it fails since the route `root_
 
 ```ruby
 Rails.application.routes.draw do
-  root controller: :landing, action: :index
+  root controller: :articles, action: :index
 end
 ```
 
 Now implement the controller that will serve the `/` route. For that, we will use a Rails Generator.
 
 ```shell
-$ rails generate controller landing index
-      create app/controllers/landing_controller.rb
-      route get 'landing/index'
+$ rails generate controller Articles index
+      create app/controllers/articles_controller.rb
+      route get 'articles/index'
       invoke erb
-      create app/views/landing
-      create app/views/landing/index.html.erb
+      create app/views/articles
+      create app/views/articles/index.html.erb
       invoke rspec
 ```
 
-Now that we have the `root_path` setup with the LandingController, let's run our tests again. The first step of our scenario is now green.
+Now that we have the `root_path` setup with the LandingController, let's run our tests again. The first step of our scenario is now green.![](/bdd_with_rails/01_first_test_green.png)
 
-```shell
-Using the default profile...
-[...]
-
-Scenario: Viewing list of articles on application's landing page # features/list_articles.feature:6
-  When I am on the landing page # features/step_definitions/landing_page_steps.rb:1
-  Then I should see "A breaking news item" # features/step_definitions/landing_page_steps.rb:5
-    expected to find text "A breaking news item" in "Landing#index Find me in app/views/landing/index.html.erb" (RSpec::Expectations::ExpectationNotMetError)
-    ./features/step_definitions/landing_page_steps.rb:6:in `/^I should see "([^"]*)"$/'
-    features/list_articles.feature:8:in `Then I should see "A breaking news item"'
-  And I should see "Some really breaking action" # features/step_definitions/landing_page_steps.rb:5
-
-Failing Scenarios:
-cucumber features/list_articles.feature:6 # Scenario: Viewing list of articles on application's landing page
-
-1 scenario (1 failed)
-3 steps (1 failed, 1 skipped, 1 passed)
-0m0.533s
-```
 Let's get the remaining steps to a green state too. Looking at the previous output of cucumber, we note that it expected to see some text on the page, but didn't find any that was specified. It also points us to the file that was supposed to render the text in question `app/views/landing/index.html.erb`.
 
 All we need to do at this stage to get the remaining tests to pass is add the respective texts to that view file. Edit `app/views/landing/index.html.erb` and replace the file's content with:
@@ -284,9 +269,9 @@ Run cucumber now and see all the test pass.
 Great! all our steps are now green. We are not quite done yet though. If we take a look at our user story:
 
 ```
-As a visitor, 
-when I visit the application's landing page,
-I would like to see a list of articles
+As a visitor,
+When I visit the landing page of the application
+I would like to see a list of all articles
 ```
 
 We want to list a number of articles on our landing page. All we managed to do so far is display two static texts on our page. Let's update our cucumber scenario to clearly reflect that:
@@ -296,7 +281,7 @@ Feature: List articles on landing page
   As a visitor,
   when I visit the application's landing page,
   I would like to see a list of articles
- 
+
   Background: Given the following articles exists
     | title                | content                            |
     | A breaking news item | Some really breaking action        |
@@ -310,21 +295,21 @@ Feature: List articles on landing page
     And I should see "Build awesome rails applications"
 ```
 
-We now have a `Background` block that will set the stage for our scenario by creating two articles in our database. We then check to see that both articles are displayed on our landing page. If we run cucumber now, we get an undefined step with the following code snippet:
+We've now added a step that will set the stage for our scenario by creating two articles in our database. We then check to see that both articles are displayed on our landing page. If we run cucumber now, we get an undefined step with the following code snippet:
 
 ```shell
-Given(/^the following articles exists$/) do |table|
+Given("the following articles exists") do |table|
   # table is a Cucumber::MultilineArgument::DataTable
   pending # Write code here that turns the phrase above into concrete actions
 end
 ```
 
-Let's add that to our step definition.
+Let's add that to our step definitions and update the code of that step to as follow:
 
 ```ruby
-Given(/^the following articles exists$/) do |table|
-  table.hashes.each do |hash|
-    Article.create!(hash)
+Given("the following articles exists") do |table|
+  table.hashes.each do |article|
+    Article.create!(article)
   end
 end
 ```
@@ -356,7 +341,8 @@ Let's think about how we want our Articles to be structured:
 
 The first thing we want to do is to create a spec file in the `spec/models` folder called `article_spec.rb`. Let's add some tests \(we will use the matchers provided to us by the `shoulda-matchers` gem that extends the built-in RSpec matchers\).
 
-**`spec/models/article_spec.rb`**
+`spec/models/article_spec.rb`
+
 ```ruby
 require 'rails_helper'
 
@@ -374,7 +360,7 @@ RSpec.describe Article, type: :model do
 
   describe 'Factory' do
     it 'should have valid Factory' do
-      expect(FactoryGirl.create(:article)).to be_valid 
+      expect(FactoryBot.create(:article)).to be_valid 
     end
   end
 end
@@ -382,15 +368,16 @@ end
 
 If you run RSpec \(and you should\) now you will see the tests fail - we haven't created the model yet.
 
-It's time to do that. We'll make use of another rails generator to create the Article model. That will create the class, a migration and a factory \(if you are prompted to overwrite the `atricle_spec`just type `n`\)
+It's time to do that. We'll make use of another rails generator to create the Article model. That will create the class, a migration and a factory \(if you are prompted to overwrite the `article_spec.rb`just type `n`\)
 
 ```shell
 $ rails generate model Article title:string content:text
 ```
-Following that, you need to run the `migrate` command to update your database.
+
+Following that, you need to apply the migration to update your database.
 
 ```shell
-$ rails db:migrate
+$ rails db:migrate db:test:prepare
 == 20160725233007 CreateArticles: migrating ===================================
 -- create_table(:articles)
    -> 0.0295s
@@ -401,7 +388,8 @@ Running the spec now you will see that we are moving in the right direction but 
 
 Open the model file and add validation for the presence of both `title` and `content`.
 
-**`app/models/article.rb`**
+`app/models/article.rb`
+
 ```ruby
 class Article < ApplicationRecord
   validates :title, presence: true
@@ -409,46 +397,43 @@ class Article < ApplicationRecord
 end
 ```
 
-Running your specs now (`rspec`) will result in all green tests.
+Running your specs now \(`rspec`\) will result in all green tests.
 
 At this point, we can go back to our acceptance test and run Cucumber again. We are still not in the green, but we should have a different error message.
 
 Now, we need to modify the controller as well as the view to actually display \(or try to display\) our articles.
 
 ```ruby
-class LandingController < ApplicationController
+class ArticlesController < ApplicationController
   def index
     @articles = Article.all
   end
 end
 ```
 
-And replace the content of the view that will render `LandingController#index` action and list all posts.
+And replace the content of the view that will render `ArticlesController#index` action and list all posts.
 
 ```erb
-<ul>
-  <% @articles.each do |article| %>
-    <li>
-      <%= article.title %><br />
-      <%= article.content %>
-    </li>
-  <% end %>
-</ul>
+<% @articles.each do |article| %>
+  <p><%= article.title %></p>
+  <p><%= article.content %></p>
+<% end %>
 ```
 
 At this point, if you run `cucumber` you should see all tests passing green.
 
 #### Wrap up
 
-During this walkthrough, we have completed one Acceptance-Unit Cycle (without the refactoring part) and added a simple feature that allows visitors to view articles on the landing page of the application.
+During this walkthrough, we have completed one Acceptance-Unit Cycle \(without the refactoring part\) and added a simple feature that allows visitors to view articles on the landing page of the application.
 
 Using our tests we were able to craft out some functionality and delivered the objective of the feature: To list articles on the landing page.
 
-- We created a route (URL)
-- We created an Article model with attributes and validations
-- We created a controller with an index method that fetches all articles from the database and stores the collection in a variable that is made available to the view template
-- We created a view that iterates through a collection of articles
+* We created a route \(URL\)
+* We created an Article model with attributes and validations
+* We created a controller with an index method that fetches all articles from the database and stores the collection in a variable that is made available to the view template
+* We created a view that iterates through a collection of articles
 
 In the next cycle, we would certainly add more scenarios to this feature to test other paths. What should happen when there are no articles in the system? Will multiple articles be displayed correctly? Etc..
 
 **It takes a little practice but with this approach you are constantly in charge of the workflow and know what the next step of your implementation should be.**
+
