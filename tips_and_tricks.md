@@ -1,7 +1,7 @@
 ## Tips and Tricks
 
 ###Routes
-When writing your acceptance tests you should use the router helper methods made available by Rails.
+When writing your acceptance tests you should use the `Rails.application.routes` helper methods.
 
 Instead of writing
 ```ruby
@@ -12,10 +12,9 @@ You can do:
 visit root_path
 ```
  
-How to find all the different paths, you ask? :wink:. There is a rake task you can use. 
-Just run this in your terminal.
+How to find all the different paths, you ask? :wink:. There is a `rails` terminal command  you can use. Just run this in your terminal.
 ```shell
-$ rake routes
+$ rails routes
                   Prefix Verb   URI Pattern                          Controller#Action
         new_user_session GET    /users/sign_in(.:format)             devise/sessions#new
             user_session POST   /users/sign_in(.:format)             devise/sessions#create
