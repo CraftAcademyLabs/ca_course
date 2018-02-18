@@ -110,20 +110,33 @@ Add bothe Poltergeist and PhantomJS to your `Gemfile`.
 
 !FILENAME Gemfile
 ```ruby
-gem 'poltergeist'
-gem 'phantomjs', require: 'phantomjs/poltergeist'
+group :development, :test do
+  gem 'chromedriver-helper'
+  gem 'selenium-webdriver'
+end
 ```
-In your `features/support/env.rb` add `poltergeist` as a dependancy.
+In your `features/support/env.rb` add configuration for `Chromedriver` and point `Capybara` to use it whenever you want to test features that require you to have JavaScript enabled.
 
 !FILENAME features/support/env.rb
 ```ruby
-require 'capybara/poltergeist'
-...
-Capybara.javascript_driver = :poltergeist
+Chromedriver.set_version '2.33'
+
+Capybara.register_driver :selenium do |app|
+  options = Selenium::WebDriver::Chrome::Options.new(
+      args: %w( headless disable-popup-blocking disable-infobars)
+  )
+
+  Capybara::Selenium::Driver.new(
+      app,
+      browser: :chrome,
+      options: options
+  )
+end
+Capybara.javascript_driver = :selenium
 
 ```
 
-With this setup you have access to a full set of [Poltergeist commands](https://github.com/teampoltergeist/poltergeist) you can use in your step definitions. To activate the JavaScript driver on a scenario you have to tag your scenario with `@javascript`.
+With this setup you have access to a full set of [Selenium and Ruby bindings](https://github.com/SeleniumHQ/selenium/wiki/Ruby-Bindings) you can use in your step definitions. To activate the JavaScript driver on a scenario you have to tag your scenario with `@javascript`.
 
 ```gherkin
 @javascript
@@ -133,6 +146,12 @@ Scenario: Deleting a message
   And I am on the "home page"
   ...
 ```
+
+IF you would like to test all your features using Selenium and Chromedriver, you can add the following setup to your `support/env.rb` file:
+```ruby
+Capybara.default_driver = :selenium
+```
+**Note that this will significantly slow down your test suite.**
 
 
 ###Mailboxer methods
