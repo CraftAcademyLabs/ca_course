@@ -12,7 +12,7 @@ You can do:
 visit root_path
 ```
  
-How to find all the different paths, you ask? :wink:. There is a `rails` terminal command  you can use. Just run this in your terminal.
+How to find all the different paths, you ask? There's a `rails` terminal command  you can use. Just run this in your terminal.
 ```shell
 $ rails routes
                   Prefix Verb   URI Pattern                          Controller#Action
@@ -53,11 +53,11 @@ Now, let’s say that you have a user object stored in `@user` and want to acces
 ```ruby
 visit edit_user_registration_path(@user)
 ```
-Or if you want to go to that users inbox:
+Or if you want to go to that user's inbox:
 ```ruby
 visit mailbox_inbox_path
 ```
-In this case you probably don’t have to pass in the `@user` since we have a method in our ApplicationController setting `mailbox` to the `current_user.mailbox`.
+In this case you probably don’t have to pass in the `@user` since we have a method in our ApplicationController, setting `mailbox` to the `current_user.mailbox`.
 
 !FILENAME app/controllers/application_controller.rb
 ```ruby
