@@ -106,7 +106,7 @@ Much cleaner and DRY.
 
 ###Testing JavaScript
 
-Add bothe Poltergeist and PhantomJS to your `Gemfile`.
+Add both Selenium and Chromedriver Helper to your `Gemfile`.
 
 !FILENAME Gemfile
 ```ruby
