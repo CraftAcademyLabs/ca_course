@@ -13,7 +13,7 @@ We will be using RSpec as out testing framework and PostgreSQL as our database.
 Let's go ahead and scaffold our application
 
 ```shell
-rails _5.0.2_ new cooper_api --api --database=postgresql --skip-test --skip-bundle
+rails _5.1.5_ new cooper_api --api --database=postgresql --skip-test --skip-bundle
 ```
 
 This will do a couple of things for you:
@@ -25,19 +25,24 @@ This will do a couple of things for you:
 * `--skip-test` option skips configuring for the default testing tool.
 * `--skip-bundle` option prevents the generator from running bundle install automatically.
 
-Next, update your `Gemfile` to have the following:
+Next, update your `Gemfile` by going over it carefully and modifing it line by line, until you have the following:
 
 ```ruby
 source 'https://rubygems.org'
-ruby '2.3.4'
+git_source(:github) do |repo_name|
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  "https://github.com/#{repo_name}.git"
+end
 
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
-gem 'pg', '~> 0.18'
-gem 'puma', '~> 3.0'
+ruby '2.4.1'
+
+gem 'rails', '~> 5.1.5'
+gem 'pg', '>= 0.18', '< 2.0'
+gem 'puma', '~> 3.7'
 gem 'jbuilder', '~> 2.5'
 
 group :development, :test do
- gem 'pry'
+ gem 'pry-rails'
  gem 'pry-byebug'
 end
 
@@ -65,7 +70,7 @@ Put something like the code below in `config/application.rb` of your Rails appli
 ```ruby
 module CooperApi
   class Application < Rails::Application
-    # [...]
+    # [...] other code...
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
@@ -86,16 +91,16 @@ Update your `Gemfile` with the following gems,
 group :development, :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers'
-  gem 'factory_girl_rails'
+  gem 'factory_bot_rails'
   # [...]
 end
 ```
 
-> Remember to run `bundle install` everytime you update your `Gemfile`.
+> Remember to run `bundle install` every time you update your `Gemfile`.
 
 Run `rails generate rspec:install` to install rspec for your rails project. Update the following file with respective code provided below:
 
-* `spec/rails_helper.rb`
+!FILENAME `spec/rails_helper.rb`
 
 ```ruby
 ENV['RAILS_ENV'] ||= 'test'
@@ -117,7 +122,7 @@ RSpec.configure do |config|
 end
 ```
 
-* `spec/spec_helper.rb`
+!FILENAME`spec/spec_helper.rb`
 
 ```ruby
 RSpec.configure do |config|
@@ -133,24 +138,25 @@ RSpec.configure do |config|
 end
 ```
 
-* `.rspec`
+!FILENAME`.rspec`
 
 ```ruby
 --color
 --require rails_helper
+--format documentation
 ```
 
 Create the following files:
 
-* `spec/support/factory_girl.rb`
+!FILENAME `spec/support/factory_girl.rb`
 
 ```ruby
 RSpec.configure do |config|
-  config.include FactoryGirl::Syntax::Methods
+  config.include FactoryBot::Syntax::Methods
 end
 ```
 
-* `spec/support/shoulda_matcher.rb`
+!FILENAME `spec/support/shoulda_matcher.rb`
 
 ```ruby
 Shoulda::Matchers.configure do |config|
@@ -168,13 +174,13 @@ That's all for the setup. Next up, we will test-drive the creation of a test end
 
 ### Testing APIs with RSpec
 
-We will be using [request specs](https://www.relishapp.com/rspec/rspec-rails/v/3-5/docs/request-specs/request-spec) to test our api endpoints.
+We will be using [request specs](https://www.relishapp.com/rspec/rspec-rails/v/3-5/docs/request-specs/request-spec) to test our api endpoints. Request Specs are for API's, what Acceptance Tests/Feature Specs are for web applications. You make a request \(get, post, patch or delete\) and test if the application responds with the appropriate JSON object \(or, in rare cases nowadays, XML\). This is the first time you will be working with Request Specs, so let's start out slow.  
 
-Let's create a dummy endpoint just to make sure everything is okay in terms of security settings.
+We'll start with creating a dummy endpoint just to make sure everything is okay in terms of security settings.
 
 Let's write our first spec to see if we can get a response from our endpoint.
 
-In your `spec` folder create a folder named `requests`. Within that folder we need to add a folder structure that corresponds to the one we have in our `app/controllers` folder.
+In your `spec` folder create a folder named `requests`. Within that folder, we need to add a folder structure that corresponds to the one we have in our `app/controllers` folder.
 
 ```shell
 $ mkdir spec/requests
@@ -191,12 +197,12 @@ Create a `ping_spec.rb` file and add the following code.
 $ touch spec/requests/api/v0/ping_spec.rb
 ```
 
-!FILENAME spec\/requests\/api\/v0\/ping\_spec.rb
+!FILENAME spec\/requests\/api\/v0\/pings\_spec.rb
 
 ```ruby
 require 'rails_helper'
 
-RSpec.describe Api::V0::PingController, type: :request do
+RSpec.describe Api::V0::PingsController, type: :request do
   describe 'GET /v0/ping' do
     it 'should return Pong' do
       get '/api/v0/ping'
@@ -227,7 +233,7 @@ $ mkdir app/controllers/api/v0
 Inside that folder, we want to create our dummy controller.
 
 ```shell
-$ touch app/controllers/api/v0/ping_controller.rb
+$ touch app/controllers/api/v0/pings_controller.rb
 ```
 
 We will let it inherit from our modified `ApplicationController`
@@ -235,7 +241,7 @@ We will let it inherit from our modified `ApplicationController`
 !FILENAME app\/controllers\/api\/v0\/ping\_controller.rb
 
 ```ruby
-class Api::V0::PingController < ApplicationController
+class Api::V0::PingsController < ApplicationController
 
 end
 ```
