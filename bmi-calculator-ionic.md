@@ -217,8 +217,6 @@ export class CalculatorPage {
 
 Now we need to add some logic to this app in order to perform the actual calculations. The code for this is not that different from what you wrote in week 2. See if you can use your implementation from that week into this app ;-\)
 
-
-
 In the next section, we'll show you one way of solving this.
 
 ## Adding functionality, contd.
@@ -235,7 +233,7 @@ export class CalculatorPage {
   ...
   bmiValue: number;
   bmiMessage: number;
-  
+
   ...
 }
 ```
@@ -277,12 +275,12 @@ private setBMIMessage() {
 ...
 ```
 
-We're almost there, last thing we need to do is add some markup on our template to display the results of our calculations. Add the following snippet to `src/pages/calculator/calculator.html` 
+We're almost there, last thing we need to do is add some markup on our template to display the results of our calculations. Add the following snippet to `src/pages/calculator/calculator.html`
 
 ```html
 <ion-content> <!-- this line is just here to indicate where to type the following block -->
   ...
-  
+
   <ion-card *ngIf="bmiValue">
     <ion-card-header>
       BMI Calculation
