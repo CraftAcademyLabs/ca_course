@@ -100,7 +100,7 @@ end
 
 Run `rails generate rspec:install` to install rspec for your rails project. Update the following file with respective code provided below:
 
-!FILENAME `spec/rails_helper.rb`
+!FILENAME spec/rails\_helper.rb
 
 ```ruby
 ENV['RAILS_ENV'] ||= 'test'
@@ -122,7 +122,7 @@ RSpec.configure do |config|
 end
 ```
 
-!FILENAME`spec/spec_helper.rb`
+!FILENAME spec/spec\_helper.rb
 
 ```ruby
 RSpec.configure do |config|
@@ -138,7 +138,7 @@ RSpec.configure do |config|
 end
 ```
 
-!FILENAME`.rspec`
+!FILENAME .rspec
 
 ```ruby
 --color
@@ -148,7 +148,7 @@ end
 
 Create the following files:
 
-!FILENAME `spec/support/factory_girl.rb`
+!FILENAME spec/support/factory\_girl.rb
 
 ```ruby
 RSpec.configure do |config|
@@ -156,7 +156,7 @@ RSpec.configure do |config|
 end
 ```
 
-!FILENAME `spec/support/shoulda_matcher.rb`
+!FILENAME spec/support/shoulda\_matcher.rb
 
 ```ruby
 Shoulda::Matchers.configure do |config|
@@ -174,7 +174,9 @@ That's all for the setup. Next up, we will test-drive the creation of a test end
 
 ### Testing APIs with RSpec
 
-We will be using [request specs](https://www.relishapp.com/rspec/rspec-rails/v/3-5/docs/request-specs/request-spec) to test our api endpoints. Request Specs are for API's, what Acceptance Tests/Feature Specs are for web applications. You make a request \(get, post, patch or delete\) and test if the application responds with the appropriate JSON object \(or, in rare cases nowadays, XML\). This is the first time you will be working with Request Specs, so let's start out slow.  
+**We will be using **[**request specs**](https://www.relishapp.com/rspec/rspec-rails/v/3-5/docs/request-specs/request-spec)** to test our api endpoints. Request Specs are for API's, what Acceptance Tests/Feature Specs are for web applications. You make a request \(get, post, patch or delete\) and test if the application responds with the appropriate JSON object \(or, in rare cases nowadays, an XML object\). JSON is short for JavaScript Object Notation, and is **_**a way to store information in an organized, easy-to-access manner. **_**In a nutshell, it gives us a human-readable collection of data that we can access in a really logical manner.**
+
+This is the first time you will be working with Request Specs, so let's start out slow.
 
 We'll start with creating a dummy endpoint just to make sure everything is okay in terms of security settings.
 
@@ -335,10 +337,10 @@ $ rails db:migrate --all
 
 Another generator we need to run is a Factory generator for User. Generally, Rails generator invokes the Factory generators once that gem is installed, but not in the case of Devise Token Auth.
 
-Run the generator from your terminal.
+Run the generator from your terminal. \(Yes, there IS a generator for factories!\)
 
 ```
-$ rails g factory_girl:model User email password password_confirmation
+$ rails g factory_bot:model User email password password_confirmation
 ```
 
 Make sure that the factory is properly configured with a valid email and password \(if you don't you will get into trouble when validating the objects it creates\).
@@ -346,7 +348,7 @@ Make sure that the factory is properly configured with a valid email and passwor
 !FILENAME spec/factories/users.rb
 
 ```ruby
-FactoryGirl.define do
+FactoryBot.define do
   factory :user do
     email 'user@random.com'
     password 'password'
@@ -366,7 +368,7 @@ require 'rails_helper'
 
 RSpec.describe User, type: :model do
   it 'should have valid Factory' do
-    expect(FactoryGirl.create(:user)).to be_valid
+    expect(create(:user)).to be_valid
   end
 end
 ```
@@ -502,12 +504,14 @@ end
 
 ### User registration
 
-Okay, let's write some specs for user registration.
+Okay, let's write some specs for user registration. 
 
 ```shell
 $ mkdir -p spec/requests/api/v1
 $ touch spec/requests/api/v1/registrations_spec.rb
 ```
+
+The examples below contain a lot of moving parts, so be sure to go over the code line by line and discuss with your pairing partner what each line does. We also introduce a new keyword: `context`  that is an alias for `describe` and can be used interchangeably. 
 
 !FILENAME spec/requests/api/v1/registrations\_spec.rb
 
