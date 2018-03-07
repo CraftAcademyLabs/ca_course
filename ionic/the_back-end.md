@@ -339,12 +339,12 @@ end
 ```
 
 ```
-$ rails db:migrate --all
+$ rails db:migrate db:test:prepare
 ```
 
 Another generator we need to run is a Factory generator for User. Generally, Rails generator invokes the Factory generators once that gem is installed, but not in the case of Devise Token Auth.
 
-Run the generator from your terminal. \(Yes, there IS a generator for factories!\)
+Run the factory generator from your terminal. \(Yes, there IS a generator for factories!\)
 
 ```
 $ rails g factory_bot:model User email password password_confirmation
@@ -382,7 +382,7 @@ end
 
 Now, we can add some basic model specs for User that will test the Devise setup.
 
-!FILENAME spec\/models\/user\_spec.rb
+!FILENAME spec/models/user\_spec.rb
 
 ```ruby
 RSpec.describe User, type: :model do
@@ -446,6 +446,8 @@ RSpec.describe User, type: :model do
 end
 ```
 
+**Note: Examine all the specs in the 2 code blocks above before adding them to your own specs. If you have some previous experience using rspec , you'll notice that they are a bit different. In what way? What new ways of writing specs did we use here and are there any matchers used in the examples that you have not seen before? **
+
 Okay, there will be plenty of opportunities to write more specs for the User model. But let's focus on adding some request specs to test our endpoints.
 
 Next up, we need to add a new namespace to our `routes.rb` and move the generated Devise route into that namespace. We also want to tell Devise to skip `omniauth_callbacks`.
@@ -493,7 +495,13 @@ cancel_api_v1_user_registration GET    /api/v1/auth/cancel(.:format)           d
 
 ### Testing the endpoints - request specs
 
-First we need to add a helper method that will parse the server response body to JSON. Create a `support` folder in the `spec` folder. Add a new file named `response_json.rb`. In that file we will create a module that will parse the `response.body` to JSON and allow us to DRY out our request specs.
+Moving on with our specs. The Devise Token Auth gem gave us a lot of functionality. We can register an account, edit it and also delete the account altogether. We can also, of course, authenticate a user. 
+
+We will focus on 2 parts of the application: Account Registration and User Authentication.
+
+
+
+First we need to add a helper method that will parse the server response body to a JSON object in order to be able to assert that the response is matching our expectations \(the server responds with a stringyfied JSON object\). Create a `support` folder in the `spec` folder. Add a new file named `response_json.rb`. In that file we will create a module that will parse the `response.body` to JSON and allow us to DRY out our request specs.
 
 !FILENAME spec/support/response\_json.rb
 
