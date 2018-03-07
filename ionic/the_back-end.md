@@ -66,7 +66,7 @@ We also want to add the `rack-cors` gem to allow external clients to access our 
 gem 'rack-cors', require: 'rack/cors'
 ```
 
-Put something like the code below in `config/application.rb` of your Rails application. This will allow GET, POST, PUT and DELETE requests from any origin on any resource. This setting will also expose the approporite headers and include them in the resopnse, making it possible to authenticate users \(Please go over the DeviseTokenAuth documentation for more details on HOW authentication using Toke
+Put something like the code below in `config/application.rb` of your Rails application. This will allow GET, POST, PUT and DELETE requests from any origin on any resource. This setting will also expose the appropriate headers and include them in the response, making it possible to authenticate users \(Please go over the DeviseTokenAuth documentation for more details on HOW authentication using Tokens\).
 
 !FILENAME config/application.rb
 
