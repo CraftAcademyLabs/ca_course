@@ -273,7 +273,7 @@ AbstractController::ActionNotFound:
   The action 'index' could not be found for Api::V0::PingController
 ```
 
-In order to make this spec to pass, we need to add an `index` method to the `Api::V0::PingController`. When called, we want that method to respond with a JSON object with a single entry: `{message: 'Pong'}`. To achieve this, we will use the `render` method ant tell Rails to output the object. 
+In order to make this spec to pass, we need to add an `index` method to the `Api::V0::PingController`. When called, we want that method to respond with a JSON object with a single entry: `{message: 'Pong'}`. To achieve this, we will use the `render` method ant tell Rails to output the object.
 
 !FILENAME app\/controllers\/api\/v0\/ping\_controller.rb
 
@@ -287,9 +287,11 @@ end
 
 Does it work? Fire up your server with `rails s` and visit `http://localhost:3000/api/v0/pings`
 
-Note: You can keep this route and controller around as you move forward, but you might as well delete it. It will NOT be used in your application. We added it purely as an exercise.
+**Note: You can keep this route and controller around as you move forward, but you might as well delete it. It will NOT be used in your application. We added it purely as an exercise.**
 
 ### Adding a User class
+
+**Okay, let's go to work and add some actual functionality to our application. In true Craft Academy style, we'll start with one of the hardest and complex parts. **
 
 We know that we will be accessing our Rails app from an external client and that we will require authentication. At this point, you are familiar with [Devise](https://github.com/plataformatec/devise) - one of the most popular authentication libraries for Rails applications. We will be using `devise_token_auth` a [token-based authentication gem](https://github.com/lynndylanhurley/devise_token_auth) for Rails JSON APIs. It is designed to work well with `ng-token-auth` the token based authentication module for AngularJS.
 
