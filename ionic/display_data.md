@@ -105,7 +105,7 @@ ionViewDidLoad() {
             [chartType]="doughnutChartType"
             (chartHover)="chartHovered($event)"
             (chartClick)="chartClicked($event)"
-            ></canvas>
+    ></canvas>
   </div>
 
   <div style="display: block" >
@@ -139,5 +139,5 @@ If you run the application now it should look something like this.
 ![](/assets/ng2_ionic_charts.png)  
 That looks pretty cool, right? ;-\)
 
-**There is of course many more charts that you can display on this view if you like. Especially if you make the choice of storing not only the `cooperMessage` but also the distance for each entry.**
+**There is of course many more charts that you can display on this view if you like. Especially if you make the choice of storing not only the **`cooperMessage`** but also the distance for each entry.**
 
