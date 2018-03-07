@@ -3,35 +3,52 @@
 We will use [Angular Chart](http://jtblin.github.io/angular-chart.js/) to display users historical data.
 
 ```
-$ bower install chart.js#2.5.0 --save
-$ bower install angular-chart.js --save
+$ npm install ng2-charts --save
+$ npm install chart.js --save
 ```
 
-As always, make sure to include the library in your `intex.html`.
+Open and edit your `app.module.ts` the add this import.
 
-!FILENAME www/index.html
+!FILENAME src/app/app.module.ts
 
-```html
-<!-- ionic/angularjs js -->
-//...
-<script src="lib/chart.js/dist/Chart.min.js"></script>
-<script src="lib/angular-chart.js/dist/angular-chart.min.js"></script>
+```js
+import { ChartsModule } from 'ng2-charts';
 ```
 
-And also, make `chart.js` available to your app by adding it to the main module.
+Then declare the charts module in imports array.
 
-!FILENAME www/js/app.js
+!FILENAME src/app/app.module.ts
 
-```javascript
-angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', 'ng-token-auth', 'ngResource', 'chart.js'])
+```js
+imports: [
+  BrowserModule,
+  IonicModule.forRoot(MyApp),
+  ChartsModule
+],
+```
+
+```js
+export class ResultsPage {
+  results = [];
+  labels = [];
+  data = [];
+  doughnutChartType:string = 'doughnut';
+  radarChartType:string = 'radar';
+constructor(
+  private performanceData: PerformanceDataProvider,
+  public navCtrl: NavController,
+  public navParams: NavParams,
+) {}
 ```
 
 Okay, here comes the tricky part. We want to display two charts on our view. One Doughnut Chart and one Radar Chart. The tricky part is that we only want to display labels for values that are actually stored in the collection of historical data. Meaning for instance that if a user has stored several "Average" and "Above Average" entries, then we should only show those two labels with a value. Nothing else. Same thing goes for both chart types.
 
-So what we need to do is to go through the `savedDataCollection` and get unique values from `data.message` and store them in an array. This is the responsibility of the following function.
+So what we need to do is to go through the `this.results` and get unique values and store them in an array. This is the responsibility of the following function.
 
-```javascript
-function getLabels(collection) {
+!FILENAME src/pages/results/results.ts
+
+```js
+public getLabels(collection:array) => {
   var uniqueLabels = [];
   for (i = 0; i < collection.length; i++) {
     if (collection[i].data.message && uniqueLabels.indexOf(collection[i].data.message) === -1) {
@@ -42,90 +59,77 @@ function getLabels(collection) {
 }
 ```
 
-We are going to store that array in `$scope.labels`.
+The next thing we need to do is to get the count for how many times each label occurs in `results` We will do this with the following function:
 
-The second thing we need to do is to get the value of how many times each message is present in the collection. For that we add another function that we use when iterating over `$scope.labels` and store the results in `$scope.data`
+!FILENAME src/pages/results/results.ts
 
-```javascript
-angular.forEach($scope.labels, function(label){
-  $scope.data.push(getCount($scope.savedDataCollection, label));
-});
-
-function getCount(arr, value){
-  var count = 0;
-  angular.forEach(arr, function(entry){
+```js
+public getCount(collection:array, value:string) => {
+  let count = 0;
+  collection.forEach(entry => {
     count += entry.data.message == value ? 1 : 0;
-  });
+  })
   return count;
 }
 ```
 
-All in all, the `DataCtrl` should look something like this.
+And we put those methods to use: 
 
-!FILENAME
+!FILENAME src/pages/results/results.ts
 
-```javascript
-.controller('DataCtrl', function ($scope, $stateParams) {
-  $scope.$on('$ionicView.enter', function () {
-    $scope.savedDataCollection = $stateParams.savedDataCollection;
-    $scope.labels = getLabels($scope.savedDataCollection);
-    $scope.data = [];
-    angular.forEach($scope.labels, function(label){
-      $scope.data.push(getCount($scope.savedDataCollection, label));
-    });
-    $scope.radardata = [$scope.data];
-  });
-
-
-  function getLabels(collection) {
-    var uniqueLabels = [];
-    for (i = 0; i < collection.length; i++) {
-      if (collection[i].data.message && uniqueLabels.indexOf(collection[i].data.message) === -1) {
-        uniqueLabels.push(collection[i].data.message);
-      }
-    }
-    return uniqueLabels;
+```js
+ionViewDidLoad() {
+    this.performanceData
+      .getResults()
+      .subscribe(data => {
+        this.results = data.entries;
+        this.labels = this.getLabels(this.results)
+        this.labels.forEach(label => {
+          this.data.push(this.getCount(this.results, label))
+        })
+      });
   }
-
-  function getCount(arr, value){
-    var count = 0;
-    angular.forEach(arr, function(entry){
-      count += entry.data.message == value ? 1 : 0;
-    });
-    return count;
-  }
-})
 ```
 
-Finally, let's turn out attention to the view template.
+!FILENAME www/js/app.js
 
-We want to add markup for the two charts and clear up the data display.
+```javascript
+<ion-content padding>
+  <ion-card-header>Saved data</ion-card-header>
+  <div style="display: block">
+    <canvas baseChart
+            [data]="data"
+            [labels]="labels"
+            [chartType]="doughnutChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+            ></canvas>
+  </div>
 
-!FILENAME
+  <div style="display: block" >
+    <canvas baseChart
+            [data]="data"
+            [labels]="labels"
+            [chartType]="radarChartType"
+            (chartHover)="chartHovered($event)"
+            (chartClick)="chartClicked($event)"
+    ></canvas>
+  </div>
+</ion-content>
+```
 
-```html
-<ion-view title="Historical Data">
-  <ion-content>
-    <div class="row">
-      <div class="col">
-        <h5>Saved data for {{currentUser.name || currentUser.email}}</h5>
-        <canvas ng-if="savedDataCollection" id="doughnut" class="chart chart-doughnut"
-                chart-data="data" chart-labels="labels" legend="true">
-        </canvas>
+Note that we are adding two event handlers for each chart. One that will be triggered on hoover and another one that will be triggered on click. These methods will need to be defined \(please see below\) but the question you want to ask yourself is if they are relevant in the context of a mobile application? 
 
-        <canvas ng-if="savedDataCollection" id="radar" class="chart chart-radar"
-                chart-data="radardata" chart-labels="labels">
-        </canvas>
+!FILENAME src/pages/results/results.ts
 
-        <ion-list>
-          <ion-item ng-repeat="entry in savedDataCollection " ng-if="savedDataCollection && entry.data.message">
-            <span>{{entry.data.message}} - {{entry.created_at | date:'mediumDate'}}</span>
-          </ion-item>
-        </ion-list>
-      </div>
-    </div>
-  </ion-content>
-</ion-view>
+```js
+public chartClicked(e:any):void {
+    console.log(e);
+  }
+
+public chartHovered(e:any):void {
+  console.log(e);
+}
 ```
 
 If you run the application now it should look something like this.
