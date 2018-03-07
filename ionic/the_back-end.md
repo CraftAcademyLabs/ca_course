@@ -174,7 +174,7 @@ That's all for the setup. Next up, we will test-drive the creation of a test end
 
 ### Testing APIs with RSpec
 
-**We will be using **[**request specs**](https://www.relishapp.com/rspec/rspec-rails/v/3-5/docs/request-specs/request-spec)** to test our api endpoints. Request Specs are for API's, what Acceptance Tests/Feature Specs are for web applications. You make a request \(get, post, patch or delete\) and test if the application responds with the appropriate JSON object \(or, in rare cases nowadays, an XML object\). JSON is short for JavaScript Object Notation, and is **_**a way to store information in an organized, easy-to-access manner. **_**In a nutshell, it gives us a human-readable collection of data that we can access in a really logical manner.**
+**We will be using **[**request specs**](https://www.relishapp.com/rspec/rspec-rails/v/3-5/docs/request-specs/request-spec)** to test our api endpoints. Request Specs are for API's, what Acceptance Tests/Feature Specs are for web applications. You make a request \(get, post, patch or delete\) and test if the application responds with the appropriate JSON object \(or, in rare cases nowadays, an XML object\). JSON is short for JavaScript Object Notation, and is **_**a way to store information in an organized, easy-to-access manner. **_**In a nutshell, it gives us a human-readable collection of data that we can access in a really logical manner.**
 
 This is the first time you will be working with Request Specs, so let's start out slow.
 
@@ -289,11 +289,11 @@ Does it work? Fire up your server with `rails s` and visit `http://localhost:300
 
 ### Adding a User class
 
-We know that we will be accessing our Rails app from an external client and that we will require authentication. At this point, you are familiar with Devise - one of the most popular authentication libraries for Rails applications. We will be using `devise_token_auth` a token-based authentication gem for Rails JSON APIs. It is designed to work well with `ng-token-auth` the token based authentication module for AngularJS.
+We know that we will be accessing our Rails app from an external client and that we will require authentication. At this point, you are familiar with [Devise](https://github.com/plataformatec/devise) - one of the most popular authentication libraries for Rails applications. We will be using `devise_token_auth` a [token-based authentication gem](https://github.com/lynndylanhurley/devise_token_auth) for Rails JSON APIs. It is designed to work well with `ng-token-auth` the token based authentication module for AngularJS.
 
 As usual, we will be testing our units with RSpec and in order to make writing our specs a breeze, we will use `shoulda-matchers`, but this is probably old news for you at this stage. Again, if you need some pointers please go back in this documentation and revisit the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter.
 
-Make sure you install the `devise_token_auth` gem by adding it to your `Gemfile` and run `bundle install`. Note that you don't need to add `gem 'devise'` since `devise_token_auth` requires it automatically.
+Make sure you install the `devise_token_auth` gem by adding it to your `Gemfile` and run `bundle install`.** Note that you don't need to add `gem 'devise'` since `devise_token_auth` requires it automatically.**
 
 !FILENAME Gemfile
 
@@ -504,14 +504,14 @@ end
 
 ### User registration
 
-Okay, let's write some specs for user registration. 
+Okay, let's write some specs for user registration.
 
 ```shell
 $ mkdir -p spec/requests/api/v1
 $ touch spec/requests/api/v1/registrations_spec.rb
 ```
 
-The examples below contain a lot of moving parts, so be sure to go over the code line by line and discuss with your pairing partner what each line does. We also introduce a new keyword: `context`  that is an alias for `describe` and can be used interchangeably. 
+The examples below contain a lot of moving parts, so be sure to go over the code line by line and discuss with your pairing partner what each line does. We also introduce a new keyword: `context`  that is an alias for `describe` and can be used interchangeably.
 
 !FILENAME spec/requests/api/v1/registrations\_spec.rb
 
