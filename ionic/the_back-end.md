@@ -499,9 +499,9 @@ Moving on with our specs. The Devise Token Auth gem gave us a lot of functionali
 
 We will focus on 2 parts of the application: Account Registration and User Authentication.
 
-First we need to add a helper method that will parse the server response body to a JSON object in order to be able to assert that the response is matching our expectations \(the server transforms any JSON object into JSON text and stores that JSON text in a string, therefore, we need to parse that strung into a JSON again in our tests\). 
+First we need to add a helper method that will parse the server response body to a JSON object in order to be able to assert that the response is matching our expectations \(the server transforms any JSON object into JSON text and stores that JSON text in a string, therefore, we need to parse that strung into a JSON again in our tests\).
 
-To avoid code repetition, we want to create a custom helper to do that. Start by creating a `support` folder in the `spec` folder. Add a new file named `response_json.rb`. In that file we will create a module that will parse the `response.body` to JSON and allow us to DRY out our request specs.
+To avoid code repetition and DRY out our request specs, we want to create a custom helper. Start by creating a `support` folder in the `spec` folder. Add a new file named `response_json.rb`. In that file we will create a module that will parse the body of the server response `(response.body)` back to JSON.
 
 !FILENAME spec/support/response\_json.rb
 
@@ -527,6 +527,21 @@ $ touch spec/requests/api/v1/registrations_spec.rb
 ```
 
 The examples below contain a lot of moving parts, so be sure to go over the code line by line and discuss with your pairing partner what each line does. We also introduce a new keyword: `context`  that is an alias for `describe` and can be used interchangeably.
+
+Bear in mind the 4 phases of testing: 
+
+* Setup
+* Exercise 
+* Verify 
+* Teardown
+
+In the first context, the **SETUP** here is the part where we create `:headers` . 
+
+The **EXERCISE** is the POST request to `/api/v1/auth`.
+
+The **VERIFY** phase is the assertion we do using the `expect`  command.
+
+The **TEARDOWN** is handled by the `use_transactional_fixtures` configuration in `rails_helper` \(Read [more about transactions](https://relishapp.com/rspec/rspec-rails/v/3-7/docs/transactions)\).
 
 !FILENAME spec/requests/api/v1/registrations\_spec.rb
 
@@ -653,7 +668,9 @@ Run the following generator.
 rails g model PerformanceData user:references data:hstore --force-plural
 ```
 
-Open up the migration and add a line that adds `hstore` as a datatype and enables the database to store hashes.
+Note: What does the `--force-plural`flag do for us? 
+
+Also, please note that we are using a datatype that we've not used before - the `hstore`. That is not a standard datatype in certain versions of PostgreSQL, so we need to make sure it will work. Open up the migration and add a line that adds `hstore` as a datatype and enables the database to store hashes.
 
 !FILENAME db/migrate/XXXX\_create\_performance\_data.rb
 
@@ -685,7 +702,7 @@ end
 Run the new migration.
 
 ```
-$ rails db:migrate --all
+$ rails db:migrate db:test:prepare
 ```
 
 Add the following specs.
@@ -723,7 +740,7 @@ end
 
 ### The controller
 
-Let's create the controller we will use to create, update and retrieve users historical data.
+Let's create the controller we will use to create, update and retrieve user's historical data.
 
 This is where we will be performing our CRUD actions.
 
@@ -955,7 +972,7 @@ end
 
 We would need to add a few more specs to make sure that the `index` method works the way it is intended - to only return `PerformanceData` that belongs to the current user. But I'll leave that for you to add.
 
-Note that we are NOT building any views or templates to display data. We MIGHT need more control of how the json response looks like and for that we will use the template capabilities of `JBuilder`. But for now, returning a rather uncomplicated json object will do.
+Note that we are NOT building any views or templates to display data. We MIGHT need more control of how the json response looks like and for that we will use the template capabilities of `JBuilder`, or use a serializer.  But for now, returning a rather uncomplicated JSON object will do.
 
-That's it! We don't need to create the `update` and `delete` actions. There could be a use-case for them in the future, but at this stage they are not needed.
+**That's it! We don't need to create the `update` and `delete` actions. There could be a use-case for them in the future, but at this stage they are not needed.**
 
