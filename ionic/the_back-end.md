@@ -77,7 +77,9 @@ module CooperApi
     config.middleware.insert_before 0, Rack::Cors do
       allow do
         origins '*'
-        resource '*', headers: :any, methods: [:get, :post, :put, :delete]
+        resource '*', headers: :any, methods: [:get, :post, :put, :delete],
+        expose: %w(access-token expiry token-type uid client),
+        max_age: 0
       end
     end
   end
@@ -528,14 +530,14 @@ $ touch spec/requests/api/v1/registrations_spec.rb
 
 The examples below contain a lot of moving parts, so be sure to go over the code line by line and discuss with your pairing partner what each line does. We also introduce a new keyword: `context`  that is an alias for `describe` and can be used interchangeably.
 
-Bear in mind the 4 phases of testing: 
+Bear in mind the 4 phases of testing:
 
 * Setup
 * Exercise 
 * Verify 
 * Teardown
 
-In the first context, the **SETUP** here is the part where we create `:headers` . 
+In the first context, the **SETUP** here is the part where we create `:headers` .
 
 The **EXERCISE** is the POST request to `/api/v1/auth`.
 
@@ -668,7 +670,7 @@ Run the following generator.
 rails g model PerformanceData user:references data:hstore --force-plural
 ```
 
-Note: What does the `--force-plural`flag do for us? 
+Note: What does the `--force-plural`flag do for us?
 
 Also, please note that we are using a datatype that we've not used before - the `hstore`. That is not a standard datatype in certain versions of PostgreSQL, so we need to make sure it will work. Open up the migration and add a line that adds `hstore` as a datatype and enables the database to store hashes.
 
@@ -974,5 +976,5 @@ We would need to add a few more specs to make sure that the `index` method works
 
 Note that we are NOT building any views or templates to display data. We MIGHT need more control of how the json response looks like and for that we will use the template capabilities of `JBuilder`, or use a serializer.  But for now, returning a rather uncomplicated JSON object will do.
 
-**That's it! We don't need to create the `update` and `delete` actions. There could be a use-case for them in the future, but at this stage they are not needed.**
+**That's it! We don't need to create the **`update`** and **`delete`** actions. There could be a use-case for them in the future, but at this stage they are not needed.**
 
