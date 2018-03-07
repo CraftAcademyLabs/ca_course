@@ -27,6 +27,8 @@ imports: [
 ],
 ```
 
+!FILENAME src/pages/results/results.ts
+
 ```js
 export class ResultsPage {
   results = [];
@@ -34,11 +36,11 @@ export class ResultsPage {
   data = [];
   doughnutChartType:string = 'doughnut';
   radarChartType:string = 'radar';
-constructor(
-  private performanceData: PerformanceDataProvider,
-  public navCtrl: NavController,
-  public navParams: NavParams,
-) {}
+  constructor(
+    private performanceData: PerformanceDataProvider,
+    public navCtrl: NavController,
+    public navParams: NavParams,
+  ) {}
 ```
 
 Okay, here comes the tricky part. We want to display two charts on our view. One Doughnut Chart and one Radar Chart. The tricky part is that we only want to display labels for values that are actually stored in the collection of historical data. Meaning for instance that if a user has stored several "Average" and "Above Average" entries, then we should only show those two labels with a value. Nothing else. Same thing goes for both chart types.
@@ -48,13 +50,13 @@ So what we need to do is to go through the `this.results` and get unique values 
 !FILENAME src/pages/results/results.ts
 
 ```js
-public getLabels(collection:array) => {
-  var uniqueLabels = [];
-  for (i = 0; i < collection.length; i++) {
-    if (collection[i].data.message && uniqueLabels.indexOf(collection[i].data.message) === -1) {
-      uniqueLabels.push(collection[i].data.message);
+public getLabels(collection:any) => {
+  let uniqueLabels = [];
+  collection.forEach(entry => {
+    if (entry.data.message && uniqueLabels.indexOf(entry.data.message) === -1) {
+      uniqueLabels.push(entry.data.message);
     }
-  }
+  })
   return uniqueLabels;
 }
 ```
@@ -64,7 +66,7 @@ The next thing we need to do is to get the count for how many times each label o
 !FILENAME src/pages/results/results.ts
 
 ```js
-public getCount(collection:array, value:string) => {
+public getCount(collection:any, value:any) => {
   let count = 0;
   collection.forEach(entry => {
     count += entry.data.message == value ? 1 : 0;
@@ -73,7 +75,7 @@ public getCount(collection:array, value:string) => {
 }
 ```
 
-And we put those methods to use: 
+And we put those methods to use:
 
 !FILENAME src/pages/results/results.ts
 
@@ -118,7 +120,7 @@ ionViewDidLoad() {
 </ion-content>
 ```
 
-Note that we are adding two event handlers for each chart. One that will be triggered on hoover and another one that will be triggered on click. These methods will need to be defined \(please see below\) but the question you want to ask yourself is if they are relevant in the context of a mobile application? 
+Note that we are adding two event handlers for each chart. One that will be triggered on hoover and another one that will be triggered on click. These methods will need to be defined \(please see below\) but the question you want to ask yourself is if they are relevant in the context of a mobile application?
 
 !FILENAME src/pages/results/results.ts
 
@@ -134,8 +136,8 @@ public chartHovered(e:any):void {
 
 If you run the application now it should look something like this.
 
-![Cooper Client - Final UI](/images/cooper_client_final.png)  
+![](/assets/ng2_ionic_charts.png)  
 That looks pretty cool, right? ;-\)
 
-There is of course many more charts that you can display on this view if you like. Especially if you make the choice of storing not only the `cooperMessage` but also the distance for each entry.
+**There is of course many more charts that you can display on this view if you like. Especially if you make the choice of storing not only the `cooperMessage` but also the distance for each entry.**
 
