@@ -199,7 +199,7 @@ Create a `ping_spec.rb` file and add the following code.
 $ touch spec/requests/api/v0/ping_spec.rb
 ```
 
-!FILENAME spec\/requests\/api\/v0\/pings\_spec.rb
+!FILENAME spec/requests/api/v0/pings\_spec.rb
 
 ```ruby
 require 'rails_helper'
@@ -230,7 +230,7 @@ $ mkdir app/controllers/api
 $ mkdir app/controllers/api/v0
 ```
 
-** **_**Note: The actual API routes will be placed in another namespace that we will call **_`V1`_**.**_** **
+** **_**Note: The actual API routes will be placed in another namespace that we will call **_`V1`_**.**_** Adding namespaces to your application helps you organize your routes and controllers. Please check out the **[**documentation about Rails Routing**](http://guides.rubyonrails.org/routing.html#controller-namespaces-and-routing)** to find out more. **
 
 Inside that folder, we want to create our dummy controller.
 
@@ -240,7 +240,7 @@ $ touch app/controllers/api/v0/pings_controller.rb
 
 We will let it inherit from our modified `ApplicationController`
 
-!FILENAME app\/controllers\/api\/v0\/ping\_controller.rb
+!FILENAME app/controllers/api/v0/pings\_controller.rb
 
 ```ruby
 class Api::V0::PingsController < ApplicationController
@@ -252,28 +252,28 @@ If we run the test now, the error about undefined constant `Api::V0::PingControl
 
 In your `routes.rb` create an API namespace and add V0 within it. Nested in that namespace we want to add a `:ping` resource with one single `:index` action.
 
-!FILENAME config\/routes.rb
+!FILENAME config/routes.rb
 
 ```ruby
 Rails.application.routes.draw do
   namespace :api do
     namespace :v0 do
-      resources :ping, only: [:index], constraints: { format: 'json' }
+      resources :pings, only: [:index], constraints: { format: 'json' }
     end
   end
 end
 ```
 
-Run `rake routes` in your terminal to see if the route has been added properly.
+Run `rails routes` in your terminal to see if the route has been added properly.
 
-With our route in place, the test now throws the following error
+With our route in place, the test now throws the following error:
 
 ```shell
 AbstractController::ActionNotFound:
   The action 'index' could not be found for Api::V0::PingController
 ```
 
-In order to make this spec to pass, we need to add an `index` method to the `Api::V0::PingController`. When called, that method will respond with Json object with a single entry: `{message: 'Pong'}`.
+In order to make this spec to pass, we need to add an `index` method to the `Api::V0::PingController`. When called, we want that method to respond with a JSON object with a single entry: `{message: 'Pong'}`. To achieve this, we will use the `render` method ant tell Rails to output the object. 
 
 !FILENAME app\/controllers\/api\/v0\/ping\_controller.rb
 
@@ -285,7 +285,9 @@ class Api::V0::PingController < ApplicationController
 end
 ```
 
-Does it work? Fire up your server with `rails s` and visit `http://localhost:3000/api/v0/ping`
+Does it work? Fire up your server with `rails s` and visit `http://localhost:3000/api/v0/pings`
+
+Note: You can keep this route and controller around as you move forward, but you might as well delete it. It will NOT be used in your application. We added it purely as an exercise.
 
 ### Adding a User class
 
@@ -293,7 +295,7 @@ We know that we will be accessing our Rails app from an external client and that
 
 As usual, we will be testing our units with RSpec and in order to make writing our specs a breeze, we will use `shoulda-matchers`, but this is probably old news for you at this stage. Again, if you need some pointers please go back in this documentation and revisit the [BDD with Rails](https://craftacademy.gitbooks.io/coding-as-a-craft/content/bdd_with_rails.html) chapter.
 
-Make sure you install the `devise_token_auth` gem by adding it to your `Gemfile` and run `bundle install`.** Note that you don't need to add `gem 'devise'` since `devise_token_auth` requires it automatically.**
+Make sure you install the `devise_token_auth` gem by adding it to your `Gemfile` and run `bundle install`.** Note that you don't need to add **`gem 'devise'`** since **`devise_token_auth`** requires it automatically.**
 
 !FILENAME Gemfile
 
