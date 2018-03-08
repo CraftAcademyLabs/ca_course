@@ -73,7 +73,7 @@
   * [Display charts](ionic/display_data.md)
   * [Wrapping up](ionic/wrapping_up.md)
   * [Results tables](ionic/results_tables.md)
-* [SlowFood Online Challenge - Hello World!](slow_food_online/slow_food_online.md)
+* [News Room Challenge](slow_food_online/slow_food_online.md)
   * [Main features](slow_food_online/main_features.md)
   * [Design Sprint](slow_food_online/design_sprint.md)
   * [Pivotal Tracker](slow_food_online/pivotal_tracker.md)
