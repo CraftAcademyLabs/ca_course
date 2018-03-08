@@ -38,6 +38,8 @@ export class ResultsPage {
   data = [];
   doughnutChartType: string = 'doughnut';
   radarChartType: string = 'radar';
+  
+  view: string = 'data';
 
   constructor(
     private performanceData: PerformanceDataProvider,
