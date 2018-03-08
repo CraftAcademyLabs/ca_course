@@ -27,6 +27,8 @@ imports: [
 ],
 ```
 
+Next, in your results page component, declare two charts type, `data` and `labels` variables
+
 !FILENAME src/pages/results/results.ts
 
 ```js
@@ -34,8 +36,9 @@ export class ResultsPage {
   results = [];
   labels = [];
   data = [];
-  doughnutChartType:string = 'doughnut';
-  radarChartType:string = 'radar';
+  doughnutChartType: string = 'doughnut';
+  radarChartType: string = 'radar';
+  
   constructor(
     private performanceData: PerformanceDataProvider,
     public navCtrl: NavController,
@@ -50,13 +53,15 @@ So what we need to do is to go through the `this.results` and get unique values 
 !FILENAME src/pages/results/results.ts
 
 ```js
-public getLabels(collection:any) => {
+getLabels(collection: any) {
   let uniqueLabels = [];
+  
   collection.forEach(entry => {
     if (entry.data.message && uniqueLabels.indexOf(entry.data.message) === -1) {
       uniqueLabels.push(entry.data.message);
     }
   })
+  
   return uniqueLabels;
 }
 ```
@@ -66,11 +71,13 @@ The next thing we need to do is to get the count for how many times each label o
 !FILENAME src/pages/results/results.ts
 
 ```js
-public getCount(collection:any, value:any) => {
+getCount(collection:any, value:any) {
   let count = 0;
+  
   collection.forEach(entry => {
     count += entry.data.message == value ? 1 : 0;
   })
+  
   return count;
 }
 ```
@@ -79,43 +86,77 @@ And we put those methods to use:
 
 !FILENAME src/pages/results/results.ts
 
-```js
+```typescript
 ionViewDidLoad() {
-    this.performanceData
-      .getResults()
-      .subscribe(data => {
-        this.results = data.entries;
-        this.labels = this.getLabels(this.results)
-        this.labels.forEach(label => {
-          this.data.push(this.getCount(this.results, label))
-        })
-      });
-  }
+  this.performanceData
+    .getResults()
+    .subscribe(data => {
+      this.results = data.entries;
+      this.labels = this.getLabels(this.results);
+
+      this.labels.forEach(label => {
+        this.data.push(this.getCount(this.results, label));
+      })
+    });
+}
 ```
 
-!FILENAME www/js/app.js
+Modify the content of your results template with the following code. We make use of a segment here to split the raw data with the charts. 
 
-```javascript
+!FILENAME src/pages/results/results.html
+
+```html
+<ion-header>
+  <ion-navbar>
+    <ion-title>Results</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
 <ion-content padding>
-  <ion-card-header>Saved data</ion-card-header>
-  <div style="display: block">
-    <canvas baseChart
-            [data]="data"
-            [labels]="labels"
-            [chartType]="doughnutChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"
-    ></canvas>
+  <div padding>
+    <ion-segment [(ngModel)]="view">
+      <ion-segment-button value="data">
+        Data
+      </ion-segment-button>
+      <ion-segment-button value="charts">
+        Charts
+      </ion-segment-button>
+    </ion-segment>
   </div>
 
-  <div style="display: block" >
-    <canvas baseChart
-            [data]="data"
-            [labels]="labels"
-            [chartType]="radarChartType"
-            (chartHover)="chartHovered($event)"
-            (chartClick)="chartClicked($event)"
-    ></canvas>
+
+  <div [ngSwitch]="view">
+    <ion-list *ngSwitchCase="'data'">
+      <ion-card  *ngFor="let result of results">
+        <ion-card-header>
+          {{ result.created_at | date:'medium' }}
+        </ion-card-header>
+        <ion-card-content>
+          Result: {{ result.data.message }}
+        </ion-card-content>
+      </ion-card>
+    </ion-list>
+
+    <ion-list *ngSwitchCase="'charts'">
+      <div padding-bottom style="display: block">
+        <canvas baseChart [data]="data"
+                [labels]="labels"
+                [chartType]="doughnutChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+
+      <div padding-top style="display: block">
+        <canvas baseChart [data]="data"
+                [labels]="labels"
+                [chartType]="radarChartType"
+                (chartHover)="chartHovered($event)"
+                (chartClick)="chartClicked($event)">
+        </canvas>
+      </div>
+    </ion-list>
   </div>
 </ion-content>
 ```
@@ -124,13 +165,13 @@ Note that we are adding two event handlers for each chart. One that will be trig
 
 !FILENAME src/pages/results/results.ts
 
-```js
-public chartClicked(e:any):void {
-    console.log(e);
-  }
+```typescript
+chartClicked(event: any): void {
+    console.log(event);
+}
 
-public chartHovered(e:any):void {
-  console.log(e);
+chartHovered(event: any): void {
+  console.log(event);
 }
 ```
 
