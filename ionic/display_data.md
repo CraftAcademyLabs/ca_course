@@ -11,7 +11,7 @@ Open and edit your `app.module.ts` the add this import.
 
 !FILENAME src/app/app.module.ts
 
-```js
+```typescript
 import { ChartsModule } from 'ng2-charts';
 ```
 
@@ -19,7 +19,7 @@ Then declare the charts module in imports array.
 
 !FILENAME src/app/app.module.ts
 
-```js
+```typescript
 imports: [
   BrowserModule,
   IonicModule.forRoot(MyApp),
@@ -31,19 +31,20 @@ Next, in your results page component, declare two charts type, `data` and `label
 
 !FILENAME src/pages/results/results.ts
 
-```js
+```typescript
 export class ResultsPage {
   results = [];
   labels = [];
   data = [];
   doughnutChartType: string = 'doughnut';
   radarChartType: string = 'radar';
-  
+
   constructor(
     private performanceData: PerformanceDataProvider,
     public navCtrl: NavController,
     public navParams: NavParams,
   ) {}
+}
 ```
 
 Okay, here comes the tricky part. We want to display two charts on our view. One Doughnut Chart and one Radar Chart. The tricky part is that we only want to display labels for values that are actually stored in the collection of historical data. Meaning for instance that if a user has stored several "Average" and "Above Average" entries, then we should only show those two labels with a value. Nothing else. Same thing goes for both chart types.
@@ -52,16 +53,16 @@ So what we need to do is to go through the `this.results` and get unique values 
 
 !FILENAME src/pages/results/results.ts
 
-```js
+```typescript
 getLabels(collection: any) {
   let uniqueLabels = [];
-  
+
   collection.forEach(entry => {
     if (entry.data.message && uniqueLabels.indexOf(entry.data.message) === -1) {
       uniqueLabels.push(entry.data.message);
     }
   })
-  
+
   return uniqueLabels;
 }
 ```
@@ -70,14 +71,14 @@ The next thing we need to do is to get the count for how many times each label o
 
 !FILENAME src/pages/results/results.ts
 
-```js
+```typescript
 getCount(collection:any, value:any) {
   let count = 0;
-  
+
   collection.forEach(entry => {
     count += entry.data.message == value ? 1 : 0;
   })
-  
+
   return count;
 }
 ```
@@ -101,7 +102,7 @@ ionViewDidLoad() {
 }
 ```
 
-Modify the content of your results template with the following code. We make use of a segment here to split the raw data with the charts. 
+Modify the content of your results template with the following code. We make use of a segment here to split the raw data with the charts.
 
 !FILENAME src/pages/results/results.html
 
@@ -177,7 +178,7 @@ chartHovered(event: any): void {
 
 If you run the application now it should look something like this.
 
-![](/assets/ng2_ionic_charts.png)  
+![](/assets/Screenshot 2018-03-08 08.42.22.png)  
 That looks pretty cool, right? ;-\)
 
 **There is of course many more charts that you can display on this view if you like. Especially if you make the choice of storing not only the **`cooperMessage`** but also the distance for each entry.**
