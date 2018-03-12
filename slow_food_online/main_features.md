@@ -1,10 +1,16 @@
 ## Main features
 
-Build an End-to-end news creation, production, curation, distribution and publishing platform for localized news.
+You are challenged to build an end-to-end news creation, production, curation, distribution and publishing platform for localized news.It is up to you to dive into this domain and get to know as much as you can about how news are produced, selected and published. The key to a successful project is to plan ahead \(Just Enough Up-front Design vs Complete Up-front Design\) and capture the requirements. This is not an easy task and will require a lot of assumptions and decisions on how to prioritize your features and work. 
+
+What follows is a general overview of the functionality our client, a Media Conglomerate,  have provided for us. As a brief submitted by a non-technical client, the brief is in no way complete and require you, the Agile Team, to make decisions on your own. 
 
 #### Location
 
 We want the system to be used in editions based on geographical locations. News can appear in one or several editions, depending on their validity for readers \(location, language, etc\).
+
+#### News
+
+It's alla bout interesting and engaging content, right? Don't forget that readers enjoy images alongside text. So make sure you can add one or more images to each article.
 
 #### Categories - Sections
 
@@ -34,7 +40,7 @@ If the publication is running ads, they also need to be moderated and approved.
 
 #### Multiple language support
 
-The Media company that is our simulated client, operates on several markets and would like the platform to be able to support multi language support. This means that ever news article should be tagged with a language attribute and filtered thereafter. The entire UI should also be translated into at least 2 languages.
+The Media Company that is our simulated client, operates on several markets and would like the platform to be able to support multi language support. This means that ever news article should be tagged with a language attribute and filtered thereafter. The entire UI should also be translated into at least 2 languages.
 
 #### User roles
 
