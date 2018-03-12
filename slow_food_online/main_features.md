@@ -4,7 +4,7 @@ Build an End-to-end news creation, production, curation, distribution and publis
 
 #### Location
 
-We want the system to be used in editions based on geographical locations. News can appear in one or several editions, depending on their validity for readers \(location, language, etc\). 
+We want the system to be used in editions based on geographical locations. News can appear in one or several editions, depending on their validity for readers \(location, language, etc\).
 
 #### Categories - Sections
 
@@ -28,13 +28,13 @@ Every news article can be rated using rating system \(1 - 5\) with a possibility
 
 #### Administration/moderation
 
-Each news article will be written by an Author/Jounalist and need to be approved by the Editor/Pubicist before being published at a specific date. 
+Each news article will be written by an Author/Jounalist and need to be approved by the Editor/Pubicist before being published at a specific date.
 
-If the publication is running ads, they also need to be moderated and approved. 
+If the publication is running ads, they also need to be moderated and approved.
 
 #### Multiple language support
 
-The Media company that is our simulated client, operates on several markets and would like the platform to be able to support multi language support. This means that ever news article should be tagged with a language attribute and filtered thereafter. The entire UI should also be translated into at least 2 languages. 
+The Media company that is our simulated client, operates on several markets and would like the platform to be able to support multi language support. This means that ever news article should be tagged with a language attribute and filtered thereafter. The entire UI should also be translated into at least 2 languages.
 
 #### User roles
 
@@ -44,9 +44,5 @@ The platform should support multiple user roles that are authorized to perform d
 
 **Journalist** - Can create news articles with associated objects \(see below\)
 
-**Subscriber** - Can place orders and add rating to Restaurants
-
-
-
-
+**Subscriber** - Can have unlimited access to the entire publication and leave ratings and comments.
 
