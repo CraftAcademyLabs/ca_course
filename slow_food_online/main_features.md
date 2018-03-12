@@ -1,10 +1,10 @@
 ## Introduction
 
-You are challenged to build an end-to-end news creation, production, curation, distribution and publishing platform for localized news.It is up to you to dive into this domain and get to know as much as you can about how news are produced, selected and published. The key to a successful project is to plan ahead \(Just Enough Up-front Design vs Complete Up-front Design\) and capture the requirements. This is not an easy task and will require a lot of assumptions and decisions on how to prioritize your features and work.
+You are challenged to build an end-to-end news creation, production, curation, distribution and publishing platform for localized news.It is up to you to dive into this domain and get to know as much as you can about how news is produced, selected and published. The key to a successful project is to plan ahead \(Just Enough Up-front Design vs Complete Up-front Design\) and capture the requirements. This is not an easy task and will require a lot of assumptions and decisions on how to prioritize your features and work.
 
 ## Main features
 
-What follows is a general overview of the functionality our client, a Media Conglomerate,  have provided for us. As a brief submitted by a non-technical client, the brief is in no way complete and require you, the Agile Team, to make decisions on your own.
+What follows is a general overview of the functionality our client, a Media Conglomerate has provided for us. As a brief submitted by a non-technical client, the brief is in no way complete and require you, the Agile Team, to make decisions on your own.
 
 #### Location
 
