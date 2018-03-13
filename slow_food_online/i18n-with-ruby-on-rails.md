@@ -60,7 +60,7 @@ module NewsRoom
     # more code...
 ```
 
-![](/assets/i18n_application_rb_2t.png)
+![](/assets/i18n_application_rb.png)
 
 As the next step, create a YAML file with the correct locale as root key** **in the `config/locales` directory. You can name it after the language’s ISO code, e.g. `se.yml`.
 
@@ -110,8 +110,6 @@ end
 ### ![](/assets/I18n_application_controller.png)
 
 ### RESTful routes
-
-
 
 
 
