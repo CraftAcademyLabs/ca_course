@@ -117,11 +117,11 @@ There is a fix we can apply to avoid this. We can modify our `set_locale` method
   end
 ```
 
-We use a ternary operator to check if the locale passed in by params \(if there is such a param in the request\) is listed as a valid locale in our app configuration before we set the `I18n.locale`. If it's not, we fall back on the `default_locale` of our application. 
+We use a ternary operator to check if the locale passed in by params \(if there is such a param in the request\) is listed as a valid locale in our app configuration before we set the `I18n.locale`. If it's not, we fall back on the `default_locale` of our application.
 
 ### RESTful routes
 
-Passing in locale settings in query params is okay, but having your application respond to more RESTful routes is even better. Just ask any overpaid SEO expert on how the Google bots like to see the your application URL's. 
+Passing in locale settings in query params is okay, but having your application respond to more RESTful routes is even better. Just ask any overpaid SEO expert on how the Google bots like to see the your application URL's.
 
 Let's see if we can move away from this \(in development. In production `localhost:3000` will, of course, be replaced by your host's domain\):
 
@@ -138,7 +138,7 @@ http://localhost:3000/sv
 http://localhost:3000/en
 ```
 
-In order to achieve this we need to make some modification to our route table and the `set_locale` method in our `ApplicationController`. by adding a `scope` to all routes. 
+In order to achieve this we need to make some modification to our route table and the `set_locale` method in our `ApplicationController`. by adding a `scope` to all routes.
 
 !FILENAME config/routes.rb
 
@@ -151,7 +151,7 @@ Rails.application.routes.draw do
 end
 ```
 
-In the `set_locale` method, we'll make sure every request will be 
+In the `set_locale` method, we'll make sure every request will be have a locale by setting it's value using the `routes.default_url_options` method. 
 
 !FILENAME app/controllers/application\_controller.rb
 
@@ -166,9 +166,9 @@ class ApplicationController < ActionController::Base
 end
 ```
 
+With this settings, your application will respond to RESTful localization routes and use the defualt locale as a fallback.
+
 ### More resources
 
-https://github.com/enriclluelles/route\_translator
-
-
+[https://github.com/enriclluelles/route\_translator](https://github.com/enriclluelles/route_translator)
 
