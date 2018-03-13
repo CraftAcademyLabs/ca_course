@@ -46,8 +46,6 @@ Here is an example of how to use `t()` and `l()`
 <p><%= l Time.now %></p>
 ```
 
-
-
 ### Adding locales to your application
 
 Getting started with I18n in Rails is simple. One of the first things we want to do is to set up the available locales in our application class in `config/application.rb`.
@@ -87,7 +85,7 @@ flash[:notice] = t('hello')
 
 ### Switching locales
 
-In order to allow your users to switch locales, you need to modify your `ApplicationController` and add a `before_action` that will be rune before every action in your application \(or at least all actions in controllers that inherit the `ApplicationController`\) 
+In order to allow your users to switch locales, you need to modify your `ApplicationController` and add a `before_action` that will be rune before every action in your application \(or at least all actions in controllers that inherit the `ApplicationController`\)
 
 ```ruby
 before_action :set_locale
@@ -97,9 +95,13 @@ def set_locale
 end
 ```
 
-If you set the locale to Swedish using a query parameter  \(`http://localhost:3000?locale=sv`\), the response renders the translated strings.
+If you set the locale to Swedish using a query parameter  \(`http://localhost:3000?locale=sv`\), the response renders the translated strings. Note that this configuration would require you to always add the query params in your views or helpers. Adding a helper method to the `ApplicationController` will allow us to avoid having to add that explicit locale option in every URL, so that `link_to(root_path(locale: I18n.locale))` can become `link_to(root_path)`again.
+
+```ruby
+def default_url_options
+  { locale: I18n.locale }
+end
+```
 
 ![](/assets/I18n_application_controller_2.png)
-
-
 
