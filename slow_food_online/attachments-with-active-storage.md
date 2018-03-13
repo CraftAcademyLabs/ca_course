@@ -64,7 +64,7 @@ We don't have to create an `Image`  model. Active Storage uses the Blob and Atta
 $  rails g controller Articles new show
 create  app/controllers/articles_controller.rb
        route  get 'articles/new'
-get 'articles/show'
+              get 'articles/show'
       invoke  haml
       create    app/views/articles
       create    app/views/articles/new.html.haml
@@ -189,5 +189,5 @@ class ArticlesController < ApplicationController
 end
 ```
 
-And now, it all works. Gotta love Rails!
+**And now, it all works. Gotta love Rails!**
 
