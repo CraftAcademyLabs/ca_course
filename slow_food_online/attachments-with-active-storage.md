@@ -1,8 +1,14 @@
 ### Active Storage
 
+Active Storage is a new addition to Rails \(introduced in Rails 5.2\) that allows for attaching files to Active Record objects. Attachements can be stored locally or uploaded to a cloud storage service like Amazon S3, Google Cloud Storage, or Microsoft Azure Storage.
+
+
+
 Working on a separate branch \(not `master`\)
 
-Active Storage comes with some custom migrations \(investigate why\)
+Active Storage comes with some custom migrations \(investigate why\). Here is what they do, according to framework’s README:
+
+_“Active Storage uses polymorphic associations via the Attachment join model, which then connects to the actual Blob. Blob models store attachment metadata \(filename, content-type, etc.\), and their identifier key in the storage service."_
 
 Copy the migrations to your `db/migrations` folder:
 
