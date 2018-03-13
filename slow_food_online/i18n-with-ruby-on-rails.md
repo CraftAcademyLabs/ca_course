@@ -151,7 +151,7 @@ Rails.application.routes.draw do
 end
 ```
 
-In the `set_locale` method, we'll make sure every request will be have a locale by setting it's value using the `routes.default_url_options` method. 
+In the `set_locale` method, we'll make sure every request will be have a locale by setting it's value using the `routes.default_url_options` method.
 
 !FILENAME app/controllers/application\_controller.rb
 
@@ -170,5 +170,10 @@ With this settings, your application will respond to RESTful localization routes
 
 ### More resources
 
-[https://github.com/enriclluelles/route\_translator](https://github.com/enriclluelles/route_translator)
+There's plenty of various localization strategies you can use to make your application localized and hence more user friendly.  Take a closer look at these libararies/gems: 
+
+* Route Translator [https://github.com/enriclluelles/route\_translator](https://github.com/enriclluelles/route_translator) - if you are interested in translating your URL's 
+* I18n Active Record [https://github.com/svenfuchs/i18n-active\_record](https://github.com/svenfuchs/i18n-active_record) - for managing your translations using ActiveRecord \(Advanced\) 
+* 
+
 
