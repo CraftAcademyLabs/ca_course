@@ -77,8 +77,9 @@
   * [Main features](slow_food_online/main_features.md)
   * [Design Sprint](slow_food_online/design_sprint.md)
   * [Pivotal Tracker](slow_food_online/pivotal_tracker.md)
-  * Guides
+  * [Guides](slow_food_online/guides.md)
     * [i18n with Ruby on Rails](slow_food_online/i18n-with-ruby-on-rails.md)
+    * Rails 5.2 Scaffold
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * [Extras](extras.md)
   * [Naming Standards](extras/naming_standards.md)
