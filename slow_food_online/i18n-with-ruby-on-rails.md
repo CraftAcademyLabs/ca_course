@@ -170,10 +170,11 @@ With this settings, your application will respond to RESTful localization routes
 
 ### More resources
 
-There's plenty of various localization strategies you can use to make your application localized and hence more user friendly.  Take a closer look at these libararies/gems: 
+There's plenty of various localization strategies you can use to make your application localized and hence more user friendly.  Take a closer look at these libararies/gems:
 
 * Route Translator [https://github.com/enriclluelles/route\_translator](https://github.com/enriclluelles/route_translator) - if you are interested in translating your URL's 
 * I18n Active Record [https://github.com/svenfuchs/i18n-active\_record](https://github.com/svenfuchs/i18n-active_record) - for managing your translations using ActiveRecord \(Advanced\) 
-* 
+* Translations for Active Record Models [http://guides.rubyonrails.org/i18n.html\#translations-for-active-record-models](http://guides.rubyonrails.org/i18n.html#translations-for-active-record-models)
+
 
 
