@@ -82,6 +82,7 @@
     * [Rails 5.2 Scaffold](slow_food_online/rails-52-scaffold.md)
     * [Attachments with Active Storage](slow_food_online/attachments-with-active-storage.md)
     * [Encrypted Credentials in Rails 5.2](slow_food_online/encrypted-credentials-in-rails-52.md)
+    * [User Authentication with Pundit](slow_food_online/user-authentication-with-pundit.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * [Extras](extras.md)
   * [Naming Standards](extras/naming_standards.md)
