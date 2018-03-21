@@ -6,13 +6,13 @@ In the simplest implementation, we check if a user has a specific role \(such as
 
 ### Pundit
 
-Pundit is an authorization system that uses simple Ruby objects for access rules. Pundit uses a folder named `app/policies`** **containing policies that implement access rules. Pundit is well-suited to the service-oriented architecture that is popular for large Rails applications, emphasizing object-oriented design with discrete Ruby objects providing specialized services. In this guide, we will \(eventually\) implement a role-based authorization, using Pundit.
+Pundit is an authorization library that helps us to define access rules. Pundit uses a folder named `app/policies`** **containing policies that implement access rules. Pundit is well-suited to the service-oriented architecture that is popular for large Rails applications, emphasizing object-oriented design with discrete Ruby objects providing specialized services. In this guide, we will \(eventually\) implement a role-based authorization, using Pundit.
 
 ### Roles
 
 Note that Pundit does not implement the roles a user can have. In order to do that, we need to add an attribute to the User model ourselves, or use a gem that does it for us.
 
-There are several ways to assign roles to a user. 
+There are several ways to assign roles to a user.
 
 We could use `boolean`'s to add roles. That approach works and can be used in systems that only have a few roles that can be assigned to a user. In the examples below, we are assuming that you already have a `User` model with Devise authentication configured. Consider this:
 
@@ -20,7 +20,7 @@ We could use `boolean`'s to add roles. That approach works and can be used in sy
 user = User.create(email: 'author@newsroom.com', password: 'password', author: true, visitor: false)
 ```
 
-Now, let's consider that we want to add more roles? How many booleans can we handle on our model before it gets hard to maintain? 
+Now, let's consider that we want to add more roles? How many booleans can we handle on our model before it gets hard to maintain?
 
 Another strategy would be to add a `role` attribute like this:
 
