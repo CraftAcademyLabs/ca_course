@@ -12,7 +12,17 @@ Pundit is an authorization system that uses simple Ruby objects for access rules
 
 Note that Pundit does not implement the roles a user can have. In order to do that, we need to add an attribute to the User model ourselves, or use a gem that does it for us.
 
-There are several ways to assign roles to a user. In the example below,we are assuming that you already have a `User` model with Device authentication configured. One strategy would be to add a `role` attribute like this:
+There are several ways to assign roles to a user. 
+
+We could use `boolean`'s to add roles. That approach works and can be used in systems that only have a few roles that can be assigned to a user. In the examples below, we are assuming that you already have a `User` model with Devise authentication configured. Consider this:
+
+```ruby
+user = User.create(email: 'author@newsroom.com', password: 'password', author: true, visitor: false)
+```
+
+Now, let's consider that we want to add more roles? How many booleans can we handle on our model before it gets hard to maintain? 
+
+Another strategy would be to add a `role` attribute like this:
 
 ```bash
 $ rails g migration add_role_to_users role:string
