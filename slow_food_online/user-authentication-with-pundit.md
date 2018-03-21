@@ -1,6 +1,6 @@
 ### Role-Based Authorization
 
-Almost every web application needs an authorization system if there are parts of the website that are restricted to some users. Most websites set access restrictions based on roles; that is, users are grouped by privilege. One of the most common ways to handle privileges is by implementing a system for **Role-Based Authorization**. Roles are attributes associated with a user account, and often implemented in a User model. For every action, the application checks the role of user that is currently using the application to check it's role to determine if access to that particular action is allowed.
+Almost every web application needs an authorization system if there are parts of the website that are restricted to some users. Most websites set access restrictions based on roles; that is, users are grouped by privilege. One of the most common ways to handle privileges is by implementing a system for **Role-Based Authorization**. Roles are set with attributes associated with a user account, and often implemented in a User model. For every action, the application checks the role of user that is currently using the application to check it's role to determine if access to that particular action is allowed.
 
 In the simplest implementation, we check if a user has a specific role \(such as and Editor or Author\) and either allow access or redirect with an “Access Denied” message.
 
@@ -79,10 +79,12 @@ class User < ApplicationRecord
   end
 end
 ```
-This approach stores the value as an integer (based on the index number of the value in the array we add to `roles:`) and has the advantage to give us some methods for free. 
+
+This approach stores the value as an integer \(based on the index number of the value in the array we add to `roles:`\) and has the advantage to give us some methods for free.
 
 We can go into the console and try things out.
-```ruby 
+
+```ruby
 rails c
 Loading development environment (Rails 5.2.0.rc1)
 [1] pry(main)> user_1 = User.create(email: 'author@newsroom.com', password: 'password', role: :author)
@@ -91,21 +93,22 @@ Loading development environment (Rails 5.2.0.rc1)
 => true
 [3] pry(main)> user_1.visitor?
 => false
-
-
 ```
+
 We now also have a bang method available, that will change the role of the user:
+
 ```ruby
 [4] pry(main)> user_1.visitor!
    (0.2ms)  BEGIN
   User Update (0.5ms)  UPDATE "users" SET "updated_at" = $1, "role" = $2 WHERE "users"."id" = $3  [["updated_at", "2018-03-21 11:15:12.882379"], ["role", 0], ["id", 5]]
    (1.3ms)  COMMIT
 => true
-
 ```
+
 That's pretty handy, right?
 
 ### It all starts with a test...
+
 ```gherkin
 Feature: User can create article with image attachment
   As an Author
