@@ -81,6 +81,7 @@
     * [i18n with Ruby on Rails](slow_food_online/i18n-with-ruby-on-rails.md)
     * [Rails 5.2 Scaffold](slow_food_online/rails-52-scaffold.md)
     * [Attachments with Active Storage](slow_food_online/attachments-with-active-storage.md)
+    * [Encrypted Credentials in Rails 5.2](slow_food_online/encrypted-credentials-in-rails-52.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * [Extras](extras.md)
   * [Naming Standards](extras/naming_standards.md)
