@@ -13,7 +13,7 @@ If you have any questions, feel free to contact us at info@craftacademy.se
 
 
 **Thomas Ochman**<br>
-Gothenburg, April 2016<br>
+Gothenburg, April 2018<br>
 www.craftacademy.se
 
 ![Logo](https://github.com/CraftAcademy/craft-assets/blob/gh-pages/images/logo/logo-with-tagline_small.png?raw=true)
