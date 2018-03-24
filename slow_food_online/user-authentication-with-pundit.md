@@ -147,7 +147,7 @@ Feature: User can create article with image attachment
     And I should see "You are not authorized to perform that action!"
 ```
 
-### Testing
+### Testing Policies
 
 Install the [`pundit-matcher`  gem](https://github.com/chrisalley/pundit-matchers)  and require it in your `spec_helper` \(see the Gem documentation\)
 
@@ -170,6 +170,30 @@ describe ArticlePolicy do
     let(:user) { create(:user, role: 'author') }
 
     it { is_expected.to permit_new_and_create_actions }
+  end
+end
+```
+
+### The ArticlePolicy
+
+```ruby
+class ArticlePolicy < ApplicationPolicy
+  class Scope < Scope
+    def resolve
+      scope
+    end
+  end
+
+  def index?
+    true
+  end
+
+  def new?
+    @user.author?
+  end
+
+  def create?
+    new?
   end
 end
 ```
