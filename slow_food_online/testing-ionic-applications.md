@@ -161,7 +161,7 @@ var browser = require('@angular/platform-browser-dynamic/testing');
 testing.TestBed.initTestEnvironment(browser.BrowserDynamicTestingModule, browser.platformBrowserDynamicTesting());
 ```
 
-Next we need to create the configuration file for Protractor, our acceptance testing framework.
+Next, we need to create the configuration file for Protractor, our acceptance testing framework.
 
 !FILENAME test-config/protractor.conf.js
 
@@ -432,11 +432,11 @@ describe('AppComponent', () => {
 
 ### Acceptance test configuration
 
-First we need to create a folder `e2e` in our project root folder.
+First, we need to create a folder `e2e` in our project root folder.
 
 `$ mkdir e2e`
 
-First we need to create a configuration file `tsconfig.e2e.json.`for Typescript in the testing environment.
+First, we need to create a configuration file `tsconfig.e2e.json.`for Typescript in the testing environment.
 
 !FILENAME e2e/tsconfig.e2e.json
 
@@ -455,7 +455,7 @@ First we need to create a configuration file `tsconfig.e2e.json.`for Typescript 
 }
 ```
 
-Next we create a page object. A class with functions that return elements like buttons, texts or whatever you need for the test.
+Next, we create a page object. A class with functions that return elements like buttons, texts or whatever you need for the test.
 
 !FILENAME e2e/app.po.ts
 
@@ -478,7 +478,7 @@ export class Page {
 }
 ```
 
-Last file we need to create is `app.e2e-spec.ts` Its in this file we write our acceptance tests.
+Last file we need to create is `app.e2e-spec.ts` It's in this file we write our acceptance tests.
 
 !FILENAME e2e/app.e2e-spec.ts
 
