@@ -447,3 +447,13 @@ describe('App', () => {
 
 
 
+#### Running the e2e tests
+
+When running the e2e tests we first have to fire up `ionic serve --lab` in another terminal tab. To open a new tab in your terminal on mac you press `Command+t`, on a linux you press `control-shift-t`.
+
+When you have ionic server running you can run `npm run e2e` to run your acceptance tests.
+
+ 
+
+
+
