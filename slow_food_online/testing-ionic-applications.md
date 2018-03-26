@@ -56,8 +56,6 @@ Now our file should look like this.
   ...
 ```
 
-
-
 ### Unit test configuration
 
 Now we need to create a folder called `test-config` in our project root folder.
@@ -66,7 +64,7 @@ Now we need to create a folder called `test-config` in our project root folder.
 
 Next we need to create configurations files.
 
-First is the configuration files for Karma, our unit test runner. 
+First is the configuration files for Karma, our unit test runner.
 
 !FILENAME  test-config/karma.conf.js
 
@@ -279,19 +277,19 @@ export class SplashScreenMock extends SplashScreen {
 }
 
 export class NavMock {
- 
+
   public pop(): any {
     return new Promise(function(resolve: Function): void {
       resolve();
     });
   }
- 
+
   public push(): any {
     return new Promise(function(resolve: Function): void {
       resolve();
     });
   }
- 
+
   public getActive(): any {
     return {
       'instance': {
@@ -299,7 +297,7 @@ export class NavMock {
       },
     };
   }
- 
+
   public setRoot(): any {
     return true;
   }
@@ -371,8 +369,6 @@ function root(localPath) {
 }
 ```
 
-
-
 ### Acceptance test configuration
 
 First we need to create a folder `e2e` in our project root folder.
@@ -421,7 +417,7 @@ export class Page {
 }
 ```
 
-
+Last file we need to create is `app.e2e-spec.ts` Its in this file we write our acceptance tests.
 
 !FILENAME e2e/app.e2e-spec.ts
 
