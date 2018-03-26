@@ -84,6 +84,7 @@
     * [Encrypted Credentials in Rails 5.2](slow_food_online/encrypted-credentials-in-rails-52.md)
     * [Role-Based Authorization](slow_food_online/user-authentication-with-pundit.md)
     * [Rendering JSON objects in Rails](slow_food_online/rendering-json-objects-in-rails.md)
+    * [Testing Ionic Applications](slow_food_online/testing-ionic-applications.md)
 * [SlowFood API - API first or second?](slow_food_api/slow_food_api.md)
 * [Extras](extras.md)
   * [Naming Standards](extras/naming_standards.md)
