@@ -1,12 +1,14 @@
 ## Ionic Testing environment setup
 
-In our project folder we need to install some dependencies.
+In our project folder, we need to install some dependencies.
 
 ```
 npm install --save-dev angular2-template-loader html-loader jasmine jasmine-spec-reporter karma karma-chrome-launcher karma-jasmine karma-jasmine-html-reporter karma-sourcemap-loader karma-webpack karma-coverage-istanbul-reporter istanbul-instrumenter-loader null-loader protractor ts-loader ts-node @types/jasmine @types/node
 ```
 
-This command adds these modules to the `"devDependencies"`node of your project’s `package.json`file. There are quite a few modules here, but the important modules are`karma`, `jasmine`and`protractor`.  Karma is the  module which is our testing environment for unit testing. Jasmine is the module which is the unit testing framework. Protractor is the module which is our testing environment for our end-to-end tests. The rest of the modules are utilities that allow this configuration to work.
+This command adds these modules to the `"devDependencies"`node of your project’s `package.json`file. There are quite a few modules here, but the important modules are `karma`, `jasmine` and `protractor`. Karma is the module which is our testing environment for unit testing. Jasmine is  is the unit testing framework. Protractor is the module which is our testing environment for our end-to-end tests. 
+
+The rest of the modules, that we installed with the command above, are utilities that allow this configuration to work.
 
 Next thing we need to do is add some scripts to our `package.json.`
 
@@ -24,7 +26,7 @@ This command `npm run test-coverage` will run our tests and add a test coverage 
 
 `"e2e-test": "protractor ./test-config/protractor.conf.js"`
 
-This command `npm run e2e-test` runs our protractor test \(Acceptance tests\).
+This command `npm run e2e-test` runs our protractor test (Acceptance tests).
 
 `"e2e-update": "webdriver-manager update --standalone false --gecko false"`
 
@@ -34,7 +36,7 @@ This command `npm run e2e-update` updates our selenium webdriver.
 
 This command `npm run e2e` both updates and runs our acceptance tests.
 
-Now our file should look like this.
+Now our file should look like this (the dependencies are excluded for better readability).
 
 !FILENAME package.json
 
@@ -58,13 +60,13 @@ Now our file should look like this.
 
 ### Unit test configuration
 
-Now we need to create a folder called `test-config` in our project root folder.
+Now, we need to create a folder called `test-config` in our project root folder.
 
 `$ mkdir test-config`
 
-Next we need to create configurations files.
+Next, we need to create configurations files in that forlder.
 
-First is the configuration files for Karma, our unit test runner.
+First is the configuration files for Karma, our unit test runner. We will not go over each setting but you should do your own research. 
 
 !FILENAME  test-config/karma.conf.js
 
