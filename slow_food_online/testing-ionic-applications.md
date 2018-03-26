@@ -375,7 +375,7 @@ First we need to create a folder `e2e` in our project root folder.
 
 `$ mkdir e2e`
 
-First we need to create a configuration file for Typescript in the testing environment `tsconfig.e2e.json.`
+First we need to create a configuration file `tsconfig.e2e.json.`for Typescript in the testing environment.
 
 !FILENAME e2e/tsconfig.e2e.json
 
