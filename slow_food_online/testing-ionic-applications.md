@@ -1,5 +1,7 @@
 ## Ionic Testing environment setup
 
+The following guide assumes that you already have a Ionic application scaffolded and configured. Following the outline steps, will help you in setting up frameworks for running both unit-, as well as acceptance tests. 
+
 In our project folder, we need to install some dependencies.
 
 ```
