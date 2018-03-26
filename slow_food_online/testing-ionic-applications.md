@@ -12,7 +12,7 @@ This command adds these modules to the `"devDependencies"`node of your projectâ€
 
 The rest of the modules, that we installed with the command above, are utilities that allow this configuration to work.
 
-Next thing we need to do is add some scripts to our `package.json.`
+Next thing we need to do is add some scripts to our `package.json`
 
 * `"test": "karma start ./test-config/karma.conf.js"` - With this command, we can run npm run test and it will open a browser and run continuously until we shut it down in the terminal. In the browser we have to press debug to see a more detailed report.
 * `"test-ci": "karma start ./test-config/karma.conf.js --single-run"` - This command, `npm run test-ci` runs our test once and show the status in the terminal.
