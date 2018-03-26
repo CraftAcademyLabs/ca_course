@@ -369,6 +369,65 @@ function root(localPath) {
 }
 ```
 
+Some of the Karma and Jasmine dependencies dont work very well together so we need to set them to specific versions. We need to modify `package.json` devDependencies part change the following to these versions.
+
+```js
+"ts-loader": "^3.0.3",
+"karma-jasmine-html-reporter": "^0.2.2",
+"karma-jasmine": "^1.1.0",
+"jasmine": "^2.5.3",
+```
+
+Now we can create our first unit test.
+
+!FILENAME src/app.component.spec.ts
+
+```js
+import { TestBed } from '@angular/core/testing';
+import { IonicModule, Platform } from 'ionic-angular';
+
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
+import {
+  PlatformMock,
+  StatusBarMock,
+  SplashScreenMock
+} from '../../test-config/mocks-ionic';
+
+
+import { MyApp } from './app.component';
+
+describe('AppComponent', () => {
+  let fixture, component;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        MyApp
+      ],
+      imports: [
+        IonicModule.forRoot(MyApp)
+      ],
+      providers: [
+        {provide: Platform, useClass: PlatformMock},
+        {provide: StatusBar, useClass: StatusBarMock},
+        {provide: SplashScreen, useClass: SplashScreenMock}]
+    });
+
+    fixture = TestBed.createComponent(MyApp);
+    component = fixture.componentInstance;
+  });
+
+  it('should create the app',() => {
+    expect(component).toBeTruthy();
+  });
+});
+
+```
+
+
+
 ### Acceptance test configuration
 
 First we need to create a folder `e2e` in our project root folder.
