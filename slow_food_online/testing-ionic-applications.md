@@ -1,6 +1,6 @@
 ## Ionic Testing environment setup
 
-The following guide assumes that you already have a Ionic application scaffolded and configured. Following the outline steps, will help you in setting up frameworks for running both unit-, as well as acceptance tests. 
+The following guide assumes that you already have a Ionic application scaffolded and configured. Following the outline steps, will help you in setting up frameworks for running both unit-, as well as acceptance tests.
 
 In our project folder, we need to install some dependencies.
 
@@ -8,27 +8,19 @@ In our project folder, we need to install some dependencies.
 npm install --save-dev angular2-template-loader html-loader jasmine jasmine-spec-reporter karma karma-chrome-launcher karma-jasmine karma-jasmine-html-reporter karma-sourcemap-loader karma-webpack karma-coverage-istanbul-reporter istanbul-instrumenter-loader null-loader protractor ts-loader ts-node @types/jasmine @types/node
 ```
 
-This command adds these modules to the `"devDependencies"`node of your project’s `package.json`file. There are quite a few modules here, but the important modules are `karma`, `jasmine` and `protractor`. Karma is the module which is our testing environment for unit testing. Jasmine is  is the unit testing framework. Protractor is the module which is our testing environment for our end-to-end tests. 
+This command adds these modules to the `"devDependencies"`node of your project’s `package.json`file. There are quite a few modules here, but the important modules are `karma`, `jasmine` and `protractor`. Karma is the module which is our testing environment for unit testing. Jasmine is  is the unit testing framework. Protractor is the module which is our testing environment for our end-to-end tests.
 
 The rest of the modules, that we installed with the command above, are utilities that allow this configuration to work.
 
 Next thing we need to do is add some scripts to our `package.json.`
 
-`"test": "karma start ./test-config/karma.conf.js"`
-
-With this we can run npm run test and it will open a browser and run continuously until we shut it down in the terminal. In the browser we have to press debug to see a more detailed report.
-
-`"test-ci": "karma start ./test-config/karma.conf.js --single-run"`
-
-This command `npm run test-ci` runs our test once and show the status in the terminal.
-
-`"test-coverage": "karma start ./test-config/karma.conf.js --coverage"`
-
-This command `npm run test-coverage` will run our tests and add a test coverage report that we can open `coverage/index.html` with our browser.
+* `"test": "karma start ./test-config/karma.conf.js"` - With this command, we can run npm run test and it will open a browser and run continuously until we shut it down in the terminal. In the browser we have to press debug to see a more detailed report.
+* `"test-ci": "karma start ./test-config/karma.conf.js --single-run"` - This command `npm run test-ci` runs our test once and show the status in the terminal.
+* `"test-coverage": "karma start ./test-config/karma.conf.js --coverage"` - This command `npm run test-coverage` will run our tests and add a test coverage report that we can open `coverage/index.html` with our browser.
 
 `"e2e-test": "protractor ./test-config/protractor.conf.js"`
 
-This command `npm run e2e-test` runs our protractor test (Acceptance tests).
+This command `npm run e2e-test` runs our protractor test \(Acceptance tests\).
 
 `"e2e-update": "webdriver-manager update --standalone false --gecko false"`
 
@@ -38,7 +30,7 @@ This command `npm run e2e-update` updates our selenium webdriver.
 
 This command `npm run e2e` both updates and runs our acceptance tests.
 
-Now our file should look like this (the dependencies are excluded for better readability).
+Now our file should look like this \(the dependencies are excluded for better readability\).
 
 !FILENAME package.json
 
@@ -68,7 +60,7 @@ Now, we need to create a folder called `test-config` in our project root folder.
 
 Next, we need to create configurations files in that forlder.
 
-First is the configuration files for Karma, our unit test runner. We will not go over each setting but you should do your own research. 
+First is the configuration files for Karma, our unit test runner. We will not go over each setting but you should do your own research.
 
 !FILENAME  test-config/karma.conf.js
 
@@ -427,10 +419,7 @@ describe('AppComponent', () => {
     expect(component).toBeTruthy();
   });
 });
-
 ```
-
-
 
 ### Acceptance test configuration
 
