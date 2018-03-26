@@ -15,20 +15,11 @@ The rest of the modules, that we installed with the command above, are utilities
 Next thing we need to do is add some scripts to our `package.json.`
 
 * `"test": "karma start ./test-config/karma.conf.js"` - With this command, we can run npm run test and it will open a browser and run continuously until we shut it down in the terminal. In the browser we have to press debug to see a more detailed report.
-* `"test-ci": "karma start ./test-config/karma.conf.js --single-run"` - This command `npm run test-ci` runs our test once and show the status in the terminal.
-* `"test-coverage": "karma start ./test-config/karma.conf.js --coverage"` - This command `npm run test-coverage` will run our tests and add a test coverage report that we can open `coverage/index.html` with our browser.
-
-`"e2e-test": "protractor ./test-config/protractor.conf.js"`
-
-This command `npm run e2e-test` runs our protractor test \(Acceptance tests\).
-
-`"e2e-update": "webdriver-manager update --standalone false --gecko false"`
-
-This command `npm run e2e-update` updates our selenium webdriver.
-
-`"e2e": "npm run e2e-update && npm run e2e-test"`
-
-This command `npm run e2e` both updates and runs our acceptance tests.
+* `"test-ci": "karma start ./test-config/karma.conf.js --single-run"` - This command, `npm run test-ci` runs our test once and show the status in the terminal.
+* `"test-coverage": "karma start ./test-config/karma.conf.js --coverage"` - This command, `npm run test-coverage` will run our tests and add a test coverage report that we can open `coverage/index.html` with our browser.
+* `"e2e-test": "protractor ./test-config/protractor.conf.js"` - This command, `npm run e2e-test` runs our protractor test \(Acceptance tests\).
+* `"e2e-update": "webdriver-manager update --standalone false --gecko false"` - This command `npm run e2e-update` updates our selenium webdriver.
+* `"e2e": "npm run e2e-update && npm run e2e-test"` - This command `npm run e2e` both updates and runs our acceptance tests.
 
 Now our file should look like this \(the dependencies are excluded for better readability\).
 
