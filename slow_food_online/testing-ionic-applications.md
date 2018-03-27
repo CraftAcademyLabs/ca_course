@@ -2,6 +2,8 @@
 
 The following guide assumes that you already have a Ionic application scaffolded and configured. Following the outline steps, will help you in setting up frameworks for running both unit-, as well as acceptance tests.
 
+**Testing can be challenging and frustrating even for experienced developers. Writing tests and getting them to pass takes patience and experience. You should learn as much as possible about testing and practice as much as you can. Take your time, ask questions of your coaches, fellow peers, seek assistance online, and above all, don’t let a continuously failing test get the better of you. Follow the TDD process \(Acceptance-Unit Test Cycle\) as much as possible. Also, adding test coverage metrics to your test suite will help you to stay on track. You will overcome it.**
+
 In our project folder, we need to install some dependencies.
 
 ```
