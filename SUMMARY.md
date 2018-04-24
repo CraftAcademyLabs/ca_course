@@ -96,6 +96,7 @@
   * [MVC](extras/model_view_controller.md)
   * [Three-Tier Architecture](extras/three-tier_architecture.md)
   * [Rails Scaffold](extras/rails-scaffold.md)
+  * [Tailwind css with Rails](extras/tailwind-css-with-rails.md)
 * [Career](career.md)
   * [General Personality](career/general-personality.md)
   * [Agile Mindset](career/agile-mindset.md)
