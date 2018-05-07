@@ -118,7 +118,19 @@ describe('App', () => {
 
 // tell them how to run the e2e tests and show screenshot
 
-now our scaffolded app is tested we can move on by writing a test for a tab for the calculator page. So inside our default screen describe block we add this test
+To run e2e test we run the command `npm run e2e` in our terminal
+
+```
+$ npm run e2e
+```
+
+This should gives these results.
+
+![](/assets/e2e_init_test.png)
+
+
+
+now our scaffolded app is tested we can move on by writing a test for a tab for the calculator page. So inside our default screen describe block we add this test.
 
 ```javascript
 it('Should have a Calculator Tab', () => {
@@ -130,10 +142,7 @@ it('Should have a Calculator Tab', () => {
 
 This page has the code to make this test go green but it will also make two of our first acceptance test fail, the `the about tab is displayed by default` and `should have a title saying About` you can safely update them to expect Calculator.
 
-
-https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/96bf29b196214229a1f5b420c670ac7f/068336cc02d6478ca19066842dd0166d/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%40068336cc02d6478ca19066842dd0166d
-
-
+[https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/96bf29b196214229a1f5b420c670ac7f/068336cc02d6478ca19066842dd0166d/?activate\_block\_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%40068336cc02d6478ca19066842dd0166d](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/96bf29b196214229a1f5b420c670ac7f/068336cc02d6478ca19066842dd0166d/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%40068336cc02d6478ca19066842dd0166d)
 
 Lets setup the unit tests for the Calculator page. start by creating a file calculator.spec.ts in src/pages/calculator
 
