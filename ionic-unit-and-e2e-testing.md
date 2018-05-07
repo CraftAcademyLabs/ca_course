@@ -1,18 +1,16 @@
-\#\# Ioinic Testing guide
+\#\# Ionic Testing guide
 
 Lets start with the scaffolded BMI\_calculator app and Setup the testing environment.
 
-We follow this guide, \[Click Me\]\([https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate\_block\_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216\](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216\)\), to setup Unit and Acceptance tests for Ionic.
+We follow this guide, [https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate\_block\_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216) to setup Unit and Acceptance tests for Ionic.
 
 \#\#\# Next we write tests for the scaffolded app BMI\_calculator
 
 Start our test script and have it run in background.
 
-\`\`\`
-
+```
 $ npm run test-coverage
-
-\`\`\`
+```
 
 This will open a new browser window
 
@@ -24,21 +22,15 @@ we need to click the DEBUG button to get a overview of our tests.
 
 Also open the coverage report
 
-\`\`\`
-
-\# Mac OS
-
+```
+# Mac OS
 $ open coverage/index.html
+```
 
-\`\`\`
-
-\`\`\`
-
-\# Linux
-
+```
+# Linux
 $ xdg-open coverage/index.html
-
-\`\`\`
+```
 
 \#\#\#\# Unit Testing
 
@@ -55,55 +47,31 @@ import { PlatformMock, StatusBarMock, SplashScreenMock } from 'ionic-mocks'
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 describe('AppComponent', () => {
-let fixture, component;
-
-
-
-beforeEach\(\(\) =&gt; {
-
-    TestBed.configureTestingModule\({
-
-        declarations: \[
-
-            MyApp
-
-        \],
-
-        imports: \[
-
-            IonicModule.forRoot\(MyApp\)
-
-        \],
-
-        providers: \[
-
-            { provide: Platform, useFactory: \(\) =&gt; PlatformMock.instance\(\) },
-
-            { provide: StatusBar, useFactory: \(\) =&gt; StatusBarMock.instance\(\) },
-
-            { provide: SplashScreen, useFactory: \(\) =&gt; SplashScreenMock.instance\(\) }
-
-        \]
-
-    }\)
-
-
-
-    fixture = TestBed.createComponent\(MyApp\);
-
-    component = fixture.componentInstance;
-
-}\)
-
-
-
-it\('should create the app',\(\) =&gt; {
-
-    expect\(component\).toBeTruthy\(\);
-
-    expect\(component instanceof MyApp\).toEqual\(true\);
-
-}\);
+    let fixture, component;
+    
+    beforeEach(() =>  {
+        TestBed.configureTestingModule({
+           declarations: [
+                 MyApp
+           ],
+           imports: [
+                 IonicModule.forRoot(MyApp)
+           ],
+            providers: [
+                { provide: Platform, useFactory: () => PlatformMock.instance() },
+                { provide: StatusBar, useFactory: () => StatusBarMock.instance() },
+                { provide: SplashScreen, useFactory: () => SplashScreenMock.instance() }
+           ]
+         })
+       
+        fixture = TestBed.createComponent(MyApp);
+        component = fixture.componentInstance;
+    })
+    
+    it('should create the app',() => {
+        expect\(component).toBeTruthy();
+        expect\(component instanceof MyApp).toEqual(true);
+    });
 })
 ```
 
@@ -128,17 +96,17 @@ describe('App', () => {
     beforeEach(() => {
       browser.get('/');
     }\);
-    
+
     it('App should have a title', () => {
       expect(browser.getTitle()).toContain('Ionic App')
     });
-     
+
     it('the about tab is displayed by default', () => {
       expect(element(by.css('[aria-selected=true] .tab-button-text')) // First we find the selected tab  
         .getAttribute('innerHTML')) // Then we grab the html content
         .toContain('About'); // Then we check if it matches our expectations
     });
-     
+
     it('should have a title saying About', () => {
       expect(element(by.css('.toolbar-title'))
         .getAttribute('innerHTML'))
@@ -147,8 +115,6 @@ describe('App', () => {
   });
 });
 ```
-
-
 
 // tell them how to run the e2e tests and show screenshot
 
@@ -199,7 +165,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 describe('AppComponent', () => {
     let fixture, component;
-    
+
     beforeEach(() => {
        TestBed.configureTestingModule({
            declarations: [
@@ -218,16 +184,15 @@ describe('AppComponent', () => {
                 App, DomController, Keyboard
            ]
          })
-    
+
         fixture = TestBed.createComponent(CalculatorPage);
         component = fixture.componentInstance;
      })
-      
+
     it('should create the calculator page', () => {
         expect(component).toBeTruthy();
     });
 })
-
 ```
 
 // review this sentence.
@@ -250,15 +215,15 @@ describe('Calculator', () => {
         element(by.css('[aria-labelledby="lbl-1"]')).sendKeys(186); // fill in the height
         element(by.buttonText('Calculate')).click(); // click the calculation button
         browser.sleep(1000); // gives the browser some time to load the answer to the page
-    
+
         expect(element(by.css('.card-content'))
             .getText())
             .toContain('Person: Weight 90 kg, Height 186 cm')
-    
+
         expect(element(by.css('.card-content'))
             .getText())
             .toContain('You are Overweight')
-    
+
     });
 });
 ```
@@ -271,7 +236,7 @@ it('CalculateBMI', () => {
     component.weight = 90;
     component.height = 186;
     component.calculateBMI();
-    
+
     expect(component.bmiValue).toEqual(26.01);
     expect(component.setBMIMessage).toHaveBeenCalled // check if the function has been called
 })
@@ -337,7 +302,6 @@ And now we need to provide Form but use the mock and we do that by adding this l
 
 ```javascript
 { provide: Form, useFactory: () => FormMock.instance() },
-
 ```
 
 Our provider list should look like this.
