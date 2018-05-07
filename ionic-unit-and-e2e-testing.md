@@ -65,8 +65,6 @@ We use:
 
 * createComponent to create an instance of the component we want to test.
 
-
-
 Lets check our debug window
 
 ![](/assets/debug_window_1_test.png)
@@ -130,11 +128,12 @@ it('Should have a Calculator Tab', () => {
 })
 ```
 
-    This page has the code to make this test go green but it will also make two of our first acceptance test fail, the the about tab is displayed by default and should have a title saying About you can safely update them to expect `Calculator`.
+This page has the code to make this test go green but it will also make two of our first acceptance test fail, the `the about tab is displayed by default` and `should have a title saying About` you can safely update them to expect Calculator.
 
-```
+
 https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/96bf29b196214229a1f5b420c670ac7f/068336cc02d6478ca19066842dd0166d/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%40068336cc02d6478ca19066842dd0166d
-```
+
+
 
 Lets setup the unit tests for the Calculator page. start by creating a file calculator.spec.ts in src/pages/calculator
 
@@ -322,14 +321,14 @@ Next we write a unit test for the setBMIMessage function
 it('setBMIMessage if bmiValue is under 18.5', () => {
     component.bmiValue = 18; // set the bmi value
     component.setBMIMessage(); // run the function we want to test
-    
+
     expect(component.bmiMessage).toEqual('Underweight')  // check if the outcome is correct
 });
 
 it('setBMIMessage if bmiValue is over 18.5 and under 25', () => {
     component.bmiValue = 22;
     component.setBMIMessage();
-    
+
     expect(component.bmiMessage).toEqual('Normal')
 });
 
@@ -343,7 +342,7 @@ it('setBMIMessage if bmiValue is over 25 and under 30', () => {
 it('setBMIMessage if bmiValue is over 30', () => {
     component.bmiValue = 31;
     component.setBMIMessage();
-    
+
     expect(component.bmiMessage).toEqual('Obese')
 });
 ```
@@ -351,8 +350,4 @@ it('setBMIMessage if bmiValue is over 30', () => {
 Lets check our debug window for the status of our tests and it should be 7 green 0 failures.
 
 ![](/assets/7_specs_green.png)
-
-
-
-
 
