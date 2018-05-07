@@ -2,7 +2,7 @@
 
 Lets start with the scaffolded BMI\_calculator app and Setup the testing environment.
 
-We follow this guide, [https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate\_block\_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216) to setup Unit and Acceptance tests for Ionic.
+We follow this guide, [https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate\_block\_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216), to setup Unit and Acceptance tests for Ionic.
 
 \#\#\# Next we write tests for the scaffolded app BMI\_calculator
 
@@ -12,25 +12,9 @@ Start our test script and have it run in background.
 $ npm run test-coverage
 ```
 
-This will open a new browser window
+This will open a new browser window![](/assets/karma_init_window.png)
 
-![](/assets/karma_init_window.png)
-
-we need to click the DEBUG button to get a overview of our tests.
-
-![](/assets/karma_debug_window.png)
-
-Also open the coverage report
-
-```
-# Mac OS
-$ open coverage/index.html
-```
-
-```
-# Linux
-$ xdg-open coverage/index.html
-```
+we need to click the DEBUG button to get a overview of our tests.![](/assets/karma_debug_window.png)
 
 \#\#\#\# Unit Testing
 
@@ -48,7 +32,7 @@ import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 describe('AppComponent', () => {
     let fixture, component;
-    
+
     beforeEach(() =>  {
         TestBed.configureTestingModule({
            declarations: [
@@ -63,14 +47,14 @@ describe('AppComponent', () => {
                 { provide: SplashScreen, useFactory: () => SplashScreenMock.instance() }
            ]
          })
-       
+
         fixture = TestBed.createComponent(MyApp);
         component = fixture.componentInstance;
     })
-    
+
     it('should create the app',() => {
-        expect\(component).toBeTruthy();
-        expect\(component instanceof MyApp).toEqual(true);
+        expect(component).toBeTruthy();
+        expect(component instanceof MyApp).toEqual(true);
     });
 })
 ```
@@ -81,7 +65,25 @@ We use:
 
 * createComponent to create an instance of the component we want to test.
 
-// show screenshot of debug window
+
+
+Lets check our debug window
+
+![](/assets/debug_window_1_test.png)
+
+Also open the coverage report
+
+```
+# Mac OS
+$ open coverage/index.html
+```
+
+```
+# Linux
+$ xdg-open coverage/index.html
+```
+
+![](/assets/test_coverage_app_100.png)
 
 \#\#\# Acceptance test
 
@@ -95,7 +97,7 @@ describe('App', () => {
   describe('default screen', () => {
     beforeEach(() => {
       browser.get('/');
-    }\);
+    });
 
     it('App should have a title', () => {
       expect(browser.getTitle()).toContain('Ionic App')
@@ -122,13 +124,9 @@ now our scaffolded app is tested we can move on by writing a test for a tab for 
 
 ```javascript
 it('Should have a Calculator Tab', () => {
-
   expect(element(by.css('[aria-controls="tabpanel-t0-0"]'))
-
-  .getAttribute('innerHTML'))
-
-  .toContain('Calculator');
-
+    .getAttribute('innerHTML'))  
+    .toContain('Calculator');
 })
 ```
 
@@ -191,6 +189,7 @@ describe('AppComponent', () => {
 
     it('should create the calculator page', () => {
         expect(component).toBeTruthy();
+        expect(component instanceof CalculatorPage).toEqual(true);
     });
 })
 ```
@@ -262,21 +261,13 @@ Since they dont have a mock for it we can just add it to the providers list
 ```javascript
 providers: [
             { provide: Platform, useFactory: () => PlatformMock.instance() },
-
             { provide: StatusBar, useFactory: () => StatusBarMock.instance() },
-
             { provide: SplashScreen, useFactory: () => SplashScreenMock.instance() },
-
             { provide: NavController, useFactory: () => NavControllerMock.instance() },
-
             { provide: NavParams, useFactory: () => NavParamsMock.instance() },
-
             { provide: Config, useFactory: () => ConfigMock.instance() },
-
             { provide: Keyboard, useFactory: () => KeyboardMock.instance() },
-
             App, DomController, GestureController
-
         ]
 ```
 
@@ -308,25 +299,15 @@ Our provider list should look like this.
 
 ```
 providers: [
-
             { provide: Platform, useFactory: () => PlatformMock.instance() },
-
             { provide: StatusBar, useFactory: () => StatusBarMock.instance() },
-
             { provide: SplashScreen, useFactory: () => SplashScreenMock.instance() },
-
             { provide: NavController, useFactory: () => NavControllerMock.instance() },
-
             { provide: NavParams, useFactory: () => NavParamsMock.instance() },
-
             { provide: Config, useFactory: () => ConfigMock.instance() },
-
             { provide: Keyboard, useFactory: () => KeyboardMock.instance() },
-
             { provide: Form, useFactory: () => FormMock.instance() },
-
             App, DomController, GestureController
-
         ]
 ```
 
@@ -336,64 +317,42 @@ Now go refresh the debug window and see that we now have 3 greens.
 
 Next we write a unit test for the setBMIMessage function
 
-```
+```js
 # calculator.spec.ts
 it('setBMIMessage if bmiValue is under 18.5', () => {
-
     component.bmiValue = 18; // set the bmi value
-
     component.setBMIMessage(); // run the function we want to test
-
-
-
+    
     expect(component.bmiMessage).toEqual('Underweight')  // check if the outcome is correct
-
 });
-
-
 
 it('setBMIMessage if bmiValue is over 18.5 and under 25', () => {
-
     component.bmiValue = 22;
-
     component.setBMIMessage();
-
-
-
+    
     expect(component.bmiMessage).toEqual('Normal')
-
 });
-
-
 
 it('setBMIMessage if bmiValue is over 25 and under 30', () => {
-
     component.bmiValue = 27;
-
     component.setBMIMessage();
-
-
 
     expect(component.bmiMessage).toEqual('Overweight')
-
 });
 
-
-
 it('setBMIMessage if bmiValue is over 30', () => {
-
     component.bmiValue = 31;
-
     component.setBMIMessage();
-
-
-
+    
     expect(component.bmiMessage).toEqual('Obese')
-
 });
 ```
 
-\`\`\`
+Lets check our debug window for the status of our tests and it should be 7 green 0 failures.
 
 ![](/assets/7_specs_green.png)
+
+
+
+
 
