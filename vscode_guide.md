@@ -53,3 +53,5 @@ This will show you a list of the most popular VS Code extensions on the  [VS Cod
 
 ![popular extensions](https://code.visualstudio.com/assets/docs/editor/extension-gallery/extensions-popular.png)
 
+
+Now you are all set to start coding with the editor!
