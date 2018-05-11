@@ -23,7 +23,7 @@ These features will help us alot in our efforts to create beautiful and funtiona
 
 #### 1) **Download and install**
 
-Go over to the VSC [website](https://code.visualstudio.com/) and download the version you need depending on your operating system. 
+Go over to the VSC [website](https://code.visualstudio.com/) and download the version you need depending on your operating system.
 
 ![VS Code](https://www.jaycaetano.com/wp-content/uploads/2017/08/Screen-Shot-2017-08-04-at-8.31.37-PM.png)
 
@@ -33,7 +33,7 @@ Go over to the VSC [website](https://code.visualstudio.com/) and download the ve
 
 #### 2) **Customize the editor**
 
-Change the color theme to a dark theme. This will make it a lot easier to read your code, and also make it easier on your eyes, especially when working long hours in front of the monitor. 
+Change the color theme to a dark theme. This will make it a lot easier to read your code, and also make it easier on your eyes, especially when working long hours in front of the monitor.
 
 **Go to:**
  **Code**  >  **Preferences**  >  **Color Themes** and choose a dark theme.
@@ -43,7 +43,7 @@ Change the color theme to a dark theme. This will make it a lot easier to read y
 
 Extensions is a powerful way for us to add functionality to the VSC editor. These extensions will give us ability to use features depending on what programming language or framework we are using. Add extensions when you need them. 
 
-For example if we will start using the Ruby Programming language, in that case we would like an extension that will help our coding to be quicker and with less bugs from syntax. The simplest solution to this is to download an extension from the VSC marketplace. 
+For example if we will start using the Ruby Programming language, in that case we would like an extension that will help our coding to be quicker and with less bugs from syntax. The simplest solution to this is to download an extension from the VSC marketplace.
 
 You can browse and install extensions from within VS Code. Bring up the Extensions view by clicking on the Extensions icon in the  **Activity Bar**  on the side of VS Code or the  **View: Extensions**  command (⇧⌘X).
 
