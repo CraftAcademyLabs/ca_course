@@ -2,7 +2,7 @@
 
 Lets start with the scaffolded BMI\_calculator app and Setup the testing environment.
 
-We follow this guide, https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate\_block\_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216, to setup Unit and Acceptance tests for Ionic.
+We follow this guide, [https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate\_block\_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216), to setup Unit and Acceptance tests for Ionic.
 
 ### Next we write tests for the scaffolded app BMI\_calculator
 
@@ -17,12 +17,6 @@ This will open a new browser window![](/assets/karma_init_window.png)
 we need to click the DEBUG button to get a overview of our tests.![](/assets/karma_debug_window.png)
 
 #### Unit Testing
-
-Before we start adding content to the file lets import ionic-mocks to isolate our unit test.
-
-```
-$ npm install --save-dev ionic-mocks
-```
 
 Lets start by creating our first unit test, within `src/app` folder create a file `app.component.spec.ts`
 
