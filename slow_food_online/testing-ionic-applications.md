@@ -7,7 +7,7 @@ The following guide assumes that you already have a Ionic application scaffolded
 In our project folder, we need to install some dependencies.
 
 ```
-npm install --save-dev angular2-template-loader html-loader jasmine jasmine-spec-reporter karma karma-chrome-launcher karma-jasmine karma-jasmine-html-reporter karma-sourcemap-loader karma-webpack karma-coverage-istanbul-reporter istanbul-instrumenter-loader null-loader protractor ts-loader ts-node @types/jasmine @types/node
+npm install --save-dev angular2-template-loader html-loader jasmine jasmine-spec-reporter karma karma-chrome-launcher karma-jasmine karma-jasmine-html-reporter karma-sourcemap-loader karma-webpack karma-coverage-istanbul-reporter istanbul-instrumenter-loader null-loader protractor ts-loader ts-node @types/jasmine @types/node ionic-mocks
 ```
 
 This command adds these modules to the `"devDependencies"`node of your project’s `package.json`file. There are quite a few modules here, but the important modules are `karma`, `jasmine` and `protractor`. Karma is the module which is our testing environment for unit testing. Jasmine is  is the unit testing framework. Protractor is the module which is our testing environment for our end-to-end tests.
@@ -180,128 +180,6 @@ exports.config = {
 };
 ```
 
-Now we create `mocks-ionic.ts`. Ionic Mocks are designed to be used as placeholders during testing for the actual Ionic Native modules.
-
-!FILENAME mocks-ionic.ts
-
-```js
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-
-export class PlatformMock {
-  public ready(): Promise<string> {
-    return new Promise((resolve) => {
-      resolve('READY');
-    });
-  }
-
-  public getQueryParam() {
-    return true;
-  }
-
-  public registerBackButtonAction(fn: Function, priority?: number): Function {
-    return (() => true);
-  }
-
-  public hasFocus(ele: HTMLElement): boolean {
-    return true;
-  }
-
-  public doc(): HTMLDocument {
-    return document;
-  }
-
-  public is(): boolean {
-    return true;
-  }
-
-  public getElementComputedStyle(container: any): any {
-    return {
-      paddingLeft: '10',
-      paddingTop: '10',
-      paddingRight: '10',
-      paddingBottom: '10',
-    };
-  }
-
-  public onResize(callback: any) {
-    return callback;
-  }
-
-  public registerListener(ele: any, eventName: string, callback: any): Function {
-    return (() => true);
-  }
-
-  public win(): Window {
-    return window;
-  }
-
-  public raf(callback: any): number {
-    return 1;
-  }
-
-  public timeout(callback: any, timer: number): any {
-    return setTimeout(callback, timer);
-  }
-
-  public cancelTimeout(id: any) {
-    // do nothing
-  }
-
-  public getActiveElement(): any {
-    return document['activeElement'];
-  }
-}
-
-export class StatusBarMock extends StatusBar {
-  styleDefault() {
-    return;
-  }
-}
-
-export class SplashScreenMock extends SplashScreen {
-  hide() {
-    return;
-  }
-}
-
-export class NavMock {
-
-  public pop(): any {
-    return new Promise(function(resolve: Function): void {
-      resolve();
-    });
-  }
-
-  public push(): any {
-    return new Promise(function(resolve: Function): void {
-      resolve();
-    });
-  }
-
-  public getActive(): any {
-    return {
-      'instance': {
-        'model': 'something',
-      },
-    };
-  }
-
-  public setRoot(): any {
-    return true;
-  }
-
-  public registerChildNav(nav: any): void {
-    return ;
-  }
-
-}
-
-export class DeepLinkerMock {
-
-}
-```
-
 And our configuration file for Webpack. Follow this link `https://webpack.js.org/concepts/` to get a better understanding of webpack.
 
 !FILENAME test-config/webpack.test.js
@@ -367,54 +245,9 @@ Some of the Karma and Jasmine dependencies dont work very well together so we ne
 "jasmine": "^2.5.3",
 ```
 
-Now we can create our first unit test.
-
-!FILENAME src/app.component.spec.ts
-
-```js
-import { TestBed } from '@angular/core/testing';
-import { IonicModule, Platform } from 'ionic-angular';
-
-import { StatusBar } from '@ionic-native/status-bar';
-import { SplashScreen } from '@ionic-native/splash-screen';
-
-import {
-  PlatformMock,
-  StatusBarMock,
-  SplashScreenMock
-} from '../../test-config/mocks-ionic';
 
 
-import { MyApp } from './app.component';
-
-describe('AppComponent', () => {
-  let fixture, component;
-
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        MyApp
-      ],
-      imports: [
-        IonicModule.forRoot(MyApp)
-      ],
-      providers: [
-        {provide: Platform, useClass: PlatformMock},
-        {provide: StatusBar, useClass: StatusBarMock},
-        {provide: SplashScreen, useClass: SplashScreenMock}]
-    });
-
-    fixture = TestBed.createComponent(MyApp);
-    component = fixture.componentInstance;
-  });
-
-  it('should create the app',() => {
-    expect(component).toBeTruthy();
-  });
-});
-```
-
-### Acceptance test configuration
+#### Acceptance test configuration
 
 First, we need to create a folder `e2e` in our project root folder.
 
