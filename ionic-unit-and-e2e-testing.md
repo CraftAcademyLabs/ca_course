@@ -1,10 +1,10 @@
-\#\# Ionic Testing guide
+## Ionic Testing guide
 
 Lets start with the scaffolded BMI\_calculator app and Setup the testing environment.
 
 We follow this guide, [https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate\_block\_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216), to setup Unit and Acceptance tests for Ionic.
 
-\#\#\# Next we write tests for the scaffolded app BMI\_calculator
+### Next we write tests for the scaffolded app BMI\_calculator
 
 Start our test script and have it run in background.
 
@@ -16,11 +16,11 @@ This will open a new browser window![](/assets/karma_init_window.png)
 
 we need to click the DEBUG button to get a overview of our tests.![](/assets/karma_debug_window.png)
 
-\#\#\#\# Unit Testing
+#### Unit Testing
 
-Lets start by creating our first unit test, within \`src/app\` folder create a file \`app.component.spec.ts\`
+Lets start by creating our first unit test, within `src/app` folder create a file `app.component.spec.ts`
 
-// introduce TestBed
+
 
 ```javascript
 # src/app/app.component.spec.ts
@@ -83,9 +83,17 @@ $ xdg-open coverage/index.html
 
 ![](/assets/test_coverage_app_100.png)
 
-\#\#\# Acceptance test
+### Acceptance test
 
-// introduce protractor
+We will use Protractor for our acceptance tests. Protractor is an end-to-end test framework for Angular and AngularJS applications and since Ionic is built on Angular we can use it for our acceptance tests. Protractor runs tests against your application running in a real browser, interacting with it as a user would.
+
+###### Useful links for Protractor
+
+website: https://www.github.com/angular/protractor
+
+Cheat Sheet: https://gist.github.com/javierarques/0c4c817d6c77b0877fda
+
+
 
 We start with these tests
 
@@ -116,7 +124,7 @@ describe('App', () => {
 });
 ```
 
-// tell them how to run the e2e tests and show screenshot
+
 
 To run e2e test we run the command `npm run e2e` in our terminal
 
@@ -128,21 +136,30 @@ This should gives these results.
 
 ![](/assets/e2e_init_test.png)
 
-
-
-now our scaffolded app is tested we can move on by writing a test for a tab for the calculator page. So inside our default screen describe block we add this test.
+now our scaffolded app is tested we can move on by writing a test for a tab for the calculator page. So inside our default screen describe block we add this test and since we want the calculator page to be the default tab we modify the `the about tab is displayed by default` and `should have a title saying About.`
 
 ```javascript
 it('Should have a Calculator Tab', () => {
   expect(element(by.css('[aria-controls="tabpanel-t0-0"]'))
     .getAttribute('innerHTML'))  
     .toContain('Calculator');
-})
+});
+
+it('the calculator tab is displayed by default', () => {
+  expect(element(by.css('[aria-selected=true] .tab-button-text')) // First we find the selected tab  
+    .getAttribute('innerHTML')) // Then we grab the html content
+    .toContain('Calculator'); // Then we check if it matches our expectations
+});
+
+it('should have a title saying Calculator', () => {
+  expect(element(by.css('.toolbar-title'))
+    .getAttribute('innerHTML'))
+    .toContain('Calculator');
+});
+
 ```
 
-This page has the code to make this test go green but it will also make two of our first acceptance test fail, the `the about tab is displayed by default` and `should have a title saying About` you can safely update them to expect Calculator.
 
-[https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/96bf29b196214229a1f5b420c670ac7f/068336cc02d6478ca19066842dd0166d/?activate\_block\_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%40068336cc02d6478ca19066842dd0166d](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/96bf29b196214229a1f5b420c670ac7f/068336cc02d6478ca19066842dd0166d/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%40068336cc02d6478ca19066842dd0166d)
 
 Lets setup the unit tests for the Calculator page. start by creating a file calculator.spec.ts in src/pages/calculator
 
@@ -202,7 +219,7 @@ describe('AppComponent', () => {
 })
 ```
 
-// review this sentence.
+
 
 When we want to use a mock from ionic-mocks we need to import both the real service and the mock and under the configureTestingModule providers we provide the real service but use the factory of the mock.
 
@@ -210,7 +227,7 @@ When we want to use a mock from ionic-mocks we need to import both the real serv
 { provide: NavController, useFactory: () =>; NavControllerMock.instance() }
 ```
 
-// ? link to this blog for more info on useClass, useFactory. [https://medium.com/front-end-hacking/angular-2-an-introduction-of-bootstrap-and-providers-1c60ffbb7604](https://medium.com/front-end-hacking/angular-2-an-introduction-of-bootstrap-and-providers-1c60ffbb7604)
+
 
 As it stands our app does not do anything so lets write acceptance test for a form on the calculator.html that takes inputs for weight\(kg\) and height\(cm\) and a button to calculate the BMI. Start by creating a new file calculator.e2e-spec.ts in the e2e folder.
 
@@ -248,6 +265,8 @@ it('CalculateBMI', () => {
     expect(component.setBMIMessage).toHaveBeenCalled // check if the function has been called
 })
 ```
+
+
 
 If we check the test debug window we will see that we are missing a GestureController. ![](/assets/missing_gesture_controller.png)
 
@@ -359,4 +378,190 @@ it('setBMIMessage if bmiValue is over 30', () => {
 Lets check our debug window for the status of our tests and it should be 7 green 0 failures.
 
 ![](/assets/7_specs_green.png)
+
+Our spec files should look like this now.
+
+```javascript
+# app.component.spec.ts
+
+import { MyApp } from './app.component'
+import { TestBed } from '@angular/core/testing'
+import { IonicModule, Platform } from 'ionic-angular';
+import { PlatformMock, StatusBarMock, SplashScreenMock } from 'ionic-mocks'
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
+
+describe('AppComponent', () => {
+    let fixture, component;
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                MyApp
+            ],
+            imports: [
+                IonicModule.forRoot(MyApp)
+            ],
+            providers: [
+                { provide: Platform, useFactory: () => PlatformMock.instance() },
+                { provide: StatusBar, useFactory: () => StatusBarMock.instance() },
+                { provide: SplashScreen, useFactory: () => SplashScreenMock.instance() }
+            ]
+        })
+
+        fixture = TestBed.createComponent(MyApp);
+        component = fixture.componentInstance;
+    })
+
+    it('should create the app', () => {
+        expect(component).toBeTruthy();
+        expect(component instanceof MyApp).toEqual(true);
+    });
+
+})
+```
+
+```javascript
+# calculator.spec.ts
+
+import { CalculatorPage } from './calculator'
+import { TestBed } from '@angular/core/testing'
+import { IonicPageModule, Platform, NavController, NavParams, Config,
+App, DomController, Keyboard, GestureController, Form } from 'ionic-angular';
+// import {
+//     PlatformMock,
+//     StatusBarMock,
+//     SplashScreenMock
+// } from '../../../test-config/mocks-ionic';
+import { PlatformMock, StatusBarMock, SplashScreenMock, NavControllerMock, NavParamsMock, ConfigMock, KeyboardMock, FormMock } from 'ionic-mocks'
+import { StatusBar } from '@ionic-native/status-bar';
+import { SplashScreen } from '@ionic-native/splash-screen';
+
+
+describe('AppComponent', () => {
+    let fixture, component;
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [
+                CalculatorPage
+            ],
+            imports: [
+                IonicPageModule.forChild(CalculatorPage)
+            ],
+            providers: [
+                { provide: Platform, useFactory: () => PlatformMock.instance() },
+                { provide: StatusBar, useFactory: () => StatusBarMock.instance() },
+                { provide: SplashScreen, useFactory: () => SplashScreenMock.instance() },
+                { provide: NavController, useFactory: () => NavControllerMock.instance() },
+                { provide: NavParams, useFactory: () => NavParamsMock.instance() },
+                { provide: Config, useFactory: () => ConfigMock.instance() },
+                { provide: Keyboard, useFactory: () => KeyboardMock.instance() },
+                { provide: Form, useFactory: () => FormMock.instance() },
+                App, DomController, GestureController
+            ]
+        })
+
+        fixture = TestBed.createComponent(CalculatorPage);
+        component = fixture.componentInstance;
+    })
+
+    it('should create the calculator page', () => {
+        expect(component).toBeTruthy();
+        expect(component instanceof CalculatorPage).toEqual(true);
+    });
+
+    it('calculateBMI', () => {
+        spyOn(component, 'setBMIMessage')
+        component.weight = 90;
+        component.height = 186;
+        component.calculateBMI();
+
+        expect(component.bmiValue).toEqual(26.01);
+        expect(component.setBMIMessage).toHaveBeenCalled
+    });
+
+    it('setBMIMessage if bmiValue is under 18.5', () => {
+        component.bmiValue = 18;
+        component.setBMIMessage();
+
+        expect(component.bmiMessage).toEqual('Underweight')
+    });
+    
+    it('setBMIMessage if bmiValue is over 18.5 and under 25', () => {
+        component.bmiValue = 22;
+        component.setBMIMessage();
+
+        expect(component.bmiMessage).toEqual('Normal')
+    });
+
+    it('setBMIMessage if bmiValue is over 25 and under 30', () => {
+        component.bmiValue = 27;
+        component.setBMIMessage();
+
+        expect(component.bmiMessage).toEqual('Overweight')
+    });
+
+    it('setBMIMessage if bmiValue is over 30', () => {
+        component.bmiValue = 31;
+        component.setBMIMessage();
+
+        expect(component.bmiMessage).toEqual('Obese')
+    });
+
+})
+```
+
+And our e2e test file
+
+```javascript
+# app.e2e-spec.ts
+
+import { by, browser, element } from 'protractor'
+
+describe('App', () => {
+
+  describe('default screen', () => {
+    beforeEach(() => {
+      browser.get('/');
+    });
+
+    it('App should have a title', () => {
+      expect(browser.getTitle()).toContain('Ionic App')
+    });
+
+    it('the calculator tab is displayed by default', () => {
+      expect(element(by.css('[aria-selected=true]'))
+        .getAttribute('innerHTML'))
+        .toContain('Calculator');
+    });
+
+    it('should have a title saying Calculator', () => {
+      expect(element(by.css('ion-navbar:first-child'))
+        .getAttribute('innerHTML'))
+        .toContain('Calculator');
+    });
+
+    it('Should have a Calculator Tab', () => {
+      expect(element(by.css('#tab-t0-0'))
+        .getAttribute('innerHTML'))
+        .toContain('Calculator');
+    })
+    it('Should have a about Tab', () => {
+      expect(element(by.css('#tab-t0-1'))
+        .getAttribute('innerHTML'))
+        .toContain('About');
+    })
+  });
+
+
+});
+```
+
+If we look at our test coverage window we will see that we have almost 91% coverage.![](/assets/code_coverage_90.png)
+
+Your task now will be to increase the coverage by setting up a unit test file for the about page.
+
+
 
