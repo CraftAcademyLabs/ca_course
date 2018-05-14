@@ -2,7 +2,7 @@
 
 Lets start with the scaffolded BMI\_calculator app and Setup the testing environment.
 
-We follow this guide, [https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate\_block\_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216), to setup Unit and Acceptance tests for Ionic.
+We follow this guide, https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CAMP+2018-april/courseware/84536a87ce074509bcf543dc7593035c/1e390334d58245f0975c714271e94216/?activate\_block\_id=block-v1%3ACraftAcademy%2BCA-CAMP%2B2018-april%2Btype%40sequential%2Bblock%401e390334d58245f0975c714271e94216, to setup Unit and Acceptance tests for Ionic.
 
 ### Next we write tests for the scaffolded app BMI\_calculator
 
@@ -18,9 +18,13 @@ we need to click the DEBUG button to get a overview of our tests.![](/assets/kar
 
 #### Unit Testing
 
+Before we start adding content to the file lets import ionic-mocks to isolate our unit test.
+
+```
+$ npm install --save-dev ionic-mocks
+```
+
 Lets start by creating our first unit test, within `src/app` folder create a file `app.component.spec.ts`
-
-
 
 ```javascript
 # src/app/app.component.spec.ts
@@ -89,11 +93,9 @@ We will use Protractor for our acceptance tests. Protractor is an end-to-end tes
 
 ###### Useful links for Protractor
 
-website: https://www.github.com/angular/protractor
+website: [https://www.github.com/angular/protractor](https://www.github.com/angular/protractor)
 
-Cheat Sheet: https://gist.github.com/javierarques/0c4c817d6c77b0877fda
-
-
+Cheat Sheet: [https://gist.github.com/javierarques/0c4c817d6c77b0877fda](https://gist.github.com/javierarques/0c4c817d6c77b0877fda)
 
 We start with these tests
 
@@ -123,8 +125,6 @@ describe('App', () => {
   });
 });
 ```
-
-
 
 To run e2e test we run the command `npm run e2e` in our terminal
 
@@ -156,21 +156,12 @@ it('should have a title saying Calculator', () => {
     .getAttribute('innerHTML'))
     .toContain('Calculator');
 });
-
 ```
-
-
 
 Lets setup the unit tests for the Calculator page. start by creating a file calculator.spec.ts in src/pages/calculator
 
 ```
 $ touch src/pages/calculator/calculator.spec.ts
-```
-
-Before we start adding content to the file lets import ionic-mocks to isolate our unit test.
-
-```
-$ npm install --save-dev ionic-mocks
 ```
 
 Now we add this to our spec file.
@@ -219,15 +210,11 @@ describe('AppComponent', () => {
 })
 ```
 
-
-
 When we want to use a mock from ionic-mocks we need to import both the real service and the mock and under the configureTestingModule providers we provide the real service but use the factory of the mock.
 
 ```javascript
 { provide: NavController, useFactory: () =>; NavControllerMock.instance() }
 ```
-
-
 
 As it stands our app does not do anything so lets write acceptance test for a form on the calculator.html that takes inputs for weight\(kg\) and height\(cm\) and a button to calculate the BMI. Start by creating a new file calculator.e2e-spec.ts in the e2e folder.
 
@@ -265,8 +252,6 @@ it('CalculateBMI', () => {
     expect(component.setBMIMessage).toHaveBeenCalled // check if the function has been called
 })
 ```
-
-
 
 If we check the test debug window we will see that we are missing a GestureController. ![](/assets/missing_gesture_controller.png)
 
@@ -488,7 +473,7 @@ describe('AppComponent', () => {
 
         expect(component.bmiMessage).toEqual('Underweight')
     });
-    
+
     it('setBMIMessage if bmiValue is over 18.5 and under 25', () => {
         component.bmiValue = 22;
         component.setBMIMessage();
@@ -562,6 +547,4 @@ describe('App', () => {
 If we look at our test coverage window we will see that we have almost 91% coverage.![](/assets/code_coverage_90.png)
 
 Your task now will be to increase the coverage by setting up a unit test file for the about page.
-
-
 
