@@ -18,7 +18,7 @@ You are asked to use a service of your choice in order to get  metrics on how we
 
 You are free to use any service you want in order to document your work.
 
-###Objective
+### Objective
 **The main objective for this challenge is to practice the workflow that we want to use in our projects with focus on:**
 
 1. **Agile methods for software development**  
