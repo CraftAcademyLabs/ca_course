@@ -11,8 +11,6 @@ What does this mean in practical terms?
 
 Let’s illustrate this with an example:
 
-  
-
 Imagine that we have two different models (a.k.a database tables):
 
 The “Authors” model and the “Books” model. In the Author model we have a lot of authors that have written books many books, and respectively in the “Books” model we have a lot of books that are written by the Author from the Author model. We would like to have two different database models for these because otherwise the database model would become to large and hard to handle.
