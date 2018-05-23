@@ -94,7 +94,7 @@ end
 
 The key elements here are the `:omniauthable, omniauth_providers: [:facebook]` addition to the `devise` configuration, and the `new_with_session` and `from_omniauth` class methods. 
 
-We will be using our own methods callbacks, so we need to extend the [`Devise::OmniauthCallbacksController`](https://github.com/plataformatec/devise/blob/master/app/controllers/devise/omniauth_callbacks_controller.rb), meaning we need to create our own version and tell Devise to use it. We do that in our `routes.rb` file:
+We will be using our own methods callbacks, so we need to extend the [Devise::OmniauthCallbacksController](https://github.com/plataformatec/devise/blob/master/app/controllers/devise/omniauth_callbacks_controller.rb), meaning we need to create our own version and tell Devise to use it. We do that in our `routes.rb` file:
 
 ```ruby
 Rails.application.routes.draw do
@@ -179,7 +179,45 @@ Before do
 end
 ```
 
-That should take care of our tests. 
+That should take care of our tests. At least for the Happy Path. Let's add a scenario for a failed authorization. Modify yur feature file by adding the following scenario:
+
+```gherkin
+Scenario: Facebook authentication fails
+    Given the facebook authentication is not granted
+    And I visit the site
+    And I click "Login with Facebook"
+    Then I should be redirected to index page
+    And I should see "Could not authenticate you!"
+```
+
+Now, the first step in this scenario deserves some explanation. We are setting the `OmniAuth::AuthHash` value in a `Before` block. Now, in order to simulate a failure, we need to overwrite it. That is the responsibility of this step. 
+
+```ruby
+Given("the facebook authentication is not granted") do
+  OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
+end
+```
+
+Please note the `:invalid_credentials` - we can set this to any value but a valid one. I chose to set it to `:invalid_credentials` for better readability, but it can be basically anything. 
+
+In terms of unit tests, we want to make sure that we test the `from_omniauth` method. We can add this block to our `user_spec.rb`: 
+
+```ruby
+describe 'OAuth methods' do 
+    let(:auth_response) {OmniAuth::AuthHash.new(OmniAuthFixtures.facebook_response)}
+    it "creates an instance from an oauth hash" do
+      create_user = lambda {User.from_omniauth(auth_response)
+      }
+      expect{create_user.call}.to change{User.count}.from(0).to(1)
+    end
+  end
+```
+
+If you run this spec, you'll get errors concerning the `OmniAuthFixtures` module. In order to fix this, we need to require the module. Require the module on top of your spec file:
+
+```rb 
+require './features/support/omniauth'
+```
 
 ### Create a Facebook application and get the App Key and Secret
 
