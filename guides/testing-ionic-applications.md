@@ -10,9 +10,13 @@ In our project folder, we need to install some dependencies.
 npm install --save-dev angular2-template-loader html-loader jasmine jasmine-spec-reporter karma karma-chrome-launcher karma-jasmine karma-jasmine-html-reporter karma-sourcemap-loader karma-webpack karma-coverage-istanbul-reporter istanbul-instrumenter-loader null-loader protractor ts-loader ts-node @types/jasmine @types/node ionic-mocks
 ```
 
-This command adds these modules to the `"devDependencies"`node of your project’s `package.json`file. There are quite a few modules here, but the important modules are `karma`, `jasmine` and `protractor`. Karma is the module which is our testing environment for unit testing. Jasmine is  is the unit testing framework. Protractor is the module which is our testing environment for our end-to-end tests.
+This command adds these modules to the `"devDependencies"` node of your project’s `package.json` file. There are quite a few modules here, but the important modules are `karma`, `jasmine` and `protractor`. 
 
-The rest of the modules, that we installed with the command above, are utilities that allow this configuration to work.
+* **Karma** is the module which is our testing environment for unit testing. 
+* **Jasmine** is the unit testing framework. 
+* **Protractor** is the module which is our testing environment for our end-to-end (acceptance) tests.
+
+The rest of the modules we installed with the command above, are utilities that allow this configuration to work.
 
 Next thing we need to do is add some scripts to our `package.json`
 
@@ -25,7 +29,7 @@ Next thing we need to do is add some scripts to our `package.json`
 
 Now our file should look like this \(the dependencies are excluded for better readability\).
 
-!FILENAME package.json
+<small>package.json</small> 
 
 ```
 ...
@@ -55,7 +59,7 @@ Next, we need to create configurations files in that forlder.
 
 First is the configuration files for Karma, our unit test runner. We will not go over each setting but you should do your own research.
 
-!FILENAME  test-config/karma.conf.js
+<small>test-config/karma.conf.js</small>  
 
 ```js
 var webpackConfig = require('./webpack.test.js');
@@ -122,7 +126,7 @@ module.exports = function(config) {
 };
 ```
 
-!FILENAME test-config/karma-test-shim.js
+<small>test-config/karma-test-shim.js</small> 
 
 ```js
 Error.stackTraceLimit = Infinity;
@@ -150,7 +154,7 @@ testing.TestBed.initTestEnvironment(browser.BrowserDynamicTestingModule, browser
 
 Next, we need to create the configuration file for Protractor, our acceptance testing framework.
 
-!FILENAME test-config/protractor.conf.js
+<small>test-config/protractor.conf.js</small> 
 
 ```js
 const { SpecReporter } = require('jasmine-spec-reporter');
@@ -182,7 +186,7 @@ exports.config = {
 
 And our configuration file for Webpack. Follow this link `https://webpack.js.org/concepts/` to get a better understanding of webpack.
 
-!FILENAME test-config/webpack.test.js
+<small>test-config/webpack.test.js</small> 
 
 ```js
 var webpack = require('webpack');
@@ -236,7 +240,7 @@ function root(localPath) {
 }
 ```
 
-Some of the Karma and Jasmine dependencies dont work very well together so we need to set them to specific versions. We need to modify `package.json` devDependencies part change the following to these versions.
+Some of the Karma and Jasmine dependencies don't work very well together so we need to set them to specific versions. We need to modify `package.json` `"devDependencies"` part and set the following versions.
 
 ```js
 "ts-loader": "^3.0.3",
@@ -246,16 +250,15 @@ Some of the Karma and Jasmine dependencies dont work very well together so we ne
 ```
 
 
-
 #### Acceptance test configuration
 
 First, we need to create a folder `e2e` in our project root folder.
 
 `$ mkdir e2e`
 
-First, we need to create a configuration file `tsconfig.e2e.json.`for Typescript in the testing environment.
+Then, we need to create a configuration file `tsconfig.e2e.json.`for Typescript in the testing environment.
 
-!FILENAME e2e/tsconfig.e2e.json
+<small>e2e/tsconfig.e2e.json</small> 
 
 ```js
 {
@@ -274,7 +277,7 @@ First, we need to create a configuration file `tsconfig.e2e.json.`for Typescript
 
 Next, we create a page object. A class with functions that return elements like buttons, texts or whatever you need for the test.
 
-!FILENAME e2e/app.po.ts
+<small>e2e/app.po.ts</small> 
 
 ```js
 import { browser, by, element } from 'protractor';
@@ -295,9 +298,9 @@ export class Page {
 }
 ```
 
-Last file we need to create is `app.e2e-spec.ts` It's in this file we write our acceptance tests.
+Last file we need to create is `app.e2e-spec.ts` It's in this file we will write our acceptance tests.
 
-!FILENAME e2e/app.e2e-spec.ts
+<small>e2e/app.e2e-spec.ts</small> 
 
 ```js
 import { Page } from './app.po';

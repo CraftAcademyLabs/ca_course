@@ -1,16 +1,18 @@
-# News Room Challenge
-Using Rails 5.2 with Active Storage
+# Rails with Testing frameworks
+This guide will provide a step-by-step instruction to scaffold a new Rails 5.2 application. We will be using a separate gemset to contain the dependencies used in this project. You should familiarize yourself with the concept of gemsets by reading more about them on the [RVM documentation](https://rvm.io/gemsets/basics) site. 
 
-## New app using Rails 5.2.0 (RC1)
-This guide will provide a step-by-step instruction to scaffold a new Rails 5.2 application. At the time of writing this, Rails 5.2 is in Release Candidate 1, so we will use `rails new` command with the `--pre` flag.  We will be using a separate gemset to contain the dependencies used in this project. You should familiarize yourself with the concept of gemsets by reading more about them on the [RVM documentation](https://rvm.io/gemsets/basics) site. 
+_Please note that this setup may or may not suite your purposes - the frameworks we use are the one that suites us and makes our workflow effective and productive. But it's up to you to form your own opinion._ 
+
+## New app using Rails 5.2.0
 
 ```
 $ rvm gemset create rails_5_2
 $ rvm gemset use rails_5_2
-$ gem install rails --pre
-$ rails new news_room --database=postgresql --skip-test --skip-bundle
+$ gem install rails
+$ rails new my_project --database=postgresql --skip-test --skip-bundle
 $ cd news_room
 ```
+
 * The --database=postgresql selects PostgreSQL as the database (The out-of-the-box setting is MySQL)
 * The --skip-test option skips configuring for the default testing tool.
 * The --skip-bundle option prevents the generator from running bundle install automatically.
@@ -27,12 +29,11 @@ rails_5_2
 ```
 
 ### HAML
-In order to use Haml in your view templates, add `haml-rails` to your `Gemfile`. 
+In order to use Haml in your view templates, add `gem haml-rails` to your `Gemfile`. 
 
+### Testing Frameworks and tools
 
-### Frameworks and tools
-
-Add rspec-rails gem to the development and test groups of your Gemfile.
+Add `rspec-rails` gem to the development and test groups of your Gemfile.
 
 The RSpec extension library `shoulda-matchers` allows us to test common Rails functionality, like validations and associations, with less code.
 
@@ -54,7 +55,7 @@ end
 ### Configuration
 
 ```ruby
-module NewsRoom
+module MyProject
   class Application < Rails::Application
     config.load_defaults 5.2
     config.generators do |generate|
@@ -90,7 +91,7 @@ RSpec.configure do |config|
 end
 ```
 
-Add Acceptance test framework
+Add an Acceptance test framework
 
 ```ruby
 group :development, :test do
@@ -106,6 +107,12 @@ $ bundle exec rails generate cucumber:install
 $ bundle exec rails generate rspec:install
 ```
 
+As we did with RSpec, we would like to include FactoryBot methods in my Cucumber configuration file (`features/support/env.rb`), to be able to use shorter syntax in my step definitions:
+
+```ruby 
+World(FactoryBot::Syntax::Methods)
+```
+
 ```bash
 $ rails db:create db:migrate
 ```
@@ -115,4 +122,8 @@ Run your tests to check if all setup is working:
 ```bash
 $ rake
 ```
-If all is good, commit and push.
+
+You should get a green response from both testing frameworks. 
+If all is good, commit and push. At this stage, you are ready to get started with implementing your features - BDD style.
+
+Good luck
