@@ -277,18 +277,5 @@ This is the same setup usinf Encrypted Credentials:
                   {scope: 'email public_profile', callbackURL: '/auth/facebook/callback'}
 ```
 
-At this stage, your tests should go green and you should be able to test the application manually if you fire up the local server and visit `http://localhost:3000` 
-
-
-
-
-
-
-
-
-
-
-
-
-
+At this stage, your tests should go green and you should be able to test the application manually if you fire up the local server and visit `http://localhost:3000`.
 

@@ -58,7 +58,7 @@ class User < ApplicationRecord
 end
 ```
 
-### Using `enum`
+### Using Active Record `enum`
 
 There's also another way of setting this up, using `enum`.
 
@@ -115,7 +115,7 @@ We now also have a bang method available, that will change the role of the user:
 => true
 ```
 
-That's pretty handy, right?
+That's pretty handy, right? You can read more about `enum` on the [Rails API documentation]( http://api.rubyonrails.org/classes/ActiveRecord/Enum.html) site.
 
 ### It all starts with a test...
 
