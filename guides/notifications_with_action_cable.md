@@ -1,9 +1,7 @@
-## Notifications in Rails
-
 ## About WebSockets
-WebSockets are a protocol built on top of TCP. They hold the connection to the server open so that the server can send information to the client, even in the absence of a request from the client. WebSockets allow for bi-directional, "full-duplex" communication between the client and the server by creating a persistent connection between the two.
+WebSockets is a protocol built on top of TCP. They hold the connection to the server open so that the server can send information to the client, even in the absence of a request from the client. WebSockets allow for bi-directional, "full-duplex" communication between the client and the server by creating a persistent connection between the two.
 
-## RubSub (Publish–Subscribe) pattern
+## Pub-Sub (Publish-Subscribe) pattern
 
 The idea behind PubSub messaging pattern is simple. There are receivers of messages, called subscribers, which are clients that listen for changes on a set of data. Then there are senders of messages, called publishers, which are clients that edit the set of data. Whenever the data is edited by a publisher, all the subscribers that are subscribed to that publisher hear it and act on it! 
 
@@ -23,9 +21,9 @@ Start the Redis server as a service
 $ brew services start redis
 ```
 
-## Create and configure a Action Cable Channel
+## Create and configure an Action Cable Channel
 
-Add ActionCable engine to your `routs.rb` 
+Add ActionCable engine to your `routes.rb` 
 
 ```ruby
 Rails.application.routes.draw do
@@ -34,7 +32,7 @@ end
 
 ```
 
-Use a generator to scaffold a AC channel: 
+Use a generator to scaffold an AC channel: 
 
 ```bash
 $ rails g channel web_notifications
@@ -49,7 +47,7 @@ class WebNotificationsChannel < ApplicationCable::Channel
   end
 
   def unsubscribed
-    # Any cleanup needed when channel is unsubscribed
+    # Any cleanup needed when a channel is unsubscribed
   end
 end
 
@@ -114,7 +112,7 @@ Add div with the id `notifications` inside your main layout template's(`applicat
 
 ## Manual testing
 
-**Note: Make sure your redis service is up and running (see above).**
+**Note: Make sure your Redis service is up and running (see above).**
 
 Open two separate tabs in your terminal. First, let's try this out in our terminal by starting the Redis console:
 
@@ -146,9 +144,9 @@ Now, head back to the terminal tab where you run the redis console. You should s
 3) "{\"message\":\"\\u003cp\\u003eHello World!\\u003c/p\\u003e\"}"
 ``` 
 
-If you do, the setup is okay and we are on a good path to get notifications working in our front end. **Let's try the whole thing out in our browser.**
+If you do, the setup is okay and we are on a good path to get notifications working on our front end. **Let's try the whole thing out in our browser.**
 
-Start the rains server in one of your terminal tabs, and in the other the rails console. Open your site in your browser by navigateing to `http://localhost:3000` 
+Start the rains server in one of your terminal tabs, and in the other the rails console. Open your site in your browser by navigating to `http://localhost:3000` 
 
 In your console, issue the same broadcasting command again:
 
@@ -168,7 +166,7 @@ WebNotificationsChannel transmitting {"message"=>"<p>Hello World!</p>"} (via str
 
 ## Usage
 
-There's plenty of use cases we can showcase where notifications come in handy. You can broadcast messages from anywhare in your application. Here I will show you how to integrate ActionCable with an ActiveRecord model and notify all visitors whan a new instance has been created. Forr instance, we could notify all visitors about a new comment made on a `Recipe` in out recipe collection application. 
+There's plenty of use cases we can showcase where notifications come in handy. You can broadcast messages from anywhere in your application. Here I will show you how to integrate ActionCable with an ActiveRecord model and notify all visitors when a new instance has been created. Forr instance, we could notify all visitors about a new comment made on a `Recipe` in out recipe collection application. 
 
 In our `Comment` model, we can add an `after_create` hook to broadcast a message:
 
@@ -193,4 +191,4 @@ Now, every time a user leaves a comment a notification will be pushed out to all
 
 ## Wrapup
 
-Your notifications are now configured and ready to be used in whatever way you deem fit for your application. In the next guide we will take a closer look at testing Action Cable. 
+Your notifications are now configured and ready to be used in whatever way you deem fit for your application. In the next guide, we will take a closer look at testing Action Cable. 
