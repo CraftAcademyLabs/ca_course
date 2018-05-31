@@ -167,7 +167,7 @@ WebNotificationsChannel transmitting {"message"=>"<p>Hello World!</p>"} (via str
 
 ## Usage
 
-There's plenty of use cases we can showcase where notifications come in handy. You can broadcast messages from anywhere in your application. Here I will show you how to integrate ActionCable with an ActiveRecord model and notify all visitors when a new instance has been created. Forr instance, we could notify all visitors about a new comment made on a `Recipe` in out recipe collection application. 
+There's plenty of use cases we can showcase where notifications can come in handy. You can broadcast messages from anywhere in your application. Here I will show you how to integrate ActionCable with an ActiveRecord model and notify all visitors when a new instance has been created. For instance, we could notify all visitors about a new comment made on a `Recipe` in our Recipe Collection application. 
 
 In our `Comment` model, we can add an `after_create` hook to broadcast a message:
 
