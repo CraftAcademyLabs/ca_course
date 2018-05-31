@@ -1,4 +1,5 @@
 ## About WebSockets
+
 WebSockets is a protocol built on top of TCP. They hold the connection to the server open so that the server can send information to the client, even in the absence of a request from the client. WebSockets allow for bi-directional, "full-duplex" communication between the client and the server by creating a persistent connection between the two.
 
 ## Pub-Sub (Publish-Subscribe) pattern
@@ -130,7 +131,7 @@ Reading messages... (press Ctrl-C to quit)
 3) (integer) 1
 ```
 
-Now head over to another terminal tab and open up the rails console:
+Now head over to another terminal tab and open up the rails console. Issue the commant that will broadcast a message to the `WebNotificationsChannel`. 
 
 ```ruby
 ActionCable.server.broadcast 'web_notifications_channel', message: '<p>Hello World!</p>'
