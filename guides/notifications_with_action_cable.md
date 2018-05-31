@@ -104,3 +104,7 @@ WebNotificationsChannel is transmitting the subscription confirmation
 WebNotificationsChannel is streaming from web_notifications_channel
 WebNotificationsChannel transmitting {"message"=>"<p>Hello World!</p>"} (via streamed from web_notifications_channel)
 ```
+
+## Wrapup
+
+Your notifications are now configured and ready to be used in whatever way you deem fit for your application. In the next guide we will take a closer look at testing Action Cable. 
