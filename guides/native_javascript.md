@@ -7,21 +7,19 @@ In this section we'll demonstrate how to accomplish some of the most common DOM 
 
 ### DOM Manipulation: Querying the DOM
 
-_Please note: I won’t explain the Vanilla DOM API in full detail, but only scratch the surface. In the usage examples, you may encounter methods I haven’t introduced explicitly. In this 
+*In the usage examples, you may encounter methods we haven’t introduced explicitly. In this case just refer to the excellent [Mozilla Developer Network](https://developer.mozilla.org/en-US/) for details.*
 
-case just refer to the excellent [Mozilla Developer Network](https://developer.mozilla.org/en-US/) for details._
+The DOM can be queried using the `.querySelector()` method, which takes an arbitrary CSS selector as an argument:
 
-The DOM can be queried using the 
-
-.querySelector() method, which takes an arbitrary CSS selector as an argument:
-
+```js
 const myElement = document.querySelector('#foo &gt; div.bar')
+```
 
-This will return the first match (
+This will return the first match it encounters. Conversely, we can check if an element matches a selector:
 
-depth first). Conversely, we can check if an element matches a selector:
-
+```js
 myElement.matches('div.bar')===true
+```
 
 If we want to get all occurrences, we can use:
 
