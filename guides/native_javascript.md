@@ -251,87 +251,67 @@ myElement.innerHTML = '<a href="www.craftacademy.se">Craft Academy</a>'
 
 ```
 
-Appending markup to the HTML, as shown above, is usually a bad idea though, as we’d lose any previously made property changes on the affected elements and bound event listeners. Setting 
+Appending markup to the HTML, as shown above, is usually a bad idea though, as we’d lose any previously made property changes on the affected elements and bound event listeners. Setting the `.innerHTML` is good for completely throwing away markup and replacing it with something else, e.g. server-rendered markup. So appending elements would better be done like so:
 
-the 
-
-.innerHTML
-
- is good for completely throwing away markup and replacing it with something else, e.g. server-rendered markup. So appending elements would better be done like so:
-
+```js
 const link = document.createElement('a')const text = document.createTextNode('continue reading...')const hr = document.createElement('hr')
 
 link.href ='foo.html'
 link.appendChild(text)
 myElement.appendChild(link)
 myElement.appendChild(hr)
+```
 
-With this approach, however, we’d cause two browser redraws — one for each appended element — whereas changing 
+With this approach, however, we’d cause two browser redraws — one for each appended element — whereas changing the `.innerHTML` only causes one. As a way around this performance issue we can first assemble all nodes in a [DocumentFragment](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment), and then just append that single fragment:
 
-the 
-
-.innerHTML
-
- only causes one. As a way around this performance issue we can first assemble all nodes in a [DocumentFragment](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment), and then just append that single fragment:
-
+```js
 const fragment = document.createDocumentFragment()
 
 fragment.appendChild(text)
 fragment.appendChild(hr)
 myElement.appendChild(fragment)
+```
 
 ### Listening to events
 
 This is possibly the best-known way to bind an event listener:
 
+```js
 myElement.onclick =function onclick (event){
-  console.log(event.type +' got fired')}
+  console.log(event.type +' got fired')
+  }
+```
 
-But this should generally be avoided. Here, 
+But this should generally be avoided. Here, `.onclick` is a property of the element, meaning that you can change it, but you cannot use it to add additional listeners — by reassigning a new function you’ll overwrite the reference to the old one.
 
-.onclick is a property of the element, meaning that you can change it, but you cannot use it to add additional listeners — by reassigning a new function you’ll overwrite the reference to the old one.
+Instead, we can use the much mightier `.addEventListener()` method to add as many events of as many types as we like. It takes three arguments: the event type (such as `click`), a function that gets called whenever the event occurs on the element (this function gets passed an event object), and an optional config object which will be explained further below.
 
-Instead, we can use the much 
-
-mightier 
-
-.addEventListener()
-
- method to add as many events of as many types as we like. It takes three arguments: the event type (such as 
-
-click), a function that gets called whenever the event occurs on the element (this function gets passed an event object), and an optional config object which will be explained further below.
-
+```js
 myElement.addEventListener('click',function(event){
   console.log(event.type +' got fired')})
 
 myElement.addEventListener('click',function(event){
   console.log(event.type +' got fired again')})
+```
 
-Within the listener function, 
+Within the listener function, `event.target` refers to the element on which the event was triggered.
 
-event.target refers to the element on which the event was triggered (as 
+Thus you can easily access its properties like so:
 
-does 
+The `forms` property of the document is an array holding references to all forms
 
-this
-
-, unless of course, we’re using an [arrow function](https://www.sitepoint.com/es6-arrow-functions-new-fat-concise-syntax-javascript/)). Thus you can easily access its properties like so:
-
-// The `forms` property of the document is an array holding// references to all formsconst myForm = document.forms[0]const myInputElements = myForm.querySelectorAll('input')
+```js
+const myForm = document.forms[0]const myInputElements = myForm.querySelectorAll('input')
 
 Array.from(myInputElements).forEach(el =&gt;{
   el.addEventListener('change',function(event){
     console.log(event.target.value)})})
 
+```
+
 #### Preventing default actions
 
-Note 
-
-that 
-
-event
-
- is always available within the listener function, but it is good practice to explicitly pass it in 
+Note that event is always available within the listener function, but it is good practice to explicitly pass it in 
 
 anyway when needed (and we can name it as we like then, of course). Without elaborating on the [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) interface itself, one particularly noteworthy method 
 
