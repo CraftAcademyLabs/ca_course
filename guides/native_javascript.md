@@ -15,9 +15,6 @@ At the most basic level, a website consists of an HTML document. The browser tha
 
 In addition to parsing the style and structure of the HTML and CSS, the browser creates a representation of the document known as the Document Object Model. This model allows JavaScript to access the text content and elements of the website document as objects.
 
-### The `document` and  `window` objects
-
-
 ### DOM Manipulation: Querying the DOM
 
 *In the usage examples, you may encounter methods we haven’t introduced explicitly. In this case just refer to the excellent [Mozilla Developer Network](https://developer.mozilla.org/en-US/) for details.*
@@ -81,8 +78,6 @@ NodeList [div.bar]
     length: 1
     __proto__: NodeList
 ```
-
-
 
 If we already have a reference to a parent element, we can just query that element’s children instead of the whole document. By narrowing down the context like this, we can simplify selectors and increase performance.
 
