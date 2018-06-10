@@ -2,8 +2,21 @@ In this section we'll demonstrate how to accomplish some of the most common DOM 
 
 - querying and modifying the DOM,
 - modifying classes and attributes,
-- listening to events, and
+- listening to events
 - animation.
+
+### Introduction
+
+The Document Object Model, usually referred to as the DOM, is an essential part of making websites interactive. It is an interface that allows a programming language to manipulate the content, structure, and style of a website. JavaScript is the client-side scripting language that connects to the DOM in an internet browser.
+
+Almost any time a website performs an action, such as rotating between a slideshow of images, displaying an error when a user attempts to submit an incomplete form, or toggling a navigation menu, it is the result of JavaScript accessing and manipulating the DOM. In this article, we will learn what the DOM is, how to work with the document object, and the difference between HTML source code and the DOM.
+
+At the most basic level, a website consists of an HTML document. The browser that you use to view the website is a program that interprets HTML and CSS and renders the style, content, and structure into the page that you see.
+
+In addition to parsing the style and structure of the HTML and CSS, the browser creates a representation of the document known as the Document Object Model. This model allows JavaScript to access the text content and elements of the website document as objects.
+
+### The `document` and  `window` objects
+
 
 ### DOM Manipulation: Querying the DOM
 
@@ -309,142 +322,126 @@ Array.from(myInputElements).forEach(el =&gt;{
 
 ```
 
+The most common usage of event listeners is perhaps the `"DOMContentLoaded"` (triggered on both the `document` and `window` object) and `"load"`(triggered on the `window` object only).
+
+```javascript
+window.addEventListener('DOMContentLoaded', function () {
+    // Window has loaded!
+    console.log('Window has loaded! Event type: ' + event.type);
+});
+
+document.addEventListener('DOMContentLoaded', function () {
+    // Document has loaded!
+    console.log('Document has loaded! Event type: ' + event.type)
+});
+```
+
+It’s less common, but sometimes you want your code to run when not just the HTML has been parsed, but all of the resources like images have been loaded. 
+
+```javascript
+window.addEventListener('load', function(){
+  // Everything has loaded!
+  console.log('Everything has loaded!);
+});
+```
+
+You can NOT expect the `load` event to be triggered on `document`.
+
 #### Preventing default actions
 
-Note that event is always available within the listener function, but it is good practice to explicitly pass it in 
+Note that `event` is always available within the listener function, but it is good practice to explicitly pass it in anyway when needed (and we can name it as we like then, of course). Without elaborating on the [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) interface itself, one particularly noteworthy method is `.preventDefault()`, which will prevent the browser’s default behavior, such as following a link. 
 
-anyway when needed (and we can name it as we like then, of course). Without elaborating on the [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) interface itself, one particularly noteworthy method 
+Another common use-case would be to conditionally prevent the submission of a form if the client-side form-validation fails. Something like this:
 
-is 
+```js
+myForm.addEventListener('submit', function (event) {
+    const name = this.querySelector('#name')
+    if (name.value === 'Thomas') {
+        alert('Hi Coach! Why are you submitting this?');
+        event.preventDefault();
+    }
+});
+```
 
-.preventDefault()
+Another important event method is `.stopPropagation()`, which will prevent the event from bubbling up the DOM. This means that if we have a propagation-stopping click listener on an element, and another click listener on one of its parents, a click event that gets triggered on the child element won’t get triggered on the parent — otherwise, it would get triggered on both.
 
-, which will, well, prevent the browser’s default behavior, such as following a link. Another common use-case would be to conditionally prevent the submission of a form if the client-side form-validation fails.
+Now `.addEventListener()` takes an optional config object as a 3rd argument, which can have any of the following boolean properties (all of which default to false):
 
-myForm.addEventListener('submit',function(event){const name =this.querySelector('#name')if(name.value ==='Donald Duck'){alert('You gotta be kidding!')
-    event.preventDefault()}})
+* capture: The event will be triggered on the element before any other element beneath it in the DOM
+* once: As you might guess, this indicates that the event will get triggered only once
+* passive: This means that `event.preventDefault()` will be ignored (and usually yield a warning in the console)
 
-Another important event method 
+The most common option is `.capture`. In fact, it is so common that there’s a shorthand for this: instead of specifying it in the config object, you can just pass in a boolean  like this: `myElement.addEventListener(type, listener,true);`
 
-is 
+#### Removing a listener
 
-.stopPropagation()
+Event listeners can be removed using `.removeEventListener()`, which takes the event type and a reference to the callback function to be removed; for example, the once option could also be implemented like:
 
-, which will prevent the event from bubbling 
-
-up the DOM. This means that if we have a propagation-stopping click listener (say) on an element, and another click listener on one of its parents, a click event that gets triggered on the child element won’t get triggered on the parent — otherwise, it would get triggered on both.
-
-Now 
-
-.addEventListener() takes an optional config object as a 3rd argument, which can have any of the following boolean properties (all of which default to 
-
-false):
-
-- 
-
-capture: The event will be triggered on the element before any other element beneath it in the DOM (event capturing and bubbling is an article in its own right, for more 
-
-details have a look [here](http://javascript.info/tutorial/bubbling-and-capturing))
-- 
-
-once: As you might guess, this indicates that the event will get triggered only once
-- 
-
-passive: This means that 
-
-event.preventDefault() will be ignored (and usually yield a warning in the console)
-
-The most common option 
-
-is 
-
-.capture
-
-; in fact, it is so common that there’s a shorthand for this: instead of specifying it in the config object, you can just pass in a boolean here:
-
-myElement.addEventListener(type, listener,true)
-
-Event listeners can be removed 
-
-using 
-
-.removeEventListener()
-
-, which takes the event type and a reference to the callback function to be removed; for example, the 
-
-once option could also be implemented like
-
-myElement.addEventListener('change',function listener (event){
-  console.log(event.type +' got triggered on '+this)this.removeEventListener('change', listener)})
+```js
+myElement.addEventListener('change', function listener(event) {
+    console.log(event.type + ' got triggered on ' + this)
+    this.removeEventListener('change', listener)
+})
+```
 
 #### Event delegation
 
-Another useful pattern is _event delegation_: say we have a form and want to add 
+Another useful pattern is _event delegation_: say we have a form and want to add a change event listener to all of its input children. One way to do so would be iterating over them using `myForm.querySelectorAll('input')` as shown above. However, this is unnecessary. We can just as well add it to the form itself and check the contents of `event.target`.
 
-a 
-
-change
-
- event listener to all of 
-
-its 
-
-input
-
- children. One way to do so would be iterating over them 
-
-using 
-
-myForm.querySelectorAll('input')
-
- as shown above. However, this is unnecessary when we can just as well add it to the form itself and check the contents 
-
-of 
-
-event.target
-
-.
-
-myForm.addEventListener('change',function(event){const target = event.target
-  if(target.matches('input')){
-    console.log(target.value)}})
+```js
+myForm.addEventListener('change', function (event) {
+    const target = event.target
+    if (target.matches('input')) {
+        console.log(target.value)
+    }
+});
+```
 
 Another advantage of this pattern is that it automatically accounts for dynamically inserted children as well, without having to bind new listeners to each.
 
 ### Animation
 
-Usually, the cleanest way to perform animations is to apply CSS classes with a 
+Usually, the cleanest way to perform animations is to apply CSS classes with a transition property, or use CSS `@keyframes`. But if you need more flexibility, animations can be done with JavaScript as well.
 
-transition property, or use 
+The naive approach would be to have a `window.setTimeout()` function call itself until the desired animation is completed. However, this inefficiently forces rapid document reflows; and this *layout thrashing* can quickly lead to stuttering, expecially on mobile devices. 
 
-CSS 
+Intead, we can sync the updates using `window.requestAnimationFrame()` to schedule all current changes to the next browser repaint frame. It takes a callback as an argument, which receives the current timestamp:
 
-@keyframes
+```js
+// fade out
 
-. But if you need more flexibility (e.g. for a game), this can be done with JavaScript as well.
+function fadeOut(el) {
+    el.style.opacity = 1;
 
-The naive approach would be to have a 
+    (function fade() {
+        if ((el.style.opacity -= .1) < 0) {
+            el.style.display = "none";
+        } else {
+            requestAnimationFrame(fade);
+        }
+    })();
+}
 
-window.setTimeout() function call itself until the desired animation is completed. However, this inefficiently forces rapid document reflows; and this _layout thrashing_ can quickly lead to stuttering, 
+// fade in
 
-expecially on mobile devices. 
+function fadeIn(el) {
+    el.style.opacity = 0;
+    el.style.display = "block";
 
-Intead, we can sync the updates 
+    (function fade() {
+        var val = parseFloat(el.style.opacity);
+        if (!((val += .1) > 1)) {
+            el.style.opacity = val;
+            requestAnimationFrame(fade);
+        }
+    })();
+}
+```
 
-using 
+This way we can achieve very smooth animations. The `requestAnimationFrame()` method in a nutshell, allows you to execute code on the next available screen repaint, taking the guess work out of getting in sync with the user's browser and hardware readiness to make changes to the screen. When we call requestAnimationFrame() repeatedly to create an animation, we are assured that our animation code is called when the user's computer is actually ready to make changes to the screen each time, resulting in a smoother, more efficient animation.
 
-window.requestAnimationFrame()
+## Wrap up
 
- to schedule all current changes to the next browser repaint frame. It takes a callback as 
+In this tutorial, we defined the Document Object Model, accessed the `document` object, and used JavaScript and the console to update properties of the `document` object.
 
-argument which receives the current (high res) timestamp:
-
-const start = window.performance.now()const duration =2000
-
-window.requestAnimationFrame(function fadeIn (now)){const progress = now - start
-  myElement.style.opacity = progress / duration
-
-  if(progress &lt; duration){
-    window.requestAnimationFrame(fadeIn)}}
-
-This way we can achieve very smooth animations
+For more in-depth information on the Document Object Model, review [the documentation](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) on the Mozilla Developer Network.
