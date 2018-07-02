@@ -1,13 +1,6 @@
-In this section we'll demonstrate how to accomplish some of the most common DOM manipulation tasks with plain JavaScript, namely:
-
-- querying and modifying the DOM,
-- modifying classes and attributes,
-- listening to events
-- animation.
-
 ### Introduction
 
-The Document Object Model, usually referred to as the DOM, is an essential part of making websites interactive. It is an interface that allows a programming language to manipulate the content, structure, and style of a website. JavaScript is the client-side scripting language that connects to the DOM in an internet browser.
+The **Document Object Model**, usually referred to as the DOM, is an essential part of making websites interactive. It is an interface that allows a programming language to manipulate the content, structure, and style of a website. JavaScript is the client-side scripting language that connects to the DOM in an internet browser.
 
 Almost any time a website performs an action, such as rotating between a slideshow of images, displaying an error when a user attempts to submit an incomplete form, or toggling a navigation menu, it is the result of JavaScript accessing and manipulating the DOM. In this article, we will learn what the DOM is, how to work with the document object, and the difference between HTML source code and the DOM.
 
@@ -18,6 +11,15 @@ In addition to parsing the style and structure of the HTML and CSS, the browser 
 ### DOM Manipulation: Querying the DOM
 
 *In the usage examples, you may encounter methods we haven’t introduced explicitly. In this case just refer to the excellent [Mozilla Developer Network](https://developer.mozilla.org/en-US/) for details.*
+
+In this section we'll demonstrate how to accomplish some of the most common DOM manipulation tasks with plain JavaScript, namely:
+
+- querying and modifying the DOM,
+- modifying classes and attributes,
+- listening to events
+- animation.
+
+### The basics
 
 The DOM can be queried using the `.querySelector()` method, which takes an arbitrary CSS selector as an argument. 
 
@@ -253,7 +255,7 @@ These hold the HTML and plain text content respectively. They are writable prope
 
 // Replace the inner HTML
 
-```html+javascript
+```javascript
 
 myElement.innerHTML = '<a href="www.craftacademy.se">Craft Academy</a>'
 
@@ -262,7 +264,9 @@ myElement.innerHTML = '<a href="www.craftacademy.se">Craft Academy</a>'
 Appending markup to the HTML, as shown above, is usually a bad idea though, as we’d lose any previously made property changes on the affected elements and bound event listeners. Setting the `.innerHTML` is good for completely throwing away markup and replacing it with something else, e.g. server-rendered markup. So appending elements would better be done like so:
 
 ```js
-const link = document.createElement('a')const text = document.createTextNode('continue reading...')const hr = document.createElement('hr')
+const link = document.createElement('a')
+const text = document.createTextNode('continue reading...')
+const hr = document.createElement('hr')
 
 link.href ='foo.html'
 link.appendChild(text)
@@ -285,7 +289,7 @@ myElement.appendChild(fragment)
 This is possibly the best-known way to bind an event listener:
 
 ```js
-myElement.onclick =function onclick (event){
+myElement.onclick = function onclick (event){
   console.log(event.type +' got fired')
   }
 ```
@@ -309,11 +313,14 @@ Thus you can easily access its properties like so:
 The `forms` property of the document is an array holding references to all forms
 
 ```js
-const myForm = document.forms[0]const myInputElements = myForm.querySelectorAll('input')
+const myForm = document.forms[0]
+const myInputElements = myForm.querySelectorAll('input')
 
-Array.from(myInputElements).forEach(el =&gt;{
-  el.addEventListener('change',function(event){
-    console.log(event.target.value)})})
+Array.from(myInputElements).forEach(el => {
+    el.addEventListener('change', function (event) {
+        console.log(event.target.value)
+    })
+});
 
 ```
 
@@ -381,7 +388,7 @@ myElement.addEventListener('change', function listener(event) {
 
 #### Event delegation
 
-Another useful pattern is _event delegation_: say we have a form and want to add a change event listener to all of its input children. One way to do so would be iterating over them using `myForm.querySelectorAll('input')` as shown above. However, this is unnecessary. We can just as well add it to the form itself and check the contents of `event.target`.
+Another useful pattern is *event delegation*: say we have a form and want to add a change event listener to all of its input children. One way to do so would be iterating over them using `myForm.querySelectorAll('input')` as shown above. However, this is unnecessary. We can just as well add it to the form itself and check the contents of `event.target`.
 
 ```js
 myForm.addEventListener('change', function (event) {
@@ -433,6 +440,40 @@ function fadeIn(el) {
 }
 ```
 
+Some basic Paralax effect can be acheved using the following script mixed with some CSS:
+
+```html
+<style>
+    #container {
+        position: relative;
+        height: 100vh;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.2/TweenMax.min.js"></script>
+
+<script type="text/javascript">
+    document.addEventListener('mousemove', (event) => {
+        parallaxIt(event, 'img', -30)
+    })
+
+    const parallaxIt = (event, target, movement) => {
+        let element = document.getElementById('container');
+        let relX = event.pageX - element.offsetLeft;
+        let relY = event.pageY - element.offsetTop;
+
+        TweenMax.to(target, 1, {
+            x: (relX - element.offsetWidth / 2) / element.offsetWidth * movement,
+            y: (relY - element.offsetHeight / 2) / element.offsetHeight * movement
+        });
+    }
+</script>
+```
+
 This way we can achieve very smooth animations. The `requestAnimationFrame()` method in a nutshell, allows you to execute code on the next available screen repaint, taking the guess work out of getting in sync with the user's browser and hardware readiness to make changes to the screen. When we call requestAnimationFrame() repeatedly to create an animation, we are assured that our animation code is called when the user's computer is actually ready to make changes to the screen each time, resulting in a smoother, more efficient animation.
 
 ## Wrap up
@@ -440,3 +481,24 @@ This way we can achieve very smooth animations. The `requestAnimationFrame()` me
 In this tutorial, we defined the Document Object Model, accessed the `document` object, and used JavaScript and the console to update properties of the `document` object.
 
 For more in-depth information on the Document Object Model, review [the documentation](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) on the Mozilla Developer Network.
+
+
+
+## What You’ll Learn
+
+The best way to learn to code is by writing a lot of code. But where do you start? How do you choose when to learn what? And what happens when you get stuck?
+
+Join our JavaScript Fundamentals course.
+
+* DOM manipulation, injection, and traversal
+* How to transform and edit strings, arrays, and objects
+* ES6 essentials
+* How to structure and organize code
+* How to save data locally
+* Ajax and HTTP
+* How to work with APIs
+* How to write JavaScript plugins
+* Framework-free web apps
+* How to easily write cross-browser compatible code
+* Working with polyfills
+* JavaScript performance tricks

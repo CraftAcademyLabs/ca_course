@@ -444,11 +444,61 @@ During this walkthrough, we have completed one Acceptance-Unit Cycle (without th
 
 Using our tests we were able to craft out some functionality and delivered the objective of the feature: To list articles on the landing page.
 
-- We created a route (URL)
-- We created an Article model with attributes and validations
-- We created a controller with an index method that fetches all articles from the database and stores the collection in a variable that is made available to the view template
-- We created a view that iterates through a collection of articles
+* We created a route (URL)
+* We created an Article model with attributes and validations
+* We created a controller with an index method that fetches all articles from the database and stores the collection in a variable that is made available to the view template
+* We created a view that iterates through a collection of articles
 
 In the next cycle, we would certainly add more scenarios to this feature to test other paths. What should happen when there are no articles in the system? Will multiple articles be displayed correctly? Etc..
 
 **It takes a little practice but with this approach you are constantly in charge of the workflow and know what the next step of your implementation should be.**
+
+## Exercise - Add more features
+
+Now that you've been introduced to the AUT cycle within the context of a Rails application, we've prepared a few extra users stories for you to work on.
+
+### CREATE ARTICLE FEATURE
+
+```gherkin
+As a publisher
+In order to add relevant content to my news service
+I would like to be able to create articles
+Here is a starting feature file for the create functionality.
+
+Feature: Create articles
+  As a publisher
+  In order to add relevant content to my news service
+  I would like to be able to create articles
+
+  Background:
+    Given I visit the "landing" page
+    When I click "New Article" link
+
+  Scenario: Successfully create an article [Happy Path]
+    When I fill in "Title" with "Learning Rails 5"
+    And I fill in "Content" with "Excited about learning a new framework"
+    And I click "Create Article" button
+    Then I should be on "Learning Rails 5" page
+    And I should see "Article was successfully created."
+    And I should see "Learning Rails 5"
+    And I should see "Excited about learning a new framework"
+
+  Scenario: Publisher doesn't enter a title for the article [Sad Path]
+    When I fill in "Content" with "Excited about learning a new framework"
+    And I click "Create Article" button
+    Then I should see "Title can't be blank"
+
+  # Write another sad path scenario you can think of
+```
+
+### EDIT (UPDATE) ARTICLE FEATURE
+
+```gherkin
+As a publisher
+In order to keep my content accurate
+I would like to be able to edit my articles
+```
+
+The purpose of this assignment is to get you familiar with how routes, controllers, and views interact with each others within the context of a rails application. As such the solution to the create functionality is can be found here in the [Rails official guides](http://guides.rubyonrails.org/getting_started.html). But you need to let your tests guide you with what to do next, this is a very important aspect of the exercise.
+
+Throughout the week, we'll be discussing these concepts in detail.
