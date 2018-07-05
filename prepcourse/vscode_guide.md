@@ -3,7 +3,7 @@
 ### Introduction
 In this guide we will give a short introduction to the IDE Visual Studio Code (VSC for short). VSC Is developed and maintained by the people of Microsoft. 
 
-VSC is a source code editor, this means that it is specifically designed to edit source code for computer programs by programmers. 
+VSC is a source code editor, this means that it is specifically designed to edit source code for computer programs by programmers.
 
 You can use VSC for the most popular operating system  like Windows, OSX and Linux.
 
@@ -41,7 +41,7 @@ Change the color theme to a dark theme. This will make it a lot easier to read y
 
 #### 3) **Add extensions**
 
-Extensions is a powerful way for us to add functionality to the VSC editor. These extensions will give us ability to use features depending on what programming language or framework we are using. Add extensions when you need them. 
+Extensions is a powerful way for us to add functionality to the VSC editor. These extensions will give us ability to use features depending on what programming language or framework we are using. Add extensions when you need them.
 
 For example if we will start using the Ruby Programming language, in that case we would like an extension that will help our coding to be quicker and with less bugs from syntax. The simplest solution to this is to download an extension from the VSC marketplace.
 

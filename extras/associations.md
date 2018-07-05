@@ -32,53 +32,53 @@ Before we can start showing how to make these connections we need to talk about 
 
 One to one associations is easily explained by an example. Imagine that we have a teacher. This teacher teaches only from one classroom, the subject that the teacher teaches could be different but the teacher stays in the classroom for all of those.
 
-  
+
 
 We would call this relationship for one-to-one relationship a teacher only works from one classroom. We would say that the teacher `belongs_to` the classroom and the classroom `has_one` teacher. We would say that the classroom is the parent table and the teacher is the child table
 
-  
+
 
 Now we could argue that the teacher `has_one` classroom and the classroom `belongs_to` a teacher. And we could easily swap these two around and the connection would stay the same, but this is a design choice that we are doing because it makes more sense because we see the classroom as a fixed resource while teachers can come and go.
 
-  
-  
+
+
 
 **One-to-Many ( 1 : M )**
 
-  
+
 
 ![](https://docs.google.com/a/craftacademy.se/drawings/d/swfhjeL6Z030oQ__HbM8DnQ/image?w=181&h=99&rev=1&ac=1)
 
-  
+
 
 We use one_to_many associations when we want to connect a single model to multiple models.
 
 There are several use cases for this:
 
-  
+
 
 Let’s illustrate this with the teacher example.
 
-  
+
 
 “A teacher has multiple courses to teach”. One teacher in an highschool would certainly have multiple courses to teach her/his students. Like maths, biology and programming. To link the courses to the teacher we would use the one-to-many association. This is the most commonly used association in rails. We would say that the teacher `has_many` courses and that the individual courses `belongs_to` the teacher
 
-  
+
 
 The “Teacher” model is the parent table and all the “Courses” models are the child tables.
 
 
 **Many-to-Many ( M : M )**
 
-  
+
 
 ![](https://docs.google.com/a/craftacademy.se/drawings/d/sd6OTYyno2LD9GHGj9YZWAQ/image?w=204&h=114&rev=26&ac=1)
 
-  
+
 
 Many-to-many associations is the hardest ones to get a grip on. Because we have a many to many relationship and each of them belongs to the other how could we decide what the parent and the child tables are? This would create problems for us no matter what we would do. And also imagine that we have a lot of tables for example thirty students take biology, they also take maths, and programming.
 
-  
+
 
 But a school has more than thirty students so they then there would be more students taking different courses. How would we set up this relationship?
 
@@ -90,30 +90,30 @@ The traditional way to solve this by using a join table, that would house the re
 
 Theses are the main associations that are commonly used.
 
-  
+
 ### Foreign Key
 
 Now what actually happens in the database tables that allow us to make the connections?
 
 The answer is the foreign keys.
 
-  
+
 
 “A foreign key is a [field](https://en.wikipedia.org/wiki/Field_(computer_science)) (or collection of fields) in one [table](https://en.wikipedia.org/wiki/Table_(database)) that uniquely identifies a row of another table or the same table”
 
-  
+
 
 Kind of confusing right? Let’s illustrate this with another example:
 
-  
+
 
 A table called Employees has a primary key called `employee_id`.
 
-  
+
 
 Another table called Employee Details has a foreign key which references `employee_id` in order to uniquely identify the relationship between the two tables. This means that that the foreign key shows us what employee has what employee detail by connecting the two tables through an unique id.
 
-  
+
 
 The foreign key is added to the child table. In our case this means in whatever class we have the `belongs_to` association, that is where we will add the foreign key.
 
@@ -127,7 +127,7 @@ belongs_to, has_many, and has_one are methods that we use to define our associat
 
 There are two main use cases for setting up one-to-one associations
 
-  
+
 
 The first use case is when we have unique objects that you could only have one of: for example
 
@@ -142,7 +142,7 @@ student has_one :id_card
 
 This is a good reason to use one-to-one associations.
 
-  
+
 
 The second t use case is when we want to split up a single table into two tables. For example if we have a table with :customer information and we would like to break out the :billing_address for some reason then that would also be a use case for one-to-one associations.
 
@@ -154,9 +154,9 @@ Usage:
 class Classroom < ApplicationRecord
 	has_one :teacher
 end
-````
+```
 
-  
+
 ```ruby
 class Classroom < ApplicationRecord
 	belongs_to :classroom
@@ -179,7 +179,7 @@ end
 ```
 
 
-  
+
 ```ruby
 class Photo < ApplicationRecord
 	belongs_to :photographer
@@ -190,11 +190,11 @@ end
 
 #### How to set up Many-to-Many associations
 
-  
+
 
 Many-to-many association requires a little more work. Apart from setting up the associations we also need to generate a [join table](http://edgeguides.rubyonrails.org/active_record_migrations.html#creating-a-join-table) where we can house the foreign keys.
 
-  
+
 ```ruby
 class Student < ApplicationRecord
 	has_and_belongs_to_many :courses
@@ -207,5 +207,5 @@ class Courses < ApplicationRecord
 	has_and_belongs_to_many :students
 end
 ```
-  
+
 This concludes our intro to associations. To learn more about associations I recommend you to read the official rails [documentation](http://edgeguides.rubyonrails.org/association_basics.html)
