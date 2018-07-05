@@ -36,3 +36,9 @@ $ ng serve
 
 Navigate to `http://localhost:4200/.`
 
+Thats all for this section, you should be able to see a web page at that url.
+
+
+
+Next step is to get some basics on javascript modules, moving on.....
+
