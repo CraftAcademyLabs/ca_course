@@ -3,6 +3,102 @@ This guide will provide a step-by-step instruction to scaffold a new Rails 5.2 a
 
 _Please note that this setup may or may not suite your purposes - the frameworks we use are the one that suites us and makes our workflow effective and productive. But it's up to you to form your own opinion._ 
 
+## Workflow
+
+In the beginning of the project, you should focus on splitting everything into small chores. Make sure to create **CHORES** for each user story we present below. 
+
+### Set up main repository
+
+**Description**
+
+```gherkin
+As a development team
+In order to be able to collectively work on the same codebase
+We would like to have a main repository on GitHub we all can use as the upstream repository
+```
+
+**Tasks (Acceptance Criteria)**
+
+- [ ] Set up a repository on GitHub (Please treat your own account as the account for this organization for the sake of this exercise)
+- [ ] Create a `development` branch and set it as the main branch of the project
+- [ ] Share repo with team
+
+### Set up application structure
+
+**Description**
+
+```gherkin
+As a development team
+In order to be able to start adding features
+We would like to have an basic application structure 
+```
+
+**Tasks (Acceptance Criteria)**
+
+- [ ] Scaffold a Rails application
+- [ ] Turn off generators for helpers, assets and all specs (accept model specs)
+- [ ] Clean up the generated code from unnecessary comment for good readability
+
+
+### Set up testing environment
+
+**Description**
+
+```gherkin
+As a development team
+In order to be able to make sure our code is doing what it is supposed to do
+We would like to be able to write and run automated tests
+```
+
+**Tasks (Acceptance Criteria)**
+
+- [ ] Add and configure Cucumber for Acceptance tests
+- [ ] Add and configure Rspec for Unit and Request specs
+
+
+### Set up Continious Ingegration
+
+**Description**
+
+```gherkin
+As a development team
+In order to make sure that the code we add to the code base is functional
+We would like to run full test suite on a remote service
+```
+
+**Tasks (Acceptance Criteria)**
+
+- [ ] Set up CI on Semaphore or Travis
+
+### Set up Test Coverage Metrics
+**Description**
+
+```gherkin
+As a development team
+In order to see how much of our code is covered in tests
+We would like to measure test coverage using a remote service 
+```
+
+**Tasks (Acceptance Criteria)**
+
+- [ ] Set up Coveralls for the main repository
+- [ ] Add and configure Coveralls for RSpec and Cucumber
+- [ ] Coverage results needs to be merged in order to get metrics from both tools
+
+### Set up Continious Deployment
+**Description**
+
+```gherkin
+As a development team
+In order to automate the deployment process during development
+We would like all code that has been merged into the main code base, to be deployed to a server
+```
+
+**Tasks (Acceptance Criteria)**
+
+- [ ] Create an application on Heroku
+- [ ] Set up deployment using the CI tool
+
 ## New app using Rails 5.2.0
 
 ```
