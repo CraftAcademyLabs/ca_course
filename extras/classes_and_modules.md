@@ -37,7 +37,7 @@ FooClass.new.bar # => NoMethodError: undefined method ‘bar’ for #<Foo:0x1e82
 ```
 
 
-###Module - methods
+### Module - methods
 
 The methods in a module may be instance methods or module methods. You can include methods in your module that you can be both functions or included by one or several Classes and used as instance methods. Instance methods appear as methods in a class when the module is included, module methods do not. Conversely, module methods may be called without creating an encapsulating object, while instance methods may not.
 
