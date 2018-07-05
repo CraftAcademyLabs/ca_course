@@ -80,7 +80,7 @@ Many-to-many associations is the hardest ones to get a grip on. Because we have 
 
 
 
-But a school has more than thirty students so they then there would be more students taking different courses. How would we set up this relationship?
+But a school has more than thirty students so there would be more students taking different courses. How would we set up this relationship?
 
 
 
