@@ -1,7 +1,7 @@
 # Visual Studio Code
 
 ### Introduction
-In this guide we will give a short introduction to the IDE Visual Studio Code (VSC for short). VSC Is developed and maintained by the people of Microsoft. 
+In this guide we will give a short introduction to the IDE Visual Studio Code (VSC for short). VSC is developed and maintained by the people of Microsoft.
 
 VSC is a source code editor, this means that it is specifically designed to edit source code for computer programs by programmers.
 
