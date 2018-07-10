@@ -83,7 +83,7 @@ We would like to measure test coverage using a remote service
 
 - [ ] Set up Coveralls for the main repository
 - [ ] Add and configure Coveralls for RSpec and Cucumber
-- [ ] Coverage results needs to be merged in order to get metrics from both tools
+- [ ] Coverage results needs to be merged in order to get metrics from both tools (add a Rake task - see the Coveralls guide).
 
 ### Set up Continious Deployment
 **Description**
