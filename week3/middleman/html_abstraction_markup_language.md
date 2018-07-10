@@ -8,7 +8,7 @@ HTML:
 ```html
 <p>This is an HTML paragraph</p>
 ```
-Notice how even the simplest bit of HTML involves some repetition. The paragraph tag must be placed at the beginning of the statement, and then a corresponding closing tag must be placed at the end. What if we could skip all of this nonsense? 
+Notice how even the simplest bit of HTML involves some repetition. The paragraph tag must be placed at the beginning of the statement, and then a corresponding closing tag must be placed at the end. What if we could skip all of this nonsense?
 
 Here's the same statement in Haml:
 
@@ -95,7 +95,7 @@ Haml:
       %li One
       %li Two
       %li Three
-      
+
   .box
     %h2 Some Headline
     %p Lorem ipsum doller your mom...
@@ -128,11 +128,11 @@ HTML:
   </div>
 </div>
 ```
-This time around you can really start to feel the awesome power of Haml. 
+This time around you can really start to feel the awesome power of Haml.
 
 The charm here goes beyond the fact that we've saved tons of characters and even a few entire lines, notice how much easier it is to read the Haml at a glance. All of the nasty clutter that comes with HTML has bee stripped away and in its place is a clear hierarchy of markup that is instantly discernible.
 
-###HTML5 
+###HTML5
 
 Just in case you're wondering, Haml works just fine with all of the cool new tags inside of HTML5. In fact, it doesn't really care what type of tags you try to create. If you type “%somecrazytag” the output result will be ““ regardless of the fact that this isn't even valid HTML.
 
@@ -148,11 +148,11 @@ Haml:
         %li one
         %li two
         %li three
-      
+
   %section
     .info
     %p Lorem ipsum doller set
-    
+
   %section
     .info
     %p Lorem ipsum doller set
@@ -306,12 +306,8 @@ An anonymous developers opinion will close this section:
 
 > HAML makes me faster. A lot faster. Not having to track down where a closing tag was omitted, never accidentally crossing tag scope, and being able to trivially ascertain the selector path of a given bit of markup makes templating fast. I do a lot of it "the old way" too, and...it's just not as fun. It's frustrating, and slow, and it's not because I'm bad at it - I did it for years before HAML - it's because if you take the time to learn it, HAML is genuinely better.
 
+And another one:
+
+> My love for haml was formed in about... 5 minutes. I took an existing template (had some free time) and ported it to haml. After eliminating about 30% of the typed characters/lines on that template, I realized how much less work it was to create a haml template vs html. Less maintenance, less syntactic bloat, the content just flowed. Mind you I have been writing HTML for 4 years now without any problems. I no longer had debates (do I add a tag here because I really don't f-ing feel like typing it) because it was trivial. It let me focus on content rather than the html. Also zero possibility of someone screwing up indentation thus causing a 100 line file to become completely unmaintainable. Which happens VERY often in html unless the writer is disciplined to all hell. Also: less characters + cleaner syntax = significantly easier to comprehend.
+
 **Happy HAML coding!**
-
-
-
-
-
-
-
-

@@ -1,9 +1,8 @@
 # Deploy to Github pages
 
-Now that you are done building your portfolio, it's time to publish it and brag about it to your friends 🙂 .
+Now that you are done building your portfolio, it's time to publish it and brag about it to your friends.
 
 First thing you need to do if you haven't already is create a repository for your project on Github. For the purpose of this walkthrough, we'll assume our repository on Github is `my_portfolio`.
-
 
 There are numerous ways of setting up deployment of middleman sites. We'll make use of the gem [middleman-deploy](https://github.com/middleman-contrib/middleman-deploy) to get this done. A quick search on the internet will show you other ways of deploying your application if your interested.
 
@@ -58,7 +57,7 @@ end
 
 Great now we're all set to deploy the application.
 
-### Deploying the site 
+### Deploying the site
 
 With everything setup, all that's left to do is to run the following command to publish the site.
 
@@ -67,4 +66,3 @@ middleman deploy
 ```
 
 And voila! Your site should now be accessible from the link `https://your-github-username.github.io/my_portfolio`
-

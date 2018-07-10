@@ -20,17 +20,22 @@ $ middleman init my_site
 
 This will create a folder named `my_site` in the current directory and generate starter files for your project.
 
-You'll be prompted the following questions to which you need to answer with either (`y`)es or (`n`)o:
+Before your move on, also setup the [middleman-livereload extension](https://github.com/middleman/middleman-livereload). This extension will be very handy during the development phase of your website. What it does essentially is, watch for changes in your project directory and, reloads your page automatically. Add the gem to your `Gemfile` and run `bundle install`
 
 ```shell
-Do you want to use Compass? n
-Do you want to use LiveReload? y
-Do you want a Rack-compatible config.ru file? n
+# Gemfile
+gem 'middleman-livereload'
+```
+
+Next, activate it in the project's configuration file config.rb - Add the following line at the top of the file.
+```shell
+# config.rb
+activate :livereload
 ```
 
 ### Serving the Application - `middleman server`
 
-Middleman ships with a local server to test your application during development. 
+Middleman ships with a local server to test your application during development.
 
 ```shell
 $ cd my_site
@@ -45,7 +50,7 @@ Great! We have successfully setup middleman and created our project. Now let's g
 
 ### Directory Structure
 
-A tipical middleman application will have a directory structure that looks like this:
+A typical middleman application will have a directory structure that looks like this:
 
 ```shell
 my_site/
@@ -83,14 +88,14 @@ Just like any other ruby project you have worked with so far, Middleman makes us
 
 Middleman makes use of extra directories for specific purposes. Each of these folders are children of your main application folder.
 
-##### The `build` directory
+###### The `build` directory
 
-This is where your static website files will be compiled and exported to. 
+This is where your static website files will be compiled and exported to.
 
-##### The `lib` directory
+###### The `lib` directory
 
 The `lib` directory will house your external Ruby modules. These modules will contain helpers to use while building your application.
 
-##### The `data` directory
+###### The `data` directory
 
 Data files allow you to create `.yml`, `.yaml` or `.json` files in the `data` folder and makes this information available in your templates. We will be covering Data files in another section of this chapter.
