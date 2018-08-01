@@ -1,0 +1,3 @@
+We will be using Ionic to build our mobile client. If you are not familiar with Ionic yet, please go back in the documentation and complete the Going mobile with Ionic chapter.
+
+The objective of this step is to allow the user to calculate his results. We will NOT be accessing the API yet. The login functionality will not work once we are finished with this step. That will be the objective of the next chapter.
