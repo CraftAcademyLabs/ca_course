@@ -97,84 +97,35 @@ and we copy this into that file
 ```javascript
 # src/pages/home/home.spec.ts
 
-
-
-import { TestBed } from "@angular/core/testing";
 import { HomePage } from "./home";
-import {
-  IonicPageModule,
-  Platform,
-  NavController,
-  MenuController,
-  Config,
-  App,
-  DomController,
-  Keyboard,
-	GestureController,
-	Form,
-	DeepLinker,
-	Haptic
-} from "ionic-angular";
-import {
-  PlatformMock,
-  StatusBarMock,
-  SplashScreenMock,
-  NavControllerMock,
-  MenuControllerMock,
-	ConfigMock,
-	KeyboardMock,
-	FormMock,
-	HapticMock
-} from "ionic-mocks";
-import { DeepLinkerMock} from '../../../test-config/mocks'
-import { StatusBar } from "@ionic-native/status-bar";
-import { SplashScreen } from "@ionic-native/splash-screen";
 
-describe("HomeComponent", () => {
-  let fixture, component;
+describe("HomePage", () => {
+  let homepage;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({
-      declarations: [HomePage],
-      imports: [IonicPageModule.forChild(HomePage)],
-      providers: [
-        { provide: Platform, useFactory: () => PlatformMock.instance() },
-        { provide: StatusBar, useFactory: () => StatusBarMock.instance() },
-				{ provide: SplashScreen, useFactory: () => SplashScreenMock.instance() },
-				{ provide: NavController, useFactory: () => NavControllerMock.instance() },
-				{ provide: MenuController, useFactory: () => MenuControllerMock.instance() },
-				{ provide: Config, useFactory: () => ConfigMock.instance() },
-				{ provide: Keyboard, useFactory: () => KeyboardMock.instance() },
-				{ provide: Form, useFactory: () => FormMock.instance() },
-				{ provide: Haptic, useFactory: () => HapticMock.instance() },
-				{provide: DeepLinker, useClass: DeepLinkerMock},
-				App, DomController, GestureController
-
-      ]
-    });
-
-    fixture = TestBed.createComponent(HomePage);
-    component = fixture.componentInstance;
+    homepage = new HomePage();
   });
 
   it("should create the home page", () => {
-    expect(component).toBeTruthy();
-    expect(component instanceof HomePage).toEqual(true);
+    expect(homepage).toBeTruthy();
+    expect(homepage instanceof HomePage).toEqual(true);
+  });
+
+  it('should have user default values', () => {
+    expect(homepage.user).toEqual({ distance: 1000, age: 20 });
+  });
+
+  it('should have calculate function', () => {
+    spyOn(homepage, 'calculate'); // we use jasmine to spy on a function
+    
+    homepage.calculate()
+
+    expect(homepage.calculate).toHaveBeenCalled(); // check if the function has been called
   });
 });
+
 ```
 
-
-When we want to use a mock from ionic-mocks we need to import both the real service and the mock and under the configureTestingModule providers we provide the real service but use the factory of the mock.
-
-```javascript
-{ provide: NavController, useFactory: () =>; NavControllerMock.instance() }
-```
-
-We can check the documentation for the ionic-mocks package if they have a mock for it.
-```shell
-https://www.npmjs.com/package/ionic-mocks
-```
 Lets take a look at our test coverage.
 
 ![Initial home test coverage](/images/initial_home_test_coverage.png)
