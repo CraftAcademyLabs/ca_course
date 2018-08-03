@@ -36,39 +36,22 @@ And create our test file for the provider `src/providers/person/person.spec.ts`
 ```javascript
 # person.spec.ts
 
-import { CooperProvider } from './../../providers/cooper/cooper';  // TODO Replace this with correct tests
+import { CooperProvider } from './../../providers/cooper/cooper';
 import { PersonProvider } from './../../providers/person/person';
-import { HomePage } from "./home";
-import { TestBed, async, inject } from "@angular/core/testing";
-import { IonicModule, Platform, NavController } from "ionic-angular";
-import { StatusBar } from "@ionic-native/status-bar";
-import { SplashScreen } from "@ionic-native/splash-screen";
-import { PlatformMock, StatusBarMock, SplashScreenMock, NavControllerMock } from "ionic-mocks";
+import { TestBed, inject } from "@angular/core/testing";
 
 
 describe("Person Component", () => {
-	let personProvider, fixture;
+	let personProvider, cooperProvider;
 
-	beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [
-        PersonProvider
-      ],
-      imports: [IonicModule.forRoot(PersonProvider)],
-      providers: [
-        { provide: Platform, useFactory: () => PlatformMock.instance() },
-        { provide: StatusBar, useFactory: () => StatusBarMock.instance() },
-        { provide: SplashScreen, useFactory: () => SplashScreenMock.instance() },
-        { provide: NavController, useFactory: () => NavControllerMock.instance() },
-        CooperProvider
-      ]
-    }).compileComponents();
+  beforeEach(() => TestBed.configureTestingModule({
+    providers: [PersonProvider, CooperProvider]
   }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(PersonProvider);
-    personProvider = fixture.componentInstance;
-  });
+  beforeEach(inject([PersonProvider, CooperProvider], (p, c) => {
+    personProvider = p;
+    cooperProvider = c;
+  }));
 
 	it("should create the person provider", () => {
 		expect(personProvider).toBeTruthy();
@@ -84,14 +67,18 @@ describe("Person Component", () => {
 		expect(personProvider.doAssessment).toHaveBeenCalledWith(2500);
 	});
 
-	it('cooper provider should be called', inject([CooperProvider], (cooper) => {
-		spyOn(cooper, 'assess');
-		personProvider.doAssessment(2500);
+	it('cooper provider should be called', () => {
+    personProvider.age = 25;
+    personProvider.gender = 'female';
+    spyOn(cooperProvider, 'assess');
+    
+		personProvider.doAssessment(2200);
 
-		expect(cooper.assess).toHaveBeenCalled();
-
-	}));
+		expect(cooperProvider.assess).toHaveBeenCalled();
+		expect(cooperProvider.assess).toHaveBeenCalledWith(personProvider, 2200);
+	});
 });
+
 ```
 
 Note that we have imported another provider called `CooperProvider` that we need to define. Let's generate it.
