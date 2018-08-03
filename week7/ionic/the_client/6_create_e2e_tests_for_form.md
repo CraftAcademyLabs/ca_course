@@ -8,9 +8,9 @@ First we write our acceptance tests.
 #app.e2e-spec.ts
 
 it('fill in form', () => {
-	page.fillInForm(1000, 'Female', 20).then(results => {
-		expect(results.toContain('Cooper Test Result, Gender: female, Age: 20, Result: Poor'));
-	})
+	page.fillInForm(1000, 'Female', 20);
+	expect(page.results_card_header()).toContain('Cooper Test Result');
+	expect(page.results_card_content()).toContain('Gender: female, Age: 20  Result: Poor');
 });
 ```
 
@@ -19,10 +19,12 @@ And then in our `page` object we need to create the `fillInForm` function and we
 ```javascript
 #app.po.ts
 fillInForm(distance, gender, age) {
-    
-    element(by.css('.text-input')).sendKeys(distance); // fill in the distance
+
+	element(by.css('.text-input')).clear().then(() => {  // first we need to clear the default value
+		element(by.css('.text-input')).sendKeys(distance); // fill in the distance
+    }) 
   
-    element(by.css('.select')).click().then(() => {
+    element(by.css('.select')).click().then(() => {  // find the dropdown and click on it
       browser.sleep(500); // we sleep for a half a second to make sure the popup has popped up
 
       element(by.cssContainingText('.button-inner', gender)).click(); // click the gender option you want
@@ -32,13 +34,18 @@ fillInForm(distance, gender, age) {
 
     browser.sleep(500); // we sleep for half a second to make sure the popup has disappeared
 
-    var slider = element(by.css('.range-slider')); // select the slider
-    browser.actions().dragAndDrop(slider, {x: 50, y: 0}).perform();  // 
-    
     element(by.cssContainingText('.button', 'Calculate')).click();  // click the calculate button
   
-    return element(by.css('.button-inner')); // DONT FORGET TO UPDATE THIS WITH THE PROPER RESULTS YOU WANT RETURNED
   }
+
+  results_card_header() {
+    return element(by.css('ion-card-header')).getText();
+  } 
+
+  results_card_content() {
+    return element(by.css('ion-card-content')).getAttribute('textContent');
+  } 
+
 
 ```
 
@@ -78,11 +85,13 @@ At this stage, if you visit the app in your browser, you will get an error about
 first we write our test in `home.spec.ts`
 
 ```javascript
-it('should have user array', () => {
-  expect(component.user).toEqual({});
+it("should have user array", () => {
+  expect(homepage.user).toEqual({});
 });
 ```
+
 And in our `home.ts`
+
 ```javascript
 export class HomePage {
 	user: any = {};
@@ -90,6 +99,7 @@ export class HomePage {
 
 }
 ```
+
 Save this change and head back to your browser and everything should work now.
 
 Click on the button, what happens? Why do you think it fails? Read through the error and try to figure out what the problem might be here.
@@ -99,12 +109,14 @@ IMPORTANT Try to answer this before you move on to the next step.
 Incase you were not able to know why it failed, it it because the function tied to the button is not yet defined in the component, first we create the test for it and then we define it:
 
 ```javascript
-it('should have calculate function', () => {
-    expect(component.calculate).toBeTruthy();
+# home.spec.ts
+it("should have calculate function", () => {
+  expect(homepage.calculate).toBeTruthy();
 });
 ```
 
 ```javascript
+# home.ts
 export class HomePage {
 	user: any = {};
 
@@ -115,19 +127,22 @@ export class HomePage {
 	}
 }
 ```
+
 Our function currently logs out the `user` object everytime you click on the button. Open your developer tools console on the browser and play around.
 
 Did you realize that the app starts with every fields empty? We can give it default values that can then be used when the app starts, we do this by initializing `user` within our constructor function.
 
 First we update our `should have user array` test.
 
-```javascript 
-it('should have user array default values', () => {
-  expect(component.user).toEqual({ distance: 1000, age: 20 });
+```javascript
+# home.spec.ts
+it("should have user array default values", () => {
+  expect(homepage.user).toEqual({ distance: 1000, age: 20 });
 });
 ```
 
 ```javascript
+# home.ts
 export class HomePage {
 	...
 	constructor(public navCtrl: NavController) {
@@ -137,4 +152,5 @@ export class HomePage {
 	...
 }
 ```
+
 ￼![cooper initial values](/images/cooper-intial-values.png)
