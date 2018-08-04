@@ -33,7 +33,7 @@ Our check-out can scan items in any order, and because our promotions will chang
 
 The interface to our checkout looks like this:
 
-```irb
+```ruby
 co = Checkout.new(promotional_rules)
 co.scan(item)
 co.scan(item)
@@ -42,7 +42,7 @@ price = co.total
 
 Implement a checkout system that fulfills these requirements.
 
-```
+```ruby
 Test data
 ---------
 Basket: 001,002,003
