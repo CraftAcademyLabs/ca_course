@@ -1,3 +1,17 @@
+---
+title: "Checkout Challenge"
+author: [Thomas Ochman]
+date: 2018-01-01
+subject: "Ruby"
+keywords: [Ruby, Example, Learn To Code]
+subtitle: "Extra Challenge"
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Checkout Challenge
 
 Our client is an on-line marketplace, here is a sample of some of the products available on our site:
