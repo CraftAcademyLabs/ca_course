@@ -1,10 +1,10 @@
 ---
 title: "Checkout Challenge"
-author: [Thomas Ochman]
-date: 2018-01-01
+author: [Thomas Ochman, Craft Academy]
+date: Version 0.1
 subject: "Ruby"
 keywords: [Ruby, Example, Learn To Code]
-subtitle: "Extra Challenge"
+subtitle: "Extra Challenge for Ruby Introduction"
 titlepage: true
 titlepage-color: f28e24
 titlepage-text-color: "FFFFFF"
