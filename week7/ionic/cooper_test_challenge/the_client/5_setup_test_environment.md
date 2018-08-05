@@ -1,4 +1,4 @@
-### Setup testing environment
+## Setup testing environment
 
 Before we continue with our application we want to setup the testing environment. Follow this guide [Unit and Acceptance testing environment setup](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CC-01+2018/courseware/96bf29b196214229a1f5b420c670ac7f/dddd401a80e24483911288b387b1bdbf/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CC-01%2B2018%2Btype%40sequential%2Bblock%40dddd401a80e24483911288b387b1bdbf) and when you are done return to this page.
 
