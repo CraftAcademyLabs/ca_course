@@ -59,7 +59,7 @@ Total price expected: $73.76
 
 Solution to the Checkout Challenge by one of CraftAScademy's formenr students, Amber.
 
-```java
+```ruby
 class Checkout
 
   attr_reader :total, :cart, :promotion, :pre_price, :products, :product
