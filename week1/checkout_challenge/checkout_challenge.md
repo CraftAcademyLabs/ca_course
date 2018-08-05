@@ -12,7 +12,7 @@ titlepage-rule-color: "FFFFFF"
 titlepage-rule-height: 2
 ...
 
-## Checkout Challenge
+# Checkout Challenge
 
 Our client is an on-line marketplace, here is a sample of some of the products available on our site:
 
