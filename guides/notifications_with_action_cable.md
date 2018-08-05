@@ -1,10 +1,10 @@
 ---
-title: "Sending notifications with WebSockets (Action Cable"
-author: [Thomas Ochman, Craft Academy]
+title: "Action Cable"
+subtitle: "Sending notifications with WebSockets"
+author: [Craft Academy - Coading as a Craft]
 date: Version 0.1
 subject: "Ruby, Ruby on Rails, Noticifations, Action Cable, Websockets"
 keywords: [Ruby, Ruby on Rails, PubSub, Learn To Code]
-subtitle: "Extra Challenge for Ruby Introduction"
 titlepage: true
 titlepage-color: f28e24
 titlepage-text-color: "FFFFFF"
