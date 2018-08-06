@@ -106,7 +106,7 @@ Click on the button, what happens? Why do you think it fails? Read through the e
 
 IMPORTANT Try to answer this before you move on to the next step.
 
-Incase you were not able to know why it failed, it it because the function tied to the button is not yet defined in the component, first we create the test for it and then we define it:
+Incase you were not able to know why it failed, it failed because the function tied to the button is not yet defined in the component. First we create the test for it and then we define it:
 
 ```javascript
 # home.spec.ts
