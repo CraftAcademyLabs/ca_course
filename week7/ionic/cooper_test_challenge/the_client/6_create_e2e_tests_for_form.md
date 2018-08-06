@@ -18,38 +18,37 @@ And then in our `page` object we need to create the `fillInForm` function and we
 
 ```javascript
 #app.po.ts
+
 fillInForm(distance, gender, age) {
 
 	element(by.css('.text-input')).clear().then(() => {  // first we need to clear the default value
 		element(by.css('.text-input')).sendKeys(distance); // fill in the distance
     }) 
   
-    element(by.css('.select')).click().then(() => {  // find the dropdown and click on it
-      browser.sleep(500); // we sleep for a half a second to make sure the popup has popped up
+	element(by.css('.select')).click().then(() => {  // find the dropdown and click on it
+		browser.sleep(500); // we sleep for a half a second to make sure the popup has popped up
 
-      element(by.cssContainingText('.button-inner', gender)).click(); // click the gender option you want
-      element(by.cssContainingText('.button-inner', 'OK')).click();  // click the OK button
+		element(by.cssContainingText('.button-inner', gender)).click(); // click the gender option you want
+		element(by.cssContainingText('.button-inner', 'OK')).click();  // click the OK button
 
-    })
+	})
 
-    browser.sleep(500); // we sleep for half a second to make sure the popup has disappeared
+	browser.sleep(500); // we sleep for half a second to make sure the popup has disappeared
 
-    element(by.cssContainingText('.button', 'Calculate')).click();  // click the calculate button
-  
-  }
+	element(by.cssContainingText('.button', 'Calculate')).click();  // click the calculate button
 
-  results_card_header() {
-    return element(by.css('ion-card-header')).getText();
-  } 
+}
 
-  results_card_content() {
-    return element(by.css('ion-card-content')).getAttribute('textContent');
-  } 
+results_card_header() {
+	return element(by.css('ion-card-header')).getText();
+} 
 
-
+results_card_content() {
+	return element(by.css('ion-card-content')).getAttribute('textContent');
+} 
 ```
 
-Now we can create that form by typing the following markup to your home.html file within the ion-content tag
+Now we can create that form by typing the following markup to your `home.html` file within the ion-content tag
 
 ```javascript
 ...

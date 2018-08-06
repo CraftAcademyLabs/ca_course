@@ -56,7 +56,7 @@ describe("Person Component", () => {
 	it("should create the person provider", () => {
 		expect(personProvider).toBeTruthy();
 		expect(personProvider instanceof PersonProvider).toEqual(true);
-	});
+	);
 
 	it('doassessment should be defined', () => {
 		spyOn(personProvider, 'doAssessment');
@@ -68,10 +68,10 @@ describe("Person Component", () => {
 	});
 
 	it('cooper provider should be called', () => {
-    personProvider.age = 25;
-    personProvider.gender = 'female';
-    spyOn(cooperProvider, 'assess');
-    
+		personProvider.age = 25;
+		personProvider.gender = 'female';
+		spyOn(cooperProvider, 'assess');
+
 		personProvider.doAssessment(2200);
 
 		expect(cooperProvider.assess).toHaveBeenCalled();
@@ -194,7 +194,6 @@ And now we can create the test file for the cooper provider `touch src/providers
 ```javascript
 # cooper.spec.ts
 
-import { PersonProvider } from "./../person/person";
 import { CooperProvider } from "./cooper";
 
 describe("CooperProvider", () => {

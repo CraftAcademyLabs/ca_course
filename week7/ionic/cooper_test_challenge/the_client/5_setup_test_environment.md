@@ -61,13 +61,13 @@ describe('AppComponent', () => {
 
 We use:
 
-- Testbed configures and initializes environment for unit testing and provides methods for creating components and services in unit tests.
+- `Testbed` configures and initializes environment for unit testing and provides methods for creating components and services in unit tests.
 
-- configureTestingModule allows overriding default providers, directives, pipes, modules of the test injector.
+- `configureTestingModule` allows overriding default `providers`, `directives`, `pipes`, `modules` of the test injector.
 
-- createComponent creates a ComponentFixture which is a test environment around the component and its template.
+- `createComponent` creates a `ComponentFixture` which is a test environment around the `component` and its `template`.
 
-- componentInstance creates the component from the componentFixture.
+- `componentInstance` creates the `component` from the `componentFixture`.
 
 Lets check our debug window
 

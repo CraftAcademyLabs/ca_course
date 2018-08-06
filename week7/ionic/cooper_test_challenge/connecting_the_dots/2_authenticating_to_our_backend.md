@@ -14,6 +14,14 @@ You solve this by installing this package.
 $ npm install @ionic/lab
 ```
 
+You will also need to modify `package.json` find the `@angular/router` should be under `dependencies` and change the version to `6.0.7`
+```javascript
+"dependencies": {
+  ...
+  "@angular/router": "6.0.7",
+  ...
+```
+
 Next we need to import and add `Angular2TokenService` to our main module. Note that `Angular2TokenService` depends on `HttpModule` and `RouterModule`, so make sure you import them too in `src/app/app.module.ts`
 ```javascript
 import { HttpModule } from '@angular/http';
