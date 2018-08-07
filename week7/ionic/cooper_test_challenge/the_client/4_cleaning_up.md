@@ -27,6 +27,6 @@ The template should now look like this
 ```
 If you head over to your browser you should see something like this.
 
-![](/images/cooper-clean-home.png)
+![](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/cooper-clean-home.png)
 ￼
 This will do for now. We will add the Login functionality further down the road. Right now, we want to focus on the main functionality of this application - to calculate the test results and give the user some feedback.

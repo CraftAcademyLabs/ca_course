@@ -13,11 +13,11 @@ $ npm run test-coverage
 ```
 This will open a new browser window
 
-![initial karma](/images/karma_init_window.png?raw=true)
+![initial karma](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/karma_init_window.png?raw=true)
 
 We need to click the DEBUG button to get a overview of our tests.
 
-![initial jasmine](/images/karma_debug_window.png)
+![initial jasmine](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/karma_debug_window.png)
 
 Lets create a unit test file for our main component `app.component.ts` and we do that in the terminal with the command `touch src/app/app.component.spec.ts`
 
@@ -71,7 +71,7 @@ We use:
 
 Lets check our debug window
 
-![1st unit test](/images/debug_window_1_test.png)
+![1st unit test](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/debug_window_1_test.png)
 
 
 Also open the coverage report
@@ -85,7 +85,7 @@ $ open coverage/index.html
 $ xdg-open coverage/index.html
 ```
 
-![coverage window 1st test](/images/test_coverage_app_94.png)
+![coverage window 1st test](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/test_coverage_app_94.png)
 
 Lets also create the spec file for `home` component
 ```shell
@@ -149,4 +149,4 @@ describe("HomePage", () => {
 
 Lets take a look at our test coverage.
 
-![Initial home test coverage](/images/initial_home_test_coverage.png)
+![Initial home test coverage](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/initial_home_test_coverage.png)

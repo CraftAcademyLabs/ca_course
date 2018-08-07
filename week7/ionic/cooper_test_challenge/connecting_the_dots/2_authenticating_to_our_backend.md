@@ -7,7 +7,7 @@ $ npm install @angular/router --save # we install this as it is required by the 
 ```
 When you fire up the server you might get this error.
 
-![@ionic/lab missing ](/images/ionic_lab_missing_error.png)
+![@ionic/lab missing ](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/ionic_lab_missing_error.png)
 
 You solve this by installing this package.
 ```shell

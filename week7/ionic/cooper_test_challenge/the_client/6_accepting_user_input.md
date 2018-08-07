@@ -1,6 +1,6 @@
 At this stage we have a good skeleton app to get started with so we can add a form that asks a user for some details so our app will look like this:
 
-￼![Cleaned out not needed pages](/images/cc_app_cleaned.png)
+￼![Cleaned out not needed pages](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/cc_app_cleaned.png)
 
 First we write our acceptance tests.
 
@@ -152,4 +152,4 @@ export class HomePage {
 }
 ```
 
-￼![cooper initial values](/images/cooper-intial-values.png)
+￼![cooper initial values](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/cooper-intial-values.png)

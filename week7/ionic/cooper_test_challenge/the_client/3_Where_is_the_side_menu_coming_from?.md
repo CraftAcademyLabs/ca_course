@@ -1,6 +1,6 @@
 Can you try find out where this menu is located? Look within the `src` directory.
 
-Since the menu is available to the entire application, no matter the page we are in, then our first guess would be that it is at the template the is associated with the root component - this assumption is actually right. Our root component is called `app.component.ts` with the matching template being `app.html` - you can tell this by looking at the metadata selector
+Since the menu is available to the entire application, no matter the page we are in, then our first guess would be that it is at the template the is associated with the root component this assumption is actually right. Our root component is called `app.component.ts` with the matching template being `app.html` - you can tell this by looking at the metadata selector
 
 The menu is within the `ion-content` tab
 ```javascript

@@ -1,4 +1,4 @@
-Last time we generated a new ionic application using the tabs menu, let's do something different this time. For this app, we will be using the sidemenu template.
+Last time we generated a new ionic application using the tabs menu, let's do something different this time. For this app, we will be using the `sidemenu` template.
 
 Run this command in your terminal to create the application.
 ```shell
@@ -10,4 +10,4 @@ $ ionic serve --lab
 ```
 If you see something that looks like this, congratulations, you have just generated your second ionic application.
 
-![](/images/cooper-scaffolded-app.png)
+![](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/cooper-scaffolded-app.png)

@@ -18,10 +18,10 @@ You can manually test the API using `Postman` by doing a POST request to the reg
 
 As a matter of fact, you need to create at least one user this way in order to move forward.
 
-![Postman success](/images/cooper_api_postman_sucess.png)
+![Postman success](https://raw.githubusercontent.com/CraftAcademy/ca_course/master/images/cooper_api_postman_sucess.png)
 
 Register a user
 And if you try to send the request again, that should fail.
-![Registration failure](/images/cooper_api_postman_failure.png)
+![Registration failure](https://raw.githubusercontent.com/CraftAcademy/ca_course/master/images/cooper_api_postman_failure.png)
 
 Alright, if that works we can now shift our focus to the Ionic application, and we'll update it to be able to communicate with the backend.

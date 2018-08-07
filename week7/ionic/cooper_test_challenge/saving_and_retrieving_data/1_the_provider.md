@@ -1,4 +1,5 @@
-### The provider
+## The provider
+
 We need to use a service/provider to achieve this so its time to generate another one, we can call it `performance-data`
 ```shell
 $ ionic g provider performance-data
@@ -18,7 +19,7 @@ export class PerformanceDataProvider {
   }
 }
 ```
-### The component
+## The component
 
 When we click on the `Calculate` button on the homepage we need to save the results at the same instance. By now we know that when the button is clicked then the `calculate()` function is executed. Lets add code here that will use our provider above to make call to the backend and save the data to our backend
 ```javascript

@@ -16,11 +16,11 @@ Run e2e tests
 $ npm run e2e
 ```
 
-![e2e fill in form](/images/e2e_fill_in_form_passing.png)
+![e2e fill in form](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/e2e_fill_in_form_passing.png)
 
 Head over to your browser and give it a try. You should now see the results of the test displayed on the page as follows:
 
-![](/images/cooper-display-result.png)
+![Display results](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/cooper-display-result.png)
 
 
 
