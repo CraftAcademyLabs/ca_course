@@ -153,7 +153,7 @@ chartHovered(event: any): void {
 ```
 If you run the application now it should look something like this.
 
-![charts_image](/images/charts_image.png)
+![charts_image](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/charts_image.png)
 
 That looks pretty cool, right? ;-)
 

@@ -5,5 +5,5 @@ The button should be located below the results card
 
 Do not forget to move the saving logic to a separate function in the component
 
-![Show save button](https://raw.githubusercontent.com/magnus-thor/ca_course/master/images/show-save-button.gif)
+![Show save button](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/show-save-button.gif)
 
