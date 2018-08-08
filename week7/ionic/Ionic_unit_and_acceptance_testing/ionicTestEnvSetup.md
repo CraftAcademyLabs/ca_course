@@ -255,7 +255,6 @@ And we need to install those dependencies.
 $ npm install
 ```
 
-
 ### Acceptance test configuration
 First we need to create a folder `e2e` in our project root folder.
 
@@ -323,9 +322,9 @@ describe('App', () => {
       page.navigateTo('/');
     });
 
-    it('should have a title saying Page One', () => {
-      page.getPageOneTitleText().then(title => {
-        expect(title).toEqual('Page One');
+     it('should have a title saying Ionic App', () => {
+      page.getTitle().then(title => {
+        expect(title).toEqual('Ionic App');
       });
     });
   })

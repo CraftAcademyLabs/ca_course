@@ -14,7 +14,7 @@ export class SuggestionsComponent {
 ```
 Basically, the decorator is used to give us a brief summary of the class, much like
 the information on hospital wrist bands worn by hospital patients does.
-![hospital wrist band](/images/hospital-wrist-band.png)
+![hospital wrist band](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/hospital-wrist-band.png)
 *<center>Figure: Hospital wrist band</center>*
 
 

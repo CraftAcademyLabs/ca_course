@@ -1,4 +1,4 @@
-![Ionic logo](/images/angular-logo.svg)
+![Ionic logo](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/angular-card.png)
 
 Angular is a framework for building dynamic web applications - often referred to as a single-page applications (SPA). It lets you use HTML as your template language and extend HTML's syntax to express your application's components. Angular is added to an HTML page with a <script> tag.
 

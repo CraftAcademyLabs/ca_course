@@ -1,5 +1,5 @@
 Ionic is an HTML5 mobile app development framework targeted at building hybrid mobile apps. Hybrid apps are essentially small websites running in a browser shell in an app that have access to the native platform layer. Hybrid apps have many benefits over pure native apps, specifically in terms of platform support, speed of development, and access to 3rd party code.
-![IonicFramework](/images/ionicframework-website.png)
+![IonicFramework](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/ionicframework-website.png)
 
 
 Think of Ionic as the front-end UI framework that handles all of the look and feel and UI interactions your app needs in order to be compelling. Kind of like “Bootstrap for Native,” but with support for a broad range of common native mobile components, slick animations, and beautiful design.
