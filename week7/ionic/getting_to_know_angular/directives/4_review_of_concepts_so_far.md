@@ -1,0 +1,3 @@
+This review will solidify your understanding of `components`, `templates`, `event binding` and `directives`
+
+ - Create a button below the paragraph we just added. The button should handle user click event and toggles the paragraph - if the user clicks on the button it hides the paragraph. If they click on it again it shows the paragraph. Answer this before moving on and **make sure to try it out!**
