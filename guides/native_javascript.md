@@ -1,3 +1,17 @@
+---
+title: "JavaScript"
+subtitle: "Modifying the Document Object Model (DOM)"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "JavaScript, DOM, Webdevelopment"
+keywords: [avaScript, DOM, Webdevelopment, Learn To Code]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ### Introduction
 
 The **Document Object Model**, usually referred to as the DOM, is an essential part of making websites interactive. It is an interface that allows a programming language to manipulate the content, structure, and style of a website. JavaScript is the client-side scripting language that connects to the DOM in an internet browser.
@@ -298,6 +312,12 @@ But this should generally be avoided. Here, `.onclick` is a property of the el
 
 Instead, we can use the much mightier `.addEventListener()` method to add as many events of as many types as we like. It takes three arguments: the event type (such as `click`), a function that gets called whenever the event occurs on the element (this function gets passed an event object), and an optional config object which will be explained further below.
 
+The benefits of using `addEventListener()` are:
+
+* It allows adding more than a single handler for an event. This is particularly useful for AJAX libraries, JavaScript modules, or any other kind of code that needs to work well with other libraries/extensions.
+* It gives you finer-grained control of the phase when the listener is activated (capturing vs. bubbling).
+* It works on any DOM element, not just HTML elements.
+
 ```js
 myElement.addEventListener('click',function(event){
   console.log(event.type +' got fired')})
@@ -343,7 +363,7 @@ It’s less common, but sometimes you want your code to run when not just the HT
 ```javascript
 window.addEventListener('load', function(){
   // Everything has loaded!
-  console.log('Everything has loaded!);
+  console.log('Everything has loaded!');
 });
 ```
 
@@ -373,7 +393,7 @@ Now `.addEventListener()` takes an optional config object as a 3rd argument, w
 * once: As you might guess, this indicates that the event will get triggered only once
 * passive: This means that `event.preventDefault()` will be ignored (and usually yield a warning in the console)
 
-The most common option is `.capture`. In fact, it is so common that there’s a shorthand for this: instead of specifying it in the config object, you can just pass in a boolean  like this: `myElement.addEventListener(type, listener,true);`
+The most common option is `.capture`. In fact, it is so common that there’s a shorthand for this: instead of specifying it in the config object, you can just pass in a boolean  like this: `myElement.addEventListener(type, listener, true);`
 
 #### Removing a listener
 
