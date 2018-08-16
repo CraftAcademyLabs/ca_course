@@ -3,15 +3,22 @@
 ### Cartify
 Cartify is a gem that provides full (but simple) e-commerce functionality to your Ruby on Rails application. It adds ordering functionality and a multi-step checkout process with a dummy credit card payment flow (adding Stripe or PayPal should not be overly complicated). It is well suited for educational purposes and can be used in the SlowFood Challenge (week 5 of the CA curriculum) 
 
+### Address settings
 ![Screen 1 - Address settings](./images/cartify_01_addresses.png)
+
+### Delivery selection
 
 ![Screen 2 - Delivery selection](./images/cartify_02_delivery.png)
 
+### Payment settings
 
 ![Screen 3 - Payment settings](./images/cartify_03_payment.png)
 
+### Order summary
 
 ![Screen 4 - Order summary](./images/cartify_04_summary.png)
+
+### Order confirmation
 
 ![Screen 5 - Order confirmation](./images/cartify_05_confirmation.png)
 
