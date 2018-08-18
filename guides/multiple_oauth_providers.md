@@ -217,7 +217,7 @@ The exapmple below makes use of method name aliases and the built in Ruby method
 ```
 
 ## Wrap up
-With 
+With this setup your users will be presented with another way to register an account. This process should be flexible enough to add even more providers like Twitter or GitHub.
 
 
 
