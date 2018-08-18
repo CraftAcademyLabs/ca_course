@@ -25,19 +25,23 @@ amazon:
 ```
 
 ```ruby
-config/environments/development.rb
+#config/environments/development.rb
 Rails.application.configure do
   config.active_storage.service = :local
 end
-config/environments/production.rb
+#config/environments/production.rb
 Rails.application.configure do
   config.active_storage.service = :amazon
 end
 ```
+
+You need to set the credentials using Rails encrypted credentials functionality (see guide) 
+
 ```
-rails credentials:edit
+$ rails credentials:edit 
 ```
 
+In the credentials file, add your access key and secret:
 ```yaml
 aws:
   access_key_id: 12345
@@ -72,11 +76,15 @@ amazon_<%= Rails.env %>:
 Now we just need to update the environment configs to point to `amazon_development` and `amazon_production` respectively.
 
 ```ruby
-config/environments/development.rb
+#config/environments/development.rb
+
 Rails.application.configure do
   config.active_storage.service = :amazon_development
 end
-config/environments/production.rb
+
+
+#config/environments/production.rb
+
 Rails.application.configure do
   config.active_storage.service = :amazon_production
 end
@@ -101,3 +109,8 @@ production:
     access_key_id: prod-1234
     secret_access_key: prod-5678
 ```
+
+## Wrap up
+These 2 strategies will help you in keeping your attachhments separated between development and production enviroments. 
+
+As the test env goes, you should always set the storage to `:local` 
