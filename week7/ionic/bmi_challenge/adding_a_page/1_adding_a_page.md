@@ -17,15 +17,17 @@ import { CalculatorPage } from '../pages/calculator/calculator'
 Then add `CalculatorPage` to the `declarations` and `entryComponents` properties. Next, we also import `CalculatorPage` in `src/pages/tabs/tabs.ts` and create a new tab for it.
 
 ```javascript
+
 // Add import statement at top of the file
 import { CalculatorPage } from '../calculator/calculator'
 
 
 export class TabsPage {
-  calculatorTab = CalculatorPage; // Create a calculator's tab
+	calculatorTab = CalculatorPage; // Create a calculator tab
   aboutTab = AboutPage            // Rename tab2Root to aboutTab
   ...
 }
+
 ```
 
 Lastly, let's edit the `tabs.html` template file to render the new tab we just created.
@@ -45,4 +47,4 @@ $ git add .
 $ git commit -m 'add calculator tab'
 ```
 
-![Calculator Page](/images/bmi-add-calculator-tab.png)
+![Calculator Page](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/bmi-add-calculator-tab.png)
