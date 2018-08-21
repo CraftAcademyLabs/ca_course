@@ -74,7 +74,7 @@ We're almost there, last thing we need to do is add some markup on our template 
 
 Note that in the above code, we're conditioning the display of the result. The card will only be visible once we actually have a result on the `bmiValue` variable. Now take a look at your application in your browser and try to perform some calculations.
 
-![Bmi Calculator](/images/bmi-calculations.png)
+![Bmi Calculator](https://raw.githubusercontent.com/magnus-thor/ca_course/cooper_challenge_AUT/images/bmi-calculations.png)
 
 ## Wrapping up
 
