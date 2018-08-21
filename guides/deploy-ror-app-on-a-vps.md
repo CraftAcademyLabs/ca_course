@@ -145,12 +145,19 @@ If you get the error `rbenv: no such command `install'`
 
 then run `sudo apt-get install rbenv ruby-build` and try again `rbenv install 2.5.1`
 
-And finally let's install Bundler
+Next we need to install Bundler
 
 ```sh
 gem install bundler
 rbenv rehash
 ```
+
+And finally we install rails
+
+``sh
+gem install rails
+```
+
 
 ## Installing a Web Server Nginx
 
