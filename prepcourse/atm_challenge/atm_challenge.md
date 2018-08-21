@@ -1,4 +1,17 @@
-## Ruby basics - ATM Challenge
+---
+title: " Ruby basics - ATM Challenge"
+author: [Thomas Ochman, Craft Academy]
+date: Version 0.1 - 2018
+subject: "Ruby"
+keywords: [Ruby, Example, Learn To Code]
+subtitle: "Extra Challenge for Ruby Introduction"
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+# Ruby basics - ATM Challenge
 
 ### Learning experience
 - Review fundamentals learned in the prep course
