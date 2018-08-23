@@ -4,16 +4,16 @@ This guide assumes that you have already have a web application with devise logi
 In this guide we will go through how to setup the Rails application to also act as an API and add Devise token auth so users can get authorised through the API. 
 
 The first thing we need to do is that we need to add some gems to our Gemfile
-```
+```ruby
 # Gemfile
-´´´
+# [...] other gems...
 gem 'devise_token_auth'
 gem 'rack-cors', require: 'rack/cors'
-´´´
+
 ```
 The `rack-cors` gem makes our application allow external clients to access it.
 
-`devise_token_auth` is what we are going to use to make it possible to login with the API, it works well with ionic and we are already familiar with devise from our previous projects.
+`Devise_token_auth` is what we are going to use to make it possible to login with the API, it works well with ionic and we are already familiar with devise from our previous projects.
 
 Open up `config/aplplication.rb` so we can make some changes. The changes we are going to make here is so the `rack-cors` gem can do its job. We will allow GET, POST, PUT and DELETE requests from any origin here. 
 
@@ -57,7 +57,7 @@ class DeviseTokenAuthUpdateUsers < ActiveRecord::Migration[5.2]
   end
 end
 ```
-After this run `rails db:migrate`
+After this run `rails db:migrate` in the terminal.
 
 Now lets add the requests specs for both login/logout and registration. 
 ```ruby
@@ -162,7 +162,7 @@ RSpec.describe 'Sessions', type: :request do
   end
 end
 ```
-If you run the test now, you will see that we don´t have any route matches
+If you run the test now, you will see that we don´t have any route matches.
 
 Lets start off with the routes then, add these lines to the `config/routes.rb`:
 ```ruby
@@ -179,27 +179,26 @@ Now, we can run the  `rails routes`  command in the terminal to make sure we are
 ```
 
 $ rails routes
-                         Prefix Verb   URI Pattern                             Controller#Action
-              api_v0_pings      GET    /api/v0/pings(.:format)                 api/v0/pings#index {:format=>/(json)/}
-        new_api_v1_user_session GET    /api/v1/auth/sign_in(.:format)          devise_token_auth/sessions#new
-            api_v1_user_session POST   /api/v1/auth/sign_in(.:format)          devise_token_auth/sessions#create
-    destroy_api_v1_user_session DELETE /api/v1/auth/sign_out(.:format)         devise_token_auth/sessions#destroy
-           api_v1_user_password POST   /api/v1/auth/password(.:format)         devise_token_auth/passwords#create
-       new_api_v1_user_password GET    /api/v1/auth/password/new(.:format)     devise_token_auth/passwords#new
-      edit_api_v1_user_password GET    /api/v1/auth/password/edit(.:format)    devise_token_auth/passwords#edit
-                                PATCH  /api/v1/auth/password(.:format)         devise_token_auth/passwords#update
-                                PUT    /api/v1/auth/password(.:format)         devise_token_auth/passwords#update
-cancel_api_v1_user_registration GET    /api/v1/auth/cancel(.:format)           devise_token_auth/registrations#cancel
-       api_v1_user_registration POST   /api/v1/auth(.:format)                  devise_token_auth/registrations#create
-   new_api_v1_user_registration GET    /api/v1/auth/sign_up(.:format)          devise_token_auth/registrations#new
-  edit_api_v1_user_registration GET    /api/v1/auth/edit(.:format)             devise_token_auth/registrations#edit
-                                PATCH  /api/v1/auth(.:format)                  devise_token_auth/registrations#update
-                                PUT    /api/v1/auth(.:format)                  devise_token_auth/registrations#update
-                                DELETE /api/v1/auth(.:format)                  devise_token_auth/registrations#destroy
-       api_v1_user_confirmation POST   /api/v1/auth/confirmation(.:format)     devise_token_auth/confirmations#create
-   new_api_v1_user_confirmation GET    /api/v1/auth/confirmation/new(.:format) devise_token_auth/confirmations#new
-                                GET    /api/v1/auth/confirmation(.:format)     devise_token_auth/confirmations#show
-     api_v1_auth_validate_token GET    /api/v1/auth/validate_token(.:format)   devise_token_auth/token_validations#validate_token
+                    Prefix Verb     URI Pattern                             Controller#Action
+        new_api_user_session GET    /api/auth/sign_in(.:format)          devise_token_auth/sessions#new
+            api_user_session POST   /api/auth/sign_in(.:format)          devise_token_auth/sessions#create
+    destroy_api_user_session DELETE /api/auth/sign_out(.:format)         devise_token_auth/sessions#destroy
+           api_user_password POST   /api/auth/password(.:format)         devise_token_auth/passwords#create
+       new_api_user_password GET    /api/auth/password/new(.:format)     devise_token_auth/passwords#new
+      edit_api_user_password GET    /api/auth/password/edit(.:format)    devise_token_auth/passwords#edit
+                             PATCH  /api/auth/password(.:format)         devise_token_auth/passwords#update
+                             PUT    /api/auth/password(.:format)         devise_token_auth/passwords#update
+cancel_api_user_registration GET    /api/auth/cancel(.:format)           devise_token_auth/registrations#cancel
+       api_user_registration POST   /api/auth(.:format)                  devise_token_auth/registrations#create
+   new_api_user_registration GET    /api/auth/sign_up(.:format)          devise_token_auth/registrations#new
+  edit_api_user_registration GET    /api/auth/edit(.:format)             devise_token_auth/registrations#edit
+                             PATCH  /api/auth(.:format)                  devise_token_auth/registrations#update
+                             PUT    /api/auth(.:format)                  devise_token_auth/registrations#update
+                             DELETE /api/auth(.:format)                  devise_token_auth/registrations#destroy
+       api_user_confirmation POST   /api/auth/confirmation(.:format)     devise_token_auth/confirmations#create
+   new_api_user_confirmation GET    /api/auth/confirmation/new(.:format) devise_token_auth/confirmations#new
+                             GET    /api/auth/confirmation(.:format)     devise_token_auth/confirmations#show
+     api_auth_validate_token GET    /api/auth/validate_token(.:format)   devise_token_auth/token_validations#validate_token
 ```
 
 Now we need an API controller, lets create one. Run `touch app/controllers/api_controller.rb` in the terminal and add this: 
@@ -222,19 +221,27 @@ end
 
 This should make all the tests go green.
 
-Now when all the test go green it is time to actually test the API with postman. When you test to sign in or login it will give you an error saying `Can't verify CSRF token authenticity.`
-To fix this you need to run `mkdir app/controllers/api`
+Now when all the test go green it is time to actually test the API with postman. When you try to sign in or login, it will give you an error saying `Can't verify CSRF token authenticity.`
+To fix this you need to run:
+
+`mkdir app/controllers/api`
+
 `touch app/controllers/api/sessions_controller.rb`
+
 `touch app/controllers/api/registrations_controller.rb`
 
 Make the two files look like this
 ```ruby
+# app/controllers/api/sessions_controller.rb
+
 class  Api::SessionsController  <  DeviseTokenAuth::SessionsController
   skip_before_action :verify_authenticity_token
 end
 ```
 
 ```ruby
+# app/controllers/api/registrations_controller.rb
+
 class  Api::RegistrationsController  <  DeviseTokenAuth::RegistrationsController
   skip_before_action :verify_authenticity_token
 end
