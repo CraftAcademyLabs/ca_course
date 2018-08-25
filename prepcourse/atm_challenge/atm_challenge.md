@@ -1,7 +1,7 @@
 ---
 title: "Ruby basics - ATM Challenge"
 author: [Craft Academy]
-date: Version 0.1 - 2018
+date: Version 2 - 2018
 subject: "Ruby"
 keywords: [Ruby, Example, Learn To Code]
 subtitle: "Your First Ruby Challenge"
@@ -14,9 +14,10 @@ titlepage-rule-height: 2
 
 # Ruby basics - ATM Challenge
 
-Welcome to your first Ruby assignment. We will start the next step on your journey toward becoming a programmer/developer/coder by bulding a small piece of software that is suppposed to simulate an ATM (or as we call it in swedish: Bankomat)
+Welcome to your first Ruby assignment. We will start the next step on your journey toward becoming a programmer/developer/coder by building a small piece of software that is suppposed to simulate an ATM (or as we call it in swedish: Bankomat)
 
-![](http://alkredit.az/resources/content_img/logos/bankomat.png)
+<img src="http://alkredit.az/resources/content_img/logos/bankomat.png" style="width: 80%; height: auto;">
+
 
 Withdrawing money from an ATM is fairly common, everyday action. We've all done at some point, right? You are in need of some cash (for whatever reason), you have your Visa or MasterCard with you, you spot an ATM machine, you walk up to it, insert your card, enter your pin and you grab a few bucks or kronor or what have you. But what is exactly happening in this situation, or rather this particular interaction between you and that piece of machine? 
 

@@ -74,7 +74,7 @@ In your terminal, initialize a new git repository with the `init` command.
 ```
 $ git init
 Initialized empty Git repository in /your/path/atm/.git/
-✔ ~/your/path/atm [master|…2] 
+~/your/path/atm [master|…2] 
 ```
 Next, you need to create a `.gitignore` file. That file is used to keep information about files we want to EXCLUDE from version control. 
 
