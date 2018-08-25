@@ -41,7 +41,7 @@ Work hard, pay attention to details and collaborate with your fellow students, a
 ## The challenge
 Our client is a financial institution that wants to allow its customers to withdraw funds from their accounts using an Automatic Teller Machine (ATM). They have turned to us for a prototype of a system with limited functionality. Our job is to write a simple Ruby program that can be run in the Interactive Ruby Shell (IRB).
 
-**You will be working with your Coach and your peers to get started with using RSpec as a testing framework an with implementing your code.**
+**You will work with your Coach and your peers to get started with using RSpec as a testing framework, and with implementing your code.**
 
 
 
