@@ -119,6 +119,6 @@ Variables in Ruby can contain data of any type. You can use variables in your Ru
 - A local variable (declared within an object) name consists of a lowercase letter (or an underscore) followed by name characters (`balance`, `cyrrent_collection`).
 - An instance variable name starts with an `@` sign followed by a name (`@sign`, `@name`, etc).
 - A class variable name start with a double `@` sign (`@@`) and may be followed by digits, underscores, and letters, e.g. `@@colour`
-- Global variables starts with a dollar \($\) sign followed by other characters, e.g. `$global`
+- Global variables starts with a dollar (`$`) sign followed by other characters, e.g. `$global`
 
 
