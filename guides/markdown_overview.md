@@ -1,3 +1,18 @@
+---
+title: "Markdown"
+subtitle: "Writing Content For The Web"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Markdown, Content, Writing"
+keywords: [Markdown, Content, Writing]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+
 ## Overview
 
 Markdown is a way to write content for the web. It’s written in what nerds like to call “plaintext”, which is exactly the sort of text you’re used to writing and seeing.
