@@ -80,10 +80,12 @@ The following objectives must be met:
 - Make sure to **commit often** and (if you are Pair Programming) switch navigators (the person that writes code).
 
 # Naming standards
+
 Before we move on with the challenge, we need to point out a few things about Naming Standards. Junior developers often struggle to choose good names for variables and methods they write. All entities (classes, objects, methods, variables, etc...) in our code can be described by different names. It’s important to choose one that represents the entity best for the current context. You ARE free to set your own class and methods names, but following conventions and common sense is calld for. There are also some constraints in Ruby concerning names, so please take a close look at the sections below.  
 
-## Classes and Modules 
-Class and Module names starts with an uppercase letter, by convention they are named using `MixedCase`, e.g. `module Withdraval`, `class AccountHolder`.
+## Classes and Modules
+
+Class and Module names starts with an uppercase letter, by convention they are named using `CamepCase` (also called `PascalCase`), e.g. `module Withdraval`, `class AccountHolder`.
 
 ## Methods
 
@@ -117,6 +119,6 @@ Variables in Ruby can contain data of any type. You can use variables in your Ru
 - A local variable (declared within an object) name consists of a lowercase letter (or an underscore) followed by name characters (`balance`, `cyrrent_collection`).
 - An instance variable name starts with an `@` sign followed by a name (`@sign`, `@name`, etc).
 - A class variable name start with a double `@` sign (`@@`) and may be followed by digits, underscores, and letters, e.g. `@@colour`
-- Global variables starts with a dollar ($) sign followed by other characters, e.g. `$global`
+- Global variables starts with a dollar \($\) sign followed by other characters, e.g. `$global`
 
 
