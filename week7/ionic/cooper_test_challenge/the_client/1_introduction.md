@@ -1,0 +1,3 @@
+We will be using Ionic to build our mobile client. If you are not familiar with Ionic yet, please go back in the documentation and complete the [Going mobile with Ionic chapter](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CC-01+2018/courseware/96bf29b196214229a1f5b420c670ac7f/18575ced5be948578cd063a3fdb3a5e0/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CC-01%2B2018%2Btype%40sequential%2Bblock%4018575ced5be948578cd063a3fdb3a5e0).
+
+The objective of this step is to allow the user to calculate his results. We will NOT be accessing the API yet. The login functionality will not work once we are finished with this step. That will be the objective of the next chapter.

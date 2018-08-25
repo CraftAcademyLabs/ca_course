@@ -27,9 +27,16 @@ Give your droplet a name and upload your ssh-keys to be able to login to the ser
 ![SSH Key and Droplet name](images/ssh-key-droplet-name.png)
 
 ## Create `deploy` user
+We first need to ssh into our server as the `root` user, so grab the ip number of the server.
+
+```shell
+$ ssh root@your-vps-ip-address
+```
+
+Then we can create the user
 
 ```sh
-adduser deploy
+adduser deploy  // enter a password when asked and store it somewhere safe
 adduser deploy sudo
 echo "deploy  ALL=(ALL:ALL)   NOPASSWD: ALL" > /etc/sudoers.d/deploy
 ```
@@ -58,7 +65,7 @@ ssh deploy@your-vps-ip-address
 Install system and security updates on the server
 
 ```sh
-sudo apt update && sudo apt upgrade -y
+sudo apt update && sudo apt upgrade -y  // If you get a popup select the option to keep local settings
 ```
 
 ## Security - Setup a firewall
@@ -134,12 +141,23 @@ rbenv global 2.5.1
 ruby -v
 ```
 
-And finally let's install Bunbler
+If you get the error `rbenv: no such command `install'`
+
+then run `sudo apt-get install rbenv ruby-build` and try again `rbenv install 2.5.1`
+
+Next we need to install Bundler
 
 ```sh
 gem install bundler
 rbenv rehash
 ```
+
+And finally we install rails
+
+``sh
+gem install rails
+```
+
 
 ## Installing a Web Server Nginx
 
@@ -191,13 +209,22 @@ sudo systemctl restart nginx.service
 
 ## PostgreSQL Database Setup
 
+Install postgres
+
 ```sh
 sudo apt install postgresql postgresql-contrib libpq-dev -y
 ```
 
+Switch to postgres user and create a `deploy` postgres user, we will need to specify a password, make it a strong one, store it somewhere since we will need it in our rails application to manage our database. When that is done we exit the `postgres` user
+
 ```sh
 sudo su - postgres
 createuser -s -r -P deploy
+exit
+```
+As the `deploy` user we need to create the database for our application
+
+```sh
 createdb -O deploy my_app_name_production
 ```
 
@@ -214,6 +241,8 @@ group :development do
   gem 'capistrano3-puma', '~> 3.1', '>= 3.1.1'
 end
 ```
+
+Run `bundle install`
 
 ```sh
 cap install STAGES=production
