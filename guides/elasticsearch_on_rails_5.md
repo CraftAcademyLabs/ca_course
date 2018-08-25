@@ -1,3 +1,18 @@
+---
+title: "Rails 5 - Elasticsearch"
+subtitle: "Seek, And Ye Shall Find..."
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Elasticsearch, Rails"
+keywords: [Elasticsearch, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+
 ## Search functionality in Rails using Elasticsearch and Chewy
 
 Elasticsearch is a powerful and flexible, open source, RESTful HTTP, distributed interface for data indexing and real-time search.

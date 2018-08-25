@@ -1,3 +1,18 @@
+---
+title: "Rails 5 - Active Storage"
+subtitle: "Deployment with Heroku"
+author: [Craft Academy - Coding as a Craft]
+date: Version Beta
+subject: "Elasticsearch, Rails"
+keywords: [Elasticsearch, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+
 ### Deployment with Heroku
 
 Heroku has an “ephemeral” hard drive, this means that you can write files to disk, but those files will not persist after the application is restarted. By default Active Storage uses a :local storage option, which uses the local file system to store any uploaded files. While file uploads that are stored with the :local option will appear to work at first, the attachments will exhibit seemingly strange behavior and eventually disappear. The files will go away when the app is deployed, or when it is automatically restarted (once every 24 hours).

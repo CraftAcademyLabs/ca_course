@@ -1,4 +1,18 @@
-# Login with Facebook for Rails 5
+---
+title: "OAuth in Rails"
+subtitle: "User Authentication with Facebook"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "OAuth, Authentication, Rails"
+keywords: [OAuth, Authentication, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+# User Authentication with Facebook
 
 ## Introduction
 OAuth 2 is an authorization protocol that enables a third-party applications to obtain limited access to an internet service. One of the main aspects of this protocol is the access token that is issued to the application. The token is used by the app to perform various pre-approved actions on the user’s behalf. 

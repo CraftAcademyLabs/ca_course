@@ -1,3 +1,18 @@
+---
+title: "Ruby On Rails - Setup"
+subtitle: "Training Wheels"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Testing, Rails"
+keywords: [Testing, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+
 # Rails with Testing frameworks
 This guide will provide a step-by-step instruction to scaffold a new Rails 5.2 application. We will be using a separate gemset to contain the dependencies used in this project. You should familiarize yourself with the concept of gemsets by reading more about them on the [RVM documentation](https://rvm.io/gemsets/basics) site. 
 

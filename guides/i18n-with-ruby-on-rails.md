@@ -1,3 +1,18 @@
+---
+title: "Rails 5 - Internationalization"
+subtitle: "Go Global!"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Internationalization, Localization, Rails"
+keywords: [Internationalization, Localization, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+
 In this guide we'll take a closer look at how to add support forInternationalization and localization in a Rails application, where to store translations, what localized views are, how to format dates and times, how to introduce pluralization rules and more.
 
 ### Introduction

@@ -1,3 +1,17 @@
+---
+title: "Rails 5 - Active Storage"
+subtitle: "Environment-Specific Credentials"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Elasticsearch, Rails"
+keywords: [Elasticsearch, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Environment-Specific Credentials for Active Storage
 
 Do you want to use the same storage service for multiple environments (development and production) with Active Storage? Here's a walkthough about how to set up environment-specific encrypted credentials and a small tweak to the Active Storage configuration file.

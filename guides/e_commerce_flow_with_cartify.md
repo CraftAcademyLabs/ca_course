@@ -1,3 +1,17 @@
+---
+title: "E-commerce flow using Cartify"
+subtitle: "Training Wheels"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "E-commerce, Rails"
+keywords: [E-commerce, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## E-commerce flow using Cartify
 
 ### Cartify

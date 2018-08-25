@@ -1,3 +1,17 @@
+---
+title: "OAuth in Rails"
+subtitle: "Authenticating User With Multiple OAuth Providers"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "OAuth, Authentication, Rails"
+keywords: [OAuth, Authentication, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Authenticating User With Multiple OAuth Providers 
 
 This Guide assumes that you have a Rails (5.2) application up and running with OmniAuth authentication using Facebook configured (please see "OAuth with Facebook" guide).

@@ -1,3 +1,17 @@
+---
+title: "DevOps"
+subtitle: "Deploy Ruby on Rails on Ubuntu 18.04"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "DevOps, Deployment, DigitalOcean, Rails"
+keywords: [DevOps, Deployment, DigitalOcean, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # Deploy Ruby on Rails on Ubuntu 18.04
 
 So far in this camp, you've been deploying most of your Rails application on Heroku. This required little to zero configurations on your part. All you needed to do was create an account with them, get your project ready and push your code to a git repository provided by Heroku. You didn't have to worry about setting up a server and installing all the necessary software and package to host a Rails application.

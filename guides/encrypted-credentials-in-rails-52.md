@@ -1,3 +1,18 @@
+---
+title: "Rails 5 - Encrypted Credentials"
+subtitle: "Keep Your Secrets Safe"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Credentials, Rails"
+keywords: [Credentials, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+
 Rails release 5.2 \(in RC1 at the time of writing this guide\) handles management of application secrets and credentials in a secure way. The release introduces **encrypted credentials** \(called "secrets" in release 5.1\) that are stored in  `config/credentials.yml.enc` .
 
 ### The Master Key
