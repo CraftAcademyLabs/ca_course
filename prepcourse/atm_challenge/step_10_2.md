@@ -10,7 +10,7 @@ Now we want to create a method that allows a person to withdraw funds from a spe
 
 Consider these specs.
 
-!FILENAME spec/person_spec.rb
+<small>spec/person_spec.rb</small>
 ```ruby
 describe 'can manage funds if an account been created' do
   [...]
@@ -46,7 +46,7 @@ Note: There are some new commands and techniques in the code above. Google them,
 
 Now I will show you how I implemented the `Person` class - at least in the first development cycle (there are plenty of room for refactoring and I expect you to improve on this code). 
 
-!FILENAME lib/person.rb
+<small>lib/person.rb</small>
 ```ruby
 require './lib/account'
 

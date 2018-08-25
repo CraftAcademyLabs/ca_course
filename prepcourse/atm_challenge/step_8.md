@@ -51,7 +51,7 @@ When we set the :exp_date we need to make the calculation of today's date and ad
 
 Let's write a test to see if the `:exp_date` is set in `initialize`. 
 
-!FILENAME spec/account_spec.rb
+<small>spec/account_spec.rb</small>
 ```ruby
 it 'is expected to have an expiry date on initialize' do
     # Here we set the validity of the card to 5 yrs as default
@@ -86,7 +86,7 @@ Another check that the Atm does on the Account is to check the `:account_status`
 
 We start with a spec.
 
-!FILENAME spec/account_spec.rb
+<small>spec/account_spec.rb</small>
 ```ruby
 it 'is expected to have :active status on initialize' do
   expect(subject.account_status).to eq :active
@@ -97,7 +97,7 @@ Notice that we are using the datatype Symbol to set the `:account_status`.
 
 And again we need to set that attribute in our `initialize` method.
 
-!FILENAME lib/account.rb
+<small>lib/account.rb</small>
 ```ruby
   def initialize
     [...]
@@ -138,7 +138,7 @@ end
 Each account that we create should have an owner. The owner should have a class of his own. For the moment that class is not defined so we will go ahead and pretend again that there is an instance of Person by using an `instance_double`.
 
 
-!FILENAME spec/account_spec.rb
+<small>spec/account_spec.rb</small>
 ```ruby
 # we create the double in our `describe` block and give him one sigle attribute
 let(:person) {instance_double('Person', name: 'Thomas')}
@@ -155,7 +155,7 @@ end
 ```
 And add a test for a mandatory owner for each instance of Account.
 
-!FILENAME spec/account_spec.rb
+<small>spec/account_spec.rb</small>
 ```ruby
 it 'is expected to raise error if no owner is set' do
   expect { described_class.new }.to raise_error 'An Account owner is required'
@@ -166,7 +166,7 @@ Note that we are using a new matcher (`raise_error`). There are many more matche
 
 Moving on to the implementation to make these two specs to pass (as usual, this is a suggestion, examine the code closely before using it).
 
-!FILENAME lib/account.rb
+<small>lib/account.rb</small>
 ```ruby
 [...]
 def initialize(attrs = {})

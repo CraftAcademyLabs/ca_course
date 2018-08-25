@@ -14,7 +14,7 @@ YAML is a file format for storing object trees and data serialization which is b
 
 All the items in the library must be stored in a `yml` file. The file feeds to be structured this way.
 
-!FILENAME lib/data.yml
+<small>lib/data.yml</small>
 ```yml
 ---
 - :item:

@@ -9,7 +9,7 @@ In practical terms, we want to extract some of this methods responsibilities to 
 
 Evaluate this code carefully.
 
-!FILENAME lib/atm.rb
+<small>lib/atm.rb</small>
 ```ruby 
 class Atm
   attr_accessor :funds

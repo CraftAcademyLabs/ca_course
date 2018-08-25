@@ -45,7 +45,7 @@ However, we have not created that class yet, so in out `atm_spec` we will use a 
 
 Let's define a `class_double` in our spec and give it a name of `account`. We'll give our `account` a `@balance` of `100`. Then we'll be able to use this in our testing.
 
-!FILENAME spec/atm_spec.rb
+<small>spec/atm_spec.rb</small>
 ```ruby
 describe Atm do
   let(:account) { instance_double('Account') }
@@ -68,7 +68,7 @@ First we will write a test and then we will modify the implementation code.
 
 **Note:** *Make sure that you read the comments in the `it` block below but **do not include them** in your spec.*
 
-!FILENAME spec/atm_spec.rb
+<small>spec/atm_spec.rb</small>
 ```ruby
 describe Atm do
   [...]
@@ -95,7 +95,7 @@ Now, make sure you run this spec and study the error messages from Rspec careful
 
 In order to make this pass, we need to modify the `withdraw` method in our implementation code. Again, be mindful of the comments in the code below.
 
-!FILENAME spec/atm_spec.rb
+<small>spec/atm_spec.rb</small>
 ```ruby
 def withdraw(amount, account)
   # We will be using Ruby's `case`- `when` - `then` flow control statement
@@ -122,7 +122,7 @@ Note that your first spec, the one that was passing just a moment ago is failing
 
 Well, we have modified the `withdraw` method since we wrote that first spec. Not the method is expecting the `account` object as well as the amount we want to withdraw to be passed in as arguments. So we need to modify that spec and add account as an argument. (See the modified `expect` statement below). 
 
-!FILENAME spec/atm_spec.rb
+<small>spec/atm_spec.rb</small>
 ```ruby
 [...]
 it 'funds are reduced at withdraw' do

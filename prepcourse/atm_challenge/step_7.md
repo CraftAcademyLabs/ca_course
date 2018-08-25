@@ -104,7 +104,7 @@ As usual, let's start with our test. We don't necessarily need to add any new sp
 
 Let's revisit this spec.
 
-!FILENAME  spec/atm_spec.rb
+<small>spec/atm_spec.rb</small>
 ```ruby
 it 'allow withdraw if account has enough balance.' do
   expected_output = { 
@@ -123,7 +123,7 @@ If you run this spec now, it will go red.
 
 Let's add `bills:` to the output and create a method that builds upon our experimental code above and populates the array. 
 
-!FILENAME  lib/atm.rb
+<small>lib/atm.rb</small>
 ```ruby
 [...]
 def perform_transaction(amount, account)

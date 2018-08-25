@@ -21,7 +21,7 @@ $ touch spec/atm_spec.rb
 ```
 Let's add the following test to that file. Note the keywords `describe` and `it`. Also, as in all ruby programs we are creating blocks with the `do` and `end` keywords. *Make it a habit that you always add an `end` if you type `do`.*
 
-!FILENAME spec/atm_spec.rb
+!<small> spec/atm_spec.rb</small>
 ```ruby
 require './lib/atm.rb'
 describe Atm do
@@ -62,7 +62,7 @@ rspec spec/atm_spec.rb
 
 A new error message. But not the same as before. That is good. So what have we here?  `uninitialized constant Atm`? Yes, there is no `Atm` class defined. Let's do that. 
 
-!FILENAME lib/atm.rb
+<small>lib/atm.rb</small>
 ```ruby
 class Atm
 
@@ -90,7 +90,7 @@ New error message? Cool!
 
 Yes, there is no method `funds` for the `Atm` class. Let's add that by adding a `attr_accessor :funds` to the class. What is `attr_accessor`? You can read about it in this [Stack Overflow answer](http://stackoverflow.com/a/5046915/1354994). 
 
-!FILENAME lib/atm.rb
+<small> lib/atm.rb</small>
 ```ruby
 class Atm
   attr_accessor :funds
@@ -118,7 +118,7 @@ Okay, so we expected `funds` to be `1000` but it was `nil`. Let's make it so tha
 
 We can do that by setting that value in the `initialize` method. `initialize` is a constructor method that will be run every time an instance of a class is created. 
 
-!FILENAME lib/atm.rb
+<small> lib/atm.rb</small>
 ```ruby
 class Atm
   attr_accessor :funds
@@ -154,7 +154,7 @@ Alright, enough of coding philosophy. Let's move on. This is a great time to do 
 
 Let's add another test to the `atm_spec`. Inside the `describe Atm`block, add this spec.
 
-!FILENAME spec/atm_spec.rb
+<small>spec/atm_spec.rb</small>
 ```ruby
 it 'funds are reduced at withdraw' do
   subject.withdraw 50
@@ -184,7 +184,7 @@ Shoots! New error. Yes, yes, yes. That is supposed to happen! ;-)
 
 So, we have an `undefined method 'withdraw'`. Alright. let's create the `withdraw` method and let it take one argument - the amount we want to withdraw from the Atm. 
 
-!FILENAME lib/atm.rb
+<small>lib/atm.rb</small>
 ```ruby
 class Atm
   attr_accessor :funds
@@ -221,7 +221,7 @@ Okay, I think you get the point now. We don't have to follow the error messages 
 
 Let's add some functionality to the `withdraw` method that actually adjust the `balance`. 
 
-!FILENAME lib/atm.rb
+<small>lib/atm.rb</small>
 ```ruby
 class Atm
   #...
