@@ -1,6 +1,34 @@
 # Step 1 - Setting the stage
 
-The first thing we need to do is to set up the necessary tools we'll be using. We know that we'll be using Ruby as the programming language. That is already set up on our system. 
+Let's get back to the ATM challenge. 
+
+## Learning objectives
+
+1. Learn how to set up a simple ruby based project
+2. Make use of a testing framework 
+3. Connect your project (local repository) to a GitHub repository
+4. Practice Pair Programing and sharing code
+
+## Action points
+
+* Set up a simple project   
+    1. Create a `Gemfile` and add `rspec` as a dependency.
+    2. Initiate `rspec`
+    3. Modify `.rspec` to output the spec messages in terminal.
+* Create a basic folder structure for your project (production code in `lib`, tests in `spec`)
+* Create a `README.md` with a basic description of the project
+* Initialize and push a git repository
+* Add your Pair as a `git remote`
+
+## Let's do it!
+
+Create a project folder in your Terminal and `cd` into that folder
+
+```shell
+$ touch atm_challenge
+```
+
+As mentioned above, we need to set up the necessary tools we'll be using. We know that we'll be using Ruby as the programming language. That is already set up on our system. 
 
 We also know that we'll be trying to write our application using Test Driven Development - or at least try to do that. For that we'll need a testing framework. Enter RSpec - the most frequently used testing library for Ruby applications. Even though it has a very rich and powerful DSL (domain-specific language), at its core it is a simple tool which you can start using rather quickly. 
 
@@ -15,7 +43,7 @@ $ touch Gemfile
 ```
 Add the following content to that file. 
 
-_Gemfile_
+<small>Gemfile</small>
 ```ruby
 source 'https://rubygems.org'
 

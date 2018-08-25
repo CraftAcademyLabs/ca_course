@@ -16,8 +16,9 @@ titlepage-rule-height: 2
 
 Welcome to your first Ruby assignment. We will start the next step on your journey toward becoming a programmer/developer/coder by building a small piece of software that is suppposed to simulate an ATM (or as we call it in swedish: Bankomat)
 
-<img src="http://alkredit.az/resources/content_img/logos/bankomat.png" style="width: 80%; height: auto;">
 
+
+![](http://alkredit.az/resources/content_img/logos/bankomat.png)
 
 Withdrawing money from an ATM is fairly common, everyday action. We've all done at some point, right? You are in need of some cash (for whatever reason), you have your Visa or MasterCard with you, you spot an ATM machine, you walk up to it, insert your card, enter your pin and you grab a few bucks or kronor or what have you. But what is exactly happening in this situation, or rather this particular interaction between you and that piece of machine? 
 
@@ -29,7 +30,7 @@ This is not a walk in the park. Just becouse the problem set in itself does not 
 Work hard, pay attention to details and collaborate with your fellow students, and you'll be all good. 
 
 
-### Learning objectives
+## Learning objectives
 - Review fundamentals learned in the prep course
 - Learn about Ruby classes, modules, methods and attributes
 - Learn about unit testing with RSpec and the benefits of writing automated tests
@@ -37,14 +38,14 @@ Work hard, pay attention to details and collaborate with your fellow students, a
 - Learn about using double, class_double and instance_double
 - Learn about debugging and common programming techniques
 
-### The challenge
+## The challenge
 Our client is a financial institution that wants to allow its customers to withdraw funds from their accounts using an Automatic Teller Machine (ATM). They have turned to us for a prototype of a system with limited functionality. Our job is to write a simple Ruby program that can be run in the Interactive Ruby Shell (IRB).
 
 **You will be working with your Coach and your peers to get started with using RSpec as a testing framework an with implementing your code.**
 
 
 
-### Scope
+## Scope
 The following objectives must be met:
 
 - An ATM machine can hold up to $1000
@@ -58,7 +59,7 @@ The following objectives must be met:
 - There are only $5, $10 and $20 bills in the ATM. Withdrawals for amounts not divisible by 5 must be rejected.
 - Upon a successful withdrawal the system should return a receipt with information about the date, amount and bills that was dispatched. (The receipt should be presented in the form of a Hash
 
-#### Example output
+### Example output
 ```ruby
 # Message on successful withdrawal
 { status: true, message: 'success', date: '2016-01-30', amount: 35, bills: [20,10,5]}
@@ -70,7 +71,7 @@ The following objectives must be met:
 { status: false, message: 'card expired', date: '2016-01-30'}
 ```
 
-## Tips and Tricks
+# Tips and Tricks
 
 - Don't overdo it. Keep your implementation as simple as possible.
 - Test your code - both manually in IRB but, most importantly with automated tests.
@@ -78,13 +79,13 @@ The following objectives must be met:
 - **Run one test at the time to avoid a massive output in your terminal.** Disable `it` blocks by adding  an `x` before (as in `xit "Should..." do`)
 - Make sure to **commit often** and (if you are Pair Programming) switch navigators (the person that writes code).
 
-## Naming standards
+# Naming standards
 Before we move on with the challenge, we need to point out a few things about Naming Standards. Junior developers often struggle to choose good names for variables and methods they write. All entities (classes, objects, methods, variables, etc...) in our code can be described by different names. It’s important to choose one that represents the entity best for the current context. You ARE free to set your own class and methods names, but following conventions and common sense is calld for. There are also some constraints in Ruby concerning names, so please take a close look at the sections below.  
 
-### Classes and Modules 
+## Classes and Modules 
 Class and Module names starts with an uppercase letter, by convention they are named using `MixedCase`, e.g. `module Withdraval`, `class AccountHolder`.
 
-### Methods
+## Methods
 
 When naming methods the goal is to be descriptive but short. Name based on what it will return or what the major intended side effect will be. You shouldn't be missing any parts from the name because the method should only do one thing anyway. If you can't tell what the method will return based on the name, you probably need a better name. If your method name seems insanely long, your method may be trying to do more than one thing. End with a question mark `?` if it will return `true`/`false`.
 
@@ -109,7 +110,7 @@ exclamations:
   - `obj.truncate_body!`
   - `obj.remove_name!`
 
-### Variables
+## Variables
 
 Variables in Ruby can contain data of any type. You can use variables in your Ruby programs without any declarations. Variable name itself denotes its scope (local, global, instance, class.).
 
