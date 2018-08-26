@@ -54,13 +54,19 @@ end
 
 ```
 
-###The PIN code
+### The PIN code
 
 The next check will be to make sure that the user passes in the right pin code when trying to withdraw money from his account - just as in normal life. 
 
+```
+As a Customer              
+In order to keep my funds secure             
+I want a secure Pin code & an expiry date on my card that allows only me access to my funds
+```
+
 We will need to modify the `withdraw` to accept a `pin_code` at one of the arguments. This will have an effect on all our tests. 
 
-!FILENAME lib/atm.rb
+lib/atm.rb
 ```ruby
 def withdraw(amount, account) -> withdraw(amount, pin_code, account)
 ```
@@ -68,7 +74,7 @@ So, after that change most of the tests will fail.
 
 Change every call to the `withdraw` method to include `1234` as the second argument. 
 
-!FILENAME spec/atm_spec.rb
+<small>spec/atm_spec.rb</small>
 ```ruby
 [...]
 subject.withdraw(50, '1234', account)
@@ -77,7 +83,7 @@ subject.withdraw(50, '1234', account)
 
 We also need to change our `instance_double` we are using for `account`. 
 
-!FILENAME spec/atm_spec.rb
+<small>spec/atm_spec.rb</small>
 ```ruby
 [...]
 let(:account) { instance_double('Account', pin_code: '1234') }
@@ -88,7 +94,7 @@ Okay, make sure that all the tests you have written up until now are passing bef
 
 Next, introduce this test.
 
-!FILENAME spec/atm_spec.rb
+<small>spec/atm_spec.rb</small>
 ```ruby
 it 'reject withdraw if pin is wrong' do
   expected_output = { status: false, message: 'wrong pin', date: Date.today }
@@ -98,7 +104,7 @@ end
 
 And implement a new `when` in the `withdraw` method.
 
-!FILENAME lib/atm.rb
+<small>lib/atm.rb</small>
 ```ruby
 [...]
 def withdraw(amount, account)
@@ -112,7 +118,8 @@ def withdraw(amount, account)
 
 And again, we need to create a new private method, just as we did with the previous example.
 
-!FILENAME lib/atm.rb
+<small>lib/atm.rb</small>
+
 ```ruby
 [...]
 private 
