@@ -2,11 +2,17 @@
 
 Another check we need to do in the `withdraw` method is to see if there are funds in the ATM, right?  We can not perform a transaction if there are no funds in the machine. 
 
+```
+As a ATM operator
+In order for our costumers to withdraw funds
+I need make sure that we only allow withdrawals if there are funds available
+``` 
+
 The ATM has a `funds` attribute. We can perform a check if the `amount` we try to withdraw is larger then the `funds` available. 
 
 Let's add a spec for that.
 
-!FILENAME spec/atm_spec.rb
+<small>spec/atm_spec.rb</small>
 ```ruby
 [...]
 it 'reject withdraw if ATM has insufficient funds' do
@@ -22,7 +28,7 @@ end
 
 And implement a new `when` in the `withdraw` method.
 
-!FILENAME lib/atm.rb
+<small>lib/atm.rb</small>
 ```ruby
 [...]
 def withdraw(amount, account)
@@ -37,7 +43,7 @@ def withdraw(amount, account)
 
 And, we also need to create a new private method, just as we did with the previous example.
 
-!FILENAME lib/atm.rb
+<small>lib/atm.rb</small>
 ```ruby
 [...]
 private 
