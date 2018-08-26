@@ -9,7 +9,7 @@ For starters, what if there is not enough money in the account? At this point we
 Let's change that.
 
 
-<small>spec/atm_spec.rb</small>
+_spec/atm_spec.rb_
 ```ruby
 [...]
 it 'rejects withdraw if account has insufficient funds' do
@@ -21,12 +21,10 @@ it 'rejects withdraw if account has insufficient funds' do
 end
 [...]
 ```
+This test should fail for you. The following implementation is needed.
 
-This test should fail for you. 
+_lib/atm.rb_
 
-The following implementation is needed.
-
-<small>lib/atm.rb</small>
 ```ruby
 def withdraw(amount, account)
   case

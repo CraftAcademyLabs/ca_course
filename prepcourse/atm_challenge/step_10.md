@@ -1,16 +1,17 @@
 ## Step 10 - Integrating all parts
 
-Alright, at this stage we can create an `Atm`, we can create a `Person` that has an `Account`. The `Person`can have `cash` in pocket or hold his money in his `Account`. All pretty straight forward.
+Alright, at this stage we can create an `Atm`, we can create a `Person` that has an `Account`. The `Person` can have `cash` in pocket, or hold his money in his `Account`. All pretty straight forward.
 
-Now we want to create a method that allows a person to withdraw funds from a specific atm and when he does that 3 things should happen:
+Now, we want to create a method that allows a person to withdraw funds using a specific atm machine, and when he does that 3 things should happen:
 
-1. The balance of the account should DECREASE
-2. The funds in the ATM should DECREASE
-3. The cash in pocket should INCREASE
+1. The **balance of the account** should DECREASE
+2. The **funds in the ATM** should DECREASE
+3. The **cash in pocket** should INCREASE
 
 Consider these specs.
 
-<small>spec/person_spec.rb</small>
+_spec/person_spec.rb_
+
 ```ruby
 describe 'can manage funds if an account been created' do
   [...]
@@ -44,9 +45,10 @@ end
 
 Note: There are some new commands and techniques in the code above. Google them, talk to your peers and figure out WHY we are using them so you get at good understanding of what we are doing. I will be going over some of them in my talks and break-out sessions, but it is up to you to find the best way of using them.
 
-Now I will show you how I implemented the `Person` class - at least in the first development cycle (there are plenty of room for refactoring and I expect you to improve on this code). 
+Now I will show you how I implemented the `Person` class - at least in the first development cycle (there are plenty of room for refactoring, and I expect you to improve on this code). 
 
-<small>lib/person.rb</small>
+_lib/person.rb_ 
+
 ```ruby
 require './lib/account'
 

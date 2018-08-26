@@ -1,6 +1,8 @@
+# User Stories
+
 User stories are small stories to describe the users of our app or program and what they want.
 
-When working in software development we want to follow Agile values and principles, and the user stories help us to do just that. There are three Agile principles user stories that we need to keep in mind when we are writing user stories:
+When working in software development we want to follow Agile values and principles, and the user stories help us to do just that. There are three Agile principles that we need to keep in mind when we are writing user stories:
 
 -   Working software is the primary measure of progress
     
@@ -20,13 +22,11 @@ There are a number of benefits of working with user stories
 
 ## How do we write user stories?
 
-The stories should focus on the
+The stories should focus on:
 
-Who we are building for
-
-What we are building
-
-Why we are building
+- Who we are building for
+- What we are building
+- Why we are building
 
 The format for the user story is the following:
 
@@ -70,4 +70,4 @@ The first line is telling us who the stakeholder is, it could be the user, the p
 
 ### Some final words on user stories
 
-From now on you will need user stories for all functionality you want to implement, you will either get some stories provided or you need to write your own. Having user stories is like planning ahead, they also give you small bite-size chunks to work with rather than trying to wrap your mind around too much at the same time.
+From now on you will need user stories for all functionality you want to implement. You will either get some stories provided or you need to write your own. Having user stories is like planning ahead, they also give you small bite-size chunks to work with rather than trying to wrap your mind around too much at the same time.

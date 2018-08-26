@@ -10,7 +10,7 @@ We want to assign each account to a separate person
 
 Remember, you are free to modify these specs if you find any flaws in it OR if you find another way of testing the same behavior. 
 
-<small>spec/person_spec.rb</small>
+_spec/person_spec.rb_
 ```ruby
 require './lib/person'
 require './lib/atm'

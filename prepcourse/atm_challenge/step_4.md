@@ -9,7 +9,8 @@ In practical terms, we want to extract some of this methods responsibilities to 
 
 Evaluate this code carefully.
 
-<small>lib/atm.rb</small>
+_lib/atm.rb_
+
 ```ruby 
 class Atm
   attr_accessor :funds
@@ -47,10 +48,9 @@ class Atm
     { status: true, message: 'success', date: Date.today, amount: amount }
   end
 end
-
 ```
 
 Note that we have NOT made any changes to our test and if you run them now, they should all pass green. 
 
-**Refactoring is all about that. You make your code better WITHOUT introducing any new functionality. **
+**Refactoring is all about that. You make your code better WITHOUT introducing any new functionality.**
 
