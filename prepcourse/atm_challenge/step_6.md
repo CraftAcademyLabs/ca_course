@@ -136,7 +136,7 @@ Let's tackle the check for card expiration date.
 
 First, let's modify our `double`.
 
-!FILENAME spec/atm_spec.rb
+<small>spec/atm_spec.rb</small>
 ```ruby
 [...]
 let(:account) { instance_double('Account', pin_code: '1234', exp_date: '04/17') }
@@ -145,7 +145,7 @@ let(:account) { instance_double('Account', pin_code: '1234', exp_date: '04/17') 
 
 And, as always, we write a test. (I will not include comments. By now you know what we need to do to build a test)
 
-!FILENAME spec/atm_spec.rb
+<small>spec/atm_spec.rb</small>
 ```ruby
 it 'reject withdraw if card is expired' do
   allow(account).to receive(:exp_date).and_return('12/15')
@@ -156,7 +156,7 @@ end
 
 And again, we need to modify the `withdraw` method. 
 
-!FILENAME lib/atm.rb
+<small>lib/atm.rb</small>
 ```ruby
 [...]
 def withdraw(amount, account)
@@ -170,7 +170,7 @@ def withdraw(amount, account)
 
 Now, the method `card_expired?` is a little tricky. We need to make use of Ruby's `Date` object. `account.exp_date` is of String class. We need to transform it to a Date object and compare it to today's date. Examine the following implementation closely before implementing it. 
 
-!FILENAME lib/atm.rb
+<small>lib/atm.rb</small>
 ```ruby
 [...]
 def card_expired?(exp_date)
@@ -180,13 +180,19 @@ end
 
 Can you understand what we are doing here? 
 
-###More checks
+### Disabled Account
 
 It is time for you to start to write code on your own. There is yet another one check we need to perform. The `account_status` attribute will tell us if an account is `active` or `disabled`. 
 
+```
+As a ATM operator             
+In order to allow access active customers             
+I want to allow withdrawals from only active accounts
+```
+
 Our `class_double` will be updated with this attribute to look like this. 
 
-!FILENAME spec/atm_spec.rb
+<small>spec/atm_spec.rb</small>
 ```ruby
 [...]
 let(:account) { instance_double('Account', pin_code: '1234', exp_date: '04/17', account_status: :active) }
