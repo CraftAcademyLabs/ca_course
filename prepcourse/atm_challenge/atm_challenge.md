@@ -18,7 +18,7 @@ Welcome to your first Ruby assignment. We will start the next step on your journ
 
 
 
-![](http://alkredit.az/resources/content_img/logos/bankomat.png)
+![Bankomat](https://upload.wikimedia.org/wikipedia/commons/thumb/9/98/En_automat_fr%C3%A5n_Bankomat.jpg/250px-En_automat_fr%C3%A5n_Bankomat.jpg)
 
 Withdrawing money from an ATM is fairly common, everyday action. We've all done at some point, right? You are in need of some cash (for whatever reason), you have your Visa or MasterCard with you, you spot an ATM machine, you walk up to it, insert your card, enter your pin and you grab a few bucks or kronor or what have you. But what is exactly happening in this situation, or rather this particular interaction between you and that piece of machine? 
 
