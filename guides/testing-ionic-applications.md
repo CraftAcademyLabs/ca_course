@@ -348,7 +348,7 @@ When running the e2e tests we first have to fire up `ionic serve --lab` in anoth
 
 When you have Ionic server running, you can run `npm run e2e` to run your acceptance tests.
 
-## Final words
+## Wrap up
 
 **Testing is challenging and sometimes frustrating even for experienced developers.** 
 

@@ -14,7 +14,8 @@ titlepage-rule-height: 2
 
 
 # Rails with Testing frameworks
-This guide will provide a step-by-step instruction to scaffold a new Rails 5.2 application. We will be using a separate gemset to contain the dependencies used in this project. You should familiarize yourself with the concept of gemsets by reading more about them on the [RVM documentation](https://rvm.io/gemsets/basics) site. 
+
+This guide will provide a step-by-step instruction to scaffold a new Rails 5.2 application. We will be using a separate gemset to contain the dependencies used in this project. You should familiarize yourself with the concept of gemsets by reading more about them on the [RVM documentation - (https://rvm.io/gemsets/basics)](https://rvm.io/gemsets/basics) site. 
 
 _Please note that this setup may or may not suite your purposes - the frameworks we use are the one that suites us and makes our workflow effective and productive. But it's up to you to form your own opinion._ 
 
@@ -234,7 +235,9 @@ Run your tests to check if all setup is working:
 $ rake
 ```
 
+## Wrap up
+
 You should get a green response from both testing frameworks. 
 If all is good, commit and push. At this stage, you are ready to get started with implementing your features - BDD style.
 
-Good luck
+Good luck with your new Rails application

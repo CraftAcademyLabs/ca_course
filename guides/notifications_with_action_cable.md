@@ -213,7 +213,7 @@ Now, every time a user leaves a comment a notification will be pushed out to all
 ![](https://class.craftacademy.co/asset-v1:CraftAcademy+CA-CAMP+2018-april+type@asset+block@food-hub-comment-notification.gif)
 
 
-## Wrapup
+## Wrap up
 
 Your notifications are now configured and ready to be used in whatever way you deem fit for your application. 
 

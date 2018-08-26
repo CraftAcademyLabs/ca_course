@@ -13,17 +13,17 @@ titlepage-rule-height: 2
 ...
 
 
-## Search functionality in Rails using Elasticsearch and Chewy
+# Search functionality in Rails using Elasticsearch and Chewy
 
 Elasticsearch is a powerful and flexible, open source, RESTful HTTP, distributed interface for data indexing and real-time search.
 
-### The basic guide to Elasticsearch
-[Elasticsearch](https://www.elastic.co/) has several document-related concepts. The first is that of an `index`, which consists of a set of `documents`, which can be of several `types`. Every document has a set of `fields`. Each `field` is analyzed by Elasticsearch independently and its analysis options are stored in the `mapping` for its type.  
+## The basic guide to Elasticsearch
+[Elasticsearch - https://www.elastic.co/](https://www.elastic.co/) has several document-related concepts. The first is that of an `index`, which consists of a set of `documents`, which can be of several `types`. Every document has a set of `fields`. Each `field` is analyzed by Elasticsearch independently and its analysis options are stored in the `mapping` for its type.  
 
-### Chewy - Elasticsearch for Ruby 
-[Chewy](https://github.com/toptal/chewy) is an alternative to the `elasticsearch-model` gem and provides a wrapper for the Elasticsearch-Ruby client, making it more powerful and giving you tighter integration with Rails. Chewy utilizes the bulk Elasticsearch API for full reindexing and index updates. It also utilizes the concept of atomic updates, collecting changed objects within an atomic block and updating them all at once. 
+## Chewy - Elasticsearch for Ruby 
+[Chewy (https://github.com/toptal/chewy)](https://github.com/toptal/chewy) is an alternative to the `elasticsearch-model` gem and provides a wrapper for the Elasticsearch-Ruby client, making it more powerful and giving you tighter integration with Rails. Chewy utilizes the bulk Elasticsearch API for full reindexing and index updates. It also utilizes the concept of atomic updates, collecting changed objects within an atomic block and updating them all at once. 
 
-### Getting started...
+## Getting started...
 
 For training purposes, we will set up Elasticsearch and Chewy and do some manual testing in our console. 
 
@@ -31,7 +31,7 @@ Once we are a bit familiar with the basic setup of the search engine, we will go
 
 As we run the cucumber scenario, we'll work our way through the stack and implement a solution and bring the power of Elasticsearch to our Rails 5.x application. 
 
-#### ...with Elasticsearch
+## ...with Elasticsearch
 
 Install Elasticsearch on your computer. 
 
@@ -69,7 +69,7 @@ tagline: "You Know, for Search"
 }
 ```
 
-### ...with Chewy
+## ...with Chewy
 
 Add Chewy to your `Gemfile` and run `bundle`.
 
@@ -104,7 +104,7 @@ $ touch config/initializers/chewy.rb
 Chewy.root_strategy = :atomic
 ```
 
-You can read more about index updating strategies in the [Chewy documentation](https://github.com/toptal/chewy#index-update-strategies).
+You can read more about index updating strategies in the [Chewy documentation (https://github.com/toptal/chewy#index-update-strategies)](https://github.com/toptal/chewy#index-update-strategies).
 
 In our demo application, we have a `Recipe` model, with two attributes that we'll use for search. 
 
@@ -135,7 +135,7 @@ end
 
 With this vary basic setup, we can move on and try out the search functionality in our rails console. 
 
-### Performing a search
+## Performing a search
 
 Make sure that your database is seeded with some data and open the console.
 
@@ -173,7 +173,9 @@ For better results, we probably want to search both the `:title` and `:descripti
 
 ```
 
-Now, there is a massive amount of possibilities with Elasticsearch and Chew and we only scratched the surface with the two examples above. 
+## What's next?
+
+There is a massive amount of possibilities with Elasticsearch and Chew and we only scratched the surface with the two examples above. 
 
 **This ends the first part of the Elasticsearch Guide** In the next part, we'll start integrating the search functionality into our Rails application BDD style. 
 

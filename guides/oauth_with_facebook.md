@@ -15,6 +15,7 @@ titlepage-rule-height: 2
 # User Authentication with Facebook
 
 ## Introduction
+
 OAuth 2 is an authorization protocol that enables a third-party applications to obtain limited access to an internet service. One of the main aspects of this protocol is the access token that is issued to the application. The token is used by the app to perform various pre-approved actions on the user’s behalf. 
 
 There are numerous of services that support OAuth 2 authentication - in this guide we will focus on setting up the flow of allowing a user to get authenticated using hers/his Facebook account.
@@ -144,7 +145,7 @@ class OmniauthCallbacksController < Devise::OmniauthCallbacksController
 end
 ```
 
-### Back to the User model for more changes...
+## Back to the User model for more changes...
 
 If you keep running your tests you'll find out that we are missing some attributes on the user model. We need to add `provider` and `uid` columns to the `users` table in our database. 
 
@@ -154,7 +155,7 @@ $ rails g migration AddOmniauthToUsers provider:string uid:string
 
 Remember to run the new migration and re-run your tests. 
 
-### Add a mocked response to avoind hitting the facebook api in test enviromenmt. 
+## Add a mocked response to avoind hitting the facebook api in test enviromenmt. 
 
 When you run your tests, you'll probably get all kinds of errors. Well, to be honest, this is as far as we can get using acceptance tests for now. There's no way we can interact with the popup window from Facebook (well, that is not entirely true. We could pop that open and perform an actual authorization using Selenium and Chrome driver for example, but we don't want to get into that).
 
@@ -229,7 +230,7 @@ describe 'OAuth methods' do
 
 If you run this spec, you'll get errors concerning the `OmniAuthFixtures` module. In order to fix this, we need to require the module. Require the module on top of your spec file:
 
-```rb 
+```ruby 
 require './features/support/omniauth'
 ```
 
@@ -290,6 +291,8 @@ This is the same setup usinf Encrypted Credentials:
                   Rails.application.credentials.facebook[:app_secret], 
                   {scope: 'email public_profile', callbackURL: '/auth/facebook/callback'}
 ```
+
+## Wrap up
 
 At this stage, your tests should go green and you should be able to test the application manually if you fire up the local server and visit `http://localhost:3000`.
 

@@ -12,11 +12,11 @@ titlepage-rule-color: "FFFFFF"
 titlepage-rule-height: 2
 ...
 
-## Authenticating User With Multiple OAuth Providers 
+# Authenticating User With Multiple OAuth Providers 
 
 This Guide assumes that you have a Rails (5.2) application up and running with OmniAuth authentication using Facebook configured (please see "OAuth with Facebook" guide).
 
-### The Acceptance test
+## The Acceptance test
 
 In the previous guide, we wrote an acceptance test that layed out the relatively hight-level goal of the feture.
 
@@ -39,7 +39,7 @@ Now, we want to expand on that functionality, and allow the user to choose anoth
 
 We would like to modify the user story a bit.
 
-```
+```gherkin
 As a user of the system
 In order to simplify the sign up/sign in process 
 I would like to be able to authenticate myself using a well known service where I have an account. 
@@ -158,7 +158,7 @@ At this point we will get some other errors that has to do with the fact that we
 
 Let's start with including the necessary library (gem) to our `Gemfile`
 
-```
+```ruby
 gem 'omniauth-google-oauth2', '~> 0.5.3'
 ```
 
@@ -187,9 +187,9 @@ At this stage, if you keep runnig the scenapri, you will notice that there is a 
 
 You need to add a method with the same name as the provider source. 
 
-```ruby
-# app/controllers/omniauth_callbacks_controller.rb
+_app/controllers/omniauth_callbacks_controller.rb_
 
+```ruby
 def google_oauth2
     @user = User.from_omniauth(request.env['omniauth.auth'])
     params = request.env["omniauth.params"]
