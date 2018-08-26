@@ -8,6 +8,13 @@ Another thing we know is that one of the conditions for a successful transaction
 
 Knowing all this, we can build a method that tells us what bills we will get from the ATM. 
 
+```
+As an Bank Customer    
+In order to withdraw funds in even amounts  
+I want to receive funds in 5, 10 & 20$ bills
+```
+
+
 Let's try some stuff out in `irb`. **As always, read the comments as carefully as anything else in this documentation.**
 
 ```ruby 
@@ -66,7 +73,7 @@ bills
 A few words about this type of loops in general and specifically the `while` loop.
 A loop is a flow control method that will make code run a number of times until some condition is met.
 
-####The while loop
+#### The while loop
 `while` allows you to specify the condition that must be `true` to keep looping, then the condition is evaluated to `false` the loop exits. An example
 ```ruby
 count = 0
@@ -84,7 +91,7 @@ Result:
 - The count is now 4.
 ```
 
-####The until loop
+#### The until loop
 The until loop is a variation on the while loop but reverse. ;-)
 
 ```ruby
