@@ -30,9 +30,9 @@ $ touch atm_challenge
 
 As mentioned above, we need to set up the necessary tools we'll be using. We know that we'll be using Ruby as the programming language. That is already set up on our system. 
 
-We also know that we'll be trying to write our application using Test Driven Development - or at least try to do that. For that we'll need a testing framework. Enter RSpec - the most frequently used testing library for Ruby applications. Even though it has a very rich and powerful DSL (domain-specific language), at its core it is a simple tool which you can start using rather quickly. 
+We also know that we'll be trying to write our application using Test Driven Development - or at least try to do that. For that we'll need a testing framework. Enter RSpec - the most frequently used testing library for Ruby applications. Even though it has a very rich and powerful DSL (domain-specific language), at its core, it is a simple tool which you can start using rather quickly. 
 
-The user story for the unit testing is:
+The user story for  unit testing is:
 ```
 As a programmer
 In order to work in a test driven way
@@ -50,7 +50,7 @@ $ touch Gemfile
 ```
 Add the following content to that file. 
 
-<small>Gemfile</small>
+_Gemfile_
 ```ruby
 source 'https://rubygems.org'
 
