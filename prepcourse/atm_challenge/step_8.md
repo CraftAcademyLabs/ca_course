@@ -1,6 +1,13 @@
 ## Step 8 - The Account
 
-Now that we are finished (at least for now) with the Atm class, we should move forward and create the `Account` class. 
+Now that we are finished (at least for now) with the Atm class, we should move forward and create the `Account` class.
+
+```
+As a Customer
+In order to manage my funds
+I need to have a personal account
+```
+
 
 We will go over the same steps as we did when creating the `Atm` class. 
 
@@ -39,11 +46,11 @@ rand(1000..9999)
 ```
 
 
-###Programming showcase -  Pin and Balance
+### Programming showcase -  Pin and Balance
 
 <iframe width="420" height="315" src="https://www.youtube.com/embed/WTS_o121xIo" frameborder="0" allowfullscreen></iframe>
 
-##Expiry date
+## Expiry date
 
 The **expiry date** on atm cards (and other credit cards) is generally stored in the format of month/year - like "04/16" that translates to April 2016.
 

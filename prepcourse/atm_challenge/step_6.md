@@ -2,12 +2,22 @@
 
 Another check we need to do in the `withdraw` method, is to test if there are funds in the ATM, right? We can't perform a transaction if there are no funds in the machine. 
 
+```
+As a ATM operator
+In order for our costumers to withdraw funds
+I need make sure that we only allow withdrawals if there are funds available
+``` 
+
 The ATM has a `funds` attribute. We can perform a check if the `amount` we try to withdraw is larger then the `funds` available. 
 
 Let's add a spec for that.
 
+<<<<<<< HEAD
 _spec/atm_spec.rb_
 
+=======
+<small>spec/atm_spec.rb</small>
+>>>>>>> 651d0461d26b3800ed1cfc7d3c5efbf72dd04122
 ```ruby
 [...]
 it 'reject withdraw if ATM has insufficient funds' do
@@ -23,8 +33,12 @@ end
 
 And implement a new `when` in the `withdraw` method.
 
+<<<<<<< HEAD
 _lib/atm.rb_
 
+=======
+<small>lib/atm.rb</small>
+>>>>>>> 651d0461d26b3800ed1cfc7d3c5efbf72dd04122
 ```ruby
 [...]
 def withdraw(amount, account)
@@ -40,7 +54,6 @@ def withdraw(amount, account)
 And, we also need to create a new private method, just as we did with the previous example.
 
 _lib/atm.rb_
-
 ```ruby
 [...]
 private 
@@ -51,13 +64,20 @@ end
 
 ```
 
-###The PIN code
+### The PIN code
 
 The next check will be to make sure that the user passes in the right pin code when trying to withdraw money from his account - just as in normal life. 
+
+```
+As a Customer              
+In order to keep my funds secure             
+I want a secure Pin code & an expiry date on my card that allows only me access to my funds
+```
 
 We will need to modify the `withdraw` to accept a `pin_code` at one of the arguments. This will have an effect on all our tests. 
 
 _lib/atm.rb_
+
 ```ruby
 def withdraw(amount, account) -> withdraw(amount, pin_code, account)
 ```
@@ -65,7 +85,8 @@ So, after that change most of the tests will fail.
 
 Change every call to the `withdraw` method to include `1234` as the second argument. 
 
-!FILENAME spec/atm_spec.rb
+_spec/atm_spec.rb_
+
 ```ruby
 [...]
 subject.withdraw(50, '1234', account)
@@ -74,7 +95,8 @@ subject.withdraw(50, '1234', account)
 
 We also need to change our `instance_double` we are using for `account`. 
 
-!FILENAME spec/atm_spec.rb
+_spec/atm_spec.rb_
+
 ```ruby
 [...]
 let(:account) { instance_double('Account', pin_code: '1234') }
@@ -85,7 +107,8 @@ Okay, make sure that all the tests you have written up until now are passing bef
 
 Next, introduce this test.
 
-!FILENAME spec/atm_spec.rb
+_spec/atm_spec.rb_
+
 ```ruby
 it 'reject withdraw if pin is wrong' do
   expected_output = { status: false, message: 'wrong pin', date: Date.today }
@@ -95,7 +118,8 @@ end
 
 And implement a new `when` in the `withdraw` method.
 
-!FILENAME lib/atm.rb
+_lib/atm.rb_
+
 ```ruby
 [...]
 def withdraw(amount, account)
@@ -109,7 +133,8 @@ def withdraw(amount, account)
 
 And again, we need to create a new private method, just as we did with the previous example.
 
-!FILENAME lib/atm.rb
+_lib/atm.rb_
+
 ```ruby
 [...]
 private 
@@ -126,7 +151,8 @@ Let's tackle the check for card expiration date.
 
 First, let's modify our `double`.
 
-!FILENAME spec/atm_spec.rb
+_spec/atm_spec.rb_
+
 ```ruby
 [...]
 let(:account) { instance_double('Account', pin_code: '1234', exp_date: '04/17') }
@@ -135,7 +161,8 @@ let(:account) { instance_double('Account', pin_code: '1234', exp_date: '04/17') 
 
 And, as always, we write a test. (I will not include comments. By now you know what we need to do to build a test)
 
-!FILENAME spec/atm_spec.rb
+_spec/atm_spec.rb_
+
 ```ruby
 it 'reject withdraw if card is expired' do
   allow(account).to receive(:exp_date).and_return('12/15')
@@ -146,7 +173,8 @@ end
 
 And again, we need to modify the `withdraw` method. 
 
-!FILENAME lib/atm.rb
+_lib/atm.rb_
+
 ```ruby
 [...]
 def withdraw(amount, account)
@@ -160,7 +188,8 @@ def withdraw(amount, account)
 
 Now, the method `card_expired?` is a little tricky. We need to make use of Ruby's `Date` object. `account.exp_date` is of String class. We need to transform it to a Date object and compare it to today's date. Examine the following implementation closely before implementing it. 
 
-!FILENAME lib/atm.rb
+_lib/atm.rb_
+
 ```ruby
 [...]
 def card_expired?(exp_date)
@@ -170,13 +199,20 @@ end
 
 Can you understand what we are doing here? 
 
-###More checks
+### Disabled Account
 
 It is time for you to start to write code on your own. There is yet another one check we need to perform. The `account_status` attribute will tell us if an account is `active` or `disabled`. 
 
-Our `class_double` will be updated with this attribute to look like this. 
+```
+As a ATM operator             
+In order to allow access active customers             
+I want to allow withdrawals from only active accounts
+```
 
-!FILENAME spec/atm_spec.rb
+Our `instance_double` will be updated with this attribute to look like this. 
+
+_spec/atm_spec.rb_
+
 ```ruby
 [...]
 let(:account) { instance_double('Account', pin_code: '1234', exp_date: '04/17', account_status: :active) }
@@ -184,6 +220,7 @@ let(:account) { instance_double('Account', pin_code: '1234', exp_date: '04/17', 
 ```
 
 **Things to you to consider (in random order)**
+
 * Note that we are using a Symbol rather than a String to set `account_status`.
 * You need to write a test for what happens if an account is `:disabled` 
 * You need to update the output of every test that assumes that withdrawal was successful. 
