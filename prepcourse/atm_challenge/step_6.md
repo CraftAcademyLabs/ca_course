@@ -12,12 +12,8 @@ The ATM has a `funds` attribute. We can perform a check if the `amount` we try t
 
 Let's add a spec for that.
 
-<<<<<<< HEAD
 _spec/atm_spec.rb_
 
-=======
-<small>spec/atm_spec.rb</small>
->>>>>>> 651d0461d26b3800ed1cfc7d3c5efbf72dd04122
 ```ruby
 [...]
 it 'reject withdraw if ATM has insufficient funds' do
@@ -33,12 +29,8 @@ end
 
 And implement a new `when` in the `withdraw` method.
 
-<<<<<<< HEAD
 _lib/atm.rb_
 
-=======
-<small>lib/atm.rb</small>
->>>>>>> 651d0461d26b3800ed1cfc7d3c5efbf72dd04122
 ```ruby
 [...]
 def withdraw(amount, account)

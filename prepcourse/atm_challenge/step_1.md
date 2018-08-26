@@ -18,7 +18,7 @@ Let's get back to the ATM challenge.
 * Create a basic folder structure for your project (production code in `lib`, tests in `spec`)
 * Create a `README.md` with a basic description of the project
 * Initialize and push a git repository
-* Add your pairong partner as a `git remote`
+* Add your pairing partner as a `git remote`
 
 ## Let's do it!
 
