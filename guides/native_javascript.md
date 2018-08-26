@@ -73,14 +73,8 @@ This will return the first match it encounters. However, if we try this ...
 const myElement = document.getElementsByClassName('bar')
 ```
 
-... we will get a collection of elements.
 
-```js
-HTMLCollection [div.bar]
-    0: div.bar
-    length: 1
-    __proto__: HTMLCollection
-```
+...we will get a collection of elements (HTMLCollection [div.bar]).
 
 We can also use `.querySelectorAll()` if we want to get all occurrences, we can use:
 
@@ -88,14 +82,9 @@ We can also use `.querySelectorAll()` if we want to get all occurrences, we can 
 const myElements = document.querySelectorAll('.bar')
 ```
 
-That will return:
+That will return a node list (NodeList [div.bar]).
 
-```js
-NodeList [div.bar]
-    0: div.bar
-    length: 1
-    __proto__: NodeList
-```
+## Children
 
 If we already have a reference to a parent element, we can just query that element’s children instead of the whole document. By narrowing down the context like this, we can simplify selectors and increase performance.
 
@@ -120,7 +109,7 @@ document.body.appendChild(newElement)
 elements1.length === elements2.length // false
 ```
 
-Another consideration is that such a live collection doesn’t need to have all of the information up front, whereas `.querySelectorAll()` immediately gathers everything in a static list, making it [less performant](https://www.nczonline.net/blog/2010/09/28/why-is-getelementsbytagname-faster-that-queryselectorall/).
+Another consideration is that such a live collection doesn’t need to have all of the information up front, whereas `.querySelectorAll()` immediately gathers everything in a static list, making it [less performant - (https://www.nczonline.net/blog/2010/09/28/why-is-getelementsbytagname-faster-that-queryselectorall/)](https://www.nczonline.net/blog/2010/09/28/why-is-getelementsbytagname-faster-that-queryselectorall/).
 
 ## Working with Nodelists
 
@@ -177,7 +166,7 @@ As with any object, we can check a node’s prototype chain using the `instance
 myElement.firstChild instanceof Text
 ```
 
-### Modifying Classes and Attributes
+## Modifying Classes and Attributes
 
 Modifying classes of elements is as easy as:
 
@@ -199,7 +188,8 @@ myElement.value = 'foo'
 // Set multiple properties using Object.assign()
 Object.assign(myElement, {
   value:'foo',
-  id:'bar'})
+  id:'bar'
+  })
   
 // Remove an attribute
 myElement.value = null
@@ -265,11 +255,11 @@ myElement.parentNode.removeChild(myElement)
 
 #### Element properties
 
-Every element also has the properties `.innerHTML`  and  `.textContent` (but also `.innerText`, which is similar to `.textContent`, but has some [important differences](http://perfectionkills.com/the-poor-misunderstood-innerText/)). 
+Every element also has the properties `.innerHTML`  and  `.textContent` (but also `.innerText`, which is similar to `.textContent`, but has some [important differences - (http://perfectionkills.com/the-poor-misunderstood-innerText/)](http://perfectionkills.com/the-poor-misunderstood-innerText/)). 
 
 These hold the HTML and plain text content respectively. They are writable properties, meaning we can modify elements and their contents directly:
 
-// Replace the inner HTML
+You can replace the inner HTML like this:
 
 ```javascript
 
@@ -284,13 +274,13 @@ const link = document.createElement('a')
 const text = document.createTextNode('continue reading...')
 const hr = document.createElement('hr')
 
-link.href ='foo.html'
+link.href = 'foo.html'
 link.appendChild(text)
 myElement.appendChild(link)
 myElement.appendChild(hr)
 ```
 
-With this approach, however, we’d cause two browser redraws — one for each appended element — whereas changing the `.innerHTML` only causes one. As a way around this performance issue we can first assemble all nodes in a [DocumentFragment](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment), and then just append that single fragment:
+With this approach, however, we’d cause two browser redraws — one for each appended element — whereas changing the `.innerHTML` only causes one. As a way around this performance issue we can first assemble all nodes in a [DocumentFragment - (https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment)](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment), and then just append that single fragment:
 
 ```js
 const fragment = document.createDocumentFragment()
@@ -305,9 +295,9 @@ myElement.appendChild(fragment)
 This is possibly the best-known way to bind an event listener:
 
 ```js
-myElement.onclick = function onclick (event){
+myElement.onclick = function onclick (event) {
   console.log(event.type +' got fired')
-  }
+}
 ```
 
 But this should generally be avoided. Here, `.onclick` is a property of the element, meaning that you can change it, but you cannot use it to add additional listeners — by reassigning a new function you’ll overwrite the reference to the old one.
@@ -363,7 +353,7 @@ document.addEventListener('DOMContentLoaded', function () {
 It’s less common, but sometimes you want your code to run when not just the HTML has been parsed, but all of the resources like images have been loaded. 
 
 ```javascript
-window.addEventListener('load', function(){
+window.addEventListener('load', function () {
   // Everything has loaded!
   console.log('Everything has loaded!');
 });
