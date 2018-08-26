@@ -1,12 +1,13 @@
 ## Step 6 - More checks
 
-Another check we need to do in the `withdraw` method is to see if there are funds in the ATM, right?  We can not perform a transaction if there are no funds in the machine. 
+Another check we need to do in the `withdraw` method, is to test if there are funds in the ATM, right? We can't perform a transaction if there are no funds in the machine. 
 
 The ATM has a `funds` attribute. We can perform a check if the `amount` we try to withdraw is larger then the `funds` available. 
 
 Let's add a spec for that.
 
-!FILENAME spec/atm_spec.rb
+_spec/atm_spec.rb_
+
 ```ruby
 [...]
 it 'reject withdraw if ATM has insufficient funds' do
@@ -22,7 +23,8 @@ end
 
 And implement a new `when` in the `withdraw` method.
 
-!FILENAME lib/atm.rb
+_lib/atm.rb_
+
 ```ruby
 [...]
 def withdraw(amount, account)
@@ -37,7 +39,8 @@ def withdraw(amount, account)
 
 And, we also need to create a new private method, just as we did with the previous example.
 
-!FILENAME lib/atm.rb
+_lib/atm.rb_
+
 ```ruby
 [...]
 private 
@@ -54,7 +57,7 @@ The next check will be to make sure that the user passes in the right pin code w
 
 We will need to modify the `withdraw` to accept a `pin_code` at one of the arguments. This will have an effect on all our tests. 
 
-!FILENAME lib/atm.rb
+_lib/atm.rb_
 ```ruby
 def withdraw(amount, account) -> withdraw(amount, pin_code, account)
 ```

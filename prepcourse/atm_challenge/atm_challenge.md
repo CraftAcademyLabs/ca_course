@@ -20,10 +20,10 @@ Welcome to your first Ruby assignment. We will start the next step on your journ
 
 ![](http://alkredit.az/resources/content_img/logos/bankomat.png)
 
-Withdrawing money from an ATM is fairly common, everyday action. We've all done at some point, right? You are in need of some cash (for whatever reason), you have your Visa or MasterCard with you, you spot an ATM machine, you walk up to it, insert your card, enter your pin and you grab a few bucks or kronor or what have you. But what is exactly happening in this situation, or rather this particular interaction between you and that piece of machine? 
+Withdrawing money from an ATM is fairly common, everyday action. We've all done it at some point, right? You are in need of some cash (for whatever reason), you have your Visa or MasterCard with you, you spot an ATM machine, you walk up to it, insert your card, enter your pin and you grab a few bucks or kronor or what have you. But what is exactly happening in this situation, or rather this particular interaction between you and that piece of machine? 
 
 
-The characteristics of this interaction makes it a good first step into understanding how software works and how we can understand requirements and turn them into features.
+The characteristics of this interaction makes it a good first step into understanding how software works, and how we can understand requirements and turn them into features.
 
 This is not a walk in the park. Just becouse the problem set in itself does not seem overly complicated, doesn't make it easy to translate into executable code. You will need to stay alert, employ everything you've learned so far and work hard if you want to compleate this challege. 
 
@@ -31,6 +31,7 @@ Work hard, pay attention to details and collaborate with your fellow students, a
 
 
 ## Learning objectives
+
 - Review fundamentals learned in the prep course
 - Learn about Ruby classes, modules, methods and attributes
 - Learn about unit testing with RSpec and the benefits of writing automated tests
@@ -39,6 +40,7 @@ Work hard, pay attention to details and collaborate with your fellow students, a
 - Learn about debugging and common programming techniques
 
 ## The challenge
+
 Our client is a financial institution that wants to allow its customers to withdraw funds from their accounts using an Automatic Teller Machine (ATM). They have turned to us for a prototype of a system with limited functionality. Our job is to write a simple Ruby program that can be run in the Interactive Ruby Shell (IRB).
 
 **You will work with your Coach and your peers to get started with using RSpec as a testing framework, and with implementing your code.**
@@ -73,10 +75,9 @@ The following objectives must be met:
 
 # Tips and Tricks
 
-- Don't overdo it. Keep your implementation as simple as possible.
-- Test your code - both manually in IRB but, most importantly with automated tests.
-- You have to examine all tests ** *before* ** you write your production code. See tests as a blueprint for your implementation.
-- **Run one test at the time to avoid a massive output in your terminal.** Disable `it` blocks by adding  an `x` before (as in `xit "Should..." do`)
+- **Don't overdo it!** Complexity kills good software. And it programmers ;-).  Keep your implementation as simple as possible.
+- **Test your code** - both manually in IRB but, most importantly with automated tests. You have to examine all tests **_before_** you write your production code. See tests as a blueprint for your implementation.
+- **Run one test at the time to avoid a massive output in your terminal.** Run just the test/spec you are currently working on by pointing to a file and adding the line number (e.g. `rspec spec/atm_spec.rb:12`) Also, you can disable `it` blocks by adding an `x` before the `it` (as in `xit "Should..." do`). 
 - Make sure to **commit often** and (if you are Pair Programming) switch navigators (the person that writes code).
 
 # Naming standards
