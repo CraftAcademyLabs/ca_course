@@ -1,3 +1,17 @@
+---
+title: "Middleman"
+subtitle: "Deploy to Github pages"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Middleman, Github"
+keywords: [Middleman, Github]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # Deploy to Github pages
 
 Now that you are done building your portfolio, it's time to publish it and brag about it to your friends.
@@ -10,15 +24,17 @@ There are numerous ways of setting up deployment of middleman sites. We'll make 
 
 Head over to your Gemfile, and add the following line to it then run `bundle install`
 
-!FILENAME Gemfile
 ```ruby
+# Gemfile
+
 gem 'middleman-deploy', '= 2.0.0.pre.alpha'
 ```
 
 Next, in your `config.rb` file, add the following code bloc.
 
-!FILENAME config.rb
 ```ruby
+# config.rb
+
 activate :deploy do |deploy|
   deploy.build_before = true
   deploy.deploy_method = :git
@@ -27,10 +43,12 @@ end
 
 There have been some reports of troubles while publishing the site to Github using the gem. Instead of deploying the content of the `build` directory to the `gh-pages`, where the site is served, the entire source code of the site is pushed. A fix to this issue involves removing the `build` directory before each deploy. We'll create an extension to take care of that for us as suggested [here](https://github.com/middleman-contrib/middleman-deploy/issues/114).
 
+
 Create a new file `extensions/build_cleaner.rb` and add the following content to it:
 
-!FILENAME extensions/build_cleaner.rb
 ```ruby
+# extensions/build_cleaner.rb
+
 class BuildCleaner < Middleman::Extension
   def initialize(app, options_hash = {}, &block)
     super
@@ -44,8 +62,9 @@ end
 Now let's activate the extension in the `config.rb` file. Add the following code within the `:build` block
 
 
-!FILENAME config.rb
 ```ruby
+# config.rb
+
 require 'extensions/build_cleaner'
 
 configure :build do
@@ -65,4 +84,6 @@ With everything setup, all that's left to do is to run the following command to 
 middleman deploy
 ```
 
-And voila! Your site should now be accessible from the link `https://your-github-username.github.io/my_portfolio`
+And voila! Your site should now be accessible from the link:
+
+ `https://your-github-username.github.io/my_portfolio`

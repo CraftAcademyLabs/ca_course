@@ -1,3 +1,17 @@
+---
+title: "Middleman"
+subtitle: "HAML - HTML abstraction markup language"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Middleman, HAML"
+keywords: [Middleman, HAML]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## HAML - HTML abstraction markup language
 
 At its core, Haml is a lightweight markup language. Haml makes writing HTML much easier, and when we say **"much easier"** what we really mean is **"you won't believe how much time you can save by using Haml."** With Haml you will immediately see the intense time saving benefits that it brings to the table.
@@ -41,7 +55,7 @@ This markup will render:
 <p>Another paragraph can go here.</p>
 ```
 
-###Classes and IDs
+### Classes and IDs
 
 Without the traditional tag structure, you might be wondering how to declare extra HTML items like classes and IDs. Haml is way ahead of you and even uses a syntax that you'll find oddly familiar.
 
@@ -62,7 +76,7 @@ HTML:
 </ul>
 ```
 
-###Divs Are Magic
+### Divs Are Magic
 
 Let's face it, even with all the fancy new HTML5 elements, we still all love our divs. Given that this particular element is so common, Haml has assigned it a particularly simple syntax. Consider how you think you might write the following HTML in Haml.
 
@@ -81,7 +95,7 @@ Haml:
 ```
 That's it! This code compiles to a complete div with an ID of `someDiv`. Even the skeptics among you have to admit that this is pretty dang concise. Once again we see the clear benefits of being able to write our markup like we write CSS.
 
-###More complex views
+### More complex views
 Just to make sure you've really gotten the gist of how this works, here's a much more extensive example. This time we'll use one main div and two inner divs along with plenty of other elements.
 
 Haml:
@@ -132,7 +146,7 @@ This time around you can really start to feel the awesome power of Haml.
 
 The charm here goes beyond the fact that we've saved tons of characters and even a few entire lines, notice how much easier it is to read the Haml at a glance. All of the nasty clutter that comes with HTML has bee stripped away and in its place is a clear hierarchy of markup that is instantly discernible.
 
-###HTML5
+### HTML5
 
 Just in case you're wondering, Haml works just fine with all of the cool new tags inside of HTML5. In fact, it doesn't really care what type of tags you try to create. If you type “%somecrazytag” the output result will be ““ regardless of the fact that this isn't even valid HTML.
 
@@ -194,7 +208,7 @@ HTML:
 </div>
 ```
 
-##Outputting Ruby in HAML
+## Outputting Ruby in HAML
 
 So how do we embed Ruby in our HAML? In ERB we might have:
 
@@ -203,7 +217,7 @@ So how do we embed Ruby in our HAML? In ERB we might have:
 ```
 Given what you've seen from the `H1`, you would imagine the `<p></p>` becomes `%p`. But what about the Ruby injection?
 
-###Ruby Injections
+### Ruby Injections
 
 HAML's approach is to reduce `<%= %>` to just `=`. The HAML engine assumes that if the content starts with an `=`, that the entire rest of the line is Ruby. For example, the flash paragraph above would be rewritten like this:
 
@@ -212,7 +226,7 @@ HAML's approach is to reduce `<%= %>` to just `=`. The HAML engine assumes that 
 ```
 Note that the `=` must be placed against the `%p` tag.
 
-###Adding a CSS Class
+### Adding a CSS Class
 
 But what about the class? There are two options. The verbose syntax uses a hash-like format:
 
@@ -226,7 +240,7 @@ But we can also use a CSS-like shorthand syntax:
 ```
 The latter is easier and more commonly used.
 
-###Mixing Plain Text and Ruby
+### Mixing Plain Text and Ruby
 
 Consider a chunk of content that has both plain text and Ruby like this:
 
@@ -242,7 +256,7 @@ Given what we've seen so far, you might imagine it goes like this:
 ```
 But HAML won't recognize the Ruby code there. Since the element's content starts with plain text, it will assume the whole line is plain text.
 
-####Breaking Ruby and Text into Separate Lines
+#### Breaking Ruby and Text into Separate Lines
 
 One solution in HAML is to put the plain text and the Ruby on their own lines, each indented under the DIV:
 
@@ -263,7 +277,7 @@ And it can be pushed back up to one line:
 %div#sidebar Filter by Tag: #{tag_links(Tag.all)}
 ```
 
-###Ruby commands
+### Ruby commands
 
 We've seen plain text, HTML elements, and printing Ruby. Now let's focus on non-printing Ruby.
 
@@ -285,7 +299,7 @@ The second and fourth lines are non-printing because they omit the equals sign. 
 ```
 Content with no marker is interpreted as plain text, so the `@articles` line will be output as plain text and the third line would cause a parse error.
 
-###Marking Non-Printing Lines
+### Marking Non-Printing Lines
 
 We need a new symbol to mark non-printing lines. In HAML these lines begin with a hyphen `(-)`:
 
@@ -298,7 +312,7 @@ No `end`!
 
 What about the `end` that we use in our ruby files and in erb? HAML uses that significant whitespace to reduce the syntax of HTML and Ruby. The end for the do is not only unnecessary, **it will raise an exception if you try to use it.**
 
-##Conclusion
+## Conclusion
 HAML templates are cleaner, easier to read, easier to maintain, and easier to develop on.
 
 An anonymous developers opinion will close this section:

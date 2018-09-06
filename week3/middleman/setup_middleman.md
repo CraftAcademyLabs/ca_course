@@ -1,8 +1,19 @@
+---
+title: "Middleman"
+subtitle: "Setup Middleman"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Middleman, Setup"
+keywords: [Middleman, Setup]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Setup Middleman
-
-If you don't have Ruby installed yet, please refer to our setup instructions for [Linux](https://craftacademy.gitbooks.io/caa_precourse/content/terminal/linux.html) or [Mac OS X](https://craftacademy.gitbooks.io/caa_precourse/content/terminal/mac_osx.html)
-
-Once you're done, head to your terminal and run the following command:
+Open up your terminal and run the following command:
 
 ```shell
 $ gem install middleman
@@ -72,30 +83,30 @@ my_site/
         +-- normalize.css
 ```
 
-#### The `source` directory
+### The `source` directory
 
 The `source` folder is where you'll spend most of your time while building your website. By default it contains folders for JavaScript, CSS and images, but you can re-organise them at your own convenience. We'll see how to achieve that later in this chapter.
 
-#### The `config.rb`
+### The `config.rb`
 
 The `config.rb` file is were you will find the settings for your Middleman application. It also contains commented documentation on how to enable complex features such as compile-time compression, blog-mode, etc.
 
-#### The `Gemfile`
+### The `Gemfile`
 
 Just like any other ruby project you have worked with so far, Middleman makes use of Bundler `Gemfile` to manage your gem dependencies.
 
-#### Other Middleman directories
+### Other Middleman directories
 
 Middleman makes use of extra directories for specific purposes. Each of these folders are children of your main application folder.
 
-###### The `build` directory
+#### The `build` directory
 
 This is where your static website files will be compiled and exported to.
 
-###### The `lib` directory
+#### The `lib` directory
 
 The `lib` directory will house your external Ruby modules. These modules will contain helpers to use while building your application.
 
-###### The `data` directory
+#### The `data` directory
 
 Data files allow you to create `.yml`, `.yaml` or `.json` files in the `data` folder and makes this information available in your templates. We will be covering Data files in another section of this chapter.

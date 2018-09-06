@@ -1,3 +1,17 @@
+---
+title: "Middleman"
+subtitle: "Weekend lab"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Middleman, Weekend lab"
+keywords: [Middleman, WeekendLab]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 Your weekend assignment will be to add a **CV Middleman site.**
 
 **Requirements:**

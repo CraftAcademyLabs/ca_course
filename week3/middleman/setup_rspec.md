@@ -1,8 +1,22 @@
-The following assumes that you've generated a middleman project using the its CLI middleman `init your_project_name`
+---
+title: "Middleman"
+subtitle: "Setup Rspec"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Middleman, Rspec"
+keywords: [Middleman, Rspec]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
 
-###Update your Gemfile
+The following assumes that you've generated a middleman project using its CLI middleman `init your_project_name`
+
+### Update your Gemfile
 Add the following gems to your Gemfile and run `bundle install`
-```shell
+```ruby
 group :development, :test do
   gem 'capybara'
   gem 'pry'
@@ -11,19 +25,21 @@ group :development, :test do
 end
 ```
 
-###Setup RSpec
+### Setup Rspec
 From your terminal, navigate to your project directory and initialize RSpec config files for your project with the following command
 
 `rspec --init`
 
 Update the `.rspec` file to have the following code
+
 ```shell
 --format documentation
 --color
 --require spec_helper
 ```
 Then remove all content in spec/spec_helper.rb and replace with the following
-```shell
+
+```ruby
 require 'rspec'
 require 'capybara/rspec'
 
@@ -42,10 +58,10 @@ end
 ```
 With this in place we should now be ready to write our first spec
 
-###Feature specs
+### Feature specs
 Most of the specs you'll be writing for a middleman app will be feature specs that test for certain things to be visible on the page. Below is a sample feature spec that checks if projects are listed on the index page
 
-```shell
+```ruby
 describe 'Index Page', type: :feature do
   it 'displays project list' do
     visit '/'

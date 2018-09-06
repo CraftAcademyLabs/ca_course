@@ -1,4 +1,18 @@
-###Partials
+---
+title: "Middleman"
+subtitle: "Partials"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Middleman, Partials"
+keywords: [Middleman, Partials]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+## Partials
 Partials are a way of sharing content across pages and helps you to keep your code DRY. They can be used both in templates and in layouts.
 
 Let's assume that we want to display a list of projects on our page.
@@ -7,7 +21,7 @@ In order to group our `partials`, we want to create a partials folder in our `so
 
 In that folder, let's create a file called `_projects.html.haml`. **Note the underscore at the beginning of the filename!**
 ```shell
-#source/partials/_footer.html.haml
+# source/partials/_footer.html.haml
 
 %div.projects
   %h3 My Portfolio
@@ -15,7 +29,7 @@ In that folder, let's create a file called `_projects.html.haml`. **Note the und
 ```
 Under the `= yield` command in your main layout file, place the call to render the projects partial.
 ```shell
-#layouts/layout.html.haml
+# layouts/layout.html.haml
 
 = partial 'partials/projects'
 ```
