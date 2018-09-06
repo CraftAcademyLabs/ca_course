@@ -1,8 +1,43 @@
 # Step 1 - Setting the stage
 
-The first thing we need to do is to set up the necessary tools we'll be using. We know that we'll be using Ruby as the programming language. That is already set up on our system. 
+Let's get back to the ATM challenge. 
 
-We also know that we'll be trying to write our application using Test Driven Development - or at least try to do that. For that we'll need a testing framework. Enter RSpec - the most frequently used testing library for Ruby applications. Even though it has a very rich and powerful DSL (domain-specific language), at its core it is a simple tool which you can start using rather quickly. 
+## Learning objectives
+
+1. Learn how to set up a simple ruby based project
+2. Make use of a testing framework 
+3. Connect your project (local repository) to a GitHub repository
+4. Practice Pair Programing and sharing code
+
+## Action points
+
+* Set up a simple project   
+    1. Create a `Gemfile` and add `rspec` as a dependency.
+    2. Initiate `rspec`
+    3. Modify `.rspec` to output the spec messages in terminal.
+* Create a basic folder structure for your project (production code in `lib`, tests in `spec`)
+* Create a `README.md` with a basic description of the project
+* Initialize and push a git repository
+* Add your pairing partner as a `git remote`
+
+## Let's do it!
+
+Create a project folder in your Terminal and `cd` into that folder
+
+```shell
+$ touch atm_challenge
+```
+
+As mentioned above, we need to set up the necessary tools we'll be using. We know that we'll be using Ruby as the programming language. That is already set up on our system. 
+
+```
+As a programmer
+In order to produce good quality code
+I want to work in a test driven way and unit test my code
+```
+
+We also know that we'll be trying to write our application using Test Driven Development - or at least try to do that. For that, we'll need a testing framework. Enter RSpec - the most frequently used testing library for Ruby applications. Even though it has a very rich and powerful DSL (domain-specific language), at its core it is a simple tool which you can start using rather quickly. 
+
 
 In order to be able to use it we need to install it. There are two ways to install libraries (gems). A direct install from your terminal (`gem install rspec`) or by adding a gem as a dependency to your application using [Bundler](http://bundler.io/). It is pretty simple, you just add a gem to a specific file named `Gemfile`. 
 
@@ -16,6 +51,7 @@ $ touch Gemfile
 Add the following content to that file. 
 
 _Gemfile_
+
 ```ruby
 source 'https://rubygems.org'
 
@@ -24,12 +60,12 @@ gem 'rspec'
 
 Save and head over to your terminal window and run the `bundle install` command.
 
-If you get an error message and the system complains about not finding Bundler, just run this command to install it.
+If you get an error message and the system complains about not finding Bundler, just run this command to install it:
 
 ```
 $ gem install bundler
 ```
-**Please note that the gem name is `bundler` while the command used to run it is `bundle`. **
+**Please note that the gem name is `bundler`, while the command used to run it is `bundle`.**
 
 And run `bundle install` again. 
 
@@ -74,7 +110,7 @@ In your terminal, initialize a new git repository with the `init` command.
 ```
 $ git init
 Initialized empty Git repository in /your/path/atm/.git/
-✔ ~/your/path/atm [master|…2] 
+~/your/path/atm [master|…2] 
 ```
 Next, you need to create a `.gitignore` file. That file is used to keep information about files we want to EXCLUDE from version control. 
 

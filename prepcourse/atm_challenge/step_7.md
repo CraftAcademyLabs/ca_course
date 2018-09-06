@@ -8,6 +8,13 @@ Another thing we know is that one of the conditions for a successful transaction
 
 Knowing all this, we can build a method that tells us what bills we will get from the ATM. 
 
+```
+As an Bank Customer    
+In order to withdraw funds in even amounts  
+I want to receive funds in 5, 10 & 20$ bills
+```
+
+
 Let's try some stuff out in `irb`. **As always, read the comments as carefully as anything else in this documentation.**
 
 ```ruby 
@@ -66,7 +73,7 @@ bills
 A few words about this type of loops in general and specifically the `while` loop.
 A loop is a flow control method that will make code run a number of times until some condition is met.
 
-####The while loop
+#### The while loop
 `while` allows you to specify the condition that must be `true` to keep looping, then the condition is evaluated to `false` the loop exits. An example
 ```ruby
 count = 0
@@ -84,7 +91,7 @@ Result:
 - The count is now 4.
 ```
 
-####The until loop
+#### The until loop
 The until loop is a variation on the while loop but reverse. ;-)
 
 ```ruby
@@ -104,7 +111,7 @@ As usual, let's start with our test. We don't necessarily need to add any new sp
 
 Let's revisit this spec.
 
-!FILENAME  spec/atm_spec.rb
+<small>spec/atm_spec.rb</small>
 ```ruby
 it 'allow withdraw if account has enough balance.' do
   expected_output = { 
@@ -123,7 +130,7 @@ If you run this spec now, it will go red.
 
 Let's add `bills:` to the output and create a method that builds upon our experimental code above and populates the array. 
 
-!FILENAME  lib/atm.rb
+<small>lib/atm.rb</small>
 ```ruby
 [...]
 def perform_transaction(amount, account)

@@ -1,6 +1,22 @@
+---
+title: "Rails 5 - Encrypted Credentials"
+subtitle: "Keep Your Secrets Safe"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Credentials, Rails"
+keywords: [Credentials, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+# Rails 5 - Encrypted Credentials
+
 Rails release 5.2 \(in RC1 at the time of writing this guide\) handles management of application secrets and credentials in a secure way. The release introduces **encrypted credentials** \(called "secrets" in release 5.1\) that are stored in  `config/credentials.yml.enc` .
 
-### The Master Key
+## The Master Key
 
 The encrypted `credentials.yml.enc` file will be decrypted in production, using a key stored either in the`RAILS_MASTER_KEY`environment variable, or in a key file. In development environment the application uses `config/master.key` to decrypt the data.
 
@@ -10,7 +26,7 @@ Note that It's safe to check in the encrypted file \(`credentials.yml.enc`\) to 
 
 You should also note that without the `master.key` file present in your project's `config` folder, you will experience errors. This might happen, for example, when you fork and clone an existing project and try to run `rails db:setup` \(or equivalent\).
 
-### Adding credentials
+## Adding credentials
 
 As mentioned, the encrypted credentials are saved and encrypted in `config/credentials.yml.enc`. You can not, and should not attempt to this file directly. To add credentials in your terminal, run this command \(change the name of you editor if you need\)
 
@@ -49,7 +65,7 @@ When you save the file and exit your editor, you should be prompted in the termi
 New credentials encrypted and saved.
 ```
 
-### Using credentials
+## Using credentials
 
 The key value pair we added to the credentials file is available for us to use in our application through the`Rails.application.credentials` object. To check if our addition has been encrypted properly, let's open up the rails console and try to access \(decrypt\) the value.
 
@@ -62,7 +78,7 @@ Loading development environment (Rails 5.2.0.rc1)
 
 In, your application, whenever you need to add a credential that is sensitive, you can now call the `Rails.application.credentials` and get the value you need.
 
-### Using the Master Key on Heroku
+## Using the Master Key on Heroku
 
 The easiest way to make encrypted credentials work on Heroku is to get the value stored in `config/master.key` , and use it to set up the`RAILS_MASTER_KEY` environment variable \(often referred to as **config vars** or **configuration variables**\)  of your application using the [Heroku Dashboard](https://dashboard.heroku.com).
 
@@ -74,17 +90,17 @@ $ heroku config:set RAILS_MASTER_KEY=`cat config/master.key
 
 The Heroku CLI command `heroku config` outputs a list of the config variables that you have added to your application. Run that command in your terminal to check if your `RAILS_MASTER_KEY` variable has been added properly.
 
-### Using the Master Key on CI
+## Using the Master Key on CI
 
 In order to be able to use encrypted credentials on your CI Service \(SemaphoreCI, TravisCI, CircleCI or whatever your choice might be\), you need to go through a similar process as adding the Master Key to production in the form of a `RAILS_MASTER_KEY` environment variable.
 
 **If your project is open sourced and/or a free plan on any of these services you have to make syre to encrypt the value of that variable or at the very least hide it from the test output. **
 
-#### TravisCI
+## TravisCI
 
 There are two ways of setting up and configuring TravisCI to make use of encrypted credentials.
 
-#### Using \`.travis.yml\` configuration file
+### Using \`.travis.yml\` configuration file
 
 Encrypt environment variables with the public key attached to your repository using the`travis`gem:
 
@@ -98,15 +114,15 @@ Encrypt environment variables with the public key attached to your repository us
 
 **Note: Encryption and decryption keys are tied to the repository. If you fork and clone a project and add it to Travis CI, it will not**_** **_**have access to the encrypted variables.**
 
-#### Defining Variables in Repository Settings
+### Defining Variables in Repository Settings
 
 On TravisCI, variables defined in repository settings are the same for all builds, and when you restart an old build, it uses the latest values. These variables are not automatically available to forks.
 
 To define variables in Repository Settings, make sure you’re logged in, navigate to the repository in question, choose “Settings” from the side  "More options" menu, and the `RAILS_MASTER_KEY` variable in the “Environment Variables” section.
 
-![](/assets/travis_add_env_variable.png)
+![Travis setup](https://github.com/CraftAcademy/ca_course/raw/master/assets/travis_add_env_variable.png)
 
-#### SemaphoreCI
+## SemaphoreCI
 
 If you use SemaphoreCI for continuous integration, you need to add a `RAILS_MASTER_KEY` environment variable in Project Settings.
 
@@ -114,7 +130,9 @@ Navigate to ProjectSettings -&gt; Environment Variables -&gt; Project specific E
 
 Add your variable in the panel.
 
-![](/assets/semaphore_add_env_variable.png)
+![Semaphore setup](https://github.com/CraftAcademy/ca_course/raw/master/assets/semaphore_add_env_variable.png)
+
+## Wrap up
 
 That should set you up with encrypted credential on CI services. In another guide, I'll show you how you can configure your application to use different YAML files depending on what Rails environment you are in.
 

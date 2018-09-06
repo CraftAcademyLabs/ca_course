@@ -1,4 +1,20 @@
-### Introduction
+---
+title: "JavaScript"
+subtitle: "Modifying the Document Object Model (DOM)"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "JavaScript, DOM, Webdevelopment"
+keywords: [avaScript, DOM, Webdevelopment, Learn To Code]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+# Modifying the Document Object Model (DOM) using JavaScript
+
+## Introduction
 
 The **Document Object Model**, usually referred to as the DOM, is an essential part of making websites interactive. It is an interface that allows a programming language to manipulate the content, structure, and style of a website. JavaScript is the client-side scripting language that connects to the DOM in an internet browser.
 
@@ -8,7 +24,7 @@ At the most basic level, a website consists of an HTML document. The browser tha
 
 In addition to parsing the style and structure of the HTML and CSS, the browser creates a representation of the document known as the Document Object Model. This model allows JavaScript to access the text content and elements of the website document as objects.
 
-### DOM Manipulation: Querying the DOM
+## DOM Manipulation: Querying the DOM
 
 *In the usage examples, you may encounter methods we haven’t introduced explicitly. In this case just refer to the excellent [Mozilla Developer Network](https://developer.mozilla.org/en-US/) for details.*
 
@@ -19,7 +35,7 @@ In this section we'll demonstrate how to accomplish some of the most common DOM 
 - listening to events
 - animation.
 
-### The basics
+## The basics
 
 The DOM can be queried using the `.querySelector()` method, which takes an arbitrary CSS selector as an argument. 
 
@@ -57,14 +73,8 @@ This will return the first match it encounters. However, if we try this ...
 const myElement = document.getElementsByClassName('bar')
 ```
 
-... we will get a collection of elements.
 
-```js
-HTMLCollection [div.bar]
-    0: div.bar
-    length: 1
-    __proto__: HTMLCollection
-```
+...we will get a collection of elements (HTMLCollection [div.bar]).
 
 We can also use `.querySelectorAll()` if we want to get all occurrences, we can use:
 
@@ -72,14 +82,9 @@ We can also use `.querySelectorAll()` if we want to get all occurrences, we can 
 const myElements = document.querySelectorAll('.bar')
 ```
 
-That will return:
+That will return a node list (NodeList [div.bar]).
 
-```js
-NodeList [div.bar]
-    0: div.bar
-    length: 1
-    __proto__: NodeList
-```
+## Children
 
 If we already have a reference to a parent element, we can just query that element’s children instead of the whole document. By narrowing down the context like this, we can simplify selectors and increase performance.
 
@@ -104,9 +109,9 @@ document.body.appendChild(newElement)
 elements1.length === elements2.length // false
 ```
 
-Another consideration is that such a live collection doesn’t need to have all of the information up front, whereas `.querySelectorAll()` immediately gathers everything in a static list, making it [less performant](https://www.nczonline.net/blog/2010/09/28/why-is-getelementsbytagname-faster-that-queryselectorall/).
+Another consideration is that such a live collection doesn’t need to have all of the information up front, whereas `.querySelectorAll()` immediately gathers everything in a static list, making it [less performant - (https://www.nczonline.net/blog/2010/09/28/why-is-getelementsbytagname-faster-that-queryselectorall/)](https://www.nczonline.net/blog/2010/09/28/why-is-getelementsbytagname-faster-that-queryselectorall/).
 
-#### Working with Nodelists
+## Working with Nodelists
 
 **There are two common pitfalls regarding `.querySelectorAll()`.** The first one is that we can’t call Node methods on the result and propagate them to its elements. Rather, we have to explicitly iterate over those elements. 
 
@@ -161,7 +166,7 @@ As with any object, we can check a node’s prototype chain using the `instance
 myElement.firstChild instanceof Text
 ```
 
-### Modifying Classes and Attributes
+## Modifying Classes and Attributes
 
 Modifying classes of elements is as easy as:
 
@@ -183,7 +188,8 @@ myElement.value = 'foo'
 // Set multiple properties using Object.assign()
 Object.assign(myElement, {
   value:'foo',
-  id:'bar'})
+  id:'bar'
+  })
   
 // Remove an attribute
 myElement.value = null
@@ -193,7 +199,7 @@ Note that there are also the methods `.getAttibute()`, `.setAttribute()` and `
 
 As a rule of thumb, only use them for attributes that don’t have a corresponding DOM property (such as colspan), or if you really want to “persist” those changes to the HTML (e.g. to keep them when cloning an element or modifying its parent’s  `.innerHTML`.
 
-#### Adding CSS styles
+## Adding CSS styles
 
 CSS rules can be applied like any other property; note though that the properties are `camelCased` in JavaScript:
 
@@ -207,7 +213,7 @@ If we want certain values, we can obtain these via the `.style` property. Howe
 window.getComputedStyle(myElement).getPropertyValue('margin-left')
 ```
 
-### Modifying the DOM
+## Modifying the DOM
 
 We can move elements around like this:
 
@@ -249,11 +255,11 @@ myElement.parentNode.removeChild(myElement)
 
 #### Element properties
 
-Every element also has the properties `.innerHTML`  and  `.textContent` (but also `.innerText`, which is similar to `.textContent`, but has some [important differences](http://perfectionkills.com/the-poor-misunderstood-innerText/)). 
+Every element also has the properties `.innerHTML`  and  `.textContent` (but also `.innerText`, which is similar to `.textContent`, but has some [important differences - (http://perfectionkills.com/the-poor-misunderstood-innerText/)](http://perfectionkills.com/the-poor-misunderstood-innerText/)). 
 
 These hold the HTML and plain text content respectively. They are writable properties, meaning we can modify elements and their contents directly:
 
-// Replace the inner HTML
+You can replace the inner HTML like this:
 
 ```javascript
 
@@ -268,13 +274,13 @@ const link = document.createElement('a')
 const text = document.createTextNode('continue reading...')
 const hr = document.createElement('hr')
 
-link.href ='foo.html'
+link.href = 'foo.html'
 link.appendChild(text)
 myElement.appendChild(link)
 myElement.appendChild(hr)
 ```
 
-With this approach, however, we’d cause two browser redraws — one for each appended element — whereas changing the `.innerHTML` only causes one. As a way around this performance issue we can first assemble all nodes in a [DocumentFragment](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment), and then just append that single fragment:
+With this approach, however, we’d cause two browser redraws — one for each appended element — whereas changing the `.innerHTML` only causes one. As a way around this performance issue we can first assemble all nodes in a [DocumentFragment - (https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment)](https://developer.mozilla.org/en-US/docs/Web/API/DocumentFragment), and then just append that single fragment:
 
 ```js
 const fragment = document.createDocumentFragment()
@@ -289,14 +295,20 @@ myElement.appendChild(fragment)
 This is possibly the best-known way to bind an event listener:
 
 ```js
-myElement.onclick = function onclick (event){
+myElement.onclick = function onclick (event) {
   console.log(event.type +' got fired')
-  }
+}
 ```
 
 But this should generally be avoided. Here, `.onclick` is a property of the element, meaning that you can change it, but you cannot use it to add additional listeners — by reassigning a new function you’ll overwrite the reference to the old one.
 
 Instead, we can use the much mightier `.addEventListener()` method to add as many events of as many types as we like. It takes three arguments: the event type (such as `click`), a function that gets called whenever the event occurs on the element (this function gets passed an event object), and an optional config object which will be explained further below.
+
+The benefits of using `addEventListener()` are:
+
+* It allows adding more than a single handler for an event. This is particularly useful for AJAX libraries, JavaScript modules, or any other kind of code that needs to work well with other libraries/extensions.
+* It gives you finer-grained control of the phase when the listener is activated (capturing vs. bubbling).
+* It works on any DOM element, not just HTML elements.
 
 ```js
 myElement.addEventListener('click',function(event){
@@ -341,15 +353,15 @@ document.addEventListener('DOMContentLoaded', function () {
 It’s less common, but sometimes you want your code to run when not just the HTML has been parsed, but all of the resources like images have been loaded. 
 
 ```javascript
-window.addEventListener('load', function(){
+window.addEventListener('load', function () {
   // Everything has loaded!
-  console.log('Everything has loaded!);
+  console.log('Everything has loaded!');
 });
 ```
 
 You can NOT expect the `load` event to be triggered on `document`.
 
-#### Preventing default actions
+## Preventing default actions
 
 Note that `event` is always available within the listener function, but it is good practice to explicitly pass it in anyway when needed (and we can name it as we like then, of course). Without elaborating on the [Event](https://developer.mozilla.org/en-US/docs/Web/API/Event) interface itself, one particularly noteworthy method is `.preventDefault()`, which will prevent the browser’s default behavior, such as following a link. 
 
@@ -373,9 +385,9 @@ Now `.addEventListener()` takes an optional config object as a 3rd argument, w
 * once: As you might guess, this indicates that the event will get triggered only once
 * passive: This means that `event.preventDefault()` will be ignored (and usually yield a warning in the console)
 
-The most common option is `.capture`. In fact, it is so common that there’s a shorthand for this: instead of specifying it in the config object, you can just pass in a boolean  like this: `myElement.addEventListener(type, listener,true);`
+The most common option is `.capture`. In fact, it is so common that there’s a shorthand for this: instead of specifying it in the config object, you can just pass in a boolean  like this: `myElement.addEventListener(type, listener, true);`
 
-#### Removing a listener
+## Removing a listener
 
 Event listeners can be removed using `.removeEventListener()`, which takes the event type and a reference to the callback function to be removed; for example, the once option could also be implemented like:
 
@@ -386,7 +398,7 @@ myElement.addEventListener('change', function listener(event) {
 })
 ```
 
-#### Event delegation
+## Event delegation
 
 Another useful pattern is *event delegation*: say we have a form and want to add a change event listener to all of its input children. One way to do so would be iterating over them using `myForm.querySelectorAll('input')` as shown above. However, this is unnecessary. We can just as well add it to the form itself and check the contents of `event.target`.
 
@@ -401,7 +413,7 @@ myForm.addEventListener('change', function (event) {
 
 Another advantage of this pattern is that it automatically accounts for dynamically inserted children as well, without having to bind new listeners to each.
 
-### Animation
+## Animation
 
 Usually, the cleanest way to perform animations is to apply CSS classes with a transition property, or use CSS `@keyframes`. But if you need more flexibility, animations can be done with JavaScript as well.
 
@@ -478,27 +490,7 @@ This way we can achieve very smooth animations. The `requestAnimationFrame()` me
 
 ## Wrap up
 
-In this tutorial, we defined the Document Object Model, accessed the `document` object, and used JavaScript and the console to update properties of the `document` object.
+In this guide, we defined the Document Object Model, accessed the `document` object, and used JavaScript and the console to update properties of the `document` object.
 
-For more in-depth information on the Document Object Model, review [the documentation](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) on the Mozilla Developer Network.
+For more in-depth information on the Document Object Model, review [the documentation - (https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) on the Mozilla Developer Network.
 
-
-
-## What You’ll Learn
-
-The best way to learn to code is by writing a lot of code. But where do you start? How do you choose when to learn what? And what happens when you get stuck?
-
-Join our JavaScript Fundamentals course.
-
-* DOM manipulation, injection, and traversal
-* How to transform and edit strings, arrays, and objects
-* ES6 essentials
-* How to structure and organize code
-* How to save data locally
-* Ajax and HTTP
-* How to work with APIs
-* How to write JavaScript plugins
-* Framework-free web apps
-* How to easily write cross-browser compatible code
-* Working with polyfills
-* JavaScript performance tricks

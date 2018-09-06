@@ -1,0 +1,1 @@
+Directives usually change the browser [DOM](https://en.wikipedia.org/wiki/Document_Object_Model) and have the ability to change elements in the current page. There are some built-in directives that we will be using more frequently, so let's go ahead and have a look at those.

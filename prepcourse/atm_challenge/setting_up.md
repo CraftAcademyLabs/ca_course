@@ -1,4 +1,5 @@
-## Setting up
+# Setting up
+Let's get back to the ATM challenge. Before we s
 ### Learning objectives
 
 1. Learn how to set up a simple ruby based project
@@ -9,7 +10,7 @@
 ### Action points
 
 * Set up a simple project   
-    * Create a `Gemfile` and add `rspec` as a dependency.
+    1. Create a `Gemfile` and add `rspec` as a dependency.
     2. Initiate `rspec`
     3. Modify `.rspec` to output the spec messages in terminal.
 * Create a basic folder structure for your project (production code in `lib`, tests in `spec`)

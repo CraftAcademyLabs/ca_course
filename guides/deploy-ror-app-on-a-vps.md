@@ -1,3 +1,17 @@
+---
+title: "DevOps"
+subtitle: "Deploy Ruby on Rails on Ubuntu 18.04"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "DevOps, Deployment, DigitalOcean, Rails"
+keywords: [DevOps, Deployment, DigitalOcean, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # Deploy Ruby on Rails on Ubuntu 18.04
 
 So far in this camp, you've been deploying most of your Rails application on Heroku. This required little to zero configurations on your part. All you needed to do was create an account with them, get your project ready and push your code to a git repository provided by Heroku. You didn't have to worry about setting up a server and installing all the necessary software and package to host a Rails application.
@@ -6,32 +20,39 @@ In this guide, we will be setting up a Ruby on Rails production environment on a
 
 We are going to setup our server on [Digital Ocean](https://do.co). They provide a cloud platform that allows you to easily manage your server infrastructure.
 
-![Digital Ocean](images/do.png)
+![Digital Ocean](https://github.com/CraftAcademy/ca_course/raw/master/guides/images/do.png)
 
 ## Create a Virtual Private Server
 
 Once you've create your account on Digital Ocean you'll get access to your dashboard from where you will manage most of your resources.
 
-![Select droplet OS](images/create-droplet-1.png)
+![Select droplet OS](https://github.com/CraftAcademy/ca_course/raw/master/guides/images/create-droplet-1.png)
 
 Select your droplet size
 
-![Select droplet size](images/select-droplet-size.png)
+![Select droplet size](https://github.com/CraftAcademy/ca_course/raw/master/guides/images/select-droplet-size.png)
 
 Select a region closer to you
 
-![Select region](images/select-region.png)
+![Select region](https://github.com/CraftAcademy/ca_course/raw/master/guides/images/select-region.png)
 
 Give your droplet a name and upload your ssh-keys to be able to login to the server later on
 
-![SSH Key and Droplet name](images/ssh-key-droplet-name.png)
+![SSH Key and Droplet name](https://github.com/CraftAcademy/ca_course/raw/master/guides/images/ssh-key-droplet-name.png)
 
 ## Create `deploy` user
+We first need to ssh into our server as the `root` user, so grab the ip number of the server.
+
+```shell
+$ ssh root@your-vps-ip-address
+```
+
+Then we can create the user
 
 ```sh
-adduser deploy
-adduser deploy sudo
-echo "deploy  ALL=(ALL:ALL)   NOPASSWD: ALL" > /etc/sudoers.d/deploy
+$ adduser deploy  // enter a password when asked and store it somewhere safe
+$ adduser deploy sudo
+$ echo "deploy  ALL=(ALL:ALL)   NOPASSWD: ALL" > /etc/sudoers.d/deploy
 ```
 
 The last line of the above command is just so we don't have to type the password for the `deploy` user everytime we try to execute a command using `sudo`
@@ -39,26 +60,26 @@ The last line of the above command is just so we don't have to type the password
 Switch to the `deploy`
 
 ```sh
-su - deploy
+$ su - deploy
 ```
 
 Then do the following to copy the authorized keys from the `root` user into the ssh config for `deploy`. When this is done, you should be able to ssh directly into the server as `deploy` and won't need to make use of `root`
 
 ```sh
-mkdir .ssh
-sudo cat /root/.ssh/authorized_keys > .ssh/authorized_keys
+$ mkdir .ssh
+$ sudo cat /root/.ssh/authorized_keys > .ssh/authorized_keys
 ```
 
 Now log out and try to log into the server as a the newly created `deploy` user before you carry on with the next steps
 
 ```sh
-ssh deploy@your-vps-ip-address
+$ ssh deploy@your-vps-ip-address
 ```
 
 Install system and security updates on the server
 
 ```sh
-sudo apt update && sudo apt upgrade -y
+$ sudo apt update && sudo apt upgrade -y  // If you get a popup select the option to keep local settings
 ```
 
 ## Security - Setup a firewall
@@ -68,33 +89,33 @@ When setting up a server to host a web app, it's important to setup some basic s
 Executing the following commands will block all incoming requests to the server and allow all outgoing requests from the server.
 
 ```sh
-sudo ufw default deny incoming
-sudo ufw default allow outgoing
+$ sudo ufw default deny incoming
+$ sudo ufw default allow outgoing
 ```
 
 Next we enable `ssh` access if we don't do this, we will not be able to log into the server moving forward.
 
 ```sh
-sudo ufw allow ssh
+$ sudo ufw allow ssh
 ```
 
 And because we're deploying a web application, we should enable public access to port `80` (`http`) and port `443` (`https`).
 
 ```sh
-sudo ufw allow http
-sudo ufw allow https
+$ sudo ufw allow http
+$ sudo ufw allow https
 ```
 
 After setting all those rules, we need to enable `ufw`
 
 ```sh
-sudo ufw enable
+$ sudo ufw enable
 ```
 
 You can execute the following command to make sure everything has been configured correctly
 
 ```sh
-sudo ufw status
+$ sudo ufw status
 ```
 
 ## Installing Ruby
@@ -104,8 +125,8 @@ Given that we'll be deploying a rails application, we should install Ruby on our
 First let's install some dev dependencies:
 
 ```sh
-curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
-curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
+$ curl -sL https://deb.nodesource.com/setup_8.x | sudo -E bash -
+$ curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | sudo apt-key add -
 echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list
 
 sudo apt update
@@ -115,48 +136,57 @@ sudo apt install git-core curl zlib1g-dev build-essential libssl-dev libreadline
 Installing `rbenv`
 
 ```sh
-cd
-git clone https://github.com/rbenv/rbenv.git ~/.rbenv
-echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
-echo 'eval "$(rbenv init -)"' >> ~/.bashrc
-exec $SHELL
+$ cd
+$ git clone https://github.com/rbenv/rbenv.git ~/.rbenv
+$ echo 'export PATH="$HOME/.rbenv/bin:$PATH"' >> ~/.bashrc
+$ echo 'eval "$(rbenv init -)"' >> ~/.bashrc
+$ exec $SHELL
 
-git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
-echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
-exec $SHELL
+$ git clone https://github.com/rbenv/ruby-build.git ~/.rbenv/plugins/ruby-build
+$ echo 'export PATH="$HOME/.rbenv/plugins/ruby-build/bin:$PATH"' >> ~/.bashrc
+$ exec $SHELL
 ```
 
 Install the ruby version you need for your application. For this demo we'll be using 2.5.1
 
 ```sh
-rbenv install 2.5.1
-rbenv global 2.5.1
-ruby -v
+$ rbenv install 2.5.1
+$ rbenv global 2.5.1
+$ ruby -v
 ```
 
-And finally let's install Bunbler
+If you get the error `rbenv: no such command 'install'`, then run `sudo apt-get install rbenv ruby-build` and try again.
+
+Next we need to install Bundler
 
 ```sh
-gem install bundler
-rbenv rehash
+$ gem install bundler
+$ rbenv rehash
 ```
 
-## Installing a Web Server Nginx
+And finally we install rails
+
+``sh
+$ gem install rails
+```
+
+
+## Installing the Nginx Web Server 
 
 We will use Passenger + Nginx on our Production server because it's fairly easy to setup.
 
 ```sh
-sudo apt install -y dirmngr gnupg
-sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
-sudo apt install -y apt-transport-https ca-certificates
+$ sudo apt install -y dirmngr gnupg
+$ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
+$ sudo apt install -y apt-transport-https ca-certificates
 
-sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger bionic main > /etc/apt/sources.list.d/passenger.list'
-sudo apt update
+$ sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger $ bionic main > /etc/apt/sources.list.d/passenger.list'
+$ sudo apt update
 
-sudo apt install -y nginx-core libnginx-mod-http-passenger
+$ sudo apt install -y nginx-core libnginx-mod-http-passenger
 
-if [ ! -f /etc/nginx/modules-enabled/50-mod-http-passenger.conf ]; then sudo ln -s /usr/share/nginx/modules-available/mod-http-passenger.load /etc/nginx/modules-enabled/50-mod-http-passenger.conf ; fi
-sudo ls /etc/nginx/conf.d/mod-http-passenger.conf
+$ if [ ! -f /etc/nginx/modules-enabled/50-mod-http-passenger.conf ]; then sudo ln -s /usr/share/nginx/modules-available/mod-http-passenger.load /etc/nginx/modules-enabled/50-mod-http-passenger.conf ; fi
+$ sudo ls /etc/nginx/conf.d/mod-http-passenger.conf
 ```
 
 Now that Nginx has been installed and we've configured passenger, we need to restart Nginx by using the following command:
@@ -191,14 +221,23 @@ sudo systemctl restart nginx.service
 
 ## PostgreSQL Database Setup
 
-```sh
-sudo apt install postgresql postgresql-contrib libpq-dev -y
-```
+Install postgres
 
 ```sh
-sudo su - postgres
-createuser -s -r -P deploy
-createdb -O deploy my_app_name_production
+$ sudo apt install postgresql postgresql-contrib libpq-dev -y
+```
+
+Switch to postgres user and create a `deploy` postgres user, we will need to specify a password, make it a strong one, store it somewhere since we will need it in our rails application to manage our database. When that is done we exit the `postgres` user
+
+```sh
+$ sudo su - postgres
+$ createuser -s -r -P deploy
+$ exit
+```
+As the `deploy` user we need to create the database for our application
+
+```sh
+$ createdb -O deploy my_app_name_production
 ```
 
 
@@ -215,8 +254,10 @@ group :development do
 end
 ```
 
+Run `bundle install`
+
 ```sh
-cap install STAGES=production
+$ cap install STAGES=production
 ```
 
 Modify the `Capfile`
@@ -301,7 +342,7 @@ set :ssh_options, forward_agent: true
 To deploy your app you'll need to execute the following command.
 
 ```sh
-bundle exec cap production deploy
+$ bundle exec cap production deploy
 ```
 
 The first time you execute the deploy command, you'll get a couple failure because some files or folders haven't been created yet on the server.
@@ -340,5 +381,8 @@ server {
 Save the file and restart `nginx`
 
 ```sh
-sudo systemctl restart nginx
+$ sudo systemctl restart nginx
 ```
+
+## Wrap up
+This should do it. At this stage you have set up your very own Virtual Private Server. 

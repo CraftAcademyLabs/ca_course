@@ -6,7 +6,7 @@ Copy the `person.js` and `bmi_calculator.js` files into your `www/js` folder. If
 
 Reference those files in your main template file (`www/index.html`) in the block where you are including your other `js` files.
 
-!FILENAME www/index.html
+<small>www/index.html<small>
 ```html
   <!-- your app's js -->
   <script src="js/app.js"></script>

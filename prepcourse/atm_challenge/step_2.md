@@ -19,9 +19,10 @@ Okay, moving on... Create a new file named `atm_spec.rb` in your `spec` folder.
 ```
 $ touch spec/atm_spec.rb
 ```
-Let's add the following test to that file. Note the keywords `describe` and `it`. Also, as in all ruby programs we are creating blocks with the `do` and `end` keywords. *Make it a habit that you always add an `end` if you type `do`.*
+Let's add the following test to that file. Note the keywords `describe` and `it`. Also, as in all ruby programs we are creating blocks with the `do` and `end` keywords. **Make it a habit that you always add an `end` if you type `do`.**
 
-!FILENAME spec/atm_spec.rb
+_spec/atm_spec.rb_
+
 ```ruby
 require './lib/atm.rb'
 describe Atm do
@@ -31,6 +32,7 @@ describe Atm do
 end
 ```
 Make sure that you run that spec from your terminal.
+
 ```
 $ rspec spec/atm_spec.rb
 ```
@@ -62,7 +64,8 @@ rspec spec/atm_spec.rb
 
 A new error message. But not the same as before. That is good. So what have we here?  `uninitialized constant Atm`? Yes, there is no `Atm` class defined. Let's do that. 
 
-!FILENAME lib/atm.rb
+_lib/atm.rb_
+
 ```ruby
 class Atm
 
@@ -90,7 +93,8 @@ New error message? Cool!
 
 Yes, there is no method `funds` for the `Atm` class. Let's add that by adding a `attr_accessor :funds` to the class. What is `attr_accessor`? You can read about it in this [Stack Overflow answer](http://stackoverflow.com/a/5046915/1354994). 
 
-!FILENAME lib/atm.rb
+_lib/atm.rb_
+
 ```ruby
 class Atm
   attr_accessor :funds
@@ -118,7 +122,8 @@ Okay, so we expected `funds` to be `1000` but it was `nil`. Let's make it so tha
 
 We can do that by setting that value in the `initialize` method. `initialize` is a constructor method that will be run every time an instance of a class is created. 
 
-!FILENAME lib/atm.rb
+_lib/atm.rb_
+
 ```ruby
 class Atm
   attr_accessor :funds
@@ -141,20 +146,23 @@ Finished in 0.00195 seconds (files took 0.67858 seconds to load)
 1 example, 0 failures
 ```
 
-Yay! First success! Green is GOOD!
+**Yay! First success! Green is GOOD!**
 
-**Lesson learned:**  Every feature, no matter how small, will lead to a series of failures. Until it doesn't. This goes for new, inexperienced programmers, as well as for those of us who has been doing this for a long time. There's nothing wrong with you. Just get used to it and see everything you do as a learning experience. 
+## Lessons learned
 
-Keep your calm, read the error messages that RSpec so kindly throws at you and make small steps forward. Be thankful that you have a testing framework that helps you to figure out what is wrong with your code. Imagine if you were coding without it? 
+Every feature, no matter how small, will lead to a series of failures. Until it doesn't. This goes for new, inexperienced programmers, as well as for those of us who has been doing this for a long time. There's nothing wrong with you. Just get used to it and see everything you do as a learning experience. 
+
+Keep your calm, read the error messages that RSpec so kindly throws at you, and make small steps forward. Be thankful that you have a testing framework that helps you to figure out what is wrong with your code. Imagine if you were coding without it? 
 
 Alright, enough of coding philosophy. Let's move on. This is a great time to do a commit and push up your code (Unless you already did that). 
 
 
-###Doing a withdrawal
+## Doing a withdrawal
 
 Let's add another test to the `atm_spec`. Inside the `describe Atm`block, add this spec.
 
-!FILENAME spec/atm_spec.rb
+_spec/atm_spec.rb_
+
 ```ruby
 it 'funds are reduced at withdraw' do
   subject.withdraw 50
@@ -180,11 +188,12 @@ Failures:
        undefined method `withdraw' for #<Atm:0x007fac30e79378 @balance=1000>
 ...
 ```
-Shoots! New error. Yes, yes, yes. That is supposed to happen! ;-)
+Shoots! New error. Yes, yes, yes. That's supposed to happen! ;-)
 
-So, we have an `undefined method 'withdraw'`. Alright. let's create the `withdraw` method and let it take one argument - the amount we want to withdraw from the Atm. 
+So, we have an `undefined method 'withdraw'`. Alright. Let's create the `withdraw` method, and let it take one argument - the amount we want to withdraw from the Atm. 
 
-!FILENAME lib/atm.rb
+_lib/atm.rb_
+
 ```ruby
 class Atm
   attr_accessor :funds
@@ -198,7 +207,7 @@ class Atm
 end
 ```
 
-Run RSpec just to see another error message. 
+Run RSpec to check if you get a different error message.
 
 ```
 $ rspec spec/atm_spec.rb:7
@@ -217,11 +226,12 @@ Failures:
 ...
 ```
 
-Okay, I think you get the point now. We don't have to follow the error messages in such detail from now on.
+Okay, I think you get the point now. We don't have to follow the error messages in such detail from now on. But remember, you have to keep running your tests after every change you make to your implementation code. 
 
 Let's add some functionality to the `withdraw` method that actually adjust the `balance`. 
 
-!FILENAME lib/atm.rb
+_lib/atm.rb_ 
+
 ```ruby
 class Atm
   #...
@@ -232,7 +242,7 @@ class Atm
 end
 ```
 
-And when you run RSpec again, the test passes. Another one bites the dust!
+And when you run RSpec again, the test passes. **Another one bites the dust!**
 
 
 

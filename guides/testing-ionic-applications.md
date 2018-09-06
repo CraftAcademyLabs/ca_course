@@ -1,13 +1,25 @@
+---
+title: "Automated Tests in Ionic - Setup"
+subtitle: "Unit And Acceptance testing In Ionic"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Testing, Ionic"
+keywords: [Testing, RIonicails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Ionic Testing environment setup
 
 The following guide assumes that you already have a Ionic application scaffolded and configured. Following the outline steps, will help you in setting up frameworks for running both unit-, as well as acceptance tests.
 
-**Testing is challenging and frustrating even for experienced developers. Writing tests and getting them to pass takes patience and experience. You should learn as much as possible about testing and practice as much as you can. Take your time, ask questions of your coaches, fellow peers, seek assistance online, and above all, don’t let a continuously failing test get the better of you. Follow the TDD process \(Acceptance-Unit Test Cycle\) as much as possible. Also, adding test coverage metrics to your test suite will help you to stay on track. You will overcome it.**
-
 In our project folder, we need to install some dependencies.
 
 ```
-npm install --save-dev angular2-template-loader html-loader jasmine jasmine-spec-reporter karma karma-chrome-launcher karma-jasmine karma-jasmine-html-reporter karma-sourcemap-loader karma-webpack karma-coverage-istanbul-reporter istanbul-instrumenter-loader null-loader protractor ts-loader ts-node @types/jasmine @types/node ionic-mocks
+$ npm install --save-dev angular2-template-loader html-loader jasmine jasmine-spec-reporter karma karma-chrome-launcher karma-jasmine karma-jasmine-html-reporter karma-sourcemap-loader karma-webpack karma-coverage-istanbul-reporter istanbul-instrumenter-loader null-loader protractor ts-loader ts-node @types/jasmine @types/node ionic-mocks
 ```
 
 This command adds these modules to the `"devDependencies"` node of your project’s `package.json` file. There are quite a few modules here, but the important modules are `karma`, `jasmine` and `protractor`. 
@@ -53,7 +65,9 @@ Now our file should look like this \(the dependencies are excluded for better re
 
 Now, we need to create a folder called `test-config` in our project root folder.
 
-`$ mkdir test-config`
+```
+$ mkdir test-config
+```
 
 Next, we need to create configurations files in that forlder.
 
@@ -254,7 +268,9 @@ Some of the Karma and Jasmine dependencies don't work very well together so we n
 
 First, we need to create a folder `e2e` in our project root folder.
 
-`$ mkdir e2e`
+```
+$ mkdir e2e
+```
 
 Then, we need to create a configuration file `tsconfig.e2e.json.`for Typescript in the testing environment.
 
@@ -331,4 +347,10 @@ describe('App', () => {
 When running the e2e tests we first have to fire up `ionic serve --lab` in another terminal tab. To open a new tab in your terminal select your terminal and press `Command+t`, on a linux you press `control-shift-t`.
 
 When you have Ionic server running, you can run `npm run e2e` to run your acceptance tests.
+
+## Wrap up
+
+**Testing is challenging and sometimes frustrating even for experienced developers.** 
+
+Writing tests and getting them to pass takes patience and experience. You should learn as much as possible about testing and practice as much as you can. Take your time, ask questions of your coaches, fellow peers, seek assistance online, and above all, don’t let a continuously failing test get the better of you. Follow the TDD process \(Acceptance-Unit Test Cycle\) as much as possible. Also, adding test coverage metrics to your test suite will help you to stay on track. You will overcome it.
 

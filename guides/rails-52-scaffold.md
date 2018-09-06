@@ -1,5 +1,21 @@
+---
+title: "Ruby On Rails - Setup"
+subtitle: "Training Wheels"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Testing, Rails"
+keywords: [Testing, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+
 # Rails with Testing frameworks
-This guide will provide a step-by-step instruction to scaffold a new Rails 5.2 application. We will be using a separate gemset to contain the dependencies used in this project. You should familiarize yourself with the concept of gemsets by reading more about them on the [RVM documentation](https://rvm.io/gemsets/basics) site. 
+
+This guide will provide a step-by-step instruction to scaffold a new Rails 5.2 application. We will be using a separate gemset to contain the dependencies used in this project. You should familiarize yourself with the concept of gemsets by reading more about them on the [RVM documentation - (https://rvm.io/gemsets/basics)](https://rvm.io/gemsets/basics) site. 
 
 _Please note that this setup may or may not suite your purposes - the frameworks we use are the one that suites us and makes our workflow effective and productive. But it's up to you to form your own opinion._ 
 
@@ -83,7 +99,7 @@ We would like to measure test coverage using a remote service
 
 - [ ] Set up Coveralls for the main repository
 - [ ] Add and configure Coveralls for RSpec and Cucumber
-- [ ] Coverage results needs to be merged in order to get metrics from both tools
+- [ ] Coverage results needs to be merged in order to get metrics from both tools (add a Rake task - see the Coveralls guide).
 
 ### Set up Continious Deployment
 **Description**
@@ -219,7 +235,9 @@ Run your tests to check if all setup is working:
 $ rake
 ```
 
+## Wrap up
+
 You should get a green response from both testing frameworks. 
 If all is good, commit and push. At this stage, you are ready to get started with implementing your features - BDD style.
 
-Good luck
+Good luck with your new Rails application

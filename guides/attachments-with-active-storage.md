@@ -1,3 +1,17 @@
+---
+title: "Rails 5 - Active Storage"
+subtitle: "Attaching Files To Active Model"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Elasticsearch, Rails"
+keywords: [Elasticsearch, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ### Active Storage
 
 Active Storage is a new addition to Rails \(introduced in Rails 5.2\) that allows for attaching files to Active Record objects. Attachements can be stored locally or uploaded to a cloud storage service like Amazon S3, Google Cloud Storage, or Microsoft Azure Storage.
@@ -125,25 +139,23 @@ Feature: User can create article with image attachment
 And my step definitions:
 
 ```ruby
-Given(/^I am on the create article page$/) do
+Given("I am on the create article page") do
   visit new_article_path
 end
 
-And(/^I fill in "([^"]*)" with "([^"]*)"$/) do |field, value|
-  sleep 1
+And("I fill in {string} with {string}") do |field, value|
   fill_in field, with: value
 end
 
-
-And(/^I attach a file$/) do
+And("I attach a file") do
   attach_file('article_image', "#{::Rails.root}/spec/fixtures/dummy_image.jpg")
 end
 
-And(/^I click "([^"]*)"$/) do |value|
-  click_link_or_button value
+And("I click {string}") do |value|
+  click_on value
 end
 
-Then(/^I should be on the article page for "([^"]*)"$/) do |article_title|
+Then("I should be on the article page for {string}") do |article_title|
   article = Article.find_by(title: article_title)
   expect(current_path).to eq article_path(article)
 end
@@ -183,17 +195,24 @@ class ArticlesController < ApplicationController
 
   def create
     article = Article.create(article_params)
-    article.image.attach(params[:article][:image])
     redirect_to article
   end
 
   private
 
   def article_params
-    params.require(:article).permit(:title, :body)
+    # note that we add ':image' to permitted params
+    # that will add the image to the instance of Article
+    # we are working on 
+    params.require(:article).permit(:title, :body, :image)
   end
 end
 ```
 
 **And now, it all works. Gotta love Rails!**
+
+### Final words
+Active Storage brings a lot of powerful geatures to the table. However, there is no build in validations (of i.e. the format of the attachment) which means you, the developer, need to handle validations on your own. 
+
+In the example above, we added configured the Article model to accept ONE attachment. You can, of course, add MANY attachments to a model using the `has_many_attached` association. You can read about that, and many other topics in consequent guides or check out the [official API docs](https://edgeguides.rubyonrails.org/active_storage_overview.html).
 

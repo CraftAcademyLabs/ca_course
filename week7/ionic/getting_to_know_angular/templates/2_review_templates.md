@@ -1,0 +1,1 @@
+It is now time to review the template, so head over to `app.component.html` and have a look at the syntax there. Remove all the unordered list items, as well as the image, and save the changes to see how the changes take effect in the browser.

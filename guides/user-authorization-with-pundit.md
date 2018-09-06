@@ -1,14 +1,28 @@
-### Role-Based Authorization
+---
+title: "Role-Based Authorization"
+subtitle: "Assign privileges and abilities"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Authorization, Authentication, Rails"
+keywords: [Authorization, Authentication, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+# Role-Based Authorization
 
 Almost every web application needs an authorization system if there are parts of the website that are restricted to some users. Most websites set access restrictions based on roles; that is, users are grouped by privilege. One of the most common ways to handle privileges is by implementing a system for **Role-Based Authorization**. Roles are set with attributes associated with a user account, and often implemented in a User model. For every action, the application checks the role of user that is currently using the application to check it's role to determine if access to that particular action is allowed.
 
 In the simplest implementation, we check if a user has a specific role \(such as and Editor or Author\) and either allow access or redirect with an “Access Denied” message.
 
-### Pundit
+## Pundit
 
 Pundit is an authorization library that helps us to define access rules. Pundit uses a folder named `app/policies`** **containing policies that implement access rules. Pundit is well-suited to the service-oriented architecture that is popular for large Rails applications, emphasizing object-oriented design with discrete Ruby objects providing specialized services. In this guide, we will \(eventually\) implement a role-based authorization, using Pundit.
 
-### Roles
+## Roles
 
 Note that Pundit does not implement the roles a user can have. In order to do that, we need to add an attribute to the User model ourselves, or use a gem that does it for us.
 
@@ -58,7 +72,7 @@ class User < ApplicationRecord
 end
 ```
 
-### Using Active Record `enum`
+## Using Active Record `enum`
 
 There's also another way of setting this up, using `enum`.
 
@@ -90,13 +104,21 @@ class User < ApplicationRecord
 end
 ```
 
+
 This approach stores the value as an integer \(based on the index number of the value in the array we add to `roles:`\) and has the advantage to give us some methods for free.
+
+If you prefer to be in control of the numeric values enom will use for each role, use this alternative syntax:
+
+```ruby
+enum role: [{visitor: 1}, {author: 1}]
+```
+## Try it out...
 
 We can go into the console and try things out.
 
 ```ruby
-rails c
-Loading development environment (Rails 5.2.0.rc1)
+$ rails c
+Loading development environment (Rails 5.2)
 [1] pry(main)> user_1 = User.create(email: 'author@newsroom.com', password: 'password', role: :author)
 => #<User id: 5, email: "author@newsroom.com", created_at: "2018-03-21 11:14:01", updated_at: "2018-03-21 11:14:01", role: "author">
 [2] pry(main)> user_1.author?
@@ -117,7 +139,7 @@ We now also have a bang method available, that will change the role of the user:
 
 That's pretty handy, right? You can read more about `enum` on the [Rails API documentation]( http://api.rubyonrails.org/classes/ActiveRecord/Enum.html) site.
 
-### It all starts with a test...
+## It all starts with a test...
 
 ```gherkin
 Feature: User can create article with image attachment
@@ -147,7 +169,7 @@ Feature: User can create article with image attachment
     And I should see "You are not authorized to perform that action!"
 ```
 
-### Testing Policies
+## Testing Policies
 
 Install the [`pundit-matcher`  gem](https://github.com/chrisalley/pundit-matchers)  and require it in your `spec_helper` \(see the Gem documentation\)
 
@@ -174,7 +196,7 @@ describe ArticlePolicy do
 end
 ```
 
-### The ArticlePolicy
+## The ArticlePolicy
 
 ```ruby
 class ArticlePolicy < ApplicationPolicy
@@ -197,6 +219,11 @@ class ArticlePolicy < ApplicationPolicy
   end
 end
 ```
+
+## Wrap up
+
+This guide covers only the basics of everything connected to the concept of authorization, but should give you enough insights to get started.
+
 
 
 
