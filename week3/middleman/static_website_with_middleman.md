@@ -30,5 +30,3 @@ You might be wondering now, why go through the trouble of using a tool like Midd
 Building a static site with many pages can lead to having lots of repeated code across. Updating them during development will quickly become a nightmare. Middleman will allow you to structure your project in a modular way using things like layouts, partials, etc. Giving you a DRY and more manageable project.
 
 Middleman uses the Ruby programming language. But don't worry if you are still new to Ruby as you will likely not write too much of it while build your site.
-
-Now let's [install middleman and build our first site](setup_middleman.md).

@@ -55,7 +55,7 @@ $ middleman server
 
 This will start up the server and you should now be able to access the site at [http://localhost:4567/](http://localhost:4567/)
 
-![Middleman welcome screen](welcome_to_middleman.png)
+![Middleman welcome screen](https://raw.githubusercontent.com/CraftAcademy/ca_course/master/week3/middleman/welcome_to_middleman.png)
 
 Great! We have successfully setup middleman and created our project. Now let's go through the files that have been generated for us.
 
