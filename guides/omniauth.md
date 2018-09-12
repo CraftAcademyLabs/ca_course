@@ -1,4 +1,18 @@
-## Implementing API OmniAuth with Facebook on web app
+---
+title: "Guides"
+subtitle: "Implementing API OmniAuth with Facebook on web app"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Guides, Facebook, Omniauth"
+keywords: [Guides, Facebook, Omniauth]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+# Implementing API OmniAuth with Facebook on web app
 
 This guide assumes that you have already implemented devise token auth and have setup correct routes for it with an API controller. 
 
