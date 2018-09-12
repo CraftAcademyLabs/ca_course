@@ -23,7 +23,7 @@ In the terminal run:
 
  `mkdir src/assets/fonts`
 
-Go to [Google Fonts](https://fonts.google.com/) and find a font that you want to use and download it. Extract the file from the zipped package you dowloaded. It will often contain several different versions of the font, but you only have to extract the one that says something with "`regular`". In this gude we will use "[Montserrat](https://fonts.google.com/specimen/Montserrat)" as an example and it will be in the `woff2` format. 
+Go to [Google Fonts](https://fonts.google.com/) and find a font that you want to use and download it. Extract the file from the zipped package you dowloaded. It will often contain several different versions of the font, but you only have to extract the one that says something with "`regular`" in the file name. In this gude we will use "[Montserrat](https://fonts.google.com/specimen/Montserrat)" as an example and it will be in the `woff2` format. 
 
 Open upp the app.scss, remove the commented out code and add this.
 Change the name of the file to the one that you extracted from the dowloaded font package. 
@@ -46,8 +46,8 @@ Add the font file to the `src/assets/fonts` folder.
 
 We first set the font at `@font-face` and set the src, where the application can find the font.
 
-The second block of code is where we actually set the font to be used in the application. Everything in ionic inherits from the app component, so what we set in the `app.scss` will be used on every page in the application. The `*` means that all the elements in the `app.html` will have the attributes we set inside it.
- If we were to set that `*` inside another scss file like the  `home/home.scss`, that would mean that everything in `home.html` would have the attributes we give it.
+The second block of code is where we actually set the font to be used in the application. Everything in ionic inherits from the app component, so what we set in the `app.scss` will be used on every page in the application. The `*` means that all the elements in the application will have the attributes we set inside it.
+If we were to set that `*` inside another scss file like the  `home/home.scss`, that would mean that everything in `home.html` would have the attributes we give it.
 
 
 If you fire up the server now with `ionic serve`, you will see that we have succeded in changing the font for our application.
@@ -101,9 +101,4 @@ Now you can call on it in elements like this:
 
 `<button ion-button color="pink">Click Me</button>`
 
-
-
-
-
-
-
+If you add this line of code somewhere and run the server, you should see a pink button. 
