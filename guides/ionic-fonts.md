@@ -1,3 +1,17 @@
+---
+title: "Guides"
+subtitle: "Changing fonts and colors in Ionic with CSS"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Guides, Ionic"
+keywords: [Guides, Ionic]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # Changing fonts and colors in Ionic with CSS
 
 If you dont want to use the standard ionic font and colors, this is the guide for you. This guide assumes that you have an Ionic application scaffolded. 
