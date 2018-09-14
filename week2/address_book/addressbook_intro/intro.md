@@ -49,3 +49,11 @@ Also as part of the design sprint sessions, the team has decided to make this a 
 In addition to that, we would like to have some acceptance tests \(also known as end-to-end testing\) done while building this application.
 
 You will be part of the team responsible for designing and developing this application. In the next section, we will walk you through the main components that we'll be using as part of the tech stack for this application.
+
+
+----
+**Important**
+
+Please note that there may be subtle errors  or typos in the following materials. Please try to approach those as challenges on which to polish your debugging and problem solving skills
+
+---
