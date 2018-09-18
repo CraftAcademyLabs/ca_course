@@ -1,6 +1,6 @@
 ---
-title: "Career"
-subtitle: "Characteristics of a Programmer"
+title: "Characteristics of a Programmer"
+subtitle: "Career"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Job, Career"

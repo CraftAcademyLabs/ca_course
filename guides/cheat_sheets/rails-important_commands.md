@@ -1,3 +1,17 @@
+---
+title: "Rails, important commands"
+subtitle: "Cheat sheets"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Rails, Cheat"
+keywords: [Cheat, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 Here is a summary of important commands that can be used as you develop your Ruby on Rails app. You must be in the root directory of your project to run any of these commands (with the exception of the rails new command). The project or application root directory is the folder containing all the subfolders described above (app, config, etc.).
 
 <table>

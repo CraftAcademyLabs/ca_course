@@ -1,3 +1,17 @@
+---
+title: "Rails application structure"
+subtitle: "Cheat sheets"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Rails, Cheat"
+keywords: [Cheat, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 Here is an overview of all the folders of a new Rails application, outlining the purpose of each folder, and describing the most important files.
 
 <table>

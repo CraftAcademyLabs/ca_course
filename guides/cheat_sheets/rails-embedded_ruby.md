@@ -1,3 +1,17 @@
+---
+title: "Rails, embedded ruby"
+subtitle: "Cheat sheets"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Rails, Ruby, Cheat"
+keywords: [Cheat, Rails, Ruby]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 In your views (that is, under app/views in your Rails app) you will find .html.erb files. ERB stands for Embedded RuBy. This just means that Rails processes some special tags in those files and produces HTML output to send back to the user.
 
 There are two ERB tags that you need to remember: <%= ruby_code %> and <% ruby_code %>. Notice that the difference is the = in the first tag.

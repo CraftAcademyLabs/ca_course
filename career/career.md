@@ -1,6 +1,6 @@
 ---
-title: "Career"
-subtitle: "The Endgame - Getting a job"
+title: "The Endgame - Getting a job"
+subtitle: "Career"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Agile, Career, Job"

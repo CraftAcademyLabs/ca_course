@@ -1,6 +1,6 @@
 ---
-title: "Career"
-subtitle: "Agile Mindset"
+title: "Agile Mindset"
+subtitle: "Career"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Agile, Career"
