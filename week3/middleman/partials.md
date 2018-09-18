@@ -1,40 +1,42 @@
-## Partials
+---
+title: "Middleman"
+subtitle: "Partials"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Middleman, Partials"
+keywords: [Middleman, Partials]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
 
+## Partials
 Partials are a way of sharing content across pages and helps you to keep your code DRY. They can be used both in templates and in layouts.
 
-Let's assume that we want to display a footer on our page.
+Let's assume that we want to display a list of projects on our page.
 
-!FILENAME spec/features/index_spec.rb
-```ruby 
-it 'renders footer partial' do
-  expect(page).to have_selector 'footer'
-  within 'footer' do
-    expect(page).to have_content 'My Portfolio'
-    expect(page).to have_content 'Built using the awesome Middleman framework'
-  end
-end
-```
-In order to group our partials we want to create a `partials` folder in our `source` folder. 
+In order to group our `partials`, we want to create a partials folder in our `source`folder.
 
-In that folder, let's create a file called `_footer.html.haml`. **Note the underscore at the beginning of the filename! **
+In that folder, let's create a file called `_projects.html.haml`. **Note the underscore at the beginning of the filename!**
+```shell
+# source/partials/_footer.html.haml
 
-!FILENAME source/partials/_footer.html.haml
-```haml 
-%footer
+%div.projects
   %h3 My Portfolio
   %p Built using the awesome Middleman framework
 ```
+Under the `= yield` command in your main layout file, place the call to render the projects partial.
+```shell
+# layouts/layout.html.haml
 
-Under the `= yield` command in your main layout file, place the call to render the footer partial. 
-
-!FILENAME layouts/layout.html.haml
-```haml
-= partial 'partials/footer'
+= partial 'partials/projects'
 ```
-If you run your specs now, the one we just added should go green. 
+If you run your specs now, the one we just added should go green.
 
-**Knowing this, you can add a more complex partials to your application and keep your code DRY**
+**Knowing this, you can add a more complex partial to your application and keep your code DRY**
 
-![Still not much to show to the workd but with some more content...](modified_middleman_landing_page.png)
+![modified_middleman_landing_page](/static/modified_middleman_landing_page.png)
 
-
+*Figure: Still not much to show the world but with some more content...*
