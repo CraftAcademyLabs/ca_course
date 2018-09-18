@@ -1,3 +1,17 @@
+---
+title: "Career"
+subtitle: "Agile Mindset"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Agile, Career"
+keywords: [Agile, Career]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Agile
 
 ### How long were the iterations (or sprints) on the projects you worked on?

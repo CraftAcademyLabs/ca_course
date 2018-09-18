@@ -1,3 +1,17 @@
+---
+title: "Career"
+subtitle: "Characteristics of a Programmer"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Job, Career"
+keywords: [Job, Career]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Characteristics of a Programmer
 
 Here's some sample questions that you might encounter when an potential employer want to assess your characteristics that can signal if you make a good addition to their programming team.

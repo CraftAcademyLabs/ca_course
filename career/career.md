@@ -1,3 +1,17 @@
+---
+title: "Career"
+subtitle: "The Endgame - Getting a job"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Agile, Career, Job"
+keywords: [Agile, Career, Job]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## The Endgame - Getting a job
 
 ### Perfect your GitHub Profile
