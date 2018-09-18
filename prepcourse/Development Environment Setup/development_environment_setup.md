@@ -1,3 +1,17 @@
+---
+title: "Development Environment Setup"
+subtitle: "Prep Course"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Setup, Prep"
+keywords: [Setup, Prep]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Development Environment Setup
 
 One of the first things you need to do before you start going through the challenges in this course is to set up the environment with all the applications you need to be able to write and run code. This is optional though. 
