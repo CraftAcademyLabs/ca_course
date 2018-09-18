@@ -1,10 +1,10 @@
 ---
-title: "Ruby basics - Library Challenge"
-author: [Craft Academy]
+title: "Your First Weekend Challenge"
+author: [Craft Academy - Coding as a Craft]
 date: Version 2 - 2018
 subject: "Ruby"
 keywords: [Ruby, Example, Learn To Code]
-subtitle: "Your First Weekend Challenge"
+subtitle: "Ruby basics - Library Challenge"
 titlepage: true
 titlepage-color: f28e24
 titlepage-text-color: "FFFFFF"

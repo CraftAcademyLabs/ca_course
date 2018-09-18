@@ -1,3 +1,17 @@
+---
+title: "Important topics"
+subtitle: "Ruby basics - Library Challenge"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "YAML, Ruby"
+keywords: [YAML, Ruby]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Important topics
 
 A person needs to have an attribute where we can store books/items he or she has checked out from the library (I called it `book_shelf`). 
