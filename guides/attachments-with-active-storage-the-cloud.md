@@ -1,6 +1,6 @@
 ---
-title: "Rails 5 - Active Storage"
-subtitle: "Deployment with Heroku"
+title: "Deployment with Heroku"
+subtitle: "Rails 5 - Active Storage"
 author: [Craft Academy - Coding as a Craft]
 date: Version Beta
 subject: "Elasticsearch, Rails"

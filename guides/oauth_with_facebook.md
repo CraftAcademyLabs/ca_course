@@ -1,6 +1,6 @@
 ---
-title: "OAuth in Rails"
-subtitle: "User Authentication with Facebook"
+title: "User Authentication with Facebook"
+subtitle: "OAuth in Rails"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "OAuth, Authentication, Rails"

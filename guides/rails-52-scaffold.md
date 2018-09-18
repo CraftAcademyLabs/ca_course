@@ -1,6 +1,6 @@
 ---
-title: "Ruby On Rails - Setup"
-subtitle: "Training Wheels"
+title: "Training Wheels"
+subtitle: "Ruby On Rails - Setup"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Testing, Rails"

@@ -1,6 +1,6 @@
 ---
-title: "JavaScript"
-subtitle: "Modifying the Document Object Model (DOM)"
+title: "Modifying the Document Object Model (DOM)"
+subtitle: "JavaScript"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "JavaScript, DOM, Webdevelopment"

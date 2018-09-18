@@ -1,6 +1,6 @@
 ---
-title: "DevOps"
-subtitle: "Deploy Ruby on Rails on Ubuntu 18.04"
+title: "Deploy Ruby on Rails on Ubuntu 18.04"
+subtitle: "DevOps"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "DevOps, Deployment, DigitalOcean, Rails"
