@@ -1,3 +1,17 @@
+---
+title: "Step 10 - Integrating all parts"
+subtitle: "Ruby basics - ATM Challenge"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Rspec, Ruby"
+keywords: [Rspec, Ruby]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Step 10 - Integrating all parts
 
 Alright, at this stage we can create an `Atm`, we can create a `Person` that has an `Account`. The `Person` can have `cash` in pocket, or hold his money in his `Account`. All pretty straight forward.

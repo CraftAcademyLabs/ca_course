@@ -1,3 +1,17 @@
+---
+title: "Step 4 - Refactoring"
+subtitle: "Ruby basics - ATM Challenge"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Rspec, Ruby"
+keywords: [Rspec, Ruby]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # Step 4 - Refactoring
 
 Okay, we will stop here for a moment ad do some changes to our code to make it more readable and to follow the principle that each method should only have one responsibility. In our case, the way we have written the `withdraw` method, the method perform several tasks. Since we will be developing that method further, we want to introduce a better, more readable structure.
