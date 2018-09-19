@@ -1,3 +1,17 @@
+---
+title: "Extras - Source code"
+subtitle: "Week 2"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Javascript, BMI"
+keywords: [Javascript, BMI]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+... 
+
 ## Extras - Source code
 
 If you haven't completed the BMI Challenge, you can get the code for the `person.js` and the `bmi_calculator.js` right here. Make sure you place them in the right folder.
