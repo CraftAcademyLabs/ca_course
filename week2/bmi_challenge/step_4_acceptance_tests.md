@@ -1,3 +1,17 @@
+---
+title: "Step 4, Accetance tests"
+subtitle: "BMI challenge, Week 2"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Jasmine, BMI"
+keywords: [Jasmine, BMI]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Acceptance tests
 
 In order to be able to load the `index.html` as a fixture in Jasmine, we need to have a local web server up and running locally. If we don't we simply can not run tests on the web interface due to CORS conflicts. 

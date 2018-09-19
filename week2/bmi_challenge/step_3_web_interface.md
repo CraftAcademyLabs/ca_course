@@ -1,3 +1,17 @@
+---
+title: "Step 3, Web interface"
+subtitle: "BMI challenge, Week 2"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Jasmine, BMI"
+keywords: [Jasmine, BMI]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Web interface
 
 The next step is to create a web page that will allow for both input of data (create an instance of `Person`) and display the calculated results. 

@@ -1,3 +1,17 @@
+---
+title: "JavaScript basics - BMI challenge"
+subtitle: "BMI challenge, Week 2"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Javascript, BMI"
+keywords: [Javascript, BMI]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## JavaScript basics - BMI challenge
 
 **Body mass index \(BMI\) is a simple tool that is generally used to estimate the total amount of body fat. In this challenge we will write a JavaScript program that calculates a individuals BMI index.**

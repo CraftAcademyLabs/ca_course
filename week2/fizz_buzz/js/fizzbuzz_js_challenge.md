@@ -1,3 +1,17 @@
+---
+title: "FizzBuzz challenge"
+subtitle: "Week 2"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Javascript, FizzBuzz"
+keywords: [Javascript, FizzBuzz]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## FizzBuzz Challenge
 Do you remember the Fizz Buzz game we were working on in the Prep-course? First time around, we wrote the program using Ruby. Let's do it in JavaScript and implement a web interface using HTML and jQuery.
 
