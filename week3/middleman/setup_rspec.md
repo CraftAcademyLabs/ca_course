@@ -1,6 +1,6 @@
 ---
-title: "Middleman"
-subtitle: "Setup Rspec"
+title: "Setup Rspec"
+subtitle: "Middleman"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Middleman, Rspec"
