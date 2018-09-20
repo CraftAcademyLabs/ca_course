@@ -1,6 +1,6 @@
 ---
-title: "Rails 5 - Internationalization"
-subtitle: "Go Global!"
+title: "Go Global!"
+subtitle: "Rails 5 - Internationalization"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Internationalization, Localization, Rails"

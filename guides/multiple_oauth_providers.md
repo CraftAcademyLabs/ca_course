@@ -1,6 +1,6 @@
 ---
-title: "OAuth in Rails"
-subtitle: "Authenticating User With Multiple OAuth Providers"
+title: "Authenticating User With Multiple OAuth Providers"
+subtitle: "OAuth in Rails"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "OAuth, Authentication, Rails"

@@ -1,3 +1,17 @@
+---
+title: "Step 2 - The core functionality"
+subtitle: "Ruby basics - ATM Challenge"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Rspec, Ruby"
+keywords: [Rspec, Ruby]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # Step 2 - The core functionality
 
 My approach to writing new software is to always do the most important thing first and get it done before I move on to other, less important, functions. What is the core functionality of this application? I would argue that creating an ATM that has some funds is the first thing that we should focus on. If there is no ATM you will not be able to do a withdrawal, right? And it the ATM has no funds you won't be able to get any cash from it either. 

@@ -1,6 +1,6 @@
 ---
-title: "Markdown"
-subtitle: "Writing Content For The Web"
+title: "Writing Content For The Web"
+subtitle: "Markdown"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Markdown, Content, Writing"

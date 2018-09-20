@@ -1,3 +1,17 @@
+---
+title: "Adding the calculator tab"
+subtitle: "Week 2"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Javascript, BMI"
+keywords: [Javascript, BMI]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Adding the calculator tab
 
 In order to add the view where we will be displaying our calculator, we need to go through same steps that we did when adding the About view.

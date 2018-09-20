@@ -1,6 +1,6 @@
 ---
-title: "Rails 5 - Active Storage"
-subtitle: "Environment-Specific Credentials"
+title: "Environment-Specific Credentials"
+subtitle: "Rails 5 - Active Storage"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Elasticsearch, Rails"

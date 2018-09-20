@@ -1,3 +1,19 @@
+---
+title: "CSS Cheat sheet"
+subtitle: "Cheat sheets"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "CSS, Cheat"
+keywords: [Cheat, CSS]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+
+
 <article>
 <h3>Text</h3>
 <table>

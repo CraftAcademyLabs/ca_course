@@ -1,3 +1,17 @@
+---
+title: "Step 9 - The Person"
+subtitle: "Ruby basics - ATM Challenge"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Rspec, Ruby"
+keywords: [Rspec, Ruby]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Step 9 - The Person
 
 At this step we want to create a Person class and give him 3 attributes: `:name`, `:cash` and `:account`. We will give you a basic set of specs for that class. Your job will be to implement the code that will make these specs pass. 

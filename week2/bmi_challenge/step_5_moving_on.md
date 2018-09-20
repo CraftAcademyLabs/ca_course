@@ -1,3 +1,17 @@
+---
+title: "Step 5, Moving on"
+subtitle: "BMI challenge, Week 2"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Javascript, BMI"
+keywords: [Javascript, BMI]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Moving on
 
 At this point, we will shift gears and allow you to work for yourself. There is plenty of functionality left to implement. 

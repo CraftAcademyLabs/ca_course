@@ -1,3 +1,17 @@
+---
+title: "Variables, objects and arrays"
+subtitle: "Week 2"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Javascript"
+keywords: [Javascript]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # Variables, objects and arrays
 
 Open the console in your browser (Chrome) and try out these commands:

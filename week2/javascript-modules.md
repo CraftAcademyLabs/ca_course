@@ -1,3 +1,17 @@
+---
+title: "Javascript Modules"
+subtitle: "Week 2"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Javascript"
+keywords: [Javascript]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+... 
+
 ## Javascript Modules
 Good authors divide their books into chapters and sections; good programmers divide their programs into modules
 

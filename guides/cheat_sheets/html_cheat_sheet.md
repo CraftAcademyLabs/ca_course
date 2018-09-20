@@ -1,3 +1,17 @@
+---
+title: "HTML Cheat sheet"
+subtitle: "Cheat sheets"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "HTML, Cheat"
+keywords: [Cheat, HTML]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 #### Div Section
 ```html
 <div>Block element</div>

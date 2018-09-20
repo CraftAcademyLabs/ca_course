@@ -1,6 +1,6 @@
 ---
-title: "Middleman"
-subtitle: "Static Website with Middleman"
+title: "Static Website with Middleman"
+subtitle: "Middleman"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Middleman, Static"

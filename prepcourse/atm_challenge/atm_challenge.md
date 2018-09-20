@@ -1,10 +1,10 @@
 ---
 title: "Ruby basics - ATM Challenge"
-author: [Craft Academy]
+author: [Craft Academy - Coding as a Craft]
 date: Version 2 - 2018
 subject: "Ruby"
 keywords: [Ruby, Example, Learn To Code]
-subtitle: "Your First Ruby Challenge"
+subtitle: "Ruby basics - ATM Challenge"
 titlepage: true
 titlepage-color: f28e24
 titlepage-text-color: "FFFFFF"

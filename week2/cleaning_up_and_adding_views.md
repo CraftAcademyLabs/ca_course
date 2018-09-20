@@ -1,3 +1,17 @@
+---
+title: "Cleaning up and adding views"
+subtitle: "Week 2"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Javascript, BMI"
+keywords: [Javascript, BMI]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Cleaning up and adding views
 As you could see in the preview, the scaffolded app comes with some initial views, tabs, services and controllers. We will not be using them so we might as well delete those files and clean up the code.
 

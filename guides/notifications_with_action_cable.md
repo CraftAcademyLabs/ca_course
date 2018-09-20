@@ -1,6 +1,6 @@
 ---
-title: "Action Cable"
-subtitle: "Sending notifications with WebSockets"
+title: "Sending notifications with WebSockets"
+subtitle: "Action Cable"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Ruby, Ruby on Rails, Noticifations, Action Cable, Websockets"

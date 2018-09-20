@@ -1,3 +1,17 @@
+---
+title: "Step 6 - More checks"
+subtitle: "Ruby basics - ATM Challenge"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Rspec, Ruby"
+keywords: [Rspec, Ruby]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Step 6 - More checks
 
 Another check we need to do in the `withdraw` method, is to test if there are funds in the ATM, right? We can't perform a transaction if there are no funds in the machine. 

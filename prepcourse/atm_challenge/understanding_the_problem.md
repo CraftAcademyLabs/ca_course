@@ -1,3 +1,17 @@
+---
+title: "Understanding The Problem"
+subtitle: "Ruby basics - ATM Challenge"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Rspec, Ruby"
+keywords: [Rspec, Ruby]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # Understanding The Problem
 
 We are in the business of solving different kind of problems with software. A program is a sequence of instructions that can be executed by a computer to solve some problem or perform a specified task. In order to know what instructions to include in our programs, we need to gain an understanding of why our program is...

@@ -1,6 +1,6 @@
 ---
-title: "Middleman"
-subtitle: "HAML - HTML abstraction markup language"
+title: "HAML - HTML abstraction markup language"
+subtitle: "Middleman"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Middleman, HAML"

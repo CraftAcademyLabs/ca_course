@@ -1,6 +1,6 @@
 ---
-title: "Rails 5 - Active Storage"
-subtitle: "Attaching Files To Active Model"
+title: "Attaching Files To Active Model"
+subtitle: "Rails 5 - Active Storage"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Elasticsearch, Rails"

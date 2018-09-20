@@ -1,6 +1,6 @@
 ---
-title: "Rails 5 - Elasticsearch"
-subtitle: "Seek, And Ye Shall Find..."
+title: "Seek, And Ye Shall Find..."
+subtitle: "Rails 5 - Elasticsearch"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Elasticsearch, Rails"

@@ -1,3 +1,17 @@
+---
+title: "Step 7 - Cash is King"
+subtitle: "Ruby basics - ATM Challenge"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Rspec, Ruby"
+keywords: [Rspec, Ruby]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Step 7 - Cash is King
 
 Yeah, remember when we kind of skipped adding bills to our successful output? We can't ignore that requirement any longer. After all, the cash is the reason we use ATM's.

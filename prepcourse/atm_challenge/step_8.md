@@ -1,3 +1,17 @@
+---
+title: "Step 8 - The Account"
+subtitle: "Ruby basics - ATM Challenge"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Rspec, Ruby"
+keywords: [Rspec, Ruby]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Step 8 - The Account
 
 Now that we are finished (at least for now) with the Atm class, we should move forward and create the `Account` class.

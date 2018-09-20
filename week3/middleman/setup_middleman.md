@@ -1,6 +1,6 @@
 ---
-title: "Middleman"
-subtitle: "Setup Middleman"
+title: "Setup Middleman"
+subtitle: "Middleman"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Middleman, Setup"

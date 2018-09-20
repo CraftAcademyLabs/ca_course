@@ -1,3 +1,17 @@
+---
+title: "Bower"
+subtitle: "Week 2"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Bower, JQuery"
+keywords: [Bower, JQuery]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Bower
 Bower is a front-end package manager built by Twitter. As a package manager, Bower simplifies installing and updating project dependencies, which are libraries you use in your project. 
 

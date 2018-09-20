@@ -1,3 +1,17 @@
+---
+title: "Your first website"
+subtitle: "Prep Course"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "HTML, Prep"
+keywords: [HTML, Prep]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Your first website
 
 It's all about the web. During this course we'll be building a lot of applications. For starters we'll be writing small pieces of software that will be run on our own computers. Relatively soon we'll move on to more advanced applications built to be deployed an run on a web server.

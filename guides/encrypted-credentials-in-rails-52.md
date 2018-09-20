@@ -1,6 +1,6 @@
 ---
-title: "Rails 5 - Encrypted Credentials"
-subtitle: "Keep Your Secrets Safe"
+title: "Keep Your Secrets Safe"
+subtitle: "Rails 5 - Encrypted Credentials"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Credentials, Rails"

@@ -1,3 +1,18 @@
+---
+title: "Terminal commands"
+subtitle: "Cheat sheets"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Terminal, Cheat"
+keywords: [Cheat, Terminal]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+
 <article>
 <h3>SHORTCUTS</h3>
 <table>
