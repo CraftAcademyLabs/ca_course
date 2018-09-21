@@ -15,9 +15,9 @@ The `rack-cors` gem makes our application allow external clients to access it.
 
 `Devise_token_auth` is what we are going to use to make it possible to login with the API, it works well with ionic and we are already familiar with devise from our previous projects.
 
-Open up `config/aplplication.rb` so we can make some changes. The changes we are going to make here is so the `rack-cors` gem can do its job. We will allow GET, POST, PUT and DELETE requests from any origin here. 
+Open up `config/application.rb` so we can make some changes. The changes we are going to make here is so the `rack-cors` gem can do its job. We will allow GET, POST, PUT and DELETE requests from any origin here. 
 
-```ruby
+```ruby 
 # config/application.rb
 module YourApplicationName
   class Application < Rails::Application
