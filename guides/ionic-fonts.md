@@ -37,7 +37,7 @@ Open upp the variables.scss and add this underneath the commented out code about
 ```
 Change the naming to match the font that you downloaded. 
 
-If the font you dowloaded is an "ttf" file, then you need to create a folder within the fonts folder and put the file there. The format is also different, instead of `format('woff2')`, you need to have `format('truetype')`. 
+If the font you dowloaded is a "ttf" file, then you need to create a folder within the fonts folder and put the file there. The format is also different, instead of `format('woff2')`, you need to have `format('truetype')`. 
 
 e.g:
 ```scss
@@ -77,7 +77,7 @@ In the `variables.scss`, add another `@font-face` to it with the new font.
 ```scss
 @font-face {
     font-family: oswald;
-    src: url('../assets/fonts/oswald/Oswald-Regular.ttf') format('ttf');
+    src: url('../assets/fonts/oswald/Oswald-Regular.ttf') format('truetype');
 }f
 ```
 You can now call on that font in a class. Lets say we want a specific paragraph in our about page to use this other font. In the `about.sccs` we want to add a class for it. 
