@@ -102,7 +102,7 @@ You can now call on that font in a class. Lets say we want a specific paragraph 
 Then add that class to the paragraph in the `about.html` file and you should now see the other font being used when we run the server. 
 ## Changing the colors
 
-If you open up the `variables.scss` in the `src/themes` folder and scroll down you will see code block about colors. In there you can change the standard ionic colors and you can add more color variables you can call on inside your elements.
+If you open up the `variables.scss` in the `src/themes` folder and scroll down you will see code block about colors. In there you can change the standard ionic colors and you can add more color variables you can call on inside your elements and classes.
 
 Lets add pink to the colors:
 ```scss
@@ -119,4 +119,12 @@ Now you can call on it in elements like this:
 
 `<button ion-button color="pink">Click Me</button>`
 
-If you add this line of code somewhere and run the server, you should see a pink button. 
+But inline styling is not the best practice of writing HTML, so lets extract it to a class:
+
+```scss
+.click-me-button {
+        background: map-get($colors, pink);
+}
+```
+
+If you set that class on the button, it should now be pink. 
