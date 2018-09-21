@@ -23,7 +23,7 @@ In the terminal run:
 
  `$ mkdir src/assets/fonts`
 
-Go to [Google Fonts](https://fonts.google.com/) and find a font that you want to use and download it. Extract the file from the zipped package you dowloaded. It will often contain several different versions of the font, but you only have to extract the one that says something with "`regular`" in the file name. In this gude we will use "[Montserrat](https://fonts.google.com/specimen/Montserrat)" as an example and it will be in the `woff2` format.
+Go to [Google Fonts](https://fonts.google.com/) and find a font that you want to use and download it. Extract the file from the zipped package you downloaded. It will often contain several different versions of the font, but you only have to extract the one that says something with "`regular`" in the file name. In this gude we will use "[Montserrat](https://fonts.google.com/specimen/Montserrat)" as an example and it will be in the `woff2` format.
 
 Add the font file to the `src/assets/fonts` folder.
 
@@ -71,7 +71,7 @@ Now if you fire up the server, you should see the font being used instead of the
 
 ## Okay, but what if you want to use more then one font for your ionic app?
 
-Download the font you want to use and add it to the fonts folder, for this exapmle we will use [Oswald](https://fonts.google.com/specimen/Oswald).
+Download the font you want to use and add it to the fonts folder, for this example we will use [Oswald](https://fonts.google.com/specimen/Oswald).
 In the `variables.scss`, add another `@font-face` to it with the new font. 
 
 ```scss
@@ -91,7 +91,7 @@ You can now call on that font in a class. Lets say we want a specific paragraph 
 Then add that class to the paragraph in the `about.html` file and you should now see the other font being used when we run the server. 
 ## Changing the colors
 
-If you open up the `variables.scss` in the `src/themes` folder and scroll down you will see code block about colors. In there you can change the the stadard ionic colors and you can add more color variables you can call on inside your elements.
+If you open up the `variables.scss` in the `src/themes` folder and scroll down you will see code block about colors. In there you can change the standard ionic colors and you can add more color variables you can call on inside your elements.
 
 Lets add pink to the colors:
 ```scss
