@@ -76,7 +76,7 @@ $font-family-base: 'montserrat';
 
 ```
 
-The `font-family-base` sets the font to be used as the base font for the entire application. This variable and many others can be found in the [link](http://ionicframework.com/docs/theming/overriding-ionic-variables/) in the commented out code about `// Shared Variables`.
+The `font-family-base` sets "montserrat" to be used as the base font for the entire application. This variable and many others can be found in the [link](http://ionicframework.com/docs/theming/overriding-ionic-variables/) in the commented out code about `// Shared Variables`.
 
 Now if you fire up the server, you should see the font being used instead of the basic ionic one.
 
