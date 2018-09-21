@@ -201,7 +201,7 @@ cancel_api_user_registration GET    /api/auth/cancel(.:format)           devise_
      api_auth_validate_token GET    /api/auth/validate_token(.:format)   devise_token_auth/token_validations#validate_token
 ```
 
-Now we need an API controller, lets create one. Run `touch app/controllers/api_controller.rb` in the terminal and add this: 
+Now we need an API controller, lets create one. Run `$ touch app/controllers/api_controller.rb` in the terminal and add this: 
 ```ruby
 class ApiController < ActionController::API
   include DeviseTokenAuth::Concerns::SetUserByToken
@@ -224,11 +224,11 @@ This should make all the tests go green.
 Now when all the test go green it is time to actually test the API with postman. When you try to sign in or login, it will give you an error saying `Can't verify CSRF token authenticity.`
 To fix this you need to run:
 
-`mkdir app/controllers/api`
+`$ mkdir app/controllers/api`
 
-`touch app/controllers/api/sessions_controller.rb`
+`$ touch app/controllers/api/sessions_controller.rb`
 
-`touch app/controllers/api/registrations_controller.rb`
+`$ touch app/controllers/api/registrations_controller.rb`
 
 Make the two files look like this
 ```ruby
