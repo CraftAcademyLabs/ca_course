@@ -27,7 +27,7 @@ Go to [Google Fonts](https://fonts.google.com/) and find a font that you want to
 
 Add the font file to the `src/assets/fonts` folder.
 
-Open upp the variables.scss and add this underneath the commented out code about `Shared Variables`.
+Open upp the variables.scss and add it to the bottom of the file, under `// Fonts`
 
 ```scss
 @font-face {
@@ -46,10 +46,12 @@ e.g:
   src: url('../assets/fonts/montserrat/montserrat.ttf') format('truetype');
 }
 ```  
-Now you want to add `$font-family-base: 'montserrat';` underneath the `@font-face`.
+Now you want to add `$font-family-base: 'montserrat';` under `// Shared Variables` in the `variables.scss` file.
 
 With all of this added, it should look like this:
 ```scss
+// [...] other code...
+
 // Shared Variables
 // --------------------------------------------------
 // To customize the look and feel of this app, you can override
@@ -57,15 +59,24 @@ With all of this added, it should look like this:
 // To view all the possible Ionic variables, see:
 // http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
+$font-family-base: 'montserrat';
+
+// [...] other code...
+
+// Fonts
+// --------------------------------------------------
+
+@import "roboto";
+@import "noto-sans";
+
 @font-face {
   font-family: montserrat;
   src: url('../assets/fonts/montserrat.woff2') format('woff2');
 }
 
-$font-family-base: 'montserrat';
 ```
 
-The `font-family-base` sets the font to be used as the base font for the entire application. This variable and many others can be found in the [link](http://ionicframework.com/docs/theming/overriding-ionic-variables/) in the commented out code about `Shared Variables`.
+The `font-family-base` sets the font to be used as the base font for the entire application. This variable and many others can be found in the [link](http://ionicframework.com/docs/theming/overriding-ionic-variables/) in the commented out code about `// Shared Variables`.
 
 Now if you fire up the server, you should see the font being used instead of the basic ionic one.
 
