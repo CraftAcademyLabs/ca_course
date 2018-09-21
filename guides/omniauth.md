@@ -22,11 +22,11 @@ As always run bundle.
 After this we are going to create the request spec for this feature.
 Run this in the terminal:
 
-`mkdir spec/support/`
+`$ mkdir spec/support/`
 
-`touch spec/support/oauth.rb`
+`$ touch spec/support/oauth.rb`
 
-`touch spec/requests/api/omniauth_spec.rb`
+`$ touch spec/requests/api/omniauth_spec.rb`
 
 These files should look like this:
 
@@ -105,7 +105,7 @@ Dir[Rails.root.join('spec/support/**/*.rb')].each { |f| require f }
 # [...] other code...
 ```
 
-If you run the test now you will get an error that states that you have no route matches. So lets setup the routes for this. As said before I assume in this guide that you have implemented devise token auth already. If not go to the other guide about implementing this on an web app and finish that one before continuing on this one. The API namespace in `routes.rb` should look like this:
+If you run the test now you will get an error that states that you have no route matches. So lets setup the routes for this. As said before I assume in this guide that you have implemented devise token auth already. If not go to the other guide about [implementing this on an web app]() and finish that one before continuing on this one. The API namespace in `routes.rb` should look like this:
 
 ```ruby
 Rails.application.routes.draw do
@@ -123,7 +123,7 @@ end
 So as you can see we are pointing to a `omniauth_callbacks` controller. This one does not exist yet, so lets create one. 
 Run this in the terminal:
 
-`touch app/controllers/api/omniauth_callbacks_controller.rb`
+`$ touch app/controllers/api/omniauth_callbacks_controller.rb`
 
 The file should look like this:
 ```ruby
@@ -151,7 +151,7 @@ end
 
 If you run the test now, the sad path will go green. We still get an routing error on the other test. Its not the same one as before. This one is complaining because we have not set the provider yet. Run this in the terminal:
 
-`touch config/initializers/omniauth.rb`
+`$ touch config/initializers/omniauth.rb`
 
 This is where you will later put the facebook credentials from your developer facebook application. But for now we will make it look like this:
 ```ruby
@@ -189,6 +189,6 @@ class User < ApplicationRecord
 end
 ```
 
-It is very importand that you put `devise :omniauthable, omniauth_providers: [:facebook]` underneath `include DeviseTokenAuth::Concerns::User`. Otherwise you will get annoying errors.
+It is very important that you put `devise :omniauthable, omniauth_providers: [:facebook]` underneath `include DeviseTokenAuth::Concerns::User`. Otherwise you will get annoying errors.
 
 So now you have rails backend with working omniauth Facebook login.
