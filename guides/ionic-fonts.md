@@ -14,74 +14,81 @@ titlepage-rule-height: 2
 
 # Changing fonts and colors in Ionic with CSS
 
-If you dont want to use the standard ionic font and colors, this is the guide for you. This guide assumes that you have an Ionic application scaffolded. 
+If you dont want to use the standard font and colors in ionic, this is the guide for you. This guide assumes that you have an Ionic application scaffolded. 
 
-## Fonts
+## Changing the main font
 
 First you need to create a fonts folder in assets. You find assets in the src folder.
 In the terminal run:
 
- `mkdir src/assets/fonts`
+ `$ mkdir src/assets/fonts`
 
-Go to [Google Fonts](https://fonts.google.com/) and find a font that you want to use and download it. Extract the file from the zipped package you dowloaded. It will often contain several different versions of the font, but you only have to extract the one that says something with "`regular`" in the file name. In this gude we will use "[Montserrat](https://fonts.google.com/specimen/Montserrat)" as an example and it will be in the `woff2` format. 
+Go to [Google Fonts](https://fonts.google.com/) and find a font that you want to use and download it. Extract the file from the zipped package you dowloaded. It will often contain several different versions of the font, but you only have to extract the one that says something with "`regular`" in the file name. In this gude we will use "[Montserrat](https://fonts.google.com/specimen/Montserrat)" as an example and it will be in the `woff2` format.
 
-Open upp the app.scss, remove the commented out code and add this.
-Change the name of the file to the one that you extracted from the dowloaded font package. 
+Add the font file to the `src/assets/fonts` folder.
+
+Open upp the variables.scss and add this underneath the commented out code about `Shared Variables`.
+
 ```scss
 @font-face {
     font-family: montserrat;
     src: url('../assets/fonts/montserrat.woff2') format('woff2');
 }
-
-* {
-    font-family: montserrat;
-}
 ```
-The font you download may be in a other format called "`ttf`", the only thing you will have to do different if thats the case is to change the format when you set the url.
+Change the naming to match the font that you downloaded. 
 
-Add the font file to the `src/assets/fonts` folder.
+If the font you dowloaded is an "ttf" file, then you need to create a folder within the fonts folder and put the file there. The format is also different, instead of `format('woff2')`, you need to have `format('truetype')`. 
 
+e.g:
+```scss
+@font-face {
+  font-family: montserrat;
+  src: url('../assets/fonts/montserrat/montserrat.ttf') format('truetype');
+}
+```  
+Now you want to add `$font-family-base: 'montserrat';` underneath the `@font-face`.
 
-### So what is happening here?
+With all of this added, it should look like this:
+```scss
+// Shared Variables
+// --------------------------------------------------
+// To customize the look and feel of this app, you can override
+// the Sass variables found in Ionic's source scss files.
+// To view all the possible Ionic variables, see:
+// http://ionicframework.com/docs/theming/overriding-ionic-variables/
 
-We first set the font at `@font-face` and set the src, where the application can find the font.
+@font-face {
+  font-family: montserrat;
+  src: url('../assets/fonts/montserrat.woff2') format('woff2');
+}
 
-The second block of code is where we actually set the font to be used in the application. Everything in ionic inherits from the app component, so what we set in the `app.scss` will be used on every page in the application. The `*` means that all the elements in the application will have the attributes we set inside it.
-If we were to set that `*` inside another scss file like the  `home/home.scss`, that would mean that everything in `home.html` would have the attributes we give it.
+$font-family-base: 'montserrat';
+```
 
+The `font-family-base` sets the font to be used as the base font for the entire application. This variable and many others can be found in the [link](http://ionicframework.com/docs/theming/overriding-ionic-variables/) in the commented out code about `Shared Variables`.
 
-If you fire up the server now with `ionic serve`, you will see that we have succeded in changing the font for our application.
+Now if you fire up the server, you should see the font being used instead of the basic ionic one.
 
-### Okay, but what if you want to use more then one font for our ionic app?
+## Okay, but what if you want to use more then one font for your ionic app?
 
 Download the font you want to use and add it to the fonts folder, for this exapmle we will use [Oswald](https://fonts.google.com/specimen/Oswald).
-In the `app.scss`, add another `@font-face` to it with the new font. 
+In the `variables.scss`, add another `@font-face` to it with the new font. 
 
 ```scss
 @font-face {
     font-family: oswald;
-    src: url('../assets/fonts/Oswald-Regular.ttf') format('ttf');
-
-}
+    src: url('../assets/fonts/oswald/Oswald-Regular.ttf') format('ttf');
+}f
 ```
-
-Dont remove any of the code we added before, just add this to it. Now we have to create a class were we use this font. Add this to the `app.scss`:
+You can now call on that font in a class. Lets say we want a specific paragraph in our about page to use this other font. In the `about.sccs` we want to add a class for it. 
 
 ```scss
-.oswald{
+.oswald {
     font-family: oswald;
 }
 ```
 
-If you now try to call on this class on an element anywhere in the application, you will se that it does not work when you run the server. Thats because the "`*`" we set earlier overrides this class. So to make this class work you need to add `!important` to the it. The `.oswald` class should look like this in the `app.scss`:
-
-```scss
-.oswald{
-    font-family: oswald !important;
-}
-```
-Now you should be able to see the other font displayed in application. 
-
+Then add that class to the paragraph in the `about.html` file and you should now see the other font being used when we run the server. 
 ## Changing the colors
 
 If you open up the `variables.scss` in the `src/themes` folder and scroll down you will see code block about colors. In there you can change the the stadard ionic colors and you can add more color variables you can call on inside your elements.
