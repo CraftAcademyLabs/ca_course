@@ -31,7 +31,7 @@ Both [Waffle.io](https://waffle.io/) and [ZenHub.io](https://www.zenhub.io/) are
 
 We will make use of 4 columns in Waffle (or ZenHub if you choose to use that tool) to track our work. 
 
-![](/images/waffle_io.png)
+![](https://github.com/CraftAcademy/ca_course/raw/master/images/waffle_io.png)
 
 ### Backlog
 Any issue that we see as important for the near future lives in the **Backlog**. Issues in this column are generally prioritized from top to bottom with the top items having the highest priority.
