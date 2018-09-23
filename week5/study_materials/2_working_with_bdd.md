@@ -32,7 +32,7 @@ A **feature** is one of your already defined **user stories**. It consists of on
 
 A **scenario** is made up of 3 sections related to the 3 types of steps.
 
-![Given When Then](bdd_given_when_then.png)
+![Given When Then](https://github.com/CraftAcademy/ca_course/raw/master/week5/study_materials/bdd_given_when_then.png)
 
 * **Given:** This sets up preconditions, or context, for the scenario.
 * **When:** This is what the feature is talking about, the action, the behavior that we're focused on.
@@ -80,7 +80,7 @@ I would like to see a 'log in' or 'register' button on the home page.
 
 And you should also see something like this on your terminal:
 
-![](slow_food_cucumber_terminal.png)
+![](https://github.com/CraftAcademy/ca_course/raw/master/week5/study_materials/slow_food_cucumber_terminal.png)
 
 This is perfectly normal. What Cucumber is doing is helping you in defining so called **step definitions**, that are the actual implementation of your tests (written in Ruby or JavaScript) so that they can be understood by the testing framework. 
 
