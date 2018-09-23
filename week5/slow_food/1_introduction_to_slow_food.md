@@ -49,9 +49,9 @@ We set the goals high for this week. Apart from programming skills, that are of 
 
 **Please note that there may be subtle errors or typos in the following materials. Please try to approach those as challenges on which to polish your debugging and problem solving skills**
 
-{% raw %}*{% endraw %}
-- **Incremental** – adding new functionality in small chunks
-- **Iterative** – performing repeatedly, i.e. adding new functionality in a repetitive or cyclic manner
+\*
+- **Incremental** – adding new functionality in small chunks.
+- **Iterative** – performing repeatedly, i.e. adding new functionality in a repetitive or cyclic manner.
 
 ## Tools
 During this project, you will be using a variety of tools. You have used some of them in other challenges, but many will be new to you.
@@ -69,19 +69,19 @@ During this project, you will be using a variety of tools. You have used some of
 * [GitHub](https://github.com/) to store your code and make it available for the entire team
 * [Pivotal Tracker](https://www.pivotaltracker.com/) as Project Management tool for tracking Features, Chores, and Bugs.
 
-As you can see, there's plenty of tools and services for you to familialize with.
+As you can see, there's plenty of tools and services for you to familiarize with.
 
 ## Scope
 
 In the first version of the application should focus on the following functionality:
 
-* The restaurant owner need to access a protected part of the application to set up information about his restaurant (like address, opening hours, etc) and his menus (products ordered in categories)
+* The restaurant owner needs to access a protected part of the application to set up information about his restaurant (like address, opening hours, etc) and his menus (products ordered in categories)
 * A menu needs to consist of many dishes
-* Each dish has/belogs to a Category. It is either a 'Starter', a 'Main course' or an 'Dessert'
-* The restaurant also sells cold bevereages and side orders like sallads, bread, etc.
-* Visitors of the site can add various products to their order
-* In order to finalize an order (Check out) a custome needs to become a registered user
-* Order need to calculate a total price and a pick up time (30 minutes)
+* Each dish has/belongs to a Category. It is either a 'Starter', a 'Main course' or a 'Dessert'
+* The restaurant also sells cold beverages and side orders like salads, bread, etc.
+* Visitors to the site can add various products to their order
+* In order to finalize an order (Check out) a customer needs to become a registered user
+* Order need to calculate a total price and a pickup time (30 minutes)
 
 **Nothing else should be considered or implemented.**
 

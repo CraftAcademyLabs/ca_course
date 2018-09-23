@@ -10,7 +10,7 @@ If UX is the experience that a user has while interacting with your product, the
 
 ### The “Connextra” format
 
-**User stories** are used with agile methodologies as the basis for defining the functions a  system must provide and to manage requirements. They captures the "who", "what" and "why" of a requirement in a simple, concise way, often limited in detail by what can be hand-written on a small card.
+**User stories** are used with agile methodologies as the basis for defining the functions a  system must provide and to manage requirements. They capture the "who", "what" and "why" of a requirement in a simple, concise way, often limited in detail by what can be hand-written on a small card.
 
 ```
   As a <role>
@@ -23,7 +23,7 @@ The above user story format is the one we will be using to describe the applicat
 * What are they doing?
 * Why do they care?
 
-A user story can be formulated as an **acceptance test** before code is written. The same feature can be described by viewing it from a different stakeholder perspective.
+A user story can be formulated as a **acceptance test** before any code is written. The same feature can be described by viewing it from a different stakeholder perspective.
 
 See dishes that are available
 ```
@@ -34,14 +34,14 @@ I want to see a list of available dishes
 
 Display dishes that are available
 ```
-As a restaurant ovner
+As a restaurant owner
 So that I can receive orders from the site's visitors
 I want to be able to display a list of available dishes
 ```
 Think about these two User stories, they seem to be almost identical. But are they in fact identical? 
 
 ### Lo-Fi's
-Low-fidelity prototypes (LoFi's) of the systems views are rough representations of concepts that help us  validate those concepts early on in the design process. Working with transforming user stories to low-fidelity prototypes is a unique way to radically improve your work and to build a UX in which user's needs can be truly realized.
+Low-fidelity prototypes (LoFi's) of the systems views are rough representations of concepts that help us validate those concepts early on in the design process. Working with transforming user stories to low-fidelity prototypes is a unique way to radically improve your work and to build a UX in which user's needs can be truly realized.
 
 * Design thinking advocates for "thinking with your hands" as a way to build empathetic solutions.
 * Lean startup relies on early validation and the development of a minimum viable product to iterate on.

@@ -1,6 +1,6 @@
 ## Another look at BDD
 
-BDD (Behaviour Driven Development) is a methodology for developing software through continuous example-based communication between developers, QAs and BAs. In this article we discuss some BDD Best Practices to get the most benefit.
+**BDD (Behaviour Driven Development)** is a methodology for developing software through continuous example-based communication between developers, QAs and BAs. In this article we discuss some BDD Best Practices to get the most benefit.
 
 More than anything else, the primary purpose of BDD methodology is to encourage communication amongst the stakeholders of the project so that the context of each feature is correctly understood by all members of the team (i.e. shared understanding), before development work starts. This helps in identifying key scenarios for each story and also eradicate ambiguities from requirements.
 
@@ -239,11 +239,3 @@ Here is a summary of the most common Capybara and RSpec commands and matchers th
 ```
 ### Final words
 The above is just a simple introduction to working in a BDD style using Cucumber. Writing acceptance tests is about telling stories. The primary aim of the BDD methodology is to encourage communication amongst the delivery team. The aim of the feature files is to document the scenarios talked through in order to give an indication of how much work is involved in delivering the feature. The feature files are also the drivers for the automated tests. Feature files also serve as a definition of done (DoD), meaning that when all the scenarios have been implemented and tested successfully, we can mark the story as done.
-
-
-
-
-
-
-
-

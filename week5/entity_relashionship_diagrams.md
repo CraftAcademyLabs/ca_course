@@ -1,5 +1,5 @@
 ## Entity Relationship Diagrams
-### Databases
+## Databases
 A **database** is a collection of information that is organized so that it can easily be accessed, managed, and updated. A **relational database** is a collection of data items organized as a set of formally-described tables from which data can be accessed or reassembled in many different ways without having to reorganize the database tables. 
 
 Each table contains data in predefined columns. Each row contains a unique instance of data defined by the columns. For example, a typical business order entry database would include a table that described a customer with columns for name, address, phone number, and so forth. Another table would describe an order: product, customer, date, sales price, etc. 

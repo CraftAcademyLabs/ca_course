@@ -1,6 +1,6 @@
 ## Working with the database
 
-It's time to tsake another look the database connection. As you've already noticed (if you have reviewed the gems in your `Gemfile`) we'll be using Postgres as a database. 
+It's time to take another look the database connection. As you've already noticed (if you have reviewed the gems in your `Gemfile`) we'll be using Postgres as a database. 
 
 If you haven't installed Postgres yet, it's time to do it now. There are several different ways to install Postgres on your computer and there is a bid risk that you will run into some issues while doing it. The simplest way is to head over to http://postgresapp.com/ and download and run the installer.
 
