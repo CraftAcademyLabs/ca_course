@@ -67,7 +67,7 @@ Nothing is perfect, of course, and SaaS is no exception. Companies that adopt mu
 
 ## Further reading
 
-* [Roundup Of Cloud Computing Forecasts, 2017](https://www.forbes.com/sites/louiscolumbus/2017/04/29/roundup-of-cloud-computing-forecasts-2017/#736b21fb31e8)
-* [2018 SaaS Industry Market Report: Key Global Trends & Growth Forecasts](https://financesonline.com/2018-saas-industry-market-report-key-global-trends-growth-forecasts/)
+* [Roundup Of Cloud Computing Forecasts, 2017](https://www.forbes.com/sites/louiscolumbus/2017/04/29/roundup-of-cloud-computing-forecasts-2017/#736b21fb31e8) - https://www.forbes.com/sites/louiscolumbus/2017/04/29/roundup-of-cloud-computing-forecasts-2017/#736b21fb31e8
+* [2018 SaaS Industry Market Report: Key Global Trends & Growth Forecasts](https://financesonline.com/2018-saas-industry-market-report-key-global-trends-growth-forecasts/) - https://financesonline.com/2018-saas-industry-market-report-key-global-trends-growth-forecasts/
 
 
