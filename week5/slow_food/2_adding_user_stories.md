@@ -1,4 +1,4 @@
-## Step 2 - Focus on the user experience
+## Focus on the user experience
 
 **UX design** is the process used to determine what the experience will be like when a user interacts with your application. 
 
@@ -8,7 +8,7 @@ If UX is the experience that a user has while interacting with your product, the
 * Low Fidelity sketches provide a lightweight flow of how a user interacts with the system.
 * BDD concentrates on UX vs. implementation (TDD)
 
-###The “Connextra” format
+### The “Connextra” format
 
 **User stories** are used with agile methodologies as the basis for defining the functions a  system must provide and to manage requirements. They captures the "who", "what" and "why" of a requirement in a simple, concise way, often limited in detail by what can be hand-written on a small card.
 
@@ -40,7 +40,7 @@ I want to be able to display a list of available dishes
 ```
 Think about these two User stories, they seem to be almost identical. But are they in fact identical? 
 
-###Lo-Fi's
+### Lo-Fi's
 Low-fidelity prototypes (LoFi's) of the systems views are rough representations of concepts that help us  validate those concepts early on in the design process. Working with transforming user stories to low-fidelity prototypes is a unique way to radically improve your work and to build a UX in which user's needs can be truly realized.
 
 * Design thinking advocates for "thinking with your hands" as a way to build empathetic solutions.
