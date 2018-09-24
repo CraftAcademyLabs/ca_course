@@ -114,7 +114,7 @@ class AddressBookWorld {
 }
 ```
 
-Similarly to `pageHasTextContent()`, we get the page's content but this time around when we call the `match()` function on it, we expect the result to be `null`, in order words, not visible on the page.
+Similarly to `pageHasTextContent()`, we get the page's content but this time around when we call the `match()` function on it, we expect the result to be `null`, in other words, not visible on the page.
 
 Great, now if we run our entire scenario, all steps should pass.
 

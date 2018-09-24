@@ -15,7 +15,7 @@ Tailwind CSS is a styling framework used for rapidly getting CSS to an applicati
 
 After we have addeed the stylesheet CDN we are ready to start styling our app. 
 
-With frameworks like tailwind we are provided with CSS connected to class names. This means that we can easily add styles to whatever html tag with just adding a class. 
+With frameworks like tailwind we are provided with CSS connected to class names. This means that we can easily add styles to whatever html tag by just adding a class. 
 
 The tailwind [webiste](https://tailwindcss.com/docs/what-is-tailwind) has  lot of reference colors and classes that we can use.
 

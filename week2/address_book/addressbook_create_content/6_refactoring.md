@@ -49,4 +49,4 @@ If we run cucumber now, we'll note that the step where we click on the `Save con
 
 All green! Well... not quite. We have few steps left to deal with at this stage.
 
-We've managed to set the stage for creating a contact with our test, but now we need to make sure that we're actually creating and persisting contact, and that, we can see the newly created contact on the page. We will deal with that in the next section.
+We've managed to set the stage for creating a contact with our test, but now we need to make sure that we're actually creating and persisting an contact, and that, we can see the newly created contact on the page. We will deal with that in the next section.

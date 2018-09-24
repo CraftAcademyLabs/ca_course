@@ -1,6 +1,6 @@
 ### Check for content on the page
 
-The next step we need to get to pass is `Then I should see "Contacts"`. This step expects the page to have a given content on it. After we visit the page, we should read it's text content and see if we can match the expected content. Puppeteer has a `content()` method on the page object that returns the HTML content of the page as a String. We can then use the Javascript [String.match()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) function to match our content. 
+The next step we need to get to pass is `Then I should see "Contacts"`. This step expects the page to have a given content on it. After we visit the page, we should read its text content and see if we can match the expected content. Puppeteer has a `content()` method on the page object that returns the HTML content of the page as a String. We can then use the Javascript [String.match()](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/String/match) function to match our content.
 
 Create the following helper in the `world.js` file
 
@@ -77,7 +77,7 @@ class AddressBookWorld {
 
 `waitForSelector()` receives a selector as an argument and waits for it to appear on the page. When it does appear, we can use the `click()` method to click on the button.
 
-We can now call this method in our step definition.
+We can now call on this method in our step definition.
 
 ```javascript
 When('I click {string}', async function(string) {
@@ -94,7 +94,7 @@ As you can see, we're not quite there yet. We get the following error on this st
     Error: function timed out, ensure the promise resolves within 5000 milliseconds
 ```
 
-One thing to note about cucumber-js is that the error messages are not as descriptive as we'd like them to be, be let's try to figure out what is wrong here.
+One thing to note about cucumber-js is that the error messages are not as descriptive as we'd like them to be, let's try to figure out what is wrong here.
 
 Every promise that is returned from puppeteer will timeout after 5000 milliseconds by default if they can't be resolved. In this case, the request that's timing out is `waitForSelector()`. This function resolves when the specified element is added to the DOM. When we look at the `index.html` we can see that indeed we don't have a button for adding a contact on that page. Well, let's create one
 
@@ -174,6 +174,6 @@ If we run cucumber at this stage, we get another timeout error, suggesting we do
 </body>
 ```
 
-Now run cucumber, and voila! all steps filling form fields are all green.
+Now run cucumber, and voila! all steps filling form fields are now green.
 
 We've made good progress so far, but we need to fix a small issue before we move on.

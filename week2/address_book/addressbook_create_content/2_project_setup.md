@@ -46,7 +46,7 @@ The first thing we will set up for this project is our testing environment using
 
 ### Cucumber-js
 
-Cucumber is a tool used for testing software. It runs automated acceptance tests written in a behavior-driven development \(BDD\) style. At its core, Cucumber BDD approach is its plain language parser called [Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin). It is a Domain Specific Language \(DSL\) that allows expected software behaviors to be specified in a logical language that customers can understand. This allows Cucumber allows to execute feature documentation written in business-facing text.
+Cucumber is a tool used for testing software. It runs automated acceptance tests written in a behavior-driven development \(BDD\) style. At its core, Cucumber BDD approach is its plain language parser called [Gherkin](https://github.com/cucumber/cucumber/wiki/Gherkin). It is a Domain Specific Language \(DSL\) that allows expected software behaviors to be specified in a logical language that customers can understand. This allows Cucumber to execute feature documentation written in business-facing text.
 
 Let's add Cucumber-js and some dependencies to our project.
 
@@ -87,13 +87,13 @@ Installing packages with `yarn` using the `--dev` option will save the packages 
 We can now create the various directories in which our cucumber tests and configuration files will reside. 
 
 ```bash
-$ mkdir -p features/step_definitions
-$ mkdir -p features/support
+$ mkdir features/step_definitions
+$ mkdir features/support
 $ touch features/support/world.js
 $ touch features/main.feature
 ```
 
-Every cucumber tests are written in `.feature` files. Add the following basic feature definition that we will use to finalize the basic configuration of cucumber-js
+All cucumber tests are written in `.feature` files. Add the following basic feature definition that we will use to finalize the basic configuration of cucumber-js
 
 ```text
 Feature: Create contacts
@@ -108,7 +108,7 @@ Feature: Create contacts
     And I should see "You have no contacts in your address book"
 ```
 
-Next, we'll create an npm script to run cucumber. In your `package.json` file add a `scripts` block with the following content.
+Next, we'll create an npm script to run cucumber. In your `package.json` file add an `scripts` block with the following content.
 
 ```javascript
   "scripts": {
@@ -127,7 +127,7 @@ This will do 3 things when executed:
 
 1. `superstatic -p 3000` starts a web server on port `3000` from the current directory using `superstatic`. Our application will then be available on `http://localhost:3000`  `2> /dev/null &` will silence all logs from the superstatic process and push that to the background to allow the next command to be executed in the current terminal session.
 2. `cucumber-js` will execute the tests from all `.feature` files in our features directory
-3. `lsof -ti tcp:3000 | xargs kill` This last command will kill the web server we started earlier on once the tests are done.
+3. `lsof -ti tcp:3000 | xargs kill` This last command will kill the web server we started earlier, once the tests are done.
 
 Your `package.json` should now look something like this:
 
@@ -158,11 +158,11 @@ Now that we have the cucumber script in place, let's go ahead and run it.
 $ yarn run cucumber
 ```
 
-You should get an output similar to the following screenshot on your terminal
+You should get an output similar to the following screenshot in your terminal
 
 ![Undefined step-definitions for cucumber](https://raw.githubusercontent.com/CraftAcademy/ca-course-week-2/master/.gitbook/assets/screenshot-2018-04-11-06.58.05.png)
 
-The way cucumber translate the steps written in plain english into actual executable code that tests our application is through what's called step definitions. In the previous output it's telling us that we haven't defined any yet for the steps we have in `main.feature` 
+The way cucumber translates the steps written in plain english into actual executable code that tests our application is through what's called step definitions. In the previous output it's telling us that we haven't defined any yet for the steps we have in `main.feature`
 
 We will copy the suggested steps into a step definition file and run cucumber again. Create a file name `basic-steps.js` inside of the `step-definitions` directory in the `features` directory and paste the following in it.
 
@@ -184,14 +184,16 @@ If you run your test again now, you should get the following output
 
 ![First step in pending state](https://github.com/CraftAcademy/ca-course-week-2/raw/master/.gitbook/assets/screenshot-2018-04-11-07.06.56.png)
 
-Cucumber now tells us that the step `Given I visit the site` is `Pending`. This is because all our step definition does at this stage is return the word `Pending`. We will return to this later on and write some code to get it to pass.
+Cucumber now tells us that the step `Given I visit the site` is `Pending`. This is because what all of our step definitions do, at this stage, is to return the word `Pending`
+
+ We will return to this later on and write some code to get it to pass.
 
 We have the basic structure in place to run cucumber in our application. We can now move on to the next component, Webpack.
 
 
 ### Webpack
 
-[Webpack](https://webpack.js.org/) is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, but you can also use it to transform, build or package any resource or assets in your application. 
+[Webpack](https://webpack.js.org/) is a module bundler. Its main purpose is to bundle JavaScript files for usage in a browser, but you can also use it to transform, build or package any resources or assets in your application.
 
 We will use it in our application to combine all Javascript files we'll create into `bundle.js` which will be loaded in our `index.html`. Also, because we're using ES6, we need to transpile the code using [babeljs](https://babeljs.io). We will configure webpack to use babel during the build process to transpile our code.
 
@@ -237,7 +239,7 @@ module.exports = {
 Create a `src` directory and add the `app.js` file in it, which will be the entry point of our application.
 
 ```javascript
-console.log("Hello April 2018 Cohort!");
+console.log("Hello Students!");
 ```
 
 Create the `index.html` file and add the following snippet in it
@@ -269,14 +271,14 @@ Note that we're loading `dist/bundle.js` instead of `src/app.js`. `bundle.js` wi
   "cucumber": "..."
 },
 ```
-To generate a build run the following command on your terminal
+To generate a build run the following command in your terminal
 
 ```bash
 $ yarn run build
 ```
 
-If you open your `index.html` page now in the browser and inspect the page, you should see the text `Hello April 2018 Cohort!` printed in the console.
+If you open your `index.html` page now in the browser and inspect the page, you should see the text `Hello Students!` printed in the console.
 
-Every time you make changes to your JavaScript files, you need to run the build command again to generate a new `bundle.js` file. In order to facilitate this process during the development process, you can use the `watch` command instead of `build`. This will generate a build and keep the session open and watch for changes in your current directory and restart the build every time.
+Every time you make changes to your JavaScript files, you need to run the build command again to generate a new `bundle.js` file. In order to facilitate this process during the development process, you can use the `yarn run watch` command instead of `yarn run build`. This will generate a build and keep the session open and watch for changes in your current directory and restart the build every time.
 
 Now that everything is setup, we will start building some functionality into this application in the next section.

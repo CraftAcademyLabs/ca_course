@@ -13,7 +13,7 @@ In order to save the contact we need to add the following snippet of code in the
     storage.setItem('contacts', JSON.stringify([contact]))
   })
 ```
-Now, if you build this code, open the page and create a new contact, it should store that on localStorage in your browser. To verify this we're going to open the browser's developers tool and head to the Application tab. Look at the storage section, you'll see a Local Storage menu. Open that and select the url to your website \(which will likely be http://localhost:3000 since we're on our local machine\). You should then see the contact that you just stored as in the image below.
+Now, if you build this code, open the page and create a new contact, it should store that in localStorage in your browser. To verify this we're going to open the browser's developers tool and head to the Application tab. Look at the storage section, you'll see a Local Storage menu. Open that and select the url to your website \(which will likely be http://localhost:3000 since we're on our local machine\). You should then see the contact that you just stored as in the image below.
 ![Viewing the contact in DevTools](https://github.com/CraftAcademy/ca-course-week-2/blob/master/.gitbook/assets/screenshot-2018-06-14-17.21.52.png?raw=true)
 
 
@@ -38,7 +38,7 @@ async checkContactStorageCount(expectedCount) {
 }
 ```
 
-Let's go over what we're doing here. If you look back to when we stored the contact to our storage, we made use of the `setItem()` method. There's a `getItem()` method which is used to read items from `localStorage`. So, what we do here, is call on that method to read an item named `contacts`. Given that the method returns a `string`, we have to parse that into a JSON object. Once we have the object, we can get its `length` and store it in the variable `actualCount`.
+Let's go over what we're doing here. If you look back to when we stored the contact to our storage, we made use of the `setItem()` method. There's a `getItem()` method which is used to read items from `localStorage`. So what we do here, is call on that method to read an item named `contacts`. Given that the method returns a `string`, we have to parse that into a JSON object. Once we have the object we can get its `length` and store it in the variable `actualCount`.
 
 The last step is to add an assertion that the `actualCount` is equal to the `expectedCount`. Remember our step here tests that we actually have 1 contact after submitting the form.
 

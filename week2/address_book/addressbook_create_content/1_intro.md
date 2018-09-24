@@ -1,3 +1,15 @@
+### Learning objectives
+- Advanced Javascript concepts and ES6+ Features
+- Asynchronous Programming with Javascript
+- DOM manipulation using vanilla Javascript APIs
+- Persisting data using LocalStorage
+- Unit testing in JS using Mocha and Chai
+- Introduction to BDD using Cucumber (Explain the differences and the similarities between the testing frameworks)
+- practice Pair Programming && collaboration using Git and GitHub
+- Deploying a static site to the web
+- Observe differences and similarities between Ruby and Javascript
+- Understand difference between running code on the server vs. in the browser
+
 We've recently been contacted by a client, who would like us to build an address book so that they can manage their contacts. Some of the features requested by the client include:
 
 * Ability to add new contacts
@@ -36,7 +48,7 @@ I would like to be able to update them when needed
 
 ```text
 As a user
-In order to maintain my contact list up to date
+In order to keep my contact list up to date
 I would like to be able to delete contacts
 ```
 

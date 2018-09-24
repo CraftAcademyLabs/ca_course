@@ -45,7 +45,7 @@ Let's go over what we're doing here.
 
 Before we can interact with anything on our page \(i.e clicking on buttons, filling forms, etc...\) we need to make sure that they're present on the DOM. This is what we use the `DOMContentLoaded` event for.
 
-We add and event listener to the document to watch for `DOMContentLoaded` event. When the page loads and every element it drawn on the page, it will fire up and execute the callback function we've defined.
+We add an event listener to the document to watch for `DOMContentLoaded` event. When the page loads and every element is drawn on the page, it will fire up and execute the callback function we've defined.
 
 The first thing we do in the callback, is to select the form element and store it in a local variable. We use the [`document.querySelector()`](https://developer.mozilla.org/en-US/docs/Web/API/Document/querySelector) function here, which takes as argument a CSS Selector. In this case we pass in the class that's associated to the form. 
 
