@@ -1,0 +1,1 @@
+system("pandoc -s -V geometry:margin=1in -o tmp/0_introduction.md tmp/1_user_stories.md tmp/2_pair_programming.md tmp/3_problem_statement.md --template template --listings")
