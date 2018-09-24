@@ -1,5 +1,5 @@
-## Step 3 - Entity Relationship Diagrams
-###Databases
+## Entity Relationship Diagrams
+## Databases
 A **database** is a collection of information that is organized so that it can easily be accessed, managed, and updated. A **relational database** is a collection of data items organized as a set of formally-described tables from which data can be accessed or reassembled in many different ways without having to reorganize the database tables. 
 
 Each table contains data in predefined columns. Each row contains a unique instance of data defined by the columns. For example, a typical business order entry database would include a table that described a customer with columns for name, address, phone number, and so forth. Another table would describe an order: product, customer, date, sales price, etc. 
@@ -10,7 +10,7 @@ Each table contains data in predefined columns. Each row contains a unique insta
 
 **ERD (Entity Relationship Diagram)** is a data modeling technique to graphically represent a conceptual data model of a information system. They allow you to display your database structure and show entities and relationships between tables within that database. 
 
-Many developers argue that it is essential to have ER-Diagrams if you want to create a good database design. My personal take  is that an ERD is a great thing to spend some time on in the initial phase of the project (The Design Sprint) but we should also accept that requirements WILL change during the development process and so will the database structure. Therefore, be prepared to make continuous updates to your ERD and don't spend too much time on the parts of the database that you are uncertain about.   
+Many developers argue that it is essential to have ER-Diagrams if you want to create a good database design. My personal take is that an ERD is a great thing to spend some time on in the initial phase of the project (The Design Sprint), but we should also accept that requirements WILL change during the development process and so will the database structure. Therefore, be prepared to make continuous updates to your ERD and don't spend too much time on the parts of the database that you are uncertain about.   
 
 The diagrams help focus on how the database actually works. ER-modeling  You can say that **Entity Relationship Diagrams illustrate the logical structure of databases**.
 
@@ -20,6 +20,6 @@ There are three basic elements in ER-Diagrams:
 * **Attributes** are the data we want to collect for an entity.
 * **Relationships** describe the relations between the entities.
 
-###Task
+### Task
 I want you to draw an ERD of the SlowFood system. You can use this ERD Tool: https://editor.ponyorm.com/
 

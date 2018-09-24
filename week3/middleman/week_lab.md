@@ -1,3 +1,17 @@
+---
+title: "Middleman"
+subtitle: "Week lab"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Middleman, Week lab"
+keywords: [Middleman, WeekLab]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # Week lab
 
 The weekly challenge is an individual one. You are supposed to build an individual portfolio site that will showcase the projects you have been working on. We will leave the visual aspects of the site itself to your artistic ambitions, but we have some requirements as to the functionality we want the site to deliver:
@@ -12,7 +26,7 @@ The weekly challenge is an individual one. You are supposed to build an individu
 8. Use HAML as the templating engine
 9. Set up Google Analytics
 
-**Note: You are welcome to work in pairs if you like, but it is not a requirement and if you do, you need to figure out how to complete your individual sites and still be able to pair program. **
+**Note: You are welcome to work in pairs if you like, but it is not a requirement and if you do, you need to figure out how to complete your individual sites and still be able to pair program.**
 
 ## Learning Objectives
 

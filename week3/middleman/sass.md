@@ -1,3 +1,17 @@
+---
+title: "Middleman"
+subtitle: "SASS"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "Middleman, SASS"
+keywords: [Middleman, SASS]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # SASS
 
 [TODO: Rewrite this section]
