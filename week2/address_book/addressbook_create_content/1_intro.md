@@ -1,3 +1,17 @@
+---
+title: "Address book challenge"
+author: [Craft Academy]
+date: Version 2 - 2018
+subject: "Javascript"
+keywords: [Javascript Learn To Code]
+subtitle: ""
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ### Learning objectives
 - Advanced Javascript concepts and ES6+ Features
 - Asynchronous Programming with Javascript

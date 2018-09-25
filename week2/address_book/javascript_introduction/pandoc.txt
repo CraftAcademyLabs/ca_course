@@ -1,0 +1,1 @@
+system("pandoc -s -V geometry:margin=1in -o tmp/javascript_introduction.pdf tmp/1_intro.md tmp/2_REPL.md tmp/3_variables.md tmp/4_destructing.md tmp/5_arrayhelpers.md tmp/6_js-excercises.md tmp/7_prototypes-classes.md --template template --listings")
