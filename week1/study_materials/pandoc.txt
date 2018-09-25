@@ -1,1 +1,3 @@
 system("pandoc -s -V geometry:margin=1in -o tmp/week1_study_materials.pdf tmp/0_introduction.md tmp/1_user_stories.md tmp/2_pair_programming.md tmp/3_problem_statement.md --template template --listings")
+
+parse_content(path: '/week1/study_materials', repo: 'CraftAcademy/ca_course', format: 'pdf', upload: false)

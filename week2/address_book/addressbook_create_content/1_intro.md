@@ -1,28 +1,16 @@
 ---
-title: "Address book challenge"
+title: "Address Book Challenge"
 author: [Craft Academy]
 date: Version 2 - 2018
 subject: "Javascript"
 keywords: [Javascript Learn To Code]
-subtitle: ""
+subtitle: "Working with Javascript"
 titlepage: true
 titlepage-color: f28e24
 titlepage-text-color: "FFFFFF"
 titlepage-rule-color: "FFFFFF"
 titlepage-rule-height: 2
 ...
-
-### Learning objectives
-- Advanced Javascript concepts and ES6+ Features
-- Asynchronous Programming with Javascript
-- DOM manipulation using vanilla Javascript APIs
-- Persisting data using LocalStorage
-- Unit testing in JS using Mocha and Chai
-- Introduction to BDD using Cucumber (Explain the differences and the similarities between the testing frameworks)
-- practice Pair Programming && collaboration using Git and GitHub
-- Deploying a static site to the web
-- Observe differences and similarities between Ruby and Javascript
-- Understand difference between running code on the server vs. in the browser
 
 We've recently been contacted by a client, who would like us to build an address book so that they can manage their contacts. Some of the features requested by the client include:
 
@@ -76,6 +64,17 @@ In addition to that, we would like to have some acceptance tests \(also known as
 
 You will be part of the team responsible for designing and developing this application. In the next section, we will walk you through the main components that we'll be using as part of the tech stack for this application.
 
+### Learning objectives
+- Advanced Javascript concepts and ES6+ Features
+- Asynchronous Programming with Javascript
+- DOM manipulation using vanilla Javascript APIs
+- Persisting data using LocalStorage
+- Unit testing in JS using Mocha and Chai
+- Introduction to BDD using Cucumber (Explain the differences and the similarities between the testing frameworks)
+- practice Pair Programming && collaboration using Git and GitHub
+- Deploying a static site to the web
+- Observe differences and similarities between Ruby and Javascript
+- Understand difference between running code on the server vs. in the browser
 
 ----
 **Important**
