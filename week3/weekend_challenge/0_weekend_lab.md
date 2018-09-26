@@ -1,6 +1,6 @@
 ---
-title: "Middleman"
-subtitle: "Weekend lab"
+title: "Weekend lab, CV Middleman site"
+subtitle: "Middleman week"
 author: [Craft Academy - Coding as a Craft]
 date: Version 0.1
 subject: "Middleman, Weekend lab"
