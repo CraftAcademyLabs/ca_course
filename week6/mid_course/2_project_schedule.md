@@ -2,7 +2,7 @@
 
 The MidCourse Project is a 7-day task. During this week you need to work as a regular project team and  plan and execute daily stand-ups and project planning meetings on your own. 
 
-###Suggested schedule
+### Suggested schedule
 
 Start each day with a stand-up to access each team members progress and to plan your daily activities. 
 
@@ -10,7 +10,7 @@ Assign a team member to be responsible for deployment. That person can have mult
 
 End each day with a deploy to a development server and a short demo in a stand up format. Plan the evening's or the next day's activities. 
 
-###Tips and Tricks
+### Tips and Tricks
 1. Create pairs to work on features or assign individual team members to a feature. 
 2. Make sure to flag your Waffle issues as a `feature`, `chore` or `bug`
 3. Write as many tests as you can. You will be tempted to skip some tests but that will lead to a lot of manual testing that is really inefficient use of your time. 
@@ -18,7 +18,7 @@ End each day with a deploy to a development server and a short demo in a stand u
 5. Remember that this is a simulation, so play pretend. This week can mean a lot of fun if you make a bit of a theatrical game out of it. ;-)
 6. Remember that there is NO project that does not include some level of chaos. If you think that all professional projects runs smoothly, forget about that. Remember everything we have thought you and make use of it this week and you'll be fine!
 
-###Feature descriptions - User stories
+### Feature descriptions - User stories
 
 Use the following guidance when describing features.
 

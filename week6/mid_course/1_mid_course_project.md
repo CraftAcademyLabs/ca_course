@@ -1,3 +1,17 @@
+---
+title: "Mid Course Project"
+author: [Craft Academy]
+date: Version 2 - 2018
+subject: "Agile, Scrum"
+keywords: [Agile, Scrum]
+subtitle: ""
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## Mid Course Project
 
 It's Week 6 and that means that you will be putting all your new skills into practice. It's time for the Mid Course Project.

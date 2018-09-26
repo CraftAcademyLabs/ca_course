@@ -1,3 +1,17 @@
+---
+title: "Javascript introduction"
+author: [Craft Academy]
+date: Version 2 - 2018
+subject: "Javascript"
+keywords: [Javascript, Learn To Code]
+subtitle: "Learn To Code Javascript"
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 Javascript is one of the most commonly used languages in the web development industry.
 
 Javascript (JS for short) is not to be confused with the “Java Programming Language”
