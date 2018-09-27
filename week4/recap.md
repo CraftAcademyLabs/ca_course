@@ -17,4 +17,4 @@ __By now you should have learned:__
 - [ ] Learn about how to use tests (High level acceptance tests and Low level unit tests) to drive the development process.
 - [ ] Better at practice team collaboration
 - [ ] Planning and assigning tasks to team members
-- [ ]The proper git flow in teams
+- [ ] The proper git flow in teams
