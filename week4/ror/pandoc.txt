@@ -1,0 +1,3 @@
+system("pandoc -s -V geometry:margin=1in -o tmp/ruby_on_rails_intro.pdf tmp/ruby_on_rails_-_introduction.md --template template --listings")
+
+parse_content(path: '/week4/ror', repo: 'CraftAcademy/ca_course', format: 'pdf', upload: false)
