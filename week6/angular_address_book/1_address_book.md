@@ -220,7 +220,140 @@ Lets add this form to the `app.component.html` file, overwrite the header we alr
 </div>
 ```
 
+### Submit button
 
+As it stands when we click on the Submit button nothing happens, lets change that by adding a click event to the button.
+
+```html
+
+  <button (click)="createNewContact()" class="bg-orange hover:bg-orange-dark text-white py-2 px-4 rounded" type="button">
+    Submit
+  </button>
+```
+
+Now we have added a click event that runs `createNewContact` functions when we press the submit button and we need to create that function in the component that this html file belongs to.
+
+```js
+# src/app/app.component.ts
+
+...
+
+export class AppComponent {
+
+  createNewContact() {
+    console.log('Someone clicked me!!!')
+  }
+}
+
+```
+
+If we run the server `ng server` and open the browser on `http://localhost:4200/` we will see our form, now open up the developer tools console and click the submit button, then we should see `Someone clicked me!!!` being outputted.
+
+Now lets create a `contact` object of the type `any` and initialize it with some values.
+
+```js
+# src/app/app.component.ts
+
+...
+
+export class AppComponent {
+  contact: any;
+
+  constructor() {
+
+    this.contact = {
+      name: ``,
+      email: ``,
+      company: ``,
+      role: ``,
+      twitter: ``,
+      location: ``,
+      notes: ``
+    }
+
+  }
+
+...
+
+```
+
+Now we need to create a two way data binding with the `contact` object and the fields in our form. The way we create two way databinding is by using Angular directive called `ngModel` and the way we write it is `[(ngModel)]="variable_name"` and we add it to a input field in the html file. 
+
+So in the `app.component.html` file we add `[(ngModel)]="contact.name"` to the input field for name.
+
+```html
+<input [(ngModel)]="contact.name" class="appearance-none block w-full bg-grey-lighter text-grey-darker border border-grey-lighter rounded py-3 px-4 mb-3" id="name" type="text" name="name" placeholder="John Doe">
+```
+
+And do the same for all the other input fields, just remember to change `contact.name` to whatever value is in the name attribute on the input you are adding it to. When you have done that go to the browsers console and you should see the error `Can't bind to 'ngModel' since it isn't a known property of 'input'.` To fix that we need to import the `FormsModule` in the `app.module.ts` file.
+
+First add the import to the top of the file.
+
+```js
+# src/app/app.module
+
+import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
+```
+
+And then in the imports section we add `FormsModule`.
+
+```js
+# src/app/app.module
+
+  imports: [
+    BrowserModule,
+    FormsModule
+  ],
+```
+
+Go to the browser and the error should have disappeared.
+
+As it stands when we click the submit button its only console logging a message but what we want to do is add the content of our form to an array of contacts. We start by creating a `contacts` object of the type `any[]` and set it to an empty array and we then update our `createNewContact` function pus the `contact` object into the `contacts` array and we extract the initializeation of `contact` object into a function so that we can empty it whenever we have added the information to the `contacts` array.
+
+```js
+# src/app/app.component.ts
+
+export class AppComponent {
+  contact: any
+  contacts: any[] = [];
+
+  constructor() {
+    this.initContact();
+  }
+
+  createNewContact() {
+    console.log(`Creating the following contact: ${JSON.stringify(this.contact)}`);
+    this.contacts.push(this.contact);
+    this.initContact();
+  }
+
+  private initContact() {
+    this.contact = {
+      name: ``,
+      email: ``,
+      company: ``,
+      role: ``,
+      twitter: ``,
+      location: ``,
+      notes: ``
+    }
+  }
+}
+```
+
+Now lets add some code to the bottom of the html file to display the content of the `contacts` array
+
+```html
+# src/app/app.component.html
+
+<pre>
+  {{ contacts | json }}
+</pre>
+
+```
+
+Now open the server `ng serve` and go to `http://localhost:4200/` and you should see a empty array below the form. Add a contact and see what happens.
 
 
 
