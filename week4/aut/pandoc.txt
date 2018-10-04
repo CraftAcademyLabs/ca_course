@@ -1,0 +1,3 @@
+system("pandoc -s -V geometry:margin=1in -o tmp/aut_rails.pdf tmp/bdd_with_rails.md --template template --listings")
+
+parse_content(path: '/week4/aut', repo: 'CraftAcademy/ca_course', format: 'pdf', upload: false), repo: 'CraftAcademy/ca_course', format: 'pdf', upload: false)
