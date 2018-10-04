@@ -52,6 +52,8 @@ Start by updating the existing beforeEach in `app.e2e-spec.ts` file and add ` pa
 `page.navigateTo();` Here we are running the `navigateTo` function on the page object. And if you open up the `app.po.ts` file, located in the `e2e/src` folder, you will the function there.
 
 ```js
+# e2e/src/app.e2e-spec.ts
+
   navigateTo() {
     return browser.get('/');
   }
@@ -60,6 +62,7 @@ Start by updating the existing beforeEach in `app.e2e-spec.ts` file and add ` pa
 Now lets remove the it block that was generated for us and add these two tests instead.
 
 ```js
+# e2e/src/app.e2e-spec.ts
 
   it('should display create contact header', () => {
     expect(page.getParagraphText()).toEqual('Create contact');
@@ -699,13 +702,17 @@ Now that the `contact` component is ready to receive the data we need to send it
 ```html
 # src/app/contact/contact.component.html
 
-<ng-container class="container" *ngFor="let cof contacts">
+<ng-container class="container" *ngFor="let c of contacts">
   <app-contact [contact]="c"></app-contact>
 </ng-container>
 
 ```
 
-In this `[contact]="contact"` we are binding the `[contact]` variable from `contact` component to the `"contact"` variable we got from `ngFor` loop.
+At this point our cards should be displaying correctly. Lets verify that everything is working correctly by running our tests. Lets start with looking at the unit tests.
 
 ![3 unit tests are passing](/images/aa_3_units_green.png)
+
+Now lets take a look at the e2e tests.
+
 ![2 e2e tests are passing](/images/aa_2_e2e_tests_green.png)
+
