@@ -1,18 +1,3 @@
----
-title: "Middleman"
-subtitle: "Accessing data"
-author: [Craft Academy - Coding as a Craft]
-date: Version 0.1
-subject: "Middleman, HAML"
-keywords: [Middleman, HAML]
-titlepage: true
-titlepage-color: f28e24
-titlepage-text-color: "FFFFFF"
-titlepage-rule-color: "FFFFFF"
-titlepage-rule-height: 2
-...
-
-
 ## Accessing data
 
 Middleman allows you to create `.yml`, `.yaml` or `.json` files in a folder called `data` and makes this information available in your templates. The `data` folder should be placed in the root of your project i.e. in the same folder as your project's `source` folder.

@@ -1,10 +1,10 @@
 ---
-title: "Middleman"
-subtitle: "HAML - HTML abstraction markup language"
+title: "HAML - HTML abstraction markup language"
+subtitle: "Lightweight markup language"
 author: [Craft Academy - Coding as a Craft]
-date: Version 0.1
-subject: "Middleman, HAML"
-keywords: [Middleman, HAML]
+date: Version 1.0
+subject: "HAML"
+keywords: [HAML]
 titlepage: true
 titlepage-color: f28e24
 titlepage-text-color: "FFFFFF"

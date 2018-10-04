@@ -1,3 +1,17 @@
+---
+title: "Ruby on Rails - Introduction"
+subtitle: "Week 4"
+author: [Craft Academy - Coding as a Craft]
+date: Version 1.0
+subject: "Rails, Ruby"
+keywords: [Rails, Ruby]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # Ruby on Rails - Introduction
 Rails is a web-application framework that includes everything needed to create database-backed web applications according to the **Model-View-Controller** pattern.
 
