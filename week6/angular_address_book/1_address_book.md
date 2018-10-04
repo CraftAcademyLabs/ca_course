@@ -2,7 +2,7 @@
 
 We are going to be creating a Angular version of the address book we did in week 2
 
-![address book screenshot](/images/address_book.png)
+![address book screenshot](https://raw.githubusercontent.com/magnus-thor/ca_course/angular_address_book/images/address_book.png)
 
 
 ### Setup the application
@@ -94,7 +94,7 @@ $ ng e2e
 ```
 
 
-![Missing page functions](/images/missing_page_functions.png)
+![Missing page functions](https://raw.githubusercontent.com/magnus-thor/ca_course/angular_address_book/images/missing_page_functions.png)
 
 The reason for this error is that we have not created the functions we want to run.
 So lets create those functions in `app.po.ts` file
@@ -123,7 +123,7 @@ $ ng e2e
 
 And the error message should be
 
-![Error message](/images/1st_run_e2e_tests.png)
+![Error message](https://raw.githubusercontent.com/magnus-thor/ca_course/angular_address_book/images/1st_run_e2e_tests.png)
 
 Lets fix the first error message by adding the header Create contact, start by removing the content in `app.component.html` and add this instead.
 
@@ -141,7 +141,7 @@ $ ng e2e
 
 And you will see this error message
 
-![H1 not found](/images/h1_not_found.png)
+![H1 not found](https://raw.githubusercontent.com/magnus-thor/ca_course/angular_address_book/images/h1_not_found.png)
 
 I want you to fix this test before you move on. Once fixed running the e2e tests should give you only one error.
 
@@ -369,7 +369,7 @@ $ npm run test
 and we should be getting this output.
 
 
-![1st App component unit test](/images/1st_unit_test_app_component.png)
+![1st App component unit test](https://raw.githubusercontent.com/magnus-thor/ca_course/angular_address_book/images/1st_unit_test_app_component.png)
 
 Lets create some more tests for the functionality we want. Add these tests after the one we already have.
 
@@ -400,7 +400,7 @@ it('createContact should add contact to contacts', async(() => {
 
 If you check the test status now it should give you this error.
 
-![cannot read length of undefined](/images/length_undefined.png)
+![cannot read length of undefined](https://raw.githubusercontent.com/magnus-thor/ca_course/angular_address_book/images/length_undefined.png)
 
 Now we can start writing the code to make this test pass. First we create the `contacts` object and set to type `any[]`^and initialize it as an empty array. Next we modify the `createNewContact` function by creating a console.log that prints out the contact object, then we use the `push` method to add the `contact` object to the `contacts` array. When we have pushed the `contact` in to the `contacts` we need to reset the `contact` values. Lets create a `private initContact` function and move the `this.contact` creation from the constructor and put it in the `initContact` function. And the we need to call that function in both the constructor and after we pushed `contact` into `contacts`.
 
@@ -469,7 +469,7 @@ If you take a look at `contact.component.html` file you will see a `p` tag with 
 
 Go to to the browser and you should see below the form the text contact works!. But this will break our unit tests since `app-contact` is not a known element.
 
-![not a known element](/images/not_a_known_ele.png)
+![not a known element](https://raw.githubusercontent.com/magnus-thor/ca_course/angular_address_book/images/not_a_known_ele.png)
 
 We can fix this by adding the `ContactComponent` to the `declarations` in the `app.component.spec.ts` file.
 
@@ -710,9 +710,9 @@ Now that the `contact` component is ready to receive the data we need to send it
 
 At this point our cards should be displaying correctly. Lets verify that everything is working correctly by running our tests. Lets start with looking at the unit tests.
 
-![3 unit tests are passing](/images/aa_3_units_green.png)
+![3 unit tests are passing](https://raw.githubusercontent.com/magnus-thor/ca_course/angular_address_book/images/aa_3_units_green.png)
 
 Now lets take a look at the e2e tests.
 
-![2 e2e tests are passing](/images/aa_2_e2e_tests_green.png)
+![2 e2e tests are passing](https://raw.githubusercontent.com/magnus-thor/ca_course/angular_address_book/images/aa_2_e2e_tests_green.png)
 
