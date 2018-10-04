@@ -67,7 +67,7 @@ Now lets remove the it block that was generated for us and add these two tests i
 
   it('should add a new contact', () => {
     let count = page.cardCount();
-    expect(count).toBe(3);
+    expect(count).toBe(0);
 
     page.getField('name').sendKeys('John Doe');
     page.getField('email').sendKeys('john@craftacademy.se');
@@ -80,7 +80,7 @@ Now lets remove the it block that was generated for us and add these two tests i
     page.getSubmitButton().click();
 
     count = page.cardCount();
-    expect(count).toBe(4);
+    expect(count).toBe(1);
   });
 ```
 
@@ -309,7 +309,99 @@ And then in the imports section we add `FormsModule`.
 
 Go to the browser and the error should have disappeared.
 
-As it stands when we click the submit button its only console logging a message but what we want to do is add the content of our form to an array of contacts. We start by creating a `contacts` object of the type `any[]` and set it to an empty array and we then update our `createNewContact` function pus the `contact` object into the `contacts` array and we extract the initializeation of `contact` object into a function so that we can empty it whenever we have added the information to the `contacts` array.
+### Unit tests
+
+As it stands when we click the submit button its only console logging a message but what we want to do is add the content of our form to an array of contacts. We start by creating a `contacts` object of the type `any[]` and set it to an empty array and we then update our `createNewContact` function to push the `contact` object into the `contacts` array and we extract the initialization of `contact` object into a function so that we can empty it whenever we have added the information to the `contacts` array.
+
+Modify the `app.component.spec.ts` file so it looks like this.
+
+```js
+# src/app/app.component.spec.ts
+
+import { TestBed, async } from '@angular/core/testing';
+import { AppComponent } from './app.component';
+import { FormsModule } from '@angular/forms';
+import { Input } from '@angular/core';
+
+describe('AppComponent', () => {
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        AppComponent
+      ],
+      imports: [
+        FormsModule
+      ],
+    }).compileComponents();
+  }));
+
+  it('should create the app', async(() => {
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    expect(app).toBeTruthy();
+  }));
+
+});
+```
+
+We use:
+
+- `Testbed` configures and initializes environment for unit testing and provides methods for creating components and services in unit tests.
+
+- `configureTestingModule` allows overriding default `providers`, `directives`, `pipes`, `modules` of the test injector.
+
+- `createComponent` creates a `ComponentFixture` which is a test environment around the `component` and its `template`.
+
+- `debugElement` gives us access to the internals of the component fixture.
+
+- `componentInstance` will create a instance of the component we are testing.
+
+Lets run the unit tests.
+
+```sh
+$ npm run test
+```
+
+and we should be getting this output.
+
+
+![1st App component unit test](/images/1st_unit_test_app_component.png)
+
+Lets create some more tests for the functionality we want. Add these tests after the one we already have.
+
+```js
+# src/app/app.component.spec.ts
+
+it('createContact should add contact to contacts', async(() => {
+    const contact = {
+      name: 'John Doe',
+      email: 'john@craftacademy.se',
+      company: 'Craft Academy',
+      role: 'Tester',
+      twitter: '@tester',
+      location: 'Stockholm',
+      notes: 'There are no notes on this guy'
+    }; // We create a object we can use to test
+    
+    const fixture = TestBed.createComponent(AppComponent);
+    const app = fixture.debugElement.componentInstance;
+    
+    app.contact = contact;  // here we are passing the contact variable we created into the app.contact variable
+    app.createNewContact();  // then we run the createNewContact function which will push the contact object into contacts array
+    
+    expect(app.contacts[app.contacts.length -1]).toEqual(contact);  // here we expect that the last object of the contacts array is the contact object
+  }));
+
+```
+
+If you check the test status now it should give you this error.
+
+![cannot read length of undefined](/images/length_undefined.png)
+
+Now we can start writing the code to make this test pass. First we create the `contacts` object and set to type `any[]`^and initialize it as an empty array. Next we modify the `createNewContact` function by creating a console.log that prints out the contact object, then we use the `push` method to add the `contact` object to the `contacts` array. When we have pushed the `contact` in to the `contacts` we need to reset the `contact` values. Lets create a `private initContact` function and move the `this.contact` creation from the constructor and put it in the `initContact` function. And the we need to call that function in both the constructor and after we pushed `contact` into `contacts`.
+
+At this point the file should look like this.
 
 ```js
 # src/app/app.component.ts
@@ -355,5 +447,265 @@ Now lets add some code to the bottom of the html file to display the content of 
 
 Now open the server `ng serve` and go to `http://localhost:4200/` and you should see a empty array below the form. Add a contact and see what happens.
 
+### Contact Component
 
+Now we are just seeing an array of contacts but we want to make it look nice and have each contact in a card.
+Lets start by creating a `contact` component that will dispay a contact as a card.
 
+```sh
+$ ng generate component card
+``` 
+
+If you take a look at `contact.component.html` file you will see a `p` tag with the text contact works!. The way can display the content that html file is calling on the component selector, check the `contact.component.ts` file and there you can see the selector. And we want to call on that selector in `app.component.html` file. Copy this to the bottom of that file instead of the `pre` tag and whats between that.
+
+```html
+# src/app/app.component.html
+
+<app-contact></app-contact>
+```
+
+Go to to the browser and you should see below the form the text contact works!. But this will break our unit tests since `app-contact` is not a known element.
+
+![not a known element](/images/not_a_known_ele.png)
+
+We can fix this by adding the `ContactComponent` to the `declarations` in the `app.component.spec.ts` file.
+
+```js
+# src/app/app.component.spec.ts
+
+import { ContactComponent } from './contact/contact.component';
+
+describe('AppComponent', () => {
+
+  beforeEach(async(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        AppComponent, ContactComponent
+      ],
+      imports: [
+        FormsModule
+      ],
+    }).compileComponents();
+```
+Check your test browser to see that you have 3 tests going green.
+
+Add this card that we get from Tailwind documentation to `contact.component.html`.
+
+```html
+# src/app/contact/contact.component.html
+
+<div class="card">
+  <div class="image">
+    <img src="#" />
+  </div>
+  <div class="content">
+    <div class="location">Gothenburg</div>
+    <h1>Nils Magnusson</h1>
+    <h2>CEO, NM.com</h2>
+    <p>Just some made up guy</p>
+      nils@nils.com |
+    <a href="https://www.twitter.com/nilsmagnusson">@nilsmagnusson</a>
+  </div>
+</div>
+
+```
+
+And we apply some styles to make that card look nice. And take special note that we apply styles specifically to each component in Angular. can you think of any reason why that is?
+
+```html
+# src/app/contact/contact.component.html
+
+.card {
+    width: 30%;
+    float: left;
+    margin: 6px;
+    position: relative;
+    z-index: 1;
+    display: block;
+    background: #FFFFFF;
+    min-width: 270px;
+    height: 450px;
+    font-family: 'Mukta Vaani', sans-serif;
+    color: #999999;
+    -webkit-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+    -moz-box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+    box-shadow: 0px 1px 2px 0px rgba(0, 0, 0, 0.15);
+    -webkit-transition: all 0.3s linear 0s;
+    -moz-transition: all 0.3s linear 0s;
+    -ms-transition: all 0.3s linear 0s;
+    -o-transition: all 0.3s linear 0s;
+    transition: all 0.3s linear 0s;
+  }
+  .card:hover,
+  .hover {
+    -webkit-box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+    -moz-box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+  }
+  .card:hover .image img,
+  .hover .image img {
+    -webkit-transform: scale(1.1);
+    -moz-transform: scale(1.1);
+    transform: scale(1.1);
+    opacity: .6;
+  }
+  .card .image {
+    background: #000000;
+    height: 325px;
+    overflow: hidden;
+  }
+  .card .image img {
+    display: block;
+    width: 120%;
+    -webkit-transition: all 0.3s linear 0s;
+    -moz-transition: all 0.3s linear 0s;
+    -ms-transition: all 0.3s linear 0s;
+    -o-transition: all 0.3s linear 0s;
+    transition: all 0.3s linear 0s;
+  }
+  .card .content {
+    position: absolute;
+    bottom: 0;
+    background: #FFFFFF;
+    width: 100%;
+    padding: 30px 30px 20px 30px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05) 0s;
+    -moz-transition: all 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05) 0s;
+    -ms-transition: all 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05) 0s;
+    -o-transition: all 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05) 0s;
+    transition: all 0.3s cubic-bezier(0.37, 0.75, 0.61, 1.05) 0s;
+  }
+  .location {
+    position: absolute;
+    top: -34px;
+    left: 0;
+    background: rgb(251, 181, 101);
+    padding: 10px 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    font-weight: 600;
+    text-transform: uppercase;
+  }
+  h1 {
+    margin: 0;
+    color: #505050;
+    font-size: 26px;
+    font-weight: 900;
+  }
+  h2 {
+    margin: 0;
+    padding: 0 0 5px;
+    color: #ff9012;
+    font-size: 20px;
+    font-weight: 400;
+    line-height: 1.4em;
+  }
+  p {
+    display: block;
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.5em;
+  }
+  a {
+    color: #ff9012 !important;
+    text-decoration: none;
+  } 
+
+  ```
+
+### Display the contacts
+
+We want to use the `contact` component to display all the contacts in the `contacts` array. Start by updating the `app.component.html` `<app-contact></app-contact>` to look like this.
+
+```html
+# src/app/app.component.html
+
+<ng-container class="container">
+  <app-contact></app-contact>
+</ng-container>
+```
+
+We will use a Angular directive call `ngFor` to iterate over the `contacts` array, its a `for` loop that we can use in the `html` file.
+
+```html
+# src/app/app.component.html
+
+<ng-container class="container" *ngFor="let contact of contacts">
+  <app-contact></app-contact>
+</ng-container>
+
+```
+If we view the application in our browser now we would just see the hardcoded information we set in the `contact.component.html` whenever we click the submit button. Just try clicking the button a few times.
+
+What we want to do is send the information we fill in the form to `contact.component` so we can display our cards with the user information.  First we need to prepare the `contact` component to receive data and we will use a `decorator` called `Input` to do that.
+
+Start by importing the `Input` from `@angular/core` and then  we need enable the `contact` variable to receive data and to do that we put `@input()` in front of the variable.
+
+```js
+# src/app/contact/contact.component.html
+
+import { Component, OnInit, Input } from '@angular/core';
+
+@Component({
+  selector: 'app-contact',
+  templateUrl: './contact.component.html',
+  styleUrls: ['./contact.component.css']
+})
+export class ContactComponent implements OnInit {
+  @Input() contact: any;
+
+  constructor() {}
+
+  ngOnInit() {
+    this.contact = {
+      name: '',
+      email: '',
+      company: '',
+      role: '',
+      twitter: '',
+      location: '',
+      notes: ''
+    };
+  }
+
+```
+
+Next thing we need to do is prepare the `contact.component.html` to use the `contact` variable to display the date.
+
+```html
+# src/app/contact/contact.component.html
+
+<div class="card">
+  <div class="image">
+    <img src="{{ contact.image }}" />
+  </div>
+  <div class="content">
+    <div class="location">{{ contact.location }}</div>
+    <h1>{{ contact.name }}</h1>
+    <h2>{{ contact.role }}, {{ contact.company }}</h2>
+    <p>{{ contact.notes }}</p>
+    {{ contact.email }} |
+    <a href="https://www.twitter.com/{{ contact.twitter }}">@{{ contact.twitter }}</a>
+  </div>
+</div> 
+
+```
+
+Now that the `contact` component is ready to receive the data we need to send it from the `app.component` and we will use the `ngFor` loop we created to do that. Lets create a databinding between the `c` variable from the `ngFor` loop and the `contact` variable we have in the `contact.component`.
+
+```html
+# src/app/contact/contact.component.html
+
+<ng-container class="container" *ngFor="let cof contacts">
+  <app-contact [contact]="c"></app-contact>
+</ng-container>
+
+```
+
+In this `[contact]="contact"` we are binding the `[contact]` variable from `contact` component to the `"contact"` variable we got from `ngFor` loop.
+
+![3 unit tests are passing](/images/aa_3_units_green.png)
+![2 e2e tests are passing](/images/aa_2_e2e_tests_green.png)
