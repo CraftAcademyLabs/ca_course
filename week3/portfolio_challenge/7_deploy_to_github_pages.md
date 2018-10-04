@@ -1,17 +1,3 @@
----
-title: "Middleman"
-subtitle: "Deploy to Github pages"
-author: [Craft Academy - Coding as a Craft]
-date: Version 0.1
-subject: "Middleman, Github"
-keywords: [Middleman, Github]
-titlepage: true
-titlepage-color: f28e24
-titlepage-text-color: "FFFFFF"
-titlepage-rule-color: "FFFFFF"
-titlepage-rule-height: 2
-...
-
 # Deploy to Github pages
 
 Now that you are done building your portfolio, it's time to publish it and brag about it to your friends.
