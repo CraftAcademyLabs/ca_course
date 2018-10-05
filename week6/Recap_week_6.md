@@ -17,8 +17,10 @@ Be sure to write down the things you need to brush up on or that you feel like y
  
 * Third-party services
 * Understand user authentication vs authorization and put that into practice
-* How to consume APIs
+* How to consume APIs using the rest-client gem 
+* How to read gem documentation
 * Build and deploy a SAAS (Software as a Service) application.
+* Continuous deployment with Semaphore 
 * Implement OAuth authentication (Facebook, Twitter)
 * Implement some sort of marketplace functionality (services or products)
 * Make use of a payment gateway (PayPal, Klarna, Stripe)
