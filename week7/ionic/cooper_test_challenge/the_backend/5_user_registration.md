@@ -27,55 +27,55 @@ The **TEARDOWN** is handled by the `use_transactional_fixtures configuration` in
 ```ruby
 # spec/requests/api/v1/registrations_spec.rb
 RSpec.describe 'User Registration', type: :request do
-  let(:headers) { { HTTP_ACCEPT: 'application/json' } }
+	let(:headers) { { HTTP_ACCEPT: 'application/json' } }
 
-  context 'with valid credentials' do
-    it 'returns a user and token' do
-      post '/api/v1/auth', params: {
-        email: 'example@craftacademy.se', password: 'password',
-        password_confirmation: 'password'
-      }, headers: headers
+	context 'with valid credentials' do
+		it 'returns a user and token' do
+			post '/api/v1/auth', params: { email: 'example@craftacademy.se', 
+																		 password: 'password',
+																		 password_confirmation: 'password'
+																	}, headers: headers
 
-      expect(response_json['status']).to eq 'success'
-      expect(response.status).to eq 200
-    end
-  end
+			expect(response_json['status']).to eq 'success'
+			expect(response.status).to eq 200
+		end
+	end
 
-  context 'returns an error message when user submits' do
-    it 'non-matching password confirmation' do
-      post '/api/v1/auth', params: {
-        email: 'example@craftacademy.se', password: 'password',
-        password_confirmation: 'wrong_password'
-      }, headers: headers
+	context 'returns an error message when user submits' do
+		it 'non-matching password confirmation' do
+			post '/api/v1/auth', params: { email: 'example@craftacademy.se', 
+																		 password: 'password',
+																		 password_confirmation: 'wrong_password'
+																	}, headers: headers
 
-      expect(response_json['errors']['password_confirmation'])
-        .to eq ["doesn't match Password"]
-      expect(response.status).to eq 422
-    end
+			expect(response_json['errors']['password_confirmation']).to eq ["doesn't match Password"]
+			expect(response.status).to eq 422
+		end
 
-    it 'an invalid email address' do
-      post '/api/v1/auth', params: {
-        email: 'example@craft', password: 'password',
-        password_confirmation: 'password'
-      }, headers: headers
+		it 'an invalid email address' do
+			post '/api/v1/auth', params: { email: 'example@craft', 
+																		 password: 'password',
+																		 password_confirmation: 'password'
+																	}, headers: headers
 
-      expect(response_json['errors']['email']).to eq ['is not an email']
-      expect(response.status).to eq 422    end
+			expect(response_json['errors']['email']).to eq ['is not an email']
+			expect(response.status).to eq 422
+		end
 
-    it 'an already registered email' do
-      FactoryGirl.create(:user, email: 'example@craftacademy.se',
-                                password: 'password',
-                                password_confirmation: 'password')
+		it 'an already registered email' do
+			FactoryBot.create(:user, email: 'example@craftacademy.se',
+																password: 'password',
+																password_confirmation: 'password')
 
-      post '/api/v1/auth', params: {
-        email: 'example@craftacademy.se', password: 'password',
-        password_confirmation: 'password'
-      }, headers: headers
+			post '/api/v1/auth', params: { email: 'example@craftacademy.se', 
+																		 password: 'password',
+																		 password_confirmation: 'password'
+																	}, headers: headers
 
-      expect(response_json['errors']['email']).to eq ['already in use']
-      expect(response.status).to eq 422
-    end
-  end
+			expect(response_json['errors']['email']).to eq ['has already been taken']
+			expect(response.status).to eq 422
+		end
+	end
 end
 ```
 

@@ -4,7 +4,7 @@ We will now remove our home and contact pages, then add a new page called calcul
 $ git checkout -b calculator
 ```
 
-Now, navigate to `src/pages` and delete `home` and `contact`. Then open `src/app.module.ts` (in your text editor) and remote both `HomePage` and `ContactPage` from the `declarations` and `entryComponents` properties. You also want to remove respective `import` statements from this file.
+Now, navigate to `src/pages` and delete `home` and `contact`. Then open `src/app/app.module.ts` (in your text editor) and remote both `HomePage` and `ContactPage` from the `declarations` and `entryComponents` properties. You also want to remove respective `import` statements from this file.
 
 ```javascript
 // Remove the following lines

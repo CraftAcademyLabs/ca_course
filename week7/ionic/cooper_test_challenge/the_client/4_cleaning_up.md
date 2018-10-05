@@ -2,7 +2,7 @@
 
 We will now clean up our application a bit by removing some sections that we do not need. Let's get started by deleting the `src/pages/list` folder. Go ahead and remove it from the menu list (do this from the `app.component.ts` file)
 
-Remove its imports from the `app.component.ts`. On the `app.module.ts` file remove it from the imports and from the decorator too (`entryComponents` and `declarations`) then make sure you are not getting any errors in your terminal
+Remove every mention of the list page in `app.component.ts`. On the `app.module.ts` file remove it from the imports and from the decorator too (`entryComponents` and `declarations`) then make sure you are not getting any errors in your terminal
 
 ## Remove homepage content
 
