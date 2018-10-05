@@ -48,6 +48,6 @@ export class CalculatorPage {
 }
 ```
 
-Now we need to add some logic to this app in order to perform the actual calculations. The code for this is not that different from what you wrote in week 2. See if you can use your implementation from that week into this app ;-)
+Now we need to add some logic to this app in order to perform the actual calculations. The code for this is not that different from what you wrote in the BMI challenge during the Prep Course. See if you can use your implementation from that week into this app ;-)
 
 In the next section, we'll show you one way of solving this.

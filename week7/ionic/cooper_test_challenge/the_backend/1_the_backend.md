@@ -8,7 +8,7 @@ Small exercise here for you, figure out how to install a specific version of a g
 
 Let's go ahead and scaffold our application
 ```shell
-rails _5.1.5_ new cooper_api --api --database=postgresql --skip-test --skip-bundle
+rails _5.2.0_ new cooper_api --api --database=postgresql --skip-test --skip-bundle
 ```
 This will do a couple of things for you:
 
@@ -28,6 +28,7 @@ end
 
 ruby '2.4.1'
 
+gem 'bootsnap', '>= 1.2', require: false
 gem 'rails', '~> 5.1.5'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 3.7'
