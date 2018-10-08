@@ -1,3 +1,18 @@
+---
+title: "Address Book with Sails.js"
+subtitle: "Address Book challenge with Sails.js"
+author: [Craft Academy - Coding as a Craft]
+date: Version 1.0
+subject: "sails.js, javascript framework"
+keywords: [sails, javascript, framework]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+
 # Address Book challenge in [Sails.js](https://sailsjs.com/)
 
 ## Setup Sails.js app

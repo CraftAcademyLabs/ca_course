@@ -1,3 +1,17 @@
+---
+title: "Google Maps on Ionic"
+subtitle: "How to add and display a map on your Ionic app"
+author: [Craft Academy - Coding as a Craft]
+date: Version 1.0
+subject: "Google Maps, Map, Ionic, Mobile"
+keywords: [Ionic, Google Maps, location]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # How to add and display a map on your Ionic app
 
 In this guide we will add a map in our ionic application we will do this by using the Google API. For this guide you should already have an installed Ionic app, we will not go through the installation process of Ionic in this guide. 

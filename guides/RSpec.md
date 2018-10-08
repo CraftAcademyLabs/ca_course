@@ -1,3 +1,17 @@
+---
+title: "RSpec"
+subtitle: "Unit testing with RSpec"
+author: [Craft Academy - Coding as a Craft]
+date: Version 1.0
+subject: "Testing, Ruby"
+keywords: [Testing, Ruby, RSpec]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ## What is Rspec?
 
 A testing framework used for automated tests. It stands for Ruby Specifications. We will use Rspec for the unit test in this  bootcamp, even though there is a possibility to use Rspec for acceptance tests as well. RSpec is written in Ruby but it also uses a DSL (domain-specific language) This means that even though we are using Ruby when writing specs there are also built-in methods in RSpec that does things their own way.

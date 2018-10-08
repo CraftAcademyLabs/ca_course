@@ -1,3 +1,17 @@
+---
+title: "Associations in Rails"
+subtitle: "Active Record Association"
+author: [Craft Academy - Coding as a Craft]
+date: Version 1.0
+subject: "Associations, Active Record, Rails, belongs_to, has_many"
+keywords: [Connect models, associations, Rails]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # Intro to Associations in Rails
 
 In this guide we will cover what associations are and what they are most commonly used for.
