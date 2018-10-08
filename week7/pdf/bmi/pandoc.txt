@@ -1,3 +1,3 @@
-system("pandoc -s -V geometry:margin=1in -o tmp/bmi_ionic.pdf tmp/00_hybrid_app_development_with_Ionic.md tmp/0_prerequisites.md tmp/1_run_the_application.md tmp/2_initiate_your_app.md tmp/3_run_the_application.md tmp/4_project_structure.md tmp/5_cleaning_up.md tmp/6_adding_a_page.md tmp/7_adding_functionality,_contd.md tmp/8_adding_functionality,_contd.md --template template --listings")
+system("pandoc -s -V geometry:margin=1in -o tmp/bmi_ionic.pdf tmp/0_hybrid_app_development_with_Ionic.md tmp/1_prerequisites.md tmp/2_initiate_your_app.md tmp/3_run_the_application.md tmp/4_project_structure.md tmp/5_cleaning_up.md tmp/6_adding_a_page.md tmp/7_adding_functionality.md tmp/8_adding_functionality,_contd.md --template template --listings")
 
 parse_content(path: '/week7/pdf/bmi', repo: 'CraftAcademy/ca_course', format: 'pdf', upload: false)
