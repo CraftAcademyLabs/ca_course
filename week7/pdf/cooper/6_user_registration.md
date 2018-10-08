@@ -31,7 +31,7 @@ RSpec.describe 'User Registration', type: :request do
 
 	context 'with valid credentials' do
 		it 'returns a user and token' do
-			post '/api/v1/auth', params: { email: 'example@craftacademy.se', 
+			post '/api/v1/auth', params: { email: 'example@craftacademy.se',
 																		 password: 'password',
 																		 password_confirmation: 'password'
 																	}, headers: headers
@@ -43,7 +43,7 @@ RSpec.describe 'User Registration', type: :request do
 
 	context 'returns an error message when user submits' do
 		it 'non-matching password confirmation' do
-			post '/api/v1/auth', params: { email: 'example@craftacademy.se', 
+			post '/api/v1/auth', params: { email: 'example@craftacademy.se',
 																		 password: 'password',
 																		 password_confirmation: 'wrong_password'
 																	}, headers: headers
@@ -53,7 +53,7 @@ RSpec.describe 'User Registration', type: :request do
 		end
 
 		it 'an invalid email address' do
-			post '/api/v1/auth', params: { email: 'example@craft', 
+			post '/api/v1/auth', params: { email: 'example@craft',
 																		 password: 'password',
 																		 password_confirmation: 'password'
 																	}, headers: headers
@@ -64,10 +64,10 @@ RSpec.describe 'User Registration', type: :request do
 
 		it 'an already registered email' do
 			FactoryBot.create(:user, email: 'example@craftacademy.se',
-																password: 'password',
-																password_confirmation: 'password')
+															 password: 'password',
+															 password_confirmation: 'password')
 
-			post '/api/v1/auth', params: { email: 'example@craftacademy.se', 
+	  	post '/api/v1/auth', params: { email: 'example@craftacademy.se',
 																		 password: 'password',
 																		 password_confirmation: 'password'
 																	}, headers: headers
@@ -75,11 +75,10 @@ RSpec.describe 'User Registration', type: :request do
 			expect(response_json['errors']['email']).to eq ['has already been taken']
 			expect(response.status).to eq 422
 		end
-	end
+  end
 end
 ```
 
 The first spec is the happy path testing that user registration with the minimum of required fields works. The next specs are exposing the error messages we'll get if something goes wrong.
 
 What other possible scenarios, in the context of user registration, should we test for?
-
