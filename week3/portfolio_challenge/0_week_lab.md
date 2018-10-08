@@ -1,9 +1,9 @@
 ---
-title: "Middleman"
-subtitle: "Week lab"
+title: "Portfolio Challenge"
+subtitle: "Middleman week"
 author: [Craft Academy - Coding as a Craft]
-date: Version 0.1
-subject: "Middleman, Week lab"
+date: Version 1.0
+subject: "Middleman, WeekLab"
 keywords: [Middleman, WeekLab]
 titlepage: true
 titlepage-color: f28e24

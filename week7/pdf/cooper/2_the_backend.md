@@ -2,7 +2,7 @@
 
 We will be using RSpec as out testing framework and PostgreSQL as our database.
 
-Note that we **WILL NOT** be using Cucumber, so you don't have to install that framework. We are also using Rails *5.1.5* in this walkthrough, so make sure you have that installed on your computer.
+Note that we **WILL NOT** be using Cucumber, so you don't have to install that framework. We are also using Rails *5.2.0* in this walkthrough, so make sure you have that installed on your computer.
 
 Small exercise here for you, figure out how to install a specific version of a gem on your system ;-)
 

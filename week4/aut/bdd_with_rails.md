@@ -1,3 +1,17 @@
+---
+title: "Acceptance-Unit Test Cycle"
+subtitle: "Week 4"
+author: [Craft Academy - Coding as a Craft]
+date: Version 1.0
+subject: "Rails, Ruby"
+keywords: [Rails, Ruby]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # Acceptance-Unit Test Cycle
 
 The concept of Acceptance-Unit Test Cycle is pretty simple. You describe what you want the system to do by describing potential users interactions with the different parts of the application. You work outside-in to implement features using the examples to validate that you're building the right thing at the right time. During this workshop, you will see this workflow in action and will experience, at least partially, its benefits.
