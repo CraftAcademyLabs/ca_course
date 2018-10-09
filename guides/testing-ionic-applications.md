@@ -69,7 +69,7 @@ Now, we need to create a folder called `test-config` in our project root folder.
 $ mkdir test-config
 ```
 
-Next, we need to create configurations files in that forlder.
+Next, we need to create configurations files in that folder and copy paste into those files.
 
 First is the configuration files for Karma, our unit test runner. We will not go over each setting but you should do your own research.
 
