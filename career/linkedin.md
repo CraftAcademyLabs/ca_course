@@ -1,11 +1,7 @@
-# Using LinkedIn to find a Job
-
-## Why is LinkedIn important?
+### Why is LinkedIn important?
 
 Recruiters use LinkedIn to connect with candidates. Your CV highlights your career at a glance, LinkedIn paints a portrait of you as a web developer. The LinkedIn’s community is very active, with many contributors, this means that  LinkedIn gives you the chance to create a great personal brand 
 
-### Setting up your LinkedIn account
-There are 3 important points you want to keep in mind when setting up your profile.
 
 ##### Your goals with LinkedIn are to:
 
