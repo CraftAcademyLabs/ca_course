@@ -263,6 +263,11 @@ Some of the Karma and Jasmine dependencies don't work very well together so we n
 "jasmine": "^2.5.3",
 ```
 
+Now we need to run `npm install` to update `node_modules~ to use these versions of the dependecies
+
+```sh
+$ npm install
+```
 
 #### Acceptance test configuration
 
