@@ -1,6 +1,7 @@
 When applying for new jobs your resume and your background will probably fall under three different categories:
+
 - Entry-level (about 0-3 years of experience)
--  Career Change
+- Career Change
 - Industry Experience
 
 This is important as you can narrow down your job search instead of applying for jobs where you would not be a good fit.
@@ -17,12 +18,16 @@ This makes it easier for you to find the right jobs and also du weed out the job
 
 Before you start you job search decide on what you can’t compromise on, some guidelines are:
 
-##### - Role
+- The Role
+
 What is the job you want to do vs the job you could do
-##### Location
+
+- Location
+
 Is relocation an option for you?
 
-##### - The company values
+- The company values
+
 What companies could you work for or absolutely not work for?
 
 #### Understand what the employer wants
@@ -39,7 +44,9 @@ Go through the companies homepage and write down keywords that you see that give
 
 This gives applicants without the right background an edge when applying for jobs. 
 
-### Some general tips for your resume:
+----
+
+Let's talk about some general tips for your resume:
 
 #### List your experience
  
