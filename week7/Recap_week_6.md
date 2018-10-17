@@ -5,11 +5,13 @@ As you see down below, we covered a lot during this week! Take some time going t
  
 ##### WHAT YOU HAVE BEEN LEARNING AND WORKING WITH THE PASSED WEEK:
 
+* Setup and test an ionic application
+* Setup and test an Angular application
 * How to build an API using Ruby on Rails
-* Testing API endpoints with RSpec using so called request specs
+* Testing API endpoints with RSpec using request specs
 * CORS
 * How to authenticate users from an Ionic application
 * How to set consume an API from a mobile client
-* Services/Providers in Angular
-* Setup an ionic application
-* Test an ionic application
+* Services in Angular and providers in ionic
+
+
