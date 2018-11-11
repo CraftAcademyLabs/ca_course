@@ -1,0 +1,3 @@
+system("pandoc -s -V geometry:margin=1in -o tmp/address_book.pdf tmp/1_intro.md tmp/2_project_setup.md 3_intro_features.md tmp/4_first_green.md tmp/5_add_form.md tmp/6_refactoring.md tmp/7_event_handling.md tmp/8_persisting_contacts.md tmp/9_render_contacts.md tmp/10_save_multiple_contacts.md tmp/11_styling.md --template template --listings")
+
+parse_content(path: '/week2/address_book/addressbook_create_content', repo: 'CraftAcademy/ca_course', format: 'pdf', upload: false)

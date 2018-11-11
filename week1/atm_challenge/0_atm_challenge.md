@@ -1,7 +1,7 @@
 ---
 title: "Ruby basics - ATM Challenge"
 author: [Craft Academy]
-date: Version 2 - 2018
+date: Version 2.1 - 2018
 subject: "Ruby"
 keywords: [Ruby, Example, Learn To Code]
 subtitle: "Your First Ruby Challenge"

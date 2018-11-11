@@ -1,0 +1,3 @@
+system("pandoc -s -V geometry:margin=1in -o tmp/library_challenge.pdf tmp/0_library_challenge.md tmp/1_important_topics.md --template template --listings")
+
+parse_content(path: '/week1/library_challenge', repo: 'CraftAcademy/ca_course', format: 'pdf', upload: false)
