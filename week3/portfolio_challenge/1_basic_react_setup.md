@@ -1,1 +1,7 @@
 ## Getting started with React
+
+React is a popular JavaScript library created by developers at Facebook, for building user interfaces. One way to look at React is asthat is the view layer for web applications (the V in Model - View - Controller), but it is much mare than that. It allows you to create highly reusable UI components like tab bars, comment boxes, pop up modals, lists, sortable tables, etc. Each of these componens or custom HTML tags, can have their own functionality that displays relevant DOM elements. That is pretty convinient and makes web development more efficient and allows for richer user experience. If you want to know more about this library, head over to Facebook’s resources ["Why React?"](https://facebook.github.io/react/docs/why-react.html) and ["Why did we build React?"](https://facebook.github.io/react/blog/2013/06/05/why-react.html) as they thoroughly explain the technical design choices that make React particularly unique.
+
+## Your first React application - from scratch
+
+It is very convienient to start your journey toward becoming a React-developer by using some of the many popular and really awesome app generators. [Create React App](https://github.com/facebook/create-react-app) is a tool built by developers at Facebook to help you build React applications. It saves you from time-consuming setup and configuration by abstractin a lot of what makes a React app work away from you. However, there are a number of reasons you may want to make your own implementation, or at least have some idea of what it’s doing under the hood. 
