@@ -4,10 +4,17 @@ React is a popular JavaScript library for building user interfaces. It was creat
 
 React allows you to create highly reusable UI components like tab bars, comment boxes, pop up modals, lists, sortable tables, etc. Each of these componens, or custom HTML tags, can have their own functionality that displays relevant DOM elements. That is pretty convinient and makes web development more efficient and allows for richer user experience. If you want to know more about this library, head over to Facebook’s resources ["Why React?"](https://facebook.github.io/react/docs/why-react.html) and ["Why did we build React?"](https://facebook.github.io/react/blog/2013/06/05/why-react.html) as they thoroughly explain the technical design choices that make React particularly unique.
 
+It is very convienient to start your journey toward becoming a React-developer by using some of the many popular app generators. [Create React App](https://github.com/facebook/create-react-app) is a tool built by developers at Facebook to help you build React applications. It saves you from time-consuming setup and configuration by abstractin a lot of what makes a React app work away from you. However, there are a number of reasons you may want to make your own implementation, or at least have some idea of what it’s doing under the hood. 
 
-The only prerequisites for following along with this course, is that you need to know relatively basic JavaSript (ES6), feel comfortable in your terminal as well as in the Developer Tools in your browser (We recommend that you use Chrome, as most of the screenshots we have included in these materials are from that browser). 
+We will set up our application using thsee components - a package manager, a bundler and a compiler. 
 
-All code that we're going to write will be in a GitHub repo for this course, so you can easily follow along. Please check the course notes for a link.
+* A **package manager** lets you take advantage of third-party packages, and easily install or update them.
+
+* A **bundler** lets you write modular code and bundle it together into small packages to optimize load time.
+
+* A **compiler** lets you write modern JavaScript code that still works in older browsers.
+
+The three solution that will make out our toolchain will be[ NPM](https://www.npmjs.com/), [Babel](http://babeljs.io/) and [Webpack](https://webpack.js.org/). We will go over these tools in more detail further down the road, but feel free to do some reading on your own in the meantime.
 
 
 ## The Project
@@ -15,11 +22,14 @@ In this course, we will be building a personal portfolio website. If you are tak
 
 If you are taking this course as an indipendent module, your coach will grade your code and quiz submission before issuing a course certificate. 
 
+
+## Practicals
+
+The only prerequisites for following along with this course, is that you need to know relatively basic JavaSript (ES6), feel comfortable in your terminal as well as in the Developer Tools in your browser (We recommend that you use Chrome, as most of the screenshots we have included in these materials are from that browser). 
+
+All code that we're going to write will be in a GitHub repo for this course, so you can easily follow along. Please check the course notes for a link.
+
 ## The setup 
-
-It is very convienient to start your journey toward becoming a React-developer by using some of the many popular app generators. [Create React App](https://github.com/facebook/create-react-app) is a tool built by developers at Facebook to help you build React applications. It saves you from time-consuming setup and configuration by abstractin a lot of what makes a React app work away from you. However, there are a number of reasons you may want to make your own implementation, or at least have some idea of what it’s doing under the hood. 
-
-One of the main cornerstones of the setup we will be doing is [Babel](http://babeljs.io/) and [Webpack](https://webpack.js.org/). We will go over these tools in more detail further down the road, but feel free to do some reading on your own in the meantime. 
 
 Start by creating a new folder for your React application. Then, initialize your project with `npm init` (if you want to skip all the questions, add the `-y` flag to the command) and open it in an editor of your choice. I will be using [VSCode](https://code.visualstudio.com/) throughout this course.
 
