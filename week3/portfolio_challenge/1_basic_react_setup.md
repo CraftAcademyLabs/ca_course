@@ -167,8 +167,8 @@ Webpack uses loaders to process different types of files for bundling. It also w
 To get all of this up and running, we need to configure Webpack to use our loaders and prepare the development server (`webpack-dev-server`). The following is a working setup for the `webpack.config.js` - a file you need to create in the project's root folder.
 
 ```js
-const path = require("path");
-const webpack = require("webpack");
+const path = require("path")
+const webpack = require("webpack")
 
 module.exports = {
   entry: "./src/index.js",
@@ -200,7 +200,7 @@ module.exports = {
     watchContentBase: true
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]
-};
+}
 ```
 
 There are many parts here that call for a closer look. Do not take this lightly.
@@ -243,14 +243,14 @@ $ touch webpack.config.js
 Let's create an `index.js` file in our `src` directory, build our first component and hook it in into the DOM. 
 
 ```javascript
-import React from "react";
-import ReactDOM from "react-dom";
+import React from "react"
+import ReactDOM from "react-dom"
 
 const HelloWorld = () => {
-    return <h2>Hello World</h2>;
+    return <h2>Hello World</h2>
 };
 
-ReactDOM.render(<HelloWorld />, document.getElementById("app"));
+ReactDOM.render(<HelloWorld />, document.getElementById("app"))
 ```
 
 ## Execution
@@ -278,6 +278,53 @@ We are not quite done with our Hello World yet. I know, how long can we push thi
 Let's extract the Hello tag into a reusable component. 
 
 _Note: Up until know we've added the "Execution" section with commands you need to run, to each and every part of the walkthroug. Moving forward, the basic commands like creating files and what content to put in them will only be referenced in the text section. Make sure you read everything and follow along in the prerecorded coding demos carefully._
+
+Let's create a new file in the `src` folder and call it `Hello.jsx`. I that file we will create out `<Hello />` component and reference it from `index.js`. This is the code we need to write:
+
+```javascript
+import React, { Component} from "react"
+
+
+class Hello extends Component {
+    render(){
+        return(
+            <div> Hello World</div>  
+        )
+    }
+}
+
+export default Hello
+```
+
+Consequently, we need to make some changes to the `index.js`. Read through the following code first, to make sure you understand whats going on, and replace the current content of `index.js`.
+
+```javascript
+import React from "react"
+import ReactDOM from "react-dom"
+import Hello from "./Hello"
+
+const App = () => {
+    return <Hello />
+};
+
+ReactDOM.render(<App />, document.getElementById("app"))
+```
+
+Restart your development server and see if anything has changed. 
+
+## Wrap up
+
+At this stage, we have a basic React application configured. It's been a hadfull, but I hope you have been able to grasp the gist of it. 
+We are using:
+* NPM as **package manager** that helps us to install or update third-party packages and dependencies.
+
+* Webpack as **bundler** that lets us to write modular code and bundle it together into small packages to optimize load time.
+
+* Babel as **compiler** that lets us write ES6 code and make sure our code works in older browsers.
+
+We have made significant progress but have only scratched the surfice yet. 
+
+
 
 
 
