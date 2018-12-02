@@ -1,50 +1,49 @@
 ## Getting started with React
 
-React is a popular JavaScript library for building user interfaces. It was created by developers at Facebook and has quickly became very popular among developers. One way to look at React is that it is the view layer for web applications (the V in Model - View - Controller), but it is much mare than that. There’s several concepts that React introduces that drastically changes the way you approach building web applications and user interfaces.
+React is a popular JavaScript library for building user interfaces. It was created by developers at Facebook and has quickly became very popular among developers. One way to look at React is that it is the view layer for web applications (the V in Model - View - Controller), but it is much mare than that. There's several concepts that React introduces that drastically changes the way you approach building web applications and user interfaces.
 
-React allows you to create highly reusable UI components like tab bars, comment boxes, pop up modals, lists, sortable tables, etc. Each of these componens, or custom HTML tags, can have their own functionality that displays relevant DOM elements. That is pretty convinient and makes web development more efficient and allows for richer user experience. If you want to know more about this library, head over to Facebook’s resources ["Why React?"](https://facebook.github.io/react/docs/why-react.html) and ["Why did we build React?"](https://facebook.github.io/react/blog/2013/06/05/why-react.html) as they thoroughly explain the technical design choices that make React particularly unique.
+React allows you to create highly reusable UI components like checkboxes, radio buttons, dropdown lists, list boxes, buttons, toggles, text fields, date fields, etc. Each of these components, or custom HTML tags, can have their own functionality that displays relevant DOM elements. That is pretty convenient and makes web development more efficient and allows for richer user experience. If you want to know more about this library, head over to Facebook’s resources ["Why React?"](https://facebook.github.io/react/docs/why-react.html) and ["Why did we build React?"](https://facebook.github.io/react/blog/2013/06/05/why-react.html) as they thoroughly explain the technical design choices that make React particularly unique.
 
-It is very convienient to start your journey toward becoming a React-developer by using some of the many popular app generators. [Create React App](https://github.com/facebook/create-react-app) is a tool built by developers at Facebook to help you build React applications. It saves you from time-consuming setup and configuration by abstractin a lot of what makes a React app work away from you. However, there are a number of reasons you may want to make your own implementation, or at least have some idea of what it’s doing under the hood. 
+It is very convienient to start your journey toward becoming a React-developer by using some of the many popular app generators. [Create React App](https://github.com/facebook/create-react-app) is a tool built by developers at Facebook to help you build React applications. It saves you from time-consuming setup and configuration by abstracting a lot of what makes a React application work away from you. However, there are a number of reasons you may want to make your own implementation, or at least have some idea of what it’s doing underneath the hood. In this course, we will do just that.
 
-We will set up our application using thsee components - a package manager, a bundler and a compiler. 
+We will set up our application using three tools - a package manager, a bundler and a compiler. 
 
 * A **package manager** lets you install or update third-party packages and dependencies.
 
 * A **bundler** lets you write modular code and bundle it together into small packages to optimize load time.
 
-* A **compiler** lets you write modern JavaScript code that still works in older browsers.
+* A **compiler** lets you write modern JavaScript code that will still work in older browsers.
 
-The three solution that will make out our toolchain will be[ NPM](https://www.npmjs.com/), [Babel](http://babeljs.io/) and [Webpack](https://webpack.js.org/). We will go over these tools in more detail further down the road, but feel free to do some reading on your own in the meantime.
+The three solution that will make out our toolchain will be: [NPM](https://www.npmjs.com/), [Babel](http://babeljs.io/) and [Webpack](https://webpack.js.org/). We will go over these tools in more detail further down the road, but feel free to do some reading on your own in the meantime.
 
 
 ## The Project
-In this course, we will be building a personal portfolio website. If you are takinkg part in the [Full Stack Web Developer Bootcamp](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CC-01+2018/about) from Craft Academy, this project and the quiz that follows, will be graded and become part of your projects portfolio. 
+In this course, we will be building a personal portfolio website. If you are takinkg part in the [Full Stack Web Developer Bootcamp](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CC-01+2018/about) from Craft Academy, this project and the quiz that follows, will be part of your overall grade and become part of your projects portfolio. 
 
 If you are taking this course as an indipendent module, your coach will grade your code and quiz submission before issuing a course certificate. 
 
 
 ## Practicals
 
-The only prerequisites for following along with this course, is that you need to know relatively basic JavaSript (ES6), HTML and CSS and feel comfortable in your terminal as well as in the Developer Tools in your browser. We recommend that you use Chrome, as most of the screenshots we have included in these materials are from that browser. 
+The only prerequisites for following along with this course, is that you need to know relatively basic JavaSript (ES6), HTML and CSS and feel comfortable in your terminal as well as in the Developer Tools of your browser. We recommend that you use Chrome, as most of the screenshots we have included in these materials are from that browser. 
 
-This is NOT a read-only kind of course. As with everythin else related to programming, you need to actually DO all the excercises and write code. Writing code on your own IS the only way you will learn to code. 
+This is NOT a read-only kind of course. As with everything else related to programming, you need to actually DO all the excercises and write code. **Writing code on your own is the only way you will learn to code.** 
 
-Read the text sections and follow along the pre-recorded coding demos carefully. Each section will have a coach led session where we will be doing some coding, solving issues and do Q&A's. 
+Read the text sections and follow along with the pre-recorded coding demos carefully. Each section will have a coach-led session where we will be doing some coding, solving issues and do Q&A's. 
 
-The objective this course is mainly to get a basic understanding of the React library and secondly to finish the coding challenge and produce a personal portfolio application. 
+The prime objective of this course is to get a basic understanding of the React library and secondly to finish the coding challenge and produce a personal portfolio application. 
 
-A word of caution, do not get to caught up in the styling of your portfolio. It's a slippery slope and can lead to many hours of hunting for that pixel-perfect solution. I'm talking from my own experience. I've bit of more than I could chew on many occations in my career and if anything, working on CSS has cost me hundreds of hours of my life. I'm not saying that you should ignore the look and feel of your application. Not at all. What I'm saying is that it's a matter of priorities - you are taking this course to learn the basics of React. Not to build a killer-app.  
+A word of caution, do not get too caught up in the styling of your portfolio. It's a slippery slope and can lead to many hours of hunting for that pixel-perfect solution. I'm talking from my own experience. I've bitten off more than I could chew on many occasions in my career and if anything, working on CSS has cost me hundreds of hours of my life. I'm not saying that you should ignore the look and feel of your application. Not at all. What I'm saying is that it's a matter of priorities - you are taking this course to learn the basics of React. Not to build a killer-app.  
 
-All code that we're going to write will be in a GitHub repo for this course, so you can easily follow along. Please check the course notes for a link.
+All code that we're going to write will be in a GitHub repo that we created for this course, so you can easily follow along. Please check the course notes for a link.
 
 ## The setup 
 
-Start by creating a new folder for your React application. Then, initialize your project with `npm init` (if you want to skip all the questions, add the `-y` flag to the command) and open it in an editor of your choice. I will be using [VSCode](https://code.visualstudio.com/) throughout this course.
+Start by creating a new folder for your React application. Then, initialize your project with `npm init` (if you want to skip all the questions that follows when you issue that command, add the `-y` flag before you execute it) and open the project in an editor of your choice. I will be using [VSCode](https://code.visualstudio.com/) throughout this course.
 
-Now is also a good time to initiate your git repository and make your fist commit. Remember to commit often and use version controll functionality if you get stuck or make some mistakes along the wat (i.e. feature branches and the `git reset --hard <commit hash>` command). 
+Now is also a good time to initiate your git repository and make your first commit. Remember to commit often and use version control functionality if you get stuck or make some mistakes along the way (i.e. feature branches and the `git reset --hard <commit hash>` command). 
 
-When our applications will build, the source code will be placed in a specific folder (`dist`). Also, we will be installing a lot of external libraries that will reside in the `node_modules` folder. 
-We want to exclude those folders from commits, so let’s go ahead and add a `.gitignore` file that will exclude those directories from version control.
+When our application will build, the source code will be placed in a specific folder (`dist`). Also, we will be installing a lot of external libraries that will reside in the `node_modules` folder. We want to exclude those folders from commits, so let’s go ahead and add a `.gitignore` file that will exclude those directories from version control.
 
 ### Execution
 
@@ -62,7 +61,7 @@ $ git commit -am "initiates project and adds gitignore scaffold"
 ```
 ## The starting point
 
-We will build our React application and transpile it to executable code that will run on all browser. We will be creating most of the files in our `src` folder, and since React is using ES6 features, let the bofore mentioned tools (Webpack and Babel) compile it for us into the `dist` folder.
+We will build our React application and transpile it to executable code that will run on all browser. We will be creating most of the files in our `src` folder, and since React is using ES6 features, let the before mentioned tools (Webpack and Babel) compile it for us into the `dist` folder.
 
 Create the following folder structure for your project:
 
@@ -97,7 +96,7 @@ You can use the following scaffold:
 
 ```
 
-The most important part of the scaffold is the `<div id="app"></div>` tag, which is the root our React application will hook into, but also the `script` reference to `dist/bundle.js` that will hold our compiled code. The rest is pretty a much standard HTML skeleton.
+The most important part of the scaffold is the `<div id="app"></div>` tag, which is the root our React application will hook into, but also the `script` reference to `dist/bundle.js` that will hold our compiled code. The rest is pretty much a standard HTML skeleton.
 
 
 ### Execution
@@ -111,6 +110,7 @@ $ code index.html
 ```
 
 ## React as dependency
+
 To work with React, we need to install it. As simple as that. React can be added to your project using `npm`. 
 
 ## Execution
