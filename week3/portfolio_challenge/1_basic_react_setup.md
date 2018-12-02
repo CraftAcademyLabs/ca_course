@@ -8,7 +8,7 @@ It is very convienient to start your journey toward becoming a React-developer b
 
 We will set up our application using thsee components - a package manager, a bundler and a compiler. 
 
-* A **package manager** lets you take advantage of third-party packages, and easily install or update them.
+* A **package manager** lets you install or update third-party packages and dependencies.
 
 * A **bundler** lets you write modular code and bundle it together into small packages to optimize load time.
 
@@ -25,7 +25,15 @@ If you are taking this course as an indipendent module, your coach will grade yo
 
 ## Practicals
 
-The only prerequisites for following along with this course, is that you need to know relatively basic JavaSript (ES6), feel comfortable in your terminal as well as in the Developer Tools in your browser (We recommend that you use Chrome, as most of the screenshots we have included in these materials are from that browser). 
+The only prerequisites for following along with this course, is that you need to know relatively basic JavaSript (ES6), HTML and CSS and feel comfortable in your terminal as well as in the Developer Tools in your browser. We recommend that you use Chrome, as most of the screenshots we have included in these materials are from that browser. 
+
+This is NOT a read-only kind of course. As with everythin else related to programming, you need to actually DO all the excercises and write code. Writing code on your own IS the only way you will learn to code. 
+
+Read the text sections and follow along the pre-recorded coding demos carefully. Each section will have a coach led session where we will be doing some coding, solving issues and do Q&A's. 
+
+The objective this course is mainly to get a basic understanding of the React library and secondly to finish the coding challenge and produce a personal portfolio application. 
+
+A word of caution, do not get to caught up in the styling of your portfolio. It's a slippery slope and can lead to many hours of hunting for that pixel-perfect solution. I'm talking from my own experience. I've bit of more than I could chew on many occations in my career and if anything, working on CSS has cost me hundreds of hours of my life. I'm not saying that you should ignore the look and feel of your application. Not at all. What I'm saying is that it's a matter of priorities - you are taking this course to learn the basics of React. Not to build a killer-app.  
 
 All code that we're going to write will be in a GitHub repo for this course, so you can easily follow along. Please check the course notes for a link.
 
@@ -261,7 +269,19 @@ $ npm start
 
 ![](react_portfolio_1_hello_world.png)
 
-This is probably by far the most complicated "Hello World" setup you've ever done. Well, if a "Hello World" application would have been our end-game, then all of the above has been a waste of time. What we've done so far, is to lay out the groundwork for out React application that we are going to build. So our hard work has not been in vain. Trust me.
+This is probably by far the most complicated "Hello World" setup you've ever done. Well, if a "Hello World" application would have been our end-game, then all of the above has been a waste of time. What we've done so far, is to lay out the groundwork for out React application that we are going to build. Our hard work has not been in vain. Also, there's tons of more to React than this. Trust me.
+
+## No quite there yet...
+
+We are not quite done with our Hello World yet. I know, how long can we push this before we get into "real" development? Well, I would like us to do a little bit of refactoring so that we can showcase at least a bit of functionality that showcase the power of React. 
+
+Let's extract the Hello tag into a reusable component. 
+
+_Note: Up until know we've added the "Execution" section with commands you need to run, to each and every part of the walkthroug. Moving forward, the basic commands like creating files and what content to put in them will only be referenced in the text section. Make sure you read everything and follow along in the prerecorded coding demos carefully._
+
+
+
+
 
 
 
