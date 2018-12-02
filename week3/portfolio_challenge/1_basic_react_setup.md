@@ -1,8 +1,14 @@
 ## Getting started with React
 
-React is a popular JavaScript library for building user interfaces. It was created by developers at Facebook and has quickly became very popular among developers. One way to look at React is that it is the view layer for web applications (the V in Model - View - Controller), but it is much mare than that. 
+React is a popular JavaScript library for building user interfaces. It was created by developers at Facebook and has quickly became very popular among developers. One way to look at React is that it is the view layer for web applications (the V in Model - View - Controller), but it is much mare than that. There’s several concepts that React introduces that drastically changes the way you approach building web applications and user interfaces.
 
 React allows you to create highly reusable UI components like tab bars, comment boxes, pop up modals, lists, sortable tables, etc. Each of these componens, or custom HTML tags, can have their own functionality that displays relevant DOM elements. That is pretty convinient and makes web development more efficient and allows for richer user experience. If you want to know more about this library, head over to Facebook’s resources ["Why React?"](https://facebook.github.io/react/docs/why-react.html) and ["Why did we build React?"](https://facebook.github.io/react/blog/2013/06/05/why-react.html) as they thoroughly explain the technical design choices that make React particularly unique.
+
+
+The only prerequisites for following along with this course, is that you need to know relatively basic JavaSript (ES6), feel comfortable in your terminal as well as in the Developer Tools in your browser (We recommend that you use Chrome, as most of the screenshots we have included in these materials are from that browser). 
+
+All code that we're going to write will be in a GitHub repo for this course, so you can easily follow along. Please check the course notes for a link.
+
 
 ## The Project
 In this course, we will be building a personal portfolio website. If you are takinkg part in the [Full Stack Web Developer Bootcamp](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CC-01+2018/about) from Craft Academy, this project and the quiz that follows, will be graded and become part of your projects portfolio. 
@@ -173,7 +179,7 @@ module.exports = {
     contentBase: path.join(__dirname, "/"),
     port: 3000,
     publicPath: "http://localhost:3000/dist/",
-    hotOnly: true
+    watchContentBase: true
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]
 };
@@ -201,7 +207,7 @@ We also need to add a script to `package.json` to start the `webpack-dev-server`
 
 ```json
 "scripts": {
-    "start": "webpack-dev-server  --hot --inline --mode development --open"
+    "start": "webpack-dev-server --inline --mode development --open"
 }
 ```
 
@@ -244,6 +250,14 @@ $ npm start
 ```
 
 ![](react_portfolio_1_hello_world.png)
+
+This is probably by far the most complicated "Hello World" setup you've ever done. Well, if a "Hello World" application would have been our end-game, then all of the above has been a waste of time. What we've done so far, is to lay out the groundwork for out React application that we are going to build. So our hard work has not been in vain. Trust me.
+
+
+
+
+
+
 
 
 
