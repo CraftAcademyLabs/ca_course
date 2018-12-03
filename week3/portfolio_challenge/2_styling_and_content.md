@@ -9,6 +9,167 @@ The endgame for this section of the course is this:
 We want to add a header and a footer to our application, and we want to add a little bit of styling to it. With that foundation, we will be able to move on and add some content to our portfolio site.
 
 ## Create the page structure
-If you look at the screen shot above, you can see that the application has changed since left off in the previous section. We now have a header, a main content area (the "Hello World") and a footer.
+If you look at the screenshot above, you can see that the application has changed since we left off in the previous section. We now have a header, a main content area (the "Hello World" part. Yes, we WILL remove it soon enough) and a footer section.
 
 We will make the changes to our code by creating 2 new components (a `Header` and a `Footer` component), reference them from our `App` component and display them in our app. Finally, we will add a CSS framework ([TailwindCSS](https://tailwindcss.com/docs/what-is-tailwind/)) and style our application a bit. 
+
+But first things first. Let's start with creating two nee files in our `src` folder. `Footer.jsx` and `Header.jsx`. In the first iteration, we can just add some basic text. We WILL style them a in a moment. 
+
+This is the code for `Header.jsx`: 
+```javascript
+import React, { Component } from "react"
+
+class Header extends Component {
+
+    render() {
+        return (
+            <nav>
+                <h1>My Portfolio</h1>
+            </nav>
+        )
+    }
+}
+
+export default Header
+```
+And this is how we will define the component in `Footer.jsx`:
+```javascript
+import React, { Component } from "react"
+
+class Footer extends Component {
+
+    render() {
+        return (
+            <footer>
+                <h1>Made with React</h1>
+            </footer>
+        )
+    }
+}
+
+export default Footer
+```
+
+Consequently, we want to change the markup in our `App` component to include and reference our new components:
+
+```javascript
+import React from "react"
+import ReactDOM from "react-dom"
+import Hello from "./Hello"
+import Header from "./Header"
+import Footer from "./Footer"
+
+const App = () => {
+    return (
+        <div>
+            <Header />
+            <Hello />
+            <Footer />
+        </div >
+    )
+};
+
+ReactDOM.render(<App />, document.getElementById("app"))
+```
+
+Now, restart your development server to see the new components in action. They should be visible, but not impress you a lot. Right? It's time to add some styling to our application.
+
+## Adding a CSS framework
+We will make use of [TailwindCSS](https://tailwindcss.com/docs/what-is-tailwind/) to add a look and feel to our application. 
+
+Let's start by adding Tailwind as an dependency first, then do a bit of configuration, and finally add some Tailwind classes to our components.
+
+We use NPM to add Tailwind to our project. 
+
+```bash 
+$ npm i -D tailwindcss autoprefixer postcss-cli
+```
+
+The package comes with a script we can run to simplify the configuration process. 
+
+```bash
+$ npx tailwind init tailwind.config.js
+```
+
+_Note: `npx` is a tool intended to help round out the experience of using packages from the npm registry — the same way `npm` makes it super easy to install and manage dependencies hosted on the registry, `npx` makes it easy to use CLI tools and other executables hosted on the registry._
+
+We also need to do some configuration for [PostCSS](https://postcss.org/) so we can use it to transform the Tailwind directives into pure CSS. Create a file called `postcss.config.js` in the root folder of your project, and add the following code (taken straight from the Tailwind docs):
+
+```javascript
+const tailwindcss = require('tailwindcss');
+module.exports = {
+    plugins: [
+        tailwindcss('./tailwind.config.js'),
+        require('autoprefixer'),
+    ],
+};
+```
+
+Now we need to set up our CSS entry point. Create a `src/css/tailswind.css` and add in the following code:
+
+```css
+@tailwind preflight;
+@tailwind components;
+@tailwind utilities;
+```
+
+And finally, we need to modify the `scripts` section in our `package.json` to process our css and make sure to watch for changes so that we can continously see the output in our browser as we add Tailwind classes to our components. Take a close look at the code below BEFORy changes so that you understand what they do. Ww will add to new scripts (`build:css` and `watch:css`), but we also modify tou `start` and `build` scripts we added in previous section of this course. 
+
+```json
+"scripts": {
+"build:css": "postcss src/css/tailwind.src.css -o src/css/tailwind.css",
+"watch:css": "postcss src/css/tailwind.src.css -o src/css/tailwind.css -w",
+"start": "npm run watch:css & webpack-dev-server --inline --mode development --open",
+"build": "npm run build:css && webpack --mode production"
+}
+```
+
+## Styling
+
+Tailwind comes with a LOT of predefined classes and can be a bit overwhelming. While writing this documentation, I did spend some time on [CodePen](https://codepen.io/) looking for some good UI examples to look at. I came up with the following styling that you are welcome to use (You can, of course, give your portfolio your own look and feel by compining the available classes on your own, or write some on your own). 
+
+In `index.jsx` you can modify the `render` function with the following markup:
+
+```javascript
+return (
+        <div className="min-h-screen">
+            <div className="flex flex-col w-full fixed pin-l pin-y">
+                <Header />
+                <div className="px-4 pt-4 flex-1 overflow-y-scrol">
+                    <Hello />
+                </div>
+                <Footer />
+            </div >
+        </div >
+    )
+```
+
+This is the code for the `render` function in `Header.jsx`: 
+```javascript
+return (
+        <nav className="flex items-center justify-between flex-wrap bg-blue-darkest p-6">
+                <h1 className="text-white text-3xl">My Portfolio</h1>
+        </nav>
+)
+    
+```
+And for `Footer.jsx`:
+```javascript
+return (
+        <div class="border-t border-smoke px-8 py-4">
+                <div class="flex justify-center text-grey">
+                        Made with React
+                </div>
+        </div>
+        )
+```
+
+If you restart your development server you should be able to see the following:
+![](react_portfolio_2_tailwind_hello_world.png)
+
+
+
+
+
+
+
