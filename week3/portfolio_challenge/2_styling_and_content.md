@@ -245,7 +245,7 @@ return (
 ```javascript
 return (
         <nav className="header">
-                <h1 className="header-content">My Portfolio</h1>
+                <h1 className="header-title">My Portfolio</h1>
         </nav>
 )
 ```
@@ -264,7 +264,7 @@ return (
 And finally `Hello.jsx`
 ```javascript
 return (
-        <p className="content-text"> Hello World</p>
+        <p className="content-text">Hello World</p>
 )
 ```
 
