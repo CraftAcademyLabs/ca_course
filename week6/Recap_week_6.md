@@ -11,15 +11,15 @@ Be sure to write down the things you need to brush up on or that you feel like y
 * Collaboration using Git and GitHub
 * Test- and Behavior Driven Development
 
-* Lo-fi's
-* Pivotal Tracker board 
+* How to use Lo-fi's
+* How to use a Pivotal Tracker board 
 
  
 * Third-party services
 * Understand user authentication vs authorization and put that into practice
 * How to consume APIs using the rest-client gem 
 * How to read gem documentation
-* Build and deploy a SAAS (Software as a Service) application.
+* Build and deploy a SaaS (Software as a Service) application.
 * Continuous deployment with Semaphore 
 * Implement OAuth authentication (Facebook, Twitter)
 * Implement some sort of marketplace functionality (services or products)
