@@ -144,6 +144,12 @@ return (
     )
 ```
 
+We also need to import the css into that component.
+
+```javascript
+import './css/tailwind.css';
+```
+
 This is the code for the `render` function in `Header.jsx`: 
 ```javascript
 return (
@@ -166,6 +172,103 @@ return (
 
 If you restart your development server you should be able to see the following:
 ![](react_portfolio_2_tailwind_hello_world.png)
+
+## No quite there yet...
+We are not quite done with our styling yet. Adding those Tailwind classes directly to our HTML tags is good while we develop our components, but becomes quite cumbersome to read and reuse. How about making life a bit simpler for ourselves? One thing we can do is to extract some of the classes into custom ones and make use of the `@apply` directive to bundle the Tailwind classes we used. 
+
+Let's modify our `tailwind.src.css` with the following code:
+
+```css
+@tailwind preflight;
+@tailwind components;
+@tailwind utilities;
+
+/** Page **/ 
+
+.page-wrapper {
+    @apply min-h-screen;
+}
+.page-content {
+    @apply flex flex-col w-full fixed pin-l pin-y;
+}
+
+/** Header **/
+.header {
+    @apply flex items-center justify-between flex-wrap bg-blue-darkest p-6;
+}
+
+.header-title {
+    @apply text-white text-3xl;
+}
+
+/** Footer **/
+
+.footer-wrapper {
+    @apply border-t px-8 py-4;
+}
+
+.footer-content {
+    @apply flex justify-center text-grey;
+}
+
+/** Content section **/
+
+.content-wrapper {
+    @apply px-4 pt-4 flex-1 overflow-y-scroll;
+}
+
+.content-text {
+    @apply text-grey-dark;
+}
+
+```
+
+Finally we need to change the `render` function in our components again. Go over the following code and make sure your look tha same (unless you have used any other classes in your implementation)
+
+`index.jsx`
+
+```javascript
+return (
+        <div className="page-wrapper">
+            <div className="page-content">
+                <Header />
+                <div className="content-wrapper">
+                    <Hello />
+                </div>
+                <Footer />
+            </div >
+        </div >
+    )
+```
+
+`Header.jsx`
+```javascript
+return (
+        <nav className="header">
+                <h1 className="header-content">My Portfolio</h1>
+        </nav>
+)
+```
+
+`Footer.jsx`
+```javascript
+ return (
+        <div className="footer-wrapper">
+                <div className="footer-content">
+                        Made with React
+                </div>
+        </div>
+        )
+```
+
+And finally `Hello.jsx`
+```javascript
+return (
+        <p className="content-text"> Hello World</p>
+)
+```
+
+This extraction will make things easier for us if we want to reuse some classes when we start to fill our application with more content. More about that in the next section.
 
 
 
