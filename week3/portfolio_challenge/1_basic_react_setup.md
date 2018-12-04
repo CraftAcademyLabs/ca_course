@@ -282,15 +282,12 @@ _Note: Up until know we've added the "Execution" section with commands you need 
 Let's create a new file in the `src` folder and call it `Hello.jsx`. I that file we will create out `<Hello />` component and reference it from `index.js`. This is the code we need to write:
 
 ```javascript
-import React, { Component} from "react"
+import React from "react"
 
-
-class Hello extends Component {
-    render(){
-        return(
+const Hello = () => {
+        return (
             <div> Hello World</div>  
         )
-    }
 }
 
 export default Hello

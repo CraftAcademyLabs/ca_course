@@ -19,32 +19,27 @@ This is the code for `Header.jsx`:
 ```javascript
 import React, { Component } from "react"
 
-class Header extends Component {
-
-    render() {
+const Header = () => {
         return (
-            <nav>
+             <nav>
                 <h1>My Portfolio</h1>
-            </nav>
-        )
-    }
+             </nav>
+        )   
 }
 
 export default Header
 ```
 And this is how we will define the component in `Footer.jsx`:
 ```javascript
-import React, { Component } from "react"
+import React from "react"
 
-class Footer extends Component {
-
-    render() {
+const Footer = () => {
         return (
             <footer>
                 <h1>Made with React</h1>
             </footer>
         )
-    }
+    
 }
 
 export default Footer
@@ -105,7 +100,7 @@ module.exports = {
 };
 ```
 
-Now we need to set up our CSS entry point. Create a `src/css/tailswind.css` and add in the following code:
+Now we need to set up our CSS entry point. Create a `src/css/tailwind.src.css` and add in the following code:
 
 ```css
 @tailwind preflight;
@@ -113,7 +108,7 @@ Now we need to set up our CSS entry point. Create a `src/css/tailswind.css` and 
 @tailwind utilities;
 ```
 
-And finally, we need to modify the `scripts` section in our `package.json` to process our css and make sure to watch for changes so that we can continously see the output in our browser as we add Tailwind classes to our components. Take a close look at the code below BEFORy changes so that you understand what they do. Ww will add to new scripts (`build:css` and `watch:css`), but we also modify tou `start` and `build` scripts we added in previous section of this course. 
+And finally, we need to modify the `scripts` section in our `package.json` to process our css and make sure to watch for changes so that we can continously see the output in our browser as we add Tailwind classes to our components. Take a close look at the code below BEFORE you make any changes/updates so that you understand what they do. Ww will add to new scripts (`build:css` and `watch:css`), but we also modify tou `start` and `build` scripts we added in previous section of this course. 
 
 ```json
 "scripts": {
@@ -124,11 +119,18 @@ And finally, we need to modify the `scripts` section in our `package.json` to pr
 }
 ```
 
+Before we commit our changes, there is one more detail to consider. Every time we run the `start` or `build` script, css will be compiled into a file named `tailwind.css` (note the differance in file names, we have `tailwind.src.css` where we can add our custom css classes, but the application will use `tailwind.css` at runtime). We want to exlude that file from version control. 
+
+Modify your `.gitignore` and add the following line:
+```
+src/css/tailwind.css
+```
+
 ## Styling
 
 Tailwind comes with a LOT of predefined classes and can be a bit overwhelming. While writing this documentation, I did spend some time on [CodePen](https://codepen.io/) looking for some good UI examples to look at. I came up with the following styling that you are welcome to use (You can, of course, give your portfolio your own look and feel by compining the available classes on your own, or write some on your own). 
 
-In `index.jsx` you can modify the `render` function with the following markup:
+In `index.jsx` you can modify the `return` with the following markup:
 
 ```javascript
 return (
@@ -141,7 +143,7 @@ return (
                 <Footer />
             </div >
         </div >
-    )
+)
 ```
 
 We also need to import the css into that component.
@@ -150,7 +152,7 @@ We also need to import the css into that component.
 import './css/tailwind.css';
 ```
 
-This is the code for the `render` function in `Header.jsx`: 
+This is the code for the `return` in `Header.jsx`: 
 ```javascript
 return (
         <nav className="flex items-center justify-between flex-wrap bg-blue-darkest p-6">
@@ -167,7 +169,7 @@ return (
                         Made with React
                 </div>
         </div>
-        )
+)
 ```
 
 If you restart your development server you should be able to see the following:
@@ -223,7 +225,7 @@ Let's modify our `tailwind.src.css` with the following code:
 
 ```
 
-Finally we need to change the `render` function in our components again. Go over the following code and make sure your look tha same (unless you have used any other classes in your implementation)
+Finally we need to change the `return` in our components again. Go over the following code and make sure your look tha same (unless you have used any other classes in your implementation)
 
 `index.jsx`
 
@@ -238,7 +240,7 @@ return (
                 <Footer />
             </div >
         </div >
-    )
+)
 ```
 
 `Header.jsx`
@@ -258,7 +260,7 @@ return (
                         Made with React
                 </div>
         </div>
-        )
+)
 ```
 
 And finally `Hello.jsx`
