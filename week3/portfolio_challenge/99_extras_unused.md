@@ -1,0 +1,5 @@
+## Static vs Dynamic Routes
+
+In a more traditional web page architecture, an html page might link to other html pages on the server that the browser will download and display from scratch. An SPA approach allows the user to continue consuming and interacting with the page while new elements are being updated or fetched, and can result in much faster interactions and content reloading. The HTML5 History API allows us to alter the page's URL without reloading the page. This is particularly useful for loading portions of a page with JavaScript, such that the content is significantly different and warrants a new URL.
+
+In React, we can not rely on `window.history`. We need another mechanizm that changes the URL to push or replace URL history events within the browser. At the same time, it also needs to rebuild the application state from information contained within the URL.

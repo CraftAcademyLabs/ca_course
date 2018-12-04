@@ -1,6 +1,6 @@
 ## Styling and content
 
-Let's move on with our Portfolio AND learn about React in the mean time. Don't forget the why we are doing this - having a portfolio site is fun, and that is why we chose building one for this exercise. But the real reason we are doing all of this is to learn to build engaging user interfaces with React. 
+Let's move on with our Portfolio AND learn about React in the meantime. Don't forget the why we are doing this - having a portfolio site is fun, and that is why we chose building one for this exercise. But the real reason we are doing all of this is to learn to build engaging user interfaces with React. 
 
 The endgame for this section of the course is this:
 
