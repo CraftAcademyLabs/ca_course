@@ -272,6 +272,11 @@ return (
 
 This extraction will make things easier for us if we want to reuse some classes when we start to fill our application with more content. More about that in the next section.
 
+## Wrap up
+In this section, we started to set up the structure of our application by creating a few new components and displaying them on the page. We also added a CSS framework, gave our components a look and feel and made sure that we can reuse the classes. That's good progress - we are getting somewhere. 
+
+In the next part, we will look into navigating within our portfolio (we will add an "About Me" and "My Projects" sections). 
+
 
 
 
