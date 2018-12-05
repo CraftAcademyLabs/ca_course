@@ -21,7 +21,7 @@ Add the certificates and courses you have taken. Make sure that you clarify what
 
 ### Make your profile more complete
 
-LinkedIn has a feature that allows you to view the level of completeness of your profile. This means that LinkedIn shows you if there are sections in your profile that you are missing or that you could add more content to. But just in case. Make sure that you fill out all the sections in your profile.
+LinkedIn has a feature that allows you to view the level of completeness of your profile. This means that LinkedIn shows you if there are sections in your profile that you are missing or that you could add more content to. But just in case - make sure that you fill out all the sections in your profile.
 
 ### Use a URL
 

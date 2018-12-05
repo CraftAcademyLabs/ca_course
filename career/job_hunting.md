@@ -32,7 +32,7 @@ What companies could you work for or absolutely not work for?
 
 #### Understand what the employer wants
 
-It is important to research before you send out an application so that you are sure that you know what the employer wants. Are your qualifications a good match for the company you are applying for or do they use the technologies that you are interested in?
+It is important to research before you send out an application so that you are sure that you know what the employer wants. Are your qualifications a good match for the company you are applying to or do they use the technologies that you are interested in?
 
 Any employer wants people that meet the qualifications and are passionate about the field the company is in.
 
@@ -40,9 +40,9 @@ Any employer wants people that meet the qualifications and are passionate about 
 
 What countries is the company active in? This means that the company will need someone that are used to work with international teams and that can speak multiple languages.
 
-Go through the companies homepage and write down keywords that you see that gives you more insight on what the company stands for and are looking for. Use the keyword to answer why you want to work for that company before you send out an application. 
+Go through the companies homepage and write down keywords that you see that gives you more insight on what the company stands for and are looking for. Use the keywords to answer why you want to work for that company before you send out an application.
 
-This gives applicants without the right background an edge when applying for jobs. 
+This gives applicants without the right background, an edge when applying for jobs.
 
 ----
 
@@ -50,7 +50,7 @@ Let's talk about some general tips for your resume:
 
 #### List your experience
  
-Some experiences that are seen as soft skills for example, good communication skills, great work ethic, good with people etc is something that you should add to your resume, but make sure that you also add a context of when the soft skills had a good impact on your work.
+Some experiences that are seen as soft skills for example -  good communication skills, great work ethic, good with people etc is something that you should add to your resume, but make sure that you also add a context of when the soft skills had a good impact on your work.
 
 #### Use numbers
 Using numbers in your resume when you can. For example:

@@ -12,7 +12,7 @@ This description typically explains who the person is, what he/she does, and if 
 An elevator pitch does not have to include all of these components. But it usually has at least some explanations of what the idea, product, company, or person is and why it/they are valuable.
 
 
-Your assignment is to create a elevator pitch for when you are networking and meeting recruiters. The pitch should sound natural and have an easy flow. The pitch should not sound mechanical or rehearsed, even though you will rehearse it over and over again.
+Your assignment is to create an elevator pitch for when you are networking and meeting recruiters. The pitch should sound natural and have an easy flow. The pitch should not sound mechanical or rehearsed, even though you will rehearse it over and over again.
 
   
   
@@ -25,7 +25,7 @@ The following steps are useful when creating a good elevator pitch
 
 
 
-  
+
 
 You need to think about who your target audience is. There is a difference between general networking and talking directly to recruiters.
 
@@ -44,10 +44,10 @@ A good pitch should answer three main questions that the target could have:
 -   What does the listener gain in hearing you out?
     
 
-These questions formulated in different ways are important for us to bring forward. The first question gives the target general information about you and a general idea if you would be a fit for the company. The second one answers the question on why you are talking to that specific target. And the third question answers how the target could benefit from getting to know you better or potentially hiring you. These questions should be answered in an natural way with a natural flow. Here is an example of how a pitch could go:
+These questions formulated in different ways are important for us to bring forward. The first question gives the target general information about you and a general idea if you would be a good fit for the company. The second one answers the question on why you are talking to that specific target. And the third question answers how the target could benefit from getting to know you better or potentially hire you. These questions should be answered in an natural way with a natural flow. Here is an example of how a pitch could go:
 
 > “Hi my name is John Doe and I‘m a Web developer specializing in Ruby
-> on Rails and Angular.  I currently working at Acme and my team is
+> on Rails and Angular.  I am currently working at Acme and my team is
 > working on developing new ways to improve user interaction with our
 > products using eye tracking. So, I’m interested in meeting people with
 > similar backgrounds and I’m also considering changing jobs later this

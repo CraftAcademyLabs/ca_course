@@ -8,7 +8,7 @@ Here's some sample questions that you might encounter when an potential employer
 
 Technical skills
 
-One mistake many hiring managers make is hiring from a checklist of requirements. Instead of requiring three years of C++ and one year of Java, look at the big picture. A programmer who has worked mostly in an older language but has recently added a new language to his certifications may be the perfect fit, since his years of experience give him a great foundation in other areas of programming.
+One mistake many hiring managers make is hiring from a checklist of requirements. Instead of requiring three years of C++ and one year of Java, look at the bigger picture. A programmer who has worked mostly in an older language but has recently added a new language to his certifications may be the perfect fit, since his years of experience give him a great foundation in other areas of programming.
 
 ### What do you do to keep your programming skills current?
 
@@ -32,7 +32,7 @@ Some programmers require complete silence to concentrate, while others thrive in
 
 Passion for the work
 
-This is a tricky one. Many employers think that true programmers must be “computer geeks”, spending their time gaming, building servers or creating apps for friends. While this passion isn't a necessity, it's often a way to find top-shelf candidates. People that attend our bootcamp are not code obsessives with no other dimension to their personality. They do not devote every single moment of their life to coding and the don't live the stereotyped developer lifestyle. But we still argue that they are passionate - in a way that makes them, in a long run, more valuable to an organisation than people who code every second of every day.
+This is a tricky one. Many employers think that true programmers must be “computer geeks”, spending their time gaming, building servers or creating apps for friends. While this passion isn't a necessity, it's often a way to find top-shelf candidates. People that attend our bootcamp are not code obsessives with no other dimension to their personality. They do not devote every single moment of their life to coding and they don't live the stereotyped developer lifestyle. But we still argue that they are passionate - in a way that makes them, in a long run, more valuable to an organisation than people who code every second of every day.
 
 Bootcamp graduates are self-motivated, embrace challenge and are intelligent problem solvers with a broad set of skills and experience. They have the self-confidence to make an informed choice about pivoting into a new profession and planning for the long term. They are also tough - tough enough to make it through a bootcamp, an endeavor that not only requires them to learn a completely new skill-set but quite often reassesses their whole approach towards how they function as professionals.
 
