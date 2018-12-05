@@ -42,7 +42,7 @@ What countries is the company active in? This means that the company will need s
 
 Go through the companies homepage and write down keywords that you see that gives you more insight on what the company stands for and are looking for. Use the keywords to answer why you want to work for that company before you send out an application.
 
-This gives applicants without the right background, an edge when applying for jobs.
+This gives applicants, without the right background, an edge when applying for jobs.
 
 ----
 
