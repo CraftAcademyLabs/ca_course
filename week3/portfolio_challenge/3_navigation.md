@@ -13,6 +13,12 @@ As mentioned before, at its core React focuses only on building user interfaces,
 
 [React Router](https://reacttraining.com/react-router/) is the most popular routing library for React. It allows us to define routes in the same declarative style. The `Route` component is perhaps the most important component in React Router to understand and learn to use well. Its most basic responsibility is to render some UI when a location matches the route’s path.
 
+React Router provides two Routers for us to use: `BrowserRouter` and `HashRouter`. We need to decide which one to use, and the choice will mostly depend on our server architecture.
+
+`BrowserRouter` is the recommended default, but it may require additional server configuration to handle dynamic requests. `HashRouter` is not suitable for all situations, but it can be a good solution for static websites.
+
+In our Portfolio application, we will use `BrowserRouter` as our Router of choice.
+
 In the following section, we will use some of the basic functionality React Router brings to the table. If you want to go deeper into the router visit [this resource](https://reacttraining.com/react-router/core/guides/philosophy) and read through the documentation and examples.
  
 
