@@ -1,0 +1,3 @@
+system("pandoc -s -V geometry:margin=1in -o tmp/news_room_challenge.pdf tmp/0_introduction.md tmp/1_main_features.md tmp/2_paywall.md tmp/3_design_intro.md tmp/4_epics.md tmp/5_features_and_chores.md tmp/6_acceptance_criteria.md tmp/7_complexity.md --template template --listings")
+
+parse_content(path: '/week8/news_room_challenge/pdf', repo: 'CraftAcademy/ca_course', format: 'pdf', upload: false)
