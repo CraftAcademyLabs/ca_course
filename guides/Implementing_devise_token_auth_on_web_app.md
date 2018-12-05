@@ -1,5 +1,20 @@
+---
+title: "Devise Token Auth"
+subtitle: "Implementing devise token auth on web app"
+author: [Craft Academy - Coding as a Craft]
+date: Version 1.0
+subject: "Auth, Devise"
+keywords: [Devise, token, Auth]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
+
 # Implementing devise token auth on web app
-This guide assumes that you have already have a web application with devise login successfully implemented and now want to add this functionality to an mobile client. 
+This guide assumes that you have already have a web application with devise login successfully implemented and now want to add this functionality to an mobile client.
 
 In this guide we will go through how to setup the Rails application to also act as an API and add Devise token auth so users can get authorised through the API. 
 
@@ -32,9 +47,9 @@ module YourApplicationName
 end
 ``` 
 
-Now we are going to update the User model with some new attributes. Start off with generating a new migration. 
+Now we are going to update the User model with some new attributes. Start off with generating a new migration.
 Run `rails generate migration DeviseTokenAuthUpdateUsers`.
-This will give you a new and almost empty migration file in the `db/migrate` folder. 
+This will give you a new and almost empty migration file in the `db/migrate` folder.
 Update that file so it looks like this:
 ```ruby
 class DeviseTokenAuthUpdateUsers < ActiveRecord::Migration[5.2]
