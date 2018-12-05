@@ -126,18 +126,18 @@ And add them to our render function.
 return (
     <nav className="header">
         <h1 className="header-title">
-            <Link className="text-white hover:text-grey no-underline" exact to='/'>My Portfolio</Link>
+            <Link className="text-white hover:text-grey no-underline" to='/'>My Portfolio</Link>
         </h1>
         <ul className="list-reset flex">
-            <li className="mr-6"><NavLink className="text-white hover:text-grey no-underline" activeStyle={{fontWeight: "bold"}} exact to='/about'>About Me</NavLink></li>
-            <li className="mr-6"><NavLink className="text-white hover:text-grey no-underline" activeStyle={{fontWeight: "bold"}} exact to='/projects'>My Projects</NavLink></li>
+            <li className="mr-6"><NavLink className="text-white hover:text-grey no-underline" activeStyle={{fontWeight: "bold"}} to='/about'>About Me</NavLink></li>
+            <li className="mr-6"><NavLink className="text-white hover:text-grey no-underline" activeStyle={{fontWeight: "bold"}} to='/projects'>My Projects</NavLink></li>
         </ul>
     </nav>
 )
 ```
 ## Wrap up
 
-I deliberetly left the Tailwind classes in the markup above. Your job will be to extract these to custom classes and add them to `tailwind.src.css`. 
+I deliberetly left the Tailwind classes in the markup above. Your job will be to extract these to custom classes and add them to `tailwind.src.css`. At this point, you know how to do make use of Tailwind classes in your own css classes using the `@apply` directive.  
 
 
 
