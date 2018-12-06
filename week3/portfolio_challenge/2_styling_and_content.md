@@ -100,12 +100,14 @@ module.exports = {
 };
 ```
 
-Now we need to set up our CSS entry point. Create a `src/css/tailwind.src.css` and add in the following code:
+Now we need to set up our CSS entry point. We need to create a `src/css/tailwind.src.css` and use the `@tailwind` directive to insert Tailwind's preflight, utilities and screens styles into your CSS.
 
 ```css
 @tailwind preflight;
 @tailwind components;
 @tailwind utilities;
+@tailwind screens;
+
 ```
 
 And finally, we need to modify the `scripts` section in our `package.json` to process our css and make sure to watch for changes so that we can continously see the output in our browser as we add Tailwind classes to our components. Take a close look at the code below BEFORE you make any changes/updates so that you understand what they do. Ww will add to new scripts (`build:css` and `watch:css`), but we also modify tou `start` and `build` scripts we added in previous section of this course. 
