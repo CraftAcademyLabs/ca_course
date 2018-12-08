@@ -2,7 +2,7 @@
 
 In this section, we wil focus on the `My Projects` display. We will take a closer look at how we can fetch some data (about projects) in JSON format, pass that data in to the `render()` function, and display it in the browser. 
 
-Until now, we've only created functions (stateless component stored in `const`) when we defined out components. Now, we need to unleash some other powers that come in React. Components defined as classes, provide more features that will be useful to us. To define a React component class, you need to extend `React.Component`. 
+Until now, we've only created stateless components (stored in functions). Now, we need to unleash some other powers that come in React. Components defined as classes are stateful, and provide more features that will be useful to us. To define a React component class, you need to extend `React.Component`. 
 
 ## Extending React.Component vs creating a function
 
@@ -111,7 +111,7 @@ export default Projects
 ```
 What we in the code above is the following:
 
-1. We change the component from a stateless function to a class.
+1. We change the component from a stateless function to a stateful class.
 2. We are setting the initial state for projects to hold a simple JSON object that describes our projects. We give each project an `id` and `name` key with values
 3. We modify the `render()` function and:
     * We save `this.state.projects` in a constant (`projects`)

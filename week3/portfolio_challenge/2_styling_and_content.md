@@ -227,7 +227,7 @@ Let's modify our `tailwind.src.css` with the following code:
 
 ```
 
-Finally we need to change the `return` in our components again. Go over the following code and make sure your look tha same (unless you have used any other classes in your implementation)
+Finally we need to again change the HTML our components return. Go over the following code and make sure your look tha same (unless you have used any other classes in your implementation)
 
 `index.jsx`
 
