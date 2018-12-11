@@ -58,6 +58,13 @@ if (projects.length > 0) {
       })
   }
 ```
+
+We also need to `import` the `ProjectCard` component into `Projects`:
+
+```javascript
+import ProjectCard from "./ProjectCard"
+```
+
 Please take a close look at `<ProjectCard project={project} />`. What we are doing is sending the current `project` object to our new `ProjectCard` component. It will be accessible as `this.props.project`. 
 
 Our new component can have a static type, so we do not have to use `class`. Create a new file in the `src` folder and call it `ProjectCard.jsx`. Add the following code to the new file:
