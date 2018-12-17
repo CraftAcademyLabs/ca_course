@@ -1,10 +1,10 @@
 ## Getting started with React
 
-React is a popular JavaScript library for building user interfaces. It was created by developers at Facebook and has quickly became very popular among developers. One way to look at React is that it is the view layer for web applications (the V in Model - View - Controller), but it is much mare than that. There's several concepts that React introduces that drastically changes the way you approach building web applications and user interfaces.
+React is a popular JavaScript library for building user interfaces. It was created by developers at Facebook and has quickly became very popular among developers. One way to look at React is that it is the view layer for web applications (the V in Model - View - Controller), but it is much more than that. There's several concepts that React introduces that drastically changes the way you approach building web applications and user interfaces.
 
 React allows you to create highly reusable UI components like checkboxes, radio buttons, dropdown lists, list boxes, buttons, toggles, text fields, date fields, etc. Each of these components, or custom HTML tags, can have their own functionality that displays relevant DOM elements. That is pretty convenient and makes web development more efficient and allows for richer user experience. If you want to know more about this library, head over to Facebook’s resources ["Why React?"](https://facebook.github.io/react/docs/why-react.html) and ["Why did we build React?"](https://facebook.github.io/react/blog/2013/06/05/why-react.html) as they thoroughly explain the technical design choices that make React particularly unique.
 
-It is very convienient to start your journey toward becoming a React-developer by using some of the many popular app generators. [Create React App](https://github.com/facebook/create-react-app) is a tool built by developers at Facebook to help you build React applications. It saves you from time-consuming setup and configuration by abstracting a lot of what makes a React application work away from you. However, there are a number of reasons you may want to make your own implementation, or at least have some idea of what it’s doing underneath the hood. In this course, we will do just that.
+It is very convenient to start your journey toward becoming a React-developer by using some of the many popular app generators. [Create React App](https://github.com/facebook/create-react-app) is a tool built by developers at Facebook to help you build React applications. It saves you from time-consuming setup and configuration by abstracting a lot of what makes a React application work away from you. However, there are a number of reasons you may want to make your own implementation, or at least have some idea of what it’s doing underneath the hood. In this course, we will do just that.
 
 We will set up our application using three tools - a package manager, a bundler and a compiler. 
 
@@ -18,16 +18,16 @@ The three solution that will make out our toolchain will be: [NPM](https://www.n
 
 
 ## The Project
-In this course, we will be building a personal portfolio website. If you are takinkg part in the [Full Stack Web Developer Bootcamp](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CC-01+2018/about) from Craft Academy, this project and the quiz that follows, will be part of your overall grade and become part of your projects portfolio. 
+In this course, we will be building a personal portfolio website. If you are taking part in the [Full Stack Web Developer Bootcamp](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CC-01+2018/about) from Craft Academy, this project and the quiz that follows, will be part of your overall grade and become part of your projects portfolio. 
 
-If you are taking this course as an indipendent module, your coach will grade your code and quiz submission before issuing a course certificate. 
+If you are taking this course as an independent module, your coach will grade your code and quiz submission before issuing a course certificate. 
 
 
 ## Practicals
 
-The only prerequisites for following along with this course, is that you need to know relatively basic JavaSript (ES6), HTML and CSS and feel comfortable in your terminal as well as in the Developer Tools of your browser. We recommend that you use Chrome, as most of the screenshots we have included in these materials are from that browser. 
+The only prerequisites for following along with this course, is that you need to know relatively basic JavaScript (ES6), HTML and CSS and feel comfortable in your terminal as well as in the Developer Tools of your browser. We recommend that you use Chrome, as most of the screenshots we have included in these materials are from that browser. 
 
-This is NOT a read-only kind of course. As with everything else related to programming, you need to actually DO all the excercises and write code. **Writing code on your own is the only way you will learn to code.** 
+This is NOT a read-only kind of course. As with everything else related to programming, you need to actually DO all the exercises and write code. **Writing code on your own is the only way you will learn to code.** 
 
 Read the text sections and follow along with the pre-recorded coding demos carefully. Each section will have a coach-led session where we will be doing some coding, solving issues and do Q&A's. 
 
@@ -120,7 +120,7 @@ To work with React, we need to install it. As simple as that. React can be added
 ```bash
 $ npm i -S react react-dom 
 ```
-_Please note that `npm i -S` is the equivalet to `npm install --save`._
+_Please note that `npm i -S` is the equivalent to `npm install --save`._
 
 ## Babel and Webpack
 
@@ -157,7 +157,7 @@ $ npm i -D @babel/core @babel/cli @babel/preset-env @babel/preset-react
 $ touch .babelrc
 // add the json code to .babelrc
 ```
-_Please note that `npm i -D` is the equivalet to `npm install --save-dev`._
+_Please note that `npm i -D` is the equivalent to `npm install --save-dev`._
 
 
 The next step is to install and configure Webpack. 
@@ -236,7 +236,7 @@ We also need to add a script to `package.json` to start the `webpack-dev-server`
 ```bash
 $ npm i -D webpack@4.19.1 webpack-cli@3.1.1 webpack-dev-server@3.1.8 style-loader@0.23.0 css-loader@1.0.0 babel-loader@8.0.2
 $ touch webpack.config.js
-// add the javscript code to webpack.config.js
+// add the javascript code to webpack.config.js
 // add the json code to package.json
 ```
 
@@ -258,7 +258,7 @@ ReactDOM.render(<HelloWorld />, document.getElementById("app"))
 ## Execution
 ```bash
 $ touch src/index.js
-// add the javscript code to src/index.js
+// add the javascript code to src/index.js
 ```
 
 ## See it come alive!
@@ -279,7 +279,7 @@ We are not quite done with our Hello World yet. I know, how long can we push thi
 
 Let's extract the Hello tag into a reusable component. 
 
-_Note: Up until know we've added the "Execution" section with commands you need to run, to each and every part of the walkthroug. Moving forward, the basic commands like creating files and what content to put in them will only be referenced in the text section. Make sure you read everything and follow along in the prerecorded coding demos carefully._
+_Note: Up until know we've added the "Execution" section with commands you need to run, to each and every part of the walkthrough. Moving forward, the basic commands like creating files and what content to put in them will only be referenced in the text section. Make sure you read everything and follow along in the prerecorded coding demos carefully._
 
 Let's create a new file in the `src` folder and call it `Hello.jsx`. I that file we will create out `<Hello />` component and reference it from `index.js`. This is the code we need to write:
 
@@ -321,7 +321,7 @@ We are using:
 
 * Babel as **compiler** that lets us write ES6 code and make sure our code works in older browsers.
 
-We have made significant progress but have only scratched the surfice yet. 
+We have made significant progress but have only scratched the surface yet. 
 
 
 
