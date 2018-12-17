@@ -1,6 +1,6 @@
 ## Display your projects
 
-In this section, we wil focus on the `My Projects` display. We will take a closer look at how we can fetch some data (about projects) in JSON format, pass that data in to the `render()` function, and display it in the browser. 
+In this section, we will focus on the `My Projects` display. We will take a closer look at how we can fetch some data (about projects) in JSON format, pass that data in to the `render()` function, and display it in the browser. 
 
 Until now, we've only created stateless components (stored in functions). Now, we need to unleash some other powers that come in React. Components defined as classes are stateful, and provide more features that will be useful to us. To define a React component class, you need to extend `React.Component`. 
 
@@ -27,7 +27,7 @@ class CustomComponent extends Component {
   }
 }
 ```
-What is the difference? Well, if you need to use any lifecycle events or set any state you should use class. What are lifecycle events? Lets take a look at that.
+What is the difference? Well, if you need to use any lifecycle events or set any state you should use class. What are lifecycle events? Let's take a look at that.
 
 ## Component lifecycle events
 
@@ -52,13 +52,13 @@ Anytime a component is updated or state changes then it is rerendered. These lif
 * **`componentDidUpdate`** called every time a re-render has been performed, such as when `this.setState()` is called. 
 
 ### Unmounting
-The unmounting (or deletion, or "cleanup") phase of the lifecycle, called when a component is being removed from the DOM. During this phase `componentWillUnmount` is the only lifecycle event we can call.
+The unmounting (or deletion, or "cleanup") phase of the life cycle, called when a component is being removed from the DOM. During this phase `componentWillUnmount` is the only lifecycle event we can call.
 
 Now that we have more knowledge about the lifecycle events, we can move on with building our application.
 
 ## Projects in JSON
 
-We will make use of the `constructor()` and `componentDidMount` event in our implementation in order to display information about our projects. For that reason, we need to refactor our `Projects` component from a stateless component ande use `class`. For starters, lets make the following changes to `Projects.jsx`. We will go over what is going on in the code 
+We will make use of the `constructor()` and `componentDidMount` event in our implementation in order to display information about our projects. For that reason, we need to refactor our `Projects` component from a stateless component and use `class`. For starters, let's make the following changes to `Projects.jsx`. We will go over what is going on in the code 
 
 ```javascript
 import React, { Component } from "react"
@@ -119,7 +119,7 @@ What we in the code above is the following:
     * We iterate over `projects` using `.map` function and create some HTML that holds a `key` and the name of the project wrapped in a `<h3>` tag that we store in `projectsList`.
     * And finally, we render some HTML and make use of the `projectsList` in the `return` - that will be what the component will look like in our UI. 
 
-The `key` calls for a closer explenation. A `key` is a special string attribute you need to include when creating lists of elements. Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the array to give the elements a stable identity. In our case we use the value of the projects `id` to set the key. 
+The `key` calls for a closer explanation. A `key` is a special string attribute you need to include when creating lists of elements. Keys help React identify which items have changed, are added, or are removed. Keys should be given to the elements inside the array to give the elements a stable identity. In our case we use the value of the projects `id` to set the key. 
 
 ## Fetching data from a file
 
@@ -155,7 +155,7 @@ The first thing we need to do is to make the `axios` library available to us:
 ```javascript
 import axios from "axios"
 ```
-Next, remove the projects data from the `constructor()` (we will use `this.setStete()` function in just a moment to populate it.)
+Next, remove the projects data from the `constructor()` (we will use `this.setState()` function in just a moment to populate it.)
 
 ```javascript
 constructor() {
