@@ -13,7 +13,7 @@ If you look at the screenshot above, you can see that the application has change
 
 We will make the changes to our code by creating 2 new components (a `Header` and a `Footer` component), reference them from our `App` component and display them in our app. Finally, we will add a CSS framework ([TailwindCSS](https://tailwindcss.com/docs/what-is-tailwind/)) and style our application a bit. 
 
-But first things first. Let's start with creating two nee files in our `src` folder. `Footer.jsx` and `Header.jsx`. In the first iteration, we can just add some basic text. We WILL style them a in a moment. 
+But first things first. Let's start with creating two new files in our `src` folder. `Footer.jsx` and `Header.jsx`. In the first iteration, we can just add some basic text. We WILL style them a in a moment. 
 
 This is the code for `Header.jsx`: 
 ```javascript
@@ -110,7 +110,7 @@ Now we need to set up our CSS entry point. We need to create a `src/css/tailwind
 
 ```
 
-And finally, we need to modify the `scripts` section in our `package.json` to process our css and make sure to watch for changes so that we can continously see the output in our browser as we add Tailwind classes to our components. Take a close look at the code below BEFORE you make any changes/updates so that you understand what they do. Ww will add to new scripts (`build:css` and `watch:css`), but we also modify tou `start` and `build` scripts we added in previous section of this course. 
+And finally, we need to modify the `scripts` section in our `package.json` to process our css and make sure to watch for changes so that we can continuously see the output in our browser as we add Tailwind classes to our components. Take a close look at the code below BEFORE you make any changes/updates so that you understand what they do. Ww will add to new scripts (`build:css` and `watch:css`), but we also modify tou `start` and `build` scripts we added in previous section of this course. 
 
 ```json
 "scripts": {
@@ -121,7 +121,7 @@ And finally, we need to modify the `scripts` section in our `package.json` to pr
 }
 ```
 
-Before we commit our changes, there is one more detail to consider. Every time we run the `start` or `build` script, css will be compiled into a file named `tailwind.css` (note the differance in file names, we have `tailwind.src.css` where we can add our custom css classes, but the application will use `tailwind.css` at runtime). We want to exlude that file from version control. 
+Before we commit our changes, there is one more detail to consider. Every time we run the `start` or `build` script, css will be compiled into a file named `tailwind.css` (note the difference in file names, we have `tailwind.src.css` where we can add our custom css classes, but the application will use `tailwind.css` at runtime). We want to exclude that file from version control. 
 
 Modify your `.gitignore` and add the following line:
 ```
@@ -130,7 +130,7 @@ src/css/tailwind.css
 
 ## Styling
 
-Tailwind comes with a LOT of predefined classes and can be a bit overwhelming. While writing this documentation, I did spend some time on [CodePen](https://codepen.io/) looking for some good UI examples to look at. I came up with the following styling that you are welcome to use (You can, of course, give your portfolio your own look and feel by compining the available classes on your own, or write some on your own). 
+Tailwind comes with a LOT of predefined classes and can be a bit overwhelming. While writing this documentation, I did spend some time on [CodePen](https://codepen.io/) looking for some good UI examples to look at. I came up with the following styling that you are welcome to use (You can, of course, give your portfolio your own look and feel by combining the available classes on your own, or write some on your own). 
 
 In `index.jsx` you can modify the `return` with the following markup:
 
@@ -227,7 +227,7 @@ Let's modify our `tailwind.src.css` with the following code:
 
 ```
 
-Finally we need to again change the HTML our components return. Go over the following code and make sure your look tha same (unless you have used any other classes in your implementation)
+Finally we need to again change the HTML our components return. Go over the following code and make sure yours look the same (unless you have used any other classes in your implementation)
 
 `index.jsx`
 
