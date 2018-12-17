@@ -26,7 +26,7 @@ We need to add some more content to our `projects.json` and describe our project
         "id": 3,
         "name": "Mobile UX",
         "image": "https://images.unsplash.com/photo-1534237886190-ced735ca4b73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-        "description": "I like to design for the mobile plattform. The challenges to build UI's for smart phones is challenging byt extreamly rewarding."
+        "description": "I like to design for the mobile platform. The challenges to build UI's for smartphones is challenging but extremely rewarding."
     }
 ]
 ```
@@ -39,7 +39,7 @@ React components is a reusable and can be used over and over again in the UI. Qu
 
 Props (short for **properties**) are equivalent to parameters in vanilla JavaScript and used to send data to components. The main difference between `state` and `props` is that props are immutable - they can not not be changed.
 
-We will make use of props in our projets list. 
+We will make use of props in our projects list. 
 
 ## Re-styling the projects list. 
 
@@ -103,7 +103,7 @@ export default ProjectCard
 
 There are a few things to look out for.
 
-Pay attention to the `props` parameter we are receiving. Its the `project` object we sent off from the `Projects` component. We  populate our HTML with data from that object (i.e. `project.name`, `project.description`, etc.)
+Pay attention to the `props` parameter we are receiving. It's the `project` object we sent off from the `Projects` component. We  populate our HTML with data from that object (i.e. `project.name`, `project.description`, etc.)
 
 Also, please note the way we define inline style for the `img` tag. In react, we need to do it slightly differently than we do in regular HTML5. `style={{ height: '150px', objectFit: 'cover' }}` is the React way to do `style="height: 150px; object-fit: cover;"`. We also set `style` on one of the divs. What attribute are we setting on that one?
 
