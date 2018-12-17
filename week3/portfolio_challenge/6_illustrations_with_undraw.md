@@ -6,7 +6,7 @@ In this section of the course, we will focus on adding some illustrations to out
 
 ![](react_portfolio_undraw_screen.png)
 
-An enthusiast of the service came up with the briliant idea to transform illustrations hosted on unDraw to React components. You can find [unDraw illustrations as React components](https://www.npmjs.com/package/react-undraw-illustrations) as and NPM package.
+An enthusiast of the service came up with the brilliant idea to transform illustrations hosted on unDraw to React components. You can find [unDraw illustrations as React components](https://www.npmjs.com/package/react-undraw-illustrations) as and NPM package.
 
 My idea is that we use a few of the illustrations on our portfolio. 
 
@@ -17,7 +17,7 @@ The first thing we need to do is to add the `react-undraw-illustrations` package
 ```bash
 $ npm i -S react-undraw-illustrations
 ```
-Adding an illustration is pretty straight forward, but require a bit of research. First you need to search for the appropoite illustration you want to display on the [unDraw website](https://undraw.co/illustrations).
+Adding an illustration is pretty straight forward, but require a bit of research. First you need to search for the appropriate  illustration you want to display on the [unDraw website](https://undraw.co/illustrations).
 
 ![](react_portfolio_undraw_search.png)
 
@@ -28,7 +28,7 @@ The next step is to make sure that the illustration you want to use has been tra
 
 The naming of the components follows a certain standard. Let's say that you would like to display an illustration named "Designer". The name of the component to import and call would be `<UndrawDesigner />`. If the illustration is "Designer life", you would have to import and render `<UndrawDesignerLife />`. So prefixing the title with the word "Undraw", removing spaces (if there are any) and titleize all words is the standard to follow.  
 
-Once we know the name of the component, displaying it on our UI is a breeze. I will show two examples, and add illustraions to our `<About />` and `<Projects />` components
+Once we know the name of the component, displaying it on our UI is a breeze. I will show two examples, and add illustrations to our `<About />` and `<Projects />` components
 
 First, we need to import the component we want to use. Let's start with adding "Designer life" to our "About me" page (`About.jsx`).
 
@@ -106,7 +106,7 @@ For example, if you modify your coder with the following settings, you will see 
 
 ## Wrap up
 
-In this section we made use of an Open Source library of illustration and leveraged on another OSS library that helped us to ude these illustration without having to go through the tedious process of having to downloading and including them in our application manually. 
+In this section we made use of an Open Source library of illustration and leveraged on another OSS library that helped us to use these illustration without having to go through the tedious process of having to downloading and including them in our application manually. 
 
 Make sure to play around with various graphics and colors to give your portfolio a more personal look and feel.
 
