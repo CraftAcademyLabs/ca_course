@@ -30,7 +30,7 @@ As with every package, we will add the router using NPM and save it as a depende
 $ npm i -S react-router-dom
 ```
 
-We want to add 2 new components to our application. We will create them in `About.jsx` and `Projects.jsx` (in the `src` folder).
+We want to add 2 new components to our application. We will create them in `About.jsx` and `Projects.jsx` (in the `src`  folder).
 
 ```javascript
 import React from "react"
@@ -83,7 +83,7 @@ ReactDOM.render((
 ## Switch and Route components
 React Router has, among others, the `Switch` and `Route` components. The `Route` component renders a page if the current URL location matches the path prop specified in it. It also accepts `component`, `render` and `children` props. `Switch` will avoid inclusive route rendering and include a catch-all Route (if we add one at the bottom of the container). 
 
-We need to import both these componentscv into our `index.jsx`.
+We need to import both these components into our `index.jsx`.
 
 ```javascript
 import { Switch, Route } from 'react-router-dom'
@@ -137,7 +137,7 @@ return (
 ```
 ## Wrap up
 
-I deliberetly left the Tailwind classes in the markup above. Your job will be to extract these to custom classes and add them to `tailwind.src.css`. At this point, you know how to do make use of Tailwind classes in your own css classes using the `@apply` directive.  
+I deliberately left the Tailwind classes in the markup above. Your job will be to extract these to custom classes and add them to `tailwind.src.css`. At this point, you know how to do make use of Tailwind classes in your own css classes using the `@apply` directive.  
 
 
 
