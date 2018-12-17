@@ -1,4 +1,4 @@
-## Lets start a conversation
+## Let's start a conversation
 
 ### Netlify Forms with a Stateful React Form
 
