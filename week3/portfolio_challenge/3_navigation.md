@@ -62,7 +62,7 @@ const Projects = () => {
 export default Projects
 ```
 
-We also want to `import` those components, together with the `react-router-dom`, into our `index.jsx`.
+We also want to `import` those components, together with the `react-router-dom`, into our `index.js`.
 
 ```javascript
 import { BrowserRouter } from 'react-router-dom'
@@ -70,7 +70,7 @@ import Projects from "./Projects"
 import About from "./About"
 ```
 
-Furthermore, we need to tell the application that we will be using the `BrowserRouter` when we hook the application into the `index.html`. We need to modify the `ReactDOM.render` function in `index.jsx` to the following markup:
+Furthermore, we need to tell the application that we will be using the `BrowserRouter` when we hook the application into the `index.html`. We need to modify the `ReactDOM.render` function in `index.js` to the following markup:
 
 ```javascript
 ReactDOM.render((
@@ -83,7 +83,7 @@ ReactDOM.render((
 ## Switch and Route components
 React Router has, among others, the `Switch` and `Route` components. The `Route` component renders a page if the current URL location matches the path prop specified in it. It also accepts `component`, `render` and `children` props. `Switch` will avoid inclusive route rendering and include a catch-all Route (if we add one at the bottom of the container). 
 
-We need to import both these components into our `index.jsx`.
+We need to import both these components into our `index.js`.
 
 ```javascript
 import { Switch, Route } from 'react-router-dom'
