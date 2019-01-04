@@ -110,7 +110,7 @@ Now we need to set up our CSS entry point. We need to create a `src/css/tailwind
 
 ```
 
-And finally, we need to modify the `scripts` section in our `package.json` to process our css and make sure to watch for changes so that we can continuously see the output in our browser as we add Tailwind classes to our components. Take a close look at the code below BEFORE you make any changes/updates so that you understand what they do. Ww will add to new scripts (`build:css` and `watch:css`), but we also modify tou `start` and `build` scripts we added in previous section of this course. 
+And finally, we need to modify the `scripts` section in our `package.json` to process our css and make sure to watch for changes so that we can continuously see the output in our browser as we add Tailwind classes to our components. Take a close look at the code below BEFORE you make any changes/updates so that you understand what they do. We will add to new scripts (`build:css` and `watch:css`), but we also modify tou `start` and `build` scripts we added in previous section of this course. 
 
 ```json
 "scripts": {
@@ -132,7 +132,7 @@ src/css/tailwind.css
 
 Tailwind comes with a LOT of predefined classes and can be a bit overwhelming. While writing this documentation, I did spend some time on [CodePen](https://codepen.io/) looking for some good UI examples to look at. I came up with the following styling that you are welcome to use (You can, of course, give your portfolio your own look and feel by combining the available classes on your own, or write some on your own). 
 
-In `index.jsx` you can modify the `return` with the following markup:
+In `index.js` you can modify the `return` with the following markup:
 
 ```javascript
 return (
@@ -229,7 +229,7 @@ Let's modify our `tailwind.src.css` with the following code:
 
 Finally we need to again change the HTML our components return. Go over the following code and make sure yours look the same (unless you have used any other classes in your implementation)
 
-`index.jsx`
+`index.js`
 
 ```javascript
 return (
