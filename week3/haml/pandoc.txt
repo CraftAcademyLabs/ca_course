@@ -1,3 +1,0 @@
-system("pandoc -s -V geometry:margin=1in -o tmp/haml_intro.pdf tmp/0_html_abstraction_markup_language.md --template template --listings")
-
-parse_content(path: '/week3/haml', repo: 'CraftAcademy/ca_course', format: 'pdf', upload: false)
