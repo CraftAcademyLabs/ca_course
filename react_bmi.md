@@ -1,6 +1,6 @@
 # BMI calculator in React
 
-Firt of we need to create the react application. we will use `create-react-app` to do so. When we scaffold our react application with it we get the basic project structure aswell as jest partially configured. 
+First of we need to create the react application. we will use `create-react-app` to do so. When we scaffold our react application with it we get the basic project structure aswell as jest partially configured. 
 
 Run this in the terminal:
 
@@ -30,7 +30,7 @@ class App extends Component {
 
 export default App;
 ```
-So what is that we need for our user needs to input so that the application can return their BMI. We need:
+Our user needs to input his data so that the application can return their BMI. We need to setup input fields for:
 
 * How much they weigh
 * How tall they are
@@ -78,7 +78,7 @@ Update the input fields to look like this.
 </div>
 ```
 
-We also need to add a constructor above our render function to declare the state and hte default value of our states. The App.js file should look like this:
+We also need to add a constructor above our render function to declare the state and the default value of our states. The App.js file should look like this:
 
 ```jsx
 import React, { Component } from 'react';
@@ -115,7 +115,7 @@ export default App;
 
 So everytime we change the value of the input, it will set the state to that value.
 
-So now lets use those numbers to actually calculate the BMI of the person.
+So now lets use those numbers to calculate the BMI of the person.
 
 We are going to create a new component that displays the result.
 Run this in the terminal: 
@@ -182,7 +182,7 @@ class App extends Component {
 export default App;
 ```
 
-As you can see we now pass in the state of both weight and height to the `DisplayResult` component. Lets go back to that component now. 
+As you can see we now pass in the state of both the weight and height to the `DisplayResult` component. Lets go back to that component now. 
 
 Lets add a calculate function in the `DisplayResult` component: 
 
@@ -215,7 +215,7 @@ Run this in the terminal:
 
 `touch src/BMICalculator.js`
 
-This is going to be a pure vanilla javascript file with no mention of react.
+This is going to be a pure vanilla javascript file with no mention of react. You have written this function in another appllication before in the bootcamp. You can either use this code snippet we give you or reuse your old code, just remember to use the `export` keyword in front of the function you want to be able to access from outside of this file.
 
 Write this code in your newly created file:
 
@@ -258,7 +258,7 @@ const setBMIMessage = (finalBMI) => {
 }
 ```
 
-Now you want to use this somehow in your calulate function in the `DisplayResult` component. Add this to it:
+Now you want to use this in your calulate function in the `DisplayResult` component. Add this to it:
 
 ```jsx
 import React, { Component } from 'react';
@@ -284,3 +284,5 @@ class DisplayResult extends Component {
 
 export default DisplayResult
 ```
+
+At this point you should have a fully functional but unstyled BMI Calculator. This is a good opportunity for you to do enhance your styling skills within a react application.
