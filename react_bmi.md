@@ -285,4 +285,4 @@ class DisplayResult extends Component {
 export default DisplayResult
 ```
 
-At this point you should have a fully functional but unstyled BMI Calculator. This is a good opportunity for you to do enhance your styling skills within a react application.
+At this point you should have a fully functional but unstyled BMI Calculator. This is a good opportunity for you to enhance your styling skills within a react application.
