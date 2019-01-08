@@ -92,7 +92,7 @@ describe('<MethodSelect />', () => {
 )})
 ```
 
-As we said in the guide for setting up the accaptance tests for the BMI Calculator application, this is how we test our app with our implementation. Yours might be a bit different. With the examples above you should be able to modifu them for your implmentation. 
+As we said in the guide for setting up the acceptance tests for the BMI Calculator application, this is how we test our app with our implementation. Yours might be a bit different. With the examples above you should be able to modifu them for your implmentation. 
 
 Lets go through part of the examples above.
 ```js
