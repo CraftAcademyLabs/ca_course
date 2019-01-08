@@ -66,19 +66,19 @@ describe('<App />', () => {
 
 describe('<DisplayResult />', () => {
   it('displays the calulation correct(metric)', () => {
-    const component = mount(<DisplayResult method='metric' weight='100' height='195'/>)
+    const component = shallow(<DisplayResult method='metric' weight='100' height='195'/>)
     const response = <div id='response'>You are Overweight with a BMI of 26.3</div>
     expect(component.contains(response)).toEqual(true)
   })
 
   it('displays the calulation correct(imperial)', () => {
-    const component = mount(<DisplayResult method='imperial' weight='140' height='73'/>)
+    const component = shallow(<DisplayResult method='imperial' weight='140' height='73'/>)
     const response = <div id='response'>You are Underweight with a BMI of 18.47</div>
     expect(component.contains(response)).toEqual(true)
   })
 
   it('does not show anything when one of the input fields are empty', () => {
-    const component = mount(<DisplayResult method='metric' weight='' height='195'/>);
+    const component = shallow(<DisplayResult method='metric' weight='' height='195'/>);
     expect(component.text()).toBe('')
   })
 })
@@ -154,4 +154,29 @@ it('can change method', () => {
 
 Here we test that we can change the method to imperial and that the labels for the input change to reflect that. In our implementation we have the method selector in a different component then the `Àpp` one, we have it in a child componenet called `MethodSelect`. So everytime we change the value of the method selector in the `MethodSelect` component, the `App` (parent) component notices this and grabs the value of wich option (either imperial or metric) was selected and sets the state of the method to that value. 
 
-Here we stub this `onChangeValue` out beacouse we dont have access to the `MethodSelect` component in this test. We declare two variables with what we expect to see when the state of method has been changed to imperial. On the next line we set the onChangeValue we have stubbed out previously to imperial. This means that the state of the method has changed to "imperial" and we can now test that the labels have changed and match the variables we declared earlier. 
+Here we stub this `onChangeValue` out because we dont have access to the `MethodSelect` component in this test. We declare two variables with what we expect to see when the state of method has been changed to imperial. On the next line we set the onChangeValue we have stubbed out previously to imperial. This means that the state of the method has changed to "imperial" and we can now test that the labels have changed and match the variables we declared earlier. 
+
+```js
+describe('<DisplayResult />', () => {
+  it('displays the calulation correct(metric)', () => {
+    const component = shallow(<DisplayResult method='metric' weight='100' height='195'/>)
+    const response = <div id='response'>You are Overweight with a BMI of 26.3</div>
+    expect(component.contains(response)).toEqual(true)
+  })
+
+  it('displays the calulation correct(imperial)', () => {
+    const component = shallow(<DisplayResult method='imperial' weight='140' height='73'/>)
+    const response = <div id='response'>You are Underweight with a BMI of 18.47</div>
+    expect(component.contains(response)).toEqual(true)
+  })
+
+  it('does not show anything when one of the input fields are empty', () => {
+    const component = shallow(<DisplayResult method='metric' weight='' height='195'/>);
+    expect(component.text()).toBe('')
+  })
+})
+```
+In these test here we test that we get the correct respons from the `DisplayResult` component. This component gets the method type and values from the input fields in the `App` component as props. Then it runs the calculation and returns the result. So above here we have three different tests. That the metric and imperial caluclations work properly. Aswell as that when we dont fill in both input fields, we dont get any response.
+
+So for the first two tests we setup the `DisplayResult` component with the props that are needed to do the calculation. Then we declare a variable and set it to equal the response we want to get from the component when we pass in those props to it.
+The last test we dont send in all necessary props, wich is what we want to test. Therefor in the expect block we test that the component doesnt render any text.
