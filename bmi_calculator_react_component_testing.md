@@ -133,9 +133,25 @@ So here we are testing the `App` component, as it states in the describe block.
 The first test here is to make sure that the `App` component renders the header.
 First we create the component with a method from enzyme that we imported called shallow. 
 
-[Shallow rendering is useful to constrain yourself to testing a component as a unit, and to ensure that your tests aren't indirectly asserting on behavior of child components.](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md)
+*[Shallow rendering is useful to constrain yourself to testing a component as a unit, and to ensure that your tests aren't indirectly asserting on behavior of child components.](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md)*
 
 After this we declare a variable and makes it equal a bit of HTML code. Then in the expect block we test for that the HTML code that we stored in the variable named `header` exists in the `App` component.
 
 
-Next test is `shows metric as the standard method`. In our `App` component we have a constructor where we set the calculation method as a sate and it equals  to metric. This means that everytime someone opens the application, metric is going to be the default method. The way we have implemented our app, is that the label for the inputs change depending on wich method is selected. So if the labels are correct they should show "kg" and "cm" in the parenthesis. So as the test above we store what HTML code we expect to see in variables and then we test for them to be rendered by the `App` component.
+Next test is `'shows metric as the standard method'`. In our `App` component we have a constructor where we set the calculation method as a sate and it equals  to metric. This means that everytime someone opens the application, metric is going to be the default method. The way we have implemented our app, is that the label for the inputs change depending on wich method is selected. So if the labels are correct they should show "kg" and "cm" in the parenthesis. So as the test above we store what HTML code we expect to see in variables and then we test for them to be rendered by the `App` component.
+
+```js
+it('can change method', () => {
+  const onChangeValue = stub();
+  const component = shallow(<App onChangeValue={onChangeValue} />);
+  const weightLabel = <label>Weight(lbs)</label>;
+  const heightLabel = <label>Height(inches)</label>;
+  component.find("MethodSelect").prop('onChangeValue')({target: {value:'imperial'}});
+  expect(component.contains(weightLabel)).toEqual(true);
+  expect(component.contains(heightLabel)).toEqual(true);
+})
+```
+
+Here we test that we can change the method to imperial and that the labels for the input change to reflect that. In our implementation we have the method selector in a different component then the `Àpp` one, we have it in a child componenet called `MethodSelect`. So everytime we change the value of the method selector in the `MethodSelect` component, the `App` (parent) component notices this and grabs the value of wich option (either imperial or metric) was selected and sets the state of the method to that value. 
+
+Here we stub this `onChangeValue` out beacouse we dont have access to the `MethodSelect` component in this test. We declare two variables with what we expect to see when the state of method has been changed to imperial. On the next line we set the onChangeValue we have stubbed out previously to imperial. This means that the state of the method has changed to "imperial" and we can now test that the labels have changed and match the variables we declared earlier. 
