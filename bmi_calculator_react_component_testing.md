@@ -180,3 +180,18 @@ In these test here we test that we get the correct respons from the `DisplayResu
 
 So for the first two tests we setup the `DisplayResult` component with the props that are needed to do the calculation. Then we declare a variable and set it to equal the response we want to get from the component when we pass in those props to it.
 The last test we dont send in all necessary props, wich is what we want to test. Therefor in the expect block we test that the component doesnt render any text.
+
+```js
+describe('<MethodSelect />', () => {
+  it('has two methods to choose from', () => {
+    const component = mount(<MethodSelect />);
+    const selector = component.find('#method').instance()
+    expect(selector.options.length).toEqual(2)
+  }
+)})
+```
+
+In this last test we are making sure that there are two options of methods to choose from in the `MethodSelect` component. This component does not set the state of method, we do that in the `App` component. That means that this is really the only thing we need to test in this componenet. 
+
+We first setup the `MethodSelect` component, but this time with a different enzyme method called [mount](https://airbnb.io/enzyme/docs/api/ReactWrapper/mount.html). This test is a bit different from the other tests in this guide. Previously we have set a variable and equalled it to some HTML, then we have checked to see if the component has rendered that HTML. In this test we find the selector by its id within the component, and then test that the selector has two options to choose from. 
+
