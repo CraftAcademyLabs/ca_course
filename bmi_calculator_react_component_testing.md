@@ -4,12 +4,11 @@
 
 `npm i -D enzyme enzyme-adapter-react-16 react-scripts react-test-renderer sinon` 
 
-In the previous guide where we scaffolded this application with `create-react-app` it said that it already came with testing, but we need to add some stuff to be able to test it in the best way possible. That is why we need to add `enzyme` and `sinon`. This means that the only configuration that we need to do after adding these packages is for `enzyme`. Run:
+Now we need to configure `enzyme`. Run:
  
  `touch src/setupTests.js` 
 
 The file should look like this:                                                        
-
 ```js
 import { configure } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -91,16 +90,16 @@ describe('<MethodSelect />', () => {
 
 As we said in the guide for setting up the acceptance tests for the BMI Calculator application, this is how we test our app with our implementation. Yours might be a bit different. With the examples above you should be able to modify them for your implementation. 
 
-Let's go through part of the examples above. 
+**Every component should have its own test file, we put everything in one here because it is easier to present. So as an example, with our implementation, there should be an `App.test.js`, a `DisplayResult.test.js` and a `MethodSelect.test.js` file in the `__tests__` folder** 
+
 ```js
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { stub } from 'sinon';
 
-import DisplayResult from './DisplayResult';
+import DisplayResult from './DisplayResult'
 import MethodSelect from './MethodSelect';
 import App from './App';
-
 ```
 Here we are importing everything that we need to test our application and what we want to test. 
 
