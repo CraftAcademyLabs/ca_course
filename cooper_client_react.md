@@ -97,6 +97,8 @@ describe('Cooper Client', async () => {
 
 It is a pretty straigth forward test. The user fills in the distance, selects their gender and types in their age. When all of these inputs have values we should get a response with their result. 
 
+***"++Remember to commit often++"***
+
 Lets start with cleaning up `App.js` aka the App component. When that is done we want to add the inputs and selectors that we need to make this feature test to go green.
 The App component should look like this:
 
@@ -320,7 +322,62 @@ export const cooperCalculator = (distance, gender, age) => {
 }
 ```
 
-If you run the test now, both tests should go green.
+If you run the test now, both tests should go green. Ok s lets run the feature tests agin now, everything should go green right. We have a component that displays the correct result.
 
+BUT, as you can see when we run the feature tests, nothing has changed. Thats because we havent actually rendered the `DiplayCooperResult` component in the `App` component. We havent passed in any props to the `DisplayCooperResult` component. We havent even saved what gets written in the input fields. So the actual `DiplayCooperResult` component works, but not with rest of the application. This is the reason they are called component tests.
 
+Lets add some code to the `App` component.
 
+```js
+import React, { Component } from 'react';
+import './App.css';
+import DisplayCooperResult from './DisplayCooperResult'
+
+class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      distance: '',
+      gender: 'female',
+      age: ''
+    }
+  }
+
+  onChange(event) {
+    this.setState({
+      [event.target.id]: event.target.value
+    })
+  }
+
+ render() {
+    return (
+      <div className="App">
+        <div>
+          <label>Distance</label>
+          <input id="distance" onChange={this.onChange.bind(this)}></input>
+        </div>
+
+        <select id="gender" onChange={this.onChange.bind(this)}>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+        </select>
+
+        <div>
+          <label>Age</label>
+          <input id="age" onChange={this.onChange.bind(this)}></input>
+        </div>
+
+        <DisplayCooperResult
+          distance={this.state.distance}
+          gender={this.state.gender}
+          age={this.state.age}
+        />
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+If you run the test now everything should go green!
