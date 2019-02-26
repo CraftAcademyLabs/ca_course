@@ -1,6 +1,6 @@
 Next feature that we want to implement is that the user can save their result.
 
-So lets add a feature file for this
+So let's add a feature file for this
 `touch src/__features__/UserCanSavePerformanceData.js`
 
 ```js
@@ -45,7 +45,7 @@ describe('User attempts save data', () => {
 
 When a user is logged in and have a result, you should be able to save that result. 
 
-Lets start with adding a conditional in our render method to show the `#save-result` button if the user is logged in and have a result.
+Let's start with adding a conditional in our render method to show the `#save-result` button if the user is logged in and have a result.
 Add this to the render method in the `DisplayCooperResult` component:
 
 ```js
@@ -77,7 +77,7 @@ render() {
 }
 ```
 
-If there is a result and the user is authenticated, then the `#save-result` button will show. We have an `onClick` on this button which calls on a function we have not defined yet, `saveCooperData`. Lets add that above the render method:
+If there is a result and the user is authenticated, then the `#save-result` button will show. We have an `onClick` on this button which calls on a function we have not defined yet, `saveCooperData`. Let's add that above the render method:
 
 ```js
 // ...
@@ -120,7 +120,7 @@ export { saveData }
 
 You have to import his file to the `DisplayCooperResult` component.
 
-So from our component, we send in the result to this function. First thing we do is grabbing the current user id in a variable. Then we make a post request to the backend with that current users id and result. The response we get back gets sent back to saveCooperData function in the `DisplayCooperResult` component. If there is no error in the response, we call on the entryHandler. We have not defined the `entryHandler` yet, but lets do it now.
+So from our component, we send in the result to this function. The first thing we do is grabbing the current user id in a variable. Then we make a post request to the backend with that current user's id and result. The response we get back gets sent back to saveCooperData function in the `DisplayCooperResult` component. If there is no error in the response, we call on the entryHandler. We have not defined the `entryHandler` yet, but let's do it now.
 
 Add this to `App` component:
 
@@ -154,7 +154,7 @@ Now we need to pass the entryHandler and `entrySaved` state to the `DisplayCoope
   />
 ```
 
-If you run the feature test now, you will get an error that says "Text not found "Your entry was saved". Thats not weird, we havent rendered the message we get from the backend anywhere. If you take a look at logs for the backend, you will see that the performance data is being saved correctly. We need to add and modify some of our code to get it to go green.
+If you run the feature test now, you will get an error that says "Text not found "Your entry was saved". That's not weird, we haven't rendered the message we get from the backend anywhere. If you take a look at logs for the backend, you will see that the performance data is being saved correctly. We need to add and modify some of our code to get it to go green.
 
 First we need to modify the if statement in `DisplayCooperResult` component:
 
@@ -179,7 +179,7 @@ render() {
 }
 ```
 
-Previously we modified the rendering of this component in the `App` component to pass in state of `entrySaved`. So if we have saved the result we want to see `"Your entry was saved"`. Now we need modify the `onChange` function in the app component so that everytime we modify the inputs we can save the new result. 
+Previously we modified the rendering of this component in the `App` component to pass in the state of `entrySaved`. So if we have saved the result we want to see `"Your entry was saved"`. Now we need to modify the `onChange` function in the app component so that every time we modify the inputs we can save the new result. 
 
 ```js
   onChange(event) {
@@ -192,7 +192,7 @@ Previously we modified the rendering of this component in the `App` component to
 
 If you run the test now, both test in the feature file should go green.
 
-We want to be able to run these test without sending requests to the backend. Lets mock the repsponse out. 
+We want to be able to run these test without sending requests to the backend. Let's mock the response out. 
 
 First we need to add some to the `mocksConfig` file, so it intercepts the `/performance_data` request:
 
