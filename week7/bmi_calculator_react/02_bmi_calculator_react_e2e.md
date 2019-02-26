@@ -26,24 +26,27 @@ This will tell Jest that we want to use Puppeteer on on all test files that end 
 
 ```js
 // jest-puppeteer.config.js
-const port = process.env.TEST_SERVER_PORT
-    ? Number(process.env.TEST_SERVER_PORT)
-    : 3000
-
-process.env.TEST_SERVER_PORT = port
-
 module.exports = {
     launch: {
-        headless: process.env.CI === 'true',
-        slowMo: 50,
-        devtools: true
+        headless: false,
+        slowMo: 10,
+        devtools: true,
+        timeout: 100000,
+        args: ['--disable-setuid-sandbox',
+            '--no-sandbox',
+            '--ignore-certificate-errors',
+            "--disable-popup-blocking",
+            "--disable-infobars",
+            '--disable-web-security']
     },
-    browserContext: process.env.INCOGNITO ? 'incognito' : 'default',
+    browserContext: 'default',
+
     server: {
-        command: `PORT=${port} react-scripts start`,
-        port,
+        command: `PORT=3001 BROWSER=none npm run start`,
+        port: 3001,
         launchTimeout: 4000,
     },
+    
 } 
 ```
 
