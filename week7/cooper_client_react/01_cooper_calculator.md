@@ -48,16 +48,16 @@ module.exports = {
 } 
 ```
 
-Now you need to add a script to the `package.json` to be able to run these tests
+Now you need to add a script to the `package.json` file to be able to run these tests. We also want to modify the `start` script so the application runs on `localhost://3001`, the reason for this is that we want to be able to both run the rails backend and this client at the same time.
 
 ```js
 "scripts": {
-  "start": "react-scripts start",
-  "build": "react-scripts build",
-  "test": "react-scripts test",
-  "eject": "react-scripts eject",
-  "test:features": "jest -c jest.config.js"
-}
+    "start": "PORT=3001 react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject",
+    "features": "jest -c jest.config.js"
+ },
 ```
 It is time to add our first test now. Run:
 
@@ -104,7 +104,10 @@ describe('Cooper Client', async () => {
 })
 ```
 
-It is a pretty straight forward test. The user fills in the distance, selects their gender and types in their age. When all of these inputs have values we should get a response with their result. 
+It is a pretty straight forward test. The user fills in the distance, selects their gender and types in their age. When all of these inputs have values we should get a response with their result.
+
+To execute the feature tests you need to run the script we added in the `package.json` earlier.
+`npm run features`
 
 ***"++Remember to commit often++"***
 
@@ -141,7 +144,7 @@ class App extends Component {
 export default App;
 ```
 
-The test should now be able to find all the input fields which make it possible for it to assign values to them. At the moment all the steps in the `beforeEach` block should run without any problem.
+The test should now be able to find all the input fields which make it possible for it to assign values to them. At the moment all the steps in the `beforeEach` block in the feature test should run without any problem.
 
 So now it is time for us to display the result. This is the time for us to do some component testing because we need to create a new component that returns the result to us.
 
