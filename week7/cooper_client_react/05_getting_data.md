@@ -37,7 +37,7 @@ describe('User attempts to view his/her performance data', () => {
 ```
 If the user is logged in, he can press a button to list all of his previously saved results.
 
-This time we are going to start with adding the mocks for this straight away. Lets start off with modifying some of the code in `mocksConfig`.
+This time we are going to start with adding the mocks for this straight away. Let's start off with modifying some of the code in `mocksConfig`.
 
 The case block for `performance_data` should look like this: 
 
@@ -51,7 +51,7 @@ case 'performance_data':
   return response
 ```
 
-We are hitting the same route when we are saving data, so we need to have an if statement which checks for the request method and based on that gives different mocked out reponses. We now have to define the response we want to give when we are intercepting the request to get all saved data.
+We are hitting the same route when we are saving data, so we need to have an if statement which checks for the request method and based on that gives different mocked out responses. We now have to define the response we want to give when we are intercepting the request to get all saved data.
 
 Add this to `mockResponses.js`
 ```js
@@ -90,7 +90,7 @@ Add this to `mockResponses.js`
 
 These are the entries that we want to see when we press the button to display past entries. 
 
-Lets start with adding the button to show the saved results.
+Let's start with adding the button to show the saved results.
 In the `App` component, we need to modify the if statement where the user is authenticated, modify it to look like this:
 
 ```js
@@ -107,7 +107,7 @@ In the `App` component, we need to modify the if statement where the user is aut
   }
 ```
 
-So when we click on this button, we change a state called `renderIndex` to true. Make sure that you have this state set in the constructor, its important that it is set to false there.
+So when we click on this button, we change a state called `renderIndex` to true. Make sure that you have this state set in the constructor, it's important that it is set to false there.
 
 We need to render whats inside the variable we created as well.
 
@@ -126,7 +126,7 @@ return (
 )
 ```
 
-If you run the test now it will complain about not findning the text that we are looking for. Its time to create a new component now.
+If you run the test now it will complain about not finding the text that we are looking for. Its time to create a new component now.
 
 `touch src/Components/DisplayPerformanceData.js`
 
@@ -182,13 +182,13 @@ So what is happening here?
 
 First, we have a constructor where we set a state called `performanceData` to `null`. We are going to use this state to store the collection of performance data entries that we will get from the backend.
 
-We have the function `getPerformanceData`. This whats going to run everytime someone presses the button to show previous entries or when someone has saved a new result. The way we make it run everytime the component is rendered is with `componentDidMount`. The response that we get from the backend will be stored in `perfromanceData` state. This will also call on a function we will add later to the `App` component called `indexUpdated`.
+We have the function `getPerformanceData`. This is what's going to run every time someone presses the button to show previous entries or when someone has saved a new result. The way we make it run every time the component is rendered is with `componentDidMount`. The response that we get from the backend will be stored in `perfromanceData` state. This will also call on a function we will add later to the `App` component called `indexUpdated`.
 
-Then we have the render method. First we set a variable called dataIndex that we are going to use for displaying all saved performance data entries. After that we have a if statement where we check the props if the `updateIndex` state is true, if thats the case the app will run `getPerformanceData` again to get the latest saved entries.
+Then we have the render method. First, we set a variable called dataIndex that we are going to use for displaying all saved performance data entries. After that, we have an if statement where we check the props if the `updateIndex` state is true, if that's the case the app will run `getPerformanceData` again to get the latest saved entries.
 
-The next if block checks if the `performanceData` is empty or not. If its not empty, then its going to loop through all entries of perfromance data that is stored in the `perfromanceData` state and place it in the `dataIndex` variable.
+The next if block checks if the `performanceData` is empty or not. If it's not empty, then its going to loop through all entries of performance data that is stored in the `perfromanceData` state and place it in the `dataIndex` variable.
 
-If you run the test now, you will get the same error message as before. Thats not that weird because we have not even rendered the new component we have just created in the `App` component. First off, make sure to import the `DisplayPerformanceData` component to the `App` component. 
+If you run the test now, you will get the same error message as before. That's not that weird because we have not even rendered the new component we have just created in the `App` component. First off, make sure to import the `DisplayPerformanceData` component to the `App` component. 
 
 Add this inside the if statement for the user to be authenticated:
 
@@ -213,7 +213,7 @@ if (this.state.authenticated === true) {
 }
 ```
 
-Here we have render the `DisplayPerformanceData` component if the user has pressed the button to do so. We pass in a new state that we have seen mentioned in the `DisplayPerfromanceData` component called `updateIndex` and we bind a new function called `indexUpdated` to it. We also add button to set the `renderIndex` state to false, which means that the application wont render the index. 
+Here we render the `DisplayPerformanceData` component if the user has pressed the button to do so. We pass in a new state that we have seen mentioned in the `DisplayPerfromanceData` component called `updateIndex` and we bind a new function called `indexUpdated` to it. We also add a button to set the `renderIndex` state to false, which means that the application won't render the index. 
 
 Add the `indexUpdated` function and update `entryHandler` so it looks like this:
 
@@ -227,11 +227,11 @@ indexUpdated() {
 }
 ```
 
-Everytime we save a new result we want to update the index and when we have sent the request for the index of saved performance data we need to set the state to false, otherwise the application would continue to make GET requests to the backend.
+Every time we save a new result we want to update the index and when we have sent the request for the index of saved performance data we need to set the state to false, otherwise, the application would continue to make GET requests to the backend.
 
 If we try running the test or running the application, it will complain about how `getData` in the `getPerformanceData` function is not defined.
 
-If we take a look in our `PerformanceData` module we can see that we dont have something like that defined.
+If we take a look in our `PerformanceData` module we can see that we don't have something like that defined.
 
 Add this to the `PerfromanceData` module:
 
@@ -258,7 +258,7 @@ const getData = () => {
 export { getData, saveData }
 ```
 
-Here we make a GET request to `/performance_data` where we pass in the current users id that we have stored in `sessionStorage`.
+Here we make a GET request to `/performance_data` where we pass in the current user's id that we have stored in `sessionStorage`.
 
 The response we get from here is what the application will put in the `perfromanceData` state. 
 
