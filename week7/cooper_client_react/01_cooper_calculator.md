@@ -70,7 +70,7 @@ Add these tests to the new feature file:
 ```js
 describe('Cooper Client', async () => {
   beforeAll(async () => {
-    await page.goto('http://localhost:3000');
+    await page.goto('http://localhost:3001');
   });
 
   beforeEach(async () => {
