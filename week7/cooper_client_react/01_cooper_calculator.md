@@ -23,20 +23,29 @@ module.exports = {
 ```
 
 ```js
+// jest-puppeteer.config.js
 module.exports = {
-  launch: {
-      headless: false,
-      slowMo: 50,
-      devtools: true,
-      args: ["--no-sandbox", "--disable-popup-blocking", "--disable-infobars"]
-  },
-  browserContext: 'default',
-  server: {
-      command: `PORT=3000 react-scripts start`,
-      port: 3000,
-      launchTimeout: 4000,
-  },
-}
+    launch: {
+        headless: false,
+        slowMo: 10,
+        devtools: true,
+        timeout: 100000,
+        args: ['--disable-setuid-sandbox',
+            '--no-sandbox',
+            '--ignore-certificate-errors',
+            "--disable-popup-blocking",
+            "--disable-infobars",
+            '--disable-web-security']
+    },
+    browserContext: 'default',
+
+    server: {
+        command: `PORT=3001 BROWSER=none npm run start`,
+        port: 3001,
+        launchTimeout: 4000,
+    },
+    
+} 
 ```
 
 Now you need to add a script to the `package.json` to be able to run these tests
@@ -52,9 +61,9 @@ Now you need to add a script to the `package.json` to be able to run these tests
 ```
 It is time to add our first test now. Run:
 
-`mkdir src/__features__`
+`$ mkdir src/__features__`
 
-`touch src/__features__/CooperCalculation.feature.js`
+`$ touch src/__features__/CooperCalculation.feature.js`
 
 Add these tests to the new feature file:
 
@@ -322,9 +331,9 @@ export const cooperCalculator = (distance, gender, age) => {
 }
 ```
 
-If you run the test now, both tests should go green. Ok s lets run the feature tests agin now, everything should go green right. We have a component that displays the correct result.
+If you run the test now, both tests should go green. Lets run the feature tests again now, everything should go green right. We have a component that displays the correct result.
 
-BUT, as you can see when we run the feature tests, nothing has changed. Thats because we havent actually rendered the `DiplayCooperResult` component in the `App` component. We havent passed in any props to the `DisplayCooperResult` component. We havent even saved what gets written in the input fields. So the actual `DiplayCooperResult` component works, but not with rest of the application. This is the reason they are called component tests.
+BUT, as you can see when we run the feature tests, nothing has changed. Thats because we haven't actually rendered the `DiplayCooperResult` component in the `App` component. We haven't passed in any props to the `DisplayCooperResult` component. We haven't even saved what gets written in the input fields. So the actual `DiplayCooperResult` component works, but not with rest of the application. This is the reason they are called component tests.
 
 Lets add some code to the `App` component.
 
