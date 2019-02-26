@@ -19,9 +19,9 @@ configure({ adapter: new Adapter() });
 Now we need to create our test folder and our first test file.
 Run:
 
-`mkdir src/__tests__`
+`$ mkdir src/__tests__`
 
-`touch src/__tests__/App.test.js`
+`$ touch src/__tests__/App.test.js`
 
 Add all of the code underneath to `App.test.js` file.
 
