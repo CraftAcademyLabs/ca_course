@@ -162,15 +162,15 @@ First we need to modify the if statement in `DisplayCooperResult` component:
 render() {
   if (this.props.authenticated === true && this.props.entrySaved === false) {
     saveButton = (
-      <React.Fragment>
+      <>
         <button id="save-result" onClick={this.saveCooperData.bind(this)}>Save entry</button>
-      </React.Fragment>
+      </>
     )
   } else if (this.props.authenticated === true && this.props.entrySaved === true) {
     saveButton = (
-      <React.Fragment>
+      <>
         <p>Your entry was saved</p>
-      </React.Fragment>
+      </>
     )
   }
 

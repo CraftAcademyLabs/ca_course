@@ -368,7 +368,7 @@ class App extends Component {
 
  render() {
     return (
-      <div className="App">
+      <div>
         <div>
           <label>Distance</label>
           <input id="distance" onChange={this.onChange.bind(this)}></input>
@@ -398,3 +398,56 @@ export default App;
 ```
 
 If you run the test now everything should go green!
+
+Now we need to clean up the `App` component, we dont want to have the input fields here. The `App` component should be as clean as possible, that is why we will extract the input fields to their own component.
+
+`$ touch src/Components/InputFields.js`
+
+So all the input fields we have in the `App` component will be laced here instead:
+
+```js
+import React, { Component } from 'react';
+
+class InputFields extends Component {
+  render() {
+    return (
+      <>
+        <label>Distance</label>
+        <input id="distance" onChange={this.props.inputChangeHandler}></input>
+
+        <select id="gender" onChange={this.props.inputChangeHandler}>
+          <option value="female">Female</option>
+          <option value="male">Male</option>
+        </select>
+
+        <label>Age</label>
+        <input id="age" onChange={this.props.inputChangeHandler}></input>
+      </>
+    )
+  }
+}
+
+export default InputFields;
+```
+
+We need to render this new component in the `App` component. First, we need to import it:
+```js
+import InputFields from './Components/InputFields';
+```
+Then we need to render the `InputFields` component and pass in the onChange method as a prop and bind it. So everytime the value of the input fields change the correlating state changes as well in the `App` component.
+
+```js
+// App.js
+render() {
+  // ...
+  return (
+  <InputFields 
+    inputChangeHandler={this.onChange.bind(this)}
+  />
+
+  // ...
+  )
+}
+```
+
+You need to run the tests again to make sure that they still go green!

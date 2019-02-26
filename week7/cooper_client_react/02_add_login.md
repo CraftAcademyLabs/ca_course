@@ -50,7 +50,7 @@ If run the test now we get an error that states that the test can't find the sel
 
  render() {
     return (
-      <div className="App">
+      <div>
         <div>
           <label>Distance</label>
           <input id="distance" onChange={this.onChange.bind(this)}></input>
@@ -133,7 +133,7 @@ class App extends Component {
  render() {
     return (
       <div>
-      ...
+      // ...
 
         <button id="login">Login</button>
         <LoginForm />
@@ -188,7 +188,7 @@ class App extends Component {
       )
     }
     return (
-      <div className="App">
+      <div>
         <div>
           <label>Distance</label>
           <input id="distance" onChange={this.onChange.bind(this)}></input>
