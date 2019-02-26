@@ -118,7 +118,7 @@ import './App.css';
 class App extends Component {
  render() {
     return (
-      <div className="App">
+      <div>
         <div>
           <label>Distance</label>
           <input id="distance"></input>
