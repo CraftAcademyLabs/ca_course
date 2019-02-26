@@ -63,7 +63,7 @@ It is time to add our first test now. Run:
 
 `$ mkdir src/__features__`
 
-`$ touch src/__features__/CooperCalculation.feature.js`
+`$ touch src/__features__/UserCanGetCooperCalculationResult.feature.js`
 
 Add these tests to the new feature file:
 
@@ -189,7 +189,9 @@ After doing the BMI Calculator we know how to send in props to a child component
 
 If you run `npm run test` now it will complain that it cant find the `DisplayCooperResult` module. That is not that weird considering we dont have that component. Lets create it:
 
-`$ touch src/DisplayCooperResult.js`
+`$ mkdir src/Components`
+
+`$ touch src/Components/DisplayCooperResult.js`
 
 And add this to that file:
 
@@ -212,7 +214,7 @@ If you run the test again now you can see that you dont get the same error. Now 
 
 ```js
 import React, { Component } from 'react';
-import { cooperCalculator } from './CooperCalculator';
+import cooperCalculator from '../Modules/CooperCalculator';
 
 class DisplayCooperResult extends Component {
 
@@ -242,7 +244,9 @@ export default DisplayCooperResult
 
 If the props the component recieves is not empty, it will set the results varaiable we declared above the if statement with some HTML code. In the HTML code we display the the `age`, `gender` and `distance`, but we also call on a new function called `calculate()`. This one is defined above the render function. This is very similar to the BMI Calculator we have done before. We have extracted the actuall calculation to a seperate logic module. Lets go ahead and create that.
 
-`$ touch src/CooperCalculator.js`
+`mkdir src/Modules`
+
+`$ touch src/Modules/CooperCalculator.js`
 
 Add this code in there:
 
@@ -329,6 +333,8 @@ export const cooperCalculator = (distance, gender, age) => {
   });
   return ratings[ratingIndex];
 }
+
+export default cooperCalculator;
 ```
 
 If you run the test now, both tests should go green. Lets run the feature tests again now, everything should go green right. We have a component that displays the correct result.
@@ -340,7 +346,7 @@ Lets add some code to the `App` component.
 ```js
 import React, { Component } from 'react';
 import './App.css';
-import DisplayCooperResult from './DisplayCooperResult'
+import DisplayCooperResult from './Components/DisplayCooperResult';
 
 class App extends Component {
   constructor(props) {
