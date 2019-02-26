@@ -141,7 +141,7 @@ class App extends Component {
 export default App;
 ```
 
-When running the test now, we should not get any errors `beforeEach` block that we have in our feature test. It now finds all the fields and input the correct values that we have set in the test.
+The test should now be able to find all the input fields which makes it possible for it to assign values to them. At the moment all the steps in the `beforeEach` block should run without any problem.
 
 So now it is time for us to display the result. This is the time for us to do some component testing because we need to create a new component that returns the result to us.
 
@@ -187,13 +187,14 @@ describe('<DisplatCooperResult />', () => {
 ```
 After doing the BMI Calculator we know how to send in props to a child component. We send in `distance`, `gender` and `age`. Then we expect to get a result that the component renders.
 
-If you run `npm run test` now it will complain that it cant find the `DisplayCooperResult` module. That is not that weird considering we dont have that component. Lets create it:
+If you run the application now, it will complain that it cant find the `DisplayCooperResult` module. Lets create it:
 
 `$ mkdir src/Components`
 
 `$ touch src/Components/DisplayCooperResult.js`
 
-And add this to that file:
+To start with, we will add a stateful/class component with a `render` method`. We will expand it with more functionality as we move ahead.
+The file should look something like this:
 
 ```js
 import React, { Component } from 'react';
@@ -210,7 +211,8 @@ class DisplayCooperResult extends Component {
 
 export default DisplayCooperResult
 ```
-If you run the test again now you can see that you dont get the same error. Now we get error saying that the expected value is value, instead of true as we want. Lets add some code the new `DisplayCooperResult` component:
+
+When you run the test now you should get another error. The new error states that our expectation is returning false. So the application is not returning what we want when we fill in the input fields. It is now time to add some logic to our `DisplayCooperResult` component:
 
 ```js
 import React, { Component } from 'react';
