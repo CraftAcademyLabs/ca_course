@@ -6,6 +6,9 @@ First, we need to create an application. Run:
 
 We are going to set up the acceptance testing first. Like we did in the BMI Calculation project, we are going to use `jest-puppeteer`.
 
+First, we need to add the packages:
+`$ npm i -D jest-dev-server jest-puppeteer puppeteer`
+
 We need to configure it now. Run:
 ```shell
 $ touch jest-puppeteer.config.js
@@ -170,7 +173,7 @@ configure({ adapter: new Adapter() });
 ```js
 // DisplayCooperResult.test.js
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 
 import DisplayCooperResult from '../DisplayCooperResult';
 
@@ -215,7 +218,7 @@ class DisplayCooperResult extends Component {
 export default DisplayCooperResult
 ```
 
-When you run the test now you should get another error. The new error states that our expectation is returning false. So the application is not returning what we want when we fill in the input fields. It is now time to add some logic to our `DisplayCooperResult` component:
+When you run the test now you should get another error. The new error states that our expectation is returning false. So the component is not returning what it is supposed to when it gets the values from the input fields. It is now time to add some logic to our `DisplayCooperResult` component:
 
 ```js
 import React, { Component } from 'react';
@@ -247,9 +250,9 @@ class DisplayCooperResult extends Component {
 export default DisplayCooperResult
 ```
 
-If the props the component receives is not empty, it will set the results variable we declared above the if statement with some HTML code. In the HTML code we display the `age`, `gender` and `distance`, but we also call on a new function called `calculate()`. This one is defined above the render function. This is very similar to the BMI Calculator we have done before. We have extracted the actual calculation to a separate logic module. Let's go ahead and create that.
+If the props the component receives are not empty, it will set the results variable we declared above the if statement with some HTML code. In the HTML code we display the `age`, `gender` and `distance`, but we also call on a new function called `calculate()`. This one is defined above the render method. This is very similar to what we did in the previous BMI Calculator application. We have extracted the actual calculation to a separate logic module. Let's go ahead and create that:
 
-`mkdir src/Modules`
+`$ mkdir src/Modules`
 
 `$ touch src/Modules/CooperCalculator.js`
 
@@ -342,7 +345,7 @@ export const cooperCalculator = (distance, gender, age) => {
 export default cooperCalculator;
 ```
 
-If you run the test now, both tests should go green. Let's run the feature tests again now, everything should go green right. We have a component that displays the correct result.
+If you run the component test now, both tests should go green. Let's run the feature tests again, everything should go green right. We have a component that displays the correct result.
 
 BUT, as you can see when we run the feature tests, nothing has changed. That's because we haven't actually rendered the `DiplayCooperResult` component in the `App` component. We haven't passed in any props to the `DisplayCooperResult` component. We haven't even saved what gets written in the input fields. So the actual `DiplayCooperResult` component works, but not with the rest of the application. This is the reason they are called component tests.
 
