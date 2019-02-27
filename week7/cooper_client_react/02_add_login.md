@@ -11,7 +11,7 @@ describe('User attempts to login', () => {
 
   beforeAll(async () => {
     jest.setTimeout(10000)
-    await page.goto(appURL);
+    await page.goto('http://localhost:3001');
 
   });
 
@@ -41,7 +41,7 @@ describe('User attempts to login', () => {
 
 This feature is pretty straight forward. We click a login button which renders a login form. In the first scenario, we fill in the correct credentials and in the second one we fill in the wrong ones. Depending on if it is successful or not we will get a response wich either welcomes the user or returns an error message.
 
-If run the test now we get an error that states that the test can't find the selector `#login`. So let's start with adding that button to our App component.
+If we run the test now we get an error that states that the test can't find the selector `#login`. So let's start with adding that button to our App component.
 
 ```js
 // src/App.js
@@ -82,10 +82,10 @@ So that takes care of that error. Now we have a different error that is very sim
 At this point, we want to create a new component for the login form. So what we want is a button that renders the login form. Then when we fill in the credentials the application should either greet the user or give an error message.
 
 Let's start with adding this Login form component.
-`mkdir src/Components`
-`touch src/Components/LoginForm.js`
+`$ mkdir src/Components`
+`$ touch src/Components/LoginForm.js`
 
-Aadd this to that file:
+Add this to that file:
 
 ```js
 import React, { Component } from 'react';
@@ -128,12 +128,12 @@ import LoginForm from './Components/LoginForm';
 
 
 class App extends Component {
-  ...
+ // ...
 
  render() {
     return (
       <div>
-      // ...
+        // ...
 
         <button id="login">Login</button>
         <LoginForm />
@@ -146,7 +146,7 @@ export default App;
 ```
 
 If you run the feature test now, it will complain about not finding the text that we are expecting to find.
-So at the moment, the test can find all of the elements it needs to fulfill its task. The flow that we want is that when we press the login button we want the login form, at the moment we have a button that does nothing. If you run the application you can see that.
+So at the moment, the test can find all of the elements it needs to fulfill its task. The flow that we want is that when the user clicks the login button we want the login form to render, at the moment we have a button that does nothing. If you run the application you can see that.
 
 To fix this you need to update the App component to look like this:
 ```js
