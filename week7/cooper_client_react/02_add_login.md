@@ -2,7 +2,7 @@ So now it is time to add some login functionality to our application. In order t
 
 We are going to start as usual with a feature test for this.
 
-`touch  src/__features__/UserCanLogin.feature.js`
+`$ touch  src/__features__/UserCanLogin.feature.js`
 
 This feature file should look like this:
 
@@ -385,4 +385,3 @@ render() {
 
 ```
 If you run the tests now, everything should go green!
-
