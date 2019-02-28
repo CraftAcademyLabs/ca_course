@@ -39,7 +39,7 @@ describe('User attempts to login', () => {
 
 ```
 
-This feature is pretty straight forward. We click a login button which renders a login form. In the first scenario, we fill in the correct credentials and in the second one we fill in the wrong ones. Depending on if it is successful or not we will get a response wich either welcomes the user or returns an error message.
+This feature is pretty straight forward. We click a login button which renders a login form. In the first scenario, we fill in the correct credentials and in the second one we fill in the wrong ones. Depending on if it is successful or not we will get a response which either welcomes the user or returns an error message.
 
 If we run the test now we get an error that states that the test can't find the selector `#login`. So let's start with adding that button to our App component.
 
@@ -51,20 +51,9 @@ If we run the test now we get an error that states that the test can't find the 
  render() {
     return (
       <div>
-        <div>
-          <label>Distance</label>
-          <input id="distance" onChange={this.onChange.bind(this)}></input>
-        </div>
-
-        <select id="gender" onChange={this.onChange.bind(this)}>
-          <option value="female">Female</option>
-          <option value="male">Male</option>
-        </select>
-
-        <div>
-          <label>Age</label>
-          <input id="age" onChange={this.onChange.bind(this)}></input>
-        </div>
+        <InputFields 
+          inputChangeHandler={this.onChange.bind(this)}
+        />
 
         <button id="login">Login</button>
 
@@ -79,36 +68,33 @@ If we run the test now we get an error that states that the test can't find the 
 }
 ```
 So that takes care of that error. Now we have a different error that is very similiar to the previous one. It cant find the input field for filling in the email.
-At this point, we want to create a new component for the login form. So what we want is a button that renders the login form. Then when we fill in the credentials the application should either greet the user or give an error message.
+At this point, we want to create a new component for the login form. This component should have input fields for the credentials and a button to submit them.
 
-Let's start with adding this Login form component.
+Let's create this login form component:
+
 `$ mkdir src/Components`
 `$ touch src/Components/LoginForm.js`
 
 Add this to that file:
 
 ```js
-import React, { Component } from 'react';
+import React from 'react';
 
-class LoginForm extends Component {
-  render() {
-    return (
-      <form>
-        <div>
-          <label >Email</label>
-          <input id="email"></input>
-        </div>
+const LoginForm = () => {
+  return (
+    <form>
+      <div>
+        <label >Email</label>
+        <input id="email"></input>
+      </div>
 
-        <div>
-          <label>Password</label>
-          <input id="password"></input>
-        </div>
-
-        <button id="submit">Submit</button>
-
-      </form>
-    )
-  }
+      <div>
+        <label>Password</label>
+        <input id="password"></input>
+      </div>
+      <button id="submit">Submit</button>
+    </form>
+  )
 }
 
 export default LoginForm;
@@ -263,25 +249,23 @@ We also need to add some props to the rendering of the `LoginFrom` component.
 What we do here is that every time we change the input fields in the `LoginForm` component we will update the state of email and password. We also add so that when the submit button is clicked, we run the `onLogin` method here in the `App` component. To make this work we need to make some changes in the `LoginForm` component.'
 
 ```js
-import React, { Component } from 'react';
+import React from 'react';
 
-class LoginForm extends Component {
-  render() {
-    return (
-      <form>
-        <div>
-          <label >Email</label>
-          <input id="email" onChange={this.props.inputChangeHandler}></input>
-        </div>
+const LoginForm = (props) => {
+  return (
+    <form>
+      <div>
+        <label >Email</label>
+        <input id="email" onChange={props.inputChangeHandler}></input>
+      </div>
 
-        <div>
-          <label>Password</label>
-          <input id="password" onChange={this.props.inputChangeHandler}></input>
-        </div>
-        <button onClick={(e) => this.props.loginHandler(e)} id="submit">Submit</button>
-      </form>
-    )
-  }
+      <div>
+        <label>Password</label>
+        <input id="password" onChange={props.inputChangeHandler}></input>
+      </div>
+      <button onClick={(e) => props.loginHandler(e)} id="submit">Submit</button>
+    </form>
+  )
 }
 
 export default LoginForm;
@@ -384,4 +368,4 @@ render() {
   }
 
 ```
-If you run the tests now, everything should go green!
+If you run the tests now with the backend running, everything should go green!
