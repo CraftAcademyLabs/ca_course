@@ -24,7 +24,7 @@ beforeAll(async () => {
           return user.headers.uid === JSON.parse(params).email
         })
         response = user || MockResponses.missingUserResponse
-        return respohttp://localhost:3001nse
+        return response
     }
     
   }
