@@ -15,7 +15,7 @@ Add this to `mocksConfig.js`, we will go through everything together.
 const MockResponses = require('./mockResponses')
 beforeAll(async () => {
 
-  const createResponhttp://localhost:3001se = (path, params, request) => {
+  const createResponse = (path, params, request) => {
     let response
     switch (path) {
       case 'sign_in':
