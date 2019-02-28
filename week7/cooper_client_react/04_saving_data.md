@@ -1,7 +1,8 @@
 Next feature that we want to implement is that the user can save their cooper result.
 
 So let's add a feature file for this:
-`$ touch src/__features__/UserCanSavePerformanceData.js`
+
+`$ touch src/__features__/UserCanSavePerformanceData.feature.js`
 
 ```js
 require('../__mocks__/mocksConfig')
@@ -43,7 +44,7 @@ describe('User attempts save data', () => {
 })
 ```
 
-When a user is logged in and have a cooper result, you should be able to save that result. 
+When a user is logged in and have a cooper result, he should be able to click a button to save that result.
 
 Let's start with adding a conditional in our render method to show the `#save-result` button if the user is logged in and have a result.
 Add this to the render method in the `DisplayCooperResult` component:
@@ -118,7 +119,8 @@ const saveData = (result) => {
 export { saveData }
 ```
 
-You have to import his file to the `DisplayCooperResult` component.
+You have to import this file to the `DisplayCooperResult` component.
+`import { saveData } from '../Modules/PerformanceData';`
 
 So from our `DisplayCooperResult` component, we send in the result to this function. The first thing we do is grabbing the current user id in a variable. Then we make a post request to the backend with that current user's id and the cooper result. The response we get back gets sent back to saveCooperData function in the `DisplayCooperResult` component. If there is no error in the response, we call on the entryHandler. We have not defined the `entryHandler` yet, but let's do it now.
 
@@ -179,7 +181,7 @@ render() {
 }
 ```
 
-Previously we modified the rendering of this component in the `App` component to pass in the state of `entrySaved`. So if we have saved the result we want to see `"Your entry was saved"`. Now we need to modify the `onChange` function in the app component so that every time we modify the inputs we can save the new result. 
+Previously we modified the rendering of this component in the `App` component to pass in the state of `entrySaved`. So if we have saved the result we want to see `"Your entry was saved"`. Now we need to modify the `onChange` function in the app component so that every time we modify the inputs we can save a new result. 
 
 ```js
   onChange(event) {
