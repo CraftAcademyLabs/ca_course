@@ -189,20 +189,9 @@ class App extends Component {
     }
     return (
       <div>
-        <div>
-          <label>Distance</label>
-          <input id="distance" onChange={this.onChange.bind(this)}></input>
-        </div>
-
-        <select id="gender" onChange={this.onChange.bind(this)}>
-          <option value="female">Female</option>
-          <option value="male">Male</option>
-        </select>
-
-        <div>
-          <label>Age</label>
-          <input id="age" onChange={this.onChange.bind(this)}></input>
-        </div>
+        <InputFields 
+          inputChangeHandler={this.onChange.bind(this)}
+        />
 
         <DisplayCooperResult
           distance={this.state.distance}
@@ -223,7 +212,7 @@ So we have added a state called `renderLoginForm` in the constructor. That state
 
 At the beginning of the render method, we declare a variable called `renderLogin`. Depending on whether the `renderLoginForm` state is equal to true or false, this variable will contain the login form or the login button. So if the `renderLoginForm` state is true it will set the variable to render the login form, if it's false, it will render the login button.
 
-We have added an `onClick` to the login button. If the user press it, it will switch the `renderLoginForm` state to true. That also means that the login form will render. This variable where we store all of this, need to be added to the return in the render method, we have placed it underneath the `DisplayCooperResult` component.
+We have added an `onClick` to the login button. If the user press it, it will switch the `renderLoginForm` state to true. That also means that the login form will render. This variable where we store all of this, needs to be added to the return in the render method, we have placed it underneath the `DisplayCooperResult` component.
 
 Run the application to make sure that this works for you.
 
@@ -271,7 +260,7 @@ We also need to add some props to the rendering of the `LoginFrom` component.
   />
 </>
 ```
-What we do here is that every time we change the input fields in the `LoginForm` component we will update the state of email and password. We also add so that when the submit button is clicked, we run the `onLogin` method here in the `App` component. To make this work e need to make some changes in the `LoginForm` component.'
+What we do here is that every time we change the input fields in the `LoginForm` component we will update the state of email and password. We also add so that when the submit button is clicked, we run the `onLogin` method here in the `App` component. To make this work we need to make some changes in the `LoginForm` component.'
 
 ```js
 import React, { Component } from 'react';
@@ -298,9 +287,9 @@ class LoginForm extends Component {
 export default LoginForm;
 ```
 If you run the test now, all of them will fail. The app complains about how `authenticate` in the `App` component is not defined. 
-Like we did with the `CooperCalculator`, we will extract the login function to a separate module. That is what we are trying to call on with `authenticate` in the `onLogin` function. Let's add that module
+Like we did with the `CooperCalculator`, we will extract the login function to a separate module. That is what we are trying to call on with `authenticate` in the `onLogin` function. Let's add that module:
 
-`touch src/Modules/Auth.js`
+`$ touch src/Modules/Auth.js`
 
 Add this there:
 
@@ -355,7 +344,7 @@ import { authenticate } from './Modules/Auth';
 
 In the backend, make sure that you have a user that has `johndoe@mail.com` as the email and `password` as the password.
 
-If you run the test and have the backend running locally, you will see that we still get the same error message about how it can't find the text that we are expecting to see. But, we got rid of the error message that we got when ran the application about how `authenticate` is not defined. If you take a look at the terminal window where you run the backend, you can actually see that we hit it two times, one successful and one not successful. Now it just a question of fetching the response and display it to the user.
+If you run the test and have the backend running locally, you will see that we still get the same error message about how it can't find the text that we are expecting to see. But, we got rid of the error message that we got when we ran the application about how `authenticate` is not defined. If you take a look at the terminal window where you run the backend, you can actually see that we hit it two times, one successful and one not successful. Now it just a question of fetching the response and display it to the user.
 
 So when we login successfully we store the user in the sessionStorage, we want to use that to display `Hi johndoe@mail.com`. If the login is not successful we send back the message we get from the response back to the `onLogin` function and store it in a state called message, we need to display that message. Modify the code in the render method for the `App` component to look like this:
 
