@@ -1,16 +1,16 @@
-Next feature that we want to implement is that the user can save their result.
+Next feature that we want to implement is that the user can save their cooper result.
 
-So let's add a feature file for this
-`touch src/__features__/UserCanSavePerformanceData.js`
+So let's add a feature file for this:
+`$ touch src/__features__/UserCanSavePerformanceData.js`
 
 ```js
-require('../__mocks__/mocks')
+require('../__mocks__/mocksConfig')
 
 describe('User attempts save data', () => {
 
   beforeAll(async () => {
     jest.setTimeout(10000)
-    await page.goto(appURL);
+    await page.goto('http://localhost:3001');
 
   });
 
@@ -43,7 +43,7 @@ describe('User attempts save data', () => {
 })
 ```
 
-When a user is logged in and have a result, you should be able to save that result. 
+When a user is logged in and have a cooper result, you should be able to save that result. 
 
 Let's start with adding a conditional in our render method to show the `#save-result` button if the user is logged in and have a result.
 Add this to the render method in the `DisplayCooperResult` component:
@@ -92,9 +92,9 @@ async saveCooperData() {
   }
 ```
 
-The application will not complain about `saveData()` not being defined. We need to add a new module to get this to work. Run:
+The application will complain about `saveData()` not being defined. We need to add a new module to get this to work. Run:
 
-`touch src/Modules/PerformanceData.js`
+`$ touch src/Modules/PerformanceData.js`
 
 Add this:
 ```js
@@ -120,7 +120,7 @@ export { saveData }
 
 You have to import his file to the `DisplayCooperResult` component.
 
-So from our component, we send in the result to this function. The first thing we do is grabbing the current user id in a variable. Then we make a post request to the backend with that current user's id and result. The response we get back gets sent back to saveCooperData function in the `DisplayCooperResult` component. If there is no error in the response, we call on the entryHandler. We have not defined the `entryHandler` yet, but let's do it now.
+So from our `DisplayCooperResult` component, we send in the result to this function. The first thing we do is grabbing the current user id in a variable. Then we make a post request to the backend with that current user's id and the cooper result. The response we get back gets sent back to saveCooperData function in the `DisplayCooperResult` component. If there is no error in the response, we call on the entryHandler. We have not defined the `entryHandler` yet, but let's do it now.
 
 Add this to `App` component:
 
@@ -194,7 +194,7 @@ If you run the test now, both test in the feature file should go green.
 
 We want to be able to run these test without sending requests to the backend. Let's mock the response out. 
 
-First we need to add some to the `mocksConfig` file, so it intercepts the `/performance_data` request:
+First we need to add some code to the `mocksConfig` file, so it intercepts the `/performance_data` request:
 
 ```js  
 const createResponse = (path, params, request) => {
@@ -221,7 +221,7 @@ const createResponse = (path, params, request) => {
   // ...
 ```
 
-Now we need to add the response that we are calling on if puppeteer intercepts `/performance_data`
+Now we need to add the response that we are calling on when puppeteer intercepts `/performance_data`
 
 Add this to `mockResponses`:
 
