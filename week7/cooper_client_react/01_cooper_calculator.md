@@ -409,28 +409,27 @@ Now we need to clean up the `App` component, we dont want to have the input fiel
 
 `$ touch src/Components/InputFields.js`
 
-So all the input fields we have in the `App` component will be laced here instead:
+So all the input fields we have in the `App` component will be placed here instead:
 
 ```js
-import React, { Component } from 'react';
+import React from 'react';
 
-class InputFields extends Component {
-  render() {
-    return (
-      <>
-        <label>Distance</label>
-        <input id="distance" onChange={this.props.inputChangeHandler}></input>
+const InputFields = (props) => {
+  return (
+    <>
+    <label>Distance</label>
+    <input id="distance" onChange={props.inputChangeHandler}></input>
 
-        <select id="gender" onChange={this.props.inputChangeHandler}>
-          <option value="female">Female</option>
-          <option value="male">Male</option>
-        </select>
+    <select id="gender" onChange={props.inputChangeHandler}>
+      <option value="female">Female</option>
+      <option value="male">Male</option>
+    </select>
 
-        <label>Age</label>
-        <input id="age" onChange={this.props.inputChangeHandler}></input>
-      </>
-    )
-  }
+    <label>Age</label>
+    <input id="age" onChange={props.inputChangeHandler}></input>
+    </>
+    
+  )
 }
 
 export default InputFields;
