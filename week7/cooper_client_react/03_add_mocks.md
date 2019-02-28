@@ -4,8 +4,8 @@ First, we need to create the folder and files we will work with:
 
 ```shell
 $ mkdir src/__mocks__
-$ touch mocksConfig.js
-$ touch mockResponses.js
+$ touch src/__mocks__/mocksConfig.js
+$ touch src/__mocks__/mockResponses.js
 
 ```
 
@@ -83,7 +83,8 @@ module.exports = {
         }
       })
     }
-
+  ],
+  
   missingUserResponse: {
     status: 401,
     headers: {},
@@ -93,7 +94,7 @@ module.exports = {
         errors: ['Invalid login credentials. Please try again.']
       }
     )
-  },
+  }
 }
 ```
 
