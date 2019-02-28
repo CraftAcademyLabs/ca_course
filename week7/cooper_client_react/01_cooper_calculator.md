@@ -9,6 +9,17 @@ We are going to set up the acceptance testing first. Like we did in the BMI Calc
 First, we need to add the packages:
 `$ npm i -D jest-dev-server jest-puppeteer puppeteer`
 
+Make sure that the versions of `jest-dev-server` and `jest-puppeteer` in the `package.json` are set like this:
+
+```json
+  "devDependencies": {
+    // ..
+    "jest-dev-server": "^3.9.0",
+    "jest-puppeteer": "^3.9.0"
+  }
+
+```
+
 We need to configure it now. Run:
 ```shell
 $ touch jest-puppeteer.config.js
@@ -191,15 +202,19 @@ describe('<DisplatCooperResult />', () => {
   })
 })
 ```
+
+To run the component tests you need to run `npm run test` in the terminal.
+
+
 After doing the BMI Calculator we know how to send in props to a child component. We send in `distance`, `gender` and `age`. Then we expect to get a result that the component renders.
 
-If you run the application now, it will complain that it can't find the `DisplayCooperResult` module. Let's create it:
+If you run the component tests now, it will complain that it can't find the `DisplayCooperResult` module. Let's create it:
 
 `$ mkdir src/Components`
 
 `$ touch src/Components/DisplayCooperResult.js`
 
-To start with, we will add a stateful/class component with a `render` method`. We will expand it with more functionality as we move ahead.
+To start with, we will add a stateful/class component with a `render` method. We will expand it with more functionality as we move ahead.
 The file should look something like this:
 
 ```js
@@ -218,7 +233,7 @@ class DisplayCooperResult extends Component {
 export default DisplayCooperResult
 ```
 
-When you run the test now you should get another error. The new error states that our expectation is returning false. So the component is not returning what it is supposed to when it gets the values from the input fields. It is now time to add some logic to our `DisplayCooperResult` component:
+When you run the component tests now you should get another error. The new error states that our expectation is returning false. So the component is not returning what it is supposed to when it gets the values from the input fields. It is now time to add some logic to our `DisplayCooperResult` component:
 
 ```js
 import React, { Component } from 'react';
