@@ -15,7 +15,7 @@ Add this to `mocksConfig.js`, we will go through everything together.
 const MockResponses = require('./mockResponses')
 beforeAll(async () => {
 
-  const createResponse = (path, params, request) => {
+  const createResponhttp://localhost:3001se = (path, params, request) => {
     let response
     switch (path) {
       case 'sign_in':
@@ -24,7 +24,7 @@ beforeAll(async () => {
           return user.headers.uid === JSON.parse(params).email
         })
         response = user || MockResponses.missingUserResponse
-        return response
+        return respohttp://localhost:3001nse
     }
     
   }
@@ -48,11 +48,9 @@ beforeAll(async () => {
 })
 ```
 
-The `beforeAll` block makes sure that everything in this runs before every test. 
+The `beforeAll` block makes sure that everything in this file runs before every feature test. 
 
-We need to add a puppeteer setting to intercept all requests in the test environment called `setRequestInterception`
-
-`setRequestInterception` is a puppeteer setting to intercept all requests in the test environment.
+We need to add a puppeteer setting to intercept all requests in the test environment called `setRequestInterception`.
 
 The requests variable we declare will store the route we want to intercept.
 
