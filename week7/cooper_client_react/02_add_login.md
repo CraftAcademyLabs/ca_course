@@ -369,3 +369,25 @@ render() {
 
 ```
 If you run the tests now with the backend running, everything should go green!
+
+If the tests still fails, it might be that the test is to quick to look for the message. You need to tell the test to wait a bit before expecting to find the message so it has time to render.
+E.g.
+```js
+  it('with valid credentials', async () => {
+    await page.click('#login')
+    await page.type('input[id="email"]', 'johndoe@mail.com')
+    await page.type('input[id="password"]', 'password')
+    await page.click('button[id="submit"]')
+    await page.waitFor(1000)
+    await expect(page).toMatch('Hi johndoe@mail.com')
+  })
+
+  it('with invalid credentials', async () => {
+    await page.click('#login')
+    await page.type('input[id="email"]', 'wrongjohndoe@mail.com')
+    await page.type('input[id="password"]', 'wronpassword')
+    await page.click('button[id="submit"]')
+    await page.waitFor(1000)
+    await expect(page).toMatch('Invalid login credentials. Please try again.')
+```
+
