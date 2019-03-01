@@ -1,3 +1,17 @@
+---
+title: "Cooper client in React"
+subtitle: "Advanced React"
+author: [Craft Academy - Coding as a Craft]
+date: Version 0.1
+subject: "React, Javascript"
+keywords: [React, Javascript]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 # Cooper client in React
 
 First, we need to create an application. Run:
