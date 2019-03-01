@@ -143,6 +143,10 @@ export default App;
 
 The test should now be able to find all the input fields which make it possible for it to assign values to them. At the moment all the steps in the `beforeEach` block should run without any problem.
 
+The response should look like this in the terminal.
+
+![text](React_cooper_client_test_response.png)
+
 So now it is time for us to display the result. This is the time for us to do some component testing because we need to create a new component that returns the result to us.
 
 Run this in the terminal:
