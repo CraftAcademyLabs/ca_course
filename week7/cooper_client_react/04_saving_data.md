@@ -175,9 +175,12 @@ render() {
       </>
     )
   }
-
-  // ..
-
+  if (this.props.age !== '' && this.props.distance !== '') {
+    results = (
+    // ...
+    )
+  }
+  // ...
 }
 ```
 
