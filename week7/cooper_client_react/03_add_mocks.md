@@ -4,8 +4,8 @@ First, we need to create the folder and files we will work with:
 
 ```shell
 $ mkdir src/__mocks__
-$ touch mocksConfig.js
-$ touch mockResponses.js
+$ touch src/__mocks__/mocksConfig.js
+$ touch src/__mocks__/mockResponses.js
 
 ```
 
@@ -48,11 +48,9 @@ beforeAll(async () => {
 })
 ```
 
-The `beforeAll` block makes sure that everything in this runs before every test. 
+The `beforeAll` block makes sure that everything in this file runs before every feature test. 
 
-We need to add a puppeteer setting to intercept all requests in the test environment called `setRequestInterception`
-
-`setRequestInterception` is a puppeteer setting to intercept all requests in the test environment.
+We need to add a puppeteer setting to intercept all requests in the test environment called `setRequestInterception`.
 
 The requests variable we declare will store the route we want to intercept.
 
@@ -85,7 +83,8 @@ module.exports = {
         }
       })
     }
-
+  ],
+  
   missingUserResponse: {
     status: 401,
     headers: {},
@@ -95,7 +94,7 @@ module.exports = {
         errors: ['Invalid login credentials. Please try again.']
       }
     )
-  },
+  }
 }
 ```
 

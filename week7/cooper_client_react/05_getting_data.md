@@ -2,7 +2,7 @@ Next feature is quite obvious, if we can save data, we want to be able to see al
 
 Start off with adding the feature test
 
-`touch src/__features__/UserCanSeeIndexOfSavedPerformanceData.js`
+`$ touch src/__features__/UserCanSeeIndexOfSavedPerformanceData.feature.js`
 
 ```js
 require('../__mocks__/mocksConfig')
@@ -11,9 +11,7 @@ describe('User attempts to view his/her performance data', () => {
 
   beforeAll(async () => {
     jest.setTimeout(10000)
-    await page.goto(appURL);
-    await page.setBypassCSP(true)
-
+    await page.goto('http://localhost:3001');
   });
 
   beforeEach(async () => {
@@ -42,13 +40,25 @@ This time we are going to start with adding the mocks for this straight away. Le
 The case block for `performance_data` should look like this: 
 
 ```js
-case 'performance_data':
-  if ((request.method()) === 'POST') {
-    response = MockResponses.savingEntryResponse
-  } else if ((request.method()) === 'GET') {
-    response = MockResponses.performanceDataIndexResponse
+const createResponse = (path, params, request) => {
+    let response
+    switch (path) {
+      case 'sign_in':
+        let user
+        user = MockResponses.mockedUserResponses.find(user => {
+          return user.headers.uid === JSON.parse(params).email
+        })
+        response = user || MockResponses.missingUserResponse
+        return response
+      case 'performance_data':
+        if ((request.method()) === 'POST') {
+          response = MockResponses.savingEntryResponse
+        } else if ((request.method()) === 'GET') {
+          response = MockResponses.performanceDataIndexResponse
+        }
+        return response
+    }
   }
-  return response
 ```
 
 We are hitting the same route when we are saving data, so we need to have an if statement which checks for the request method and based on that gives different mocked out responses. We now have to define the response we want to give when we are intercepting the request to get all saved data.
@@ -128,11 +138,11 @@ return (
 
 If you run the test now it will complain about not finding the text that we are looking for. Its time to create a new component now.
 
-`touch src/Components/DisplayPerformanceData.js`
+`$ touch src/Components/DisplayPerformanceData.js`
 
 ```js
 import React, { Component } from 'react';
-import {getData} from '../Modules/Performance-Data';
+import { getData } from '../Modules/PerformanceData';
 
 class DisplayPerformanceData extends Component {
   constructor(props) {
@@ -198,7 +208,7 @@ if (this.state.authenticated === true) {
   if (this.state.renderIndex === true) {
     performanceDataIndex = (
       <>
-        <DisplayPerfromanceData
+        <DisplayPerformanceData
           updateIndex={this.state.updateIndex}
           indexUpdated={this.indexUpdated.bind(this)}
         />
