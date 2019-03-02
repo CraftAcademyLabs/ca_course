@@ -204,7 +204,7 @@ configure({ adapter: new Adapter() });
 import React from 'react';
 import { shallow } from 'enzyme';
 
-import DisplayCooperResult from '../DisplayCooperResult';
+import DisplayCooperResult from '../Components/DisplayCooperResult';
 
 describe('<DisplatCooperResult />', () => {
   it('evaluates the correct result for female/poor', () => {
