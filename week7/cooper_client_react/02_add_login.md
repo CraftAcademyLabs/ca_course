@@ -350,7 +350,9 @@ In the backend, make sure that you have a user that has `johndoe@mail.com` as th
 
 If you run the test and have the backend running locally, you will see that we still get the same error message about how it can't find the text that we are expecting to see. But, we got rid of the error message that we got when we ran the application about how `authenticate` is not defined. If you take a look at the terminal window where you run the backend, you can actually see that we hit it two times, one successful and one not successful. Now it just a question of fetching the response and display it to the user.
 
-So, if we login successfully and store the user in the `sessionStorage`, we want to use that to display `Hi johndoe@mail.com`. If the login is not successful we send back the message we get from the response back to the `onLogin` function and store it in a state called message, we need to display that message. Modify the code in the `render` method for the `App` component to look like this:
+So, if we login successfully and store the user in the `sessionStorage`, we want to to display `Hi johndoe@mail.com`. On the other hand, if the login is not successful, we send back the message we get from the response back to the `onLogin` function and store it in a state called message. We want to display that message our page. 
+
+Modify the code in the `render` method for the `App` component to look like this:
 
 ```js
 render() {
@@ -390,8 +392,12 @@ render() {
 ```
 If you run the tests now with the backend running, everything should go green!
 
-If the tests still fails, it might be that the test is to quick to look for the message. You need to tell the test to wait a bit before expecting to find the message so it has time to render.
+![](cooper_challenge_capter_2_features_green.png)
+
+If the tests still fails, it might be that the test is to quick to look for the message. You need to tell the test to wait a bit before expecting to find the message so it has time to render. We can do slow things down by adding a timeout: `await page.waitFor(1000)`.
+
 E.g.
+
 ```js
   it('with valid credentials', async () => {
     await page.click('#login')
