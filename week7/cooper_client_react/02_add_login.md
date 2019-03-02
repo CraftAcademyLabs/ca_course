@@ -72,8 +72,10 @@ At this point, we want to create a new component for the login form. This compon
 
 Let's create this login form component:
 
-`$ mkdir src/Components`
-`$ touch src/Components/LoginForm.js`
+```shell
+$ mkdir src/Components
+$ touch src/Components/LoginForm.js
+```
 
 Add this to that file:
 
@@ -138,7 +140,8 @@ To fix this you need to update the App component to look like this:
 ```js
 import React, { Component } from 'react';
 import './App.css';
-import DisplayCooperResult from './DisplayCooperResult';
+import DisplayCooperResult from './Components/DisplayCooperResult';
+import InputFields from "./Components/InputFields";
 import LoginForm from './Components/LoginForm';
 
 
