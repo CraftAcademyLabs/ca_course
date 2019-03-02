@@ -350,7 +350,7 @@ In the backend, make sure that you have a user that has `johndoe@mail.com` as th
 
 If you run the test and have the backend running locally, you will see that we still get the same error message about how it can't find the text that we are expecting to see. But, we got rid of the error message that we got when we ran the application about how `authenticate` is not defined. If you take a look at the terminal window where you run the backend, you can actually see that we hit it two times, one successful and one not successful. Now it just a question of fetching the response and display it to the user.
 
-So when we login successfully we store the user in the sessionStorage, we want to use that to display `Hi johndoe@mail.com`. If the login is not successful we send back the message we get from the response back to the `onLogin` function and store it in a state called message, we need to display that message. Modify the code in the render method for the `App` component to look like this:
+So, if we login successfully and store the user in the `sessionStorage`, we want to use that to display `Hi johndoe@mail.com`. If the login is not successful we send back the message we get from the response back to the `onLogin` function and store it in a state called message, we need to display that message. Modify the code in the `render` method for the `App` component to look like this:
 
 ```js
 render() {
