@@ -251,15 +251,14 @@ const saveData = () => {
 }
 
 const getData = () => {
-  const currentUser = JSON.parse(sessionStorage.getItem(['current_user']));
+  const headers = JSON.parse(sessionStorage.getItem(['credentials']));
   const path = apiUrl + '/performance_data';
   return new Promise((resolve, reject) => {
     axios.get(path, {
-      params: {
-        user_id: currentUser.id
-      }
+      headers: headers
     })
     .then(response => {
+      storeAuthHeaders(response);
       resolve(response);
     });
   });
@@ -268,8 +267,8 @@ const getData = () => {
 export { getData, saveData }
 ```
 
-Here we make a GET request to `/performance_data` where we pass in the current user's id that we have stored in `sessionStorage`.
+Here we make a GET request to `/performance_data` where we pass in the credentials that we have stored in `sessionStorage`.
 
-The response we get from here is what the application will put in the `perfromanceData` state. 
+The response we get from here is what the application will put in the `perfromanceData` state. We also update the credentials with what we got from the response headers.
 
 If you run the test now, everything should go green!

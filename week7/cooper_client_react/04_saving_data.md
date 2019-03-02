@@ -85,7 +85,7 @@ If there is a result and the user is authenticated, then the `#save-result` butt
 async saveCooperData() {
     const result = this.calculate();
     try {
-      let response = await saveData(result);
+      await saveData(result);
       this.props.entryHandler();
     } catch(error) {
       console.log(error);
@@ -100,29 +100,34 @@ The application will complain about `saveData()` not being defined. We need to a
 Add this:
 ```js
 import axios from 'axios'
+import { storeAuthHeaders } from './Auth'
 
 const apiUrl = 'http://localhost:3000/api/v1';
 
 const saveData = (result) => {
-  const currentUser = JSON.parse(sessionStorage.getItem(['current_user']));
+  const headers = JSON.parse(sessionStorage.getItem(['credentials']));
   const path = apiUrl + '/performance_data';
   return new Promise((resolve, reject) => {
     axios.post(path, {
-      performance_data: { data: { message: result }},
-      user_id: currentUser.id
+      performance_data: { data: { message: result }}
+    }, {
+      headers: headers
     })
     .then(response => {
+      storeAuthHeaders(response);
       resolve(response.data.message);
     });  
   });
 };
+
 export { saveData }
 ```
 
 You have to import this file to the `DisplayCooperResult` component.
+
 `import { saveData } from '../Modules/PerformanceData';`
 
-So from our `DisplayCooperResult` component, we send in the result to this function. The first thing we do is grabbing the current user id in a variable. Then we make a post request to the backend with that current user's id and the cooper result. The response we get back gets sent back to saveCooperData function in the `DisplayCooperResult` component. If there is no error in the response, we call on the entryHandler. We have not defined the `entryHandler` yet, but let's do it now.
+So from our `DisplayCooperResult` component, we send in the result to this function. The first thing we do is grabbing the credentials we have stored in `sessionStorage`. Then we make a post request to the backend with those credentials and the cooper result. The response we get back gets sent back to saveCooperData function in the `DisplayCooperResult` component. We also call on the function `storeAuthHeaders` we have in the `Auth` module to update the credentials that we get in the response. If there is no error in the response, we call on the entryHandler. We have not defined the `entryHandler` yet, but let's do it now.
 
 Add this to `App` component:
 
