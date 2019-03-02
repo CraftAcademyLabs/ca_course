@@ -2,7 +2,7 @@ Next feature that we want to implement is that the user can save their cooper re
 
 So let's add a feature file for this:
 
-`$ touch src/__features__/UserCanSavePerformanceData.feature.js`
+`$ touch src/__features__/userCanSavePerformanceData.feature.js`
 
 ```js
 require('../__mocks__/mocksConfig')

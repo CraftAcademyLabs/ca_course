@@ -2,7 +2,7 @@ Next feature is quite obvious, if we can save data, we want to be able to see al
 
 Start off with adding the feature test
 
-`$ touch src/__features__/UserCanSeeIndexOfSavedPerformanceData.feature.js`
+`$ touch src/__features__/userCanSeeIndexOfSavedPerformanceData.feature.js`
 
 ```js
 require('../__mocks__/mocksConfig')

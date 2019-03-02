@@ -98,7 +98,7 @@ module.exports = {
 }
 ```
 
-You have to require the `mocksConfig` in the `UserCanLogin.feature.js` Add this to the top of the file:
+You have to require the `mocksConfig` in the `userCanLogin.feature.js` Add this to the top of the file:
 
 ```js
 require('../__mocks__/mocksConfig')
