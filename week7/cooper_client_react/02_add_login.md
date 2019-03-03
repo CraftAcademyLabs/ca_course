@@ -1,6 +1,6 @@
 ## User authentication
 
-It is time to add some login functionality to our application. In order to be able to save results and show past results, we need to have a registered user.
+It is time to add some login functionality to our React application. In order to be able to save results and show past results, we need to have a registered user.
 
 We are going to start as usual with writing a feature test for this functionality. We start with creating a feature file and adding some besic tests (aka scenarios).
 
