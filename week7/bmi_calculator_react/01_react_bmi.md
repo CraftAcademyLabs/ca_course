@@ -17,14 +17,13 @@ Remove everything that is in the div with the class name `"App"`. Also remove th
 
 The file should look like this:
 
-```jsx
+```js
 import React, { Component } from 'react';
-import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
+      <div>
         
       </div>
     );
@@ -45,15 +44,14 @@ So let's start with adding two input fields for this.
 
 The file should look like this:
 
-```jsx
+```js
 import React, { Component } from 'react';
-import './App.css';
 
 class App extends Component {
   render() {
     return (
-      <div className="App">
-         <div>
+      <div>
+        <div>
           <label>Weight(kg)</label>
           <input name="weight" />
         </div>
@@ -78,12 +76,12 @@ Update the input fields to look like this.
 ```jsx
 <div>
   <label>Weight(kg)</label>
-  <input name="weight" value={this.state.weight} onChange={(e) => this.setState({ weight: e.target.value })} />
+  <input name="weight" value={this.state.weight} onChange={this.setState({ weight: e.target.value })} />
 </div>
 
 <div>
   <label>Height(cm)</label>
-  <input name="height" value={this.state.height} onChange={(e) => this.setState({ height: e.target.value })} />
+  <input name="height" value={this.state.height} onChange={this.setState({ height: e.target.value })} />
 </div>
 ```
 
@@ -91,9 +89,8 @@ We also need to add a constructor above our render function to declare the state
 
 The App.js file should look like this:
 
-```jsx
+```js
 import React, { Component } from 'react';
-import './App.css';
 
 class App extends Component {
   constructor(props) {
@@ -106,15 +103,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <div>
           <label>Weight(kg)</label>
-          <input name="weight" value={this.state.weight} onChange={(e) => this.setState({ weight: e.target.value })} />
+          <input name="weight" value={this.state.weight} onChange={this.setState({ weight: e.target.value })} />
         </div>
 
         <div>
           <label>Height(cm)</label>
-          <input name="height" value={this.state.height} onChange={(e) => this.setState({ height: e.target.value })} />
+          <input name="height" value={this.state.height} onChange={this.setState({ height: e.target.value })} />
         </div>
       </div>
     );
@@ -132,7 +129,10 @@ We are going to create a new component that displays the result.
 
 Run this in the terminal: 
 
-`touch src/DisplayResult.js`
+```shell
+$ mkdir src/Components
+$ touch src/Components/DisplayResult.js
+```
 
 First, we need to set up everything that a react component needs.
 
@@ -160,8 +160,7 @@ The file should look like this:
 
 ```jsx
 import React, { Component } from 'react';
-import './App.css';
-import DisplayResult from './DisplayResult';
+import DisplayResult from './Components/DisplayResult';
 
 class App extends Component {
   constructor(props) {
@@ -174,15 +173,15 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div>
         <div>
           <label>Weight(kg)</label>
-          <input name="weight" value={this.state.weight} onChange={(e) => this.setState({ weight: e.target.value })} />
+          <input name="weight" value={this.state.weight} onChange={this.setState({ weight: e.target.value })} />
         </div>
 
         <div>
           <label>Height(cm)</label>
-          <input name="height" value={this.state.height} onChange={(e) => this.setState({ height: e.target.value })} />
+          <input name="height" value={this.state.height} onChange={this.setState({ height: e.target.value })} />
         </div>
 
         <DisplayResult
@@ -232,7 +231,10 @@ Now we want to create a logic module for the actual calculation part. We want to
 
 Run this in the terminal:
 
-`touch src/BMICalculator.js`
+```shell
+$ mkdir src/Modules
+$ touch src/Modules/BMICalculator.js
+```
 
 This is going to be a pure vanilla javascript file with no mention of React. You have written this function in another application before in the bootcamp. You can either use this code snippet we give you or reuse your old code, just remember to use the `export` keyword in front of the function you want to be able to access from outside of this file.
 
@@ -281,7 +283,7 @@ Now you want to use this in your calulate function in the `DisplayResult` compon
 
 ```jsx
 import React, { Component } from 'react';
-import { bmiCalculation } from './BMICalculator';
+import { bmiCalculation } from '../Modules/BMICalculator';
 
 
 class DisplayResult extends Component {

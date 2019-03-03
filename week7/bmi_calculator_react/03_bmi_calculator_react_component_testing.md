@@ -30,8 +30,8 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { stub } from 'sinon';
 
-import DisplayResult from './DisplayResult'
-import MethodSelect from './MethodSelect';
+import DisplayResult from '../Components/DisplayResult'
+import MethodSelect from '../Components/MethodSelect';
 import App from './App';
 
 describe('<App />', () => {
@@ -97,8 +97,8 @@ import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { stub } from 'sinon';
 
-import DisplayResult from './DisplayResult'
-import MethodSelect from './MethodSelect';
+import DisplayResult from '../Components/DisplayResult'
+import MethodSelect from '../Components/MethodSelect';
 import App from './App';
 ```
 Here we are importing everything that we need to test our application and what we want to test. 

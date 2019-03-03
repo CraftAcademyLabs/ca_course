@@ -7,9 +7,19 @@ We will start with adding some of the npm packages we need, and configure the se
 ## Execution
 
 ```bash
-$ npm i -D jest-dev-server jest-puppeteer puppeteer
+$ npm i -D jest-dev-server@^3.9.0 jest-puppeteer@^3.9.0 puppeteer
 $ touch jest-puppeteer.config.js
 $ touch jest.config.js
+```
+
+**Note theat we are locking the versions of `jest-dev-server` and `jest-puppeteer` to version `3.9.0`.** Make sure that the versions of these libraries in the `package.json` file are set to at least these versions (or higher):
+
+```json
+  "devDependencies": {
+    // ..
+    "jest-dev-server": "^3.9.0",
+    "jest-puppeteer": "^3.9.0"
+  }
 ```
 
 Open up the configuration files and add the following settings:
@@ -42,8 +52,8 @@ module.exports = {
     browserContext: 'default',
 
     server: {
-        command: `PORT=3001 BROWSER=none npm run start`,
-        port: 3001,
+        command: `BROWSER=none npm run start`,
+        port: 3000,
         launchTimeout: 4000,
     },
     
@@ -62,7 +72,7 @@ You also have to add a script to the `package.json` to run these e2e tests.
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "test:features": "jest -c jest.config.js"
+    "features": "jest -c jest.config.js"
   },
 ```
 ## Your first tests
@@ -74,7 +84,8 @@ This is just our example that works with our implementation. We encourage you to
 Run:
 
 ```bash
-$ touch src/BMICalculator.feature.js
+$ mkdir src/__features__
+$ touch src/__features__/userCanCalculateTheirBMI.feature.js
 ```
 
 
