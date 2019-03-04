@@ -124,11 +124,11 @@ describe('<App />', () => {
   })
 ```
 
-So here we are testing the `App` component, as it states in the describe block. The first test here is to make sure that the `App` component renders the header. First, we create the component with a method from enzyme that we imported called shallow. 
+So here we are testing the `App` component, as it states in the `describe` block. The first test here is to make sure that the `App` component renders the header. First, we create the component with a method from enzyme that we imported called shallow. 
 
-*[Shallow rendering is useful to constrain yourself to testing a component as a unit, and to ensure that your tests aren't indirectly asserting on behavior of child components.](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md)*
+*[Shallow rendering is useful to constrain yourself to test a component as a unit, and to ensure that your tests aren't indirectly asserting on behavior of child components.](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md)*
  
- After this, we declare a variable and makes it equal a bit of HTML code. Then in the expect block we test for that the HTML code that we stored in the variable named `header` exists in the `App` component. Next test is `'shows metric as the standard method'`. In our `App` component, we have a constructor where we set the calculation method as a sate and it equals to metric. This means that everytime someone opens the application, metric is going to be the default method. The way we have implemented our app is that the label for the inputs change depending on which method is selected. So if the labels are correct they should show "kg" and "cm" in the parenthesis. So as the test above we store what HTML code we expect to see in variables and then we test for them to be rendered by the `App` component. 
+ After this, we declare a variable and makes it equal a bit of HTML code. Then in the expect block we test for that the HTML code that we stored in the variable named `header` exists in the `App` component. Next test is `'shows metric as the standard method'`. In our `App` component, we have a constructor where we set the calculation method as a sate and it equals to metric. This means that every time someone opens the application, the metric is going to be the default method. The way we have implemented our app is that the label for the inputs changes depending on which method is selected. So if the labels are correct they should show "kg" and "cm" in the parenthesis. So as the test above we store what HTML code we expect to see in variables and then we test for them to be rendered by the `App` component. 
 
 ```js
 it('can change method', () => {
@@ -144,7 +144,7 @@ it('can change method', () => {
 
 Here we test that we can change the method to imperial and that the labels for the input change to reflect that. In our implementation we have the method selector in a different component then the `Àpp` one, we have it in a child component called `MethodSelect`. So every time we change the value of the method selector in the `MethodSelect` component, the `App` (parent) component notices this and grabs the value of which option (either imperial or metric) was selected and sets the state of the method to that value. 
 
-We stub this `onChangeValue` out because we don't have access to the `MethodSelect` component in this test. We declare two variables with what we expect to see when the state of method has been changed to imperial. On the next line we set the onChangeValue we have stubbed out previously to imperial. This means that the state of the method has changed to "imperial" and we can now test that the labels have changed and match the variables we declared earlier.
+We stub this `onChangeValue` out because we don't have access to the `MethodSelect` component in this test. We declare two variables with what we expect to see when the state of `method` has been changed to imperial. On the next line we set the onChangeValue we have stubbed out previously to imperial. This means that the state of the method has changed to "imperial" and we can now test that the labels have changed and match the variables we declared earlier.
 
 ```js
 describe('<DisplayResult />', () => {
@@ -179,7 +179,7 @@ describe('<MethodSelect />', () => {
 )})
 ```
 
-In this last test, we are making sure that there are two options of methods to choose from in the `MethodSelect` component. This component does not set the state of method, we do that in the `App` component. 
+In this last test, we are making sure that there are two options of methods to choose from in the `MethodSelect` component. This component does not set the state of `method`, we do that in the `App` component. 
 
 That means that this is really the only thing we need to test in this component. We first set up the `MethodSelect` component, but this time with a different enzyme method called [mount](https://airbnb.io/enzyme/docs/api/ReactWrapper/mount.html). This test is a bit different from the other tests in this guide. Previously we have set a variable and equaled it to some HTML, then we have checked to see if the component has rendered that HTML. In this test, we find the selector by its id within the component, and then test that the selector has two options to choose from. 
 
