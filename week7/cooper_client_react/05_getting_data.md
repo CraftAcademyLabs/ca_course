@@ -192,11 +192,11 @@ So what is happening here?
 
 First, we have a constructor where we set a state called `performanceData` to `null`. We are going to use this state to store the collection of performance data entries that we will get from the backend.
 
-We have the function `getPerformanceData`. This is what's going to run every time someone presses the button to show previous entries or when someone has saved a new result. The way we make it run every time the component is rendered is with `componentDidMount`. The response that we get from the backend will be stored in `perfromanceData` state. This will also call on a function we will add later to the `App` component called `indexUpdated`.
+We have the function `getPerformanceData`. This is what's going to run every time someone presses the button to show previous entries or when someone has saved a new result. The way we make it run every time the component is rendered is with `componentDidMount`. The response that we get from the backend will be stored in `performanceData` state. This will also call on a function we will add later to the `App` component called `indexUpdated`.
 
 Then we have the render method. First, we set a variable called dataIndex that we are going to use for displaying all saved performance data entries. After that, we have an if statement where we check the props if the `updateIndex` state is true, if that's the case the app will run `getPerformanceData` again to get the latest saved entries.
 
-The next if block checks if the `performanceData` is empty or not. If it's not empty, then its going to loop through all entries of performance data that is stored in the `perfromanceData` state and place it in the `dataIndex` variable.
+The next if block checks if the `performanceData` is empty or not. If it's not empty, then its going to loop through all entries of performance data that is stored in the `performanceData` state and place it in the `dataIndex` variable.
 
 If you run the test now, you will get the same error message as before. That's not that weird because we have not even rendered the new component we have just created in the `App` component. First off, make sure to import the `DisplayPerformanceData` component to the `App` component. 
 
@@ -243,7 +243,7 @@ If we try running the test or running the application, it will complain about ho
 
 If we take a look in our `PerformanceData` module we can see that we don't have something like that defined.
 
-Add this to the `PerfromanceData` module:
+Add this to the `PerformanceData` module:
 
 ```js
 const saveData = () => {
@@ -269,6 +269,6 @@ export { getData, saveData }
 
 Here we make a GET request to `/performance_data` where we pass in the credentials that we have stored in `sessionStorage`.
 
-The response we get from here is what the application will put in the `perfromanceData` state. We also update the credentials with what we got from the response headers.
+The response we get from here is what the application will put in the `performanceData` state. We also update the credentials with what we got from the response headers.
 
 If you run the test now, everything should go green!
