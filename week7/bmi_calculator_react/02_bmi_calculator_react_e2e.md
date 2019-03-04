@@ -2,7 +2,7 @@
 
 We are going to use [Jest](https://jestjs.io/) together with [Puppeteer](https://developers.google.com/web/tools/puppeteer/) to write our acceptance test for this application. 
 
-We will start with adding some of the npm packages we need, and configure the setup in order to be able to run our tests properly. In the root folder we will add two files, `jest-puppeteer.config.js` and `jest.config.js`.
+We will start by adding some of the npm packages we need and configure the setup in order to be able to run our tests properly. In the root folder, we will add two files, `jest-puppeteer.config.js` and `jest.config.js`.
 
 ## Execution
 
@@ -12,7 +12,7 @@ $ touch jest-puppeteer.config.js
 $ touch jest.config.js
 ```
 
-**Note theat we are locking the versions of `jest-dev-server` and `jest-puppeteer` to version `3.9.0`.** Make sure that the versions of these libraries in the `package.json` file are set to at least these versions (or higher):
+**Note that we are locking the versions of `jest-dev-server` and `jest-puppeteer` to version `3.9.0`.** Make sure that the versions of these libraries in the `package.json` file are set to at least these versions (or higher):
 
 ```json
   "devDependencies": {
@@ -77,7 +77,7 @@ You also have to add a script to the `package.json` to run these e2e tests.
 ```
 ## Your first tests
 
-Now it is time that we write our first test, wich is going to be the scenario of calculating the BMI. The test that you are now going to see has the imperial method already implmented. It could be that you have also implemented the imperial method but in a different way because we gave you free hands with that feature. 
+Now it is time that we write our first test, which is going to be the scenario of calculating the BMI. The test that you are now going to see has the imperial method already implemented. It could be that you have also implemented the imperial method but in a different way because we gave you free hands with that feature. 
 
 This is just our example that works with our implementation. We encourage you to update this test so it works for your implementation.
 
@@ -145,9 +145,9 @@ describe('BMI Converter', () => {
 
 The important part that you need to understand is what is happening in the `beforeEach` and `beforeAll` blocks. The `beforeAll` makes sure that the test browser goes to the correct URL to run the tests. The `beforeEach` resets the page (and the input fields) after every test. 
 
-The testing of the actual method may change depending on the implementation that you have. As you can see it is pretty straight forward, we select the method from a selector, fll in the inputs with the relevant information and then expect what response is going to be shown on the page. 
+The testing of the actual method may change depending on the implementation that you have. As you can see it is pretty straight forward, we select the method from a selector, fill in the inputs with the relevant information and then expect what response is going to be shown on the page. 
 
 If you need to press a button or interact with the page in some different way then what we show you above, you can go and find that in the [Puppeteer documentation](https://github.com/GoogleChrome/puppeteer/blob/master/docs/api.md).
 
 ## Wrap up
-Acceptance tests helps you in making sure that your application does what it is supposed to do when a user interacts with it. It requires limited knowledge about the implementation itself (how each component works). Acceptance tests are just one of the testing strategies we will use when developing our React applications.
+Acceptance tests help you in making sure that your application does what it is supposed to do when a user interacts with it. It requires limited knowledge about the implementation itself (how each component works). Acceptance tests are just one of the testing strategies we will use when developing our React applications.
