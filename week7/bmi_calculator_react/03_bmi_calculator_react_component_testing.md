@@ -169,6 +169,7 @@ describe('<DisplayResult />', () => {
 In these test here we test that we get the correct response from the `DisplayResult` component. This component gets the method type and values from the input fields in the `App` component as props. Then it runs the calculation and returns the result. So above here, we have three different tests. That the metric and imperial calculations work properly. As well as that when we don't fill in both input fields, we don't get any response. 
 
 So for the first two tests, we set up the `DisplayResult` component with the props that are needed to do the calculation. Then we declare a variable and set it to equal the response we want to get from the component when we pass in those props to it. The last test we don't send in all necessary props, which is what we want to test. Therefore in the expect block we test that the component doesn't render any text. 
+
 ```js
 describe('<MethodSelect />', () => {
   it('has two methods to choose from', () => {

@@ -59,11 +59,7 @@ class App extends Component {
   render() {
     return (
       <div>
-<<<<<<< HEAD:week7/bmi_calculator_react/01_react_bmi.md
         <div>
-=======
-         <div>
->>>>>>> d93c540... changes to cooper and bmi sections:react_bmi.md
           <label>Weight(kg)</label>
           <input name="weight" />
         </div>
