@@ -2,11 +2,9 @@ Next feature that we want to implement is that the user can save their cooper re
 
 So let's add a feature file for this:
 
-`$ touch src/__features__/UserCanSavePerformanceData.feature.js`
+`$ touch src/__features__/userCanSavePerformanceData.feature.js`
 
 ```js
-require('../__mocks__/mocksConfig')
-
 describe('User attempts save data', () => {
 
   beforeAll(async () => {
@@ -245,5 +243,10 @@ Add this to `mockResponses`:
     })
   }
 ```
+
+You also need to require the `mocksConfig` file to the `userCanSavePerformanceData.feature.js` feature test.
+Add this on top the file:
+
+`require('../__mocks__/mocksConfig')`
 
 Now you will get all green when you run the tests without the backend running.
