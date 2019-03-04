@@ -11,9 +11,9 @@ npx create-react-app bmi_calculator
 Go inside of the project and run `yarn start` or `npm start`to fire app the local server and navigate to `localhost:3000` to see that everything works fine.
 
 ## Cleaning
-Start of with cleaning the `src/App.js`
+Start off with cleaning the `src/App.js`
 
-Remove everything that is in the div with the class name `"App"`. Also remove the import of the logo at line two. 
+Remove everything that is in the div with the class name `"App"`. Also, remove the import of the logo at line two. 
 
 The file should look like this:
 
@@ -236,7 +236,7 @@ $ mkdir src/Modules
 $ touch src/Modules/BMICalculator.js
 ```
 
-This is going to be a pure vanilla javascript file with no mention of React. You have written this function in another application before in the bootcamp. You can either use this code snippet we give you or reuse your old code, just remember to use the `export` keyword in front of the function you want to be able to access from outside of this file.
+This is going to be a pure vanilla javascript file with no mention of React. You have written this function in another application before in the boot camp. You can either use this code snippet we give you or reuse your old code, just remember to use the `export` keyword in front of the function you want to be able to access from outside of this file.
 
 Write this code in your newly created file:
 
@@ -307,4 +307,4 @@ export default DisplayResult
 ```
 ## Wrap up
 
-At this point you should have a fully functional but unstyled BMI Calculator. This is a good opportunity for you to do enhance your styling skills within a react application.
+At this point, you should have a fully functional but unstyled BMI Calculator. This is a good opportunity for you to do enhance your styling skills within a react application.
