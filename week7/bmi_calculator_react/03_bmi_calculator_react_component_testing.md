@@ -117,7 +117,7 @@ describe('<App />', () => {
 
   it('shows metric as the standard method', () => {
     const component = shallow(<App />);
-    const weightLabel = <lashows>Weight(kg)</label>;
+    const weightLabel = <label>Weight(kg)</label>;
     const heightLabel = <label>Height(cm)</label>;
     expect(component.contains(weightLabel)).toEqual(true);
     expect(component.contains(heightLabel)).toEqual(true);
