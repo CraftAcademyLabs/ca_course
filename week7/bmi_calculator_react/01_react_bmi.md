@@ -1,6 +1,14 @@
 # BMI calculator in React
 
-First off we need to create the react application. we will use `create-react-app` to do so. When we scaffold our react application with it we get the basic project structure as well as Jest (the testing framework) partially configured. 
+As the first challenge of this week, we will be returning to the BMI calculator. You have build this application once before, in Vanilla JavaScript. This means that you are familiar with the domain and the requirements. 
+
+This time around, we will build the BMI calculator in React AND get an introduction to testing React applications.
+
+In this challenge, we will flip the process and write implementation code first and test afterwards. We will NOT follow the Acceptance - Unit Test Cycle (that will come later) 
+
+## Getting staerted
+
+First off, we need to create the react application. we will use `create-react-app` to do so. When we scaffold our react application with it we get the basic project structure as well as Jest (the testing framework) partially configured. 
 
 Run this command in the terminal to create a React application:
 
@@ -51,7 +59,11 @@ class App extends Component {
   render() {
     return (
       <div>
+<<<<<<< HEAD:week7/bmi_calculator_react/01_react_bmi.md
         <div>
+=======
+         <div>
+>>>>>>> d93c540... changes to cooper and bmi sections:react_bmi.md
           <label>Weight(kg)</label>
           <input name="weight" />
         </div>
@@ -131,7 +143,7 @@ Run this in the terminal:
 
 ```shell
 $ mkdir src/Components
-$ touch src/Components/DisplayResult.js
+$ touch src/Components/displayResult.js
 ```
 
 First, we need to set up everything that a react component needs.
@@ -160,7 +172,7 @@ The file should look like this:
 
 ```jsx
 import React, { Component } from 'react';
-import DisplayResult from './Components/DisplayResult';
+import DisplayResult from './Components/displayResult';
 
 class App extends Component {
   constructor(props) {
