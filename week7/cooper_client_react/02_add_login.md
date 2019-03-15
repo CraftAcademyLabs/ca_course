@@ -113,7 +113,7 @@ export default LoginForm;
 
 ```
 
-If we run the test again, we will see no difference in the output. That is because we don't use this component anywhere, we don't render it.
+If we run the test again, we will see no difference in the output. That is because we don't use this component anywhere, we are not rendering it.
 In the app component, we need to import it and render it.
 
 Modify `App.js` with the following code.
@@ -214,7 +214,7 @@ We have added an `onClick` to the login button. If the user press it, it will sw
 
 Run the application to make sure that this works and that the visibility of the login form is toggled.
 
-If you run the feature test again, you will see that the change we made has not changed the error message fromthe one we got before. We need to add some logic to our component in order to make the login flow work. 
+If you run the feature test again, you will see that the change we made has not changed the error message from the one we got before. We need to add some logic to our component in order to make the login flow work. 
 
 We are going to add a method called `onLogin` that is going to authenticate the user against the backend system. 
 
@@ -285,7 +285,7 @@ If you run the test now, all of them will fail. The app complains about how `aut
 
 Like we did with the `CooperCalculator`, we will extract the login function to a separate module. That is what we are trying to call on with `authenticate` in the `onLogin` function. 
 
-We will make a call to our backend API over the network and will need to add a library to be able to perform that call. The library we will use is Axios. You install it like this:
+We will make a call to our backend API over the network and will need to add a library to be able to perform that call. The library we will use is [Axios](https://github.com/axios/axios). You install it like this:
 
 ```bash
 $ npm i -S axios
@@ -336,7 +336,7 @@ export { authenticate, storeAuthHeaders }
 
 ```
 
-You will also need to add the axios package with npm, run `npm i axios -S`
+You will also need to add the axios package with npm, run `npm i axios -S` and when that is done run `npm install`.
 
 We also need to import this to the `App` component:
 
@@ -389,13 +389,13 @@ render() {
   }
 
 ```
-If you run the tests now with the backend running, everything should go green!
+If you run the tests now with the backend running, everything should go green! If not make sure that you go through the code again, run the application and try it out manually to see at what point the application is running in to errors.
 
 ![](cooper_challenge_capter_2_features_green.png)
 
 If the tests still fails, it might be that the test is to quick to look for the message. You need to tell the test to wait a bit before expecting to find the message so it has time to render. We can do slow things down by adding a timeout: `await page.waitFor(1000)`.
 
-E.g.
+For example:
 
 ```js
   it('with valid credentials', async () => {
@@ -403,7 +403,7 @@ E.g.
     await page.type('input[id="email"]', 'johndoe@mail.com')
     await page.type('input[id="password"]', 'password')
     await page.click('button[id="submit"]')
-    await page.waitFor(1000)
+    await page.waitFor(1000) // like this
     await expect(page).toMatch('Hi johndoe@mail.com')
   })
 
@@ -412,7 +412,7 @@ E.g.
     await page.type('input[id="email"]', 'wrongjohndoe@mail.com')
     await page.type('input[id="password"]', 'wronpassword')
     await page.click('button[id="submit"]')
-    await page.waitFor(1000)
+    await page.waitFor(1000) // like this
     await expect(page).toMatch('Invalid login credentials. Please try again.')
 ```
 
