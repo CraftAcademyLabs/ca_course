@@ -159,7 +159,9 @@ Now we need to pass the entryHandler and `entrySaved` state to the `DisplayCoope
   />
 ```
 
-If you run the feature test now, you will get an error that says "Text not found "Your entry was saved". That's not weird, we haven't rendered the message we get from the backend anywhere. If you take a look at logs for the backend, you will see that the performance data is being saved correctly. We need to add and modify some of our code to get it to go green.
+If you run the feature test now, you will get an error that says `"Text not found "Your entry was saved"`. That's not weird, we haven't rendered the message we get from the backend anywhere. If you take a look at logs for the backend, you will see that the performance data is being saved correctly. You can see the logs in the terminal where you started up the rails server.
+
+We need to add and modify some of our code to get it to go green.
 
 First we need to modify the if statement in `DisplayCooperResult` component:
 
@@ -198,7 +200,7 @@ Previously we modified the rendering of this component in the `App` component to
   }
 ```
 
-If you run the test now, both test in the feature file should go green.
+If you run the test now, both test in the feature file should go green. If not, go over the code again.
 
 We want to be able to run these test without sending requests to the backend. Let's mock the response out. 
 
@@ -244,7 +246,7 @@ Add this to `mockResponses`:
   }
 ```
 
-You also need to require the `mocksConfig` file to the `userCanSavePerformanceData.feature.js` feature test.
+We also need to require the `mocksConfig` file to the `userCanSavePerformanceData.feature.js` feature test.
 Add this on top the file:
 
 `require('../__mocks__/mocksConfig')`
