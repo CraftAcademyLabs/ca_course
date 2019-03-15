@@ -21,10 +21,10 @@ First, we need to create an application. Run this command in the terminal to cre
 
 We are going to set up the acceptance testing first (aka feature tests). Like we did in the BMI Calculation project, we are going to use `jest-puppeteer`.
 
-First, we need to add the appropriate packages:
+Next, we need to add the appropriate packages:
 `$ npm i -D jest-dev-server@^3.9.0 jest-puppeteer@^3.9.0 puppeteer`
 
-**Note theat we are locking the versions of `jest-dev-server` and `jest-puppeteer` to version `3.9.0`.** Make sure that the versions of these libraries in the `package.json` file are set to at least these versions (or higher):
+**Note that we are locking the versions of `jest-dev-server` and `jest-puppeteer` to version `3.9.0`.** Make sure that the versions of these libraries in the `package.json` file are set to at least these versions (or higher):
 
 ```json
   "devDependencies": {
@@ -157,7 +157,7 @@ This is a pretty straight forward test. The user fills in the distance, selects 
 To execute the feature tests you need to run the script we added in the `package.json` earlier.
 `npm run features`
 
-***"++Remember to commit often++"***
+***"++Remember to commit often and to run `npm install` after we add packages++"***
 
 The `create-react-app` scaffolds a lot of code for us. We don't need parts of it. Let's start with cleaning up `App.js` file that contains the App component. When we are done, we want to add our own code to it and define the inputs and selectors that we need to make our feature test go green.
 
@@ -198,7 +198,7 @@ export default App;
 
 The test should now be able to find all the input fields that we neet to fill in. At this stage all the steps in the `beforeEach` block in the feature test should run without any problems.
 
-The response should look something like this in the terminal.
+The response should look something like this in the terminal. If not, then go over the config again.
 
 ![text](React_cooper_client_test_response.png)
 
@@ -251,9 +251,10 @@ After doing the BMI Calculator we know how to send in props to a child component
 
 If you run the component tests now (using the `npm run test` command in the terminal), you will see that the test complains that it can't find the `DisplayCooperResult` module. Let's create it:
 
-`$ mkdir src/Components`
-
-`$ touch src/Components/DisplayCooperResult.js`
+```shell
+$ mkdir src/Components
+$ touch src/Components/DisplayCooperResult.js
+```
 
 To start with, we will add a stateful/class component with a `render` method. We will expand it with more functionality as we move ahead.
 
@@ -275,7 +276,9 @@ class DisplayCooperResult extends Component {
 export default DisplayCooperResult
 ```
 
-When you run the component tests now you should get another error. The new error states that our expectation/assertion is returning `false`. The component is not returning what it is supposed to when it gets the values from the input fields. It is now time to add some logic to our `DisplayCooperResult` component. We will store that logic in a separate file in a folder we will create for that very purpose. Please look carefully at the imports below, to figure out where that is. 
+When you run the component tests now you should get another error. The new error states that our expectation/assertion is returning `false`. The component is not returning what it is supposed to when it gets the values from the input fields. 
+
+It is now time to add some logic to our `DisplayCooperResult` component. We will store that logic in a separate file in a folder we will create for that very purpose. Please look carefully at the imports below, to figure out where that is. 
 
 ```js
 import React, { Component } from 'react';
@@ -431,11 +434,11 @@ export const CooperCalculator = (distance, gender, age) => {
 export default CooperCalculator;
 ```
 
-If you run the component test now, both tests should go green. Let's run the feature tests again, everything should go green right. We have a component that displays the correct result.
+If you run the component test now, both tests should go green. Let's run the feature tests again, everything should go green right. We have a component that displays the correct result. If not then go over your code carefully again.
 
 ![text](cooper_challenge_component_test_green.png)
 
-BUT, as you can see when we run the feature tests, nothing has changed. That's because we haven't actually rendered the `DiplayCooperResult` component in the `App` component. Consequently, we haven't passed in any props to the `DisplayCooperResult` component. We haven't even saved what gets written in the input fields. So, the actual `DiplayCooperResult` component works, but not with the rest of the application. This is the reason they are called component tests.
+BUT, as you can see when we run the feature tests, nothing has changed. That's because we haven't actually rendered the `DiplayCooperResult` component in the `App` component. Consequently, we haven't passed in any props to the `DisplayCooperResult` component. At the moment the application is not storing what gets written in the input fields. So, the actual `DiplayCooperResult` component works, but not with the rest of the application. This is the reason they are called component tests.
 
 Let's add some code to the `App` component.
 
@@ -496,7 +499,7 @@ Now we need to clean up the `App` component, we dont want to have the input fiel
 
 `$ touch src/Components/InputFields.js`
 
-So all the input fields we have in the `App` component will be placed here instead:
+Make sure to remove the input fields from the `App` component and add this to the new `InputFields` component:
 
 ```js
 import React from 'react';
