@@ -307,6 +307,7 @@ const authenticate = async (email, password) => {
   try {
     let response = await axios.post(path, { email: email, password: password })
     await storeAuthCredentials(response)
+    sessionStorage.setItem('current_user', JSON.stringify({ id: response.data.data.id }));
     return { authenticated: true }
   } catch (error) {
     return { authenticated: false, message: error.response.data.errors[0] }
@@ -327,12 +328,11 @@ const storeAuthCredentials = ({ data, headers }) => {
       expiry: expiry,
       token_type: 'Bearer'
     }));
-    sessionStorage.setItem('current_user', JSON.stringify({ id: data.data.id }));
     resolve(true)
   })
 };
 
-export { authenticate, storeAuthHeaders }
+export { authenticate, storeAuthCredentials }
 
 ```
 
