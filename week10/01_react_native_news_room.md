@@ -123,6 +123,7 @@ What we really want to be displaying in our `HomeScreen` is all of our articles 
 
 1. `$ mkdir Services`
 2. `$ touch Services/ArticlesApiService.js`
+3. `$ yarn add axios --save`
 
 In the `ArticlesApiService.js` lets setup a function that fetches the articles from our backend.
 I have added both a link to my localhost server and the heroku server then I can switch between them depending what backend I want to use.
@@ -133,19 +134,109 @@ import axios from "axios";
 // const url = `http://192.168.1.178:3000`;  // whenever we want to make api calls to localhost we have to use the ip address not the keyword `localhost` since that can result in a network error.
 const url = `https://your-heroku-address`;
 
-export const getArticles = async () => {
+export const GetArticles = async () => {
   try {
-    let response = await fetch(url + `/api/articles`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json"
-      }
-    });
-    const articles = JSON.parse(response._bodyInit)["articles"];
+    let response = await axios.get(url + "/api/articles");
+    const articles = response.data.articles;
     return articles;
   } catch (error) {
     console.error(error);
   }
 };
 ```
+
+And then in the `HomeScreen` component we can call on the `ArticlesApiService` to get an array of articles we will then use a component called `FlatList` to iterate through the list of articles.
+
+Start by setting a state for the articles.
+
+```js
+constructor(props) {
+  super(props);
+  this.state = {
+    articles: []
+  };
+}
+```
+
+Now Lets create a `componentDidMount` function in `HomeScreen` and call the `GetArticles` method in `ArticlesApiService`
+
+```js
+componentDidMount() {
+  GetArticles().then(res => {
+    this.updateArticlesStateHandler(res);
+  });
+}
+```
+
+And now we create a `updateArticlesStateHandler` that will take care of updating the state for the articles.
+
+```js
+updateArticlesStateHandler(articles) {
+  this.setState({
+    articles: articles
+  });
+}
+```
+
+Now we have an array of articles in `this.state.articles` we need to loop through the array and display every article and for that we will use a built in component called `FlatList`.
+First we need to import it from `react-native`.
+
+```js
+import { StyleSheet, Text, View, FlatList } from "react-native";
+```
+
+And then we can use it in our `render` method.
+
+```js
+render() {
+  return (
+    <View style={styles.container}>
+      <FlatList
+        data={this.state.articles}
+        renderItem={this.renderArticles.bind(this)}
+        keyExtractor={item => item.id.toString()}
+      />
+    </View>
+  );
+}
+```
+
+Lets break this down a little,
+
+1. We call on it with the `FlatList` tag
+2. We input the array into the `data` attribute.
+3. `keyExtractor` is used to extract a unique key for a given item at the specified index.
+4. `renderItem` takes an item from data and renders it into the list.
+
+Now lets create the `renderArticles` function and setup how each article is going to look.
+
+```js
+renderArticles({ item }) {
+  const article = item;
+  return (
+    <View>
+      <Image
+        style={{ width: 100, height: 100 }}
+        source={{ uri: article.image }}
+      />
+      <Text>{article.category.name}</Text>
+      <Text>{article.title}</Text>
+      <Text>{article.description}</Text>
+    </View>
+  );
+}
+```
+
+If you would run this you would get an error `ReferenceError: Image is not defined` and we need to add a package to our application to be able to render images.
+
+```shell
+$ yarn add react-native-elements --save
+```
+
+And import Image from `react-native-elements`
+
+```js
+import { Image } from "react-native-elements";
+```
+
+![Showing articles](showing_articles.png)
