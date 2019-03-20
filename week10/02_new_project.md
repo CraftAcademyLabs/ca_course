@@ -1,21 +1,3 @@
-# React Native
-
-## News Room
-
-[WIP]
-
-### Installation
-
-[WIP]
-
-#### Mac
-
-[WIP]
-
-#### Ubuntu
-
-[WIP]
-
 ### Setting up a new project
 
 Replace NAME with the name of your application
@@ -161,6 +143,10 @@ constructor(props) {
 Now Lets create a `componentDidMount` function in `HomeScreen` and call the `GetArticles` method in `ArticlesApiService`
 
 ```js
+import { GetArticles } from "../../Services/ArticlesApiService";
+
+....
+
 componentDidMount() {
   GetArticles().then(res => {
     this.updateArticlesStateHandler(res);
@@ -229,7 +215,7 @@ renderArticles({ item }) {
 
 If you would run this you would get an error `ReferenceError: Image is not defined` and we need to add a package to our application to be able to render images.
 
-```shell
+```sh
 $ yarn add react-native-elements --save
 ```
 
