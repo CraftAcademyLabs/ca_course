@@ -42,3 +42,17 @@ Visit this [page](https://facebook.github.io/react-native/docs/getting-started) 
 #### Running Android Emulator
 
 [WIP]
+
+We can either go through Android Studio and access the avdmanager to start an emulator or start it from the terminal. **if avdmanager inside Android Studio gives and illegal java error use the terminal way**.
+
+##### Avdmanager - GUI
+
+1. Start up Android Studio.
+2. Click on Configure.
+3. Select AVD Manager.
+4. If you dont have a device, click on Create Virtual Device. If you already have a device you can skip to step 9.
+5. Select a phone and click next.
+6. Download an OS for the phone, Oreo or Pie will do fine, then click next.
+7. Click on advanced and find and enable keyboard input.
+8. Click on finish.
+9. Click on the green play button to start the emulator.
