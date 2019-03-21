@@ -5,7 +5,7 @@
 Start by creating a service that will handle the authentication for us.
 
 ```sh
-$ touch Service/Auth.js
+$ touch Service/AuthService.js
 ```
 
 In the `AuthService.js` we will setup a `try` - `catch` block. Inside the try part we will make a axios post request to the backend and we store the credentials using `AsyncStorage`, next we will will get either the name or the email of the user and return it and a authenticated true state back. in the `catch` part we will just console log the error and return a authenticated false state back.
@@ -54,7 +54,6 @@ const storeAuthCredentials = ({ data, headers }) => {
         Accept: "application/json"
       })
     );
-    AsyncStorage.setItem("current_user", JSON.stringify({ id: data.data.id }));
     resolve(true);
   });
 };
@@ -123,8 +122,8 @@ renderLogin() {
         <View>
           <LoginForm
             loginHandler={this.onLogin.bind(this)}
-            handleEmail={this.handleEmail}
-            handlePassword={this.handlePassword}
+            handleEmail={this.emailStateHandler}
+            handlePassword={this.passwordStateHandler}
           />
         </View>
       );
@@ -215,12 +214,13 @@ const styles = StyleSheet.create({
 The two main things in there that are new to us are:
 
 1. TouchableOpacity which is a wrapper for making views respond properly to touches.
-2. TextInput which is a is a basic component that allows the user to enter text.
+2. TextInput which is a basic component that allows the user to enter text.
 
-Now lets get back to the `HomeScreen` component and import the `LoginForm` component.
+Now lets get back to the `HomeScreen` component and import the `LoginForm` component and the `authenticate` function from `Authservice`.
 
 ```js
 import LoginForm from "./LoginForm";
+import { authenticate } from "../../Services/AuthService";
 ```
 
 The `LoginForm` component needs 3 things to work.
@@ -300,6 +300,6 @@ renderLogin() {
 }
 ```
 
-And now when we login successfully we should get screen similar to this onw
+And now when we login successfully we should get screen similar to this one
 
 ![Successfull Login](successful_login.png)
