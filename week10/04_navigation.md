@@ -102,6 +102,50 @@ And we need to create the `showArticle` function that will navigate to the `Arti
 
 ```js
 showArticle() {
-  this.props.navigation.navigate("ArticleScreen");
+  this.props.navigation.navigate("Article");
 }
 ```
+
+![Articles Screen Hello World](article_screen_hello_world.png)
+
+Lets send some data into the `ArticleScreen` we can do tha by passing in a object after the screen we want.
+
+```js
+showArticle() {
+  this.props.navigation.navigate("Article", {
+    message: "This was sent from HomeScreen",
+    anotherMessage: "Hello from HomeScreen"
+  });
+}
+```
+
+And then in the `ArticleScreen` we can receive the data with `this.props.navigation.getParam('message', 'this field is just for some default value incase message is empty')` or we can use `this.props.navigation.state.params.anotherMessage`, lets try it out.
+
+```js
+import React from "react";
+import { Text, View } from "react-native";
+
+export default class ArticleScreen extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      message: this.props.navigation.getParam(
+        "message",
+        "this field is just for some default value incase message is empty"
+      ),
+      anotherMessage: this.props.navigation.state.params.anotherMessage
+    };
+  }
+  render() {
+    return (
+      <View>
+        <Text>Hello World from Article Screen !!!!</Text>
+        <Text>{this.state.message}</Text>
+        <Text>{this.state.anotherMessage}</Text>
+      </View>
+    );
+  }
+}
+```
+
+![Article screen receives params](article_nav_params.png)
