@@ -4,9 +4,7 @@ We have a client request to build a fitness tracking application. The idea is th
 
 The Cooper Test (aka The 12-minute run) was developed by Dr. Ken Cooper in 1968 as an easy way to measure aerobic fitness and provide an estimate of VO2 max for military personnel. The Cooper test, as it's also known, is still used today as a field test for determining aerobic fitness.
 
-
 Dr. Cooper found that there is a very high correlation between the distance someone can run (or walk) in 12 minutes and their VO2 max value, which measures the efficiency with which someone can use oxygen while exercising. This test is still one of the basic fitness tests used by the military. It is also used by many coaches and trainers to determine cardiovascular fitness and track fitness over time. This simple test also allows you to compare your cardiovascular endurance with others of your age and gender.
-
 
 The challenge is to build a software solution that will make it possible not to only make the calculation but to record the data over time. Another requirement is that the app should have functionality that presents historical data of tests if a user has saved any historical data.
 
