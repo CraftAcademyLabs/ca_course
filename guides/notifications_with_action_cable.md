@@ -37,6 +37,30 @@ Start the Redis server as a service:
 ```bash 
 $ brew services start redis
 ```
+
+You should also include the redis gem in your application by adding:
+
+```
+gem 'redis'
+```
+Follow up by running:
+
+```
+bundle
+```
+
+After that you have to configure redis. Add the following code to `config/cable.yml`
+
+```ruby
+redis: &redis
+  adapter: redis
+  url: redis://localhost:6379/1
+
+production: *redis
+development: *redis
+test: *redis
+```
+
 # Implementing WebSockets in Rails 5 with Action Cable
 With the addition of Action Cable and its integration into the Ruby on Rails, we now have a full-stack, easy-to-use implementation of WebSockets that follows the Rails design patterns. Action Cable provides both server-side Ruby framework, and a client-side JavaScript framework for publishing to, and sbscribing to WebSockets channels. It can be run on a stand-alone server, or we can configure it to run on its own processes within the main application server.
 
