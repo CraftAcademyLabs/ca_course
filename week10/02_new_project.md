@@ -1,3 +1,5 @@
+## Objective
+
 ### Setting up a new project
 
 Replace NAME with the name of your application
@@ -62,8 +64,6 @@ export default class App extends React.Component {
 ```
 
 ### Create a HomeScreen
-
-[WIP]
 
 Start with creating a folder where we will keep all of our screens and a landing screen for our app.
 

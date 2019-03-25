@@ -73,3 +73,31 @@ CPU acceleration status: This user doesn't have permissions to use KVM (/dev/kvm
    ![list of emulators](emulator_list.png)
 
 7. You can run any of the listed emulators with the `run-emu` command, just remember to put `@` in front of the emulator name like `run-emu @doo1`
+
+### Creating a new application
+
+1. `$ expo init [NAME]`.
+2. select blank project.
+3. Type in the terminal the name of the application when asked.
+4. Make sure that `node_modules/**/*` and `.expo/*` folder is in gitignore.
+5. yarn start
+6. If on ubuntu run `run-emu @nexus_5x` to start up an emulator.
+
+#### Hello World
+
+Replace the content on `app.js` with this
+
+```js
+import React, { Component } from "react";
+import { Text, View } from "react-native";
+
+export default class HelloWorldApp extends Component {
+  render() {
+    return (
+      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+        <Text>Hello, world!</Text>
+      </View>
+    );
+  }
+}
+```
