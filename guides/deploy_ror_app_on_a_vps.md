@@ -357,6 +357,28 @@ You need to ssh into the server and create the folder you've specified on the `d
 /var/www/appname/shared/config/master.key
 ```
 
+To the database.yml add
+
+```ruby
+production:
+  <<: *default
+  database: db_name_production
+  username: deploy
+  password: <%= Rails.application.credentials.dig :postgres, :password, :production %>
+```
+
+and update your rails credentials file
+
+```sh
+$ rails credentials:edit
+```
+
+```ruby
+postgres:
+  password:
+    production: db_password
+```
+
 ## Configure Nginx host
 
 Last but not least, we need to tell Nginx how to route requests to our application. To do so we need to setup a host. Open the file `/etc/nginx/site-availables/default` and replace its content with:
