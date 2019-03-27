@@ -2,7 +2,7 @@
 
 [Cypress](https://www.cypress.io/) is a Javascript End to End testing framework.
 
-![](./cypress_landing_page.png)
+![](https://github.com/tochman/ca_course-1/blob/master/react/tdd_with_react/cypress_landing_page.png?raw=true)
 
 In contrast to Puppeteer, which is a library, Cypress gives you a solid platform for writing and automating UI tests. Without worrying too much about the rest.
 
@@ -60,7 +60,7 @@ Before we run our tests, we need to keep our localhost active in another termina
 
 Let's launch Cypress by typing `$ yarn run cy:open`, and a cypress window will pop open with a list of available test (in out case, just 1 file). 
 
-![](./cypress_dashboard.png)
+![](https://github.com/tochman/ca_course-1/blob/master/react/tdd_with_react/cypress_dashboard.png?raw=true)
 
 
 Click on the link and run the test file.
@@ -84,5 +84,5 @@ describe('We can say hello to Thomas', () => {
 ```
 If you update your test file with the code above, you should be able to run it. Now, if you see some failures, you probably need to update your eact code. In my example, I'm displaying the "Hello Thomas" twice (!) and the one I'm asking Cypress to check for is in a div with and id of `greeting-display`. You probably want to implement something similar. 
 
-![](./cypress_test_runner.png)
+![](https://github.com/tochman/ca_course-1/blob/master/react/tdd_with_react/cypress_test_runner.png?raw=true)
 
