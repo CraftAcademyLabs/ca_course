@@ -1,8 +1,8 @@
 ## Bind event handlers in Class Components in React
 
-While working on React, you must have come across controlled components and event handlers. We need to bind these methods to the component instance using .bind() in our custom component’s constructor.
+While working on React, you must have come across controlled components and event handlers. We need to bind these methods to the component instance using `.bind() in our custom component’s constructor.
 
-```jsx
+```javascript
 class Foo extends React.Component{
   constructor( props ){
     super( props );
@@ -14,8 +14,8 @@ class Foo extends React.Component{
   render(){
     return (
       <button type="button" 
-      onClick={this.handleClick}>
-      Click Me
+        onClick={this.handleClick}>
+        Click Me
       </button>
     );
   }
@@ -35,7 +35,7 @@ Laying blame sounds a bit harsh but TBH, its not about the way React works or be
 
 Let’s see what happens if we do not bind the event handler method with its component instance:
 
-```jsx
+```javascript
 class Foo extends React.Component{
   constructor( props ){
     super( props );
@@ -66,7 +66,7 @@ As mentioned, this happens because of the way this binding works in JavaScript. 
 
 #### Default Binding
 
-```js
+```javascript
 function display(){
  console.log(this); // 'this' will point to the global object
 }
@@ -77,7 +77,7 @@ This is a plain function call. The value of this inside the display() method in 
 
 #### Implicit binding
 
-```js
+```javascript
 var obj = {
  name: 'Foo',
  display: function(){
@@ -92,7 +92,7 @@ When we call a function in this manner — preceded by a context object �
 But when we assign this function reference to some other variable and invoke the function using this new function reference, we get a different value of `this` inside `display()`.
 
 
-```js
+```javascript
 var name = "Bar";
 var outerDisplay = obj.display;
 outerDisplay(); // Bar
@@ -104,7 +104,7 @@ This is especially applicable while passing such functions as callbacks to anoth
 
 Consider the `setTimeout()` dummy definition as shown below, and then invoke it.
 
-```js
+```javascript
 // A dummy implementation of setTimeout
 function setTimeout(callback, delay){
    //wait for 'delay' milliseconds
@@ -115,13 +115,13 @@ setTimeout( obj.display, 1000 );
 
 We can figure out that when we call `setTimeout`, JavaScript internally assigns `obj.display` to its argument callback .
 
-```js
+```javascript
 callback = obj.display;
 ```
 
 This assignment operation, as we have seen before, causes the `display()` function to lose its context. When this callback is eventually invoked inside `setTimeout`, the `this` value inside `display()` falls back to the default binding.
 
-```js
+```javascript
 var name = "Bar";
 setTimeout( obj.display, 1000 );
 // Bar
@@ -131,13 +131,14 @@ setTimeout( obj.display, 1000 );
 #### Explicit Hard Binding
 To avoid this, we can explicitly hard bind the `this` value to a function by using the `bind()` method.
 
-```js
+```javascript
 var name = "Bar";
 obj.display = obj.display.bind(obj); 
 var outerDisplay = obj.display;
 outerDisplay();
 // Foo
 ```
+
 Now, when we call `outerDisplay()`, the value of `this` points to `obj` inside `display()`.
 
 Even if we pass `obj.display` as a callback, the `this` value inside `display()` will correctly point to `obj`.
@@ -147,7 +148,7 @@ In the beginning of this article, we saw this in our React component called `Foo
 
 This is because of the way `this` binding works in JavaScript and not related to how React works. Let’s remove the React-specific code and construct a similar pure JavaScript example to simulate this behavior.
 
-```js
+```javascript
 class Foo {
   constructor(name){
     this.name = name
@@ -170,7 +171,7 @@ We are not simulating actual events and handlers, but instead we are using synon
 
 To prevent the error, we need to bind the this value like this:
 
-```js
+```javascript
 class Foo {
   constructor(name){
     this.name = name
@@ -180,6 +181,8 @@ class Foo {
     console.log(this.name);
   }
 }
+
+// lets put it to use:
 var foo = new Foo('Bar');
 foo.display(); // Bar
 var display = foo.display;
@@ -188,7 +191,7 @@ display(); // Bar
 
 We don’t need to do this in the constructor, and we can do this somewhere else as well. Consider this:
 
-```js
+```javascript
 class Foo {
   constructor(name){
     this.name = name;
@@ -197,6 +200,8 @@ class Foo {
     console.log(this.name);
   }
 }
+
+// Note the .bind() below
 var foo = new Foo('Bar');
 foo.display = foo.display.bind(foo);
 foo.display(); // Bar
@@ -209,7 +214,7 @@ But the constructor is the most optimal and efficient place to code our event ha
 #### Why don’t we need to bind ‘this’ for Arrow functions?
 We have two more ways we can define event handlers inside a React component.
 
-```jsx
+```javascript
 class Foo extends React.Component{
   handleClick = () => {
     console.log(this); 
@@ -231,7 +236,7 @@ ReactDOM.render(
 
 #### Arrow function in the callback
 
-```jsx
+```javascript
 class Foo extends React.Component{
   handleClick(event){
     console.log(this);
