@@ -56,15 +56,20 @@ it('by filling in the input and clicking the button', () => {
 
 Remember - all **`it`** blocks need to go inside the `describe`.
 
-Before we run our tests, we need to keep our localhost active in another terminal. Start it by running `$yarn start` or `$ npm start`. (Moving forward, we will only type out the `yarn`commands - if you want to use `nmp, please check the npm documentation for instructions)
+Before we run our tests, we need to keep our localhost active in another terminal. Start it by running `$ yarn start` or `$ npm start`. (Moving forward, we will only type out the `yarn`commands - if you want to use `npm`, you just go ahead and use it...)
 
-Let's launch cypress by typing `$ yarn run cy:open`, and a cypress window will pop open with a list(just 1 file). Select and run the test file.
+Let's launch Cypress by typing `$ yarn run cy:open`, and a cypress window will pop open with a list of available test (in out case, just 1 file). 
+
+![](./cypress_dashboard.png)
+
+
+Click on the link and run the test file.
 
 A new Chrome window will open, and our test will go green! A good idea at this point would be to open console and click around the browswer to explore tools provided by cypress.
 
 Stop the test for now, by clicking `Stop` (Duh!) in cypress window.
 
-Enough fun, let's get some work done!
+Enough fun, let's get some work done! We will write our short scenario and interact with our application. Take a close look at the test code below and try to figure out by yourself wwhat each command is doing. 
 
 ```javascript
 
@@ -77,3 +82,7 @@ describe('We can say hello to Thomas', () => {
   })
 })
 ```
+If you update your test file with the code above, you should be able to run it. Now, if you see some failures, you probably need to update your eact code. In my example, I'm displaying the "Hello Thomas" twice (!) and the one I'm asking Cypress to check for is in a div with and id of `greeting-display`. You probably want to implement something similar. 
+
+![](./cypress_test_runner.png)
+

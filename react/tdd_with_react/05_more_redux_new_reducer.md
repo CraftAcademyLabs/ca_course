@@ -142,3 +142,62 @@ Update the `render` function to display a `<button>`
 
 Now, when you click the button, the greeting should change.
 
+
+## More functionality
+
+Let's say we want to display an input field and allow our users to input a custom greeting that would display when we click the "Change greeting" button? Valid use case? **Not at all, but let's go with it!**
+
+We will go BDD style and start with the UI modifications. I'll start with my `SayHello` component `render` method and modify it to display an input field.
+
+```javascript
+return (
+  <>
+    {/* other code */}
+
+    <input
+    type='text'
+    id='greeting-text' />
+  
+    {/* other code */}
+  </>
+)
+```
+Note that I give it a type and an id. 
+
+Next, I need to get hold of the content of the input field and send it off to the function that triggers the actual change of the greeting on the screen (see above steps). That function is available to me as part of `props` (`props.greetingActions.changeGreeting()`). This meant that I can get the values of the input field with a traditional `getElementById` method and pass it on to the `changeGreeting()` as an argument. 
+
+Lets do that. 
+
+```javascript
+return (
+  <>
+    {/* other code */}
+    <button
+      onClick={() => props.greetingActions.changeGreeting(document.getElementById('greeting-text').value)}
+    >
+      Change greeting
+    </button>
+    {/* other code */}
+  </>
+)
+```
+
+A bit traditional for many Reactivists probably... but, a working solution. ;-)
+
+Alright, run the application and try it out. It's NOT doing what we want it to do. Not YET. But we are doing a bit of manual BDD, so that's okay.
+
+Let's shift our attention to the `changeGreeting` function in `/actions/greetingActions.js`. We need to modify it to accept an argument and trigger the chain of events that will lead to our UI being re-rendered and the message displayed. Until now, we hard-coded the value. Now, our function should look something like this:
+
+```javascript
+const changeGreeting = (text) => {
+  return {type: types.CHANGE_GREETING, greeting: text}
+}
+
+```
+
+So, good bye `'Hello My Dear Friends'`, and hello user-generated value. 
+
+That should be it. Yo can go ahead and try it out in your browser...
+
+
+
