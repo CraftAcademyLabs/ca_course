@@ -170,7 +170,6 @@ And finally we install rails
 
 ```sh
 $ gem install rails
-
 ```
 
 ## Installing the Nginx Web Server
