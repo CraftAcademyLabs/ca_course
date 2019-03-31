@@ -90,12 +90,10 @@ We could start with following specification as a starting point:
 
 ```javascript
 import React from 'react';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 import EmployeeList from '../components/EmployeeList'
 import axios from 'axios';
-
-jest.mock('axios');
 
 describe('<EmployeeList />', () => {
   it('should fetch employees from back-end using Axios', () => {
@@ -106,25 +104,82 @@ describe('<EmployeeList />', () => {
     expect(axiosSpy).toBeCalled();
   })
 
-  it('should render a list of 5 employees', () => {
-    const describedComponent = shallow(
-      <EmployeeList />
-    )
-    expect(describedComponent.find('li')).to.have.lengthOf(5);
+  it('should render a list of 5 employees', async () => {
+    const employees = {"data":[
+      { "id": 1, "first_name": "George", "last_name": "Bluth", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg" },
+      { "id": 2, "first_name": "Janet", "last_name": "Weaver", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg" },
+      { "id": 3, "first_name": "Emma", "last_name": "Wong", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/olegpogodaev/128.jpg" },
+      { "id": 4, "first_name": "Eve", "last_name": "Holt", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/marcoramires/128.jpg" },
+      { "id": 5, "first_name": "Charles", "last_name": "Morris", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/stephenmoon/128.jpg" }
+    ]}
+
+    // We mount the component
+    const describedComponent = mount(<EmployeeList />)
+    // we make sure that the components state is updated
+    await describedComponent.setState({ employees: employees.data })
+    // we make sure that the component renders 5 instances on a list item (<li>)
+    expect(describedComponent.find('li')).toHaveLength(5);
   })
 })
 
 ```
 
+These specs will do to things for us:
+
+1. make sure that we are making use of `axios` to make a `get` request when the component is being used, and
+
+2. that once state has been updated with a list of `employees`, the component us re-rendered with the right content.
+
+We need to start running the tests and work out way through the error messages. If we read them carefully, we WILL be pointed in the right direction.
+
+
+This is an excercise in reading the test output, implementing the right code and progress one step at the time. **You can do it!** 
+
+At the end of the tunnel, your `EmployeeList` could look something like this:
+
+```javascript
+import React, { Component } from 'react';
+import axios from 'axios'
+
+class EmployeeList extends Component {
+  state = {
+    employees: []
+  }
+
+  componentDidMount() {
+    this.fetchEmployees()
+  }
+
+  async fetchEmployees() {
+    let employees = await axios.get('https://reqres.in/api/users?per_page=5')
+    this.setState({ employees: employees.data.data }) 
+    // ?!? "data.data" - really?
+    // Well, check out the response by setting a breakpoint just 
+    // before this line withe `debugger`
+  }
+  
+  render() {
+    let employeeList
+    employeeList = this.state.employees.map(employee => {
+      return (
+        <li key={employee.id}>
+          {`${employee.first_name} ${employee.last_name}`}
+        </li>
+      )
+    })
+    
+    return (
+      <>
+        <ul>
+          {employeeList}
+        </ul>
+      </>
+    );
+  }
+}
+export default EmployeeList;
+```
 
 
 
 
-
-
-
-
-
-
-
-<!-- enzyme enzyme-adapter-react-16 -->
