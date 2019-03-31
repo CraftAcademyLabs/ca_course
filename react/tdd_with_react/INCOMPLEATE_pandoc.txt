@@ -1,0 +1,3 @@
+system("pandoc -s -V geometry:margin=1in -o tmp/reract_tdd_t1906.pdf tmp/00_introduction.md tmp/99_extras.md --template template --listings")
+
+parse_content(path: '/react/tdd_with_react', repo: 'CraftAcademy/ca_course', format: 'pdf', upload: false)
