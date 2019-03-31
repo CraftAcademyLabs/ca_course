@@ -55,7 +55,18 @@ export const FETCH_USERS = 'FETCH_USERS';
 export const RECEIVE_USES = 'RECEIVE_USERS';
 ```
 
-We will also need the actions themselves. We are going to set this up with a function for each action type, which returns an object containing at least the type of the action.
+### About Action contants
+
+Why is beneficial to create action constants? In Redux you use those constants at least in two places - in your reducers and during actions creation. So it's convenient to define a constant once in some file e.g. `actionTypes.js`. It is often claimed that constants are unnecessary, and for small projects, this might be correct. For larger projects, there are some benefits to defining action types as constants. 
+
+* It helps keep the naming consistent because all action types are gathered in a single place.
+* Sometimes you want to see all existing actions before working on a new feature. It may be that the action you need was already added by somebody on the team, but you didn’t know.
+* The list of action types that were added, removed, and changed in a Pull Request helps everyone on the team keep track of scope and implementation of new features.
+* If you make a typo when importing an action constant, you will get `undefined`. This is much easier to notice than a typo when you wonder why nothing happens when the action is dispatched.
+
+
+## Action creators
+We will also need the define the action creators. We are going to set this up with a function for each action type, which returns an object containing at least the type of the action.
 
 In the case of fetching our users, we want to be sure we are getting our data, and so we request it by executing a fetch for our given URL. We will be using `axios` to make a call to an API, but you CAN use the native `fetch` if you want to.
 
