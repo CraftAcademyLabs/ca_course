@@ -21,9 +21,9 @@ CypressError: Timed out retrying: Expected to find element: 'section[name="main"
 
 Alright, let's do some thinking...
 
-We want to display a collection of users, ight. So, let's consider extracting that functionality to a separate component. We need to give the component a name. Why not call it `EmployeeList`? 
+We want to display a collection of users. So, let's consider extracting that functionality to a separate component. We need to give the component a name. Why not call it `EmployeeList`? 
 
-We will want this component to fetch the employee data from our back-end. Let's add that to our TODO list. Anotherr thisn to add to that TODO is that we want the component to retun a unnumbered list (`<ul></ul>`) with a list item  (`<li></li>`)for each employee...
+We will want this component to fetch the employee data from our back-end. Let's add that to our TODO list. Another thing to add to that TODO is that we want the component to retun a unnumbered list (`<ul></ul>`) with a list item  (`<li></li>`) for each employee...
 
 Those list items should contain an image, first name - last name, and email... (check the lo-fi!)
 
@@ -61,6 +61,60 @@ If you check the Cypress runner, you will probably see something like this:
 We will move from the "Outside" to the "Inside" and make sure we test drive the development of our new component.
 
 RRemember the TODO list we wrote a few minutes ago? Let's put it to work and write a specification for the `<EmployeeList>` component we want to build.
+
+We created our application using the `create-react-app` scaffolderr, so we already have `jest` installed. We will enhance it with `enzyme` - a test utility that makes it easier to test React Components' output. We will need to install `enzyme` along with an Adapter corresponding to the version of react we are using (in this case React 16.8.6). We will also add a configuration file for `enzyme`
+
+```bash
+$ yarn add --dev enzyme enzyme-adapter-react-16
+$ touch src/setupTests.js
+```
+
+Add the following configuration to `setupTests.js`:
+
+```javascript
+import { configure } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+
+configure({ adapter: new Adapter() }); 
+```
+
+We need to do a just a litte bit more configuration... we need to create a folder where we will hold out unit tests. By convention we will call it `__tests__` (yes, that is 2 underscores).
+
+```bash
+$ mkdir src/__tests__
+```
+
+## The EmployeeList spec
+
+We could start with following specification as a starting point:
+
+```javascript
+import React from 'react';
+import { shallow } from 'enzyme';
+
+import EmployeeList from '../components/EmployeeList'
+import axios from 'axios';
+
+jest.mock('axios');
+
+describe('<EmployeeList />', () => {
+  it('should fetch employees from back-end using Axios', () => {
+    const axiosSpy = jest.spyOn(axios, 'get');
+    shallow(
+      <EmployeeList />
+    )
+    expect(axiosSpy).toBeCalled();
+  })
+
+  it('should render a list of 5 employees', () => {
+    const describedComponent = shallow(
+      <EmployeeList />
+    )
+    expect(describedComponent.find('li')).to.have.lengthOf(5);
+  })
+})
+
+```
 
 
 
