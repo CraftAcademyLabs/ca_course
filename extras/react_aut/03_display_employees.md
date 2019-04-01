@@ -2,7 +2,7 @@
 
 Okay, so our first test is passing. That's great. Let's move on.
 
-We want to display details for 5 employees. Why 5? Well, we have to decide for something, and we want to be in control of the test data and of what we are actually showing the user. 
+We want to display details for 5 employees. Why 5? Well, we have to decide on something, and we want to be in control of the test data and of what we are actually showing to the user. 
 
 Let's modify our feature with the following code (inside the `it` block we added before):
 
@@ -13,7 +13,7 @@ cy.get('section[name="main"]').within(() => {
 })
 ```
 
-If you examine the eror message the unner is giving you, you'll see the following message
+If you examine the error message the runner is giving you, you'll see the following message
 
 ```
 CypressError: Timed out retrying: Expected to find element: 'section[name="main"] li', but never found it.
@@ -60,9 +60,9 @@ If you check the Cypress runner, you will probably see something like this:
 ## The "Inside"
 We will move from the "Outside" to the "Inside" and make sure we test drive the development of our new component.
 
-RRemember the TODO list we wrote a few minutes ago? Let's put it to work and write a specification for the `<EmployeeList>` component we want to build.
+Remember the TODO list we wrote a few minutes ago? Let's put it to work and write a specification for the `<EmployeeList>` component we want to build.
 
-We created our application using the `create-react-app` scaffolderr, so we already have `jest` installed. We will enhance it with `enzyme` - a test utility that makes it easier to test React Components' output. We will need to install `enzyme` along with an Adapter corresponding to the version of react we are using (in this case React 16.8.6). We will also add a configuration file for `enzyme`
+We created our application using the `create-react-app` scaffold, so we already have `jest` installed. We will enhance it with `enzyme` - a test utility that makes it easier to test React Components' output. We will need to install `enzyme` along with an Adapter corresponding to the version of react we are using (in this case React 16.8.6). We will also add a configuration file for `enzyme`
 
 ```bash
 $ yarn add --dev enzyme enzyme-adapter-react-16
@@ -128,7 +128,7 @@ These specs will do to things for us:
 
 1. make sure that we are making use of `axios` to make a `get` request when the component is being used, and
 
-2. that once state has been updated with a list of `employees`, the component us re-rendered with the right content.
+2. that once state has been updated with a list of `employees`, the component is re-rendered with the right content.
 
 We need to start running the tests and work out way through the error messages. If we read them carefully, we WILL be pointed in the right direction.
 

@@ -6,7 +6,7 @@ $ yarn create react-app employee_list
 $ npx create-react-app employee_management
 ```
 
-Once youve cleaned up your project files, your structure should look like this:
+Once you've cleaned up your project files, your structure should look like this:
 
 ![](./employee_list_ide_after_code_cleaning.png)
 
@@ -18,7 +18,7 @@ Now, we want to make some decisions regarding the testing frameworks we want to 
 
 ![](https://github.com/tochman/ca_course-1/blob/master/react/tdd_with_react/cypress_landing_page.png?raw=true)
 
-What Cypress brings to the table, is a solid platform for writing and automating UI tests. Powerful features, well written documentation and a wery straight forward configuration. Just the way we like it!
+What Cypress brings to the table, is a solid platform for writing and automating UI tests. Powerful features, well written documentation and a very straight forward configuration. Just the way we like it!
 
 **Step 1**: Install `cypress` and save it as a development dependency:
 
@@ -37,7 +37,7 @@ This command will run a configuration script and add a bunch of example tests th
 
 ![](./employee_list_cypress_setup.png)
 
-**Step 3**: There is no step 3, to be honest... we are done here. Well, not qite perhaps. We should add a script to our `package.json` to help us accesss the test runner in a smoother way. I suggest that you add this to the `scripts` section of the `package.json` file: 
+**Step 3**: There is no step 3, to be honest... we are done here. Well, not quite perhaps. We should add a script to our `package.json` to help us accesss the test runner in a smoother way. I suggest that you add this to the `scripts` section of the `package.json` file: 
 
 ```json
 "cy:open": "cypress open"
@@ -53,7 +53,7 @@ I also would like you to modify the `eslintConfig` section to look like this (we
   }
 }
 ```
-This should be it... in terms of configuration. 
+That should be it... in terms of configuration. 
 
 Well, there's one more thing... (there's always a 'one more thing'). 
 Cypress comes with TypeScript type declarations included. Modern text editors can use these type declarations to show IntelliSense inside spec files. The simplest way to see IntelliSense when typing a Cypress command or assertion is to add a triple-slash directive to the head of your test file. This will turn the IntelliSense on a per file basis. paste the comment line below into your test (on top).
@@ -90,11 +90,11 @@ it('when user visits the page', () => {
 })
 ```
 
-Remember - all **`it`** blocks need to go inside the `describe` describe.
+Remember - all **`it`** blocks need to go inside the `describe` block.
 
 Before we run our tests, we need to keep our localhost active in another terminal. Start it by running `$ yarn start` or `$ npm start`. (Moving forward, we will only type out the `yarn` commands - if you want to use `npm`, you just go ahead and use it...)
 
-Let's launch Cypress by executing the script: `$ yarn run cy:open`. A cypress window will pop open with a list of available test (in out case, just 1 file). Clicking the file name, will trigger the test runner and a new broweser window will pop up.
+Let's launch Cypress by executing the script: `$ yarn run cy:open`. A cypress window will pop open with a list of available tests (in out case, just 1 file). Clicking the file name will trigger the test runner and a new broweser window will pop up.
 
 ![](./employee_list_cypress_runner.png)
 

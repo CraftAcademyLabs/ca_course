@@ -6,7 +6,7 @@ The we can start with a pretty simple lo-fi that can guide us:
 
 ![](./employees_first_draft.png)
 
-This view will display a list of employees with a cta to view details about an individual employee. Clicking on the button will add an overlay to the view and display a modal (or pop-up) with the employee details. There should alose be 2 cta's for further actions the user will be able to undertake (edit and delete the employee). For now though, there will no functionality attached to them.  
+This view will display a list of employees with a cta (call to action) to view details about an individual employee. Clicking on the button will add an overlay to the view and display a modal (or pop-up) with the employee details. There should be at least 2 cta's for further actions the user will be able to undertake (edit and delete the employee). For now though, there will no functionality attached to them.  
 
 ![](./employees_first_draft_modal.png)
 

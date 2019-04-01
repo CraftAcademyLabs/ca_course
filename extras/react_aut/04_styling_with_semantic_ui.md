@@ -19,7 +19,7 @@ import App from './App';
 **Step 3** - Done! Start using the components. For instance, let's wrap the entire page in a `Container` to get some margins. Import it to the `App` component, and update the `render()` method: 
 
 ```javascript
-mport React, { Component } from 'react';
+import React, { Component } from 'react';
 import EmployeeList from './components/EmployeeList'
 import { Container } from 'semantic-ui-react'
 

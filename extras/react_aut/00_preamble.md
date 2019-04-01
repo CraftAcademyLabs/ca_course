@@ -40,7 +40,7 @@ A good cycle to follow is this Outside-in approach:
 
 1. Write a high-level (Outside) business value example that goes red 
 2. Write a lower-level (Inside) example for the first step of implementation that goes red 
-3. Implement the minimum code to pass that lower-level example, see itgo green
+3. Implement the minimum code to pass that lower-level example, see it go green
 4. Write the next lower-level  example pushing towards passing step 1
 5. Repeat steps 3 and 4 until the high-level test (1) goes green
 6. Start over by writing a new high-level test
