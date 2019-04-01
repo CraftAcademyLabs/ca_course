@@ -40,7 +40,7 @@ This command will run a configuration script and add a bunch of example tests th
 **Step 3**: There is no step 3, to be honest... we are done here. Well, not quite perhaps. We should add a script to our `package.json` to help us accesss the test runner in a smoother way. I suggest that you add this to the `scripts` section of the `package.json` file: 
 
 ```json
-"cy:open": "cypress open"
+"cy:open": "yarn start --silent & cypress open"
 ```
 
 I also would like you to modify the `eslintConfig` section to look like this (we want to avoid warnings in our IDE that implies that the `cy` object is undefined):
