@@ -157,7 +157,7 @@ class EmployeeList extends Component {
     // Well, check out the response by setting a breakpoint just 
     // before this line withe `debugger`
   }
-  
+
   render() {
     let employeeList
     employeeList = this.state.employees.map(employee => {
@@ -179,6 +179,8 @@ class EmployeeList extends Component {
 }
 export default EmployeeList;
 ```
+
+The interesting thing to pay attention to is what happens with your acceptance test. Once the unit test is passing, you should shift your attention to the Cypress runner and examine the status. Last time we checked, the error was quite extensive, as we tried to use the `<EmployeeList>` component even before it was created. Now that it is in place, we can hopefully look at a green state of the acceptance test. The Acceptance - Unit Test approach has come full cycle.   
 
 
 

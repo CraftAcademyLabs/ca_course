@@ -112,3 +112,5 @@ If you are not familiar with how to use developer tools in your browser and how 
 
 The solution is actually quite simple. We need to change `('li')` to `('div[role="listitem"]')` - in the assertion (`expect()`) of our Cypress test as well as in the component test. Can you figure out why?  
 
+
+
