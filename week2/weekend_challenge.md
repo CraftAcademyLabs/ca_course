@@ -101,12 +101,10 @@ $ touch spec/spec.helper.js
 Add the following code to the `spec.helper.js` (in the top of the file)
 
 ```js
-const  fs = require('fs');
-const  chai = require('chai');
+const chai = require('chai');
+const BrowserHelpers = require('e2e_training_wheels')
+global.browser = new BrowserHelpers()
 global.expect = chai.expect;
-
-let  fizzBuzz = fs.readFileSync('./src/js/fizz-buzz.js');
-eval( fizzBuzz + `\nexports.FizzBuzz = FizzBuzz;`)
 ```
 
 ---
@@ -114,8 +112,8 @@ eval( fizzBuzz + `\nexports.FizzBuzz = FizzBuzz;`)
 ***Question 1*. In your README to the best of your knowledge please explain what the following lines of code do**
 
 ```js
-let  fizzBuzz = fs.readFileSync('./src/js/fizz-buzz.js');
-eval( fizzBuzz + `\nexports.FizzBuzz = FizzBuzz;`)
+global.browser = new BrowserHelpers()
+global.expect = chai.expect;
 ```
 ---
 
@@ -138,7 +136,7 @@ $ touch spec/fizz-buzz.spec.js
 
 Add  
 ```js
-const { FizzBuzz } =  require('./spec.helper')
+ require('../spec.helper')
 ```
 to the top of the `fizz-buzz.spec.js`
 
@@ -182,11 +180,25 @@ Add the following code to the `fizz-buzz.js` file:
 ```js
 function FizzBuzz()  {
 	this.check = (number) => {
-		return number:
+		return number
 	}
 }
 ```
-Run `npm run specs` you should have the test going green. If it does commit and move on to the next test. 
+Run `npm run specs` you should have the same error.
+
+Return to your `spec.helper.js` add in the following piece of code:
+```js
+global.FizzBuzz = require('./src/js/fizzbuzz')
+```
+
+Run `npm run specs` you should have a new error, do you remember seeing this before?
+In you `fizzbuzz.js`add the following code, outside the fizzbuzz function.
+```js
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = FizzBuzz;
+} 
+```
+Run `npm run specs`, your tests should be passing, if so commit and push to your repo.
 
 Add a new it block to fizz-buzz.spec.js
  ```js
@@ -203,7 +215,7 @@ function FizzBuzz() {
 		if (number % 3 === 0) {
 			return 'Fizz';
 		} else {
-			return number:
+			return number
 		}
 	}
 }
@@ -254,14 +266,14 @@ Now for the last time add the test:
 })
  ```
 
-  Run `npm run specs` And read the error message
+Run `npm run specs` And read the error message carefully
 
 And add the implementation code:
 
 ```js
 function FizzBuzz() {
 	this.check = (number) => {
-		if (number % 5 === 0) {
+		if (number % 15 === 0) {
 			return 'FizzBuzz';
 		} else if (number % 5 === 0) {
 			return 'Buzz';
@@ -295,9 +307,7 @@ $ touch features/index.feature.js
 In your `index.feature.js` file add the code to the top of the file
 
 ```js
-const { FizzBuzz } = require('../spec/spec.helper')
-const BrowserHelpers = require('e2e_training_wheels')
-const browser = new BrowserHelpers()
+ require('../spec.helper')
 ```
 
 Lets add the descirbe block and the helper methods to the `feature` file.
@@ -321,12 +331,13 @@ describe('User can input a value and get FizzBuzz results', () => {
 
 Run `npm run test` and make sure that our setup is correct.
 
-Now lets add the `it` block to our `feature.index.js` test
+Now lets add the `it` block to our `index.feature.js` test
 
 ```js
 it('clicking on the "Check" button', async () => {
 	await browser.fillIn("input[id='value']", { with:  "3" })
 	await browser.clickOnButton("input[value='Check']")
+
 	let content = await browser.getContent("[id='display_answer']")
 	expect(content).to.eql('Fizz');
 })
@@ -339,7 +350,8 @@ it('clicking on the "Check" button', async () => {
 
 Run `npm run test`, you should get the error message:
 ```
-1) 'clicking on the "Check" button'
+1) User can input a value and get FizzBuzz results
+       clicking on the "Check" button:
 
 [...]
 
@@ -383,7 +395,8 @@ Lets add those in the `<body>` tag
 In order to call on the connect our javascript code with the DOM elements we need some code to execute that action. Add the following code in the bottom of the file. Just make sure that the scripts are inside the `<html>` tag.
 
 ```html
-<script src="src/js/fizz-buzz.js"></script>
+	<script src="js/fizz-buzz.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             let button = document.getElementById('button')
@@ -404,7 +417,8 @@ Run the tests again and make sure that everything is going green.
 ***Question 7*. In your README to the best of your knowledge please write a line to line explanation of what is happening in this code**
 
 ```html
-<script src="src/js/fizz-buzz.js"></script>
+<script src="js/fizz-buzz.js"></script>
+
     <script>
         document.addEventListener('DOMContentLoaded', () => {
             let button = document.getElementById('button')
