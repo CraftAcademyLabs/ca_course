@@ -178,8 +178,8 @@ Return to your `spec.helper.js` add in the following piece of code:
 ```js
 global.FizzBuzz = require('./src/js/fizzbuzz')
 ```
-
 Run `npm run specs` you should have a new error, do you remember seeing this before?
+
 In you `fizzbuzz.js`add the following code, outside the fizzbuzz function.
 ```js
 if (typeof module !== 'undefined' && module.exports) {
@@ -289,15 +289,14 @@ Run `npm run specs` you should have the test going green. If it does commit and 
 
 We are now moving over to feature testing. We should have working logic by now. So let's make sure that we can visably see the results.
 
-```js
- require('../spec.helper')
-```
-Add a proper description on what we want to test for to the `index.feature.js` file
+Add a proper description on what we want to test for to the `application.feature.js` file
 
 ----
 ***Question 6*. In your README to the best of your knowledge please explain what this following code does**
 
 ```js
+require('../spec.helper')
+
 describe('User can input a value and get FizzBuzz results', () => {
 	before(async () => {
 		await  browser.init()
@@ -318,7 +317,7 @@ describe('User can input a value and get FizzBuzz results', () => {
 
 Run `npm run test` and make sure that our setup is correct.
 
-Now lets add the `it` block to our `index.feature.js` test
+Now lets add the `it` block to our `application.feature.js` test
 
 ```js
 it('clicking on the "Check" button', async () => {
@@ -347,6 +346,7 @@ TypeError: Cannot read property 'type' of null
 
 Let's fix this
 
+In your `src` folder create an `ìndex.html` file
 
 If we think about it we know what we need to add to the `index.html` file
 
