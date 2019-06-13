@@ -8,9 +8,7 @@ In this challenge we are revisiting the fizzbuzz kata, but in JS!
 
 
 
-We are also bringing back the training wheel
-
-testing package to write test to our code.
+We are also bringing back the training wheel testing package to write test to our code. We have intentionally left some syntax errors in the code for you to find.
 
 As the final part of the challenge you need to deploy your website using github pages.
 
@@ -21,11 +19,10 @@ Learning objectives
 - Combine both feature and unit test and understand their difference
 - Read and understand documentation
 - Debug and find errors
-
+- Find and remove unneccesary code and files.
 
 
 **What we are expecting to see in your implementation:**
-
 
 
 - A deployed website with some styling
@@ -38,7 +35,9 @@ Learning objectives
 
 - A PR towards your own master branch
 
-- Answers to the questions in the README
+- Answers to all of the questions in the README
+
+- Markdown syntax used in the README with proper code formatting
 
 
 
@@ -81,24 +80,15 @@ $ npm init
 this will be the branch that you are going to work from.
 
 
-7. Go over to the training wheels [package](https://www.npmjs.com/package/e2e_training_wheels) and follow the instructions to install it. This is the same package that we used in the BMI-challenge.
+7. Go over to the training wheels [package](https://www.npmjs.com/package/e2e_training_wheels) and follow the instructions to install it. This is the same package that we used in the BMI-challenge. Install the package using the automatic setup. You will get some scary messages when you run the `npm link` command, ignore those and run `npm run test`. You should get passing tests if everything is set up properly.
 
 
 **Make sure that you create a `.gitignore` and add `node_modules` before you commit**
 
-8. We are going to unit test so we need a spec folder
+8. We are going to unit test so we need a spec folder which is created when installing e2e-testing package
 
-create a `spec` folder and a `spec.helper.js`
 
-```
-
-$ mkdir spec
-
-$ touch spec/spec.helper.js
-
-```
-
-Add the following code to the `spec.helper.js` (in the top of the file)
+Add the following code to the `spec.helper.js`
 
 ```js
 const chai = require('chai');
@@ -117,7 +107,7 @@ global.expect = chai.expect;
 ```
 ---
 
-We are now done with the setup lets move to the next part.
+We are now done with the setup let's move to the next part.
 
 
 
@@ -165,11 +155,9 @@ let fizzBuzz = new FizzBuzz
 ---
 
 Now it's time to add implemenation code.
-Create a `src` folder and `js` folder. We also need a `fizz-buzz.js` file to keep our code.
+Create a `fizz-buzz.js` file to keep our code.
 
 ```bash
-$ mkdir src
-$ mkdir src/js
 $ touch src/js/fizz-buzz.js
 ```
 
@@ -291,26 +279,23 @@ Run `npm run specs` you should have the test going green. If it does commit and 
 
 ## Feature testing
 
-We are now moving over to feature testing. We should have working logic by now. So let's make sure that we can visably see the results.
+
 
 ----
-***Question 5*. In your README to the best of your knowledge please explain the difference between feature and unit test** 
+***Question 5*. In your README to the best of your knowledge please explain the difference between feature and unit test**
 
 ---
-Create a feature folder and a feature file
 
-```bash
-$ mkdir features
-$ touch features/index.feature.js
-```
 
-In your `index.feature.js` file add the code to the top of the file
+We are now moving over to feature testing. We should have working logic by now. So let's make sure that we can visably see the results.
 
 ```js
  require('../spec.helper')
 ```
+Add a proper description on what we want to test for to the `index.feature.js` file
 
-Lets add the descirbe block and the helper methods to the `feature` file.
+----
+***Question 6*. In your README to the best of your knowledge please explain what this following code does**
 
 ```js
 describe('User can input a value and get FizzBuzz results', () => {
@@ -328,6 +313,8 @@ describe('User can input a value and get FizzBuzz results', () => {
 	})
 })
 ```
+---
+
 
 Run `npm run test` and make sure that our setup is correct.
 
@@ -344,7 +331,7 @@ it('clicking on the "Check" button', async () => {
 ```
 
 ----
-***Question 6*. In your README to the best of your knowledge please explain what expectations in the context of testing are**
+***Question 7*. In your README to the best of your knowledge please explain what expectations in the context of testing are**
 
 ---
 
@@ -360,24 +347,8 @@ TypeError: Cannot read property 'type' of null
 
 Let's fix this
 
-Create a index.html file in the `src` folder
 
-```html
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>FizzBuzz</title>
-</head>
-<body>
-
-</body>
-</html>
-```
-
-If we go back to our feature test we can see what we need to add to the `index.html` file
+If we think about it we know what we need to add to the `index.html` file
 
 We will need:
 - A input field for us to enter the number
@@ -414,7 +385,7 @@ In order to call on the connect our javascript code with the DOM elements we nee
 Run the tests again and make sure that everything is going green.
 
 ----
-***Question 7*. In your README to the best of your knowledge please write a line to line explanation of what is happening in this code**
+***Question 8*. In your README to the best of your knowledge please write a line to line explanation of what is happening in this code**
 
 ```html
 <script src="js/fizz-buzz.js"></script>
@@ -445,7 +416,7 @@ You need to add Tailwind through a CDN
 Run your test after you have styled the webpage in order to make sure that the code still works.
 
 ----
-***Question 8*. In your README to the best of your knowledge please explain what a CDN (Content Delivery Network) is?**
+***Question 9*. In your README to the best of your knowledge please explain what a CDN (Content Delivery Network) is?**
 
 ---
 
@@ -461,7 +432,7 @@ Go to the package.json and only remove `src` from the following line:
 "features": "superstatic src -p 8080 & mocha --timeout 100000 --recursive  --reporter=spec features PORT=8080 npm run stop-test-server ",
 ```
 
-run your tests again to make sure that the tests are not failing.
+run your tests again they will fail. Add the proper path for `fizz-buzz.js` in the index html and make sure that the tests are not failing.
 
 Commit, push and deploy the site.
 
@@ -474,8 +445,7 @@ Submit the link to the PR in the submission section.
 When you are done you can continue working on your website.
 
 You can:
-- Refactor your fizzbuzz code
+- Refactor your fizzbuzz code with some ES6
 - Style your site some more
 - Extract the script with the eventlistners from index.html to a separate file
-
 

@@ -1,4 +1,5 @@
 ---
+
 title: "DevOps"
 subtitle: "Deploy Ruby on Rails on Ubuntu 18.04"
 author: [Craft Academy - Coding as a Craft]
@@ -41,6 +42,7 @@ Give your droplet a name and upload your ssh-keys to be able to login to the ser
 ![SSH Key and Droplet name](https://github.com/CraftAcademy/ca_course/raw/master/guides/images/ssh-key-droplet-name.png)
 
 ## Create `deploy` user
+
 We first need to ssh into our server as the `root` user, so grab the ip number of the server.
 
 ```shell
@@ -166,12 +168,11 @@ $ rbenv rehash
 
 And finally we install rails
 
-``sh
+```sh
 $ gem install rails
 ```
 
-
-## Installing the Nginx Web Server 
+## Installing the Nginx Web Server
 
 We will use Passenger + Nginx on our Production server because it's fairly easy to setup.
 
@@ -180,13 +181,12 @@ $ sudo apt install -y dirmngr gnupg
 $ sudo apt-key adv --keyserver hkp://keyserver.ubuntu.com:80 --recv-keys 561F9B9CAC40B2F7
 $ sudo apt install -y apt-transport-https ca-certificates
 
-$ sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger $ bionic main > /etc/apt/sources.list.d/passenger.list'
+$ sudo sh -c 'echo deb https://oss-binaries.phusionpassenger.com/apt/passenger xenial main > /etc/apt/sources.list.d/passenger.list'
 $ sudo apt update
 
-$ sudo apt install -y nginx-core libnginx-mod-http-passenger
+$ sudo apt-get install -y nginx-extras passenger
 
-$ if [ ! -f /etc/nginx/modules-enabled/50-mod-http-passenger.conf ]; then sudo ln -s /usr/share/nginx/modules-available/mod-http-passenger.load /etc/nginx/modules-enabled/50-mod-http-passenger.conf ; fi
-$ sudo ls /etc/nginx/conf.d/mod-http-passenger.conf
+$ sudo ls /etc/nginx/passenger.conf
 ```
 
 Now that Nginx has been installed and we've configured passenger, we need to restart Nginx by using the following command:
@@ -204,7 +204,7 @@ sudo /usr/bin/passenger-config validate-install
 Next, we should update the Nginx configuration to point Passenger to the version of Ruby we installed earlier on.
 
 ```sh
-sudo vim /etc/nginx/conf.d/mod-http-passenger.conf
+sudo vim /etc/nginx/passenger.conf
 ```
 
 Locate the line that sets `passenger_ruby` and modify it to point to the ruby executable
@@ -234,12 +234,12 @@ $ sudo su - postgres
 $ createuser -s -r -P deploy
 $ exit
 ```
+
 As the `deploy` user we need to create the database for our application
 
 ```sh
 $ createdb -O deploy my_app_name_production
 ```
-
 
 ## Capistrano Setup
 
@@ -251,6 +251,8 @@ group :development do
   gem 'capistrano-env-config'
   gem 'capistrano-rbenv', '~> 2.1', '>= 2.1.1'
   gem 'capistrano3-puma', '~> 3.1', '>= 3.1.1'
+  gem 'capistrano-passenger'
+  gem 'capistrano-yarn'
 end
 ```
 
@@ -278,6 +280,7 @@ require 'capistrano/bundler'
 require 'capistrano/rails/assets'
 require 'capistrano/rails/migrations'
 require 'capistrano/passenger'
+require 'capistrano-yarn'
 
 # Load custom tasks from `lib/capistrano/tasks` if you have any defined
 Dir.glob('lib/capistrano/tasks/*.rake').each { |r| import r }
@@ -303,8 +306,7 @@ set :deploy_to, '/var/www/appname'
 # Default value for :linked_files is []
 set :linked_files, %w[
   config/database.yml
-  config/secrets.yml
-  .env
+  config/master.key
 ]
 
 # Default value for linked_dirs is []
@@ -351,8 +353,29 @@ You need to ssh into the server and create the folder you've specified on the `d
 
 ```sh
 /var/www/appname/shared/config/database.yml
-/var/www/appname/shared/config/secrets.yml
-/var/www/appname/shared/.env
+/var/www/appname/shared/config/master.key
+```
+
+To the database.yml add
+
+```ruby
+production:
+  <<: *default
+  database: db_name_production
+  username: deploy
+  password: <%= Rails.application.credentials.dig :postgres, :password, :production %>
+```
+
+and update your rails credentials file
+
+```sh
+$ rails credentials:edit
+```
+
+```ruby
+postgres:
+  password:
+    production: db_password
 ```
 
 ## Configure Nginx host
@@ -385,4 +408,5 @@ $ sudo systemctl restart nginx
 ```
 
 ## Wrap up
-This should do it. At this stage you have set up your very own Virtual Private Server. 
+
+This should do it. At this stage you have set up your very own Virtual Private Server.
