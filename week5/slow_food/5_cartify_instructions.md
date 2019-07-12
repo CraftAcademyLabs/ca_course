@@ -7,7 +7,7 @@ The cartify gem is intended for learning purposes only. This means that the gem 
 Before we can implement the cartify gem we need to have two things in order
 - We need to have Devise set up with a user model, with the specs
 - We need to have a products controller and a products model and test to verify our model
-- We need can view products on the landing page
+- We need to be able to view products on the landing page
 - Cucumber for feature testing
 
 ### Setting the stage
