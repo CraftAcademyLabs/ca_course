@@ -11,14 +11,14 @@ Before we can implement the cartify gem we need to have two things in order
 - Cucumber for feature testing
 
 ### Setting the stage
-As we are going to work in a BDD way the first thing we need to do is to create a new branch and then to create a `feature` file.
+As we are going to work in a BDD way the first thing we need to do is to create a new branch and then create a `feature` file.
 
 ```bash
 $ git checkout -b visitor_can_add_products_to_cart
 $ touch features/visitor_can_add_products_to_cart.feature
 ```
 
-Next up we are going to add a `Feature definition`, `Background` and a `Scenario` to the feature file.
+Next up we are going to add a `Feature definition`, `Background` and  `Scenario` to the feature file.
 This feature is not completed and we will continiously refactor it in order to complete the user story.
 
 
@@ -39,12 +39,12 @@ Scenario: Visitor can add products to cart
 ```
 
 Go ahead and run cucumber in the terminal in order to get the step definitions that we need.
-Now take the content from the terminal and add the to your step definitions.
+Now take the content from the terminal and add itcu to your step definitions.
 
 
 ### First green tests
 
-Before we do anything else we need to make sure that we have the appropriate factories for both the products model and the user model that we need for our background steps. You should already have created these in previous stories, if not then ow is as a god time as any to do so.
+Before we do anything else we need to make sure that we have the appropriate factories for both the products model and the user model that we need for our background steps. You should already have created these in previous stories, if not then create.
 
 
 For the products model:
@@ -76,7 +76,7 @@ When("I click on {string}") do |link_name|
 end
 ```
 
-The first two test should go green by now, beacuse you have a factory set up and your products are probably on the landing page of the application. If notthen make sure that you set the adjust the test to mirror the path you want to visit.
+The first two tests should go green by now, beacuse you have a factory set up and your products are probably on the landing page of the application. If not then make sure that you adjust the test to mirror the path you want to visit.
 
 In order to pass the `And I click on 'Add to cart' on 'Pizza'` step we have to install the Cartify gem.
 
@@ -92,7 +92,7 @@ Run `bundle`, and then the command `$ rails generate cartify:install --scope all
 
 Please look at the official documentation for more information.
 
-The Cartify gem requires javascript. Add the `@javascript` tag to the top of the `Feature` file. You need to have Selenium and Webdriver set up in order for the `@javascript` to work. Please refer to the course doucmentation in order to set that up, if do not have that added already.
+The Cartify gem requires javascript. Add the `@javascript` tag to the top of the `Feature` file. You need to have `Selenium` and `Webdriver` set up in order for the `@javascript` to work. Please refer to the course doucmentation in order to set that up, if do not have that added already.
 
 Cartify adds `resources :products, only: [:show]` to your routes file by default. Please refactor this to suit your application. Another thing that is added is the `mount Cartify::Engine, at: '/'`
 
@@ -124,7 +124,7 @@ Add the following associations to the user model.
 
 If we have called our products model for anything else like `Dishes` etc, we need to make adjustments to the cartify initializer file(`config/initializers/cartify.rb`). If not then we can carry on.
 
-The last thing we need to do in order to coplete the configuration is to add the helper methods provided to us by cartify in the application controller.
+The last thing we need to do in order to complete the configuration is to add the helper methods provided to us by cartify in the application controller.
 
 ```ruby
 class ApplicationController < ActionController::Base
@@ -160,7 +160,7 @@ Then("I should see {string}") do |expected_content|
     expect(page).to have_content expected_content
 end
 ```
-Please go over the step definition when we are clicking on the product carefully and really understand what is happening.
+Please go over the step definition when `we are clicking on the product` carefully and really understand what is happening?
 
 The next step is to add the `add_to_cart` helper method and the `dom_id` to the `index` view.
 
@@ -177,16 +177,17 @@ The next step is to add the `add_to_cart` helper method and the `dom_id` to the 
 </table>
 ```
 
-If we look at the documentation for the Cartify gem we can see what arguments we need to pass in to the method and how to modify it:
+If we look at the documentation for the `Cartify gem` we can see what arguments we need to pass in to the method and how to modify it:
+
 ```ruby
 add_to_cart(product, quantity, button_name)
 # product -     name of your selling product (required!)
 # quantity -    how many goods you with put into cart (default: 1)
 # button_name - button name (default: "Add to cart")
 ```
-We will use the default values, but remember if you want to change this that you also need to modify your feature file.
+We will use the default values, but remember if you want to change this, you also need to modify your feature file.
 
-The last step is to make sure that we can view the number of products in our cart we have to use the `shop_icon_quantity` helper method.
+The last step is to make sure that we can view the number of products in our cart, we have to use the `shop_icon_quantity` helper method.
 The best place to add this is in the application.html.erb file before the `yield`
 
 ```
