@@ -17,15 +17,21 @@ Let's get back to the ATM challenge.
     3. Modify `.rspec` to output the spec messages in terminal.
 * Create a basic folder structure for your project (production code in `lib`, tests in `spec`)
 * Create a `README.md` with a basic description of the project
-* Initialize and push a git repository
+* Initialize and push to a git repository
 * Add your pairing partner as a `git remote`
 
 ## Let's do it!
 
-Create a project folder in your Terminal and `cd` into that folder
+Go to this [link](https://github.com/CraftAcademy/atm_challenge_2019) and "fork" this repository by clicking on the fork button.
+This will create a copy of the atm_challenge repository on your account (make sure of this by looking at the title of the repo). The next step is to click on the `clone or download` button. Copy the link and move over to your terminal. Navigate to an appropriate folder and "clone" the repo by adding the repo link to the following command:
 
 ```shell
-$ touch atm_challenge
+$ git clone repo_link
+```
+Hit enter in your Terminal and `cd` into the downloaded atm-folder. 
+
+```shell
+$ cd atm_challenge_2019
 ```
 
 As mentioned above, we need to set up the necessary tools we'll be using. We know that we'll be using Ruby as the programming language. That is already set up on our system. 
@@ -103,15 +109,6 @@ Alright, that means we are set and ready to test.
 
 Let me put down some ground rules about version control. Commit often, write good commit messages and push up to your GitHub account. That is the only way for us coaches to see your progress. It does not matter if the code is working. We still want to see it. **BAD CODE is better then NO CODE!**
 
-At this stage you need to set up a git repository. I suggest that you create a GitHub repository, copy the address and add it as a remote to your local repository (We are about to create one). 
-
-In your terminal, initialize a new git repository with the `init` command.
-
-```
-$ git init
-Initialized empty Git repository in /your/path/atm/.git/
-~/your/path/atm [master|…2] 
-```
 Next, you need to create a `.gitignore` file. That file is used to keep information about files we want to EXCLUDE from version control. 
 
 ```
@@ -130,7 +127,6 @@ _.gitignore_
 Now, perform the following steps.
 
 ```
-$ git remote add origin <your git repo url>
 $ git add . 
 $ git commit -am "<your message>"
 $ git push origin master
