@@ -2,7 +2,7 @@
 
 In this section, we will focus on the `My Projects` display. We will take a closer look at how we can fetch some data (about projects) in JSON format, pass that data in to the `render()` function, and display it in the browser. 
 
-Until now, we've only created stateless components (stored in functions). Now, we need to unleash some other powers that come in React. Components defined as classes are stateful, and provide more features that will be useful to us. To define a React component class, you need to extend `React.Component`. 
+Until now, we've only created stateless components (stored in functions). Now, we need to unleash some other powers that come in React. Components defined as classes are stateful, and provide more features that will be useful to us. To define a React component class, you need to extend `React.Component` (or simply `Component` if you import it as a module - more on that below.). 
 
 ## Extending React.Component vs creating a function
 
@@ -64,47 +64,48 @@ We will make use of the `constructor()` and `componentDidMount` event in our imp
 import React, { Component } from "react"
 
 class Projects extends Component {
-    constructor() {
-        super();
-        this.state = {
-            projects: [
-                        {
-                            "id": 1,
-                            "name": "My First Website"
-                        },
-                        {
-                            "id": 2,
-                            "name": "FizzBuzz"
-                        }
-
-                    ]
-        };
-    }
-
-    render() {
-        const projects = this.state.projects
-        let projectsList 
-
-        if (projects.length > 0) {
-            projectsList = projects.map(project => {
-                return (
-                    <div key={project.id}>
-                        <h3 className="content-text">
-                            {project.name}
-                        </h3>
-                    </div>
-                )
-            })
+  constructor() {
+    super();
+    this.state = {
+      projects: [
+        {
+          "id": 1,
+          "name": "My First Website"
+        },
+        {
+          "id": 2,
+          "name": "FizzBuzz"
         }
+      ]
+    };
+  }
 
+  render() {
+    const projects = this.state.projects
+    let projectsList
 
+    if (projects.length > 0) {
+      projectsList = projects.map(project => {
         return (
-            <div>
-                <h1 className="content-text">My Projects</h1>
-                {projectsList}
-            </div>
+          <div key={project.id}>
+            <h3 className="ui header">
+              {project.name}
+            </h3>
+          </div>
         )
+      })
     }
+
+
+    return (
+
+      <div className="ui main container">
+        <h1 className="ui header">My Projects</h1>
+        {projectsList}
+      </div>
+
+    )
+  }
 };
 
 export default Projects
@@ -127,15 +128,14 @@ Having information about our projects hard coded in the components `constructor(
 
 ```json
 [
-    {
-        "id": 1,
-        "name": "My First Website"
-    },
-    {
-        "id": 2,
-        "name": "FizzBuzz"
-    }
-
+  {
+    "id": 1,
+    "name": "My First Website"
+  },
+  {
+    "id": 2,
+    "name": "FizzBuzz"
+  }
 ]
 ```
 
@@ -143,6 +143,8 @@ Having information about our projects hard coded in the components `constructor(
 
 ```bash
 $ npm i -S axios
+//
+$ yarn add axios
 $ mkdir src/data
 $ touch src/data/projects.json
 // add the json code to src/data/projects.json
@@ -159,10 +161,10 @@ Next, remove the projects data from the `constructor()` (we will use `this.setSt
 
 ```javascript
 constructor() {
-    super();
-    this.state = {
-        projects: []
-    };
+  super();
+  this.state = {
+    projects: []
+  };
 }
 ```
 
@@ -172,12 +174,12 @@ Add the following function to the component:
 
 ```javascript
 componentDidMount() {
-    axios.get('./src/data/projects.json')
-        .then(response => {
-            this.setState({
-                projects: response.data
-            })
-        })
+  axios.get('./src/data/projects.json')
+    .then(response => {
+      this.setState({
+        projects: response.data
+      })
+    })
 }
 ```
 
