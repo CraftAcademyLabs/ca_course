@@ -113,7 +113,7 @@ First, we need to add a `<style>` tag to our `index.html` (Don't worry, we will 
     }
 
     .main.container {
-      margin-top: 7em;
+      margin-top: 4em;
     }
   </style>
 ```

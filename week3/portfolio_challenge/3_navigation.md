@@ -2,7 +2,7 @@
 
 Our portfolio application is taking shape. In the previous section, we added a header and a footer to the page structure. Now, we want to extend our application with an "About Me" and a "Projects" section. There are many ways to achieve that, but for learning purposes, we will take a path that requires us to add dynamic routes to our application. The end result we are looking for is something like this:
 
-![](react_portfolio_3_basic_navigation.gif)
+![](portfolio_v2_basic_navigation.gif)
 
 ## Router - the concept
 Single-page applications (like the one we are building) rewrite sections of a page rather than loading entire new pages from a server. There are many examples of applications that do not render the entire page when you click a link or request new information from the server in another way. You've probably encountered this functionality on many of the popular sites out there. 
@@ -28,6 +28,8 @@ As with every package, we will add the router using NPM and save it as a depende
 
 ```
 $ npm i -S react-router-dom
+// or
+$ yarn add react-router-dom
 ```
 
 We want to add 2 new components to our application. We will create them in `About.jsx` and `Projects.jsx` (in the `src`  folder).
@@ -36,11 +38,11 @@ We want to add 2 new components to our application. We will create them in `Abou
 import React from "react"
 
 const About = () => {
-    return (
-        <div>
-            <h1 className="content-text">About Me</h1>
-            <p className="content-text">Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum molestias?</p>
-        </div>)
+  return (
+    <div className="ui container"> 
+      <h1 className="ui header">About Me</h1>
+      <p>Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum molestias?</p>
+    </div>)
 }
 
 export default About
@@ -50,12 +52,12 @@ export default About
 import React from "react"
 
 const Projects = () => {
-    return (
-        <div>
-            <h1 className="content-text">My Projects</h1>
-            <p className="content-text">Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum molestias?</p>
-        </div>
-    )
+  return (
+    <div className="ui container">
+      <h1 className="ui header">My Projects</h1>
+      <p>Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum molestias?</p>
+    </div>
+  )
 
 };
 
@@ -92,21 +94,19 @@ import { Switch, Route } from 'react-router-dom'
 We will put them to use in our `return` of our `App` component.
 
 ```javascript
-    return (
-        <div className="page-wrapper">
-            <div className="page-content">
-                <Header />
-                <div className="content-wrapper">
-                    <Switch>
-                        <Route exact path='/' component={Hello}></Route>
-                        <Route exact path='/about' component={About}></Route>
-                        <Route exact path='/projects' component={Projects}></Route>
-                    </Switch>
-                </div>
-                <Footer />
-            </div >
-        </div >
-    )
+const App = () => {
+  return (
+    <>
+      <Header />
+      <Switch>
+        <Route exact path='/' component={Hello}></Route>
+        <Route exact path='/about' component={About}></Route>
+        <Route exact path='/projects' component={Projects}></Route>
+      </Switch>
+      <Footer />
+    </ >
+  )
+};
 ``` 
 
 ## Link and NavLink components
@@ -123,21 +123,23 @@ import { NavLink, Link } from 'react-router-dom';
 And add them to our render function.
 
 ```javascript
-return (
-    <nav className="header">
-        <h1 className="header-title">
-            <Link className="text-white hover:text-grey no-underline" to='/'>My Portfolio</Link>
-        </h1>
-        <ul className="list-reset flex">
-            <li className="mr-6"><NavLink className="text-white hover:text-grey no-underline" activeStyle={{fontWeight: "bold"}} to='/about'>About Me</NavLink></li>
-            <li className="mr-6"><NavLink className="text-white hover:text-grey no-underline" activeStyle={{fontWeight: "bold"}} to='/projects'>My Projects</NavLink></li>
-        </ul>
+const Header = () => {
+  return (
+    <nav className='ui fixed inverted menu'>
+      <div className="ui container">
+        <Link className="header item" to='/'>My Portfolio</Link>
+        <div className="right menu">
+          <NavLink className="ui item" activeStyle={{ fontWeight: "bold" }} to='/about'>About Me</NavLink>
+          <NavLink className="ui item" activeStyle={{ fontWeight: "bold" }} to='/projects'>Projects</NavLink>
+        </div>
+      </div>
     </nav>
-)
+  )
+}
 ```
 ## Wrap up
 
-I deliberately left the Tailwind classes in the markup above. Your job will be to extract these to custom classes and add them to `tailwind.src.css`. At this point, you know how to do make use of Tailwind classes in your own css classes using the `@apply` directive.  
+We now have a basic navigation in place. Moving forward, we will start filling our portfolio with conent.   
 
 
 
