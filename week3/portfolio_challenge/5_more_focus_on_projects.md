@@ -98,7 +98,6 @@ const ProjectCard = (props) => {
         </div>
         <div class="content">
           <h3 class="ui header">{project.name}</h3>
-
           <div class="description">
             {project.description}
           </div>

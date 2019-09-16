@@ -167,9 +167,9 @@ We need to tell Babel that we want to use those presets. In the project's root f
 
 ### Execution
 ```bash
-$ npm i -D @babel/core @babel/cli @babel/preset-env @babel/preset-react
+$ npm i -D @babel/core @babel/cli @babel/preset-env @babel/preset-react uglifyjs-webpack-plugin
 // or
-$ yarn add -D @babel/core @babel/cli @babel/preset-env @babel/preset-react
+$ yarn add -D @babel/core @babel/cli @babel/preset-env @babel/preset-react uglifyjs-webpack-plugin
 $ touch .babelrc
 // add the json code to .babelrc
 ```
@@ -187,6 +187,7 @@ To get all of this up and running, we need to configure Webpack to use our loade
 ```js
 const path = require("path")
 const webpack = require("webpack")
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = {
   entry: "./src/index.js",
@@ -215,7 +216,19 @@ module.exports = {
     contentBase: path.join(__dirname, "/"),
     port: 3000,
     publicPath: "http://localhost:3000/dist/",
-    watchContentBase: true
+    watchContentBase: true,
+    historyApiFallback: true,
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          mangle: {
+            keep_fnames: true,
+          },
+        },
+      })
+    ],
   },
   plugins: [new webpack.HotModuleReplacementPlugin()]
 }

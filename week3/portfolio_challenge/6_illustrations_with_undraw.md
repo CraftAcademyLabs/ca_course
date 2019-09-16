@@ -16,6 +16,8 @@ The first thing we need to do is to add the `react-undraw-illustrations` package
 
 ```bash
 $ npm i -S react-undraw-illustrations
+// or
+$ yarn add react-undraw-illustrations
 ```
 Adding an illustration is pretty straight forward, but require a bit of research. First you need to search for the appropriate  illustration you want to display on the [unDraw website](https://undraw.co/illustrations).
 
@@ -40,19 +42,18 @@ The next step is to add the component to the JSX (I also modified the css a bit 
 
 ```javascript
 return (
-        <div className="content-wrapper">
-            <div className="flex flex-wrap mb-4">
-                <div className="w-full lg:w-1/4 md:w-1/2">
-                    <UndrawDesignerLife />
-                </div>
-                <div className="w-full lg:w-3/4 md:w-1/2">
-                    <h1 className="content-text">About Me</h1>
-                    <p className="content-text">Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum molestias?</p>
-                </div>
-
-            </div>
+    <div className="ui main container">
+      <div class="ui stackable two column grid">
+        <div class="column">
+          <UndrawDesignerLife />
         </div>
-    )
+        <div class="column">
+          <h1 className="ui header">About Me</h1>
+          <p>Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum molestias?</p>
+        </div>
+      </div>
+    </div>
+  )
 ```
 
 We can do a similar modification to the component in `Projects.jsx`. Here we want to display an image titled "Dashboard"
@@ -66,29 +67,26 @@ And modify the JSX:
 
 ```javascript
 return (
-        <div className="content-wrapper">
-            <div className="flex mb-4">
-                <div className="w-1/4">
-                    <UndrawDashboard />
-                </div>
-                <div className="w-3/4">
-                    <h1>My Projects</h1>
-                    <p>This is a selection of some of my projects I have been working on.</p>
-                </div>
-
-            </div>
-
-            <div className="flex flex-wrap -mx-1 lg:-mx-4">
-                {projectsList}
-            </div>
+      <div className="ui main container">
+        <div className="ui stackable two column grid">
+          <div className="column">
+            <UndrawDesignerLife />
+          </div>
+          <div className="column">
+            <h1 className="ui header">My Projects</h1>
+            <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia quod ab doloremque eaque. Consequatur temporibus, quos enim, eaque nemo ad iusto sequi modi totam qui veniam? Ab asperiores inventore distinctio.</p>
+          </div>
         </div>
+        <div className="ui stackable four column grid">
+          {projectsList}
+        </div>
+      </div>
     )
-
 ```
 
 If you render your application in your browser, you should be able to see the illustrations. 
 
-![](react_portfolio_undraw_displayed.png)
+![](portfolio_v2_undraw_illustrations.gif)
 
 ## Modify colors
 
