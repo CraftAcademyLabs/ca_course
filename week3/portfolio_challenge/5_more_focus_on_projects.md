@@ -4,30 +4,30 @@ We will spend some more time on our Project display and learn about `props`
 
 This is our end game for this section of the course:
 
-![](react_portfolio_4_project_cards.png)
+![](portfolio_v2_project_cards.png)
 
 We need to add some more content to our `projects.json` and describe our projects in more detail. 
 
 ```json
 [
-    {
-        "id": 1,
-        "name": "My First Website",
-        "image": "http://www.4president.us/websites/2000/2000w/gore2000home.gif",
-        "description": "This was my first project. The guy lost, but won the popular vote!"
-    },
-    {
-        "id": 2,
-        "name": "UI Design",
-        "image": "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-        "description": "Designing user interfaces is fun. I want to learn more about that..."
-    },
-    {
-        "id": 3,
-        "name": "Mobile UX",
-        "image": "https://images.unsplash.com/photo-1534237886190-ced735ca4b73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-        "description": "I like to design for the mobile platform. The challenges to build UI's for smartphones is challenging but extremely rewarding."
-    }
+  {
+    "id": 1,
+    "name": "My First Website",
+    "image": "http://www.4president.us/websites/2000/2000w/gore2000home.gif",
+    "description": "This was my first project. The guy lost, but won the popular vote!"
+  },
+  {
+    "id": 2,
+    "name": "UI Design",
+    "image": "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+    "description": "Designing user interfaces is fun. I want to learn more about that..."
+  },
+  {
+    "id": 3,
+    "name": "Mobile UX",
+    "image": "https://images.unsplash.com/photo-1534237886190-ced735ca4b73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+    "description": "I like to design for the mobile platform. The challenges to build UI's for smartphones is challenging but extremely rewarding."
+  }
 ]
 ```
 
@@ -50,16 +50,32 @@ Modify the part of the code where we populate the `projectsList` variable with H
 ```javascript
 if (projects.length > 0) {
       projectsList = projects.map(project => {
-          return (
-              <div key={project.id} className="min-h-900 my-1 px-1 w-full md:w-1/2 lg:my-4 lg:px-4 lg:w-1/3">
-                  <ProjectCard project={project} />
-              </div>
-          )
+        return (
+          <div key={project.id}>
+            <ProjectCard project={project} />
+          </div>
+        )
       })
-  }
+    }
+```
+And modify the JSX return:
+
+```javascript
+return (
+  <div className="ui main container">
+    <h1 className="ui header">My Projects</h1>
+    <div className="ui stackable four column grid">
+      {projectsList}
+    </div>
+  </div>
+)
 ```
 
-We also need to `import` the `ProjectCard` component into `Projects`:
+We also need to create and `import` the `ProjectCard` component into `Projects`:
+
+```bash
+$ touch src/ProjectCard.jsx
+```
 
 ```javascript
 import ProjectCard from "./ProjectCard"
@@ -73,28 +89,23 @@ Our new component can have a static type, so we do not have to use `class`. Crea
 import React from "react"
 
 const ProjectCard = (props) => {
-    let project = props.project
-    return (
-
-        <div key={project.id} className="overflow-hidden border">
-            <img src={project.image} className="block h-auto w-full" style={{ height: '150px', objectFit: 'cover' }} />
-
-
-            <div className="px-6 py-4" style={{ minHeight: '150px' }} >
-                <div className="font-bold text-xl mb-2">{project.name}</div>
-                <p className="text-grey-darker text-base">
-                    {project.description}
-                </p>
-            </div>
-
-            <div className="flex items-center justify-between leading-none p-2 md:p-4">
-                <button className="bg-blue-darkest hover:bg-blue-dark text-white text-xs py-1 px-2 rounded-full">
-                    Details
-                </button>
-            </div>
-
+  let project = props.project
+  return (
+    <>
+      <div class="ui card">
+        <div class="image">
+          <img src={project.image} />
         </div>
-    )
+        <div class="content">
+          <h3 class="ui header">{project.name}</h3>
+
+          <div class="description">
+            {project.description}
+          </div>
+        </div>
+      </div>
+    </>
+  )
 }
 
 export default ProjectCard
@@ -104,8 +115,6 @@ export default ProjectCard
 There are a few things to look out for.
 
 Pay attention to the `props` parameter we are receiving. It's the `project` object we sent off from the `Projects` component. We  populate our HTML with data from that object (i.e. `project.name`, `project.description`, etc.)
-
-Also, please note the way we define inline style for the `img` tag. In react, we need to do it slightly differently than we do in regular HTML5. `style={{ height: '150px', objectFit: 'cover' }}` is the React way to do `style="height: 150px; object-fit: cover;"`. We also set `style` on one of the divs. What attribute are we setting on that one?
 
 ## Wrap up
 By adding a new component we can keep the code cleaner and more readable. It is also possible for us to reuse the component in other parts of the application. Can you think of any other use case for the `ProjectCard`? Does the naming hinder you from thinking of one? 
