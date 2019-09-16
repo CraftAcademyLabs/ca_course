@@ -52,16 +52,28 @@ Now that you know what we want to achieve, let's run the following commands in y
 ```bash
 $ mkdir react_portfolio
 $ cd react_portfolio
-$ npm init -y
+$ npm init -y 
+// or 
+$ yarn init -y
 $ git init
 $ touch .gitignore
 $ echo -e "node_modules/\n.DS_Store\n.vscode\ndist" >> .gitignore
 $ git add .
 $ git commit -am "initiates project and adds gitignore scaffold"
 ```
+
+As a sanity check, you can run the `git log` command to see your current commit history. It's a good habit to check the history from time to time. Especially when you collaborate with others. By passing in the `--online` flag, you'll get a more readable output. At this point, you should see something like this:
+
+```bash
+$ git log --oneline
+15cf366 (HEAD -> master) initiates project and adds gitignore scaffold
+```
+
 ## The starting point
 
-We will build our React application and transpile it to executable code that will run on all browser. We will be creating most of the files in our `src` folder, and since React is using ES6 features, let the before mentioned tools (Webpack and Babel) compile it for us into the `dist` folder.
+In this exercise, we will build your React application and transpile it to executable code that will run on all browsers. Transpilers, or source-to-source compilers, are tools that read source code written in one programming language, and produce the equivalent code in another language. Babel is a tool that helps us transpile JavaScript files from latest versions of JavaScript (ECMAScript) to previous version so that it maintains compatibility against older browser versions. A bit simplified, you might say that everything you do in React must be translated to "vanilla" Jacascript - and that Babel does that for us (more on Babel later)
+
+We will be creating most of the files in our `src` folder, and since React is using ES6 features, let the before mentioned tools (Webpack and Babel) compile it for us into the `dist` folder.
 
 Create the following folder structure for your project:
 
@@ -98,7 +110,7 @@ You can use the following scaffold:
 
 ```
 
-The most important part of the scaffold is the `<div id="app"></div>` tag, which is the root our React application will hook into, but also the `script` reference to `dist/bundle.js` that will hold our compiled code. The rest is pretty much a standard HTML skeleton.
+The most important part of the code above, is the `<div id="app"></div>` tag, which is the root our React application will hook into, but also the `script` reference to `dist/bundle.js` that will hold our compiled code. The rest is pretty much a standard HTML skeleton.
 
 
 ### Execution
@@ -113,18 +125,20 @@ $ code index.html
 
 ## React as dependency
 
-To work with React, we need to install it. As simple as that. React can be added to your project using `npm`. 
+To work with React, we need to install it. As simple as that. React can be added to your project using `npm` or `yarn`(it's your choice, but be consistent.). 
 
 ## Execution
 
 ```bash
 $ npm i -S react react-dom 
+// or
+$ yarn add react react-dom 
 ```
 _Please note that `npm i -S` is the equivalent to `npm install --save`._
 
 ## Babel and Webpack
 
-We need to make sure the code we write can be transpiled from ES6 to ES5, as not all browsers support ES6 yet. 
+As mentioned above, we need to make sure the code we write can be transpiled from ES6 to ES5, as not all browsers support ES6 yet. 
 
 ### What is ES6?
 
@@ -154,6 +168,8 @@ We need to tell Babel that we want to use those presets. In the project's root f
 ### Execution
 ```bash
 $ npm i -D @babel/core @babel/cli @babel/preset-env @babel/preset-react
+// or
+$ yarn add -D @babel/core @babel/cli @babel/preset-env @babel/preset-react
 $ touch .babelrc
 // add the json code to .babelrc
 ```
@@ -271,7 +287,7 @@ $ npm start
 
 ![](react_portfolio_1_hello_world.png)
 
-This is probably by far the most complicated "Hello World" setup you've ever done. Well, if a "Hello World" application would have been our end-game, then all of the above has been a waste of time. What we've done so far, is to lay out the groundwork for out React application that we are going to build. Our hard work has not been in vain. Also, there's tons of more to React than this. Trust me.
+This is probably by far the most complicated "Hello World" setup you've ever done. At least so far into your programming journey. Well, if a "Hello World" application would have been our end-game, then all of the above has been a waste of time. What we've done so far, is to lay out the groundwork for out React application that we are going to build. Our hard work has not been in vain. Also, there's tons of more to React than this. Trust me.
 
 ## No quite there yet...
 
@@ -287,9 +303,9 @@ Let's create a new file in the `src` folder and call it `Hello.jsx`. I that file
 import React from "react"
 
 const Hello = () => {
-        return (
-            <div> Hello World</div>  
-        )
+  return (
+      <div> Hello World</div>  
+  )
 }
 
 export default Hello
@@ -303,7 +319,7 @@ import ReactDOM from "react-dom"
 import Hello from "./Hello"
 
 const App = () => {
-    return <Hello />
+  return <Hello />
 };
 
 ReactDOM.render(<App />, document.getElementById("app"))
@@ -315,7 +331,7 @@ Restart your development server and see if anything has changed.
 
 At this stage, we have a basic React application configured. It's been a hadfull, but I hope you have been able to grasp the gist of it. 
 We are using:
-* NPM as **package manager** that helps us to install or update third-party packages and dependencies.
+* NPM or YARN as a **package manager** that helps us to install or update third-party packages and dependencies.
 
 * Webpack as **bundler** that lets us to write modular code and bundle it together into small packages to optimize load time.
 

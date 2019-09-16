@@ -17,29 +17,28 @@ But first things first. Let's start with creating two new files in our `src` fol
 
 This is the code for `Header.jsx`: 
 ```javascript
-import React, { Component } from "react"
+import React from "react"
 
 const Header = () => {
-        return (
-             <nav>
-                <h1>My Portfolio</h1>
-             </nav>
-        )   
+  return (
+    <nav>
+      <h1>My Portfolio</h1>
+    </nav>
+  )
 }
 
 export default Header
 ```
 And this is how we will define the component in `Footer.jsx`:
 ```javascript
-import React from "react"
+import React from 'react'
 
 const Footer = () => {
-        return (
-            <footer>
-                <h1>Made with React</h1>
-            </footer>
-        )
-    
+  return (
+    <footer>
+      <h1>Made with React {React.version}</h1>
+    </footer>
+  )
 }
 
 export default Footer
@@ -55,13 +54,13 @@ import Header from "./Header"
 import Footer from "./Footer"
 
 const App = () => {
-    return (
-        <div>
-            <Header />
-            <Hello />
-            <Footer />
-        </div >
-    )
+  return (
+    <div>
+      <Header />
+      <Hello />
+      <Footer />
+    </div >
+  )
 };
 
 ReactDOM.render(<App />, document.getElementById("app"))
@@ -70,209 +69,108 @@ ReactDOM.render(<App />, document.getElementById("app"))
 Now, restart your development server to see the new components in action. They should be visible, but not impress you a lot. Right? It's time to add some styling to our application.
 
 ## Adding a CSS framework
-We will make use of [TailwindCSS](https://tailwindcss.com/docs/what-is-tailwind/) to add a look and feel to our application. 
+We will make use of [SemanticUI](https://semantic-ui.com/introduction/getting-started.html) to add a look and feel to our application. 
 
-Let's start by adding Tailwind as an dependency first, then do a bit of configuration, and finally add some Tailwind classes to our components.
+Let's start by adding SemanticUI as an dependency first, then do a bit of configuration, and finally add some SemanticUI classes to our components.
 
-We use NPM to add Tailwind to our project. 
+In this project, we will add Semantic UI to our project by using CDN and referencing the necessary files from our `index.html` file. Please note that this method is okay at this stage (for educational purposes during), but nott desireble when working on projects that will actually be deployed to production servers. But more on that later. 
 
-```bash 
-$ npm i -D tailwindcss autoprefixer postcss-cli
+Please modify the `<head>` tag of your `index.html` file to look like this:
+
+```html 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta http-equiv="Content-Security-Policy"
+    content="default-src *; connect-src * ws://* wss://*; style-src * 'unsafe-inline' 'unsafe-eval'; media-src * ; img-src * data:; font-src * ; script-src * 'unsafe-inline' 'unsafe-eval';" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  <title>Portfolio</title>
+</head>
 ```
-
-The package comes with a script we can run to simplify the configuration process. 
-
-```bash
-$ npx tailwind init tailwind.config.js
-```
-
-_Note: `npx` is a tool intended to help round out the experience of using packages from the npm registry — the same way `npm` makes it super easy to install and manage dependencies hosted on the registry, `npx` makes it easy to use CLI tools and other executables hosted on the registry._
-
-We also need to do some configuration for [PostCSS](https://postcss.org/) so we can use it to transform the Tailwind directives into pure CSS. Create a file called `postcss.config.js` in the root folder of your project, and add the following code (taken straight from the Tailwind docs):
-
-```javascript
-const tailwindcss = require('tailwindcss');
-module.exports = {
-    plugins: [
-        tailwindcss('./tailwind.config.js'),
-        require('autoprefixer'),
-    ],
-};
-```
-
-Now we need to set up our CSS entry point. We need to create a `src/css/tailwind.src.css` and use the `@tailwind` directive to insert Tailwind's preflight, utilities and screens styles into your CSS.
-
-```css
-@tailwind preflight;
-@tailwind components;
-@tailwind utilities;
-@tailwind screens;
-
-```
-
-And finally, we need to modify the `scripts` section in our `package.json` to process our css and make sure to watch for changes so that we can continuously see the output in our browser as we add Tailwind classes to our components. Take a close look at the code below BEFORE you make any changes/updates so that you understand what they do. We will add to new scripts (`build:css` and `watch:css`), but we also modify tou `start` and `build` scripts we added in previous section of this course. 
-
-```json
-"scripts": {
-"build:css": "postcss src/css/tailwind.src.css -o src/css/tailwind.css",
-"watch:css": "postcss src/css/tailwind.src.css -o src/css/tailwind.css -w",
-"start": "npm run watch:css & webpack-dev-server --inline --mode development --open",
-"build": "npm run build:css && webpack --mode production"
-}
-```
-
-Before we commit our changes, there is one more detail to consider. Every time we run the `start` or `build` script, css will be compiled into a file named `tailwind.css` (note the difference in file names, we have `tailwind.src.css` where we can add our custom css classes, but the application will use `tailwind.css` at runtime). We want to exclude that file from version control. 
-
-Modify your `.gitignore` and add the following line:
-```
-src/css/tailwind.css
-```
+Those includes will make Semantic UI version 2.4.1 available in your project. 
 
 ## Styling
 
-Tailwind comes with a LOT of predefined classes and can be a bit overwhelming. While writing this documentation, I did spend some time on [CodePen](https://codepen.io/) looking for some good UI examples to look at. I came up with the following styling that you are welcome to use (You can, of course, give your portfolio your own look and feel by combining the available classes on your own, or write some on your own). 
+Semamntic UI comes with a LOT of predefined classes and can be a bit overwhelming. While writing this documentation, I did spend some time on [CodePen](https://codepen.io/) looking for some good UI examples to look at. I came up with the following styling that you are welcome to use (You can, of course, give your portfolio your own look and feel by combining the available classes on your own, or write some on your own). 
 
-In `index.js` you can modify the `return` with the following markup:
+First, we need to add a `<style>` tag to our `index.html` (Don't worry, we will extract that to a separate file in a moment.). Please add the following inside your `<body>` tag: 
 
-```javascript
-return (
-        <div className="min-h-screen">
-            <div className="flex flex-col w-full fixed pin-l pin-y">
-                <Header />
-                <div className="px-4 pt-4 flex-1 overflow-y-scrol">
-                    <Hello />
-                </div>
-                <Footer />
-            </div >
-        </div >
-)
+```html 
+<style>
+    footer {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 60px;
+      padding-top: 20px;
+      padding-bottom: 20px;
+      background-color: #f5f5f5;
+      margin-top: 0;
+      margin-bottom: 0;
+      text-align: center;
+    }
+
+    .main.container {
+      margin-top: 7em;
+    }
+  </style>
 ```
 
-We also need to import the css into that component.
+Now, we will have to make use of the Semantic UI classes and our own custom css in our components. We do that by modifying the `return` of our components with the following markup examples:
 
-```javascript
-import './css/tailwind.css';
-```
 
 This is the code for the `return` in `Header.jsx`: 
 ```javascript
 return (
-        <nav className="flex items-center justify-between flex-wrap bg-blue-darkest p-6">
-                <h1 className="text-white text-3xl">My Portfolio</h1>
-        </nav>
+<nav className='ui fixed inverted menu'>
+  <div className="ui container">
+    <h3 className="header item">
+      My Portfolio
+    </h3>
+  </div>
+</nav>
 )
     
 ```
 And for `Footer.jsx`:
 ```javascript
 return (
-        <div class="border-t border-smoke px-8 py-4">
-                <div class="flex justify-center text-grey">
-                        Made with React
-                </div>
-        </div>
+  return (
+    <footer>
+      <div className="ui container">
+        <p>Made with React {React.version}</p>
+      </div>
+    </footer>
+  )
+)
+```
+
+And for `Hello.jsx`:
+```javascript
+return (
+  <div className="ui main container">
+    <h1>
+      Hello World
+    </h1>
+  </div>
 )
 ```
 
 If you restart your development server you should be able to see the following:
-![](react_portfolio_2_tailwind_hello_world.png)
+![](portfolio_v2_hello_world.png)
 
-## No quite there yet...
-We are not quite done with our styling yet. Adding those Tailwind classes directly to our HTML tags is good while we develop our components, but becomes quite cumbersome to read and reuse. How about making life a bit simpler for ourselves? One thing we can do is to extract some of the classes into custom ones and make use of the `@apply` directive to bundle the Tailwind classes we used. 
+## Extract customm css to a file
+In the example above, we are making use of a mix of Semantic UI classes and custom css. We added our own css in as a `<style>` tag directly into our `index.html` markup. That is not a good practice. Afgter a while, thet tag can grow rather big and cumbersome to maintain ade read. 
 
-Let's modify our `tailwind.src.css` with the following code:
+There are plenty of different ways we could handle this. For now, we will go with the least complex solution and move the css into a separate file. It does not solve all problems for us, but will do for now. 
 
-```css
-@tailwind preflight;
-@tailwind components;
-@tailwind utilities;
+Create a new file calles `style.css` in the `dist` folder and vove your custom css to that file. Modify the `<head>` of your `index.html` to include that file. Make sure to add the `<link` AFTER the one that pulls in Semantic UI from CDN.
 
-/** Page **/ 
-
-.page-wrapper {
-    @apply min-h-screen;
-}
-.page-content {
-    @apply flex flex-col w-full fixed pin-l pin-y;
-}
-
-/** Header **/
-.header {
-    @apply flex items-center justify-between flex-wrap bg-blue-darkest p-6;
-}
-
-.header-title {
-    @apply text-white text-3xl;
-}
-
-/** Footer **/
-
-.footer-wrapper {
-    @apply border-t px-8 py-4;
-}
-
-.footer-content {
-    @apply flex justify-center text-grey;
-}
-
-/** Content section **/
-
-.content-wrapper {
-    @apply px-4 pt-4 flex-1 overflow-y-scroll;
-}
-
-.content-text {
-    @apply text-grey-dark;
-}
-
+```html
+  <link rel="stylesheet" href="dist/style.css">
 ```
-
-Finally we need to again change the HTML our components return. Go over the following code and make sure yours look the same (unless you have used any other classes in your implementation)
-
-`index.js`
-
-```javascript
-return (
-        <div className="page-wrapper">
-            <div className="page-content">
-                <Header />
-                <div className="content-wrapper">
-                    <Hello />
-                </div>
-                <Footer />
-            </div >
-        </div >
-)
-```
-
-`Header.jsx`
-```javascript
-return (
-        <nav className="header">
-                <h1 className="header-title">My Portfolio</h1>
-        </nav>
-)
-```
-
-`Footer.jsx`
-```javascript
- return (
-        <div className="footer-wrapper">
-                <div className="footer-content">
-                        Made with React
-                </div>
-        </div>
-)
-```
-
-And finally `Hello.jsx`
-```javascript
-return (
-        <p className="content-text">Hello World</p>
-)
-```
-
-This extraction will make things easier for us if we want to reuse some classes when we start to fill our application with more content. More about that in the next section.
 
 ## Wrap up
 In this section, we started to set up the structure of our application by creating a few new components and displaying them on the page. We also added a CSS framework, gave our components a look and feel and made sure that we can reuse the classes. That's good progress - we are getting somewhere. 
