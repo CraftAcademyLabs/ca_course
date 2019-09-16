@@ -57,7 +57,7 @@ $ npm init -y
 $ yarn init -y
 $ git init
 $ touch .gitignore
-$ echo -e "node_modules/\n.DS_Store\n.vscode\ndist" >> .gitignore
+$ echo -e "node_modules/\n.DS_Store\n.vscode\n" >> .gitignore
 $ git add .
 $ git commit -am "initiates project and adds gitignore scaffold"
 ```
@@ -169,10 +169,17 @@ We need to tell Babel that we want to use those presets. In the project's root f
 ```bash
 $ npm i -D @babel/core @babel/cli @babel/preset-env @babel/preset-react uglifyjs-webpack-plugin
 // or
-$ yarn add -D @babel/core @babel/cli @babel/preset-env @babel/preset-react uglifyjs-webpack-plugin
+$ yarn add -D @babel/core @babel/cli @babel/preset-env @babel/preset-react uglifyjs-webpack-plugin 
 $ touch .babelrc
 // add the json code to .babelrc
 ```
+
+_Please note that you might get Security Warnings/Alerts if you push to GitHub. Don't stress and follow the instructions. At the time we wrote this walk through, the fix was to install the following packages:_
+
+```bash 
+$ yarn add -D eslint@^4.18.2 js-yaml@^3.13.1 webpack-dev-server@^3.1.11
+```
+
 _Please note that `npm i -D` is the equivalent to `npm install --save-dev`._
 
 
