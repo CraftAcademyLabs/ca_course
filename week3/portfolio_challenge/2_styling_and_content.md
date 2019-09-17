@@ -124,27 +124,26 @@ Now, we will have to make use of the Semantic UI classes and our own custom css 
 This is the code for the `return` in `Header.jsx`: 
 ```javascript
 return (
-<nav className='ui fixed inverted menu'>
-  <div className="ui container">
-    <h3 className="header item">
-      My Portfolio
-    </h3>
-  </div>
-</nav>
+  <nav className='ui fixed inverted menu'>
+    <div className="ui container">
+      <h3 className="header item">
+        My Portfolio
+      </h3>
+    </div>
+  </nav>
 )
     
 ```
 And for `Footer.jsx`:
 ```javascript
 return (
-  return (
-    <footer>
-      <div className="ui container">
-        <p>Made with React {React.version}</p>
-      </div>
-    </footer>
-  )
+  <footer>
+    <div className="ui container">
+      <p>Made with React {React.version}</p>
+    </div>
+  </footer>
 )
+
 ```
 
 And for `Hello.jsx`:
