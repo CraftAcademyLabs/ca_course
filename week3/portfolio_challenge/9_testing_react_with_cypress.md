@@ -82,7 +82,7 @@ Cypress works very similarly to Rspec, it is organized into `describe` and `it` 
 // cypress/integration/visitor_can_see_landing_page.spec.js
 
 describe('Visitor can see landing page' , () => {
-  it('visitor can see landing page', () => {
+  it('visitor can see content when loading the app', () => {
     cy.visit('/')
   })
 })
@@ -103,38 +103,97 @@ We have our first green test! Now let's see what are the most common cypress com
 ### [cy.get()](https://docs.cypress.io/api/commands/get.html#Syntax)
 - Get one or more DOM elements by selector or alias.
 - Examples:
-  - `cy.get(.some-class)` - gets elements with `some-class` class
-  - `cy.get(#some-id)` - gets elements with `some-id` id
-  - `cy.get(button)` - gets all button elements
+  - `cy.get(".some-class")` - gets elements with `some-class` class
+  - `cy.get("#some-id")` - gets elements with `some-id` id
+  - `cy.get("button")` - gets all button elements
   
 ### [cy.contains()](https://docs.cypress.io/api/commands/contains.html#Syntax)
 
 - Get the DOM element containing the text. DOM elements can contain more than the desired text and still match.
 - Examples:
-  - `cy.contains('Hello')` - gets elements with `Hello` text
-  - `cy.get('.nav').contains('About')` - gets elements with `About` text **inside** `.nav` class
+  - `cy.contains("Hello")` - gets elements with `Hello` text
+  - `cy.get(".nav").contains("About")` - gets elements with `About` text **inside** `.nav` class
 
 ### [cy.should()](https://docs.cypress.io/api/commands/should.html#Syntax)
 
-- Create an assertion. Assertions are automatically retried until they pass or time out. An alias of [.and()](https://docs.cypress.io/api/commands/and.html#Syntax)
+- Create an **assertion**. Assertions are automatically retried until they pass or time out. An alias of [.and()](https://docs.cypress.io/api/commands/and.html#Syntax)
 - Examples:
-  - `cy.get('.error').should('be.empty') ` - Assert that '.error' is empty
-  - `cy.contains('Login').should('be.visible')` - Assert that el is visible
+  - `cy.get(".error").should("be.empty") ` - Assert that ".error" is empty
+  - `cy.contains("Login").should("be.visible")` - Assert that element is visible
 
 ### [cy.click()](https://docs.cypress.io/api/commands/click.html#Syntax)
 
 - Click a DOM element.
 - Examples:
-  - `cy.get('button').click()` - Click on button
+  - `cy.get("button").click()` - Click on button
 
 ### [cy.type()](https://docs.cypress.io/api/commands/type.html#Syntax)
 
 - Type into a DOM element.
 - Examples:
-  - `cy.get('input').type('Hello, World')` - Type 'Hello, World' into the 'input'
+  - `cy.get("input").type("Hello, World")` - Type "Hello, World" into the "input"
 
 
-## Assertions
+## Most common assertions with cy.should()
+##### [Check the docs for more!](https://docs.cypress.io/guides/references/assertions.html#Common-Assertions)
+
+### Length
+
+```js
+// retry until we find 3 matching <li.selected>
+cy.get("li.selected").should("have.length", 3)
+```
+
+### Class
+
+```js
+// retry until this input does not have class disabled
+cy.get("form").find("input").should("not.have.class", "disabled")
+```
+
+### Value
+
+```js
+// retry until this textarea has the correct value
+cy.get("textarea").should("have.value", "foo bar baz")
+```
+
+### Text Content
+
+```js
+// retry until this span does not contain "click me"
+cy.get("a").parent("span.help").should("not.contain", "click me")
+```
+
+### Visibility
+
+```js
+// retry until this button is visible
+cy.get("button").should("be.visible")
+```
+
+### Existence
+
+```js
+// retry until loading spinner no longer exists
+cy.get("#loading").should("not.exist")
+```
+
+### State
+
+```js
+// retry until our radio is checked
+cy.get(":radio").should("be.checked")
+```
+
+### CSS
+
+```js
+// retry until .completed has matching css
+cy.get(".completed").should("have.css", "text-decoration", "line-through")
+```
+
+## Writing the first test with assertions
 
 
 Modify the test file to look like this:
@@ -145,7 +204,7 @@ Modify the test file to look like this:
 /// <reference types="Cypress" />
 
 describe("Visitor can see landing page", () => {
-  it("visitor can see landing page", () => {
+  it("visitor can see content when loading the app", () => {
     cy.visit("/");
     cy.get("nav")
       .should("contain", "My Portfolio")
@@ -163,7 +222,7 @@ describe("Visitor can see landing page", () => {
 
 By adding `/// <reference types="Cypress" />` cypress at top of the spec file your IDE will auto-complete cypress commands making it more fluent to write your specs.
 
-In this example we are just utilizing `cy.get()` and `cy.should()` commands to check for the content on the page.
+In this example we are just utilizing `cy.get()` and `cy.should()` commands to check for the content on the page. `cy.contains()` should only be used for getting the elements, `cy.should()` and `cy.and()` should be used for assertions!
 
 ## Testing navigation
 
