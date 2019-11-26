@@ -72,14 +72,15 @@ One more file has been added by the scaffold that is `cypress.json` in the root 
 }
 ```
 
-This will tell cypress that the baseUrl it goes to should be the `http://localhost:3000`.
+This will tell cypress that `http://localhost:3000` is the root for the project.
 
 ## Creating your first test
 
-Cypress works very similarly to Rspec, it is organized into `describe` and `it` blocks, but in these case these are functions that receive 2 arguments, the title of the test and an anonymous function that will execute the next it block. Add the following file with that code:
+Cypress works very similarly to Rspec, it is organized into `describe` and `it` blocks. These are functions that receive 2 arguments, the title of the test and an anonymous function that will execute the next code block. Add the following file:
 
 ```js
 // cypress/integration/visitor_can_see_landing_page.spec.js
+
 describe('Visitor can see landing page' , () => {
   it('visitor can see landing page', () => {
     cy.visit('/')
@@ -87,13 +88,13 @@ describe('Visitor can see landing page' , () => {
 })
 ```
 
-To execute a step in cypress you need to use `cy` prefix and then execute a cypress function. The most basic one is `visit()` which will navigate to a url which we add. Since we added the baseUlr as `http://localhost:3000` by typing in `visit('/')` we will navigate just there.
+To execute cypress functions you need to use `cy` prefix. The most basic one is `visit()` which will navigate to a url which we add. Since we added the baseUlr as `http://localhost:3000` by typing in `visit('/')` we will navigate just there.
 
 After adding that file, start your development server and run cypress and you should see something like this:
 
 ![](./cypress_2.png)
 
-We have our first green test! Now it is time to add some assertions!
+We have our first green test! Now let's see what are the most common cypress commands we can use in our tests files to find elements, interact with them and check their content.
 
 ## Most common cypress commands 
 
