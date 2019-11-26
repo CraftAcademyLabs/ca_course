@@ -96,6 +96,7 @@ After adding that file, start your development server and run cypress and you sh
 
 We have our first green test! Now let's see what are the most common cypress commands we can use in our tests files to find elements, interact with them and check their content.
 
+
 ## Most common cypress commands 
 
 
@@ -103,7 +104,8 @@ We have our first green test! Now let's see what are the most common cypress com
 - Get one or more DOM elements by selector or alias.
 - Examples:
   - `cy.get(.some-class)` - gets elements with `some-class` class
-  - `cy.get(#some-id)` - gets elements with `some-class` id
+  - `cy.get(#some-id)` - gets elements with `some-id` id
+  - `cy.get(button)` - gets all button elements
   
 ### [cy.contains()](https://docs.cypress.io/api/commands/contains.html#Syntax)
 
@@ -125,14 +127,15 @@ We have our first green test! Now let's see what are the most common cypress com
 - Examples:
   - `cy.get('button').click()` - Click on button
 
-
 ### [cy.type()](https://docs.cypress.io/api/commands/type.html#Syntax)
 
 - Type into a DOM element.
 - Examples:
   - `cy.get('input').type('Hello, World')` - Type 'Hello, World' into the 'input'
 
+
 ## Assertions
+
 
 Modify the test file to look like this:
 
@@ -174,26 +177,22 @@ Add a second spec file:
 describe("Visitor can navigate page", () => {
   it("visitor can navigate using the header", () => {
     cy.visit("/");
-    cy.get("nav")
-      .contains("My projects")
-      .click();
-    cy.url().should("contain", "projects");
-    cy.get("nav")
-      .contains("About")
-      .click();
-    cy.url().should("contain", "about");
-    cy.get("nav")
-      .contains("My Portfolio")
-      .click();
-    cy.url()
-      .should("not.contain", "projects")
-      .and("not.contain", "about");
+    cy.get("nav").within(() => {
+      cy.contains("My projects").click();
+      cy.url().should("contain", "projects");
+      cy.contains("About").click();
+      cy.url().should("contain", "about");
+      cy.contains("My Portfolio").click();
+      cy.url()
+        .should("not.contain", "projects")
+        .and("not.contain", "about");
+    });
   });
 });
 ```
 
 In this example we are testing navigation of the site by:
-- Finding the links with `cy.get()` and `cy.contains()`
+- Finding the links inside navbar with `cy.get().within()` and specifying which links based on text using `cy.contains()`. 
 - Clicking on them with `cy.click()`
 - Then checking the url with `cy.url` ([docs](https://docs.cypress.io/api/commands/url.html))
 
