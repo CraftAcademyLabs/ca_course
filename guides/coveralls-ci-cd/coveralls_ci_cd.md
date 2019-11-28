@@ -75,6 +75,32 @@ or if you're using Rails 5+ you can do
 $ bundle exec rails ci:tests
 ```
 
+At ths point you have added the code neccessary to make coveralls work.
+
+Now you need to visit the [Coveralls website](https://coveralls.io/) and add your project to use their service. 
+
+If you havent created an account already, please sign up using your Github account.
+IMAGE 14
+
+Once you are logged in you need to get to the page where you can add new repos. Go to the sidebar and click on "Add repos"
+IMAGE 15
+
+It is important that you are a part of the Craft Academy organization so you can see and add the repositories that is created on the "Craft Academy" account. You also need to check with the coaches that you are added as an admin on that specific repository that you want to add coveralls to, otherwise you will not be able to see it. 
+
+The first thing that you want to do is to click on the sync repos button in the top right corner. 
+IMAGE 16
+
+Now you can search for the repository that you want to add "Coveralls" to. When you find it you need to enable it.
+IMAGE 17
+
+At this point we have successfully added coveralls to our project. If you need to have the coveralls token for continuous integration (Semaphore), click on the details button.
+
+If you recently added coveralls to the repository you will be presented by the coveralls `repo_token` straight away. 
+IMAGE 18
+
+If you dont see it when you press details. Then you have to go to the settings for this project to find the coveralls `repo_token`.
+IMAGE 19
+
 ## Setting up Continous integration with Semaphore
 
 
