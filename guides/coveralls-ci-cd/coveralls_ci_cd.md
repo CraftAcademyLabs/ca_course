@@ -1,5 +1,7 @@
  **The following guide assumes you're using both RSpec and Cucumber for testing.**
 
+**The following guide assumes that you have an upstream repository on Craft Academys Github account, if that is not the case for you then just ignore the parts about adding the "Craft Academy repository" and set your own repository there instead**
+
 We'll make use of [Coveralls](https://coveralls.io/) a web service that helps track code coverage.
 You can use it for various programming languages and Ruby, there is a gem we can use.
 
