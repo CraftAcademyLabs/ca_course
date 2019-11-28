@@ -80,26 +80,31 @@ At ths point you have added the code neccessary to make coveralls work.
 Now you need to visit the [Coveralls website](https://coveralls.io/) and add your project to use their service. 
 
 If you havent created an account already, please sign up using your Github account.
-IMAGE 14
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/14_coveralls-sign-up.png)
 
 Once you are logged in you need to get to the page where you can add new repos. Go to the sidebar and click on "Add repos"
-IMAGE 15
+
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/15_coveralls-add%20repos.jpg)
 
 It is important that you are a part of the Craft Academy organization so you can see and add the repositories that is created on the "Craft Academy" account. You also need to check with the coaches that you are added as an admin on that specific repository that you want to add coveralls to, otherwise you will not be able to see it. 
 
 The first thing that you want to do is to click on the sync repos button in the top right corner. 
-IMAGE 16
+
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/16_coveralls-sync-repo.png)
 
 Now you can search for the repository that you want to add "Coveralls" to. When you find it you need to enable it.
-IMAGE 17
+
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/17_coveralls-enabled.png)
 
 At this point we have successfully added coveralls to our project. If you need to have the coveralls token for continuous integration (Semaphore), click on the details button.
 
 If you recently added coveralls to the repository you will be presented by the coveralls `repo_token` straight away. 
-IMAGE 18
+
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/18_coveralls-repo-token.png)
 
 If you dont see it when you press details. Then you have to go to the settings for this project to find the coveralls `repo_token`.
-IMAGE 19
+
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/19_coveralls-setting-repo-token.png)
 
 ## Setting up Continous integration with Semaphore
 
