@@ -1,4 +1,4 @@
-**The following guide assumes you're using both RSpec and Cucumber for testing.**
+ **The following guide assumes you're using both RSpec and Cucumber for testing.**
 
 We'll make use of [Coveralls](https://coveralls.io/) a web service that helps track code coverage.
 You can use it for various programming languages and Ruby, there is a gem we can use.
@@ -75,18 +75,18 @@ or if you're using Rails 5+ you can do
 $ bundle exec rails ci:tests
 ```
 
-At ths point you have added the code neccessary to make coveralls work.
+At this point, you have added the code necessary to make coveralls work.
 
 Now you need to visit the [Coveralls website](https://coveralls.io/) and add your project to use their service. 
 
-If you havent created an account already, please sign up using your Github account.
+If you haven't created an account already, please sign up using your Github account.
 ![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/14_coveralls-sign-up.png)
 
-Once you are logged in you need to get to the page where you can add new repos. Go to the sidebar and click on "Add repos"
+Once you are logged in you need to get to the page where you can add new repositories. Go to the sidebar and click on "Add repos"
 
 ![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/15_coveralls-add%20repos.jpg)
 
-It is important that you are a part of the Craft Academy organization so you can see and add the repositories that is created on the "Craft Academy" account. You also need to check with the coaches that you are added as an admin on that specific repository that you want to add coveralls to, otherwise you will not be able to see it. 
+You must be a part of the Craft Academy organization so you can see and add the repositories that are created on the "Craft Academy" account. You also need to check with the coaches that you are added as an admin on that specific repository that you want to add coveralls to, otherwise, you will not be able to see it. 
 
 The first thing that you want to do is to click on the sync repos button in the top right corner. 
 
@@ -96,13 +96,13 @@ Now you can search for the repository that you want to add "Coveralls" to. When 
 
 ![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/17_coveralls-enabled.png)
 
-At this point we have successfully added coveralls to our project. If you need to have the coveralls token for continuous integration (Semaphore), click on the details button.
+At this point, we have successfully added coveralls to our project. If you need to have the coveralls token for continuous integration (Semaphore), click on the Details button.
 
 If you recently added coveralls to the repository you will be presented by the coveralls `repo_token` straight away. 
 
 ![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/18_coveralls-repo-token.png)
 
-If you dont see it when you press details. Then you have to go to the settings for this project to find the coveralls `repo_token`.
+If you don't see it when you press details. Then you have to go to the settings for this project to find the coveralls `repo_token`.
 
 ![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/19_coveralls-setting-repo-token.png)
 
