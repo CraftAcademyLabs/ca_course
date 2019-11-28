@@ -116,6 +116,7 @@ Semaphore is now successfully added CI with semaphore to your project.
 * You need to have created a Heroku application, we will not go over this in this guide.
 * Go to your Heroku dashboard and click on ur project. 
 * Go to the deploy settings tab and activate Github as the applications deployment method
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/11_heroku-deployment-method.png)
 * Underneath that option you should now be able to connect the Heroku application to a specific repo. That repo should be the upstream repo. 
 * Now you need to decide which branch you want to be deployed, pick the development branch
 * Now click the button that says "Enable Automatic Deploys"
