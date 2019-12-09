@@ -149,6 +149,18 @@ bundle exec rake db:setup
 bundle exec rake db:test:prepare
 COVERALLS_REPO_TOKEN=your_coveralls_token bundle exec rake ci:tests
 ```
+If you are using Rails version 6 or above you should add this:
+```
+nvm install 13.1.0
+nvm use 13.1.0
+gem update --system
+gem install bundler
+bundle install --path vendor/bundle
+yarn
+bundle exec rails db:setup --all db:migrate
+bundle exec rails db:test:prepare
+COVERALLS_REPO_TOKEN=your_coveralls_token bundle exec rails ci:tests
+```
 
 * Make sure to get the repo token from coveralls project and reålace the placeholder in the code example.
 ![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/07_semaphore-project-settings.png)
