@@ -22,8 +22,8 @@ Now we need to create our test folder and our first test file. Run:
 `$ touch src/__tests__/App.test.js`
 
 Add all of the code underneath to `App.test.js` file.
-```
-```import React from 'react';
+```js
+import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { stub } from 'sinon';
 

@@ -178,7 +178,6 @@ class App extends Component {
 export default App;
 ```
 
-
 ```js
 // src/components/Form.jsx
 
@@ -207,7 +206,7 @@ const Form = props => {
         id="height"
         onChange={props.onChangeHandler}
       />
-      <button>Calculate BMI</button>
+      <button id='calculate'>Calculate BMI</button>
     </form>
   );
 };
@@ -259,6 +258,7 @@ const setBMIMessage = finalBMI => {
 ```
 
 We need to calculate 2 values in this helper function:
+
 - Our bmi value
 - And the message assigned to that value
 - We return these values using an ES6 feature
@@ -307,10 +307,9 @@ class App extends Component {
 }
 
 export default App;
-
 ```
 
-As with `onChange`, `onSubmit` receives the `event` object by default. First we need to call `preventDefault` on it because the default of html `form` will make an http post request. (to nowhere in this case because we haven't defined it). After that we use our state to pass it down to our helper function. Use some nice ES6 feature to grab the results and update our state. 
+As with `onChange`, `onSubmit` receives the `event` object by default. First we need to call `preventDefault` on it because the default of html `form` will make an http post request. (to nowhere in this case because we haven't defined it). After that we use our state to pass it down to our helper function. Use some nice ES6 feature to grab the results and update our state.
 
 To finish add the onSubmitHandler to the `Form.jsx` as well:
 
@@ -342,13 +341,12 @@ const Form = props => {
         id="height"
         onChange={props.onChangeHandler}
       />
-      <button>Calculate BMI</button>
+      <button id='calculate'>Calculate BMI</button>
     </form>
   );
 };
 
 export default Form;
-
 ```
 
 ## Showing the message
@@ -366,7 +364,7 @@ import React from "react";
 
 const Message = props => {
   return (
-    <p>
+    <p id='bmi-message'>
       You are {props.bmiMessage} with a BMI of {props.bmiValue}
     </p>
   );
@@ -428,7 +426,7 @@ class App extends Component {
 export default App;
 ```
 
-Here we do another little trick. We hide the message until we have a bmiValue in our state. We are using a shorter version of the ternary operator: `&&`. This means that `<Message/> ` will only be rendered when `this.state.bmiValue` is not `""`. We pass down our relevant state values and have ourselves a message.
+Here we do another little trick. We hide the message until we have a bmiValue in our state. We are using a shorter version of the ternary operator: `&&`. This means that `<Message/>` will only be rendered when `this.state.bmiValue` is not `""`. We pass down our relevant state values and have ourselves a message.
 
 ## Wrap up
 
