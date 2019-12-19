@@ -37,7 +37,7 @@ Run the new migration.
 
 Add the following specs.
 ```
-# spec/models//user_spec.rb
+# spec/models/user_spec.rb
 RSpec.describe User, type: :model do
   # [...]
 
@@ -61,5 +61,11 @@ RSpec.describe PerformanceData, type: :model do
   describe 'Relations' do
     it { is_expected.to belong_to :user }
   end
+
+  describe 'Factory' do
+		it 'should have valid Factory' do
+			expect(create(:performance_data)).to be_valid
+		end
+	end
 end
 ```
