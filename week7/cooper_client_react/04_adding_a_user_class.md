@@ -28,6 +28,8 @@ In our User model (`app/models/user.rb`) we want to make sure that Devise is set
 # app/models/user.rb
 class User < ActiveRecord::Base
 extend Devise::Models
+  extend Devise::Models
+
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable
