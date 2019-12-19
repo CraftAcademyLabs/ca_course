@@ -202,26 +202,30 @@ You need, however, to add some tests that hit the sad path and makes sure you ha
 We are almost done now with our basic CRUD actions. Let us move on and create a method that will retrieve a collection of PerformanceData objects, but only for the user that makes the request. Let's start by setting the stage for a request spec and test if we get the right response.
 ```
 # spec/requests/api/v1/performance_data_spec.rb
+RSpec.describe Api::V1::PerformanceDataController, type: :request do
 # [...]
-describe 'GET /api/v1/performance_data' do
-  before do
-    5.times { 
-      user.performance_data.create(
-        data: { 
-          message: 'Average' 
-        }
-      ) 
-    }
-
-    get '/api/v1/performance_data', headers: headers
-  end
-
-  it 'returns a collection of performance data' do
-    expect(response_json['entries'].count).to eq 5
-  end
-
-  it 'returns a 200 response status' do
-    expect(response.status).to eq 200
+  describe 'GET /api/v1/performance_data' do
+    before do
+      5.times { 
+        create(
+          :performance_data,
+          data: { 
+            message: 'Average' 
+          },
+          user: user
+        ) 
+      }
+      
+      get '/api/v1/performance_data', headers: headers
+    end
+  
+    it 'returns a collection of performance data' do
+      expect(response_json['entries'].count).to eq 5
+    end
+  
+    it 'returns a 200 response status' do
+      expect(response.status).to eq 200
+    end
   end
 end
 ```
