@@ -12,8 +12,13 @@ module ResponseJSON
     JSON.parse(response.body)
   end
 end
+```
 
+```
+# spec/rails_helper.rb
+# [...]
 RSpec.configure do |config|
+  # [...]
   config.include ResponseJSON
 end
 ```

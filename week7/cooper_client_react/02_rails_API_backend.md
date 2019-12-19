@@ -107,7 +107,6 @@ RSpec.configure do |config|
   config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
-  config.include FactoryBot::Syntax::Methods
 end
 ```
 ```
@@ -131,13 +130,7 @@ end
 --format documentation
 ```
 
-Create the following files:
-```
-# spec/support/factory_bot.rb
-RSpec.configure do |config|
-  config.include FactoryBot::Syntax::Methods
-end
-```
+Create the following file:
 ```
 # spec/support/shoulda_matcher.rb
 Shoulda::Matchers.configure do |config|
@@ -146,8 +139,15 @@ Shoulda::Matchers.configure do |config|
     with.library :rails
   end
 end
+```
 
+And add this:
+```
+# spec/rails_helper.rb
+# [...]
 RSpec.configure do |config|
+  # [...]
+  config.include FactoryBot::Syntax::Methods
   config.include(Shoulda::Matchers::ActiveRecord, type: :model)
 end
 ```
