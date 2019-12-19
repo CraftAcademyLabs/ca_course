@@ -22,53 +22,87 @@ The **TEARDOWN** is handled by the `use_transactional_fixtures configuration` in
 ```
 # spec/requests/api/v1/registrations_spec.rb
 RSpec.describe 'User Registration', type: :request do
+  let(:registered_user) { create(:user, email: 'example@craftacademy.se')}
   let(:headers) { { HTTP_ACCEPT: 'application/json' } }
 
-  context 'with valid credentials' do
-    it 'returns a user and token' do
-      post '/api/v1/auth', params: { email: 'example@craftacademy.se',
-                                      password: 'password',
-                                      password_confirmation: 'password'
-                                  }, headers: headers
+  describe 'with valid credentials' do
+    before do
+      post '/api/v1/auth', 
+      params: { 
+        email: 'example@craftacademy.se',
+        password: 'password',
+        password_confirmation: 'password'
+      }, 
+      headers: headers
+    end
 
-      expect(response_json['status']).to eq 'success'
+    it 'returns a 200 response status' do
       expect(response.status).to eq 200
+    end
+
+    it 'returns a success message' do
+      expect(response_json['status']).to eq 'success'
     end
   end
 
-  context 'returns an error message when user submits' do
-    it 'non-matching password confirmation' do
-      post '/api/v1/auth', params: { email: 'example@craftacademy.se',
-                                      password: 'password',
-                                      password_confirmation: 'wrong_password'
-                                  }, headers: headers
+  context 'when user submits' do
+    describe 'a non-matching password confirmation' do
+      before do
+        post '/api/v1/auth', 
+        params: { 
+          email: 'example@craftacademy.se',
+          password: 'password',
+          password_confirmation: 'wrong_password'
+        }, 
+        headers: headers
+      end
+      
+      it 'returns an error message' do
+        expect(response_json['errors']['password_confirmation']).to eq ["doesn't match Password"]
+      end
 
-      expect(response_json['errors']['password_confirmation']).to eq ["doesn't match Password"]
-      expect(response.status).to eq 422
+      it 'returns a 422 response status' do
+        expect(response.status).to eq 422
+      end
     end
 
-    it 'an invalid email address' do
-      post '/api/v1/auth', params: { email: 'example@craft',
-                                      password: 'password',
-                                      password_confirmation: 'password'
-                                  }, headers: headers
+    describe 'an invalid email address' do
+      before do
+        post '/api/v1/auth', 
+        params: { 
+          email: 'example@craft',
+          password: 'password',
+          password_confirmation: 'password'
+        }, 
+        headers: headers
+      end
+      
+      it 'returns an error message' do
+        expect(response_json['errors']['email']).to eq ['is not an email']
+      end
 
-      expect(response_json['errors']['email']).to eq ['is not an email']
-      expect(response.status).to eq 422
+      it 'returns a 422 response status' do
+        expect(response.status).to eq 422
+      end
     end
 
-    it 'an already registered email' do
-      FactoryBot.create(:user, email: 'example@craftacademy.se',
-                                password: 'password',
-                                password_confirmation: 'password')
+    describe 'an already registered email' do
+      before do
+        post '/api/v1/auth', 
+        params: { 
+          email: 'example@craftacademy.se',
+          password: 'password',
+          password_confirmation: 'password'
+        }, 
+        headers: headers
+      end
+      it 'returns an error message' do
+        expect(response_json['errors']['email']).to eq ['has already been taken']
+      end
 
-      post '/api/v1/auth', params: { email: 'example@craftacademy.se',
-                                      password: 'password',
-                                      password_confirmation: 'password'
-                                  }, headers: headers
-
-      expect(response_json['errors']['email']).to eq ['has already been taken']
-      expect(response.status).to eq 422
+      it 'returns a 422 response status' do
+        expect(response.status).to eq 422
+      end
     end
   end
 end
