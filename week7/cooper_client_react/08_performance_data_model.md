@@ -9,7 +9,7 @@ Note: What does the `--force-pluralflag` do for us?
 Also, please note that we are using a datatype that we've not used before - the `hstore`. That is not a standard datatype in certain versions of PostgreSQL, so we need to make sure it will work. Open up the migration and add a line that adds `hstore` as a datatype and enables the database to store hashes.
 ```
 # db/migrate/XXXX_create_performance_data.rb
-class CreatePerformanceData < ActiveRecord::Migration[5.0]
+class CreatePerformanceData < ActiveRecord::Migration[6.0]
   def change
     execute 'CREATE EXTENSION IF NOT EXISTS hstore'
     create_table :performance_data do |t|
@@ -69,3 +69,14 @@ RSpec.describe PerformanceData, type: :model do
 	end
 end
 ```
+
+Make sure that the factory for performance data looks like this:
+```
+# spec/factories/performance_data.rb
+
+FactoryBot.define do
+  factory :performance_data, class: 'PerformanceData' do
+    user
+    data { "" }
+  end
+end
