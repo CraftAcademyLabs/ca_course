@@ -73,7 +73,9 @@ If you need to press a button or interact with the page in some different way th
 
 ## Imperial method
 
-I will show you a test case for the imperial method. Your job will be to make the tests pass:
+I will show you a test case for the imperial method as an example. 
+
+The testing of the actual method may change depending on the implementation that you have. As you can see it is pretty straight forward, we select the method from a selector, fill in the inputs with the relevant information and then expect what response is going to be shown on the page.
 
 ```js
 // cypress/integration/examples/BMI.spec.js

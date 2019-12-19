@@ -430,4 +430,5 @@ Here we do another little trick. We hide the message until we have a bmiValue in
 
 ## Wrap up
 
-At this point, you should have a fully functional but unstyled BMI Calculator. This is a good opportunity for you to enhance your styling skills within a react application.
+At this point, you should have a fully functional but un-styled BMI Calculator. This is a good opportunity for you to enhance your styling skills within a react application, and also it is your task to add the imperial method to this calculation. The way you want to implement is totally up to you!
+

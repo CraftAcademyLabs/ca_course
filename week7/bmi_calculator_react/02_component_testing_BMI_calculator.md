@@ -106,7 +106,7 @@ Here we use the function called `text()` to check what is the text inside our el
 
 ## Test components with mount
 
-Now that we have tested our components with shallow it is time to test `App` and see if our logic works as it should.
+Now that we have tested our components with shallow it is time to test `App` and see if our logic works as it should. This is an example your test might be different based on how you have implemented the imperial method. In our example we have a selector to choose between the methods.
 
 ```js
 //src/__tests__/App.test.js
@@ -158,8 +158,6 @@ Let me walk you through what is happening here:
 - Secondary we find the 2 inputs and simulate changes. Now we also need to pass down the name of the input because that is how we are setting the state with our `onChangeHandler`.
 - After that we simulate the submit and find the expected message.
 - We repeat with the imperial method.
-
-Depending how you implement the imperial method you may have to add another test for the selector if you have it in a separate component.
 
 
 ## Wrap up
