@@ -22,14 +22,21 @@ Remember to migrate your database in order to create the `users` table (the Devi
 ## Tokens
 t.text :tokens
 ```
-
+We also need to add some more columns that we will need. Please add this:
+```
+#db/migrate/XXX_devise_token_auth_create_users.rb
+## The columns we want to add
+t.integer :sign_in_count, default: 0
+t.datetime :current_sign_in_at
+t.datetime :last_sign_in_at
+t.string :current_sign_in_ip
+t.string :last_sign_in_ip
+```
 In our User model (`app/models/user.rb`) we want to make sure that Devise is set up for our needs. We will remove the OAuth and Confirmation methods.
 ```
 # app/models/user.rb
 class User < ActiveRecord::Base
-extend Devise::Models
   extend Devise::Models
-
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable
@@ -58,7 +65,7 @@ end
 
 You can add more attributes to the User factory if you like, we added just the minimal required attributes at the moment.
 
-Let's add a spec for the User factory we just created.
+The Devise token auth generator does not create a unit spec for the models it generates. Let's add the user spec and test the User factory we just created. 
 ```
 # spec/models/user_spec.rb
 require 'rails_helper'
