@@ -1,6 +1,6 @@
 Okay, let's write some specs for user registration.
 
-    $ mkdir -p spec/requests/api/v1
+    $ mkdir spec/requests/api/v1
     $ touch spec/requests/api/v1/registrations_spec.rb
 
 The examples below contain a lot of moving parts, so be sure to go over the code line by line and discuss with your pairing partner what each line does. We also introduce a new keyword: `context` that is an alias for `describe` and can be used interchangeably.
@@ -22,7 +22,7 @@ The **TEARDOWN** is handled by the `use_transactional_fixtures configuration` in
 ```
 # spec/requests/api/v1/registrations_spec.rb
 RSpec.describe 'User Registration', type: :request do
-  let(:registered_user) { create(:user, email: 'example@craftacademy.se')}
+  let!(:registered_user) { create(:user, email: 'coach@craftacademy.se')}
   let(:headers) { { HTTP_ACCEPT: 'application/json' } }
 
   describe 'with valid credentials' do
@@ -90,7 +90,7 @@ RSpec.describe 'User Registration', type: :request do
       before do
         post '/api/v1/auth', 
         params: { 
-          email: 'example@craftacademy.se',
+          email: 'coach@craftacademy.se',
           password: 'password',
           password_confirmation: 'password'
         }, 
