@@ -122,22 +122,18 @@ import React, { Component } from "react";
 class App extends Component {
   render() {
     return (
-      <div>
-        <div>
-          <label>Distance</label>
-          <input name="distance" id="distance"></input>
-        </div>
+      <>
+        <label>Distance</label>
+        <input name="distance" id="distance"></input>
 
         <select name="gender" id="gender">
           <option value="female">Female</option>
           <option value="male">Male</option>
         </select>
 
-        <div>
-          <label>Age</label>
-          <input name="age" id="age"></input>
-        </div>
-      </div>
+        <label>Age</label>
+        <input name="age" id="age"></input>
+      </>
     );
   }
 }
@@ -234,7 +230,7 @@ const DisplayCooperResult = ({ distance, gender, age }) => {
   const propsPassed = distance && age ? true : false;
 
   return (
-    <div>
+    <>
       {propsPassed && (
         <>
           <p id="cooper-message">
@@ -243,7 +239,7 @@ const DisplayCooperResult = ({ distance, gender, age }) => {
           <p id="cooper-result">Result: {calculate()}</p>
         </>
       )}
-    </div>
+    </>
   );
 };
 
@@ -413,31 +409,27 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <div>
-          <label>Distance</label>
-          <input
-            onChange={this.onChangeHandler}
-            name="distance"
-            id="distance"
-          ></input>
-        </div>
+      <>
+        <label>Distance</label>
+        <input
+          onChange={this.onChangeHandler}
+          name="distance"
+          id="distance"
+        ></input>
 
         <select onChange={this.onChangeHandler} name="gender" id="gender">
           <option value="female">Female</option>
           <option value="male">Male</option>
         </select>
 
-        <div>
-          <label>Age</label>
-          <input onChange={this.onChangeHandler} name="age" id="age"></input>
-        </div>
+        <label>Age</label>
+        <input onChange={this.onChangeHandler} name="age" id="age"></input>
         <DisplayCooperResult
           distance={this.state.distance}
           gender={this.state.gender}
           age={this.state.age}
         />
-      </div>
+      </>
     );
   }
 }
@@ -451,7 +443,7 @@ If you run the test now everything should go green!
 
 Now we need to clean up the `App` component, we don't want to have the input fields there. The `App` component should be as clean as possible, that is why we will extract the input fields to their own component.
 
-The main goal of that component will be to handle the `onChange` event so  we can create this test for the InputFields:
+The main goal of that component will be to handle the `onChange` event so we can create this test for the InputFields:
 
 `$ touch src/__tests__/InputFields.spec.js`
 
@@ -487,7 +479,6 @@ describe("InputFields", () => {
       .simulate("change", { target: { name: "age", value: "28" } });
     expect(onChangeHandler).toHaveBeenCalled();
   });
-
 });
 ```
 
@@ -505,19 +496,16 @@ import React from "react";
 const InputFields = ({ onChangeHandler }) => {
   return (
     <>
-      <div>
-        <label>Distance</label>
-        <input onChange={onChangeHandler} name="distance" id="distance"></input>
-      </div>
+      <label>Distance</label>
+      <input onChange={onChangeHandler} name="distance" id="distance"></input>
+
       <select onChange={onChangeHandler} name="gender" id="gender">
         <option value="female">Female</option>
         <option value="male">Male</option>
       </select>
 
-      <div>
-        <label>Age</label>
-        <input onChange={onChangeHandler} name="age" id="age"></input>
-      </div>
+      <label>Age</label>
+      <input onChange={onChangeHandler} name="age" id="age"></input>
     </>
   );
 };
@@ -551,14 +539,14 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <>
         <InputFields onChangeHandler={this.onChangeHandler} />
         <DisplayCooperResult
           distance={this.state.distance}
           gender={this.state.gender}
           age={this.state.age}
         />
-      </div>
+      </>
     );
   }
 }

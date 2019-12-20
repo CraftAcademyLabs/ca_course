@@ -50,7 +50,7 @@ If we run the test now we get an error that states that the test can't find the 
 
   render() {
     return (
-      <div>
+      <>
         <InputFields onChangeHandler={this.onChangeHandler} />
         <button id="login">Login</button>
         <DisplayCooperResult
@@ -58,7 +58,7 @@ If we run the test now we get an error that states that the test can't find the 
           gender={this.state.gender}
           age={this.state.age}
         />
-      </div>
+      </>
     );
   }
 }
@@ -82,15 +82,12 @@ import React from "react";
 const LoginForm = props => {
   return (
     <form id="login-form">
-      <div>
-        <label>Email</label>
-        <input name="email" type="email" id="email"></input>
-      </div>
+      <label>Email</label>
+      <input name="email" type="email" id="email"></input>
 
-      <div>
-        <label>Password</label>
-        <input name="password" type="password" id="password"></input>
-      </div>
+      <label>Password</label>
+      <input name="password" type="password" id="password"></input>
+
       <button id="submit">Submit</button>
     </form>
   );
@@ -114,11 +111,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>
+      <>
         {/* ... */}
         <button id="login">Login</button>
         <LoginForm />
-      </div>
+      </>
     );
   }
 }
@@ -163,7 +160,7 @@ class App extends Component {
       </button>
     );
     return (
-      <div>
+      <>
         <InputFields onChangeHandler={this.onChangeHandler} />
         {renderLogin}
         <DisplayCooperResult
@@ -171,7 +168,7 @@ class App extends Component {
           gender={this.state.gender}
           age={this.state.age}
         />
-      </div>
+      </>
     );
   }
 }
@@ -199,17 +196,21 @@ First, you need to add this method to the App component:
 ...
 onLogin = async e => {
     e.preventDefault();
-    let resp = await authenticate(this.state.email, this.state.password);
-    if (resp.authenticated === true) {
+    const res = await authenticate(
+      e.target.email.value,
+      e.target.password.value
+    );
+    if (res.authenticated) {
       this.setState({ authenticated: true });
     } else {
-      this.setState({ message: resp.message, renderLoginForm: false });
+      this.setState({ message: res.message, renderLoginForm: false });
     }
   };
 
+
 ```
 
-As you can see we have added some more objects to out state. We need to add default values to the constructor.
+You can see that we use another way of passing data from a form. We are using the event object to get the values of the input fields inside our form. However we use new attributes in state so let's add them!
 
 ```js
 // src/App.jsx
@@ -221,8 +222,6 @@ state = {
     age: "",
     renderLoginForm: false,
     authenticated: false,
-    email: "",
-    password: "",
     message: ""
   };
 ```
@@ -231,7 +230,6 @@ We also need to add some props to the rendering of the `LoginFrom` component.
 
 ```js
 <LoginForm
-  inputChangeHandler={this.onChangeHandler}
   submitFormHandler={this.onLogin}
 />
 ```
@@ -241,28 +239,22 @@ What we do here is that every time we change the input fields in the `LoginForm`
 ```js
 import React from "react";
 
-const LoginForm = ({ inputChangeHandler, submitFormHandler }) => {
+const LoginForm = ({ submitFormHandler }) => {
   return (
     <form onSubmit={submitFormHandler} id="login-form">
-      <div>
-        <label>Email</label>
-        <input
-          name="email"
-          type="email"
-          onChange={inputChangeHandler}
-          id="email"
-        ></input>
-      </div>
+      <label>Email</label>
+      <input
+        name="email"
+        type="email"
+        id="email"
+      ></input>
 
-      <div>
-        <label>Password</label>
-        <input
-          name="password"
-          type="password"
-          onChange={inputChangeHandler}
-          id="password"
-        ></input>
-      </div>
+      <label>Password</label>
+      <input
+        name="password"
+        type="password"
+        id="password"
+      ></input>
       <button id="submit">Submit</button>
     </form>
   );
@@ -301,54 +293,38 @@ ReactDOM.render(<App />, document.getElementById("root"));
 serviceWorker.unregister();
 ```
 
-Let's add that module:
+This will set the baseUrl for all of our axios network calls.
+
+Let's add the module that will handle them:
 
 `$ touch src/modules/auth.js`
 
-Add this there:
 
 ```js
 import axios from "axios";
 
-const apiUrl = "http://localhost:3000/api/v1";
-
 const authenticate = async (email, password) => {
-  const path = apiUrl + "/auth/sign_in";
   try {
-    let response = await axios.post(path, { email: email, password: password });
+    const response = await axios.post("/auth/sign_in", {
+      email: email,
+      password: password
+    });
     await storeAuthCredentials(response);
-    sessionStorage.setItem(
-      "current_user",
-      JSON.stringify({ id: response.data.data.id })
-    );
     return { authenticated: true };
   } catch (error) {
     return { authenticated: false, message: error.response.data.errors[0] };
   }
 };
 
-const storeAuthCredentials = ({ data, headers }) => {
-  return new Promise(resolve => {
-    const uid = headers["uid"],
-      client = headers["client"],
-      accessToken = headers["access-token"],
-      expiry = headers["expiry"];
-
-    sessionStorage.setItem(
-      "credentials",
-      JSON.stringify({
-        uid: uid,
-        client: client,
-        access_token: accessToken,
-        expiry: expiry,
-        token_type: "Bearer"
-      })
-    );
-    resolve(true);
-  });
+const storeAuthCredentials = ({ headers }) => {
+  sessionStorage.setItem("uid", headers["uid"]);
+  sessionStorage.setItem("client", headers["client"]);
+  sessionStorage.setItem("access_token", headers["access-token"]);
+  sessionStorage.setItem("expiry", headers["expiry"]);
+  sessionStorage.setItem("token_type", "Bearer");
 };
 
-export { authenticate, storeAuthCredentials };
+export default authenticate;
 ```
 
 We also need to import this to the `App` component:
@@ -365,18 +341,17 @@ Modify the code in the `render` method for the `App` component to look like this
 
 ```js
  render() {
-    const { renderLoginForm, authenticated } = this.state;
+        const { renderLoginForm, authenticated, message } = this.state;
     let renderLogin;
     if (renderLoginForm && !authenticated) {
       renderLogin = (
         <LoginForm
-          inputChangeHandler={this.onChangeHandler}
           submitFormHandler={this.onLogin}
         />
       );
     }
     if (!renderLoginForm && !authenticated) {
-     renderLogin = (
+      renderLogin = (
         <>
           <button
             id="login"
@@ -390,10 +365,10 @@ Modify the code in the `render` method for the `App` component to look like this
     }
     if (authenticated) {
       renderLogin = (
-        <p>Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
+        <p>Hi {(sessionStorage.getItem("uid"))}</p>
       );
     }
-    
+
     return (
       // <...>
     );
