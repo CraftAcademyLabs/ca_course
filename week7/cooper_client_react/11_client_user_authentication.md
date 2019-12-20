@@ -5,7 +5,7 @@ We are going to start as usual with writing a feature test for this functionalit
 `$ touch cypress/integration/userCanLogin.spec.js`
 
 This feature file should look like this:
-```
+```js
 describe('User can log in', () => {
   it('successfully', () => {
     cy.visit('http://localhost:3001');
@@ -34,7 +34,7 @@ describe('User can log in', () => {
 This feature is pretty straight forward. We click a login button which renders a login form. In the first scenario, we fill in the correct credentials and in the second one we fill in the wrong ones. Depending on if it is successful or not we will get a response which either welcomes the user or returns an error message.
 
 If we run the test now we get an error that states that the test can't find the selector `#login`. Let's start with adding a button to our `App` component.
-```
+```js
 // src/App.js
 
 ...
@@ -68,7 +68,7 @@ Let's create this login form component:
 `$ touch src/Components/LoginForm.js`
 
 Add the following code to that file:
-```
+```js
 import React from 'react';
 
 const LoginForm = () => {
@@ -94,7 +94,7 @@ export default LoginForm;
 If we run the test again, we will see no difference in the output. That is because we don't use this component anywhere, we are not rendering it. In the app component, we need to import it and render it.
 
 Modify `App.js` with the following code.
-```
+```js
 import React, { Component } from 'react';
 import './App.css';
 import DisplayCooperResult from './DisplayCooperResult'
@@ -122,7 +122,7 @@ If you run the feature test now, it will complain about not finding the text tha
 We want to add an object to our state to determine if the LoginForm should be rendered or if we want to display the login button. Then, we want to condition what is being rendered (in the components `render` method), based on that state.
 
 We need to update the App component to look like this:
-```
+```js
 import React, { Component } from 'react';
 import DisplayCooperResult from './Components/DisplayCooperResult';
 import InputFields from "./Components/InputFields";
@@ -191,7 +191,7 @@ If you run the feature test again, you will see that the change we made has not 
 We are going to add a method called `onLogin` that is going to authenticate the user against the backend system.
 
 First, you need to add this method to the App component:
-```
+```js
 async onLogin(e) {
   e.preventDefault();
   let resp = await authenticate(this.state.email, this.state.password)
@@ -204,7 +204,7 @@ async onLogin(e) {
 ```
 
 As you can see we have added some more objects to out state. We need to add default values to the constructor.
-```
+```js
   constructor(props) {
     super(props);
     this.state = {
@@ -221,7 +221,7 @@ As you can see we have added some more objects to out state. We need to add defa
 ```
 
 We also need to add some props to the rendering of the `LoginFrom` component.
-```
+```js
 <LoginForm
   loginHandler={this.onLogin.bind(this)}
   inputChangeHandler={this.onChange.bind(this)}
@@ -229,7 +229,7 @@ We also need to add some props to the rendering of the `LoginFrom` component.
 ```
 
 What we do here is that every time we change the input fields in the `LoginForm` component we will update the state of email and password. We also add so that when the submit button is clicked, we run the `onLogin` method here in the `App` component. To make this work we need to make some changes in the `LoginForm` component.'
-```
+```js
 import React from 'react';
 
 const LoginForm = (props) => {
@@ -265,7 +265,7 @@ Let's add that module:
 `$ touch src/Modules/Auth.js`
 
 Add this there:
-```
+```js
 import axios from 'axios'
 
 const apiUrl = 'http://localhost:3000/api/v1';
@@ -316,7 +316,7 @@ If you run the test and have the backend running locally, you will see that we s
 So, if we login successfully and store the user in the `sessionStorage`, we want to to display `Hi johndoe@mail.com`. On the other hand, if the login is not successful, we send back the message we get from the response back to the `onLogin` function and store it in a state called message. We want to display that message our page.
 
 Modify the code in the `render` method for the `App` component to look like this:
-```
+```js
 render() {
     let renderLogin;
     let user;

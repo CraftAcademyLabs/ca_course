@@ -3,7 +3,7 @@ So the login functionality works now, but do we really want to test against our 
 Whenever our App is making a network request, we can ‘hijack’ in the middle and respond as we want to. This means that the response payload is completely in our control.
 
 This is what we will do in the `userCanLogin.spec.js` that we added in the last section.
-```
+```js
 describe('User can log in', () => {
   it('successfully', () => {
     cy.visit('http://localhost:3001');
@@ -55,12 +55,12 @@ So in the first `it` block where we have the successfull login scenario, we tell
 Create the file and make the file look like this:
 
 `touch cypress/fixtures/login.json`
-```
+```json
 {
   "data": {
       "allow_password_change": false,
       "email": "user@mail.com",
-      "id": 4,{
+      "id": 4,
   "data": {
       "allow_password_change": false,
       "email": "user@mail.com",

@@ -3,7 +3,7 @@ Next feature is quite obvious, if we can save data, we want to be able to see al
 Start off with adding the feature test
 
 `$ touch cypress/integration/userCanSeeIndexOfSavedPerformanceData.spec.js`
-```
+```js
 describe('User attempts to view his/her performance data', () => {
 
   before(function() {
@@ -48,7 +48,7 @@ We need to create a new fixture file:
 `touch cypress/fixtures/performance_data_index.json`
 
 Add this to it:
-```
+```json
 {
   "status": 200,
   "headers": {},
@@ -81,7 +81,7 @@ Add this to it:
 These are the entries that we want to see when we press the button to display past entries.
 
 Let's start with adding the button to show the saved results. In the `App` component, we need to modify the if statement where the user is authenticated, modify it to look like this:
-```
+```js
   let performanceDataIndex;
 
   if (this.state.authenticated === true) {
@@ -97,7 +97,7 @@ Let's start with adding the button to show the saved results. In the `App` compo
 So when we click on this button, we change a state called `renderIndex` to true. Make sure that you have this state set in the constructor, it's important that it is set to false there.
 
 We need to render whats inside the variable we created as well.
-```
+```js
 return (
   // ..
   <DisplayCooperResult
@@ -115,7 +115,7 @@ return (
 If you run the test now it will complain about not finding the text that we are looking for. Its time to create a new component now.
 
 `$ touch src/Components/DisplayPerformanceData.js`
-```
+```js
 import React, { Component } from 'react';
 import { getData } from '../Modules/PerformanceData';
 
@@ -177,7 +177,7 @@ The next if block checks if the `performanceData` is empty or not. If it's not e
 If you run the test now, you will get the same error message as before. That's not that weird because we have not even rendered the new component we have just created in the `App` component. First off, make sure to import the `DisplayPerformanceData` component to the `App` component.
 
 Add this inside the if statement for the user to be authenticated:
-```
+```js
 if (this.state.authenticated === true) {
   // ...
   if (this.state.renderIndex === true) {
@@ -201,7 +201,7 @@ if (this.state.authenticated === true) {
 Here we render the `DisplayPerformanceData` component if the user has pressed the button to do so. We pass in a new state that we have seen mentioned in the `DisplayPerfromanceData` component called `updateIndex` and we bind a new function called `indexUpdated` to it. We also add a button to set the `renderIndex` state to false, which means that the application won't render the index.
 
 Add the `indexUpdated` function and update `entryHandler` so it looks like this:
-```
+```js
 entryHandler() {
     this.setState({ entrySaved: true, updateIndex: true });
 }
@@ -218,7 +218,7 @@ If we try running the test or running the application, it will complain about ho
 If we take a look in our `PerformanceData` module we can see that we don't have something like that defined.
 
 Add this to the `PerformanceData` module:
-```
+```js
 const saveData = () => {
 //...
 }

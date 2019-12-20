@@ -3,7 +3,7 @@ Next feature that we want to implement is that the user can save their cooper re
 So let's add a feature file for this:
 
 `$ touch cypress/integration/userCanSavePerformanceData.spec.js`
-```
+```js
 describe('User attempts save data', () => {
 
   beforeEach(function() {
@@ -50,7 +50,7 @@ describe('User attempts save data', () => {
 We want to be able to run these test without sending requests to the backend. Let's mock the response out.
 
 We need to update our `beforeEach` block in our feature:
-```
+```js
 describe('User attempts save data', () => {
 
   beforeEach(function() {
@@ -87,7 +87,7 @@ We need to create a new fixture file:
 `touch cypress/fixtures/saving_entry_response.json`
 
 Add this to it:
-```
+```json
 {
   "status": 200,
   "headers": {},
@@ -100,7 +100,7 @@ Add this to it:
 When a user is logged in and have a cooper result, he should be able to click a button to save that result.
 
 Let's start with adding a conditional in our render method to show the `#save-result` button if the user is logged in and have a result. Add this to the render method in the `DisplayCooperResult` component:
-```
+```js
 render() {
   let results;
   let saveButton;
@@ -130,7 +130,7 @@ render() {
 ```
 
 If there is a result and the user is authenticated, then the `#save-result` button will show. We have an `onClick` on this button which calls on a function we have not defined yet, `saveCooperData`. Let's add that above the render method:
-```
+```js
 // ...
 async saveCooperData() {
   const result = this.calculate();
@@ -148,7 +148,7 @@ The application will complain about `saveData()` not being defined. We need to a
 `$ touch src/Modules/PerformanceData.js`
 
 Add this:
-```
+```js
 import axios from 'axios'
 import { storeAuthCredentials } from './Auth'
 
@@ -186,14 +186,14 @@ You have to import this file to the `DisplayCooperResult` component.
 So from our `DisplayCooperResult` component, we send in the result to this function. The first thing we do is grabbing the credentials we have stored in `sessionStorage`. Then we make a post request to the backend with those credentials and the cooper result. The response we get back gets sent back to saveCooperData function in the `DisplayCooperResult` component. We also call on the function `storeAuthHeaders` we have in the `Auth` module to update the credentials that we get in the response. If there is no error in the response, we call on the entryHandler. We have not defined the `entryHandler` yet, but let's do it now.
 
 Add this to `App` component:
-```
+```js
 entryHandler() {
   this.setState({ entrySaved: true });
 }
 ```
 
 We also have to set that new state in our constructor:
-```
+```js
 constructor(props) {
   super(props);
   this.state = {
@@ -204,7 +204,7 @@ constructor(props) {
 ```
 
 Now we need to pass the entryHandler and `entrySaved` state to the `DisplayCooperResult` component:
-```
+```js
   <DisplayCooperResult
     distance={this.state.distance}
     gender={this.state.gender}
@@ -220,7 +220,7 @@ If you run the feature test now, you will get an error that says `"Text not foun
 We need to add and modify some of our code to get it to go green.
 
 First we need to modify the if statement in `DisplayCooperResult` component:
-```
+```js
 render() {
   if (this.props.authenticated === true && this.props.entrySaved === false) {
     saveButton = (
@@ -245,7 +245,7 @@ render() {
 ```
 
 Previously we modified the rendering of this component in the `App` component to pass in the state of `entrySaved`. So if we have saved the result we want to see `"Your entry was saved"`. Now we need to modify the `onChange` function in the app component so that every time we modify the inputs we can save a new result.
-```
+```js
   onChange(event) {
     this.setState({
       [event.target.id]: event.target.value,
