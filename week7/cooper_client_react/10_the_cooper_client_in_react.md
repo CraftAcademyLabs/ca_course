@@ -32,6 +32,16 @@ The next step is to add a script to the `package.json` file to be able to run fe
   },
 ```
 
+And configure cypress:
+
+```json
+// cypress.json
+
+{
+  "baseUrl": "http://localhost:3001"
+}
+```
+
 Then we can open cypress by `yarn run cy:open`
 
 Once we run cypress for the first time, it will create a folder for us, with a lot of example tests (Have a look at them, to get a sense of how tests should be written).
