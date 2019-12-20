@@ -443,47 +443,6 @@ If you run the test now everything should go green!
 
 Now we need to clean up the `App` component, we don't want to have the input fields there. The `App` component should be as clean as possible, that is why we will extract the input fields to their own component.
 
-The main goal of that component will be to handle the `onChange` event so we can create this test for the InputFields:
-
-`$ touch src/__tests__/InputFields.spec.js`
-
-```js
-// src/__tests__/InputFields.spec.js
-
-import React from "react";
-import { shallow } from "enzyme";
-
-import InputFields from "../components/InputFields";
-
-describe("InputFields", () => {
-  const onChangeHandler = jest.fn();
-  const wrapper = shallow(<InputFields onChangeHandler={onChangeHandler} />);
-
-  it("onChange functions is being on distance input", () => {
-    wrapper
-      .find("input#distance")
-      .simulate("change", { target: { name: "distance", value: "2000" } });
-    expect(onChangeHandler).toHaveBeenCalled();
-  });
-
-  it("onChange functions is being on gender select", () => {
-    wrapper
-      .find("select#gender")
-      .simulate("change", { target: { name: "gender", value: "male" } });
-    expect(onChangeHandler).toHaveBeenCalled();
-  });
-
-  it("onChange functions is being on age input", () => {
-    wrapper
-      .find("input#age")
-      .simulate("change", { target: { name: "age", value: "28" } });
-    expect(onChangeHandler).toHaveBeenCalled();
-  });
-});
-```
-
-And then we can create the component:
-
 `$ touch src/Components/InputFields.js`
 
 Make sure to remove the input fields from the `App` component and add this to the new `InputFields` component:

@@ -1,5 +1,7 @@
 # Authentication
 
+## Add the acceptance test
+
 It is time to add some login functionality to our React application. In order to be able to save results and show past results, we need to have a registered user.
 
 We are going to start as usual with writing a feature test for this functionality. We start with creating a feature file and adding some basic tests (aka scenarios).
@@ -43,8 +45,12 @@ This feature is pretty straight forward. We click a login button which renders a
 
 If we run the test now we get an error that states that the test can't find the selector `#login`. Let's start with adding a button to our `App` component.
 
+## Add the login form
+
+Start off by modifying the `App.jsx` like this:
+
 ```js
-// src/App.js
+// src/App.jsx
 
 ...
 
@@ -98,9 +104,11 @@ export default LoginForm;
 
 If we run the test again, we will see no difference in the output. That is because we don't use this component anywhere, we are not rendering it. In the app component, we need to import it and render it.
 
-Modify `App.js` with the following code.
+Modify `App.jsx` with the following code.
 
 ```js
+// src/App.jsx
+
 import React, { Component } from "react";
 import "./App.css";
 import DisplayCooperResult from "./DisplayCooperResult";
@@ -130,6 +138,8 @@ We want to add an object to our state to determine if the LoginForm should be re
 We need to update the App component to look like this:
 
 ```js
+// src/App.jsx
+
 import React, { Component } from "react";
 
 import DisplayCooperResult from "./components/DisplayCooperResult";
@@ -186,6 +196,8 @@ Run the application to make sure that this works and that the visibility of the 
 
 If you run the feature test again, you will see that the change we made has not changed the error message from the one we got before. We need to add some logic to our component in order to make the login flow work.
 
+## Add the login logic
+
 We are going to add a method called `onLogin` that is going to authenticate the user against the backend system.
 
 First, you need to add this method to the App component:
@@ -229,32 +241,24 @@ state = {
 We also need to add some props to the rendering of the `LoginFrom` component.
 
 ```js
-<LoginForm
-  submitFormHandler={this.onLogin}
-/>
+<LoginForm submitFormHandler={this.onLogin} />
 ```
 
 What we do here is that every time we change the input fields in the `LoginForm` component we will update the state of email and password. We also add so that when the submit button is clicked (that is when `onSubmit` is called for forms by default), we run the `onLogin` method here in the `App` component. To make this work we need to make some changes in the `LoginForm` component.'
 
 ```js
+// src/components/LoginForm.jsx
+
 import React from "react";
 
 const LoginForm = ({ submitFormHandler }) => {
   return (
     <form onSubmit={submitFormHandler} id="login-form">
       <label>Email</label>
-      <input
-        name="email"
-        type="email"
-        id="email"
-      ></input>
+      <input name="email" type="email" id="email"></input>
 
       <label>Password</label>
-      <input
-        name="password"
-        type="password"
-        id="password"
-      ></input>
+      <input name="password" type="password" id="password"></input>
       <button id="submit">Submit</button>
     </form>
   );
@@ -299,11 +303,12 @@ Let's add the module that will handle them:
 
 `$ touch src/modules/auth.js`
 
-
 ```js
+// src/modules/auth.js
+
 import axios from "axios";
 
-const authenticate = async (email, password) => {
+export const authenticate = async (email, password) => {
   try {
     const response = await axios.post("/auth/sign_in", {
       email: email,
@@ -316,15 +321,17 @@ const authenticate = async (email, password) => {
   }
 };
 
-const storeAuthCredentials = ({ headers }) => {
-  sessionStorage.setItem("uid", headers["uid"]);
-  sessionStorage.setItem("client", headers["client"]);
-  sessionStorage.setItem("access_token", headers["access-token"]);
-  sessionStorage.setItem("expiry", headers["expiry"]);
-  sessionStorage.setItem("token_type", "Bearer");
+export const storeAuthCredentials = ({ headers }) => {
+  const credentials = {
+    uid: headers["uid"],
+    client: headers["client"],
+    access_token: headers["access-token"],
+    expiry: headers["expiry"],
+    token_type: "Bearer"
+  };
+  sessionStorage.setItem("credentials", JSON.stringify(credentials));
 };
 
-export default authenticate;
 ```
 
 We also need to import this to the `App` component:
@@ -340,6 +347,8 @@ So, if we login successfully and store the user in the `sessionStorage`, we want
 Modify the code in the `render` method for the `App` component to look like this:
 
 ```js
+// src/App.jsx
+
  render() {
         const { renderLoginForm, authenticated, message } = this.state;
     let renderLogin;
@@ -365,7 +374,7 @@ Modify the code in the `render` method for the `App` component to look like this
     }
     if (authenticated) {
       renderLogin = (
-        <p>Hi {(sessionStorage.getItem("uid"))}</p>
+        <p>Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
       );
     }
 
