@@ -355,30 +355,28 @@ Modify the code in the `render` method for the `App` component to look like this
  render() {
         const { renderLoginForm, authenticated, message } = this.state;
     let renderLogin;
-    if (renderLoginForm && !authenticated) {
-      renderLogin = (
-        <LoginForm
-          submitFormHandler={this.onLogin}
-        />
-      );
-    }
-    if (!renderLoginForm && !authenticated) {
-      renderLogin = (
-        <>
-          <button
-            id="login"
-            onClick={() => this.setState({ renderLoginForm: true })}
-          >
-            Login
-          </button>
-          <p id="message">{message}</p>
-        </>
-      );
-    }
-    if (authenticated) {
-      renderLogin = (
-        <p id="message">Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
-      );
+    switch(true) {
+      case renderLoginForm && !authenticated:
+        renderLogin = <LoginForm submitFormHandler={this.onLogin} />;
+        break;
+      case !renderLoginForm && !authenticated:
+        renderLogin = (
+          <>
+            <button
+              id="login"
+              onClick={() => this.setState({ renderLoginForm: true })}
+            >
+              Login
+            </button>
+            <p>{message}</p>
+          </>
+        );
+        break;
+      case authenticated:
+        renderLogin = (
+          <p>Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
+        );
+        break;
     }
 
     return (
