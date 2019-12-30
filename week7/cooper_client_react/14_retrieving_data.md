@@ -20,13 +20,13 @@ describe('User attempts to view his/her performance data', () => {
         "uid": "user@mail.com"
       }
     })
-
     cy.visit("/");
+
     cy.get('#login').click();
     cy.get('#login-form').within(() => {
       cy.get('#email').type('user@mail.com')
       cy.get('#password').type('password')
-      cy.get('button').click()
+      cy.get('button').contains('Submit').click()
     })
   });
 
@@ -109,7 +109,7 @@ return (
     age={this.state.age}
     authenticated={this.state.authenticated}
     entrySaved={this.state.entrySaved}
-    entryHandler={this.entryHandler.bind(this)}
+    entryHandler={() => this.setState({ entrySaved: true, updateIndex: true })}
   />
   {performanceDataIndex}
 )
@@ -188,7 +188,7 @@ Add this inside the if statement for the user to be authenticated:
 
 case authenticated:
   // ...
-  if (this.state.renderIndex === true) {
+  if (this.state.renderIndex) {
     performanceDataIndex = (
       <>
         <DisplayPerformanceData
@@ -246,7 +246,6 @@ const getData = async () => {
     headers: headers
   });
 
-  storeAuthCredentials(response);
   return response;
 };
 

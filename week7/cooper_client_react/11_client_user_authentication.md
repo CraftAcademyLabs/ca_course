@@ -25,7 +25,7 @@ describe("User authenticates", () => {
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");
-      cy.get('button').contains('Login').click()
+      cy.get('button').contains('Submit').click()
     });
     cy.get("#message).should("contain", "Hi user@mail.com");
   });
@@ -35,7 +35,7 @@ describe("User authenticates", () => {
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("wrongpassword");
-      cy.get('button').contains('Login').click()
+      cy.get('button').contains('Submit').click()
     });
     cy.get("#message).should("contain", "Invalid login credentials. Please try again.");
   });
@@ -229,7 +229,7 @@ You can see that we use another way of passing data from a form. We are using th
 // src/App.jsx
 
 ...
-state = {
+  state = {
     distance: "",
     gender: "female",
     age: "",
@@ -353,7 +353,7 @@ Modify the code in the `render` method for the `App` component to look like this
 // src/App.jsx
 
  render() {
-        const { renderLoginForm, authenticated, message } = this.state;
+    const { renderLoginForm, authenticated, message } = this.state;
     let renderLogin;
     switch(true) {
       case renderLoginForm && !authenticated:

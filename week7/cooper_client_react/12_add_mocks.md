@@ -34,7 +34,7 @@ describe("User can log in", () => {
       cy.get("#password").type("password");
       cy.get('button').contains('Submit').click();
     });
-    cy.get("#message).should("contain", "Hi user@mail.com");
+    cy.get("#message").should("contain", "Hi user@mail.com");
   });
 
   it("with invalid credentials", () => {
@@ -53,7 +53,7 @@ describe("User can log in", () => {
       cy.get("#password").type("wrongpassword");
       cy.get('button').contains('Submit').click()
     });
-    cy.get("#message).should("contain", "Invalid login credentials. Please try again.");
+    cy.get("#message").should("contain", "Invalid login credentials. Please try again.");
   });
 });
 
