@@ -30,7 +30,7 @@ Once we run cypress for first time, it will create scaffolded folder, with a lot
 
 Our tests are stored in `Integration` folder and `fixtures` folder will contain JSON files, which we will introduce during the course of this document.
 
-Configure our baseUrl in `cypress.json` file:
+Configure our `baseUrl` in `cypress.json` file:
 
 ```json
 // cypress.json
@@ -38,6 +38,8 @@ Configure our baseUrl in `cypress.json` file:
   "baseUrl": "http://localhost:3000"
 }
 ```
+
+`baseUrl` is a something we can call on when we tell Cypress which URL it should go to. Instead of writing `http://localhost:3000`, we can call on that URL by writing `/`.
 
 ## Your first tests
 
@@ -83,8 +85,11 @@ The testing of the actual method may change depending on the implementation that
 /// <reference types="Cypress" />
 
 describe('BMI Calculator', () => {
-  it('Calculates BMI in metric',() => {
+  beforeEach(() => {
     cy.visit('/');
+  })
+
+  it('Calculates BMI in metric',() => {
     cy.get('select#select-method').select('metric');
     cy.get('input#weight').type(90);
     cy.get('input#height').type(190);
@@ -92,7 +97,6 @@ describe('BMI Calculator', () => {
     cy.get('p#bmi-message').should('contain', 'You are Normal with a BMI of 24.93')
   })
   it('Calculates BMI in imperial',() => {
-    cy.visit('/');
     cy.get('select#select-method').select('imperial');
     cy.get('input#weight').type(198);
     cy.get('input#height').type(74);

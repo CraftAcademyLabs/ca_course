@@ -31,7 +31,7 @@ The next step is to add a script to the `package.json` file to be able to run fe
   },
 ```
 
-And configure cypress:
+And configure Cypress:
 
 ```json
 // cypress.json
@@ -41,7 +41,7 @@ And configure cypress:
 }
 ```
 
-Then we can open cypress by `yarn run cy:open`
+Then we can open Cypress by `yarn run cy:open`
 
 We will also set up `jest` and `enzyme` which will be our component testing solution:
 

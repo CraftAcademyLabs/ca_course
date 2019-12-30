@@ -7,7 +7,7 @@ $ mkdir -p spec/requests/api/v1
 $ touch spec/requests/api/v1/registrations_spec.rb
 ```
 
-The examples below contain a lot of moving parts, so be sure to go over the code line by line and discuss with your pairing partner what each line does. We are not using rspec to generate these test because they do not provide a structure of request specs that we want to use. We also introduce a new keyword: `context` that is an alias for `describe` and can be used interchangeably.
+The examples below contain a lot of moving parts, so be sure to go over the code line by line and discuss with your pairing partner what each line does. We are not using RSpec generators to generate this test (as we did before), because they do not provide a structure of request specs that we want to use. We also introduce a new keyword: `context` that is an alias for `describe` and can be used interchangeably.
 
 Bear in mind the 4 phases of testing:
 

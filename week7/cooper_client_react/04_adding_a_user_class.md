@@ -34,7 +34,7 @@ t.string :nickname
 t.string :image
 ```
 
-At the moment we are only building the MVP of the this application, so adding for instance `:nickname` would be out of scope and that `User` attribute would not have been used.
+These columns will be removed because we dont have a use case for them and we will not use them anywhere in this application with our current implementation. Our users will not have the possibilty to set their `:name`, `:nickname` or upload a `:image` of themselves as their profile picture.
 
 In our User model (`app/models/user.rb`) we want to make sure that Devise is set up for our needs. We will remove the OAuth and Confirmation methods.
 ```

@@ -1,6 +1,6 @@
 # Add mocks for our acceptance tests
 
-## How to mock with cypress
+## How to mock with Cypress
 
 So the login functionality works now, but do we really want to test against our live backend? In order to not do that, we can set up mocks for this.
 
@@ -59,7 +59,7 @@ describe("User can log in", () => {
 
 ```
 
-So in the first `it` block where we have the successful login scenario, we tell cypress to interfere with the request that the application will try to make when the button that submits the user credentials. The response we will mock out will be defined in another file that we will call `login.json`. The location of this file will be in the fixtures folder that is in the cypress folder.
+So in the first `it` block where we have the successful login scenario, we tell Cypress to interfere with the request that the application will try to make when the button that submits the user credentials. The response we will mock out will be defined in another file that we will call `login.json`. The location of this file will be in the fixtures folder that is in the Cypress folder.
 
 Create the file and make the file look like this:
 
