@@ -8,8 +8,6 @@ Let's write our first spec to see if we can get a response from our endpoint.
 
 In your spec folder create a folder named requests. Within that folder, we need to add a folder structure that corresponds to the one we have in our app/controllers folder.
 ```
-$ mkdir spec/requests
-$ mkdir spec/requests/api
 $ mkdir spec/requests/api/v0
 ```
 
@@ -21,11 +19,17 @@ require 'rails_helper'
 
 RSpec.describe Api::V0::PingsController, type: :request do
   describe 'GET /v0/pings' do
-    it 'should return Pong' do
+    before do
       get '/api/v0/pings'
+    end
 
+    it 'should return a 200 response' do
+      expect(response).to have_http_status 200
+    end
+    
+    it 'should return Pong' do
       json_response = JSON.parse(response.body)
-      expect(response.status).to eq 200
+
       expect(json_response['message']).to eq 'Pong'
     end
   end

@@ -1,174 +1,165 @@
 ## Component testing
 
-Now we are going to do some unit testing, or as we call them in React land, Component tests! We are going to use `jest`, `enzyme` and `sinon` to do this. So as usual, we need to add some packages. Run:
+Now we are going to do some unit testing, or as we call them in React land, Component tests! We are going to use `jest`, `enzyme` to do this. So as usual, we need to add some packages. Run:
 
-`npm i -D enzyme enzyme-adapter-react-16 react-scripts react-test-renderer sinon`
+`yarn add enzyme enzyme-adapter-react-16 --dev`
 
-Now we need to configure `enzyme`. Run:
+Now we need to configure `enzyme`. Update the `setupTest.js` file to look like this:
 
-`touch src/setupTests.js`
+```js
+import { configure } from "enzyme";
+import Adapter from "enzyme-adapter-react-16";
 
-The file should look like this:
+configure({ adapter: new Adapter() });
 ```
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
 
-configure({ adapter: new Adapter() }); 
-```
+React automatically reads this file and will use enzyme as an adapter for running jest.
+
+Enzyme exports 2 important functions for us:
+
+- [Shallow](https://airbnb.io/enzyme/docs/api/shallow.html) this mounts the component and only the component. Children will not be mounted.
+- [Render](https://airbnb.io/enzyme/docs/api/ReactWrapper/mount.html) this mounts the component and all child components.
+
 Now we need to create our test folder and our first test file. Run:
 
-`$ mkdir src/__tests__`
+## Testing components with shallow rendering
 
-`$ touch src/__tests__/App.test.js`
+First we are going to test our form and message components. For this we will use shallow render and mock out the functions that we receive from `App.js`:
 
-Add all of the code underneath to `App.test.js` file.
 ```
-```import React from 'react';
-import { mount, shallow } from 'enzyme';
-import { stub } from 'sinon';
+$ mkdir src/__tests__
+$ touch src/__tests__/Form.spec.js
 
-import DisplayResult from '../Components/DisplayResult';
-import MethodSelect from '../Components/MethodSelect';
-import App from './App';
+```
 
-describe('<App />', () => {
-  it('renders header', () => {
-    const component = shallow(<App />);
-    const header = <h1>BMI Converter</h1>;
-    expect(component.contains(header)).toEqual(true);
+```js
+// src/__tests__/Form.spec.js
+
+import React from "react";
+import { shallow } from "enzyme";
+
+import Form from "./Form";
+
+describe("Form", () => {
+  const handleChange = jest.fn();
+  const handleSubmit = jest.fn();
+  const wrapper = shallow(
+    <Form
+      weight="90"
+      height="190"
+      onChangeHandler={handleChange}
+      onSubmitHandler={handleSubmit}
+    />
+  );
+  it("renders with weight prop", () => {
+    expect(wrapper.find("#weight").props().value).toEqual("90");
+  });
+  it("renders with height prop", () => {
+    expect(wrapper.find("#height").props().value).toEqual("190");
+  });
+  it("on change the onChangeHandler is being called", () => {
+    wrapper.find("#weight").simulate("change");
+    expect(handleChange).toHaveBeenCalled();
+    wrapper.find("#height").simulate("change");
+    expect(handleChange).toHaveBeenCalled();
+  });
+  it("on submit the onSubmitHandler is being called", () => {
+    wrapper.find("form").simulate("submit");
+    expect(handleSubmit).toHaveBeenCalled();
+  });
+});
+```
+
+So what we do here? :
+
+- We shallow render `<Form />` and pass down the props. We use `jest.fn()` to create a mock functions for our functions. In this test we don't care what these functions are doing, we only care that they are being called. That is the job of that component.
+- We pass down props to our `Form` and use enzyme to find these values using the `.find().props()` functions on our wrapper.
+- Lastly we simulate change and submit events to check whether our functions are called or not.
+
+To run the test simply type in :
+
+```
+yarn test
+
+```
+
+Now let's test the `Message` component!:
+
+```js
+import React from "react";
+import { shallow } from "enzyme";
+
+import Message from "../components/Message";
+
+describe("Message component", () => {
+  const wrapper = shallow(<Message bmiMessage="Normal" bmiValue="23.59" />);
+
+  it("renders with message prop", () => {
+    expect(wrapper.find("#bmi-message").text()).toEqual(
+      "You are Normal with a BMI of 23.59"
+    );
+  });
+});
+```
+
+Here we use the function called `text()` to check what is the text inside our element.
+
+## Test components with mount
+
+Now that we have tested our components with shallow it is time to test `App` and see if our logic works as it should. This is an example your test might be different based on how you have implemented the imperial method. In our example we have a selector to choose between the methods.
+
+```js
+//src/__tests__/App.test.js
+
+import React from "react";
+import { mount } from "enzyme";
+import App from "../App";
+
+describe("App component", () => {
+  const wrapper = mount(<App />);
+  it("Counts using the metric method", () => {
+    wrapper
+      .find("#select-method")
+      .simulate("change", { target: { value: "metric" } });
+    wrapper
+      .find("#weight")
+      .simulate("change", { target: { name: "weight", value: "90" } });
+    wrapper
+      .find("#height")
+      .simulate("change", { target: { name: "height", value: "190" } });
+    wrapper.find("form").simulate("submit");
+    expect(wrapper.find("#bmi-message").text()).toEqual(
+      "You are Normal with a BMI of 24.93"
+    );
   });
 
-  it('shows metric as the standard method', () => {
-    const component = shallow(<App />);
-    const weightLabel = <label>Weight(kg)</label>;
-    const heightLabel = <label>Height(cm)</label>;
-    expect(component.contains(weightLabel)).toEqual(true);
-    expect(component.contains(heightLabel)).toEqual(true);
-  })
-
-  it('can change method', () => {
-    const onChangeValue = stub();
-    const component = shallow(<App onChangeValue={onChangeValue} />);
-    const weightLabel = <label>Weight(lbs)</label>;
-    const heightLabel = <label>Height(inches)</label>;
-    component.find("MethodSelect").prop('onChangeValue')({target: {value:'imperial'}});
-    expect(component.contains(weightLabel)).toEqual(true);
-    expect(component.contains(heightLabel)).toEqual(true);
-  })
-})
-
-describe('<DisplayResult />', () => {
-  it('displays the calulation correct(metric)', () => {
-    const component = shallow(<DisplayResult method='metric' weight='100' height='195'/>)
-    const response = <div id='response'>You are Overweight with a BMI of 26.3</div>
-    expect(component.contains(response)).toEqual(true)
-  })
-
-  it('displays the calulation correct(imperial)', () => {
-    const component = shallow(<DisplayResult method='imperial' weight='140' height='73'/>)
-    const response = <div id='response'>You are Underweight with a BMI of 18.47</div>
-    expect(component.contains(response)).toEqual(true)
-  })
-
-  it('does not show anything when one of the input fields are empty', () => {
-    const component = shallow(<DisplayResult method='metric' weight='' height='195'/>);
-    expect(component.text()).toBe('')
-  })
-})
-
-describe('<MethodSelect />', () => {
-  it('has two methods to choose from', () => {
-    const component = mount(<MethodSelect />);
-    const selector = component.find('#method').instance()
-    expect(selector.options.length).toEqual(2)
-  }
-)})
-```
-As we said in the guide for setting up the acceptance tests for the BMI Calculator application, this is how we test our app with our implementation. Yours might be a bit different. With the examples above you should be able to modify them for your implementation.
-
-**Every component should have its own test file, we put everything in one here because it is easier to present. So as an example, with our implementation, there should be an `App.test.js`, a `DisplayResult.test.js` and a `MethodSelect.test.js` file in the `__tests__` folder**
-```
-import React from 'react';
-import { mount, shallow } from 'enzyme';
-import { stub } from 'sinon';
-
-import DisplayResult from '../Components/DisplayResult'
-import MethodSelect from '../Components/MethodSelect';
-import App from './App';
-```
-
-Here we are importing everything that we need to test our application and what we want to test.
-
-The first three are what we need to be able to test. `enzyme` we need to be able to create fake versions of the components that we want to test. `react` we need because we are testing an application built with the React library. `sinon` we need to have to be able to mock and stub out some of the functions that we have in our components.
-
-The last three imports that we have here are the components that we have in our application. This is one of the main differences between the acceptance testing we have done with `jest-puppeteer` and the component testing we are going over at the moment. With the acceptance testing we are testing the whole application, as the user will see it, but here we are going to test each component by itself. To make sure that they work properly by themselves.
-```
-describe('<App />', () => {
-  it('renders header', () => {
-    const component = shallow(<App />);
-    const header = <h1>BMI Converter</h1>;
-    expect(component.contains(header)).toEqual(true);
+  it("Counts using the imperial method", () => {
+    wrapper
+      .find("#select-method")
+      .simulate("change", { target: { value: "imperial" } });
+    wrapper
+      .find("#weight")
+      .simulate("change", { target: { name: "weight", value: "192" } });
+    wrapper
+      .find("#height")
+      .simulate("change", { target: { name: "height", value: "74" } });
+    wrapper.find("form").simulate("submit");
+    expect(wrapper.find("#bmi-message").text()).toEqual(
+      "You are Normal with a BMI of 24.65"
+    );
   });
-
-  it('shows metric as the standard method', () => {
-    const component = shallow(<App />);
-    const weightLabel = <label>Weight(kg)</label>;
-    const heightLabel = <label>Height(cm)</label>;
-    expect(component.contains(weightLabel)).toEqual(true);
-    expect(component.contains(heightLabel)).toEqual(true);
-  })
+});
 ```
-So here we are testing the `App` component, as it states in the `describe` block. The first test here is to make sure that the `App` component renders the header. First, we create the component with a method from enzyme that we imported called shallow.
 
-_[Shallow rendering is useful to constrain yourself to test a component as a unit, and to ensure that your tests aren't indirectly asserting on behavior of child components.](https://github.com/airbnb/enzyme/blob/master/docs/api/shallow.md)_
+Let me walk you through what is happening here:
 
-After this, we declare a variable and makes it equal a bit of HTML code. Then in the expect block we test for that the HTML code that we stored in the variable named `header` exists in the `App` component. Next test is `'shows metric as the standard method'`. In our `App` component, we have a constructor where we set the calculation method as a sate and it equals to metric. This means that every time someone opens the application, the metric is going to be the default method. The way we have implemented our app is that the label for the inputs changes depending on which method is selected. So if the labels are correct they should show "kg" and "cm" in the parenthesis. So as the test above we store what HTML code we expect to see in variables and then we test for them to be rendered by the `App` component.
-```
-it('can change method', () => {
-  const onChangeValue = stub();
-  const component = shallow(<App onChangeValue={onChangeValue} />);
-  const weightLabel = <label>Weight(lbs)</label>;
-  const heightLabel = <label>Height(inches)</label>;
-  component.find("MethodSelect").prop('onChangeValue')({target: {value:'imperial'}});
-  expect(component.contains(weightLabel)).toEqual(true);
-  expect(component.contains(heightLabel)).toEqual(true);
-})
-```
-Here we test that we can change the method to imperial and that the labels for the input change to reflect that. In our implementation we have the method selector in a different component then the `Àpp` one, we have it in a child component called `MethodSelect`. So every time we change the value of the method selector in the `MethodSelect` component, the `App` (parent) component notices this and grabs the value of which option (either imperial or metric) was selected and sets the state of the method to that value.
+- First we `mount` the `App` component, meaning all the children components are mounted as well. Therefore we have access to `Form` and `Message`.
+- First we find the selector and select the metric method using the `simulate('change')` function. We can pass a secondary argument where we construct the event we want to happen. We choose metric.
+- Secondary we find the 2 inputs and simulate changes. Now we also need to pass down the name of the input because that is how we are setting the state with our `onChangeHandler`.
+- After that we simulate the submit and find the expected message.
+- We repeat with the imperial method.
 
-We stub this `onChangeValue` out because we don't have access to the `MethodSelect` component in this test. We declare two variables with what we expect to see when the state of `method` has been changed to imperial. On the next line we set the onChangeValue we have stubbed out previously to imperial. This means that the state of the method has changed to "imperial" and we can now test that the labels have changed and match the variables we declared earlier.
-```
-describe('<DisplayResult />', () => {
-  it('displays the calulation correct(metric)', () => {
-    const component = shallow(<DisplayResult method='metric' weight='100' height='195'/>)
-    const response = <div id='response'>You are Overweight with a BMI of 26.3</div>
-    expect(component.contains(response)).toEqual(true)
-  })
 
-  it('displays the calulation correct(imperial)', () => {
-    const component = shallow(<DisplayResult method='imperial' weight='140' height='73'/>)
-    const response = <div id='response'>You are Underweight with a BMI of 18.47</div>
-    expect(component.contains(response)).toEqual(true)
-  })
+## Wrap up
 
-  it('does not show anything when one of the input fields are empty', () => {
-    const component = shallow(<DisplayResult method='metric' weight='' height='195'/>);
-    expect(component.text()).toBe('')
-  })
-})
-```
-In these test here we test that we get the correct response from the `DisplayResult` component. This component gets the method type and values from the input fields in the `App` component as props. Then it runs the calculation and returns the result. So above here, we have three different tests. That the metric and imperial calculations work properly. As well as that when we don't fill in both input fields, we don't get any response.
-
-So for the first two tests, we set up the `DisplayResult` component with the props that are needed to do the calculation. Then we declare a variable and set it to equal the response we want to get from the component when we pass in those props to it. The last test we don't send in all necessary props, which is what we want to test. Therefore in the expect block we test that the component doesn't render any text.
-```
-describe('<MethodSelect />', () => {
-  it('has two methods to choose from', () => {
-    const component = mount(<MethodSelect />);
-    const selector = component.find('#method').instance()
-    expect(selector.options.length).toEqual(2)
-  }
-)})
-```
-In this last test, we are making sure that there are two options of methods to choose from in the `MethodSelect` component. This component does not set the state of `method`, we do that in the `App` component.
-
-That means that this is really the only thing we need to test in this component. We first set up the `MethodSelect` component, but this time with a different enzyme method called [mount](https://airbnb.io/enzyme/docs/api/ReactWrapper/mount.html). This test is a bit different from the other tests in this guide. Previously we have set a variable and equaled it to some HTML, then we have checked to see if the component has rendered that HTML. In this test, we find the selector by its id within the component, and then test that the selector has two options to choose from.
+This is how you test the components. The primary goal of these tests modules of your program individually and to make sure that the logic of your program works as intended. As your application grows it will be harder to keep track of what change affects what. Having good component specs will help you see the effects of those changes on every component.

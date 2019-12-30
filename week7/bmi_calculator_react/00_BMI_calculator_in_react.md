@@ -12,176 +12,163 @@ Run this command in the terminal to create a React application:
 
 `npx create-react-app bmi_calculator`
 
-Go inside of the project and run `yarn start` or `npm start`to fire app the local server and navigate to `localhost:3000` to see that everything works fine.
+Go inside of the project and run `yarn start` to fire app the local server and navigate to `localhost:3000` to see that everything works fine.
 
 ## Cleaning
 
 Start off with cleaning the `src/App.js`
 
-Remove everything that is in the div with the class name `"App"`. Also, remove the import of the logo at line two.
+Convert the file to a class, change the file extension to `jsx`, remove everything that is in the div with the class name `"App"`. Also, remove the import of the logo at line two.
 
 The file should look like this:
-```
-import React, { Component } from 'react';
+
+```js
+// src/App.jsx
+
+import React, { Component } from "react";
 
 class App extends Component {
   render() {
-    return (
-      <div>
-
-      </div>
-    );
+    return <div></div>;
   }
 }
 
 export default App;
 ```
+
 ## Data input
 
 Our user needs to input his data so that the application can return their BMI. We need to setup input fields for:
 
-*   How much they weigh
-*   How tall they are
+- How much they weigh in kgs
+- How tall they are in cms
 
 So let's start with adding two input fields for this.
 
 The file should look like this:
-```
-import React, { Component } from 'react';
+
+```js
+// src/App.jsx
+
+import React, { Component } from "react";
 
 class App extends Component {
   render() {
     return (
-      <div>
-        <div>
-          <label>Weight(kg)</label>
-          <input name="weight" />
-        </div>
-
-        <div>
-          <label>Height(cm)</label>
-          <input name="height" />
-        </div>
-      </div>
+      <form>
+        <label htmlFor="weight">Weight</label>
+        <input
+          type="number"
+          required
+          placeholder="Weight in kgs"
+          name="weight"
+          id="weight"
+        />
+        <label htmlFor="height">Height</label>
+        <input
+          type="number"
+          required
+          placeholder="Height in cm"
+          name="height"
+          id="height"
+        />
+        <button>Calculate BMI</button>
+      </form>
     );
   }
 }
 
 export default App;
 ```
+
+This gets the job done but keeping everything in one component could make it grow out of proportions. In React it is good practice to extract out parts of the UI into functional components. Lets add a `Form.jsx` file!
+
+```
+$ mkdir src/components
+$ touch src/components/Form.jsx
+```
+
+```js
+// src/components/Form.jsx
+
+import React from "react";
+
+const Form = props => {
+  return (
+    <form>
+      <label htmlFor="weight">Weight</label>
+      <input
+        type="number"
+        required
+        placeholder="Weight in kgs"
+        name="weight"
+        id="weight"
+      />
+      <label htmlFor="height">Height</label>
+      <input
+        type="number"
+        required
+        placeholder="Height in cm"
+        name="height"
+        id="height"
+      />
+      <button>Calculate BMI</button>
+    </form>
+  );
+};
+
+export default Form;
+```
+
+And update `App.jsx` like this:
+
+```js
+// src/App.jsx
+
+import React, { Component } from "react";
+import Form from "./components/Form";
+
+class App extends Component {
+  render() {
+    return <Form />;
+  }
+}
+
+export default App;
+```
+
 ## State
 
-We need to save what we input into these fields. This is a great place to use state.
+Now that we have our form we could use react state to store the information. To do that we need to do the following:
 
-Update the input fields to look like this.
-```
-<div>
-  <label>Weight(kg)</label>
-  <input name="weight" value={this.state.weight} onChange={ (e) => this.setState({ weight: e.target.value })} />
-</div>
+- Initiate state in our `App.jsx`.
+- Add a function that handles changes in our input fields and saves the input.
+- Pass down the state and the function to our `Form.jsx`.
 
-<div>
-  <label>Height(cm)</label>
-  <input name="height" value={this.state.height} onChange={ (e) => this.setState({ height: e.target.value })} />
-</div>
-```
-We also need to add a constructor above our render function to declare the state and the default value of our states.
+Update the files to look like this:
 
-The App.js file should look like this:
-```
-import React, { Component } from 'react';
+```js
+// src/App.jsx
+
+import React, { Component } from "react";
+
+import Form from "./components/Form";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      weight: '',
-      height: ''
-    }
-  }
+  state = {
+    weight: "",
+    height: ""
+  };
+
+  onChangeHandler = e => this.setState({ [e.target.name]: e.target.value });
 
   render() {
     return (
       <div>
-        <div>
-          <label>Weight(kg)</label>
-          <input name="weight" value={this.state.weight} onChange={ (e) => this.setState({ weight: e.target.value })} />
-        </div>
-
-        <div>
-          <label>Height(cm)</label>
-          <input name="height" value={this.state.height} onChange={ (e) => this.setState({ height: e.target.value })} />
-        </div>
-      </div>
-    );
-  }
-}
-
-export default App;
-```
-So, every time we change the value of the input, it will set the state to that value.
-
-So now let's use those numbers to calculate the BMI of the person.
-
-We are going to create a new component that displays the result.
-
-Run this in the terminal:
-```
-$ mkdir src/Components
-$ touch src/Components/displayResult.js
-```
-
-First, we need to set up everything that a react component needs.
-
-The file should look like this:
-```
-import React, { Component } from 'react';
-
-class DisplayResult extends Component {
-
-  render() {
-    return (
-      <div id='response'>
-      </div>
-    )
-  }
-}
-
-export default DisplayResult
-```
-
-Now we need to make sure to send the data from the App.js component to this new DisplayResult component. So back in the `App.js` file, we need to import the new component and render it.
-
-The file should look like this:
-```
-import React, { Component } from 'react';
-import DisplayResult from './Components/displayResult';
-
-class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      weight: '',
-      height: ''
-    }
-  }
-
-  render() {
-    return (
-      <div>
-        <div>
-          <label>Weight(kg)</label>
-          <input name="weight" value={this.state.weight} onChange={ (e) => this.setState({ weight: e.target.value })} />
-        </div>
-
-        <div>
-          <label>Height(cm)</label>
-          <input name="height" value={this.state.height} onChange={ (e) => this.setState({ height: e.target.value })} />
-        </div>
-
-        <DisplayResult
+        <Form
           weight={this.state.weight}
           height={this.state.height}
+          onChangeHandler={this.onChangeHandler}
         />
       </div>
     );
@@ -191,68 +178,67 @@ class App extends Component {
 export default App;
 ```
 
-As you can see we now pass in the state of both the weight and height to the `DisplayResult` component.
+```js
+// src/components/Form.jsx
 
-Let's go back to that component now.
+import React from "react";
 
-Let's add a `calculate` function in the `DisplayResult` component:
-```
-import React, { Component } from 'react';
+const Form = props => {
+  return (
+    <form>
+      <label htmlFor="weight">Weight</label>
+      <input
+        type="number"
+        required
+        placeholder="Weight in kgs"
+        value={props.weight}
+        name="weight"
+        id="weight"
+        onChange={props.onChangeHandler}
+      />
+      <label htmlFor="height">Height</label>
+      <input
+        type="number"
+        required
+        placeholder="Height in cm"
+        value={props.height}
+        name="height"
+        id="height"
+        onChange={props.onChangeHandler}
+      />
+      <button id='calculate'>Calculate BMI</button>
+    </form>
+  );
+};
 
-class DisplayResult extends Component {
-  calculate() {
-    var weight= this.props.weight;
-    var height= this.props.height;
-  }
-
-  render() {
-    return (
-      <div id='response'>
-        {this.calculate()}
-      </div>
-    )
-  }
-}
-
-export default DisplayResult
-```
-
-So here we fetch the state that was exported from the `App.js`. It was sent to this component as props and in this `DisplayComponent` we will store it in variables as you can see.
-
-## The logic
-
-Now we want to create a logic module for the actual calculation part. We want to keep the component clean that is why we extract it to a separate file.
-
-Run this in the terminal:
-```
-$ mkdir src/Modules
-$ touch src/Modules/BMICalculator.js
+export default Form;
 ```
 
-This is going to be a pure vanilla javascript file with no mention of React. You have written this function in another application before in the boot camp. You can either use this code snippet we give you or reuse your old code, just remember to use the `export` keyword in front of the function you want to be able to access from outside of this file.
+Quick explanation what is happening here:
 
-Write this code in your newly created file:
+- We are using the change event provided by input to set the state. That is received by the function automatically.
+- `[e.target.name]` is the syntax for using dynamic keys in JavaScript objects.
+- When setting the state `App.jsx` is re-rendered, causing the `Form.jsx` to re-render because it receives the state as prop. The input value is set to the state and the inputted data will be visible on screen.
+
+## Adding the calculation
+
+We have our form it is time to add the logic for submitting. For that we will use a helper function. It is good practice to keep our components clean and encapsulate and separate logic.
+
+Add a helper folder with `bmiHelper.js` file:
+
 ```
-export const bmiCalculation = (weight, height, method) => {
-  parseFloat(weight);
-  parseFloat(height);
-  let bmi;
+mkdir src/helper
+touch src/helper/bmiHelper.js
+```
 
-  weight = isNaN(weight) ? 0 : weight;
-  height = isNaN(height) ? 0 : height;
+```js
+export const calculateBmi = (weight, height) => {
+  const bmiValue = (weight / (((height / 100) * height) / 100)).toFixed(2);
+  const bmiMessage = setBMIMessage(bmiValue);
+  return [bmiValue, bmiMessage];
+};
 
-  bmi = weight / (height / 100 * height / 100);
-
-  let finalBMI = parseFloat(bmi.toFixed(2));
-  let BMIMessage = setBMIMessage(finalBMI)
-  if (isNaN(finalBMI) || !isFinite(finalBMI) || finalBMI === 0) {
-    return '';
-  } else {
-    return `You are ${BMIMessage} with a BMI of ${finalBMI}`;
-  }      
-}
-
-const setBMIMessage = (finalBMI) => {
+const setBMIMessage = finalBMI => {
   if (finalBMI < 18.5) {
     return "Underweight";
   }
@@ -268,34 +254,181 @@ const setBMIMessage = (finalBMI) => {
   if (finalBMI > 30) {
     return "Obese";
   }
-}
+};
 ```
 
-Now you want to use this in your calulate function in the `DisplayResult` component. Add this to it:
-```
-import React, { Component } from 'react';
-import { bmiCalculation } from '../Modules/BMICalculator';
+We need to calculate 2 values in this helper function:
 
-class DisplayResult extends Component {
-  calculate() {
-    var weight= this.props.weight;
-    var height= this.props.height;
+- Our bmi value
+- And the message assigned to that value
+- We return these values using an ES6 feature
 
-    return bmiCalculation(weight, height);
-  }
+Now we need to use `calculateBmi`. Add the `onSubmitHandler` function to `App.jsx`:
+
+```js
+// src/App.jsx
+
+import React, { Component } from "react";
+
+import Form from "./components/Form";
+import { calculateBmi } from "./helpers/bmiHelper";
+
+class App extends Component {
+  state = {
+    weight: "",
+    height: "",
+    bmiValue: "",
+    bmiMessage: ""
+  };
+
+  onChangeHandler = e => this.setState({ [e.target.name]: e.target.value });
+
+  onSubmitHandler = e => {
+    e.preventDefault();
+    const [bmiValue, bmiMessage] = calculateBmi(
+      this.state.weight,
+      this.state.height
+    );
+    this.setState({ bmiValue: bmiValue, bmiMessage: bmiMessage });
+  };
 
   render() {
     return (
-      <div id='response'>
-        {this.calculate()}
+      <div>
+        <Form
+          weight={this.state.weight}
+          height={this.state.height}
+          onChangeHandler={this.onChangeHandler}
+          onSubmitHandler={this.onSubmitHandler}
+        />
       </div>
-    )
+    );
   }
 }
 
-export default DisplayResult
+export default App;
 ```
+
+As with `onChange`, `onSubmit` receives the `event` object by default. First we need to call `preventDefault` on it because the default of html `form` will make an http post request. (to nowhere in this case because we haven't defined it). After that we use our state to pass it down to our helper function. Use some nice ES6 feature to grab the results and update our state.
+
+To finish add the onSubmitHandler to the `Form.jsx` as well:
+
+```js
+// src/components/Form.jsx
+
+import React from "react";
+
+const Form = props => {
+  return (
+    <form onSubmit={props.onSubmitHandler}>
+      <label htmlFor="weight">Weight</label>
+      <input
+        type="number"
+        required
+        placeholder="Weight in kgs"
+        value={props.weight}
+        name="weight"
+        id="weight"
+        onChange={props.onChangeHandler}
+      />
+      <label htmlFor="height">Height</label>
+      <input
+        type="number"
+        required
+        placeholder="Height in cm"
+        value={props.height}
+        name="height"
+        id="height"
+        onChange={props.onChangeHandler}
+      />
+      <button id='calculate'>Calculate BMI</button>
+    </form>
+  );
+};
+
+export default Form;
+```
+
+## Showing the message
+
+Finally add another component called `Message.jsx`:
+
+```
+touch src/components/Message.jsx
+```
+
+```js
+// src/components/Message.jsx
+
+import React from "react";
+
+const Message = props => {
+  return (
+    <p id='bmi-message'>
+      You are {props.bmiMessage} with a BMI of {props.bmiValue}
+    </p>
+  );
+};
+
+export default Message;
+```
+
+And update the `App.jsx`:
+
+```js
+// src/App.jsx
+
+import React, { Component } from "react";
+
+import Form from "./components/Form";
+import Message from "./components/Message";
+import { calculateBmi } from "./helpers/bmiHelper";
+
+class App extends Component {
+  state = {
+    weight: "",
+    height: "",
+    bmiValue: "",
+    bmiMessage: ""
+  };
+
+  onChangeHandler = e => this.setState({ [e.target.name]: e.target.value });
+
+  onSubmitHandler = e => {
+    e.preventDefault();
+    const [bmiValue, bmiMessage] = calculateBmi(
+      this.state.weight,
+      this.state.height
+    );
+    this.setState({ bmiValue: bmiValue, bmiMessage: bmiMessage });
+  };
+
+  render() {
+    return (
+      <div>
+        <Form
+          weight={this.state.weight}
+          height={this.state.height}
+          onChangeHandler={this.onChangeHandler}
+          onSubmitHandler={this.onSubmitHandler}
+        />
+        {this.state.bmiValue && (
+          <Message
+            bmiValue={this.state.bmiValue}
+            bmiMessage={this.state.bmiMessage}
+          />
+        )}
+      </div>
+    );
+  }
+}
+
+export default App;
+```
+
+Here we do another little trick. We hide the message until we have a bmiValue in our state. We are using a shorter version of the ternary operator: `&&`. This means that `<Message/>` will only be rendered when `this.state.bmiValue` is not `""`. We pass down our relevant state values and have ourselves a message.
 
 ## Wrap up
 
-At this point, you should have a fully functional but unstyled BMI Calculator. This is a good opportunity for you to enhance your styling skills within a react application.
+At this point, you should have a fully functional but un-styled BMI Calculator. This is a good opportunity for you to enhance your styling skills within a react application, and also it is your task to add the imperial method to this calculation. The way you want to implement is totally up to you!
+

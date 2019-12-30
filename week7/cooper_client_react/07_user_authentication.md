@@ -3,47 +3,73 @@ Let's write some specs for logging in.
 `$ touch spec/requests/api/v1/sessions_spec.rb`
 ```
 # spec/requests/api/v1/sessions_spec.rb
-RSpec.describe 'Sessions', type: :request do
-  let(:user) { FactoryBot.create(:user) }
+# frozen_string_literal: true
+
+RSpec.describe 'POST /api/v1/auth/sign_in', type: :request do
   let(:headers) { { HTTP_ACCEPT: 'application/json' } }
-
-  describe 'POST /api/v1/auth/sign_in' do
-    it 'valid credentials returns user' do
-      post '/api/v1/auth/sign_in', params: { email: user.email,
-                                              password: user.password
-                                          }, headers: headers
-
-      expected_response = {
-        'data' => {
-          'id' => user.id, 'uid' => user.email, 'email' => user.email,
-          'provider' => 'email', 'name' => nil, 'nickname' => nil,
-          'image' => nil, 'allow_password_change' => false
-        }    
+  let(:user) { create(:user) }
+  let(:expected_response) do
+    {
+      'data' => {
+        'id' => user.id, 'uid' => user.email, 'email' => user.email,
+        'provider' => 'email', 'allow_password_change' => false
       }
+    }
+  end
+  describe 'with valid credentials' do
+    before do
+      post '/api/v1/auth/sign_in',
+          params: {
+            email: user.email,
+            password: user.password
+          },
+          headers: headers
+    end
 
+    it 'returns 200 response status' do
+      expect(response).to have_http_status 200
+    end
+
+    it 'returns the expected response' do
       expect(response_json).to eq expected_response
     end
+  end
 
-    it 'invalid password returns error message' do
-      post '/api/v1/auth/sign_in', params: { email: user.email,
-                                              password: 'wrong_password'
-                                          }, headers: headers
-
-      expect(response_json['errors'])
-        .to eq ['Invalid login credentials. Please try again.']
-
-      expect(response.status).to eq 401
+  describe 'with invalid password' do
+    before do
+      post '/api/v1/auth/sign_in',
+          params: {
+            email: user.email,
+            password: 'wrong_password'
+          },
+          headers: headers
     end
 
-    it 'invalid email returns error message' do
-      post '/api/v1/auth/sign_in', params: { email: 'wrong@email.com',
-                                              password: user.password
-                                          }, headers: headers
+    it 'returns 401 response status' do
+      expect(response).to have_http_status 401
+    end
 
-      expect(response_json['errors'])
-        .to eq ['Invalid login credentials. Please try again.']
+    it 'returns error message' do
+      expect(response_json['errors']).to eq ['Invalid login credentials. Please try again.']
+    end
+  end
 
-      expect(response.status).to eq 401
+  describe 'with invalid email' do
+    before do
+      post '/api/v1/auth/sign_in',
+          params: {
+            email: 'wrong@email.com',
+            password: user.password
+          },
+          headers: headers
+    end
+    
+    it 'returns 401 response status' do
+      expect(response).to have_http_status 401
+    end
+
+    it 'returns error message' do
+      expect(response_json['errors']).to eq ['Invalid login credentials. Please try again.']
     end
   end
 end

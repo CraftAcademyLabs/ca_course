@@ -4,12 +4,12 @@ Run the following generator.
 
 `rails g model PerformanceData user:references data:hstore --force-plural`
 
-Note: What does the `--force-pluralflag` do for us?
+Note: What does the `--force-plural` flag do for us?
 
-Also, please note that we are using a datatype that we've not used before - the `hstore`. That is not a standard datatype in certain versions of PostgreSQL, so we need to make sure it will work. Open up the migration and add a line that adds `hstore` as a datatype and enables the database to store hashes.
+Also, please note that we are using a datatype that we've not used before, the `hstore`. That is not a standard datatype in certain versions of PostgreSQL, so we need to make sure it will work. Open up the migration and add a line that adds `hstore` as a datatype and enables the database to store hashes.
 ```
 # db/migrate/XXXX_create_performance_data.rb
-class CreatePerformanceData < ActiveRecord::Migration[5.0]
+class CreatePerformanceData < ActiveRecord::Migration[6.0]
   def change
     execute 'CREATE EXTENSION IF NOT EXISTS hstore'
     create_table :performance_data do |t|
@@ -33,11 +33,11 @@ end
 
 Run the new migration.
 
-`$ rails db:migrate db:test:prepare`
+`$ rails db:migrate`
 
 Add the following specs.
 ```
-# spec/models//user_spec.rb
+# spec/models/user_spec.rb
 RSpec.describe User, type: :model do
   # [...]
 
@@ -54,12 +54,28 @@ require 'rails_helper'
 
 RSpec.describe PerformanceData, type: :model do
   describe 'Database table' do
-    it { is_expected.to have_db_column :id }
     it { is_expected.to have_db_column :data }
   end
 
   describe 'Relations' do
     it { is_expected.to belong_to :user }
   end
+  
+  describe 'Factory' do
+    it 'should have valid Factory' do
+      expect(create(:performance_data)).to be_valid
+    end
+  end
 end
 ```
+
+Make sure that the factory for performance data looks like this:
+```
+# spec/factories/performance_data.rb
+
+FactoryBot.define do
+  factory :performance_data, class: 'PerformanceData' do
+    user
+    data { "" }
+  end
+end

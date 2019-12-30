@@ -13,11 +13,21 @@ RSpec.describe Api::V1::PerformanceDataController, type: :request do
   let(:headers) { { HTTP_ACCEPT: 'application/json' } }
 
   describe 'POST /api/v1/performance_data' do
-    it 'creates a data entry' do
-      post '/api/v1/performance_data', params: {
-        performance_data: { data: { message: 'Average' } }
-      }, headers: headers
+    before do
+      post '/api/v1/performance_data',
+          params: {
+            performance_data: {
+              data: { message: 'Average' }
+            }
+          },
+          headers: headers
+    end
 
+    it 'returns a 200 response status' do
+      expect(response).to have_http_status 200
+    end
+
+    it 'successfully creates a data entry' do
       entry = PerformanceData.last
       expect(entry.data).to eq 'message' => 'Average'
     end
@@ -54,9 +64,9 @@ Next, let's add a `create` method with the following code to our new controller 
 # app/controllers/api/v1/performance_data_controller.rb
 class Api::V1::PerformanceDataController < ApplicationController
   def create
-    @data = PerformanceData.new(params[:performance_data])
-    if @data.save
-      render json: { message: 'all good' }
+    data = PerformanceData.new(params[:performance_data])
+    if data.save
+      head :ok
     end
   end
 end
@@ -92,12 +102,12 @@ Modify the `performance_data_controller.rb` with this code:
 # app/controllers/api/v1/performance_data_controller.rb
 class Api::V1::PerformanceDataController < ApplicationController
   def create
-    @data = PerformanceData.new(performance_data_params)
+    data = PerformanceData.new(performance_data_params)
 
-    if @data.save
-      render json: { message: 'all good' }
+    if data.save
+      head :ok
     else
-      render json: { error: @data.errors.full_messages }
+      render json: { error: data.errors.full_messages }
     end
   end
 
@@ -121,15 +131,15 @@ We need to update our controller to retrieve that information. We can do that wi
 ```
 # app/controllers/api/v1/performance_data_controller.rb
 class Api::V1::PerformanceDataController < ApplicationController
-  before_action :authenticate_api_v1_user!
+  before_action :authenticate_user!
 
   def create
-    @data = PerformanceData.new(performance_data_params.merge(user: current_api_v1_user))
+    data = PerformanceData.new(performance_data_params.merge(user: current_user))
 
-    if @data.save
-      render json: { message: 'all good' }
+    if data.save
+      head :ok
     else
-      render json: { error: @data.errors.full_messages }
+      render json: { error: data.errors.full_messages }
     end
   end
 
@@ -146,16 +156,26 @@ Anyway, your spec should look something like this.
 ```
 # spec/requests/api/v1/performance_data_spec.rb
 RSpec.describe Api::V1::PerformanceDataController, type: :request do
-  let(:user) { FactoryBot.create(:user) }
+  let(:user) { create(:user) }
   let(:credentials) { user.create_new_auth_token }
   let(:headers) { { HTTP_ACCEPT: 'application/json' }.merge!(credentials) }
 
   describe 'POST /api/v1/performance_data' do
-    it 'creates a data entry' do
-      post '/api/v1/performance_data', params: {
-        performance_data: { data: { message: 'Average' } }
-      }, headers: headers
+    before do
+      post '/api/v1/performance_data',
+          params: {
+            performance_data: {
+              data: { message: 'Average' }
+            }
+          },
+          headers: headers
+    end
 
+    it 'returns a 200 response status' do
+      expect(response).to have_http_status 200
+    end
+
+    it 'successfully creates a data entry' do
       entry = PerformanceData.last
       expect(entry.data).to eq 'message' => 'Average'
     end
@@ -170,15 +190,28 @@ You need, however, to add some tests that hit the sad path and makes sure you ha
 We are almost done now with our basic CRUD actions. Let us move on and create a method that will retrieve a collection of PerformanceData objects, but only for the user that makes the request. Let's start by setting the stage for a request spec and test if we get the right response.
 ```
 # spec/requests/api/v1/performance_data_spec.rb
+RSpec.describe Api::V1::PerformanceDataController, type: :request do
 # [...]
-describe 'GET /api/v1/performance_data' do
-  before do
-    5.times { user.performance_data.create(data: { message: 'Average' }) }
-  end
+  describe 'GET /api/v1/performance_data' do
+    let!(:existing_entries) do
+      5.times do
+        create(:performance_data,
+              data: { message: 'Average' },
+              user: user)
+      end
+    end
 
-  it 'returns a collection of performance data' do
-    get '/api/v1/performance_data', headers: headers
-    expect(response_json['entries'].count).to eq 5
+    before do
+      get '/api/v1/performance_data', headers: headers
+    end
+
+    it 'returns a 200 response status' do
+      expect(response).to have_http_status 200
+    end
+
+    it 'returns a collection of performance data' do
+      expect(response_json['entries'].count).to eq 5
+    end
   end
 end
 ```
@@ -186,9 +219,11 @@ end
 Go ahead and run this spec just to get a friendly reminder that there is no such route as `GET /api/v1/performance_data/`. Let's add that to our `routes.rb`
 ```
 # config/routes.rb
-namespace :v1 do
-  #[...]
-  resources :performance_data, only: [:create, :index]  
+#[...]
+    namespace :v1, defaults: { format: :json } do
+      resources :performance_data, only: [:create, :index]  
+    end
+  end
 end
 ```
 
@@ -199,8 +234,8 @@ class Api::V1::PerformanceDataController < ApplicationController
   # [...]
 
   def index
-    @collection = current_api_v1_user.performance_data
-    render json: { entries: @collection }
+    collection = current_user.performance_data
+    render json: { entries: collection }
   end
 
   # [...]

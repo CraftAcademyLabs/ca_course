@@ -2,7 +2,7 @@
 
 We know that we will be accessing our Rails app from an external client and that we will require authentication. At this point, you are familiar with [Devise](https://github.com/plataformatec/devise) - one of the most popular authentication libraries for Rails applications. We will be using `devise_token_auth` a [token-based authentication gem](https://github.com/lynndylanhurley/devise_token_auth) for Rails JSON APIs. It is designed to work well with `redux-token-auth` the token based authentication module for React with Redux.
 
-As usual, we will be testing our units with RSpec and in order to make writing our specs a breeze, we will use `shoulda-matchers`, but this is probably old news for you at this stage. Again, if you need some pointers please go back in this documentation and revisit the [BDD with Rails](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CC-01+2018/courseware/bee39fc3856c4129b8a3986b6463257c/08c42816e7ed40b28b36f53f56003aed/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CC-01%2B2018%2Btype%40sequential%2Bblock%4008c42816e7ed40b28b36f53f56003aed) chapter.
+As usual, we will be testing our units with RSpec and in order to make writing our specs a breeze, we will use `shoulda-matchers`, but this is probably old news for you at this stage. Again, if you need some pointers please go back in this documentation and revisit the Rails BDD (Rails demo app) chapter.
 
 Make sure you install the `devise_token_auth` gem by adding it to your `Gemfile` and run `bundle install`. Note that you don't need to add gem `devise` since `devise_token_auth` requires it automatically.
 ```
@@ -16,18 +16,31 @@ Run the following command for an easy one-step installation.
 
 `$ rails g devise_token_auth:install User auth`
 
-Remember to migrate your database in order to create the `users` table (the Devise generator created a migration for you). But before you do that, make sure to open up the migration file and change the data type for `tokens` to `text`.
+Make sure to open up the migration file that was generated and add some more columns that are needed in order for Deivse token auth to work properly with our client later. Please add this:
 ```
 #db/migrate/XXX_devise_token_auth_create_users.rb
-## Tokens
-t.text :tokens
+## The columns we want to add
+t.integer :sign_in_count, default: 0
+t.datetime :current_sign_in_at
+t.datetime :last_sign_in_at
+t.string :current_sign_in_ip
+t.string :last_sign_in_ip
 ```
+
+We also want to remove some of the columns that Devise token auth has added to that migration file. There is a section in th migration file that says `## User info`, please remove these columns:
+```
+t.string :name
+t.string :nickname
+t.string :image
+```
+
+These columns will be removed because we dont have a use case for them and we will not use them anywhere in this application with our current implementation. Our users will not have the possibilty to set their `:name`, `:nickname` or upload a `:image` of themselves as their profile picture.
 
 In our User model (`app/models/user.rb`) we want to make sure that Devise is set up for our needs. We will remove the OAuth and Confirmation methods.
 ```
 # app/models/user.rb
 class User < ActiveRecord::Base
-extend Devise::Models
+  extend Devise::Models
   # Include default devise modules.
   devise :database_authenticatable, :registerable,
           :recoverable, :rememberable, :trackable, :validatable
@@ -35,7 +48,7 @@ extend Devise::Models
 end
 ```
 
-`$ rails db:migrate db:test:prepare`
+`$ rails db:migrate`
 
 Another generator we need to run is a Factory generator for User. Generally, Rails generator invokes the Factory generators once that gem is installed, but not in the case of Devise Token Auth.
 
@@ -56,7 +69,10 @@ end
 
 You can add more attributes to the User factory if you like, we added just the minimal required attributes at the moment.
 
-Let's add a spec for the User factory we just created.
+The Devise token auth generator does not create a unit spec for the models it generates. Let's generate the unit spec with `rspec`. Run this in your terminal:
+`rails g rspec:model User`
+
+First thing we want to test is that the factory we created earlier is valid.
 ```
 # spec/models/user_spec.rb
 require 'rails_helper'
@@ -74,28 +90,9 @@ Now, we can add some basic model specs for User that will test the Devise setup.
 RSpec.describe User, type: :model do
   # [...]
   describe 'Database table' do
-    it { is_expected.to have_db_column :id }
-    it { is_expected.to have_db_column :provider }
-    it { is_expected.to have_db_column :uid }
     it { is_expected.to have_db_column :encrypted_password }
-    it { is_expected.to have_db_column :reset_password_token }
-    it { is_expected.to have_db_column :reset_password_sent_at }
-    it { is_expected.to have_db_column :remember_created_at }
-    it { is_expected.to have_db_column :sign_in_count }
-    it { is_expected.to have_db_column :current_sign_in_at }
-    it { is_expected.to have_db_column :last_sign_in_at }
-    it { is_expected.to have_db_column :current_sign_in_ip }
-    it { is_expected.to have_db_column :last_sign_in_ip }
-    it { is_expected.to have_db_column :confirmation_token }
-    it { is_expected.to have_db_column :confirmed_at }
-    it { is_expected.to have_db_column :confirmation_sent_at }
-    it { is_expected.to have_db_column :unconfirmed_email }
-    it { is_expected.to have_db_column :nickname }
-    it { is_expected.to have_db_column :image }
     it { is_expected.to have_db_column :email }
     it { is_expected.to have_db_column :tokens }
-    it { is_expected.to have_db_column :created_at }
-    it { is_expected.to have_db_column :updated_at }
   end
 end
 ```
@@ -106,8 +103,8 @@ We can also test some basic validations added by Devise.
 RSpec.describe User, type: :model do
   #[...]
   describe 'Validations' do
-    it { is_expected.to validate_presence_of(:email) }
-    it { is_expected.to validate_confirmation_of(:password) }
+    it { is_expected.to validate_presence_of :email }
+    it { is_expected.to validate_confirmation_of :password }
 
     context 'should not have an invalid email address' do
       emails = ['asdf@ ds.com', '@example.com', 'test me @yahoo.com',
@@ -138,11 +135,12 @@ Next up, we need to add a new namespace to our `routes.rb` and move the generate
 ```
 # config/routes.rb
 Rails.application.routes.draw do
+  mount_devise_token_auth_for 'User', at: 'api/v1/auth', skip: [:omniauth_callbacks]
+
   namespace :api do
     # [...]
 
     namespace :v1 do
-      mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
     end
   end
 end

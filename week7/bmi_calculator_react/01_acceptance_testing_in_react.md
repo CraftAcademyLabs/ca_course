@@ -30,6 +30,17 @@ Once we run cypress for first time, it will create scaffolded folder, with a lot
 
 Our tests are stored in `Integration` folder and `fixtures` folder will contain JSON files, which we will introduce during the course of this document.
 
+Configure our `baseUrl` in `cypress.json` file:
+
+```json
+// cypress.json
+{
+  "baseUrl": "http://localhost:3000"
+}
+```
+
+`baseUrl` is a something we can call on when we tell Cypress which URL it should go to. Instead of writing `http://localhost:3000`, we can call on that URL by writing `/`.
+
 ## Your first tests
 
 Now it is time that we write our first test, which is going to be the scenario of calculating the BMI. The test that you are now going to see has the imperial method already implemented. It could be that you have also implemented the imperial method but in a different way because we gave you free hands with that feature.
@@ -41,61 +52,61 @@ Run:
 `$ touch cypress/integration/userCanCalculateTheirBMI.spec.js`
 
 Read through the code (and comments) below and add it to the feature file you just created:
+```js
+// cypress/integration/examples/BMI.spec.js
+
+/// <reference types="Cypress" />
+
+describe('BMI Calculator', () => {
+  it('Calculates BMI in metric',() => {
+    cy.visit('/');
+    cy.get('input#weight').type(90);
+    cy.get('input#height').type(190);
+    cy.get('button#calculate').click();
+    cy.get('p#bmi-message').should('contain', 'You are Normal with a BMI of 24.93')
+  })
+})
 ```
-describe('BMI Converter', () => {
-    before(function() {
-        cy.visit('http://localhost:3000');
-    });
 
-    beforeEach(function() {
-        // Reload the application between tests to reset state
-        cy.reload();
-    });
+This is a very simple test of our calculation, we just use our selectors to input and then press the button to see the message. 
 
-    it('should display "BMI Converter" text on page', () => {
-        cy.contains('BMI Converter');
-    });
+If you need to press a button or interact with the page in some different way then what we show you above, you can go and find that in the [Cypress documentation](https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell).
 
-    describe('Metric method', () => {
-        beforeEach(() => {
-            // This before block will be executed prior to each test in this describe block
-            cy.get('select[id="method"]').select('metric')
-            cy.get('input[name="weight"]').type('95')
-            cy.get('input[name="height"]').type('186')
-        })
 
-        it('displays assesment', async () => {   
-            cy.contains('You are Overweight')
-        })
+## Imperial method
 
-        it('displays BMI value', async () => {   
-            cy.contains('BMI of 27.46')
-        })
-    })
-
-    describe('Imperial method', async () => {
-        beforeEach( async () => {
-            // This before block will be executed prior to each test in this describe block
-            cy.get('select[id="method"]').select('imperial')
-            cy.get('input[name="weight"]').type('200')
-            cy.get('input[name="height"]').type('73')
-        })
-
-        it('displays assesment', async () => {   
-            cy.contains('You are Overweight')
-        })
-
-        it('displays BMI value', async () => {   
-            cy.contains('BMI of 26.38')
-        })
-    })
-}); 
-```
-The important part that you need to understand is what is happening in the `beforeEach` and `before` blocks. The `before` makes sure that the test browser goes to the correct URL to run the tests. The `beforeEach` resets the page (and the input fields) after every test.
+I will show you a test case for the imperial method as an example. 
 
 The testing of the actual method may change depending on the implementation that you have. As you can see it is pretty straight forward, we select the method from a selector, fill in the inputs with the relevant information and then expect what response is going to be shown on the page.
 
-If you need to press a button or interact with the page in some different way then what we show you above, you can go and find that in the [Cypress documentation](https://docs.cypress.io/guides/overview/why-cypress.html#In-a-nutshell).
+```js
+// cypress/integration/examples/BMI.spec.js
+
+/// <reference types="Cypress" />
+
+describe('BMI Calculator', () => {
+  beforeEach(() => {
+    cy.visit('/');
+  })
+
+  it('Calculates BMI in metric',() => {
+    cy.get('select#select-method').select('metric');
+    cy.get('input#weight').type(90);
+    cy.get('input#height').type(190);
+    cy.get('button#calculate').click();
+    cy.get('p#bmi-message').should('contain', 'You are Normal with a BMI of 24.93')
+  })
+  it('Calculates BMI in imperial',() => {
+    cy.get('select#select-method').select('imperial');
+    cy.get('input#weight').type(198);
+    cy.get('input#height').type(74);
+    cy.get('button#calculate').click();
+    cy.get('p#bmi-message').should('contain', 'You are Overweight with a BMI of 25.42')
+  })
+})
+
+```
+
 
 ## Wrap up
 
