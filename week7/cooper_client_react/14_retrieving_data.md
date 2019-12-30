@@ -2,13 +2,11 @@ Next feature is quite obvious, if we can save data, we want to be able to see al
 
 Start off with adding the feature test
 
-`$ touch cypress/integration/userCanSeeIndexOfSavedPerformanceData.spec.js`
+`$ touch cypress/integration/userCanSeeIndexOfSavedPerformanceData.feature.js`
 ```js
 describe('User attempts to view his/her performance data', () => {
-
   before(function() {
-    cy.visit('http://localhost:3001');
-    cy.server()
+    cy.server();
     cy.route({
       method: 'GET',
       url: 'http://localhost:3000/api/v1/performance_data',
@@ -22,6 +20,8 @@ describe('User attempts to view his/her performance data', () => {
         "uid": "user@mail.com"
       }
     })
+
+    cy.visit("/");
     cy.get('#login').click();
     cy.get('#login-form').within(() => {
       cy.get('#email').type('user@mail.com')
@@ -31,10 +31,12 @@ describe('User attempts to view his/her performance data', () => {
   });
 
   it('successfully', async () => {
-    cy.get('button[id="show-index"]').click()
-    cy.contains('Below Average')
-    cy.contains('Average')
-    cy.contains('Above Average')
+    cy.get('#show-index').click()
+    cy.get('#index').within(() => {
+      cy.contains('Below Average')
+      cy.contains('Average')
+      cy.contains('Above Average')
+    })
   })
 })
 ```
@@ -50,8 +52,6 @@ We need to create a new fixture file:
 Add this to it:
 ```json
 {
-  "status": 200,
-  "headers": {},
   "entries": [
     {
       "data": {
@@ -82,22 +82,25 @@ These are the entries that we want to see when we press the button to display pa
 
 Let's start with adding the button to show the saved results. In the `App` component, we need to modify the if statement where the user is authenticated, modify it to look like this:
 ```js
-  let performanceDataIndex;
+// App.jsx
 
-  if (this.state.authenticated === true) {
-    user = JSON.parse(sessionStorage.getItem('credentials')).uid;
+  let performanceDataIndex;
+  // ...
+  case authenticated:
     renderLogin = (
-      <p>Hi {user}</p>
-    )
+      <p>Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
+    );
     performanceDataIndex = (
       <button id="show-index" onClick={() => this.setState({ renderIndex: true })}>Show past entries</button>
     )
-  }
+    break;
 ```
 So when we click on this button, we change a state called `renderIndex` to true. Make sure that you have this state set in the constructor, it's important that it is set to false there.
 
 We need to render whats inside the variable we created as well.
 ```js
+// App.jsx
+
 return (
   // ..
   <DisplayCooperResult
@@ -114,20 +117,24 @@ return (
 
 If you run the test now it will complain about not finding the text that we are looking for. Its time to create a new component now.
 
-`$ touch src/Components/DisplayPerformanceData.js`
+`$ touch src/components/DisplayPerformanceData.jsx`
 ```js
 import React, { Component } from 'react';
-import { getData } from '../Modules/PerformanceData';
+import { saveData } from "../modules/performanceData";
 
 class DisplayPerformanceData extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      performanceData: null
-    }
+  state = {
+    performanceData: null
   }
+
   componentDidMount() {
     this.getPerformanceData()
+  }
+
+  componentDidUpdate(prevProps) {
+    if (this.props.updateIndex != prevProps.updateIndex) {
+      this.getPerformanceData()
+    }
   }
 
   async getPerformanceData() {
@@ -140,9 +147,6 @@ class DisplayPerformanceData extends Component {
   render () {
     let dataIndex;
 
-    if (this.props.updateIndex === true) {
-      this.getPerformanceData();
-    }
     if (this.state.performanceData != null) {
       dataIndex = (
         <div>
@@ -170,7 +174,9 @@ First, we have a constructor where we set a state called `performanceData` to `n
 
 We have the function `getPerformanceData`. This is what's going to run every time someone presses the button to show previous entries or when someone has saved a new result. The way we make it run every time the component is rendered is with `componentDidMount`. The response that we get from the backend will be stored in `performanceData` state. This will also call on a function we will add later to the `App` component called `indexUpdated`.
 
-Then we have the render method. First, we set a variable called dataIndex that we are going to use for displaying all saved performance data entries. After that, we have an if statement where we check the props if the `updateIndex` state is true, if that's the case the app will run `getPerformanceData` again to get the latest saved entries.
+Then we have the render method. First, we set a variable called dataIndex that we are going to use for displaying all saved performance data entries. 
+
+In the `componentDidUpdate()` we check props if the `updateIndex` state is true, if that's the case the app will run `getPerformanceData` again to get the latest saved entries.
 
 The next if block checks if the `performanceData` is empty or not. If it's not empty, then its going to loop through all entries of performance data that is stored in the `performanceData` state and place it in the `dataIndex` variable.
 
@@ -178,14 +184,16 @@ If you run the test now, you will get the same error message as before. That's n
 
 Add this inside the if statement for the user to be authenticated:
 ```js
-if (this.state.authenticated === true) {
+// App.jsx
+
+case authenticated:
   // ...
   if (this.state.renderIndex === true) {
     performanceDataIndex = (
       <>
         <DisplayPerformanceData
           updateIndex={this.state.updateIndex}
-          indexUpdated={this.indexUpdated.bind(this)}
+          indexUpdated={() => this.setState({ updateIndex: false })}
         />
         <button onClick={() => this.setState({ renderIndex: false })}>Hide past entries</button>
       </>
@@ -200,15 +208,17 @@ if (this.state.authenticated === true) {
 
 Here we render the `DisplayPerformanceData` component if the user has pressed the button to do so. We pass in a new state that we have seen mentioned in the `DisplayPerfromanceData` component called `updateIndex` and we bind a new function called `indexUpdated` to it. We also add a button to set the `renderIndex` state to false, which means that the application won't render the index.
 
-Add the `indexUpdated` function and update `entryHandler` so it looks like this:
+Update `entryHandler` so it looks like this:
 ```js
-entryHandler() {
-    this.setState({ entrySaved: true, updateIndex: true });
-}
-
-indexUpdated() {
-  this.setState({ updateIndex: false });
-}
+// App.jsx
+<DisplayCooperResult
+  distance={this.state.distance}
+  gender={this.state.gender}
+  age={this.state.age}
+  authenticated={this.state.authenticated}
+  entrySaved={this.state.entrySaved}
+  entryHandler={() => this.setState({ entrySaved: true, updateIndex: true })}
+/>
 ```
 
 Every time we save a new result we want to update the index and when we have sent the request for the index of saved performance data we need to set the state to false, otherwise, the application would continue to make GET requests to the backend.
@@ -231,17 +241,13 @@ const getData = async () => {
     "Content-type": "application/json",
     Accept: "application/json"
   };
-  const path = apiUrl + "/performance_data";
-  return new Promise((resolve, reject) => {
-    axios
-      .get(path, {
-        headers: headers
-      })
-      .then(response => {
-        storeAuthCredentials(response);
-        resolve(response);
-      });
+
+  const response = await axios.get("/performance_data", {
+    headers: headers
   });
+
+  storeAuthCredentials(response);
+  return response;
 };
 
 export { getData, saveData }
