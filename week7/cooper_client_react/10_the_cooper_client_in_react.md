@@ -68,14 +68,14 @@ Finally add the `__tests__` folder where we will store our component tests:
 $ mkdir src/__tests__
 ```
 
-Now we are all set up it's time to start working on our project!
+We will get back to component testing later. Now we are all set up it's time to start working on our project!
 
 
 ## Acceptance tests
 
 It is time to add our first test. Create the following feature file:
 
-`$ touch cypress/integration/userCanGetCooperCalculationResult.spec.js`
+`$ touch cypress/integration/userCanGetCooperCalculationResult.feature.js`
 
 In the first test, we will make sure that the user can input his/her data and get the correct result from the application. Add the following configuration and features:
 
@@ -105,7 +105,7 @@ To execute the feature tests you need to run the script we added in the `package
 
 **_Remember to commit often_**
 
-The `create-react-app` scaffolds a lot of code for us. We don't need parts of it. Let's start with cleaning up `App.js` file that contains the App component. When we are done, we want to add our own code to it and define the inputs and selectors that we need to make our feature test go green.
+The `create-react-app` scaffolds a lot of code for us. We don't need parts of it. Let's start with cleaning up `App.js` file that contains the App component, we also want to change it from a `js` file to a `jsx`one. When we are done, we want to add our own code to it and define the inputs and selectors that we need to make our feature test go green.
 
 We can safely remove/delete the following files:
 
@@ -163,29 +163,47 @@ import { shallow } from "enzyme";
 import DisplayCooperResult from "../components/DisplayCooperResult";
 
 describe("<DisplayCooperResult />", () => {
-  it("evaluates the correct result for female/poor", () => {
-    const wrapper = shallow(
-      <DisplayCooperResult distance="1000" gender="female" age="23" />
-    );
-    expect(wrapper.find("p#cooper-message").text()).toEqual(
-      "23 y/o female running 1000 meters."
-    );
-    expect(wrapper.find("p#cooper-result").text()).toEqual("Result: Poor");
-  });
+  describe("evaluates the correct result for female/poor", () => {
+    it("and returns the assessment", () => {
+      const describedComponent = shallow(
+        <DisplayCooperResult distance="1000" gender="female" age="23" />
+      );
+      expect(describedComponent.find("p#cooper-result").text()).toEqual("Result: Poor");
+    });
 
-  it("evaluates the correct result for female/average", () => {
-    const wrapper = shallow(
-      <DisplayCooperResult distance="2000" gender="female" age="23" />
-    );
-    expect(wrapper.find("p#cooper-message").text()).toEqual(
-      "23 y/o female running 2000 meters."
-    );
-    expect(wrapper.find("p#cooper-result").text()).toEqual("Result: Average");
-  });
+    it("and returns the data user put in", () => {
+      const describedComponent = shallow(
+        <DisplayCooperResult distance="1000" gender="female" age="23" />
+      );
+      expect(describedComponent.find("p#cooper-message").text()).toEqual(
+        "23 y/o female running 1000 meters."
+      );
+    });
+  })
+
+  describe("evaluates the correct result for female/average", () => {
+    it("and returns the assessment", () => {
+      const describedComponent = shallow(
+        <DisplayCooperResult distance="2000" gender="female" age="23" />
+      );
+      expect(describedComponent.find("p#cooper-result").text()).toEqual("Result: Average");
+    });
+
+    it("and returns the data user put in", () => {
+      const describedComponent = shallow(
+        <DisplayCooperResult distance="2000" gender="female" age="23" />
+      );
+       expect(describedComponent.find("p#cooper-message").text()).toEqual(
+        "23 y/o female running 2000 meters."
+      );
+    });
+  })
 });
 ```
 
 After doing the BMI Calculator we know how to send in props to a child component. We send in `distance`, `gender` and `age`. Then we expect to get a result that the component renders.
+
+The `describedComponent` is the component we are testing at the moment, we use the `shallow` method from enzyme to render it in the test enviroment.
 
 If you run the component tests now (using the `yarn test` command in the terminal), you will see that the test complains that it can't find the `DisplayCooperResult` module. Let's create it:
 
@@ -194,7 +212,7 @@ $ mkdir src/components
 $ touch src/components/DisplayCooperResult.jsx
 ```
 
-To start with, we will add a functional component because we will not handle state in it. State will be handled by it's container `App.js`.
+To start with, we will add a functional component because we will not handle state in it. State will be handled by it's container `App.jsx`.
 
 The component should look like this:
 
@@ -254,7 +272,7 @@ There are couple of tricks introduced in this component:
   - Allows you to set default arguments (`age=20` for eg.)
 - We add the `calculate()` function that will calculate our result and returns a message. That will be executed when the props change. If we do it like this we don't have to click on a submit button, anytime we change the inputs the message will automatically adapt.
 - We extract a conditional calling it `propsPassed` where we check whether both `distance` and `age` are not empty strings.
-- We use the shorter version of the ternary operator the `&&` which renders our content if `propsPassed` is true.
+- We use the shorter version of the ternary operator (`the &&`) which renders our content if `propsPassed` is true.
 - When we use ternary operators inside jsx we always have to have one node that is wrapping all of our content. This could lead us have way to many nodes in our application so to bypass that we can use a [React.Fragment](https://reactjs.org/docs/fragments.html) which is recognized by react as a wrapper but it will not be an actual html element when we render the dom. The shorter version of that is `<> </>` which we are using in our return statement.
 
 However, when you run your test, you will see the following error message (or something similiar):
@@ -382,8 +400,8 @@ const CooperCalculator = (distance, gender, age) => {
 export default CooperCalculator;
 ```
 
-If you run the component test now, both tests should go green. Let's run the feature tests again, everything should go green right. We have a component that displays the correct result. If not then go over your code carefully again.
-
+If you run the component test now, both tests should go green. We have a component that displays the correct result. If not then go over your code carefully again.
+Let's run the feature tests again, at this point you could think that they would go green.
 BUT, as you can see when we run the feature tests, nothing has changed. That's because we haven't actually rendered the `DiplayCooperResult` component in the `App` component. Consequently, we haven't passed in any props to the `DisplayCooperResult` component. At the moment the application is not storing what gets written in the input fields. So, the actual `DiplayCooperResult` component works, but not with the rest of the application. This is the reason they are called component tests.
 
 ## Connecting our app
@@ -443,7 +461,7 @@ If you run the test now everything should go green!
 
 Now we need to clean up the `App` component, we don't want to have the input fields there. The `App` component should be as clean as possible, that is why we will extract the input fields to their own component.
 
-`$ touch src/Components/InputFields.js`
+`$ touch src/components/InputFields.jsx`
 
 Make sure to remove the input fields from the `App` component and add this to the new `InputFields` component:
 
@@ -472,14 +490,16 @@ const InputFields = ({ onChangeHandler }) => {
 export default InputFields;
 ```
 
+When we declare the component here we pass in something, `({ onChangeHandler })`. We use a destructor here for the params since we are only interested in onChnageHandler in this component.
+
 We need to import this new component into the `App` component before we can use it.
 
-`import InputFields from './Components/InputFields';`
+`import InputFields from './components/InputFields';`
 
 Then we need to render the `InputFields` component and pass in the onChange method as a prop and bind it. So every time the value of the input fields change the correlating state changes as well in the `App` component.
 
 ```js
-// App.js
+// App.jsx
 import React, { Component } from "react";
 
 import DisplayCooperResult from "./components/DisplayCooperResult";

@@ -15,28 +15,29 @@ This feature file should look like this:
 
 /// <reference types="Cypress" />
 
-describe("User can log in", () => {
+describe("User authenticates", () => {
   beforeEach(() => {
     cy.visit("/");
   });
-  it("successfully", () => {
+
+  it("successfully with valid credentials", () => {
     cy.get("#login").click();
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");
-      cy.get("button").click();
+      cy.get('button').contains('Login').click()
     });
-    cy.contains("Hi user@mail.com");
+    cy.get("#message).should("contain", "Hi user@mail.com");
   });
 
-  it("with invalid credentials", () => {
+  it("unsuccessfully with invalid credentials", () => {
     cy.get("#login").click();
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("wrongpassword");
-      cy.get("button").click();
+      cy.get('button').contains('Login').click()
     });
-    cy.contains("Invalid login credentials. Please try again.");
+    cy.get("#message).should("contain", "Invalid login credentials. Please try again.");
   });
 });
 ```
@@ -208,14 +209,14 @@ First, you need to add this method to the App component:
 ...
 onLogin = async e => {
     e.preventDefault();
-    const res = await authenticate(
+    const response = await authenticate(
       e.target.email.value,
       e.target.password.value
     );
-    if (res.authenticated) {
+    if (response.authenticated) {
       this.setState({ authenticated: true });
     } else {
-      this.setState({ message: res.message, renderLoginForm: false });
+      this.setState({ message: response.message, renderLoginForm: false });
     }
   };
 
@@ -308,7 +309,7 @@ Let's add the module that will handle them:
 
 import axios from "axios";
 
-export const authenticate = async (email, password) => {
+const authenticate = async (email, password) => {
   try {
     const response = await axios.post("/auth/sign_in", {
       email: email,
@@ -321,7 +322,7 @@ export const authenticate = async (email, password) => {
   }
 };
 
-export const storeAuthCredentials = ({ headers }) => {
+const storeAuthCredentials = ({ headers }) => {
   const credentials = {
     uid: headers["uid"],
     client: headers["client"],
@@ -331,6 +332,8 @@ export const storeAuthCredentials = ({ headers }) => {
   };
   sessionStorage.setItem("credentials", JSON.stringify(credentials));
 };
+
+export { authenticate }
 
 ```
 
@@ -368,13 +371,13 @@ Modify the code in the `render` method for the `App` component to look like this
           >
             Login
           </button>
-          <p>{message}</p>
+          <p id="message">{message}</p>
         </>
       );
     }
     if (authenticated) {
       renderLogin = (
-        <p>Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
+        <p id="message">Hi {JSON.parse(sessionStorage.getItem("credentials")).uid}</p>
       );
     }
 
