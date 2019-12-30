@@ -2,16 +2,15 @@ Next feature that we want to implement is that the user can save their cooper re
 
 So let's add a feature file for this:
 
-`$ touch cypress/integration/userCanSavePerformanceData.spec.js`
+`$ touch cypress/integration/userCanSavePerformanceData.feature.js`
 
 ```js
-// cypress/integration/userCanSavePerformanceData.spec.js
+// cypress/integration/userCanSavePerformanceData.feature.js
 
 /// <reference types="Cypress" />
 
 describe("User attempts save data", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3001");
     cy.server();
     cy.route({
       method: "POST",
@@ -21,11 +20,13 @@ describe("User attempts save data", () => {
         uid: "user@mail.com"
       }
     });
+    cy.visit("/");
+
     cy.get("#login").click();
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");
-      cy.get("button").click();
+      cy.get('button').contains('Submit').click()
     });
   });
 
@@ -34,7 +35,7 @@ describe("User attempts save data", () => {
     cy.get("select#gender").select("female");
     cy.get("input#age").type("23");
     cy.get("#save-result").click();
-    cy.contains("Your entry was saved");
+    cy.get("#response-message").should("contain", "Your entry was saved")
   });
 
   it("can save two different entries", () => {
@@ -42,12 +43,12 @@ describe("User attempts save data", () => {
     cy.get("select#gender").select("female");
     cy.get("input#age").type("23");
     cy.get("#save-result").click();
-    cy.contains("Your entry was saved");
+    cy.get("#response-message").should("contain", "Your entry was saved")
     cy.get("input#distance")
       .clear()
       .type("1500");
     cy.get("#save-result").click();
-    cy.contains("Your entry was saved");
+    cy.get("#response-message").should("contain", "Your entry was saved")
   });
 });
 ```
@@ -57,13 +58,12 @@ We want to be able to run these test without sending requests to the backend. Le
 We need to update our `beforeEach` block in our feature:
 
 ```js
-// cypress/integration/userCanSavePerformanceData.spec.js
+// cypress/integration/userCanSavePerformanceData.feature.js
 
 /// <reference types="Cypress" />
 
 describe("User attempts save data", () => {
   beforeEach(() => {
-    cy.visit("http://localhost:3001");
     cy.server();
     cy.route({
       method: "POST",
@@ -76,16 +76,18 @@ describe("User attempts save data", () => {
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/v1/performance_data",
-      response: { message: "all good" },
+      response: {},
       headers: {
         uid: "user@mail.com"
       }
     });
+    cy.visit("/");
+
     cy.get("#login").click();
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");
-      cy.get("button").click();
+      cy.get('button').contains('Submit').click()
     });
   });
   // ...
@@ -134,7 +136,7 @@ const DisplayCooperResult = ({
               Save entry
             </button>
           ) : (
-            <p>Your entry was saved</p>
+            <p id="response-message">Your entry was saved</p>
           )}
         </>
       )}
@@ -165,12 +167,10 @@ const saveData = async (result, entryHandler) => {
     Accept: "application/json"
   };
   try {
-    await axios.post(
-      "/performance_data",
-      {
-        performance_data: { data: { message: result } }
-      },
-      {
+    await axios.post("/performance_data", 
+      { 
+        performance_data: { data: { message: result } } 
+      }, {
         headers: headers
       }
     );
@@ -181,14 +181,14 @@ const saveData = async (result, entryHandler) => {
   }
 };
 
-export default saveData;
+export { saveData };
 ```
 
 You have to import this file to the `DisplayCooperResult` component.
 
-`import saveData from "../modules/performanceData";`
+`import { saveData } from "../modules/performanceData";`
 
-So from our `DisplayCooperResult` component, we send in the result to this function. The first thing we do is grabbing the credentials we have stored in `sessionStorage`. Then we make a post request to the backend with those credentials and the cooper result. The response we get back gets sent back to saveCooperData function in the `DisplayCooperResult` component. We also call on the function `storeAuthHeaders` we have in the `auth` module to update the credentials that we get in the response. If there is no error in the response, we call on the entryHandler. We have not defined the `entryHandler` yet, but let's do it now.
+So from our `DisplayCooperResult` component, we send in the result to this function. The first thing we do is grabbing the credentials we have stored in `sessionStorage`. Then we make a post request to the backend with those credentials and the cooper result. If we dont run in to any errors we call on the `entryHandler` method that we passed in to `saveData` function. We have not defined the `entryHandler` yet, but let's do it now.
 
 Add this to `App` component:
 
@@ -228,7 +228,7 @@ First we need to modify the if statement in `DisplayCooperResult` component:
 import React from "react";
 
 import coopercalculator from "../modules/cooperCalculator";
-import saveData from "../modules/performanceData";
+import { saveData } from "../modules/performanceData";
 
 const DisplayCooperResult = ({
   distance,
@@ -258,7 +258,7 @@ const DisplayCooperResult = ({
               Save entry
             </button>
           ) : (
-            <p>Your entry was saved</p>
+            <p id="response-message">Your entry was saved</p>
           )}
         </>
       )}

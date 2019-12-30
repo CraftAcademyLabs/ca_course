@@ -6,10 +6,10 @@ So the login functionality works now, but do we really want to test against our 
 
 Whenever our App is making a network request, we can ‘hijack’ in the middle and respond as we want to. This means that the response payload is completely in our control.
 
-This is what we will do in the `userCanLogin.spec.js` that we added in the last section.
+This is what we will do in the `userCanLogin.feature.js` that we added in the last section.
 
 ```js
-// cypress/integration/userCanLogin.spec.js
+// cypress/integration/userCanLogin.feature.js
 
 /// <reference types="Cypress" />
 
@@ -18,6 +18,7 @@ describe("User can log in", () => {
     cy.server();
     cy.visit("/");
   });
+
   it("successfully", () => {
     cy.route({
       method: "POST",
@@ -31,9 +32,9 @@ describe("User can log in", () => {
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("password");
-      cy.get("button").click();
+      cy.get('button').contains('Submit').click();
     });
-    cy.contains("Hi user@mail.com");
+    cy.get("#message).should("contain", "Hi user@mail.com");
   });
 
   it("with invalid credentials", () => {
@@ -50,9 +51,9 @@ describe("User can log in", () => {
     cy.get("#login-form").within(() => {
       cy.get("#email").type("user@mail.com");
       cy.get("#password").type("wrongpassword");
-      cy.get("button").click();
+      cy.get('button').contains('Submit').click()
     });
-    cy.contains("Invalid login credentials. Please try again.");
+    cy.get("#message).should("contain", "Invalid login credentials. Please try again.");
   });
 });
 
@@ -71,10 +72,7 @@ Create the file and make the file look like this:
     "email": "user@mail.com",
     "provider": "email",
     "uid": "user@mail.com",
-    "allow_password_change": false,
-    "name": null,
-    "nickname": null,
-    "image": null
+    "allow_password_change": false
   }
 }
 ```
