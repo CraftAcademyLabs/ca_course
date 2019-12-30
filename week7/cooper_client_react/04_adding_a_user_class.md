@@ -2,7 +2,7 @@
 
 We know that we will be accessing our Rails app from an external client and that we will require authentication. At this point, you are familiar with [Devise](https://github.com/plataformatec/devise) - one of the most popular authentication libraries for Rails applications. We will be using `devise_token_auth` a [token-based authentication gem](https://github.com/lynndylanhurley/devise_token_auth) for Rails JSON APIs. It is designed to work well with `redux-token-auth` the token based authentication module for React with Redux.
 
-As usual, we will be testing our units with RSpec and in order to make writing our specs a breeze, we will use `shoulda-matchers`, but this is probably old news for you at this stage. Again, if you need some pointers please go back in this documentation and revisit the [BDD with Rails](https://class.craftacademy.co/courses/course-v1:CraftAcademy+CA-CC-01+2018/courseware/bee39fc3856c4129b8a3986b6463257c/08c42816e7ed40b28b36f53f56003aed/?activate_block_id=block-v1%3ACraftAcademy%2BCA-CC-01%2B2018%2Btype%40sequential%2Bblock%4008c42816e7ed40b28b36f53f56003aed) chapter.
+As usual, we will be testing our units with RSpec and in order to make writing our specs a breeze, we will use `shoulda-matchers`, but this is probably old news for you at this stage. Again, if you need some pointers please go back in this documentation and revisit the Rails BDD (Rails demo app) chapter.
 
 Make sure you install the `devise_token_auth` gem by adding it to your `Gemfile` and run `bundle install`. Note that you don't need to add gem `devise` since `devise_token_auth` requires it automatically.
 ```
@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
 end
 ```
 
-`$ rails db:migrate db:test:prepare`
+`$ rails db:migrate`
 
 Another generator we need to run is a Factory generator for User. Generally, Rails generator invokes the Factory generators once that gem is installed, but not in the case of Devise Token Auth.
 
@@ -90,7 +90,7 @@ Now, we can add some basic model specs for User that will test the Devise setup.
 RSpec.describe User, type: :model do
   # [...]
   describe 'Database table' do
-     it { is_expected.to have_db_column :encrypted_password }
+    it { is_expected.to have_db_column :encrypted_password }
     it { is_expected.to have_db_column :email }
     it { is_expected.to have_db_column :tokens }
   end
@@ -135,11 +135,12 @@ Next up, we need to add a new namespace to our `routes.rb` and move the generate
 ```
 # config/routes.rb
 Rails.application.routes.draw do
+  mount_devise_token_auth_for 'User', at: 'api/v1/auth', skip: [:omniauth_callbacks]
+
   namespace :api do
     # [...]
 
     namespace :v1 do
-      mount_devise_token_auth_for 'User', at: 'auth', skip: [:omniauth_callbacks]
     end
   end
 end

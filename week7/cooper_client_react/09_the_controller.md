@@ -219,9 +219,11 @@ end
 Go ahead and run this spec just to get a friendly reminder that there is no such route as `GET /api/v1/performance_data/`. Let's add that to our `routes.rb`
 ```
 # config/routes.rb
-namespace :v1 do
-  #[...]
-  resources :performance_data, only: [:create, :index]  
+#[...]
+    namespace :v1, defaults: { format: :json } do
+      resources :performance_data, only: [:create, :index]  
+    end
+  end
 end
 ```
 
