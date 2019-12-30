@@ -269,7 +269,7 @@ export default LoginForm;
 
 If you run the test now, all of them will fail. The app complains about how `authenticate` in the `App` component is not defined.
 
-Like we did with the `CooperCalculator`, we will extract the login function to a separate module. That is what we are trying to call on with `authenticate` in the `onLogin` function.
+Like we did with the `cooperCalculator`, we will extract the login function to a separate module. That is what we are trying to call on with `authenticate` in the `onLogin` function.
 
 We will make a call to our backend API over the network and will need to add a library to be able to perform that call. The library we will use is [Axios](https://github.com/axios/axios). You install it like this:
 
@@ -336,7 +336,7 @@ export const storeAuthCredentials = ({ headers }) => {
 
 We also need to import this to the `App` component:
 
-`import { authenticate } from './Modules/Auth';`
+`import { authenticate } from './Modules/auth';`
 
 In the backend, make sure that you have a user that has `user@mail.com` as the email and `password` as the password.
 

@@ -12,9 +12,8 @@ Run this in the terminal:
 
 `yarn -D add cypress`
 
-That's it. No, really! we are done here.
-
-Once we are done with the installation, we can launch cypress by
+**Note that we need to run this step before we move on**
+Once we are done with the installation, we can go ahead and launch Cypress for the first time.
 
 `./node_modules/.bin/cypress open`
 
@@ -28,7 +27,7 @@ The next step is to add a script to the `package.json` file to be able to run fe
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "cy:open": "cypress open"
+    "cy:open": "yarn start --silent & cypress open"
   },
 ```
 
@@ -44,21 +43,15 @@ And configure cypress:
 
 Then we can open cypress by `yarn run cy:open`
 
-Once we run cypress for the first time, it will create a folder for us, with a lot of example tests (Have a look at them, to get a sense of how tests should be written).
+We will also set up `jest` and `enzyme` which will be our component testing solution:
 
-Our tests are stored in `integration` folder and `fixtures` folder will contain JSON files, which we will introduce during the course of this document.
-
-Also we will set up our component testing solution:
-
-We will store our component tests in a separate folder (called `__tests__`) and use a different set of testing frameworks.
-
-Let's go through the setup by creating folders and adding dependencies. Execute the following commands in your terminal:
+Execute the following commands in your terminal:
 
 ```
 $ yarn add -D enzyme enzyme-adapter-react-16 react-test-renderer
 ```
 
-Add this to the `setupTests.js` file:
+Add this configuration to the `setupTests.js` file:
 
 ```js
 // src/setupTests.js
@@ -69,7 +62,14 @@ import Adapter from "enzyme-adapter-react-16";
 configure({ adapter: new Adapter() });
 ```
 
+Finally add the `__tests__` folder where we will store our component tests:
+
+```
+$ mkdir src/__tests__
+```
+
 Now we are all set up it's time to start working on our project!
+
 
 ## Acceptance tests
 
