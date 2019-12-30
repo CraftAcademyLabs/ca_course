@@ -24,7 +24,7 @@ RSpec.describe Api::V0::PingsController, type: :request do
     end
 
     it 'should return a 200 response' do
-      expect(response.status).to eq 200
+      expect(response).to have_http_status 200
     end
     
     it 'should return Pong' do

@@ -4,9 +4,9 @@ Run the following generator.
 
 `rails g model PerformanceData user:references data:hstore --force-plural`
 
-Note: What does the `--force-pluralflag` do for us?
+Note: What does the `--force-plural` flag do for us?
 
-Also, please note that we are using a datatype that we've not used before - the `hstore`. That is not a standard datatype in certain versions of PostgreSQL, so we need to make sure it will work. Open up the migration and add a line that adds `hstore` as a datatype and enables the database to store hashes.
+Also, please note that we are using a datatype that we've not used before, the `hstore`. That is not a standard datatype in certain versions of PostgreSQL, so we need to make sure it will work. Open up the migration and add a line that adds `hstore` as a datatype and enables the database to store hashes.
 ```
 # db/migrate/XXXX_create_performance_data.rb
 class CreatePerformanceData < ActiveRecord::Migration[6.0]
@@ -33,7 +33,7 @@ end
 
 Run the new migration.
 
-`$ rails db:migrate db:test:prepare`
+`$ rails db:migrate`
 
 Add the following specs.
 ```
@@ -54,7 +54,6 @@ require 'rails_helper'
 
 RSpec.describe PerformanceData, type: :model do
   describe 'Database table' do
-    it { is_expected.to have_db_column :id }
     it { is_expected.to have_db_column :data }
   end
 

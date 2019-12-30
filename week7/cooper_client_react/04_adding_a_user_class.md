@@ -16,13 +16,7 @@ Run the following command for an easy one-step installation.
 
 `$ rails g devise_token_auth:install User auth`
 
-Remember to migrate your database in order to create the `users` table (the Devise generator created a migration for you). But before you do that, make sure to open up the migration file and change the data type for `tokens` to `text`.
-```
-#db/migrate/XXX_devise_token_auth_create_users.rb
-## Tokens
-t.text :tokens
-```
-We also need to add some more columns that we will need. Please add this:
+Make sure to open up the migration file that was generated and add some more columns that are needed in order for Deivse token auth to work properly with our client later. Please add this:
 ```
 #db/migrate/XXX_devise_token_auth_create_users.rb
 ## The columns we want to add
@@ -32,6 +26,16 @@ t.datetime :last_sign_in_at
 t.string :current_sign_in_ip
 t.string :last_sign_in_ip
 ```
+
+We also want to remove some of the columns that Devise token auth has added to that migration file. There is a section in th migration file that says `## User info`, please remove these columns:
+```
+t.string :name
+t.string :nickname
+t.string :image
+```
+
+At the moment we are only building the MVP of the this application, so adding for instance `:nickname` would be out of scope and that `User` attribute would not have been used.
+
 In our User model (`app/models/user.rb`) we want to make sure that Devise is set up for our needs. We will remove the OAuth and Confirmation methods.
 ```
 # app/models/user.rb
@@ -65,7 +69,10 @@ end
 
 You can add more attributes to the User factory if you like, we added just the minimal required attributes at the moment.
 
-The Devise token auth generator does not create a unit spec for the models it generates. Let's add the user spec and test the User factory we just created. 
+The Devise token auth generator does not create a unit spec for the models it generates. Let's generate the unit spec with `rspec`. Run this in your terminal:
+`rails g rspec:model User`
+
+First thing we want to test is that the factory we created earlier is valid.
 ```
 # spec/models/user_spec.rb
 require 'rails_helper'
@@ -83,28 +90,9 @@ Now, we can add some basic model specs for User that will test the Devise setup.
 RSpec.describe User, type: :model do
   # [...]
   describe 'Database table' do
-    it { is_expected.to have_db_column :id }
-    it { is_expected.to have_db_column :provider }
-    it { is_expected.to have_db_column :uid }
-    it { is_expected.to have_db_column :encrypted_password }
-    it { is_expected.to have_db_column :reset_password_token }
-    it { is_expected.to have_db_column :reset_password_sent_at }
-    it { is_expected.to have_db_column :remember_created_at }
-    it { is_expected.to have_db_column :sign_in_count }
-    it { is_expected.to have_db_column :current_sign_in_at }
-    it { is_expected.to have_db_column :last_sign_in_at }
-    it { is_expected.to have_db_column :current_sign_in_ip }
-    it { is_expected.to have_db_column :last_sign_in_ip }
-    it { is_expected.to have_db_column :confirmation_token }
-    it { is_expected.to have_db_column :confirmed_at }
-    it { is_expected.to have_db_column :confirmation_sent_at }
-    it { is_expected.to have_db_column :unconfirmed_email }
-    it { is_expected.to have_db_column :nickname }
-    it { is_expected.to have_db_column :image }
+     it { is_expected.to have_db_column :encrypted_password }
     it { is_expected.to have_db_column :email }
     it { is_expected.to have_db_column :tokens }
-    it { is_expected.to have_db_column :created_at }
-    it { is_expected.to have_db_column :updated_at }
   end
 end
 ```
@@ -115,8 +103,8 @@ We can also test some basic validations added by Devise.
 RSpec.describe User, type: :model do
   #[...]
   describe 'Validations' do
-    it { is_expected.to validate_presence_of(:email) }
-    it { is_expected.to validate_confirmation_of(:password) }
+    it { is_expected.to validate_presence_of :email }
+    it { is_expected.to validate_confirmation_of :password }
 
     context 'should not have an invalid email address' do
       emails = ['asdf@ ds.com', '@example.com', 'test me @yahoo.com',
