@@ -24,51 +24,78 @@ In the following section, we will use some of the basic functionality React Rout
 
 As with every package, we will add the router using NPM and save it as a dependency.
 
-    $ npm i -S react-router-dom
-    // or
-    $ yarn add react-router-dom
+```
+$ npm i -S react-router-dom
+// or
+$ yarn add react-router-dom
+```
 
 We want to add 2 new components to our application. We will create them in `About.jsx` and `Projects.jsx` (in the `src` folder).
 
-    import React from "react"
+```js
+// src/About.jsx
 
-    const About = () => {
-      return (
-        <div className="ui container"> 
-          <h1 className="ui header">About Me</h1>
-          <p>Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum molestias?</p>
-        </div>)
-    }
+import React from "react";
 
-    export default About
+const About = () => {
+  return (
+    <div className="ui container">
+      <h1 className="ui header">About Me</h1>
+      <p>
+        Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident
+        corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum
+        molestias?
+      </p>
+    </div>
+  );
+};
 
-    import React from "react"
+export default About;
+```
 
-    const Projects = () => {
-      return (
-        <div className="ui container">
-          <h1 className="ui header">My Projects</h1>
-          <p>Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum molestias?</p>
-        </div>
-      )
+```js
+// src/Projects.jsx
 
-    };
+import React from "react";
 
-    export default Projects
+const Projects = () => {
+  return (
+    <div className="ui container">
+      <h1 className="ui header">My Projects</h1>
+      <p>
+        Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident
+        corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum
+        molestias?
+      </p>
+    </div>
+  );
+};
+
+export default Projects;
+```
 
 We also want to `import` those components, together with the `react-router-dom`, into our `index.js`.
 
-    import { BrowserRouter } from 'react-router-dom'
-    import Projects from "./Projects"
-    import About from "./About"
+```js
+// src/index.js
+
+import { BrowserRouter } from "react-router-dom";
+import Projects from "./Projects";
+import About from "./About";
+```
 
 Furthermore, we need to tell the application that we will be using the `BrowserRouter` when we hook the application into the `index.html`. We need to modify the `ReactDOM.render` function in `index.js` to the following markup:
 
-    ReactDOM.render((
-        <BrowserRouter>
-            <App />
-        </BrowserRouter>
-    ), document.getElementById('app'));
+```js
+// src/index.js
+
+ReactDOM.render(
+  <BrowserRouter>
+    <App />
+  </BrowserRouter>,
+  document.getElementById("app")
+);
+```
 
 ## Switch and Route components
 
@@ -76,49 +103,79 @@ React Router has, among others, the `Switch` and `Route` components. The `Route`
 
 We need to import both these components into our `index.js`.
 
-    import { Switch, Route } from 'react-router-dom'
+```js
+// src/index.js
+
+import { Switch, Route, BrowserRouter } from "react-router-dom";
+```
 
 We will put them to use in our `return` of our `App` component.
 
-    const App = () => {
-      return (
-        <>
-          <Header />
-          <Switch>
-            <Route exact path='/' component={Hello}></Route>
-            <Route exact path='/about' component={About}></Route>
-            <Route exact path='/projects' component={Projects}></Route>
-          </Switch>
-          <Footer />
-        </ >
-      )
-    };
+```js
+// src/index.js
+
+const App = () => {
+  return (
+    <>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={Hello}></Route>
+        <Route exact path="/about" component={About}></Route>
+        <Route exact path="/projects" component={Projects}></Route>
+      </Switch>
+      <Footer />
+    </>
+  );
+};
+```
 
 ## Link and NavLink components
 
 As the last step, we need to display some links in our `Header` component. We will use the `Link` and `NavLink` components (for learning purposes). Both of them are made available for use by the React Router package.
 
-The `Link` component provides declarative, accessible navigation around an application. `NavLink` is a special version of the `Link` that will add styling attributes to the rendered element when it matches the current URL. We can style the active link using `activeClassName` or `activeStyle`.
+The `Link` component provides declarative, accessible navigation around an application. `NavLink` is a special version of the `Link` that will add styling attributes to the rendered element when it matches the current URL. We can style the active link using `activeClassName` or `activeStyle` prop.
 
 We need to `import` both components to our `Header.jsx`.
 
-    import { NavLink, Link } from 'react-router-dom';
+```js
+// src/Header.jsx
+
+import { NavLink, Link } from "react-router-dom";
+```
 
 And add them to our render function.
 
-    const Header = () => {
-      return (
-        <nav className='ui fixed inverted menu'>
-          <div className="ui container">
-            <Link className="header item" to='/'>My Portfolio</Link>
-            <div className="right menu">
-              <NavLink className="ui item" activeStyle={{ fontWeight: "bold" }} to='/about'>About Me</NavLink>
-              <NavLink className="ui item" activeStyle={{ fontWeight: "bold" }} to='/projects'>Projects</NavLink>
-            </div>
-          </div>
-        </nav>
-      )
-    }
+```js
+// src/Header.jsx
+
+const Header = () => {
+  return (
+    <nav className="ui fixed inverted menu">
+      <div className="ui container">
+        <Link className="header item" to="/">
+          My Portfolio
+        </Link>
+        <div className="right menu">
+          <NavLink
+            className="ui item"
+            activeStyle={{ fontWeight: "bold" }}
+            to="/about"
+          >
+            About Me
+          </NavLink>
+          <NavLink
+            className="ui item"
+            activeStyle={{ fontWeight: "bold" }}
+            to="/projects"
+          >
+            Projects
+          </NavLink>
+        </div>
+      </div>
+    </nav>
+  );
+};
+```
 
 ## Wrap up
 
