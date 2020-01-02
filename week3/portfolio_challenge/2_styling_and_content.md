@@ -4,7 +4,7 @@ Let's move on with our Portfolio AND learn about React in the meantime. Don't fo
 
 The endgame for this section of the course is this:
 
-![](react_portfolio_2_tailwind_hello_world.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/week3/portfolio_challenge/assets/react_portfolio_2_tailwind_hello_world.png)
 
 We want to add a header and a footer to our application, and we want to add a little bit of styling to it. With that foundation, we will be able to move on and add some content to our portfolio site.
 
@@ -158,7 +158,7 @@ return (
 ```
 
 If you restart your development server you should be able to see the following:
-![](portfolio_v2_hello_world.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/week3/portfolio_challenge/assets/portfolio_v2_hello_world.png)
 
 ## Extract customm css to a file
 In the example above, we are making use of a mix of Semantic UI classes and custom css. We added our own css in as a `<style>` tag directly into our `index.html` markup. That is not a good practice. Afgter a while, thet tag can grow rather big and cumbersome to maintain ade read. 

@@ -305,7 +305,7 @@ We can start our dev server by executing the `start` script in our terminal, wai
 $ npm start
 ```
 
-![](react_portfolio_1_hello_world.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/week3/portfolio_challenge/assets/react_portfolio_1_hello_world.png)
 
 This is probably by far the most complicated "Hello World" setup you've ever done. At least so far into your programming journey. Well, if a "Hello World" application would have been our end-game, then all of the above has been a waste of time. What we've done so far, is to lay out the groundwork for out React application that we are going to build. Our hard work has not been in vain. Also, there's tons of more to React than this. Trust me.
 

@@ -4,7 +4,7 @@ In this section of the course, we will focus on adding some illustrations to out
 
 [unDraw](https://undraw.co/illustrations) is an online service that offers users to download open-source illustrations for every project you can imagine and create. All illustrations on the site are in SVG format (Scalable Vector Graphics). SVG is an XML-based vector image format for two-dimensional graphics with support for interactivity and animation. 
 
-![](react_portfolio_undraw_screen.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/week3/portfolio_challenge/assets/react_portfolio_undraw_displayed.png)
 
 An enthusiast of the service came up with the brilliant idea to transform illustrations hosted on unDraw to React components. You can find [unDraw illustrations as React components](https://www.npmjs.com/package/react-undraw-illustrations) as and NPM package.
 
@@ -21,12 +21,12 @@ $ yarn add react-undraw-illustrations
 ```
 Adding an illustration is pretty straight forward, but require a bit of research. First you need to search for the appropriate  illustration you want to display on the [unDraw website](https://undraw.co/illustrations).
 
-![](react_portfolio_undraw_search.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/week3/portfolio_challenge/assets/react_portfolio_undraw_search.png)
 
 The next step is to make sure that the illustration you want to use has been transformed into a component. The easiest way to do it is to look through the list of available illustrations on the [GitHub repository](https://github.com/GraemeFulton/react-undraw-illustrations/tree/master/lib/components). If you can find the illustration on the list of components, you will be able to use it in your application. **There are currently almost 370 illustrations to choose from.**
 
 
-![](react_portfolio_undraw_gh_component_list.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/week3/portfolio_challenge/assets/react_portfolio_undraw_gh_component_list.png)
 
 The naming of the components follows a certain standard. Let's say that you would like to display an illustration named "Designer". The name of the component to import and call would be `<UndrawDesigner />`. If the illustration is "Designer life", you would have to import and render `<UndrawDesignerLife />`. So prefixing the title with the word "Undraw", removing spaces (if there are any) and titleize all words is the standard to follow.  
 
@@ -86,7 +86,7 @@ return (
 
 If you render your application in your browser, you should be able to see the illustrations. 
 
-![](portfolio_v2_undraw_illustrations.gif)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/week3/portfolio_challenge/assets/portfolio_v2_undraw_illustrations.gif)
 
 ## Modify colors
 

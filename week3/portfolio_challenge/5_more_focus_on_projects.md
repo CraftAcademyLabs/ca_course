@@ -4,7 +4,7 @@ We will spend some more time on our Project display and learn about `props`
 
 This is our end game for this section of the course:
 
-![](portfolio_v2_project_cards.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/week3/portfolio_challenge/assets/portfolio_v2_project_cards.png)
 
 We need to add some more content to our `projects.json` and describe our projects in more detail. 
 
