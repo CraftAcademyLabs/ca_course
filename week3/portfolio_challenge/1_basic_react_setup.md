@@ -87,6 +87,8 @@ We also want to create a starting point for our application. We need an `index.h
 You can use the following scaffold:
 
 ```html
+<!-- index.html -->
+
 <!DOCTYPE html>
 <html>
 
@@ -157,6 +159,8 @@ All in all, we need to install Babel. Let's break it down a bit more.
 We need to tell Babel that we want to use those presets. In the project's root folder, create a file called `.babelrc` and add the following setting in Json:
 
 ```json
+// .babelrc
+
 {
     "presets": [
         "@babel/env",
@@ -192,6 +196,8 @@ Webpack uses loaders to process different types of files for bundling. It also w
 To get all of this up and running, we need to configure Webpack to use our loaders and prepare the development server (`webpack-dev-server`). The following is a working setup for the `webpack.config.js` - a file you need to create in the project's root folder.
 
 ```js
+// webpack.config.js
+
 const path = require("path")
 const webpack = require("webpack")
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
@@ -262,6 +268,8 @@ There are many parts here that call for a closer look. Do not take this lightly.
 We also need to add a script to `package.json` to start the `webpack-dev-server`: 
 
 ```json
+// package.json
+
 "scripts": {
     "start": "webpack-dev-server --inline --mode development --open"
 }
