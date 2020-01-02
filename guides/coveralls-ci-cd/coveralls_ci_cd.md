@@ -90,52 +90,52 @@ Now you need to visit the [Coveralls website](https://coveralls.io/) and add you
 
 If you haven't created an account already, please sign up using your Github account.
 
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/14_coveralls-sign-up.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/assets/14_coveralls-sign-up.png)
 
 Once you are logged in you need to get to the page where you can add new repositories. Go to the sidebar and click on "Add repos"
 
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/15_coveralls-add%20repos.jpg)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/assets/15_coveralls-add%20repos.jpg)
 
 You must be a part of the Craft Academy organization so you can see and add the repositories that are created on the "Craft Academy" account. You also need to check with the coaches that you are added as an admin on that specific repository that you want to add coveralls to, otherwise, you will not be able to see it.
 
 The first thing that you want to do is to click on the sync repos button in the top right corner.
 
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/16_coveralls-sync-repo.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/assets/16_coveralls-sync-repo.png)
 
 Now you can search for the repository that you want to add "Coveralls" to. When you find it you need to enable it.
 
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/17_coveralls-enabled.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/assets/17_coveralls-enabled.png)
 
 At this point, we have successfully added coveralls to our project. If you need to have the coveralls token for continuous integration (Semaphore), click on the Details button.
 
 If you recently added coveralls to the repository you will be presented by the coveralls `repo_token` straight away. If you don't see it when you press details. Then you have to go to the settings for this project to find the coveralls `repo_token`.
 
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/18_coveralls-repo-token.png)
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/19_coveralls-setting-repo-token.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/assets/18_coveralls-repo-token.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/c9bc41ab6e545fa807f956880f63ddd9a300c336/guides/coveralls-ci-cd/assets/19_coveralls-setting-repo-token.png)
 
 ## Setting up Continous integration with Semaphore
 
 * Make sure the coaches have set you as admins on the upstream repository and that you are apart of the Craft Academy organization
 
 * Visit the Semaphore classic, make sure that you are not on Semaphore 2s website. https://semaphoreci.com/
-![alt text](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/01_semaphore-pick-classic.png  "Logo Title Text 1")
+![alt text](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/01_semaphore-pick-classic.png  "Logo Title Text 1")
 
 * If you don't already have an account, set one up with Github
 
 * Click the button to add a new project
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/02_semaphore-add-project.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/02_semaphore-add-project.png)
 
 * Find the upstream repo you want to add CI to in the list which shows the Craft academy repositories
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/03_semaphore-select-repo.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/03_semaphore-select-repo.png)
 
 * When they ask you who is supposed to own this project, pick craft academy.
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/05_select-owner.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/05_select-owner.png)
 
 * After you selected the repo you want to use you should be able to set which branch we want CI for, usually the development branch. The branch you will merge feature branches in to.
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/04_semaphore-select-branch.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/04_semaphore-select-branch.png)
 
 * After you have selected the branch and semaphore has analyzed the project, you are presented by some options.
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/06_semaphore_analyzing-repo.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/06_semaphore_analyzing-repo.png)
 
 * You usually don't have to change the `Language` & `Ruby version`. Make sure that `database.yml for` option is set to `pg`.
 
@@ -163,14 +163,14 @@ COVERALLS_REPO_TOKEN=your_coveralls_token bundle exec rails ci:tests
 ```
 
 * Make sure to get the repo token from coveralls project and reålace the placeholder in the code example.
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/07_semaphore-project-settings.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/07_semaphore-project-settings.png) 
 
 * Now go ahead and build with these settings.
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/08_semaphore-build-with-settings.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/08_semaphore-build-with-settings.png)
 
 You have now successfully added CI with semaphore to your project.
 
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/09_semaphore-complete.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/09_semaphore-complete.png)
 
 ## Setting up Continous Deployment with Heroku
 
@@ -182,14 +182,14 @@ You have now successfully added CI with semaphore to your project.
 
 * Underneath that option you should now be able to connect the Heroku application to a specific repo. That repo should be the upstream repo.
 
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/11_heroku-deployment-method.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/11_heroku-deployment-method.png)
 
 * Now you need to decide which branch you want to be deployed, pick the development branch
 
 * Now click the button that says "Enable Automatic Deploys"
 
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/cab620cfb4def367334fa2f95b9e4e8ba25c49e1/guides/coveralls-ci-cd/12_heroku-automatic-deploys.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/cab620cfb4def367334fa2f95b9e4e8ba25c49e1/guides/coveralls-ci-cd/assets/12_heroku-automatic-deploys.png)
 
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/cab620cfb4def367334fa2f95b9e4e8ba25c49e1/guides/coveralls-ci-cd/13_heroku-auto-deploy-enabled.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/cab620cfb4def367334fa2f95b9e4e8ba25c49e1/guides/coveralls-ci-cd/assets/13_heroku-auto-deploy-enabled.png)
 
 DONE!
