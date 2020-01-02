@@ -1,3 +1,17 @@
+---
+title: "Acceptance unit test cycle"
+subtitle: "Week 4"
+author: [Craft Academy - Coding as a Craft]
+date: Version 1.0
+subject: "Rails, Ruby"
+keywords: [Rails, Ruby]
+titlepage: true
+titlepage-color: f28e24
+titlepage-text-color: "FFFFFF"
+titlepage-rule-color: "FFFFFF"
+titlepage-rule-height: 2
+...
+
 ### Setting up the application
 
 If you don't have Rails installed beforehand, it is time to install it now. Rails is a ruby gem, so you can install it as any other gem:
