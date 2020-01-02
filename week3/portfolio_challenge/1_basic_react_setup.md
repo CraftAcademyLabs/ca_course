@@ -6,11 +6,11 @@ It is very convenient to start your journey toward becoming a React-developer by
 
 We will set up our application using three tools - a package manager, a bundler and a compiler.
 
-*   A **package manager** lets you install or update third-party packages and dependencies.
+- A **package manager** lets you install or update third-party packages and dependencies.
 
-*   A **bundler** lets you write modular code and bundle it together into small packages to optimize load time.
+- A **bundler** lets you write modular code and bundle it together into small packages to optimize load time.
 
-*   A **compiler** lets you write modern JavaScript code that will still work in older browsers.
+- A **compiler** lets you write modern JavaScript code that will still work in older browsers.
 
 The three solutions that will make out our toolchain will be: [NPM](https://www.npmjs.com/), [Babel](http://babeljs.io/) and [Webpack](https://webpack.js.org/). We will go over these tools in more detail further down the road, but feel free to do some reading on your own in the meantime.
 
@@ -46,21 +46,25 @@ When our application will build, the source code will be placed in a specific fo
 
 Now that you know what we want to achieve, let's run the following commands in your terminal:
 
-    $ mkdir react_portfolio
-    $ cd react_portfolio
-    $ npm init -y 
-    // or 
-    $ yarn init -y
-    $ git init
-    $ touch .gitignore
-    $ echo -e "node_modules/\n.DS_Store\n.vscode\n" >> .gitignore
-    $ git add .
-    $ git commit -am "initiates project and adds gitignore scaffold"
+```
+$ mkdir react_portfolio
+$ cd react_portfolio
+$ npm init -y
+// or
+$ yarn init -y
+$ git init
+$ touch .gitignore
+$ echo -e "node_modules/\n.DS_Store\n.vscode\n" >> .gitignore
+$ git add .
+$ git commit -am "initiates project and adds gitignore scaffold"
+```
 
 As a sanity check, you can run the `git log` command to see your current commit history. It's a good habit to check history from time to time. Especially when you collaborate with others. By passing in the `--oneline` flag, you'll get a more readable output. At this point, you should see something like this:
 
-    $ git log --oneline
-    15cf366 (HEAD -> master) initiates the project and adds gitignore scaffold
+```
+$ git log --oneline
+15cf366 (HEAD -> master) initiates the project and adds gitignore scaffold
+```
 
 ## The starting point
 
@@ -70,44 +74,56 @@ We will be creating most of the files in our `src` folder, and since React is us
 
 Create the following folder structure for your project:
 
-    react_portfolio
-    +-- dist
-    +-- src
+```
+react_portfolio
++-- dist
++-- src
+```
 
 We also want to create a starting point for our application. We need an `index.html` file (in the project's root folder) that will be loaded in the browser and hold our React application.
 
 You can use the following scaffold:
 
-    <!DOCTYPE html>
-    <html>
+```html
+<!-- index.html -->
 
-    <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta http-equiv="Content-Security-Policy" content="default-src *; connect-src * ws://* wss://*; style-src * 'unsafe-inline' 'unsafe-eval'; media-src * ; img-src * data:; font-src * ; script-src * 'unsafe-inline' 'unsafe-eval';" />
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src *; connect-src * ws://* wss://*; style-src * 'unsafe-inline' 'unsafe-eval'; media-src * ; img-src * data:; font-src * ; script-src * 'unsafe-inline' 'unsafe-eval';"
+    />
 
-        <title>Portfolio</title>
-    </head>
+    <title>Portfolio</title>
+  </head>
 
-    <body>
-        <div id="app"></div>
-        <noscript>
-            You need to enable JavaScript to run this React application.
-        </noscript>
-        <script src="dist/bundle.js"></script>
-    </body>
-
-    </html>
+  <body>
+    <div id="app"></div>
+    <noscript>
+      You need to enable JavaScript to run this React application.
+    </noscript>
+    <script src="dist/bundle.js"></script>
+  </body>
+</html>
+```
 
 The most important part of the code above is the `<div id="app"></div>` tag, which is the root our React application will hook into, but also the `script` reference to `dist/bundle.js` that will hold our compiled code. The rest is pretty much a standard HTML skeleton.
 
 ### Execution
 
-    $ mkdir src
-    $ mkdir dist
-    $ touch index.html
-    $ code index.html
-    // add the html code to index.html
+```
+$ mkdir src
+$ mkdir dist
+$ touch index.html
+$ code index.html
+// add the html code to index.html
+```
 
 ## React as a dependency
 
@@ -115,9 +131,11 @@ To work with React, we need to install it. As simple as that. React can be added
 
 ## Execution
 
-    $ npm i -S react react-dom 
-    // or
-    $ yarn add react react-dom 
+```
+$ npm i -S react react-dom
+// or
+$ yarn add react react-dom
+```
 
 _Please note that `npm i -S` is the equivalent to `npm install --save`._
 
@@ -141,24 +159,29 @@ All in all, we need to install Babel. Let's break it down a bit more.
 
 We need to tell Babel that we want to use those presets. In the project's root folder, create a file called `.babelrc` and add the following setting in Json:
 
-    {
-        "presets": [
-            "@babel/env",
-            "@babel/preset-react"
-        ]
-    }
+```json
+// .babelrc
+
+{
+  "presets": ["@babel/env", "@babel/preset-react"]
+}
+```
 
 ### Execution
 
-    $ npm i -D @babel/core @babel/cli @babel/preset-env @babel/preset-react uglifyjs-webpack-plugin
-    // or
-    $ yarn add -D @babel/core @babel/cli @babel/preset-env @babel/preset-react uglifyjs-webpack-plugin 
-    $ touch .babelrc
-    // add the json code to .babelrc
+```
+$ npm i -D @babel/core @babel/cli @babel/preset-env @babel/preset-react uglifyjs-webpack-plugin
+// or
+$ yarn add -D @babel/core @babel/cli @babel/preset-env @babel/preset-react uglifyjs-webpack-plugin
+$ touch .babelrc
+// add the json code to .babelrc
+```
 
 _Please note that you might get Security Warnings/Alerts if you push to GitHub. Don't stress and follow the instructions. At the time we wrote this walkthrough, the fix was to install the following packages:_
 
-    $ yarn add -D eslint@^4.18.2 js-yaml@^3.13.1 webpack-dev-server@^3.1.11
+```
+$ yarn add -D eslint@^4.18.2 js-yaml@^3.13.1 webpack-dev-server@^3.1.11
+```
 
 _Please note that `npm i -D` is the equivalent to `npm install --save-dev`._
 
@@ -170,108 +193,126 @@ Webpack uses loaders to process different types of files for bundling. It also w
 
 To get all of this up and running, we need to configure Webpack to use our loaders and prepare the development server (`webpack-dev-server`). The following is a working setup for the `webpack.config.js` - a file you need to create in the project's root folder.
 
-    const path = require("path")
-    const webpack = require("webpack")
-    const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+```js
+// webpack.config.js
 
-    module.exports = {
-      entry: "./src/index.js",
-      mode: "development",
-      module: {
-        rules: [
-          {
-            test: /\.(js|jsx)$/,
-            exclude: /(node_modules)/,
-            loader: "babel-loader",
-            options: { presets: ["@babel/env"] }
-          },
-          {
-            test: /\.css$/,
-            use: ["style-loader", "css-loader"]
+const path = require("path");
+const webpack = require("webpack");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+
+module.exports = {
+  entry: "./src/index.js",
+  mode: "development",
+  module: {
+    rules: [
+      {
+        test: /\.(js|jsx)$/,
+        exclude: /(node_modules)/,
+        loader: "babel-loader",
+        options: { presets: ["@babel/env"] }
+      },
+      {
+        test: /\.css$/,
+        use: ["style-loader", "css-loader"]
+      }
+    ]
+  },
+  resolve: { extensions: ["*", ".js", ".jsx"] },
+  output: {
+    path: path.resolve(__dirname, "dist/"),
+    publicPath: "/dist/",
+    filename: "bundle.js"
+  },
+  devServer: {
+    contentBase: path.join(__dirname, "/"),
+    port: 3000,
+    publicPath: "http://localhost:3000/dist/",
+    watchContentBase: true,
+    historyApiFallback: true
+  },
+  optimization: {
+    minimizer: [
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          mangle: {
+            keep_fnames: true
           }
-        ]
-      },
-      resolve: { extensions: ["*", ".js", ".jsx"] },
-      output: {
-        path: path.resolve(__dirname, "dist/"),
-        publicPath: "/dist/",
-        filename: "bundle.js"
-      },
-      devServer: {
-        contentBase: path.join(__dirname, "/"),
-        port: 3000,
-        publicPath: "http://localhost:3000/dist/",
-        watchContentBase: true,
-        historyApiFallback: true,
-      },
-      optimization: {
-        minimizer: [
-          new UglifyJsPlugin({
-            uglifyOptions: {
-              mangle: {
-                keep_fnames: true,
-              },
-            },
-          })
-        ],
-      },
-      plugins: [new webpack.HotModuleReplacementPlugin()]
-    }
+        }
+      })
+    ]
+  },
+  plugins: [new webpack.HotModuleReplacementPlugin()]
+};
+```
 
 There are many parts here that call for a closer look. Do not take this lightly.
 
-*   `entry` tells Webpack where our application starts and where to bundle our files.
+- `entry` tells Webpack where our application starts and where to bundle our files.
 
-*   `mode` lets Webpack know we’re working in development mode and saves us from having to add a mode flag when we run the development server.
+- `mode` lets Webpack know we’re working in development mode and saves us from having to add a mode flag when we run the development server.
 
-*   `module` is an object that defines how our exported javascript modules are transformed and which ones are included according to the given array of `rules`.
+- `module` is an object that defines how our exported javascript modules are transformed and which ones are included according to the given array of `rules`.
 
-    *   The first rule is about transforming ES6 and JSX syntax. The `test` and `exclude` properties are conditions to match files against. We will match anything that is NOT inside the `node_modules` folder. We also need to direct Webpack to use Babel.
+  - The first rule is about transforming ES6 and JSX syntax. The `test` and `exclude` properties are conditions to match files against. We will match anything that is NOT inside the `node_modules` folder. We also need to direct Webpack to use Babel.
 
-    *   The second rule configures how we will process CSS. At this point, we will not pre- or post-process our CSS. Meaning we just need to make sure to add `style-loader` and `css-loader` to the `use` property. Later on, we will take a closer look at SASS and will have to change these settings.
+  - The second rule configures how we will process CSS. At this point, we will not pre- or post-process our CSS. Meaning we just need to make sure to add `style-loader` and `css-loader` to the `use` property. Later on, we will take a closer look at SASS and will have to change these settings.
 
-*   `resolve` allows us to specify which extensions Webpack will resolve — this allows us to import modules without needing to add their extensions.
+- `resolve` allows us to specify which extensions Webpack will resolve — this allows us to import modules without needing to add their extensions.
 
-*   `output` property tells Webpack where to put our transpiled and bundled code. The `publicPath` property specifies what directory the bundle should go in, and tells `webpack-dev-server` were to serve files from. If `publicPath` is set incorrectly, we would be getting 404 errors when running the app, since the server would not be serving your files from the correct folder.
+- `output` property tells Webpack where to put our transpiled and bundled code. The `publicPath` property specifies what directory the bundle should go in, and tells `webpack-dev-server` were to serve files from. If `publicPath` is set incorrectly, we would be getting 404 errors when running the app, since the server would not be serving your files from the correct folder.
 
-*   `devServer` property configures the `webpack-dev-server` and specifies the location we will be used to serve static files from as well as the port we want to run the server on.
+- `devServer` property configures the `webpack-dev-server` and specifies the location we will be used to serve static files from as well as the port we want to run the server on.
 
 We also need to add a script to `package.json` to start the `webpack-dev-server`:
 
-    "scripts": {
-        "start": "webpack-dev-server --inline --mode development --open"
-    }
+```json
+// package.json
+
+"scripts": {
+    "start": "webpack-dev-server --inline --mode development --open"
+}
+```
 
 ## Execution
 
-    $ npm i -D webpack@4.19.1 webpack-cli@3.1.1 webpack-dev-server@3.1.8 style-loader@0.23.0 css-loader@1.0.0 babel-loader@8.0.2
-    $ touch webpack.config.js
-    // add the javascript code to webpack.config.js
-    // add the json code to package.json
+```
+$ npm i -D webpack@4.19.1 webpack-cli@3.1.1 webpack-dev-server@3.1.8 style-loader@0.23.0 css-loader@1.0.0 babel-loader@8.0.2
+$ touch webpack.config.js
+// add the javascript code to webpack.config.js
+// add the json code to package.json
+```
 
 ## Our first component - Hello World
 
 Let's create an `index.js` file in our `src` directory, build our first component and hook it in into the DOM.
 
-    import React from "react"
-    import ReactDOM from "react-dom"
+```js
+// src/index.js
 
-    const HelloWorld = () => {
-        return <h2>Hello World</h2>
-    };
+import React from "react";
+import ReactDOM from "react-dom";
 
-    ReactDOM.render(<HelloWorld />, document.getElementById("app"))
+const HelloWorld = () => {
+  return <h2>Hello World</h2>;
+};
+
+ReactDOM.render(<HelloWorld />, document.getElementById("app"));
+```
 
 ## Execution
 
-    $ touch src/index.js
-    // add the javascript code to src/index.js
+```
+$ touch src/index.js
+// add the javascript code to src/index.js
+```
 
 ## See it come alive!
 
 We can start our dev server by executing the `start` script in our terminal, wait until Webpack and Babel does their job, and see our application come alive in the browser:
 
-    $ npm start
+```
+$ npm start
+```
 
 ![](https://github.com/CraftAcademyLabs/ca_course/raw/master/week3/portfolio_challenge/assets/react_portfolio_1_hello_world.png)
 
@@ -287,27 +328,33 @@ _Note: Up until now we've added the "Execution" section with commands you need t
 
 Let's create a new file in the `src` folder and call it `Hello.jsx`. I that file we will create out `<Hello />` component and reference it from `index.js`. This is the code we need to write:
 
-    import React from "react"
+```js
+// src/Hello.jsx
 
-    const Hello = () => {
-      return (
-          <div> Hello World</div>  
-      )
-    }
+import React from "react";
 
-    export default Hello
+const Hello = () => {
+  return <div> Hello World</div>;
+};
+
+export default Hello;
+```
 
 Consequently, we need to make some changes to the `index.js`. Read through the following code first, to make sure you understand what's going on, and replace the current content of `index.js`.
 
-    import React from "react"
-    import ReactDOM from "react-dom"
-    import Hello from "./Hello"
+```js
+// src/index.js
 
-    const App = () => {
-      return <Hello />
-    };
+import React from "react";
+import ReactDOM from "react-dom";
+import Hello from "./Hello";
 
-    ReactDOM.render(<App />, document.getElementById("app"))
+const App = () => {
+  return <Hello />;
+};
+
+ReactDOM.render(<App />, document.getElementById("app"));
+```
 
 Restart your development server and see if anything has changed.
 
@@ -315,10 +362,10 @@ Restart your development server and see if anything has changed.
 
 At this stage, we have a basic React application configured. It's been a handful, but I hope you have been able to grasp the gist of it. We are using:
 
-*   NPM or YARN as a **package manager** that helps us to install or update third-party packages and dependencies.
+- NPM or YARN as a **package manager** that helps us to install or update third-party packages and dependencies.
 
-*   Webpack as **bundler** that lets us write modular code and bundle it together into small packages to optimize load time.
+- Webpack as **bundler** that lets us write modular code and bundle it together into small packages to optimize load time.
 
-*   Babel as **compiler** that lets us write ES6 code and make sure our code works in older browsers.
+- Babel as **compiler** that lets us write ES6 code and make sure our code works in older browsers.
 
 We have made significant progress but have only scratched the surface yet.

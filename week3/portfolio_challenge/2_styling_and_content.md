@@ -16,51 +16,63 @@ But first things first. Let's start with creating two new files in our `src` fol
 
 This is the code for `Header.jsx`:
 
-    import React from "react"
+```js
+// src/Header.jsx
 
-    const Header = () => {
-      return (
-        <nav>
-          <h1>My Portfolio</h1>
-        </nav>
-      )
-    }
+import React from "react";
 
-    export default Header
+const Header = () => {
+  return (
+    <nav>
+      <h1>My Portfolio</h1>
+    </nav>
+  );
+};
+
+export default Header;
+```
 
 And this is how we will define the component in `Footer.jsx`:
 
-    import React from 'react'
+```js
+// src/Footer.jsx
 
-    const Footer = () => {
-      return (
-        <footer>
-          <h1>Made with React {React.version}</h1>
-        </footer>
-      )
-    }
+import React from "react";
 
-    export default Footer
+const Footer = () => {
+  return (
+    <footer>
+      <h1>Made with React {React.version}</h1>
+    </footer>
+  );
+};
+
+export default Footer;
+```
 
 Consequently, we want to change the markup in our `App` component to include and reference our new components:
 
-    import React from "react"
-    import ReactDOM from "react-dom"
-    import Hello from "./Hello"
-    import Header from "./Header"
-    import Footer from "./Footer"
+```js
+// src/index.js
 
-    const App = () => {
-      return (
-        <div>
-          <Header />
-          <Hello />
-          <Footer />
-        </div >
-      )
-    };
+import React from "react";
+import ReactDOM from "react-dom";
+import Hello from "./Hello";
+import Header from "./Header";
+import Footer from "./Footer";
 
-    ReactDOM.render(<App />, document.getElementById("app"))
+const App = () => {
+  return (
+    <div>
+      <Header />
+      <Hello />
+      <Footer />
+    </div>
+  );
+};
+
+ReactDOM.render(<App />, document.getElementById("app"));
+```
 
 Now, restart your development server to see the new components in action. They should be visible, but not impress you a lot. Right? It's time to add some styling to our application.
 
@@ -74,16 +86,28 @@ In this project, we will add Semantic UI to our project by using CDN and referen
 
 Please modify the `<head>` tag of your `index.html` file to look like this:
 
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-      <meta http-equiv="Content-Security-Policy"
-        content="default-src *; connect-src * ws://* wss://*; style-src * 'unsafe-inline' 'unsafe-eval'; media-src * ; img-src * data:; font-src * ; script-src * 'unsafe-inline' 'unsafe-eval';" />
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css" />
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
-      <title>Portfolio</title>
-    </head>
+```html
+<!-- index.html -->
+
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1, shrink-to-fit=no"
+  />
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src *; connect-src * ws://* wss://*; style-src * 'unsafe-inline' 'unsafe-eval'; media-src * ; img-src * data:; font-src * ; script-src * 'unsafe-inline' 'unsafe-eval';"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+  />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"></script>
+  <title>Portfolio</title>
+</head>
+```
 
 Those includes will make Semantic UI version 2.4.1 available in your project.
 
@@ -93,70 +117,82 @@ Semantic UI comes with a LOT of predefined classes and can be a bit overwhelming
 
 First, we need to add a `<style>` tag to our `index.html` (Don't worry, we will extract that to a separate file in a moment.). Please add the following inside your `<body>` tag:
 
-    <style>
-        footer {
-          position: absolute;
-          bottom: 0;
-          width: 100%;
-          height: 60px;
-          padding-top: 20px;
-          padding-bottom: 20px;
-          background-color: #f5f5f5;
-          margin-top: 0;
-          margin-bottom: 0;
-          text-align: center;
-        }
+```html
+<style>
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    height: 60px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: #f5f5f5;
+    margin-top: 0;
+    margin-bottom: 0;
+    text-align: center;
+  }
 
-        .main.container {
-          margin-top: 4em;
-        }
-      </style>
+  .main.container {
+    margin-top: 4em;
+  }
+</style>
+```
 
 Now, we will have to make use of the Semantic UI classes and our own custom css in our components. We do that by modifying the `return` of our components with the following markup examples:
 
 This is the code for the `return` in `Header.jsx`:
 
-    return (
-      <nav className='ui fixed inverted menu'>
-        <div className="ui container">
-          <h3 className="header item">
-            My Portfolio
-          </h3>
-        </div>
-      </nav>
-    )
+```js
+// src/Header.jsx
+
+return (
+  <nav className="ui fixed inverted menu">
+    <div className="ui container">
+      <h3 className="header item">My Portfolio</h3>
+    </div>
+  </nav>
+);
+```
 
 And for `Footer.jsx`:
 
-    return (
-      <footer>
-        <div className="ui container">
-          <p>Made with React {React.version}</p>
-        </div>
-      </footer>
-    )
+```js
+// src/Footer.jsx
+
+return (
+  <footer>
+    <div className="ui container">
+      <p>Made with React {React.version}</p>
+    </div>
+  </footer>
+);
+```
 
 And for `Hello.jsx`:
 
-    return (
-      <div className="ui main container">
-        <h1>
-          Hello World
-        </h1>
-      </div>
-    )
+```js
+// src/Hello.jsx
+
+return (
+  <div className="ui main container">
+    <h1>Hello World</h1>
+  </div>
+);
+```
 
 If you restart your development server you should be able to see the following: ![](https://github.com/CraftAcademyLabs/ca_course/raw/master/week3/portfolio_challenge/assets/portfolio_v2_hello_world.png)
 
 ## Extract custom css to a file
 
-In the example above, we are making use of a mix of Semantic UI classes and custom css. We added our own css in as a `<style>` tag directly into our `index.html` markup. That is not a good practice. After a while, that tag can grow rather big and cumbersome to maintain ade read.
+In the example above, we are making use of a mix of Semantic UI classes and custom css. We added our own css in as a `<style>` tag directly into our `index.html` markup. That is not a good practice. After a while, that tag can grow rather big and cumbersome to maintain and read.
 
 There are plenty of different ways we could handle this. For now, we will go with the least complex solution and move the css into a separate file. It does not solve all the problems for us but will do for now.
 
 Create a new file called `style.css` in the `dist` folder and move your custom css to that file. Modify the `<head>` of your `index.html` to include that file. Make sure to add the `<link` AFTER the one that pulls in Semantic UI from CDN.
 
-      <link rel="stylesheet" href="dist/style.css">
+```html
+<link rel="stylesheet" href="dist/style.css" />
+```
 
 ## Wrap up
 
