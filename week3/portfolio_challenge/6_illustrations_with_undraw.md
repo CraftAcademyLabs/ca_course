@@ -12,9 +12,11 @@ My idea is that we use a few of the illustrations on our portfolio.
 
 The first thing we need to do is to add the `react-undraw-illustrations` package using NPM.
 
-    $ npm i -S react-undraw-illustrations
-    // or
-    $ yarn add react-undraw-illustrations
+```
+$ npm i -S react-undraw-illustrations
+// or
+$ yarn add react-undraw-illustrations
+```
 
 Adding an illustration is pretty straight forward, but require a bit of research. First, you need to search for the appropriate illustration you want to display on the [unDraw website](https://undraw.co/illustrations).
 
@@ -30,46 +32,60 @@ Once we know the name of the component, displaying it on our UI is a breeze. I w
 
 First, we need to import the component we want to use. Let's start with adding "Designer life" to our "About me" page (`About.jsx`).
 
-    import { UndrawDesignerLife } from 'react-undraw-illustrations';
+```js
+import { UndrawDesignerLife } from "react-undraw-illustrations";
+```
 
 The next step is to add the component to the JSX (I also modified the css a bit to display a grid):
 
-    return (
-        <div className="ui main container">
-          <div class="ui stackable two column grid">
-            <div class="column">
-              <UndrawDesignerLife />
-            </div>
-            <div class="column">
-              <h1 className="ui header">About Me</h1>
-              <p>Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum molestias?</p>
-            </div>
-          </div>
-        </div>
-      )
+```js
+return (
+  <div className="ui main container">
+    <div class="ui stackable two column grid">
+      <div class="column">
+        <UndrawDesignerLife />
+      </div>
+      <div class="column">
+        <h1 className="ui header">About Me</h1>
+        <p>
+          Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident
+          corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum
+          molestias?
+        </p>
+      </div>
+    </div>
+  </div>
+);
+```
 
 We can do a similar modification to the component in `Projects.jsx`. Here we want to display an image titled "Dashboard"
 
-    import { UndrawDesigner } from 'react-undraw-illustrations';
+```js
+import { UndrawDashboard } from "react-undraw-illustrations";
+```
 
 And modify the JSX:
 
-    return (
-          <div className="ui main container">
-            <div className="ui stackable two column grid">
-              <div className="column">
-                <UndrawDesignerLife />
-              </div>
-              <div className="column">
-                <h1 className="ui header">My Projects</h1>
-                <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia quod ab doloremque eaque. Consequatur temporibus, quos enim, eaque nemo ad iusto sequi modi totam qui veniam? Ab asperiores inventore distinctio.</p>
-              </div>
-            </div>
-            <div className="ui stackable four column grid">
-              {projectsList}
-            </div>
-          </div>
-        )
+```js
+return (
+  <div className="ui main container">
+    <div className="ui stackable two column grid">
+      <div className="column">
+        <UndrawDashboard />
+      </div>
+      <div className="column">
+        <h1 className="ui header">My Projects</h1>
+        <p>
+          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia quod
+          ab doloremque eaque. Consequatur temporibus, quos enim, eaque nemo ad
+          iusto sequi modi totam qui veniam? Ab asperiores inventore distinctio.
+        </p>
+      </div>
+    </div>
+    <div className="ui stackable four column grid">{projectsList}</div>
+  </div>
+);
+```
 
 If you render your application in your browser, you should be able to see the illustrations.
 
@@ -81,9 +97,11 @@ There's a nice little feature in the `react-undraw-illustrations` package that a
 
 For example, if you modify your coder with the following settings, you will see that the primary color will be inline with the header of our portfolio:
 
+```js
     <UndrawDashboard primaryColor='#12283a' height='200px' />
 
     <UndrawDesignerLife primaryColor='#12283a' height='200px' />
+```
 
 ## Wrap up
 

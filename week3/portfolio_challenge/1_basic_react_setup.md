@@ -163,16 +163,17 @@ We need to tell Babel that we want to use those presets. In the project's root f
 // .babelrc
 
 {
-  "presets": ["@babel/env", "@babel/preset-react"]
+  "presets": ["@babel/env", "@babel/preset-react"],
+  "plugins": ["@babel/plugin-proposal-class-properties"]
 }
 ```
 
 ### Execution
 
 ```
-$ npm i -D @babel/core @babel/cli @babel/preset-env @babel/preset-react uglifyjs-webpack-plugin
+$ npm i -D @babel/core @babel/cli @babel/preset-env @babel/preset-react @babel/plugin-proposal-class-properties uglifyjs-webpack-plugin
 // or
-$ yarn add -D @babel/core @babel/cli @babel/preset-env @babel/preset-react uglifyjs-webpack-plugin
+$ yarn add -D @babel/core @babel/cli @babel/preset-env @babel/preset-react @babel/plugin-proposal-class-properties uglifyjs-webpack-plugin
 $ touch .babelrc
 // add the json code to .babelrc
 ```

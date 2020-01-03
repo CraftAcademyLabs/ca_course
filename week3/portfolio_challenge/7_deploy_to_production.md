@@ -32,7 +32,9 @@ The folder you want to deploy is the root folder, so you can leave that field bl
 
 The build setting for your app is the following:
 
-    webpack --mode production
+```
+webpack --mode production
+```
 
 There is a field where that command needs to be filled in. Please make sure it is.
 

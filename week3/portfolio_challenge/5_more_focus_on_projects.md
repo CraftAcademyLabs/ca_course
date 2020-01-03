@@ -8,26 +8,28 @@ This is our end game for this section of the course:
 
 We need to add some more content to our `projects.json` and describe our projects in more detail.
 
-    [
-      {
-        "id": 1,
-        "name": "My First Website",
-        "image": "http://www.4president.us/websites/2000/2000w/gore2000home.gif",
-        "description": "This was my first project. The guy lost, but won the popular vote!"
-      },
-      {
-        "id": 2,
-        "name": "UI Design",
-        "image": "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-        "description": "Designing user interfaces is fun. I want to learn more about that..."
-      },
-      {
-        "id": 3,
-        "name": "Mobile UX",
-        "image": "https://images.unsplash.com/photo-1534237886190-ced735ca4b73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
-        "description": "I like to design for the mobile platform. The challenges to build UI's for smartphones is challenging but extremely rewarding."
-      }
-    ]
+```json
+[
+  {
+    "id": 1,
+    "name": "My First Website",
+    "image": "http://www.4president.us/websites/2000/2000w/gore2000home.gif",
+    "description": "This was my first project. The guy lost, but won the popular vote!"
+  },
+  {
+    "id": 2,
+    "name": "UI Design",
+    "image": "https://images.unsplash.com/photo-1522542550221-31fd19575a2d?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+    "description": "Designing user interfaces is fun. I want to learn more about that..."
+  },
+  {
+    "id": 3,
+    "name": "Mobile UX",
+    "image": "https://images.unsplash.com/photo-1534237886190-ced735ca4b73?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80",
+    "description": "I like to design for the mobile platform. The challenges to build UI's for smartphones is challenging but extremely rewarding."
+  }
+]
+```
 
 If you examine the object carefully, you'll notice that we've added keys for `image` and `description`. Feel free to add your own content if you like, or use the example above.
 
@@ -45,60 +47,67 @@ In the previous part, we created a `Projects` component. I suggest that we modif
 
 Modify the part of the code where we populate the `projectsList` variable with HTML.
 
-    if (projects.length > 0) {
-          projectsList = projects.map(project => {
-            return (
-              <div key={project.id}>
-                <ProjectCard project={project} />
-              </div>
-            )
-          })
-        }
+```js
+// src/Projects.jsx
+
+if (projects.length > 0) {
+  projectsList = projects.map(project => {
+    return (
+      <div key={project.id}>
+        <ProjectCard project={project} />
+      </div>
+    );
+  });
+}
+```
 
 And modify the JSX return:
 
-    return (
-      <div className="ui main container">
-        <h1 className="ui header">My Projects</h1>
-        <div className="ui stackable four column grid">
-          {projectsList}
-        </div>
-      </div>
-    )
+```js
+return (
+  <div className="ui main container">
+    <h1 className="ui header">My Projects</h1>
+    <div className="ui stackable four column grid">{projectsList}</div>
+  </div>
+);
+```
 
 We also need to create and `import` the `ProjectCard` component into `Projects`:
 
-    $ touch src/ProjectCard.jsx
+```
+$ touch src/ProjectCard.jsx
+```
 
-    import ProjectCard from "./ProjectCard"
+```js
+import ProjectCard from "./ProjectCard";
+```
 
 Please take a close look at `<ProjectCard project={project} />`. What we are doing is sending the current `project` object to our new `ProjectCard` component. It will be accessible as `this.props.project`.
 
 Our new component can have a static type, so we do not have to use `class`. Create a new file in the `src` folder and call it `ProjectCard.jsx`. Add the following code to the new file:
 
-    import React from "react"
+```js
+import React from "react";
 
-    const ProjectCard = (props) => {
-      let project = props.project
-      return (
-        <>
-          <div class="ui card">
-            <div class="image">
-              <img src={project.image} />
-            </div>
-            <div class="content">
-              <h3 class="ui header">{project.name}</h3>
+const ProjectCard = ({ projects }) => {
+  return (
+    <>
+      <div class="ui card">
+        <div class="image">
+          <img src={project.image} />
+        </div>
+        <div class="content">
+          <h3 class="ui header">{project.name}</h3>
 
-              <div class="description">
-                {project.description}
-              </div>
-            </div>
-          </div>
-        </>
-      )
-    }
+          <div class="description">{project.description}</div>
+        </div>
+      </div>
+    </>
+  );
+};
 
-    export default ProjectCard
+export default ProjectCard;
+```
 
 There are a few things to look out for.
 

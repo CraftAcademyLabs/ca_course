@@ -39,7 +39,7 @@ import React from "react";
 
 const About = () => {
   return (
-    <div className="ui container">
+    <div className="ui main container">
       <h1 className="ui header">About Me</h1>
       <p>
         Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident
@@ -60,7 +60,7 @@ import React from "react";
 
 const Projects = () => {
   return (
-    <div className="ui container">
+    <div className="ui main container">
       <h1 className="ui header">My Projects</h1>
       <p>
         Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident
