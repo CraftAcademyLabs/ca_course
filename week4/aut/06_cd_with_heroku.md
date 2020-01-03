@@ -14,8 +14,8 @@
 
 * Now click the button that says "Enable Automatic Deploys"
 
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/cab620cfb4def367334fa2f95b9e4e8ba25c49e1/guides/coveralls-ci-cd/assets/12_heroku-automatic-deploys.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/12_heroku-automatic-deploys.png)
 
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/cab620cfb4def367334fa2f95b9e4e8ba25c49e1/guides/coveralls-ci-cd/assets/13_heroku-auto-deploy-enabled.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/13_heroku-auto-deploy-enabled.png)
 
 DONE!
