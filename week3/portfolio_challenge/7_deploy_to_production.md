@@ -1,4 +1,4 @@
-## Deploy your app
+## Deployment with Netlify
 
 It's time to move your app from the safety of your `localhost` to a server that is actually connected to the internet, and make it accessible to the general public. Don't worry if your portfolio is not fully what you hope it to be, the fact that you publish it on the internet does not mean that it will be hit by a massive wave of visitors. We want to do it for learning purposes.
 
@@ -12,9 +12,22 @@ We will make use of the more advanced functions on Netlify later in the Full Sta
 
 If you don't have an account on Netlify, now is a good time to create one. I would strongly recommend that you use GitHub authentication. That will save you some time that you otherwise have to spend on the configuration of your account.
 
+Before going to the netlify site we need to add another config file to our project. Netlify cannot handle `react-router` out of the box. `react-router` handles routing on the client side (browser) so when you visit non-root page (e.g. https://yoursite.netlify.com/about), Netlify (server-side) does not know how to handle the route.
+(As your routes are set up in the root level).
+
+To fix that you have to add a special file to your build folder (root in our case) called `_redirects` and add the following code snippet:
+
+```
+/*    /index.html   200
+```
+
+This will redirect netlify index.html when it hits a 404 but the url will stay the same, and our site will render the correct route.
+
+
 ## Deploy your app
 
 Let's get started with the deployment process. It' pretty straight forward, and this guide will serve as an orientation if you get lost. Remember that things change, and the interface might look slightly different when you visit the service.
+
 
 ![](https://github.com/CraftAcademyLabs/ca_course/raw/master/week3/portfolio_challenge/assets/02_netlify_create_new_app.png)
 
