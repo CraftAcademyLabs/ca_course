@@ -30,7 +30,7 @@ yarn run cypress open
 
 After doing that you will be greeted with the cypress window:
 
-![](./cypress_1.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/week3/portfolio_challenge/assets/cypress_1.png)
 
 
 To make launching cypress easier add the following commands to your package json:
@@ -92,7 +92,7 @@ To execute cypress functions you need to use `cy` prefix. The most basic one is 
 
 After adding that file, start your development server and run cypress and you should see something like this:
 
-![](./cypress_2.png)
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/week3/portfolio_challenge/assets/cypress_2.png)
 
 We have our first green test! Now let's see what are the most common cypress commands we can use in our tests files to find elements, interact with them and check their content.
 
