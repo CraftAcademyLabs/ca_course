@@ -1,5 +1,12 @@
+The user can now successfully see a list of all the articles that the application has in the databse. The next step is that a user can click on one of the articles being listed and then read the whole article.
+
+Create a new feature file.
+`$ touch spec/features/user_can_see_specific_article_spec.rb`
+
 
 ```rb
+# spec/features/user_can_see_specific_article_spec.rb
+
 feature 'User can see specific article' do
   before do
     create(:article, title: 'A breaking news item', content: 'Some breaking action')
@@ -21,6 +28,8 @@ feature 'User can see specific article' do
 end
 ```
 
+When you run this feature in the terminal (`$ rspec spec/features/user_can_see_specific_article_spec.rb`) you should get this error message.
+
 ```bash
 1) User can see specific article Article displays title
      Failure/Error: create(:article, title: 'A breaking news item', content: 'Some breaking action')
@@ -29,7 +38,13 @@ end
        undefined method `content=' for #<Article:0x0000565507b5ba28>
 ```
 
+At this point our `Article` model only has one attribute, `:title`. When the user is going to read the article we want to display the content of that article. Since we dont have a `:content` attribute for the article model we cant create one with it.
+
+So we need to add the `:content` attribute. Firts we want to update the exsisting unit spec for the `Àrticle` model. 
+
 ```rb
+# spec/models/article_spec.rb
+
 RSpec.describe Article, type: :model do
   describe 'DB table' do
     it { is_expected.to have_db_column :id }
@@ -44,13 +59,13 @@ RSpec.describe Article, type: :model do
 
   describe 'Factory' do
     it 'should have valid Factory' do
-      expect(FactoryBot.create(:article)).to be_valid 
+      expect(create(:article)).to be_valid 
     end
   end
 end
 ```
 
-rspec spec/models
+If you run the unit specs now (`rspec spec/models`), you will get this error message.
 
 ```bash
 1) Article DB table is expected to have db column named content
@@ -66,7 +81,9 @@ rspec spec/models
        attribute does not exist.
 ```
 
-rails g migration AddContentToArticle content:text
+It is time to create a migration to add the `:content` column to `Article`.
+
+`$ rails g migration AddContentToArticle content:text`
 
 ```rb
 class AddContentToArticle < ActiveRecord::Migration[6.0]
@@ -75,8 +92,11 @@ class AddContentToArticle < ActiveRecord::Migration[6.0]
   end
 end
 ```
-rails db:migrate
-rspec spec/models
+
+In order to add this column now we need to migrate the database.
+`$ rails db:migrate`
+
+If you run the unit test again you will have a new error message.
 
 ```bash
 1) Article Validations is expected to validate that :content cannot be empty/falsy
@@ -88,12 +108,15 @@ rspec spec/models
          be invalid, but it was valid instead.
 ```
 
+At the moment the only thing we validate the presence of in the `Article` model is `:title`.
+We need to add `:content`.
 ```rb
 class Article < ApplicationRecord
   validates_presence_of :title, :content
 end
 ```
 
+We now have a new error message when we run the unit test.
 ```bash
 1) Article Factory should have valid Factory
      Failure/Error: expect(FactoryBot.create(:article)).to be_valid
@@ -102,6 +125,7 @@ end
        Validation failed: Content can't be blank
 ```
 
+The `FactoryBot` for `Article` tries to create an instance without adding `:content`. We need to add `:content` to the defenition of the `Àrticle` factory.
 ```rb
 FactoryBot.define do
   factory :article do
@@ -111,6 +135,9 @@ FactoryBot.define do
 end
 ```
 
+You should now get all green when you run the unit test for the `Article` model.
+When you run the feature test now you should have a new error message, the articles have been successfully created in the background step. 
+
 ```bash
 Failure/Error: click_on 'A breaking news item'
      
@@ -118,7 +145,11 @@ Failure/Error: click_on 'A breaking news item'
        Unable to find link or button "A breaking news item"
 ```
 
+We expect that the user can click on the title of a article and that will lead to that specific article. We need to make the article title to a link when we display the article index. 
+
 ```html
+<%# app/views/articles/index.html.erb %>
+
 <ul>
   <% @articles.each do |article| %>
     <li>
@@ -128,17 +159,19 @@ Failure/Error: click_on 'A breaking news item'
 </ul>
 ```
 
+We get a new error message when we run the feature test.
 ```bash
 User can see specific article Article displays content
      Failure/Error: expect(page).to have_content 'Some breaking action'
        expected to find text "Some breaking action" in "A breaking news item Learn Rails 5"
      # ./spec/features/user_can_see_specific_article_spec.rb:16:in `block (3 levels) in <top (required)>'
-
 ```
 
-Not on show page
+The link that we added leads nowhere at the moment. We need to add the path that the link will lead to.
 
 ```html
+<%# app/views/articles/index.html.erb %>
+
 <ul>
   <% @articles.each do |article| %>
     <li>
@@ -148,6 +181,7 @@ Not on show page
 </ul>
 ```
 
+We get a new error message when we run the feature test.
 ```bash
 User can see specific article Article displays title
      Failure/Error: <%= link_to article.title, article_path(article) %><br />
@@ -156,6 +190,8 @@ User can see specific article Article displays title
        undefined method `article_path' for #<#<Class:0x000055c7d86f31f0>:0x000055c7d8921210>
 ```
 
+The link leads to the show page for that specific article, but we have not defined the route for that yet. 
+
 ```rb
 Rails.application.routes.draw do
   root controller: :articles, action: :index
@@ -163,6 +199,7 @@ Rails.application.routes.draw do
 end
 ```
 
+We get a new error message when we run the feature test.
 ```bash
 1) User can see specific article Article displays title
      Failure/Error: click_on 'A breaking news item'
@@ -171,7 +208,11 @@ end
        The action 'show' could not be found for ArticlesController
 ```
 
+Now it complains about the `show` action not being defined in the controller. 
+
 ```rb
+# app/controllers/articles_controller.rb
+
 class ArticlesController < ApplicationController
   def index
     @articles = Article.all
@@ -183,6 +224,7 @@ class ArticlesController < ApplicationController
 end
 ```
 
+We get a new error message when we run the feature test.
 ```bash
 1) User can see specific article Article displays title
      Failure/Error: click_on 'A breaking news item'
@@ -191,16 +233,25 @@ end
        ArticlesController#show is missing a template for request formats: text/html
 ```
 
-create show.html.erb
+The test now complains about there being no template for the show action. Lets create that!
+`$ app/views/articles/show.html.erb`
+
+We can add this to it to make sure that the test goes green.
 
 ```html
+<%# app/views/articles/show.html.erb %>
+
 <p>A breaking news item</p>
 <p>Some breaking action</p>
 ```
 
-hard coded blablabla
+This is what we call hard coded. Ff we where to change the article attributes in the before block where we create the articles for the fetaure test, we would not go green.
+
+So what we want to do is that we want to grab the `id` of the article from the params and find the specific article and store it in a instance variabel.
 
 ```rb
+# app/controllers/articles_controller.rb
+
 class ArticlesController < ApplicationController
   def index
     @articles = Article.all
@@ -212,9 +263,13 @@ class ArticlesController < ApplicationController
 end
 ```
 
+Then we want to display the data we have in that variabel on the `show` page. 
+
 ```html
+<%# app/views/articles/show.html.erb %>
+
 <p><%= @article.title %></p>
 <p><%= @article.content %></p>
 ```
 
-DONE!!!
+If you run all tests now they should go green!
