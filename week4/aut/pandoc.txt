@@ -1,3 +1,3 @@
-system("pandoc -s -V geometry:margin=1in -o tmp/aut_rails.pdf tmp/bdd_with_rails.md --template template --listings")
+system("pandoc -s -V geometry:margin=1in -o tmp/aut_rails.pdf tmp/01_setting_up_the_application.md tmp/01_setting_up_the_application.md tmp/01_setting_up_the_application.md tmp/02_rspec_and_shoulda_matchers.md tmp/03_cucumber.md tmp/04_coveralls.md tmp/05_ci_with_semaphore.md tmp/06_cd_with_heroku.md tmp/07_our_first_aut_cycle.md tmp/08_text_on_the_view.md tmp/09_what_about_the_unit_tests.md tmp/10_the_model.md tmp/11_back_to_acceptance_tests.md tmp/12_more_features.md tmp/13_edit_article.md --template template --listings")
 
-parse_content(path: '/week4/aut', repo: 'CraftAcademy/ca_course', format: 'pdf', upload: false), repo: 'CraftAcademy/ca_course', format: 'pdf', upload: false)
+parse_content(path: '/week4/aut', repo: 'CraftAcademyLabs/ca_course', format: 'pdf', upload: false), repo: 'CraftAcademyLabs/ca_course', format: 'pdf', upload: false)

@@ -1,3 +1,3 @@
-system("pandoc -s -V geometry:margin=1in -o tmp/week3_weekend_lab.pdf tmp/0_week_lab.md tmp/1_static_website_with_middleman.md tmp/2_setup_middleman.md tmp/3_setup_rspec.md tmp/4_setup_haml.md tmp/5_accessing_data.md tmp/6_partials.md tmp/7_deploy_to_github_pages.md --template template --listings")
+system("pandoc -s -V geometry:margin=1in -o tmp/week3_weekend_lab.pdf tmp/0_week_lab.md tmp/1_basic_react_setup.md tmp/2_styling_and_content.md tmp/3_navigation.md tmp/4_display_projects.md tmp/5_more_focus_on_projects.md tmp/6_illustrations_with_undraw.md tmp/7_deploy_to_production.md tmp/8_lets_start_a_conversation.md tmp/9_testing_react_with_cypress.md --template template --listings")
 
-parse_content(path: '/week3/middleman/weekend_challenge', repo: 'CraftAcademy/ca_course', format: 'pdf', upload: false)
+parse_content(path: '/week3/portfolio_challenge', repo: 'CraftAcademyLabs/ca_course', format: 'pdf', upload: false)
