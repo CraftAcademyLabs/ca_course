@@ -335,7 +335,7 @@ Let's create a new file in the `src` folder and call it `Hello.jsx`. I that file
 import React from "react";
 
 const Hello = () => {
-  return <div> Hello World</div>;
+  return <div id="hello"> Hello World</div>;
 };
 
 export default Hello;
