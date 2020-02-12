@@ -101,7 +101,7 @@ Plugins enable you to tap into, modify, or extend the internal behavior of Cypre
 Normally, as a user, all of your test code, your application, and Cypress commands are executed in the browser. But Cypress is also a Node process that plugins can use.
 
 ### Support
-The last folder we will look at it the support folder.
+The last folder we will look at it is the support folder.
 
 The support file is a great place to put reusable behavior such as Custom Commands or global overrides that you want applied and available to all of your spec files.
 
