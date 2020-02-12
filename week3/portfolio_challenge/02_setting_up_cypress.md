@@ -126,31 +126,3 @@ We need to add a script in the `package.json` file.
 The script we added will run the script that starts the server and open up `Cypresss`.
 
 We have now successfully added `Cypress`.
-
-## Jest & Enzyme ???
-
-yarn add --dev jest babel-jest @babel/preset-env @babel/preset-react react-test-renderer
-
-```
-"scripts": {
-    "start": "webpack-dev-server --inline --mode development --open",
-    "cy:open": "yarn start & cypress open",
-    "test": "jest"
-  }
-```
-
-yarn add enzyme enzyme-adapter-react-16 --dev
-
-touch setupTest.js
-
-```js
-import { configure } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-
-configure({ adapter: new Adapter() });
-```
-
-```bash
-$ mkdir src/__tests__
-```
-this does not work, adapter for enzyme
