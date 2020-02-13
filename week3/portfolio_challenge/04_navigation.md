@@ -1,4 +1,4 @@
-Our portfolio application is taking shape. In the previous section, we added a header and a footer to the page structure. Now, we want to extend our application with an "About Me" and a "Projects" section. There are many ways to achieve that, but for learning purposes, we will take a path that requires us to add dynamic routes to our application. The result we are looking for is something like this:
+a sOur portfolio application is taking shape. In the previous section, we added a header and a footer to the page structure. Now, we want to extend our application with an "About Me" and a "Projects" section. There are many ways to achieve that, but for learning purposes, we will take a path that requires us to add dynamic routes to our application. The result we are looking for is something like this:
 
 ![](https://github.com/CraftAcademyLabs/ca_course/raw/master/week3/portfolio_challenge/assets/portfolio_v2_basic_navigation.gif)
 
@@ -67,7 +67,7 @@ describe('User can navigate the app', () => {
 
 We test that the user can click through the tabs and see the content that is expected to be there. We are also making sure that we cant see the elements that are supposed to be visible on the other tabs, to make sure that the navigation works properly.
 
-The test above is not how we want to structure our test. As we have mentioned previously, we only want **ONE** assertion for one it block. The correct way of structuring this test looks like this.
+The test above is not how we want to structure our test. As we have mentioned previously, we only want **ONE** assertion for a single it block. The correct way of structuring this test looks like this.
 
 ```js
 describe('User can navigate the app', () => {
@@ -146,7 +146,7 @@ describe('User can navigate the app', () => {
 });
 ```
 
-Lets make these tests go green!
+Let's make these tests go green!
 
 
 ## Getting started
