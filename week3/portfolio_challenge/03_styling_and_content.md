@@ -1,3 +1,4 @@
+
 Let's move on with our Portfolio AND learn about React in the meantime. Don't forget why we are doing this - having a portfolio site is fun, and that is why we chose to build one for this exercise. But the real reason we are doing all of this is to learn to build engaging user interfaces with React.
 
 The endgame for this section of the course is this:
@@ -29,8 +30,8 @@ describe('Portfolio interface', () => {
 })
 ```
 
-That is our test, lets get to writing some code.
-Let's start with creating two new files in our `src` folder. `Footer.jsx` and `Header.jsx`. In the first iteration, we can just add some basic text. We WILL style them in a moment.
+That is our test, let's get to writing some code.
+Let's start by creating two new files in our `src` folder. `Footer.jsx` and `Header.jsx`. In the first iteration, we can just add some basic text. We WILL style them in a moment.
 
 This is the code for `Header.jsx`:
 
@@ -129,7 +130,7 @@ Please modify the `<head>` tag of your `index.html` file to look like this:
 </head>
 ```
 
-Those includes will make Semantic UI version 2.4.1 available in your project.
+This will make Semantic UI version 2.4.1 available in your project.
 
 ## Styling
 
