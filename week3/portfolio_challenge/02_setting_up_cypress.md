@@ -89,9 +89,9 @@ Fixtures are used as existing static data pieces that your tests can use. By def
 `cypress/fixtures`, but they can be configured to a different folder.
 
 ### Integration
-This is the folder that we are going to use the most. Cypress by default looks for all the tests we create and write in this folder. Any of the tests we do write have to have `.spec.js` on the end of the files, we will go over this later when we start writing our tests.
+This is the folder that we are going to use the most. Cypress by default looks for all the tests we create and write in this folder. Any of the tests we do write have to have `.spec.js` or `.feature.js` at the end of the files, we will go over this later when we start writing our tests.
 
-If you open the integration folder now you will see another folder called `Examples` with quite a few example tests in it. This by default is installed with Cypress, read through them and when you are finished just delete the `Examples` folder we will not need it after this point.
+If you open the integration folder now you will see another folder called `Examples` with quite a few examples tests in it. This by default is installed with Cypress, read through them and when you are finished just delete the `Examples` folder we will not need it after this point.
 
 ### Plugins
 By default Cypress will automatically include the plugins file `cypress/plugins/index.js` **before** every single spec file it runs. It does this purely as a convenience mechanism so you don’t have to import this file in every single one of your spec files.
@@ -103,7 +103,7 @@ Normally, as a user, all of your test code, your application, and Cypress comman
 ### Support
 The last folder we will look at it is the support folder.
 
-The support file is a great place to put reusable behavior such as Custom Commands or global overrides that you want applied and available to all of your spec files.
+The support file is a great place to put reusable behavior such as Custom Commands or global overrides that you want to be applied and available to all of your spec files.
 
 You can define your behaviors in a `beforeEach` within any of the `cypress/support` files.
 
