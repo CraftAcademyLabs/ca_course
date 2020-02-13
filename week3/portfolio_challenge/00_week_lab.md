@@ -6,6 +6,7 @@ This challenge is an individual one. You are supposed to build an individual por
 4.  Include an About me section
 5.  Make use of components for the header and the footer section (at least)
 6.  Use a CSS framework (SemanticUI) for styling
+7.  Build the application using Cypress
 
 **Note: You are welcome to work in pairs if you like, but it is not a requirement and if you do, you need to figure out how to complete your individual sites and still be able to pair program.**
 

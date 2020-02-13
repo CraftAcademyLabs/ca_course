@@ -1,4 +1,4 @@
-Our portfolio application is taking shape. In the previous section, we added a header and a footer to the page structure. Now, we want to extend our application with an "About Me" and a "Projects" section. There are many ways to achieve that, but for learning purposes, we will take a path that requires us to add dynamic routes to our application. The result we are looking for is something like this:
+a sOur portfolio application is taking shape. In the previous section, we added a header and a footer to the page structure. Now, we want to extend our application with an "About Me" and a "Projects" section. There are many ways to achieve that, but for learning purposes, we will take a path that requires us to add dynamic routes to our application. The result we are looking for is something like this:
 
 ![](https://github.com/CraftAcademyLabs/ca_course/raw/master/week3/portfolio_challenge/assets/portfolio_v2_basic_navigation.gif)
 
@@ -20,8 +20,136 @@ In our Portfolio application, we will use `BrowserRouter` as our Router of choic
 
 In the following section, we will use some of the basic functionality React Router brings to the table. If you want to go deeper into the router visit [this resource](https://reacttraining.com/react-router/core/guides/philosophy) and read through the documentation and examples.
 
-## Getting started
+## Writing the test
 
+The first thing we want to do is to add another integration test. Our user should be able to click through different tabs.
+
+`$ touch cypress/integration/userCanNavigateThroughTheApplication.feature.js`
+
+```js
+// cypress/integration/userCanNavigateThroughTheApplication.feature.js
+
+describe('User can navigate the app', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:3000');
+  })
+
+
+  it('to About tab',() => {
+    cy.get('#about-tab').click();
+
+    cy.get('#about-header').should('contain', 'About Me');
+
+    cy.get('#projects-header').should('not.exist');
+    cy.get('#hello').should('not.exist');
+  })
+
+  it('to My Projects tab',() => {
+    cy.get('#projects-tab').click();
+
+    cy.get('#projects-header').should('contain', 'My Projects');
+    
+    cy.get('#about-header').should('not.exist');
+    cy.get('#hello').should('not.exist');
+  })
+
+  it('back to My Portfolio/Hello tab',() => {
+    cy.get('#about-tab').click();
+    cy.get('#header').click();
+
+    cy.get('#hello').should('contain', 'Hello');
+
+    cy.get('#projects-header').should('not.exist');
+    cy.get('#about-header').should('not.exist');
+  })
+})
+```
+
+We test that the user can click through the tabs and see the content that is expected to be there. We are also making sure that we cant see the elements that are supposed to be visible on the other tabs, to make sure that the navigation works properly.
+
+The test above is not how we want to structure our test. As we have mentioned previously, we only want **ONE** assertion for a single it block. The correct way of structuring this test looks like this.
+
+```js
+describe('User can navigate the app', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:3000');
+  })
+
+  describe('to About tab and it', () => {
+    beforeEach(() => {
+      cy.get('#about-tab').click();
+    });
+
+    it('displays About Me header', () => {
+      cy.get('#about-header').should('contain', 'About Me');
+    });
+
+    it('displays component name in url', () => {
+      cy.url().should("contain", "about");
+    })
+
+    it('does not display My Projects header ', () => {
+      cy.get('#projects-header').should('not.exist');
+    });
+
+    it('does not display Hello world', () => {
+      cy.get('#hello').should('not.exist');
+    });
+  });
+
+  describe('to My Projects tab and it',() => {
+    beforeEach(() => {
+      cy.get('#projects-tab').click();
+    });
+
+    it('displays My Projects header', () => {
+      cy.get('#projects-header').should('contain', 'My Projects');
+    });
+
+    it('displays component name in url', () => {
+      cy.url().should("contain", "projects");
+    })
+
+    it('does not display About Me header ', () => {
+      cy.get('#about-header').should('not.exist');
+    });
+
+    it('does not display Hello world', () => {
+      cy.get('#hello').should('not.exist');
+    });
+  });
+
+  describe('back to My Portfolio/Hello tab and it',() => {
+    beforeEach(() => {
+      cy.get('#about-tab').click();
+      cy.get('#header').click();
+    });
+
+    it('displays Hello World', () => {
+      cy.get('#hello').should('contain', 'Hello');
+    });
+
+    it('displays correct url', () => {
+      cy.url()
+        .should("not.contain", "projects")
+        .and("not.contain", "about");    
+    })
+
+    it('does not display About Me header ', () => {
+      cy.get('#about-header').should('not.exist');
+    });
+
+    it('does not display My Projects header', () => {
+      cy.get('#projects-header').should('not.exist');
+    });
+  });
+});
+```
+
+Let's make these tests go green!
+
+
+## Getting started
 As with every package, we will add the router using NPM and save it as a dependency.
 
 ```
@@ -40,7 +168,7 @@ import React from "react";
 const About = () => {
   return (
     <div className="ui main container">
-      <h1 className="ui header">About Me</h1>
+      <h1 id="about-header" className="ui header">About Me</h1>
       <p>
         Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident
         corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum
@@ -61,7 +189,7 @@ import React from "react";
 const Projects = () => {
   return (
     <div className="ui main container">
-      <h1 className="ui header">My Projects</h1>
+      <h1 id="projects-header" className="ui header">My Projects</h1>
       <p>
         Ipsum dolor dolorem consectetur est velit fugiat. Dolorem provident
         corporis fuga saepe distinctio ipsam? Et quos harum excepturi dolorum
@@ -152,11 +280,12 @@ const Header = () => {
   return (
     <nav className="ui fixed inverted menu">
       <div className="ui container">
-        <Link className="header item" to="/">
+        <Link id="header" className="header item" to="/">
           My Portfolio
         </Link>
         <div className="right menu">
           <NavLink
+            id="about-tab"
             className="ui item"
             activeStyle={{ fontWeight: "bold" }}
             to="/about"
@@ -164,6 +293,7 @@ const Header = () => {
             About Me
           </NavLink>
           <NavLink
+            id="projects-tab"
             className="ui item"
             activeStyle={{ fontWeight: "bold" }}
             to="/projects"
@@ -178,5 +308,5 @@ const Header = () => {
 ```
 
 ## Wrap up
-
+Run the tests now and everything should go green!
 We now have basic navigation in place. Moving forward, we will start filling our portfolio with content.

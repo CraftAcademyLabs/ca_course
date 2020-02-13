@@ -53,7 +53,7 @@ Modify the part of the code where we populate the `projectsList` variable with H
 if (projects.length > 0) {
   projectsList = projects.map(project => {
     return (
-      <div key={project.id}>
+      <div id={'project-' + project.id} key={project.id}>
         <ProjectCard project={project} />
       </div>
     );
@@ -114,5 +114,6 @@ There are a few things to look out for.
 Pay attention to the `props` parameter we are receiving. It's the `project` object we sent off from the `Projects` component. We populate our HTML with data from that object (i.e. `project.name`, `project.description`, etc.)
 
 ## Wrap up
+If you run the tests now, you will see that they are going green. We added the project image and description.
 
 By adding a new component we can keep the code cleaner and more readable. It is also possible for us to reuse the component in other parts of the application. Can you think of any other use case for the `ProjectCard`? Does the naming hinder you from thinking of one?

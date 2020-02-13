@@ -1,51 +1,5 @@
-## Testing JavaScript with Cypress.io
-
-In this section I will introduce to you a great acceptance testing framework called [Cypress.io](https://www.cypress.io/). Cypress makes testing JavaScript based applications (hence React.js) a breeze, and gives you visual feedback about your flow. It is easy to use and has great debugging tools. Let's dive in!
-
-## Installing Cypress
-
-You can install cypress by running:
-
-```
-npm install cypress --save-dev
-```
-
-or
-
-```
-yarn add cypress --dev
-```
-
-This will be a relatively lengthy install. After you can scaffold the cypress folder structure and launch it by running:
-
-``` 
-./node_modules/.bin/cypress open 
-```
-
-or 
-
-```
-yarn run cypress open
-```
-
-After doing that you will be greeted with the cypress window:
-
-![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/week3/portfolio_challenge/assets/cypress_1.png)
-
-
-To make launching cypress easier add the following commands to your package json:
-
-```json
- "scripts": {
-    ...,
-    "cy:run": "cypress run",
-    "cy:open": "cypress open"
-  },
-  ```
-
-  With that addition you can launch cypress with the `npm/yarn run cy:open` command. `cy:run` runs the tests silently, outputting the results only in your console.
-
-  ## Folder structure
+# Cypress
+## Folder structure
 
   Cypress scaffolded many folders for you let me walk through which does what:
 
@@ -61,8 +15,6 @@ To make launching cypress easier add the following commands to your package json
     - This file allows you to add custom commands to cypress, or overwrite existing ones.
   - support/index.js
     - It is processed and loaded automatically before your test files. This is a great place to put global configuration and behavior that modifies Cypress.
-
-In this project we will focus on adding tests in the integration folder.
 
 One more file has been added by the scaffold that is `cypress.json` in the root folder. Here you can configure cypress further. Let's edit this file and add the following code:
 

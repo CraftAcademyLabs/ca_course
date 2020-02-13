@@ -1,3 +1,4 @@
+
 Let's move on with our Portfolio AND learn about React in the meantime. Don't forget why we are doing this - having a portfolio site is fun, and that is why we chose to build one for this exercise. But the real reason we are doing all of this is to learn to build engaging user interfaces with React.
 
 The endgame for this section of the course is this:
@@ -12,7 +13,25 @@ If you look at the screenshot above, you can see that the application has change
 
 We will make the changes to our code by creating 2 new components (a `Header` and a `Footer` component), reference them from our `App` component and display them in our app. Finally, we will add a CSS framework (Semantic UI React) and style our application a bit.
 
-But first things first. Let's start with creating two new files in our `src` folder. `Footer.jsx` and `Header.jsx`. In the first iteration, we can just add some basic text. We WILL style them in a moment.
+The first thing we want to do is create a `Cypress` test based on that screenshot.
+
+`$ touch cypress/integration/userCanSeePortfolioStructure.feature.js`
+
+```js
+// cypress/integration/userCanSeePortfolioStructure.feature.js
+
+describe('Portfolio interface', () => {
+  it('successfully renders',() => {
+    cy.visit('http://localhost:3000');
+    cy.get('#header').should('contain', 'My Portfolio');
+    cy.get('#footer').should('contain', 'Made with React 16.12.0');
+    cy.get('#hello').should('contain', 'Hello World');
+  })
+})
+```
+
+That is our test, let's get to writing some code.
+Let's start by creating two new files in our `src` folder. `Footer.jsx` and `Header.jsx`. In the first iteration, we can just add some basic text. We WILL style them in a moment.
 
 This is the code for `Header.jsx`:
 
@@ -24,7 +43,7 @@ import React from "react";
 const Header = () => {
   return (
     <nav>
-      <h1>My Portfolio</h1>
+      <h1 id="header">My Portfolio</h1>
     </nav>
   );
 };
@@ -42,7 +61,7 @@ import React from "react";
 const Footer = () => {
   return (
     <footer>
-      <h1>Made with React {React.version}</h1>
+      <h1 id="footer">Made with React {React.version}</h1>
     </footer>
   );
 };
@@ -74,7 +93,9 @@ const App = () => {
 ReactDOM.render(<App />, document.getElementById("app"));
 ```
 
-Now, restart your development server to see the new components in action. They should be visible, but not impress you a lot. Right? It's time to add some styling to our application.
+Now, restart your development server to see the new components in action. They should be visible, but not impress you a lot. If you run the `Cypress` test everything should go green. Right? It's time to add some styling to our application.
+
+
 
 ## Adding a CSS framework
 
@@ -109,7 +130,7 @@ Please modify the `<head>` tag of your `index.html` file to look like this:
 </head>
 ```
 
-Those includes will make Semantic UI version 2.4.1 available in your project.
+This will make Semantic UI version 2.4.1 available in your project.
 
 ## Styling
 
@@ -148,7 +169,7 @@ This is the code for the `return` in `Header.jsx`:
 return (
   <nav className="ui fixed inverted menu">
     <div className="ui container">
-      <h3 className="header item">My Portfolio</h3>
+      <h3 id="header" className="header item">My Portfolio</h3>
     </div>
   </nav>
 );
@@ -162,7 +183,7 @@ And for `Footer.jsx`:
 return (
   <footer>
     <div className="ui container">
-      <p>Made with React {React.version}</p>
+      <p id="footer">Made with React {React.version}</p>
     </div>
   </footer>
 );
@@ -175,7 +196,7 @@ And for `Hello.jsx`:
 
 return (
   <div className="ui main container">
-    <h1>Hello World</h1>
+    <h1 id="hello">Hello World</h1>
   </div>
 );
 ```

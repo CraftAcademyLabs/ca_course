@@ -32,7 +32,7 @@ As mentioned above, components can be defined as classes or functions. The metho
 
 ### Mounting
 
-Mounting phase is when an instance of a component is being created and inserted into the DOM. Apart from the `constructor()`, we have access to two lifecycle methods in this phase: `componentWillMount`, and `componentDidMount`.
+The mounting phase is when an instance of a component is being created and inserted into the DOM. Apart from the `constructor()`, we have access to two lifecycle methods in this phase: `componentWillMount`, and `componentDidMount`.
 
 - **`constructor()`** is the first function called upon instantiating a React class and is where the initial state of the component is being set. If we only use the constructor to set the state we can use a shortcut provided by React. We can leave out the constructor and just say `state = {}`.
 
@@ -55,6 +55,48 @@ Anytime a component is updated or state changes then it is re-rendered. These li
 The unmounting (or deletion, or "cleanup") phase of the life cycle, called when a component is being removed from the DOM. During this phase `componentWillUnmount` is the only lifecycle event we can call.
 
 Now that we have more knowledge about the lifecycle events, we can move on with building our application.
+
+## Writing the test
+In this section, we will list some projects on the `My Projects` tab. So we need to write a test for that. The projects will have a name and a description.
+
+`$ touch cypress/integration/userCanSeeListOfProjects.feature.js`
+
+```js
+// cypress/integration/userCanSeeListOfProjects.feature.js
+
+describe('User can see list of projects', () => {
+  beforeEach(() => {
+    cy.visit('http://localhost:3000');
+    cy.get('#projects-tab').click();
+  })
+
+  it('displays first project', () => {
+    cy.get('#project-1').within(() => {
+      cy.get(('.image')).should('exist');
+      cy.get('.ui.header').should('contain', 'My First Website');
+      cy.get('.description').should('contain', 'This was my first project. The guy lost, but won the popular vote!');
+    })
+  });
+
+  it('displays second project', () => {
+    cy.get('#project-2').within(() => {
+      cy.get(('.image')).should('exist');
+      cy.get('.ui.header').should('contain', 'UI Design');
+      cy.get('.description').should('contain', 'Designing user interfaces is fun. I want to learn more about that...');
+    })
+  });
+
+  it('displays third project', () => {
+    cy.get('#project-3').within(() => {
+      cy.get(('.image')).should('exist');
+      cy.get('.ui.header').should('contain', 'Mobile UX');
+      cy.get('.description').should('contain', "I like to design for the mobile platform. The challenges to build UI's for smartphones is challenging but extremely rewarding.");
+    })
+  });  
+});
+```
+
+Every project will be wrapped in a div where we will use the `id` of the project as a way of making every div unique. Then we will look within that div to make sure it displays the correct information.
 
 ## Projects in JSON
 
@@ -84,7 +126,7 @@ class Projects extends Component {
     if (projects.length > 0) {
       projectsList = projects.map(project => {
         return (
-          <div key={project.id}>
+          <div id={'project-' + project.id} key={project.id}>
             <h3 className="ui header">{project.name}</h3>
           </div>
         );
@@ -177,5 +219,4 @@ Add the following function to the component:
 That should do it. We do not have to make any changes to the `render()` function. Now restart your development server and you should be able to see the projects list if you click on the `My Projects` list.
 
 ## Wrap up
-
-There's a lot more information about our projects that we would like to display on our page and further refactorings we can make to the code to have it more readable. But we'll deal with that in the next section of the course.
+If you run the cypress test now, you will see that it does not go green. Hopefully, you noticed when you added the code to the `Projects` component that what we added would not make the test go green. There's a lot more information about our projects that we would like to display on our page and further refactorings we can make to the code to have it more readable and also to make the tests go green. But we'll deal with that in the next section of the course.
