@@ -33,7 +33,7 @@ We set the goals high for this week. Apart from programming skills, that are of 
   - self organizing teams
   - iterative and incremental design*
   - the importance of planning your work
-* Learn about Ruby on Rails
+* Learn about Ruby on Rails as an API
   - understand the concept of ORM's vs SQL (ActiveRecord)
   - understand the MVC structure
     - controllers
@@ -41,11 +41,15 @@ We set the goals high for this week. Apart from programming skills, that are of 
     - models
     - relation between models
     - concept of `params` (See: https://www.youtube.com/watch?v=y57OnWV6dRE)
+* Learn more about React
+  - understand how to consume an API
+  - understand the different requests (POST/PUT/GET/DELETE)
+  - how a react client fits in to the MVC structure
 * Learn more about User Authentication
-* Learn about the hardships that will occur if we can't read documentation for libraries we use in our projects (gems).
+* Learn about the hardships that will occur if we can't read documentation for libraries we use in our projects (gems & packages).
 * Learn more about Test- and Behavior Driven Development or Acceptance - Unit Test cycle.
 * Really embrace and understand the benefits of Pair Programming && collaboration using Git and GitHub
-* Learn about deployment to Heroku and the benefits of services like Heroku, DigitalOcean and AWS.
+* Learn about deployment to Heroku and Netlify.
 
 **Please note that there may be subtle errors or typos in the following materials. Please try to approach those as challenges on which to polish your debugging and problem solving skills**
 
@@ -57,14 +61,12 @@ We set the goals high for this week. Apart from programming skills, that are of 
 During this project, you will be using a variety of tools. You have used some of them in other challenges, but many will be new to you.
 
 * [Ruby on Rails](https://rubyonrails.org/) as web framework
-* [Rails 5.2 Boilerplate](https://github.com/CraftAcademy/boilerplate) A scaffolded application with a basic setup for testing.
-* [Cartify](https://github.com/CraftAcademy/cartify) a gem for order functionality and check out flow 
+* [Rails API Boilerplate](https://github.com/CraftAcademy/slowfood_api_boilerplate) A scaffolded application with a basic setup for testing.
+* [React Client Boilerplate](https://github.com/CraftAcademy/slowfood-client-boilerplate) A scaffolded app wit all testing tools configured.
 * [Devise](https://github.com/plataformatec/devise) for user authentication and account management
-* [Tailwind CSS](https://tailwindcss.com/) as CSS framework
 * [PostgreSQL](http://www.postgresql.org/) as a database with ActiveRecord as ORM
-
-* [Cucumber](https://cucumber.io/) for Acceptance tests
-* [RSpec](http://rspec.info/) for Unit tests
+* [RSpec](http://rspec.info/) for Unit & Request tests
+* [Cypress](https://docs.cypress.io/guides/overview/why-cypress.html) for acceptance testing in React.
 * [Pony](https://editor.ponyorm.com/) for creating end editing Entity-Relationship Diagrams (optional)
 * [GitHub](https://github.com/) to store your code and make it available for the entire team
 * [Pivotal Tracker](https://www.pivotaltracker.com/) as Project Management tool for tracking Features, Chores, and Bugs.
@@ -80,18 +82,7 @@ In the first version of the application should focus on the following functional
 * Each dish has/belongs to a Category. It is either a 'Starter', a 'Main course' or a 'Dessert'
 * The restaurant also sells cold beverages and side orders like salads, bread, etc.
 * Visitors to the site can add various products to their order
-* In order to finalize an order (Check out) a customer needs to become a registered user
+* In order to create an order and Check out, a customer needs to become a registered user
 * Order need to calculate a total price and a pickup time (30 minutes)
 
 **Nothing else should be considered or implemented.**
-
-
-
-
- 
-
-
-
-
-
-

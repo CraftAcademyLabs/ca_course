@@ -25,114 +25,40 @@ Your team needs to plan together, review these plans regularly and change them b
 
 The section below is about 2 tools that you can use as an alternative to [Pivotal Tracker](https://www.pivotaltracker.com/). 
 
-Both [Waffle.io](https://waffle.io/) and [ZenHub.io](https://www.zenhub.io/) are project management tools powered by your GitHub Issues & Pull Requests. Waffle.io is the tool of choice for many projects and provides a web-based interface for managing Issues and track Pull Requests. ZenHub provides similar functionality (and more) as a browser extension. It is up to you to decide what tool your team want to use.
+Both [Waffle.io](https://waffle.io/) and [ZenHub.io](https://www.zenhub.io/) are project management tools powered by your GitHub Issues & Pull Requests. Waffle.io is the tool of choice for many projects and provides a web-based interface for managing Issues and track Pull Requests. ZenHub provides similar functionality (and more) as a browser extension. 
 
-## Structure
+For this project we have decided that you will use Pivotal tracker. We have provided you with all the features and chores that are a part of the MVP.
 
-We will make use of 4 columns in Waffle (or ZenHub if you choose to use that tool) to track our work. 
-
-![](https://github.com/CraftAcademy/ca_course/raw/master/images/waffle_io.png)
-
-### Backlog
-Any issue that we see as important for the near future lives in the **Backlog**. Issues in this column are generally prioritized from top to bottom with the top items having the highest priority.
-
-### Ready
-Any issue that we would like to work on soon is moved to **Ready**. As we move ahead, we pull issues from Backlog into Ready, so we have an idea of the most important items to work on for at the moment.
-
-### In Progress
-Any issue that is currently being worked on is put into the **In Progress** column and assigned to a developer. By limiting the number of issues you work on at one time helps you focus on what needs to be done.
-
-### Done
-Any issues that have been closed are reflected in the **Done** column. For pull requests, this means that the code has been merged and deployed.
-
-### Stories
-We will use 3 types of stories in our project plan: Features, Chores, and Bugs
-
-### Features
-Features are stories that provide verifiable business value to the team's customer. Examples of features include "add a 'special instructions' field to the checkout page", "purchase history should load in half a second", and "add a new method addToInventory to the public API". Features are worth points and therefore must be estimated.
-
-### Chores
-Chores are stories that are necessary but provide no direct, obvious value to the customer. Examples include "sign up for access to geocoding service" and "Find out why the detailed test suite takes so long". Chores can represent "code debt", and/or points of dependency on other teams.
-
-### Bugs
-Bugs represent unintended behavior that can be related to features, for example, "login box has the wrong color", and "price should be non-negative".
-
-## Resources
-* [Introduction to Waffle.io](https://youtu.be/yEbRaA3rYuA)
-* [Introduction to ZenHub.io](https://youtu.be/TRu7vKCg920)
+**List PT boards**
+[Team 1]()
 
 ## Setting up the project
+### Rails API
 
 In order to get you started with Rails, we've set up a [boilerplate application](https://github.com/CraftAcademy/boilerplate) using the following setup:
 
-* Rails 5.2
-* Cucumber - acceptance testing framework
-* RSpec - testing framework that we will be using for unit testing
+* Rails 6.0.2
+* RSpec - testing framework that we will be using for unit testing and request specs
 * ShouldaMatchers - to simplify our testing in RSpec
 
 **Your very first assignment is the get that code working and run the application on your development machines. Make use of all the previous challenges to find answers to obstacles you might encounter.**
 
-## Setup
+We have created one upstream repository for each team that is based on this boilerplate.
 
-1. Copy the URL, and clone the repository to your `localhost`
+**List all repos**
+[Team 1]()
 
-2. Open the `config/application.rb` and change the application name from `Boilerplate` to whatever you want to call your application (i.e. `SlowFoodOnline`) 
+So make sure that everyone in the team forks this repository.
 
-  
-  ```ruby
-  module SlowFoodOnline
-    class Application < Rails::Application
-    # ... code removed for readability.
-  end
-  ```
- 
-3. Open the `config/database.yml` and change the database name from `boilerplate_test`, `boilerplate_development`, etc, to for example `slow_food_test`, `slow_food_development` and `slowfood_production`.
+### React Client
 
- Also, if you see a `username` set to `boilerplate` change that to `slow_food` as well (Again, if you use a different name for your app, make sure you follow the naming standard outlined in the examples above).
+In order to get started with the React client, we have also setup a boilerplate application for that:
 
-4. In your terminal, inside the project folder, run the following command to **remove** the Git original repository: 
+* React - scaffolded with `create-react-app`
+* Cypress for acceptance testing
+* Jest and Enzyme for component testing
 
-```shell
-$ rm -rf .git
-```
-  
-5. And initiate a new repository (that will give you a clean state and history)
- 
-```shell
-$ git init
-```
- 
-6. Now, head over to GitHub and create a new repository on your account. Copy the repo URL, and add it as your `origin` remote.
+**List all repos**
+[Team 1]()
 
-```shell
-$ git remote add origin <your repo url>
-```
- 
-7. Run `bundle install` and `rails db:create db:migrate` in your terminal (remember that you need to be in the project folder when you do that)
-
-8. Commit and push to your remote.
-  
-This should give you a clean repo history.
-
-
-## RVM help
-You will find that you need to use a different version of Ruby to run this code. Run:
-
-```shell
-$ rvm use 2.4.1
-```
-This will prompt you to run some more commands. Run them. You'll need to bundle before you can do anything else. But what happened to your `bundle` command!? 
-
-You've just changed to a new version of Ruby. That means you need to re-install all of your gems, including bundler. Run:
-
-```shell
-$ gem install bundler
-```
-Now you have `bundle` yet again, and install all the gems in your `Gemfile`.
-
-
-
-
-
-
-
+As with the Rails API, make sure that everyone forks their teams upstream repository.
