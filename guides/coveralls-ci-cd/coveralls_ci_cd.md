@@ -191,7 +191,7 @@ yarn run cy:run
 
 It should look like this except that your `Node.js version` might be different.
 
-![]()
+![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/20_semaphore-react-client-settings.png)
 
 ### Finish up Semaphore configuration
 
