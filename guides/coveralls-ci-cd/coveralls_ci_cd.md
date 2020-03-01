@@ -22,11 +22,10 @@ end
 
 Run `bundle install`
 
-Next, we need to add coveralls to our testing suite. Add the following lines at the top of each testing configuration file
+Next, we need to add coveralls to our testing suite. Add the following lines at the top of the testing configuration file
 
 ```ruby
 # spec/rails_helper.rb for RSpec
-# features/support/env.rb for cucumber
 
 require  'coveralls'
 Coveralls.wear!('rails')
@@ -61,14 +60,13 @@ Create a new file `lib/tasks/ci.rake`
 ```ruby
   unless  Rails.env.production?
   require  'rspec/core/rake_task'
-  require  'cucumber/rake/task'
   require  'coveralls/rake/task'
 
   Coveralls::RakeTask.new
 
   namespace :ci  do
     desc 'Run all tests and generate a merged coverage report'
-    task tests:  [:spec,  :cucumber,  'coveralls:push']
+    task tests:  [:spec, 'coveralls:push']
   end
 end
 ```
