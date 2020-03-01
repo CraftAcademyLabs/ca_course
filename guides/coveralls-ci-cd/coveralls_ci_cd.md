@@ -128,7 +128,7 @@ If you recently added coveralls to the repository you will be presented by the c
 * Find the upstream repo you want to add CI to in the list which shows the Craft academy repositories
 ![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/03_semaphore-select-repo.png)
 
-* When they ask you who is supposed to own this project, pick craft academy.
+* When they ask you who is supposed to own this project, pick Craft Academy.
 ![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/05_select-owner.png)
 
 * After you selected the repo you want to use you should be able to set which branch we want CI for, usually the development branch. The branch you will merge feature branches in to.
@@ -136,6 +136,8 @@ If you recently added coveralls to the repository you will be presented by the c
 
 * After you have selected the branch and semaphore has analyzed the project, you are presented by some options.
 ![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/06_semaphore_analyzing-repo.png)
+
+### Ruby on Rails appliction
 
 * You usually don't have to change the `Language` & `Ruby version`. Make sure that `database.yml for` option is set to `pg`.
 
@@ -164,6 +166,34 @@ COVERALLS_REPO_TOKEN=your_coveralls_token bundle exec rails ci:tests
 
 * Make sure to get the repo token from coveralls project and reålace the placeholder in the code example.
 ![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/07_semaphore-project-settings.png) 
+
+
+### React client
+
+If you are setting up Semaphore to work with a React client you want to go ahead with the `language` and `Node.js version` option that Semaphore picked.
+
+* In the `Setup` job you need to have the `yarn` command.
+
+* In the `Job #1` you will have two commands.
+```
+./node_modules/.bin/cypress install
+yarn run cy:run
+``` 
+
+* `cy:run` is a script that you need to add to your `package.json`.
+```json
+// package.json
+  "scripts": {
+    // ...
+    "cy:run": "BROWSER=none yarn start & cypress run"
+  },
+```
+
+It should look like this except that your `Node.js version` might be different.
+
+![]()
+
+### Finish up Semaphore configuration
 
 * Now go ahead and build with these settings.
 ![](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/master/guides/coveralls-ci-cd/assets/08_semaphore-build-with-settings.png)
