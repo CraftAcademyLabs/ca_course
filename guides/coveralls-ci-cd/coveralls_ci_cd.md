@@ -1,4 +1,4 @@
-**The following guide assumes that you have an upstream repository on Craft Academy's Github account, if that is not the case for you then just ignore the parts about adding the "Craft Academy repository" and set your repository there instead. It also assumes that you're using both RSpec and Cucumber for testing.**
+**The following guide assumes that you have an upstream repository on Craft Academy's Github account, if that is not the case for you then just ignore the parts about adding the "Craft Academy repository" and set your repository there instead. It also assumes that you're using Rpsec for testing Ruby on Rails and Cypress for a React client**
 
 In this guide, we will show you how to set up three services that will work together, Semaphore, CD with Heroku and Coveralls.
 
