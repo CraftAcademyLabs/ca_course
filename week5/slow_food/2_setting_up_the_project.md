@@ -27,7 +27,7 @@ The section below is about 2 tools that you can use as an alternative to [Pivota
 
 Both [Waffle.io](https://waffle.io/) and [ZenHub.io](https://www.zenhub.io/) are project management tools powered by your GitHub Issues & Pull Requests. Waffle.io is the tool of choice for many projects and provides a web-based interface for managing Issues and track Pull Requests. ZenHub provides similar functionality (and more) as a browser extension. 
 
-For this project we have decided that you will use Pivotal tracker. We have provided you with all the features and chores that are a part of the MVP.
+For this project, we have decided that you will use the Pivotal tracker. We have provided you with all the features and chores that are a part of the MVP.
 
 **List PT boards**
 [Team 1]()
@@ -38,7 +38,7 @@ For this project we have decided that you will use Pivotal tracker. We have prov
 In order to get you started with Rails, we've set up a [boilerplate application](https://github.com/CraftAcademy/boilerplate) using the following setup:
 
 * Rails 6.0.2
-* RSpec - testing framework that we will be using for unit testing and request specs
+* RSpec - a testing framework that we will be using for unit testing and request specs
 * ShouldaMatchers - to simplify our testing in RSpec
 
 **Your very first assignment is the get that code working and run the application on your development machines. Make use of all the previous challenges to find answers to obstacles you might encounter.**
@@ -52,7 +52,7 @@ So make sure that everyone in the team forks this repository.
 
 ### React Client
 
-In order to get started with the React client, we have also setup a boilerplate application for that:
+In order to get started with the React client, we have also set up a boilerplate application for that:
 
 * React - scaffolded with `create-react-app`
 * Cypress for acceptance testing
@@ -61,4 +61,4 @@ In order to get started with the React client, we have also setup a boilerplate 
 **List all repos**
 [Team 1]()
 
-As with the Rails API, make sure that everyone forks their teams upstream repository.
+As with the Rails API, make sure that everyone forks their team's upstream repository.
