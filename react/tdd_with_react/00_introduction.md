@@ -14,8 +14,7 @@ cover-image: react_tdd_cover.jpg
 ...
 
 # Preamble
-Software testing plays an important role in the process of verifying software functionality and preventing bugs in production code. By writing automated tests using code instead of conducting manual tests, the
-amount of tedious work during the development process can be reduced and the software quality can be improved.
+Software testing plays an important role in the process of verifying software functionality and preventing bugs in production code. By writing automated tests using code instead of conducting manual tests, the amount of tedious work during the development process can be reduced and the software quality can be improved.
 
 Software testing is a process used for increasing the quality of a software or a product and for improving it by identifying defects, problems, and errors. It is considered by many as the most important phase of the whole process of software development.
 
@@ -27,5 +26,4 @@ At a high level, we need to make the distinction between manual and automated te
 
 Automated tests, on the other hand, are performed by a machine that executes a test script that has been written in advance. These tests can vary a lot in complexity, from checking a single method in a class to making sure that performing a sequence of complex actions in the UI leads to the same results. It's much more robust and reliable than automated tests – but the quality of your automated tests depends on how well your test scripts have been written.
 
-Automated testing is a key component of concepts like Continuous Integration and Continuous Delivery and it's a great way to scale the QA process. 
-
+Automated testing is a key component of concepts like Continuous Integration and Continuous Delivery and it's a great way to scale the QA process.

@@ -1,21 +1,21 @@
 ## Dependencies
-The packages we will need are `redux` , `react-redux`, as well as `redux-thunk`. 
+The packages we will need are `redux` , `react-redux`, as well as `redux-thunk`.
 
 `redux-thunk` is necessary to return anything but plain objects from actions. We are going to request data from an api, and fetch returns a promise.
 
-As usual install these using `yarn` or `npm` 
+As usual install these using `yarn` or `npm`
 
-```bash 
-$ yarn add NAME_OF_PACKAGE 
-// or 
-$ npm i -S NAME_OF_PACKAGE 
+```bash
+$ yarn add NAME_OF_PACKAGE
+// or
+$ npm i -S NAME_OF_PACKAGE
 ```
 Your `package.json` file should now have been updated with these dependencies.
 
 ## Organizing Code
-Just to get us started we will get the ball rolling with a little bit of setup. 
+Just to get us started we will get the ball rolling with a little bit of setup.
 
-First, you will want three directories, `./actions` , `./reducers` , `./store`. Place all of these in the `src/modules` folder of your app (if you don't have the `modules` folder, please create it.). 
+First, you will want three directories, `actions` , `reducers` , `.store`. Place all of these in the `src/state` folder of your app (if you don't have the `state` folder, please create it.).
 
 Create a `./store/configureStore.js` file. We will come back to this file in a moment.
 
@@ -27,8 +27,8 @@ In this app our only data to display will be called `users`, and for simplicity 
 Now is also a good time to add our `./store/initialState.js` file, which will help us to ensure we always have some level of certainty about the shape of the application level state.
 
 ```javascript
-// I will add a default user ti the initial state,
-// feel free to remove this once you have successfully 
+// I will add a default user to the initial state,
+// feel free to remove this once you have successfully
 // fetched users from the api
 export default {
   users: [{
@@ -40,9 +40,9 @@ export default {
 }
 ```
 
-In the `./actions` add a `./actions/actionTypes.js` file. This will help by having only one file in which to refer to a list of all the possible actions for the app. 
+In the `./actions` add a `./actions/actionTypes.js` file. This will help by having only one file in which to refer to a list of all the possible actions for the app.
 
-Also, we will need to add a `./actions/userActions.js` for the actions themselves.
+Also, we will need to add a `./actions/userActions.js` file, for the actions themselves.
 
 ## Adding Actions and Reducers
 Actions describe something happening, and the Reducers responds to the action.
@@ -55,9 +55,9 @@ export const FETCH_USERS = 'FETCH_USERS';
 export const RECEIVE_USES = 'RECEIVE_USERS';
 ```
 
-### About Action contants
+### About Action constants
 
-Why is beneficial to create action constants? In Redux you use those constants at least in two places - in your reducers and during actions creation. So it's convenient to define a constant once in some file e.g. `actionTypes.js`. It is often claimed that constants are unnecessary, and for small projects, this might be correct. For larger projects, there are some benefits to defining action types as constants. 
+Why is beneficial to create action constants? In Redux you use those constants at least in two places - in your reducers and during actions creation. So it's convenient to define a constant once in some file e.g. `actionTypes.js`. It is often claimed that constants are unnecessary, and for small projects, this might be correct. For larger projects, there are some benefits to defining action types as constants.
 
 * It helps keep the naming consistent because all action types are gathered in a single place.
 * Sometimes you want to see all existing actions before working on a new feature. It may be that the action you need was already added by somebody on the team, but you didn’t know.
@@ -96,10 +96,10 @@ Next, we will update the `./reducers/usersReducer.js` to import the actions type
 ```javascript
 //rootReducer.js
 import { combineReducers } from 'redux';
-import users from './usersReducer';
+import usersReducer from './usersReducer';
 
 const rootReducer = combineReducers({
-  users
+  users: usersReducer
 });
 
 export default rootReducer;
@@ -109,7 +109,7 @@ export default rootReducer;
 import initialState from '../store/initialState';
 import {FETCH_USERS, RECEIVE_USERS} from '../actions/actionTypes';
 
- const users = (state = initialState.users, action) => {
+ const usersReducer = (state = initialState.users, action) => {
   let newState;
   switch (action.type) {
     case FETCH_USERS:
@@ -124,12 +124,12 @@ import {FETCH_USERS, RECEIVE_USERS} from '../actions/actionTypes';
   }
 }
 
-export default users
+export default usersReducer
 ```
 
 ## Setting Up Store
 
-Now that we have some action types, and a reducer in our `rootReducer`, we need to get everything connected to the application. 
+Now that we have some action types, and a reducer in our `rootReducer`, we need to get everything connected to the application.
 
 In the `./store/configureStore.js` file we will import `createStore` from `redux`, and our `rootReducer`.
 
@@ -172,18 +172,18 @@ At this point, we have a lot the initial set up work set. Of course, we will nee
 
 ## A Connected Component
 
-Let's add a new component that lists all our users . For this add a UsersList.js file. Then render this new component inside theApp component.
+Let's add a new component that lists all our users . For this add a `UsersList.jsx` file. Then render this new component inside the `App` component.
 
-In addition to everything you are used for React we will also be importing `connect` from `react-redux` and bindActionCreators from redux , along with our actions from `./actions/userActions.js`. Note that bindActionCreators is for when you want to pass some action creators down to a component, and connect used to allow the component access to the redux application state we have implemented.
+We will also be importing `connect` from the `react-redux` package, and `bindActionCreator` from the `redux` package, along with our actions from `./actions/userActions.js`. Note that `bindActionCreators` is for when you want to pass some action creators down to a component, and `connect` is used to allow the component access to the Redux application state we have implemented.
 
 ```javascript
 import React, { Component } from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import * as userActions from '../modules/actions/userActions'
 ```
 
-We will need, in addition to all the normal set up of the component, two functions that we will ultimately be passing the `connect` as arguments. These are `mapStateToProps` and `mapDispatchToProps`. 
+We will need, in addition to all the normal set up of the component, two functions that we will ultimately be passing into the `connect` function as arguments. These are, by convention, called `mapStateToProps` and `mapDispatchToProps`.
 
 The first, `mapStateToProps` will hydrate the props of your component from the state of the application. The next, `mapDispatchToProps` ensures our actions have access to dispatch from `redux`.
 
@@ -243,7 +243,7 @@ class UserList extends Component {
           key={user.id}>
           <img
             src={user.avatar}
-            alt={user.last_name} 
+            alt={user.last_name}
             style={{borderRadius: '50%', width: '50px', height: 'auto'}}/>
           {`${user.first_name} ${user.last_name}`}
         </li>

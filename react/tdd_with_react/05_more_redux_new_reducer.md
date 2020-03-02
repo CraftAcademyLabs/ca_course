@@ -8,7 +8,7 @@ We will start by atting another attribute to `initialState`
 // /store/initialState.js
 export default {
   users: [],
-  greeting: 'Hello World' 
+  greeting: 'Hello World'
 }
 ```
 
@@ -79,13 +79,13 @@ We would like to use actions to change the greeting that is being displayed. Let
 export const CHANGE_GREETING = 'CHANGE_GREETING'
 ```
 
-and create a new firle `/actions/greetingActions.js`
+and create a new file `/actions/greetingActions.js`
 
 ```javascript
 import * as types from './actionTypes'
 
 const changeGreeting = () => {
-  return {type: types.CHANGE_GREETING, greeting: 'Hello My Dear Friends'}
+  return { type: types.CHANGE_GREETING, greeting: 'Hello My Dear Friends' }
 }
 
 export { changeGreeting }
@@ -147,7 +147,7 @@ Now, when you click the button, the greeting should change.
 
 Let's say we want to display an input field and allow our users to input a custom greeting that would display when we click the "Change greeting" button? Valid use case? **Not at all, but let's go with it!**
 
-We will go BDD style and start with the UI modifications. I'll start with my `SayHello` component `render` method and modify it to display an input field.
+We will go "manual BDD style" and start with the UI modifications. I'll start with my `SayHello` component `render` method and modify it to display an input field.
 
 ```javascript
 return (
@@ -157,16 +157,16 @@ return (
     <input
     type='text'
     id='greeting-text' />
-  
+
     {/* other code */}
   </>
 )
 ```
-Note that I give it a type and an id. 
+Note that I give it a type and an id.
 
-Next, I need to get hold of the content of the input field and send it off to the function that triggers the actual change of the greeting on the screen (see above steps). That function is available to me as part of `props` (`props.greetingActions.changeGreeting()`). This meant that I can get the values of the input field with a traditional `getElementById` method and pass it on to the `changeGreeting()` as an argument. 
+Next, I need to get hold of the content of the input field and send it off to the function that triggers the actual change of the greeting on the screen (see above steps). That function is available to me as part of `props` (`props.greetingActions.changeGreeting()`). This meant that I can get the values of the input field with a traditional `getElementById` method and pass it on to the `changeGreeting()` as an argument.
 
-Lets do that. 
+Lets do that.
 
 ```javascript
 return (
@@ -195,9 +195,6 @@ const changeGreeting = (text) => {
 
 ```
 
-So, good bye `'Hello My Dear Friends'`, and hello user-generated value. 
+So, good bye `'Hello My Dear Friends'`, and hello user-generated value.
 
 That should be it. Yo can go ahead and try it out in your browser...
-
-
-
