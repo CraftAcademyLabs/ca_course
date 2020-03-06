@@ -146,3 +146,119 @@ async addToOrder(event) {
 ```
 
 If we run our tests now everything should go green. 
+
+Lets move over to the backend and start with creating a spec that we are going to use. Make sure that you create a new branch to work on. 
+
+```bash
+$ touch spec/requests/api/client_can_create_new_order_spec.rb
+```
+
+Add the following test to the spec file
+
+```ruby
+RSpec.describe Api::OrdersController, type: :request do
+  let!(:product_1) { create(:product, name: 'Pizza') }
+  let!(:product_2) { create(:product, name: 'Kebab') }
+
+	before do
+		post '/api/orders', params: { product_id: product_1.id }
+		@order_id = JSON.parse(response.body)['order_id']
+	end
+
+  it 'responds with success message' do
+    expect(JSON.parse(response.body)['message']).to eq 'The product has been added to your order'
+  end
+end
+```
+Remember that the request spec acts like our feature test but for APIs. This will allow us to see what what requests we are sending out. 
+
+Run the test and make sure that you are getting the correct error messages. 
+
+We will probably get an error message that states that we have an unitialized constant Api::OrdersController.
+
+We will fix this by generating a new orders controller. 
+
+`$ rails generate controller Api::Orders create`
+
+Run the test again and you will get a new error message. 
+
+
+The error message probably has to do with our routes and that there are none. Lets fix that. 
+
+```ruby
+Rails.application.routes.draw do
+  namespace :api do
+    resources :products, only: [:index]
+    resources :orders, only: [:create, :update]
+  end
+end 
+```
+
+Our problem now is that we are not getting the right response. But this is expected. 
+
+To fix this we need to add the order to the create action in our Orders controller.
+
+```ruby
+class Api::OrdersController < ApplicationController
+  def create
+    order = Order.create
+    order.order_items.create(product_id: params[:product_id])
+    render json: { message: 'The product has been added to your order', order_id: order.id }
+  end
+end
+```
+
+The next step we need to take is to generate a Order model to have something to pull out from the database. 
+
+`$ rails generate model order` 
+
+We also need to associate the the order to the order items that we have, and the products.
+
+`$ rails generate model OrderItems order:references product:references`
+
+Go ahead and go through the files that are generated and make sure that there are no problems.
+
+We will now add specs to test the associations we created between the models. 
+In the newly generated `order_items_spec.rb` go ahead and add two specs. 
+You will need more than that but for this guide we will limit ourselves to these specs. 
+
+```ruby
+require 'rails_helper'
+
+RSpec.describe OrderItem, type: :model do
+  it { is_expected.to belong_to :order }
+  it { is_expected.to belong_to :product }
+end
+```
+
+`order_spec.rb`
+
+```ruby
+require 'rails_helper'
+
+RSpec.describe Order, type: :model do
+	it {is_expected.to have_many :order_items}
+end
+```
+
+We need to make sure that the associations are present as well.
+
+`order_item.rb`
+
+```ruby
+class OrderItem < ApplicationRecord
+  belongs_to :order
+  belongs_to :product
+end
+```
+
+`order.rb`
+
+```ruby
+
+class Order < ApplicationRecord
+	has_many :order_items
+end
+```
+
+Run your migrations and then run your specs. Everything should be green like Bruce Banners alter ego. 
