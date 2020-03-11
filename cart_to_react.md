@@ -262,3 +262,59 @@ end
 ```
 
 Run your migrations and then run your specs. Everything should be green like Bruce Banners alter ego. 
+
+
+### Returning to the client
+
+Let's go back tot the client and add the functionality to add multiple products to our order. As always we need to have feature test for that. We will add this to the test that we already have. 
+
+We need to do a couple of things:
+
+Instead of having a `before` function that only runs for one test, we will add a `beforeEach` that will run before all the upcoming feature test. 
+
+We will also add a `PUT` request to this block in order to update the order that has already been created. 
+
+And at last we will add a test to check that we can add multiple products to an order. 
+
+The final form of the feature will be the following:
+
+```js
+describe('User can add a product to his/her order', () => {
+
+	beforeEach(() => {
+		cy.server();
+		cy.route({
+		method: 'GET',
+		url: 'http://localhost:3000/api/products',
+		response: 'fixture:product_data.json'
+	})
+
+	cy.route({
+		method: 'POST',
+		url: 'http://localhost:3000/api/orders',
+		response: { message: 'The product has been added to your order', order_id: 1 }
+	})
+
+	cy.route({
+		method: 'PUT',
+		url: 'http://localhost:3000/api/orders/1',
+		response: { message: 'The product has been added to your order', order_id: 1 }
+	})
+	cy.visit('http://localhost:3001')
+});
+
+	it('user get a confirmation message when adding product to order', () => {
+		cy.get('#product-2').within(() => {
+		cy.get('button').contains('Add to order').click()
+		cy.get('.message').should('contain', "The product has been added to your order")
+		})
+
+		cy.get('#product-3').within(() => {
+		cy.get('button').contains('Add to order').click()
+		cy.get('.message').should('contain', "The product has been added to your order")
+		})
+	});
+});
+```
+
+Make sure that you have added the product_id to the messages in the `beforeEach` function. 
