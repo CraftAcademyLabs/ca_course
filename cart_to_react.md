@@ -157,17 +157,14 @@ Add the following test to the spec file
 
 ```ruby
 RSpec.describe Api::OrdersController, type: :request do
-  let!(:product_1) { create(:product, name: 'Pizza') }
-  let!(:product_2) { create(:product, name: 'Kebab') }
+	let!(:product_1) {  create(:product, name: 'Pizza')  }
+	let!(:product_2) {  create(:product, name: 'Kebab')  }
 
-	before do
-		post '/api/orders', params: { product_id: product_1.id }
-		@order_id = JSON.parse(response.body)['order_id']
+	it 'responds with success message' do
+		post '/api/orders', params: {id: product_1.id }
+
+		expect(JSON.parse(response.body)['message']).to eq 'The product has been added to your order'
 	end
-
-  it 'responds with success message' do
-    expect(JSON.parse(response.body)['message']).to eq 'The product has been added to your order'
-  end
 end
 ```
 Remember that the request spec acts like our feature test but for APIs. This will allow us to see what what requests we are sending out. 
@@ -255,14 +252,15 @@ end
 `order.rb`
 
 ```ruby
-
 class Order < ApplicationRecord
 	has_many :order_items
 end
 ```
 
-Run your migrations and then run your specs. Everything should be green like Bruce Banners alter ego. 
+Run your migrations and then run your specs. Everything should be green like Bruce Banners alter ego.
 
+
+------
 
 ### Returning to the client
 
@@ -318,3 +316,132 @@ describe('User can add a product to his/her order', () => {
 ```
 
 Make sure that you have added the product_id to the messages in the `beforeEach` function. 
+
+Lets continue with the implementation code to get all of this to work.
+add the `orderId` to the state
+```js
+state = {
+		productData: [],
+		message: {},
+		orderId: ''
+	}
+```
+
+Now we need to update the `addToOrder` function with the new `orderId` state.
+
+ 				
+```js
+async addToOrder(event) {
+	let id = event.target.parentElement.dataset.id
+  let result = await axios.post('http://localhost:3000/api/orders', { id: id } )
+	this.setState({message: {id: id, message: result.data.message}, orderId: results.data.order_id})
+}
+```
+The `order_id` is what is being returned to us from the backend. 
+
+We also need to make sure that we are adding a order to an existing one, if one already exists so lets add a conditional for that. 
+
+```js
+	async addToOrder(event) {
+		let id = event.target.parentElement.dataset.id
+		let result
+		if (this.state.orderId !== "") {
+			result = await axios.put(`http://localhost:3000/api/orders/${this.state.orderId}`, { product_id: id })
+		} else {
+			result = await axios.post('http://localhost:3000/api/orders', { product_id: id } )
+		}
+		this.setState({message: {id: id, message: result.data.message}, orderId: result.data.order_id})
+	}
+```
+
+So what does this conditional do? We are simply stating that if there is a order and that the `orderId` is not empty, then add the new product to that order with a `PUT` request. Otherwise go ahead and create a new order. 
+
+Run your feature test they should no go green. Go ahead and test this manually aswell. Remember to fire up both the backend and frontend servers. You also need to have some products added to your backend.
+
+
+Now that we have the main functionality in place we need to start tweaking and making sure that the user experiance is good.
+
+We want to make sure that we can view the products that we have added to our order. 
+
+First we want to make sure that there is a button where we can view the order. 
+However this button should only be visable when we have added products to our order. 
+
+Refactor your code to look like this:
+
+```js
+	[....]
+
+	it('user can add multiple products to order and view its content', () => {
+		cy.get('button').contains('View order').should('not.exist') // Add this line 
+		cy.get('#product-2').within(() => {
+		cy.get('button').contains('Add to order').click()
+		cy.get('.message').should('contain', "The product has been added to your order")
+		})
+		
+		cy.get('button').contains('View order').should('exist') // Add this line
+		cy.get('#product-3').within(() => {
+		cy.get('button').contains('Add to order').click()
+		cy.get('.message').should('contain', "The product has been added to your order")
+		})
+	});
+});
+```
+
+And now for the implementation, let's add the button in the `DisplayProducts` component 
+
+```js
+return (
+	<>
+		{this.state.orderId !== '' && <button>View order</> }
+		{dataIndex}
+	</>
+)
+```	
+
+Run your tests now again and they should go green. Remember that we are only displaying the button, it has no functionality yet. 
+
+We are working in very small chunks at the time ensuring that we always are making progress as we move along. 
+
+Now it's time for adding the view order functionality to the button. 
+
+As always we start with the test.
+
+```js
+		cy.get('button').contains('View order').click()
+		cy.get('#order-details').within(()=> {
+			cy.get('li').should('have.length', 2)})
+			
+		cy.get('button').contains('View order').click()
+		cy.get('#order-details').should('not.exist')
+```
+
+And ow for the implementation code.
+First we update our state object
+
+```js
+	state = {
+		productData: [],
+		message: {},
+		orderId: '',
+		showOrder: false
+	}
+```
+And then the button
+```js
+return (
+	<>
+		{this.state.orderDetails.hasOwnProperty('products') &&
+			<button onClick={() => this.setState({ showOrder: !this.state.showOrder })}>View order</button>
+		}
+		{this.state.showOrder &&
+			<ul id="order-details">
+				{orderDetailsDisplay}
+			</ul>
+		}
+		{dataIndex}
+	</>
+```	
+
+ ### Update the order Backend
+
+
