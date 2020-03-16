@@ -869,7 +869,8 @@ And of course we need to update our fixture files to accomodate the new changes
 				"price": 3.75
 			}
 		],
-		"order_total": 7.75
+		  "order_total": 7.75, 
+    		"finalized": false
 	}
 }
 ```
@@ -889,7 +890,8 @@ and
 				"price": 4.0
 			}
 		],
-		"order_total": 4.0
+		  "order_total": 7.75, 
+    		"finalized": false
 	}
 }
 ```
