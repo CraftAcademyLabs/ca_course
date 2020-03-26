@@ -1,4 +1,10 @@
-`yarn add cypress-file-upload -D`
+This is a guide on how to stub out file uploading in cypress. Our example code will be a scenario where a journalist will create an article. This guide assumes that you have cypress configured.
+
+The first thing you have to do is add the [`cypress-file-upload`](https://www.npmjs.com/package/cypress-file-upload) package.
+
+`yarn add cypress-file-upload -D`'
+
+Once that is done we need to import that package in one of the cypress support files. That file is `cypress/support/commands.js`. We will also create a custom command that the integration test can use in its scenarios.
 
 ```js
 // cypress/support/commands.js
@@ -26,6 +32,13 @@ Cypress.Commands.add("file_upload", (file, element, type) => {
 }) 
 ```
 
+The command we added is called `file_upload`. It will receive three arguments.
+-  `file`: This will be the file that we will upload.
+-  `element`: This will be the way of getting the specific element that holds the file input field
+-  `type`: Will equal to what type of file we are stubbing out. e.g `image/jpeg`
+
+Let's use this command in an integration test. The test we are providing you with here is very basic. We are filling in some input fields, then click on a submit button and then expecting to see a message that gives us some sort of confirmation that the article creation was successful. In the `before()` block we are stubbing out the response of the request our application will make when we submit the article.
+
 ```js
 // cypress/integration/exampleFeatureTest.feature.js
 
@@ -37,7 +50,7 @@ describe("Journalist can", () => {
       url: "http://localhost:3000/api/v1/articles",
       response: '{"message": "Your article was successfully created"}'
     });
-    cy.visit("http://localhost:3001");
+    cy.visit("/");
   });
 
   it("create an article successfully", () => {
@@ -56,6 +69,11 @@ describe("Journalist can", () => {
 });
 ```
 
+We are using the `file_upload` command inside of the it block after filling out the and content input fields. We are passing in three strings as arguments. The first one is a fixture file. Make sure you have an image in your `cypress/fixtures` folder. In our case, the image file name is `img.jpeg`. The second argument we pass in is the `id` of the file input element. The last argument is the type of file that we want to stub out the file input with. In our case it is `image/jpeg`, make sure this argument is the same as the type of file that you pass in with the first argument.
+
+This is how you stub out a file upload in Cypress!
+
+Here is an example of how the implementation code might look like. Notice that we have not extracted the axios call or the encoding of the image to another file, everything is in the same place so you can see the data flow a bit easier. We highly recommend that you extract this when you use this in your projects.
 
 ```js
 import React, { Component } from "react";
@@ -88,6 +106,7 @@ class CreateArticle extends Component {
         encodedImage = await this.toBase64(image.files[0])
         articleParams.image = encodedImage
       }
+
       response = await axios.post(
         "http://localhost:3000/api/v1/articles",
         { article: articleParams },
@@ -121,4 +140,3 @@ class CreateArticle extends Component {
 export default CreateArticle;
 
 ```
-
