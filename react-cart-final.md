@@ -6,11 +6,11 @@ If there are typos or issues in this guide, please notify a coach
 ```
 
 In this section we are going to add checkout functionality to our react application. 
-The prerequsitet for this functionality is that we have products on our page that are ready to sell. Please remember as we implement we will omit explaning code that has already been covered. Remember to commit often in case you need to revert back and not lose large sections of the implementation. 
+The prerequisite for this functionality is that we have products on our page that are ready to sell. Please remember as we implement we will omit explaining code that has already been covered. Remember to commit often in case you need to revert back and not lose large sections of the implementation. 
 
-Start with making sure that you have the latest code pulled from github on your development branch and create a new branch called `add_order_functionality` or something that you think is appropriate to the user story.
+Start with making sure that you have the latest code pulled from GitHub on your development branch and create a new branch called `add_order_functionality` or something that you think is appropriate to the user story.
 
-As always we will work in a test driven way. Making sure that we let our acceptance test guide our development. This will ensure us that we are not biting off more than we can chew. But also that we stay in scope.
+As always we will work in a test-driven way. Making sure that we let our acceptance test guide our development. This will ensure us that we are not biting off more than we can chew. But also that we stay in scope.
 
 
 Create a new feature file by typing  
@@ -36,17 +36,17 @@ describe("User can add a product to their order", () => {
   });
   
   it("user gests a confirmation messsage when adding a a producut to order", () => {
-    cy.visit("http://localhost:3001"); // Make sure to point it to port 3001 as we are using 3000 for our API
+    cy.visit("/"); 
     cy.get("#product-1").within(() => {
       cy.get("button")
         .contains("Add to order")
         .click();
     });
-    cy.wait(3000)
+    cy.contains('A product has been added to your order')
   });
 });
 ```
-So what are we excpecting to see in the implementation. Well we need to make sure that we can add a product to an order. This means that we need to have a list of products since before. After that we need to make sure that there is a button to make this happen. And it will all end with us getting a confirmation message that we have added a product to our order. Simple huh?
+So what are we expecting to see in the implementation. Well we need to make sure that we can add a product to an order. This means that we need to have a list of products since before. After that we need to make sure that there is a button to make this happen. And it will all end with us getting a confirmation message that we have added a product to our order. Simple huh?
 
 When you run your test now it should all fail and in order to make it work we have to add the actual implementaion code. 
 
@@ -54,13 +54,23 @@ In our case we already have a component that we use in order to display the prod
 
 Let's add the implementation code. 
 
-We need to start with the first step which is to make sure that we have a button available to click on, let's add that where we are maping over the products.
+We need to start with the first step which is to make sure that we have a button available to click on, let's add that where we are mapping over the products.
 
 ```jsx
-<div key={item.id} id={`product-${item.id}`}>
-  {`${item.name} ${item.description} ${item.price}`}
-  <button onClick={this.addToOrder.bind(this)}>Add to order</button>
-</div>
+dataIndex = (
+        <div id="index">
+          {this.state.productData.map(item => {
+            return (
+              <div key={item.id} id={`product-${item.id}`}>
+                {`${item.name} ${item.description} ${item.price}`}
+                <button onClick={this.addToOrder.bind(this)}>
+                  Add to order
+                </button>
+              </div>
+            );
+          })}
+        </div>
+      );
 ```
 So here we have added a `addToOrder` function that is not defined. Lets go ahead and add that functionality as well. 
 
@@ -97,6 +107,10 @@ If not then make sure that you are iterating over your products properly.
 So this was our first iteration. But we need to make sure that we are pulling the information of the product as a dataset rather than through an id, and the reason for that is that it will be easier for us to manage. But it will also help us use it beacuse the values in the product are sent back to us in the form of an object.
 
 Add the dataset to the parent div:
+
+`data-id={item.id} data-price={item.price}`
+
+Like this: 
 
 ```js
 	<div key={item.id} id={`product-${item.id}`} data-id={item.id} data-price={item.price}>
