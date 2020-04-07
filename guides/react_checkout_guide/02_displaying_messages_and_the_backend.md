@@ -1,8 +1,7 @@
 ## Displaying messages and the Backend
 
 The next thing we are going to focus on is to get the message to be displayed.
-
-Lets start with adding the message to the state:
+Let's start with adding the message to the state:
 
 ```js
 state = {
@@ -11,7 +10,7 @@ state = {
 };
 ```
 
-Next we need to display the message below the button.
+Next, we need to display the message below the button.
 
 ```js
 [....]
@@ -19,7 +18,7 @@ Next we need to display the message below the button.
 	{parseInt(this.state.message.id) === item.id && <p class='message'>{this.state.message.message}</p>}
 ```
 
-Finally we need to set the new state in the `addToOrder` function
+Finally, we need to set the new state in the `addToOrder` function
 
 ```js
 async addToOrder(event) {
@@ -28,10 +27,9 @@ async addToOrder(event) {
 	this.setState({message: {id: id, message: result.data.message}})
 }
 ```
-
 If we run our tests now everything should go green.
 
-Lets move over to the backend and start with creating a spec that we are going to use. Make sure that you create a new branch to work on.
+Let's move over to the backend and start with creating a spec that we are going to use. Make sure that you create a new branch to work on.
 
 ```bash
 $ touch spec/requests/api/client_can_create_new_order_spec.rb
@@ -52,11 +50,11 @@ RSpec.describe Api::OrdersController, type: :request do
 end
 ```
 
-Remember that the request spec acts like our feature test but for APIs. This will allow us to see what what requests we are sending out.
+Remember that the request spec acts like our feature test but for APIs. This will allow us to see what requests we are sending out.
 
 Run the test and make sure that you are getting the correct error messages.
 
-We will probably get an error message that states that we have an unitialized constant Api::OrdersController.
+We will probably get an error message that states that we have an uninitialized constant `Api::OrdersController`.
 
 We will fix this by generating a new orders controller.
 
@@ -88,3 +86,5 @@ class Api::OrdersController < ApplicationController
   end
 end
 ```
+
+Cool. let's move over to the model.
