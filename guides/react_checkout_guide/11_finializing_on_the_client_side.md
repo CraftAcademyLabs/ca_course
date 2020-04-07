@@ -131,3 +131,5 @@ And finally the render function:
 ```
 
 Run your tests now and they should be green. We have now finalized the entire creating order functionality both in the front and the backend. Go over your code again and marvel at your creation. This is one approach we can take to create an ordering functionality in React from scratch. 
+
+The last thing we need to do is to add our payment gateway.
