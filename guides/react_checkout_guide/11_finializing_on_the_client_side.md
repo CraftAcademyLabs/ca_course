@@ -1,5 +1,6 @@
 ## Finalizing and back to the client
 
+Okay...The final stretch
 As always let's start with a new spec.
 
 Add the following code to your feature test:
@@ -34,8 +35,7 @@ it("user can finalize the order", () => {
 });
 ```
 
-We also want to make sure that we have som configration to use in the cypress tests. We are adding a delay depending on the different functions that cypress runs.
-
+We also want to make sure that we have som configuration to use in the cypress tests. We are adding a delay depending on the different functions that cypress runs.
 ```js
 // cypress/support/commands.js
 const COMMAND_DELAY = 150;
@@ -76,7 +76,7 @@ state = {
 };
 ```
 
-Add a new asyncronous function to handle the finalize order
+Add a new asynchronous function to handle the finalize order
 
 ```js
 	async finalizeOrder() {
@@ -86,7 +86,7 @@ Add a new asyncronous function to handle the finalize order
 	}
 ```
 
-You also need to update the addToOrder function
+You also need to update the `addToOrder` function
 
 ```js
 if (this.state.orderDetails.hasOwnProperty('id') && this.state.orderDetails.finalized === false)
@@ -130,4 +130,4 @@ And finally the render function:
 }
 ```
 
-Run your tests now and they should be green. We have now finalized the entire creating order functionality both in the front and the backend.
+Run your tests now and they should be green. We have now finalized the entire creating order functionality both in the front and the backend. Go over your code again and marvel at your creation. This is one approach we can take to create an ordering functionality in React from scratch. 

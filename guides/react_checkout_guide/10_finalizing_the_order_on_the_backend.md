@@ -1,10 +1,11 @@
 ## Finalizing the order
 
-first we need to create a new request spec
+We will start by adding the functionality to the backend. 
+First, we need to create a new request spec
 
 `$ touch spec/requests/api/user_can_finalize_order_spec.rb`
 
-inside of this file add the followign specs
+Inside of this file add the following specs
 
 ```rb
 RSpec.describe Api::OrdersController, type: :request do
@@ -32,13 +33,11 @@ end
 ```
 
 Run the specs you should and take notice of the error messages.
-
 We need to add a new column in our orders database table.
 
 `rails g migration AddFinalizedToOrders finalized:boolean`
 
-Before you migrate make sure that it is adding a column to the orders db table and make sure that the default value is set to false.
-
+Before you migrate make sure that it is adding a column to the orders db:table and make sure that the default value is set to false.
 It should look like this:
 
 ```rb
@@ -49,9 +48,7 @@ class AddFinalizedToOrders < ActiveRecord::Migration[6.0]
 end
 ```
 
-run the migrations and make sure that the changes have been added to your schema file.
-
-The final step we need to take is to refactor our update action.
+Run the migrations and make sure that the changes have been added to your schema file. The final step we need to take is to refactor our update action.
 
 `app/controllers/api/orders_controller.rb`
 
@@ -69,7 +66,7 @@ The final step we need to take is to refactor our update action.
   end
 ```
 
-Remember that need to update our order serializer
+Remember that need to update our order serializer as well.
 
 ```rb
 attributes :id, :products_1, :products_2, :products_3, :products, :total, :order_total, :finalized
@@ -77,4 +74,4 @@ attributes :id, :products_1, :products_2, :products_3, :products, :total, :order
 
 Run your spec they should be green by now.
 
-Lets head back over to the client.
+Let's head back over to the client.

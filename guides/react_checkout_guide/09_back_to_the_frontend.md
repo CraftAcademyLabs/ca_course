@@ -18,11 +18,11 @@ cy.get("#order-details").within(() => {
 });
 ```
 
-We also need to import the DisplayProductData to the feature file.
+We also need to import the `DisplayProductData` to the feature file.
 
 `import DisplayProductData from '../../src/components/DisplayProductData'`
 
-And of course we need to update our fixture files to accomodate the new changes
+And of course, we need to update our fixture files to accommodate the new changes
 
 ```json
 // put_response.json
@@ -70,7 +70,7 @@ and
 }
 ```
 
-And Finally our implementation code.
+And finally our implementation code.
 
 First in our `addToOrder` function
 `this.setState({ message: { id: id, message: result.data.message }, orderDetails: result.data.order })`
@@ -115,4 +115,4 @@ return (
   </>
 ```
 
-commit this and lets go back to the backend for finilazing the order.
+Commit this and let's go back to the backend to finalize the order.

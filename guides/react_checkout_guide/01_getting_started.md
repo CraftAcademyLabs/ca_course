@@ -123,10 +123,7 @@ Like this:
 ```
 
 Now if you run your test, the debugger should kick in, run the following command in the console `event.target.parentElement.dataset`.
-
-you should see the same information as before, but the information about the product will be returned to us in the form of an object.
-
-This is good news for us because we can use this in our `addToOrder` function. Time to add the rest of the implementation code to the `addToOrder` function.
+You should see the same information as before, but the information about the product will be returned to us in the form of an object. This is good news for us because we can use this in our `addToOrder` function. Time to add the rest of the implementation code to the `addToOrder` function.
 
 ```js
 async addToOrder(event) {
