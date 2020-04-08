@@ -1,6 +1,6 @@
 Let's develop a simple feature. In the scenario, a user will visit the application's landing page and see a list of news articles displayed.
 
-Let's start by creating a high-level test file.
+Let's start by creating a feature file.
 
 `features/user_can_see_list_of_articles.feature`
 
