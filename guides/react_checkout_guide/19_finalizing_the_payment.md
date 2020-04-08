@@ -1,6 +1,6 @@
 ## Finalizing the payment
 
-Next up we want to modify the test with the mocked data. 
+Next up we want to modify the test with the mocked data.
 
 ```rb
   before do
@@ -11,7 +11,7 @@ Next up we want to modify the test with the mocked data.
   end
 ```
 
-And finally update the perform_stripe_payment method in our controller. 
+And finally update the perform_stripe_payment method in our controller.
 
 ```rb
   def perform_stripe_payment
@@ -26,12 +26,10 @@ And finally update the perform_stripe_payment method in our controller.
     customer: customer.id,
     amount: order.order_total.to_i * 100,
     currency: 'sek'
-  ) 
+  )
     charge.paid
   end
-  ```
+```
 
-  Run your tests now and they should be going green. 
-  So Stripe added. 
-  Let's celebrate by making a commit!
-
+Run your tests now and they should be going green. So Stripe added.
+Let's celebrate by making a commit!
