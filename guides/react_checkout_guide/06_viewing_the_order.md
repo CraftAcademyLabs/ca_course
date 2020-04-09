@@ -7,53 +7,6 @@ Now it's time for adding the view order functionality to the button.
 As always we start with the test.
 
 ```js
-cy.get("button")
-  .contains("View order")
-  .click();
-cy.get("#order-details").within(() => {
-  cy.get("li").should("have.length", 2);
-});
-
-cy.get("button")
-  .contains("View order")
-  .click();
-cy.get("#order-details").should("not.exist");
-```
-
-And now for the implementation code. First we update our state object
-
-```js
-state = {
-  productData: [],
-  message: {},
-  orderId: "",
-  showOrder: false
-};
-```
-
-And then the button
-
-```js
-return (
-	<>
-		{this.state.orderDetails.hasOwnProperty('products') &&
-			<button onClick={() => this.setState({ showOrder: true })}>View order</button>
-		}
-		{this.state.showOrder &&
-			<ul id="order-details">
-				{orderDetailsDisplay}
-			</ul>
-		}
-		{dataIndex}
-	</>
-```
-
-
-Let's work on the view order
-
-Go to the client, first we will write the test
-
-```js
 it("user can add multiple product to order and view its content", () => {
   cy.get("button")
     .contains("View order")
@@ -97,6 +50,18 @@ it("user can add multiple product to order and view its content", () => {
 ```
 
 Run the test and it is failing....
+
+And now for the implementation code. First we update our state object
+
+```js
+state = {
+  productData: [],
+  message: {},
+  orderId: "",
+  showOrder: false
+};
+```
+
 Add the following code to the return block of your component
 
 ```js

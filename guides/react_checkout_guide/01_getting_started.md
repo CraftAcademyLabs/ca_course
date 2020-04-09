@@ -12,22 +12,20 @@ describe("User can add a product to their order", () => {
     cy.route({
       method: "GET",
       url: "http://localhost:3000/api/products",
-      response: "fixture:product_data.json"
+      response: "fixture:product_data.json",
     });
 
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/orders",
-      response: { message: "A product has been added to your order" }
+      response: { message: "A product has been added to your order" },
     });
   });
 
   it("user gests a confirmation messsage when adding a a producut to order", () => {
     cy.visit("/");
     cy.get("#product-1").within(() => {
-      cy.get("button")
-        .contains("Add to order")
-        .click();
+      cy.get("button").contains("Add to order").click();
     });
     cy.contains("A product has been added to your order");
   });
@@ -42,12 +40,12 @@ In our case we already have a component that we use to display the products, all
 
 Let's add the implementation code.
 
-We need to start with the first step which is to make sure that we have a button available to click on, let's add that where we are mapping over the products.
+We need to start with the first step which is to make sure that we have a button available to click on, let's add that where we are mapping over the products, for example `DisplayProductData`
 
 ```jsx
 dataIndex = (
   <div id="index">
-    {this.state.productData.map(item => {
+    {this.state.productData.map((item) => {
       return (
         <div key={item.id} id={`product-${item.id}`}>
           {`${item.name} ${item.description} ${item.price}`}
@@ -99,15 +97,17 @@ Add the dataset to the parent div:
 Like this:
 
 ```js
-<div
-  key={item.id}
-  id={`product-${item.id}`}
-  data-id={item.id}
-  data-price={item.price}
->
-  {`${item.name} ${item.description} ${item.price}`}
-  <button onClick={this.addToOrder.bind(this)}>Add to order</button>
-</div>
+return (
+  <div
+    key={item.id}
+    id={`product-${item.id}`}
+    data-id={item.id}
+    data-price={item.price}
+  >
+    {`${item.name} ${item.description} ${item.price}`}
+    <button onClick={this.addToOrder.bind(this)}>Add to order</button>
+  </div>
+);
 ```
 
 Now if you run your test, the debugger should kick in, run the following command in the console `event.target.parentElement.dataset`.

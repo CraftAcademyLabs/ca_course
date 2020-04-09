@@ -63,19 +63,19 @@ describe("User can add a product to his/her order", () => {
     cy.route({
       method: "GET",
       url: "http://localhost:3000/api/products",
-      response: "fixture:product_data.json",
+      response: "fixture:product_data.json", 
     });
 
     cy.route({
       method: "POST",
       url: "http://localhost:3000/api/orders",
-      response: "fixture:post_response.json",
+      response: "fixture:post_response.json", // use the fixture here
     });
 
     cy.route({
       method: "PUT",
       url: "http://localhost:3000/api/orders/1",
-      response: "fixture:put_response.json",
+      response: "fixture:put_response.json",  // use the fixture here
     });
     cy.visit("http://localhost:3001");
   });
@@ -115,7 +115,7 @@ describe("User can add a product to his/her order", () => {
 ```
 
 And finally our implementation code:
-It should look like this ater you have refactored it.
+It should look like this after you have refactored it.
 
 ```js
 import React, { Component } from "react";
@@ -187,6 +187,7 @@ class DisplayProductData extends Component {
         </div>
       );
     }
+
     if (this.state.orderDetails.hasOwnProperty("products")) {
       orderDetailsDisplay = this.state.orderDetails.products.map((item) => {
         return <li key={item.name}>{item.name}</li>;
@@ -214,5 +215,6 @@ class DisplayProductData extends Component {
 }
 export default DisplayProductData;
 ```
+Your code might look different at this stage, if you are using different naming for the components. But this is how ours look. Take a moment to go over your code. Are there any further rooms for improvements? ask yourself if we can divide the code into more components or perhaps modules? Make sure that you note potential improvments that you and your team could make here.
 
 Run the test and move to the next section.

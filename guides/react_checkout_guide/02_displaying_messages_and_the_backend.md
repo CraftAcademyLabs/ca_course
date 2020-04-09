@@ -6,7 +6,7 @@ Let's start with adding the message to the state:
 ```js
 state = {
   productData: [],
-  message: {}
+  message: {},
 };
 ```
 
@@ -15,7 +15,8 @@ Next, we need to display the message below the button.
 ```js
 [....]
 <button onClick={this.addToOrder.bind(this)}>Add to order</button>
-	{parseInt(this.state.message.id) === item.id && <p class='message'>{this.state.message.message}</p>}
+{parseInt(this.state.message.id) === item.id && 
+<p class='message'>{this.state.message.message}</p>}
 ```
 
 Finally, we need to set the new state in the `addToOrder` function
@@ -27,9 +28,10 @@ async addToOrder(event) {
 	this.setState({message: {id: id, message: result.data.message}})
 }
 ```
+
 If we run our tests now everything should go green.
 
-Let's move over to the backend and start with creating a spec that we are going to use. Make sure that you create a new branch to work on.
+Let's move over to the backend and  work on our API. We will start with creating a spec. Make sure that you create a new branch to work on.
 
 ```bash
 $ touch spec/requests/api/client_can_create_new_order_spec.rb
@@ -86,5 +88,9 @@ class Api::OrdersController < ApplicationController
   end
 end
 ```
-
+We are getting a new error: 
+```bash
+NameError: uninitialized constant Api::OrdersController::Order 
+```
+To fix this we need to create a new model
 Cool. let's move over to the model.

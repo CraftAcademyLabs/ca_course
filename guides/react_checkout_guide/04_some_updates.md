@@ -2,51 +2,39 @@
 
 We have added a lot of functionality and e need to revisit our specs and make some updates to have it work on the client-side later on.
 
-First, we need to amend our request spec.
+First, we need to amend our request spec `client_can_create_new_order_spec`.
 
 We will amend our specs by adding a `before` block
 
 ```ruby
-	before do
-		post '/api/orders', params: { id: product_1.id }
-		@order = Order.last
-  end
+before do
+  post '/api/orders', params: { id: product_1.id }
+  @order = Order.last
+end
 ```
 
 And adding a new spec
 
 ```ruby
-  it 'adds another product to order if param "order_id" is present' do
-  post '/api/orders', params {id: product_2.id, order_id: @order.id}
-    expect(@order.order_items.count).to eq 2
-  end
-```
-
-To get this to work in the first iteration we can simply refactor our create action in the controller.
-
-```ruby
-class Api::OrdersController < ApplicationController
-  def create
-    order = if params[:order_id]
-              Order.find(params[:order_id])
-            else
-            Order.create
-    order.order_items.create(product_id: params[:product_id])
-    render json: { message: 'The product has been added to your order', order_id: order.id }
-  end
+it 'adds product to order if param "order_id" is present' do
+  post '/api/orders', params: {id: product_2.id, order_id: @order.id}
+  expect(@order.order_items.count).to eq 2
 end
 ```
 
-Run your test and make sure that this is going green. It is working however this is not the best practice. Let's make sure that we follow the conventions and refactor this code so it works. Let's refactor our test first
+And 
 
 ```ruby
-  it 'adds another product to order if param "order_id" is present' do
+it 'adds another product to order if param "order_id" is present' do
   put "/api/orders/#{order.id}", params: {product_id: product_2.id }
-    expect(@order.order_items.count).to eq 2
-  end
+  expect(@order.order_items.count).to eq 2
+end
 ```
 
-You will probably get a routing error. We will fix that with adding update to the routes:
+
+
+
+You will probably get a routing error. We will fix that with adding update & create to the routes:
 
 `resources :orders, only: [:create, :update]`
 
@@ -62,7 +50,7 @@ Run the test again and you will get a error stating that there is no action `upd
   end
 ```
 
-And remember to clean out the create action to its previous state:
+And the create action:
 
 ```ruby
   def create
@@ -72,7 +60,7 @@ And remember to clean out the create action to its previous state:
   end
 ```
 
-We will have to refactor our test to better suit our implementation code. The final shape of the test will look like this.
+We will have to refactor our test to better suit our implementation code, dy dividing both functionalities in out tests. The final shape of the test will look like this.
 
 ```rb
 RSpec.describe Api::OrdersController, type: :request do

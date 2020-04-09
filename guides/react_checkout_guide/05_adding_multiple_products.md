@@ -1,15 +1,3 @@
-### Putting it together
-
-For the client to work with the backend we need to make some adjustment to the code. In your client make sure that you add product_id instead of the id.
-
-```js
-async addToOrder(event) {
-	let id = event.target.parentElement.dataset.id
-  let result = await axios.post('http://localhost:3000/api/orders', { product_id: id } )
-	this.setState({message: {id: id, message: result.data.message}})
-}
-```
-
 ## Adding multiple products to the order
 
 Let's add the functionality to add multiple products to our order. As always we need to have a feature test for that. We will add this to the test that we already have.
@@ -28,7 +16,7 @@ describe("User can add a product to his/her order", () => {
     cy.route({
       method: "GET",
       url: "http://localhost:3000/api/products",
-      response: "fixture:product_data.json"
+      response: "fixture:product_data.json",
     });
 
     cy.route({
@@ -36,8 +24,8 @@ describe("User can add a product to his/her order", () => {
       url: "http://localhost:3000/api/orders",
       response: {
         message: "The product has been added to your order",
-        order_id: 1
-      }
+        order_id: 1,
+      },
     });
 
     cy.route({
@@ -45,17 +33,15 @@ describe("User can add a product to his/her order", () => {
       url: "http://localhost:3000/api/orders/1",
       response: {
         message: "The product has been added to your order",
-        order_id: 1
-      }
+        order_id: 1,
+      },
     });
     cy.visit("http://localhost:3001");
   });
 
   it("user get a confirmation message when adding product to order", () => {
     cy.get("#product-2").within(() => {
-      cy.get("button")
-        .contains("Add to order")
-        .click();
+      cy.get("button").contains("Add to order").click();
       cy.get(".message").should(
         "contain",
         "The product has been added to your order"
@@ -63,9 +49,7 @@ describe("User can add a product to his/her order", () => {
     });
 
     cy.get("#product-3").within(() => {
-      cy.get("button")
-        .contains("Add to order")
-        .click();
+      cy.get("button").contains("Add to order").click();
       cy.get(".message").should(
         "contain",
         "The product has been added to your order"
@@ -85,7 +69,7 @@ Add the `orderId` to the state:
 state = {
   productData: [],
   message: {},
-  orderId: ""
+  orderId: "",
 };
 ```
 
@@ -104,16 +88,16 @@ The `order_id` is what is being returned to us from the backend.
 We also need to make sure that we are adding an order to an existing one, if one already exists so let's add a conditional for that.
 
 ```js
-	async addToOrder(event) {
-		let id = event.target.parentElement.dataset.id
-		let result
-		if (this.state.orderId !== "") {
-			result = await axios.put(`http://localhost:3000/api/orders/${this.state.orderId}`, { product_id: id })
-		} else {
-			result = await axios.post('http://localhost:3000/api/orders', { product_id: id } )
-		}
-		this.setState({message: {id: id, message: result.data.message}, orderId: result.data.order_id})
-	}
+async addToOrder(event) {
+  let id = event.target.parentElement.dataset.id
+  let result
+  if (this.state.orderId !== "") {
+    result = await axios.put(`http://localhost:3000/api/orders/${this.state.orderId}`, { product_id: id })
+  } else {
+    result = await axios.post('http://localhost:3000/api/orders', { product_id: id } )
+  }
+  this.setState({message: {id: id, message: result.data.message}, orderId: result.data.order_id})
+}
 ```
 
 So what does this conditional do? We are simply stating that if there is an `order` and that the `orderId` is not empty, then add the new product to that order with a `PUT` request. Otherwise, go ahead and create a new order.
@@ -126,7 +110,7 @@ We want to make sure that we can view the products that we have added to our ord
 First, we want to make sure that there is a button where we can view the order.
 However, this button should only be visible when we have added products to our order.
 
-Refactor your code to look like this:
+As a best practice, we will go back to our tests and refactor them a little. Refactor your code to look like this:
 
 ```js
 	[....]

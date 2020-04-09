@@ -56,4 +56,3 @@ Run your migrations and then run your specs. Everything should be green like Bru
 
 ![the hulk is happy](https://media.giphy.com/media/i3lbNZhnB1Jle/giphy.gif)
 
-Done here and working

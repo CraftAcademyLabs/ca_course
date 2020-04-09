@@ -28,7 +28,7 @@ After that, we need to refactor the button to show the form when the user clicks
   );
 }
 ```
-Remember to also  import the <PaymentForm/> on the top of the file.
+Remember to also import the <PaymentForm/> on the top of the file.
 But we don't have a PaymentForm component you are thinking. Well, that's right. We don't so...
 Let's create one. 
 

@@ -92,7 +92,7 @@ RSpec.describe Api::OrdersController, type: :request do
 end
 ```
 
-And now for the serializer
+And now for the serializer. Go over the code here carefully and try to understand what is happening. I advise you to use binding.pry to stop the execution of the code and dive deeper into hoe these different methods work together. 
 
 `app/serializers/order_serializer.rb`
 
@@ -138,7 +138,7 @@ class OrderSerializer < ActiveModel::Serializer
 end
 ```
 
-And finally we need to update our controller with the changes.
+And  we need to update our controller with the changes.
 
 `app/controllers/api/orders_controller.rb`
 
@@ -165,3 +165,12 @@ private
   end
 end
 ```
+
+And finally add this the method to order model.
+```rb
+def order_total
+  order_items.joins(:product).sum("products.price")
+end
+```
+
+Run your tests
