@@ -52,7 +52,7 @@ Add the following gem to the Gemfile
 
 `gem 'stripe-ruby-mock', '~> 2.5.6', require: 'stripe_mock'`
 
-Then we want to update the  rails_helper to add the mock functionality
+Then we want to update the `rails_helper` to add the mock functionality
 
 Add `require 'stripe_mock'` to the rails_helper and add the configuration to RSpec
 

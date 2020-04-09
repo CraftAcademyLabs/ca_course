@@ -4,7 +4,7 @@ Wrap the PaymentForm component with the Elements, and make sure that you import 
 
 ```js
 {
-  this.state.showPaymentform && (
+  this.state.showPaymentForm && (
     <div id="payment-form">
       <Elements>
         <PaymentForm orderDetails={this.state.orderDetails} />
@@ -35,8 +35,6 @@ export default injectStripe(PaymentForm);
 ```
 
 So what are we doing here? We are adding an input field where the users can add their card number but to use that we need to use the injectStripe component to make use of their form elements.  
-
-Run the test now and they should be green. If they do, commit.
 
 So we have added a rudimentary payment form and we have also added the package that we need to use stripe in our react app. But we need multiple input fields for the rest of our card information. So let's add that now. 
 

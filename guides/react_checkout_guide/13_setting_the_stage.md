@@ -9,7 +9,7 @@ state = {
   orderDetails: {},
   showOrder: false,
   orderTotal: "",
-  showPaymentform: false
+  showPaymentForm: false
 };
 ```
 
@@ -17,11 +17,11 @@ After that, we need to refactor the button to show the form when the user clicks
 
 
 ```js
-<button onClick={() => this.setState({ showPaymentform: true })}>
+<button onClick={() => this.setState({ showPaymentForm: true })}>
   Confirm!
 </button>;
 {
-  this.state.showPaymentform && (
+  this.state.showPaymentForm && (
     <div id="payment-form">
       <PaymentForm />
     </div>
