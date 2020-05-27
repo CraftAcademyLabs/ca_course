@@ -220,7 +220,6 @@ import axios from "axios";
 
 const SubscriptionForm = props => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
-  let userEmail = JSON.parse(localStorage.getItem("J-tockAuth-Storage")).uid;
   const [message, setMessage] = useState('')
 
   const submitPayment = async event => {
@@ -230,8 +229,7 @@ const SubscriptionForm = props => {
       let paymentStatus = await axios.post(
         "/subscriptions",
         {
-          stripeToken: response.token.id,
-          email: userEmail
+          stripeToken: response.token.id
         },
         { headers: headers }
       );
