@@ -1,3 +1,289 @@
+# Client part
+
+## Test
+
+```json
+// cypress.json
+
+{
+  "baseUrl": "http://localhost:3001",
+  "chromeWebSecurity": false
+}
+```
+
+```js
+// cypress/integration/registeredUserCanPurchaseASubscription.feature.js
+
+describe("registered user can purchase a subscription", () => {
+    beforeEach(() => {
+      cy.server();
+      // for potential article index action
+      cy.route({
+        method: "GET",
+        url: "**/articles",
+        response: "fixture:articles_list_response.json"
+      });
+
+      // for payment response
+      cy.route({
+        method: "POST",
+        url: "**/subscriptions",
+        response: { message: "Transaction successfull" }
+      });
+
+      // for login with j-tockauth
+      cy.route({
+        method: "POST",
+        url: "**/auth/**",
+        response: "fixture:successful_login.json",
+        headers: {
+          uid: "user@mail.com"
+        }
+      });
+
+      // for validate token request that j-tockauth makes automatically
+      cy.route({
+        method: "GET",
+        url: "**/auth/**",
+        response: "fixture:successful_login.json",
+        headers: {
+          uid: "user@mail.com"
+        }
+      });
+      cy.visit("/");
+
+      // login the user, can vary depending on implementation
+      cy.get('#login-form').within(() => {
+        cy.get('#email').type('user@mail.com');
+        cy.get('#password').type('password');
+        cy.get('Button').contains('Submit').click();
+      });
+    });
+
+    it("by clicking buy subscription", () => {
+      // here we assume that there is a button in the header or something that will be
+      // visible after logging in
+      cy.get("button")
+        .contains("Buy Subscription")
+        .click();
+
+      // this can be removed but could be good to check that the form has rendered during development
+      // due to the <Elements /> can be tricky during the implementation of stripe
+      cy.get("form[id='payment-form']").should("be.visible");
+      cy.wait(1000)
+
+      // the "typeInStripeElement" command is defined in the commands.js file, the next snippet displays this
+      cy.typeInStripeElement("cardnumber", "4242424242424242");
+      cy.typeInStripeElement("exp-date", "0425");
+      cy.typeInStripeElement("cvc", "575");
+
+      cy.get("button")
+        .contains("Submit Payment")
+        .click();
+
+      // this is just an example of how we might show off that the user had a successfull transaction
+      cy.get("#subscription-message").should(
+        "contain",
+        "Transaction successfull"
+      );
+    });
+  });
+```
+
+```js
+// cypress/support/commands.js
+
+Cypress.Commands.add('typeInStripeElement', (element, value) => {
+  cy.get(`#${element} div iframe`)
+    .then($iframe => {
+      const $body = $iframe.contents().find("body");
+      cy.wrap($body)
+        .find(`input[name^="${element}"]`)
+        .type(value, { delay: 10 });
+    });
+})
+```
+
+
+## Implementation code
+```bash
+$  yarn add react-stripe-elements
+```
+
+Add stripe script to index.html
+```html
+<!-- public/index.html -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+
+    
+    <!-- !!! -->
+    <script src="https://js.stripe.com/v3/"></script>
+    <!-- !!! -->
+
+    <title>Daily News Sense</title>
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <div id="root"></div>
+  </body>
+</html>
+```
+
+```js
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
+import "semantic-ui-css/semantic.min.css";
+import { BrowserRouter } from 'react-router-dom'
+import axios from 'axios'
+import './css/index.css';
+import { StripeProvider } from "react-stripe-elements";
+
+
+axios.defaults.baseURL = "http://localhost:3000/api"
+
+ReactDOM.render(
+  <React.StrictMode>
+    <StripeProvider apiKey="your-stripe-publishable-key">
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </StripeProvider>
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+
+serviceWorker.unregister();
+
+```
+
+This depends on what component will render the `SubscriptionForm` component.
+```js
+import React from "react";
+import { Switch, Route } from "react-router-dom";
+import ArticleList from "./components/ArticleList";
+import Header from "./components/Header";
+import SingleArticle from "./components/SingleArticle";
+import SubscriptionForm from "./components/SubscriptionForm";
+import Navbar from "./components/Navbar";
+
+// !!!
+import { Elements } from "react-stripe-elements";
+// !!!
+
+const App = () => {
+  return (
+    <>
+      <Header />
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={ArticleList}></Route>
+        <Route exact path="/article/:id" component={SingleArticle}></Route>
+        <Route exact path="/category/:category" component={ArticleList}></Route>
+{/* !!! */}
+        <Route exact path="/subscription" render={() => (
+          <Elements>
+            <SubscriptionForm />
+          </Elements>
+        )} />
+{/* !!! */}
+      </Switch>
+    </>
+  );
+}
+export default App;
+```
+
+```js
+// src/components/SubscriptionForm.jsx
+
+import React, { useState } from "react";
+import {
+  CardNumberElement,
+  CardExpiryElement,
+  CardCVCElement,
+  injectStripe
+} from "react-stripe-elements";
+import axios from "axios";
+
+const SubscriptionForm = props => {
+  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
+  let userEmail = JSON.parse(localStorage.getItem("J-tockAuth-Storage")).uid;
+  const [message, setMessage] = useState('')
+
+  const submitPayment = async event => {
+    event.preventDefault();
+    const response = await props.stripe.createToken()
+    try {
+      let paymentStatus = await axios.post(
+        "/subscriptions",
+        {
+          stripeToken: response.token.id,
+          email: userEmail
+        },
+        { headers: headers }
+      );
+
+      if (paymentStatus.status === 200)
+        setMessage(paymentStatus.data.message);
+    } catch (error) {
+      setMessage(error.response.data.message)
+    }
+  }
+
+  return (
+    <>
+      <div id="payment">
+        <form id="payment-form">
+          <h2>
+            Payment Form
+            </h2>
+          <h5>
+            Step above the crowd with our Premium Platinum Plan for only 10,000SEK per year.
+            </h5>
+          <h5>
+            This yearly subscription will allow you to access all the amazing ultra premium content in addition to our free content.
+            </h5>
+
+          <div id="card-info">
+            <label>Card Number: </label>
+            <CardNumberElement name="cardnumber" id="cardnumber" />
+            <label>"Expiry Date: </label>
+            <CardExpiryElement id="exp-date" />
+            <label>CVC: </label>
+            <CardCVCElement id="cvc" />
+            <button
+              onClick={event => {
+                submitPayment(event);
+              }}
+            >
+              Submit Payment
+              </button>
+          </div>
+        </form>
+        <p id="subscription-message">{message}</p>
+      </div>
+    </>
+  );
+};
+
+
+export default injectStripe(SubscriptionForm);
+```
+
+
 # API part
 
 ```rb
@@ -63,7 +349,7 @@ RSpec.describe "POST api/subscriptions" do
       end
 
       it "has their status updated to premium" do
-        expect(user.premium_user).to eq true
+        expect(user.subscriber).to eq true
       end
     end
   end
@@ -87,7 +373,7 @@ RSpec.describe "POST api/subscriptions" do
       end
 
       it "has their status remain unchanged" do
-        expect(user.premium_user).to eq false
+        expect(user.subscriber).to eq false
       end
     end
 
@@ -150,11 +436,16 @@ end
 
 ## Implementation code
 
+You need to check if there is a column on the User table called `subscriber` or not. If not then make sure u add that. 
+
+`rails g migration AddSubscriberToUsers`
+
+
 Before you do this you need to go to stripe and define ur subscription plan and get ur access keys.
 
 ```rb
 # config/application.rb
-
+cod
 module Newsroom1Api
   class Application < Rails::Application
     # other code
@@ -184,8 +475,7 @@ Stripe.plan :platinum_plan do |plan|
   # amount in cents.
   plan.amount = 1000000
 
-  # currency to use for the plan (default '
-  usd')
+  # currency to use for the plan (default 'usd')
   plan.currency = 'usd'
 
   # interval must be either 'day', 'week', 'month' or 'year'
@@ -242,9 +532,10 @@ class Api::SubscriptionsController < ApplicationController
         end
 
         status = Stripe::Invoice.retrieve(subscription.latest_invoice).paid
+        binding.pry
 
         if status
-          current_user.premium_user = true
+          current_user.subscriber = true
           current_user.save
           render json: { message: "Transaction cleared" }
         else
@@ -309,227 +600,3 @@ I am not sure that we need this file. If you run in to problems for some reason,
 # begin using them in your API calls. Any coupons found that are not in this
 # file will be left as-is.
 ```
-
-# Client part
-
-## Test
-```js
-// cypress/integration/registeredUserCanPurchaseASubscription.feature.js
-
-describe("registered user can purchase a subscription", () => {
-  beforeEach(() => {
-    cy.server();
-    // for index action
-    cy.route({
-      method: "GET",
-      url: "**/articles",
-      response: "fixture:articles_list_response.json"
-    });
-   
-    // for payment response
-    cy.route({
-      method: "POST",
-      url: "**/subscriptions",
-      response: { status: "paid" }
-    });
-
-    // for login with j-tockauth
-    cy.route({
-      method: "POST",
-      url: "**/**",
-      response: "fixture:login.json"
-    });
-
-    // for validate token request that j-tockauth makes automatically
-    cy.route({
-      method: "GET",
-      url: "**/auth/**",
-      response: "fixture:login.json"
-    });
-    cy.visit("/");
-
-    // login the user
-    cy.get("#login").click();
-
-    cy.get("#login-form").within(() => {
-      cy.get("#email").type("user@mail.com");
-      cy.get("#password").type("password");
-      cy.get("#login-button")
-        .contains("Login")
-        .click();
-    });
-  });
-
-  it("by clicking buy subscription", () => {
-    // here we assume that there is a button in the header or something that will be
-    // visible after logging in
-    cy.get("button")
-      .contains("Buy Subscription")
-      .click();
-    cy.wait(1000);
-
-    // this can be removed but could be good to check that the form has rendered during development
-    // due to the <Elements /> can be tricky during the implementation of stripe
-    cy.get("form[id='payment-form']").should("be.visible");
-
-    // the "typeInStripeElement" command is defined in the commands.js file, the next snippet displays this
-    cy.typeInStripeElement("cardnumber", "4242424242424242");
-    cy.typeInStripeElement("exp-date", "0425");
-    cy.typeInStripeElement("cvc", "575");
-    cy.get("button")
-      .contains("Submit Payment")
-      .click();
-
-    // this is just an example of how we might show off that the user had a successfull transaction
-    cy.get("#subscription-message").should(
-      "contain",
-      "You are now a Premium Platinum member!"
-    );
-  });
-});
-```
-
-```js
-// cypress/support/commands.js
-
-Cypress.Commands.add('typeInStripeElement', (element, value) => {
-  cy.get(`#${element} div iframe`)
-    .then($iframe => {
-      const $body = $iframe.contents().find("body");
-      cy.wrap($body)
-        .find(`input[name^="${element}"]`)
-        .type(value, { delay: 10 });
-    });
-})
-```
-
-
-## Implementation code
-```bash
-$  yarn add react-stripe-elements
-```
-
-This depends on what component will render the `SubscriptionForm` component.
-```js
-import React from "react";
-import { Switch, Route } from "react-router-dom";
-import ArticleList from "./components/ArticleList";
-import Header from "./components/Header";
-import SingleArticle from "./components/SingleArticle";
-import SubscriptionForm from "./components/SubscriptionForm";
-import Navbar from "./components/Navbar";
-
-// !!!
-import { Elements } from "react-stripe-elements";
-// !!!
-
-const App = () => {
-  return (
-    <>
-      <Header />
-      <Navbar />
-      <Switch>
-        <Route exact path="/" component={ArticleList}></Route>
-        <Route exact path="/article/:id" component={SingleArticle}></Route>
-        <Route exact path="/category/:category" component={ArticleList}></Route>
-        <Elements>
-          <Route exact path="/subscription" component={SubscriptionForm}></Route>
-        </Elements>
-      </Switch>
-    </>
-  );
-}
-export default App;
-```
-
-```js
-// src/components/SubscriptionForm.jsx
-
-import React from "react";
-import { Header, Form, Button, Segment } from "semantic-ui-react";
-import {
-  CardNumberElement,
-  CardExpiryElement,
-  CardCVCElement,
-  injectStripe
-} from "react-stripe-elements";
-import axios from "axios";
-import { useDispatch, useSelector } from "react-redux";
-
-const SubscriptionForm = props => {
-  const dispatch = useDispatch();
-  const userEmail = useSelector(state => state.userEmail);
-  const errorMessage = useSelector(state => state.errorMessage);
-  let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
-
-  const submitPayment = async event => {
-    event.preventDefault();
-    const response = await props.stripe.createToken()
-
-    try {
-      let paymentStatus = await axios.post(
-        "/subscriptions",
-        {
-          stripeToken: response.token.id,
-          email: userEmail
-        },
-        { headers: headers }
-      );
-
-      if (paymentStatus.status === 200)
-        dispatch({
-          type: "FLASH_MESSAGE",
-          payload: {
-            flashMessage: `${t("subscription.flash-message")}`,
-            showArticlesList: true,
-            showSubscription: false,
-            premiumUser: true
-          }
-        });
-      } catch (error) {
-         dispatch({
-          type: "ERROR_MESSAGE",
-          payload: { errorMessage: response.message }
-        });
-      }
-    }
-  };
-
-  return (
-    <>
-      <div id="payment">
-        <form id="payment-form">
-          <h2>
-            Payment Form
-          </h2>
-          <h5>
-            Step above the crowd with our Premium Platinum Plan for only 10,000SEK per year.
-          </h5>
-          <h5>
-            This yearly subscription will allow you to access all the amazing ultra premium content in addition to our free content.
-          </h5>
-
-          <div id="card-info">
-            <label>Card Number: </label>
-            <CardNumberElement id="cardnumber" />
-            <label>"Expiry Date: </label>
-            <CardExpiryElement id="exp-date" />
-            <label>CVC: </label>
-            <CardCVCElement id="cvc" />
-            <button
-              onClick={event => {
-                submitPayment(event);
-              }}
-            >
-              Submit Payment
-            </button>
-          </div>
-        </form>
-        {errorMessage}
-      </div>
-    </>
-  );
-};
-export default injectStripe(SubscriptionForm);
-```
-
