@@ -17,13 +17,7 @@
 describe("registered user can purchase a subscription", () => {
     beforeEach(() => {
       cy.server();
-      // for potential article index action
-      cy.route({
-        method: "GET",
-        url: "**/articles",
-        response: "fixture:articles_list_response.json"
-      });
-
+      
       // for payment response
       cy.route({
         method: "POST",
@@ -69,7 +63,7 @@ describe("registered user can purchase a subscription", () => {
 
       // this can be removed but could be good to check that the form has rendered during development
       // due to the <Elements /> can be tricky during the implementation of stripe
-      cy.get("form[id='payment-form']").should("be.visible");
+      cy.get("#payment-interface").should("be.visible");
       cy.wait(1000)
 
       // the "typeInStripeElement" command is defined in the commands.js file, the next snippet displays this
@@ -94,7 +88,7 @@ describe("registered user can purchase a subscription", () => {
 // cypress/support/commands.js
 
 Cypress.Commands.add('typeInStripeElement', (element, value) => {
-  cy.get(`#${element} div iframe`)
+  cy.get(`#${element} iframe`)
     .then($iframe => {
       const $body = $iframe.contents().find("body");
       cy.wrap($body)
@@ -222,58 +216,53 @@ const SubscriptionForm = props => {
   let headers = JSON.parse(localStorage.getItem("J-tockAuth-Storage"));
   const [message, setMessage] = useState('')
 
-  const submitPayment = async event => {
-    event.preventDefault();
-    const response = await props.stripe.createToken()
+  const submitPayment = async () => {
+    const stripeResponse = await props.stripe.createToken()
     try {
       let paymentStatus = await axios.post(
         "/subscriptions",
         {
-          stripeToken: response.token.id
+          stripeToken: stripeResponse.token.id
         },
         { headers: headers }
       );
 
-      if (paymentStatus.status === 200)
+      if (paymentStatus.status === 200) {
         setMessage(paymentStatus.data.message);
+      }
     } catch (error) {
       setMessage(error.response.data.message)
     }
   }
 
   return (
-    <>
-      <div id="payment">
-        <form id="payment-form">
-          <h2>
-            Payment Form
-            </h2>
-          <h5>
-            Step above the crowd with our Premium Platinum Plan for only 10,000SEK per year.
-            </h5>
-          <h5>
-            This yearly subscription will allow you to access all the amazing ultra premium content in addition to our free content.
-            </h5>
+    <div id="payment-interface">
+      <h2>
+        Payment Form
+      </h2>
+      <h5>
+        Step above the crowd with our Premium Platinum Plan for only 10,000SEK per year.
+      </h5>
+      <h5>
+        This yearly subscription will allow you to access all the amazing ultra premium content in addition to our free content.
+      </h5>
 
-          <div id="card-info">
-            <label>Card Number: </label>
-            <CardNumberElement name="cardnumber" id="cardnumber" />
-            <label>"Expiry Date: </label>
-            <CardExpiryElement id="exp-date" />
-            <label>CVC: </label>
-            <CardCVCElement id="cvc" />
-            <button
-              onClick={event => {
-                submitPayment(event);
-              }}
-            >
-              Submit Payment
-              </button>
-          </div>
-        </form>
-        <p id="subscription-message">{message}</p>
+      <div id="card-info">
+        <label>Card Number: </label>
+        <CardNumberElement name="cardnumber" id="cardnumber" />
+        <label>"Expiry Date: </label>
+        <CardExpiryElement id="exp-date" />
+        <label>CVC: </label>
+        <CardCVCElement id="cvc" />
+        <button
+          onClick={event => {
+            submitPayment(event);
+          }}
+        > Submit Payment
+        </button>
       </div>
-    </>
+      <p id="subscription-message">{message}</p>
+    </div>
   );
 };
 
