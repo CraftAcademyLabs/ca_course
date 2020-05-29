@@ -428,7 +428,7 @@ You need to check if there is a column on the User table called `subscriber` or 
 `rails g migration AddSubscriberToUsers`
 
 
-Before you do this you need to go to stripe and define ur subscription plan and get ur access keys.
+Before you go ahead, get ur access keys from the stripe dashboard.
 
 ```rb
 # config/application.rb
