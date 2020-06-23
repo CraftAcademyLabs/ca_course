@@ -1,4 +1,19 @@
 ## Advanced Ruby
+### What is a Block?
+Blocks are anonymous functions that can be passed into methods. Blocks are enclosed in a `do end` statement or between brackets `{}`, and they can have multiple arguments.
+
+##### single line blocks
+```ruby 
+[1, 2, 3].each { |num| puts num }
+```
+##### multi-line blocks
+```ruby
+
+[1, 2, 3].each do |num|
+  puts num
+end
+```
+
 ### What is a Proc?
 A `Proc`, short for procedure, acts similar to a block, but can be saved as variables and reused. Think of them as blocks you can call over and over again on multiple arrays and as anonymous methods (or nameless functions) containing code.
 
