@@ -1,6 +1,6 @@
 ## Bind event handlers in Class Components in React
 
-While working on React, you must have come across controlled components and event handlers. We need to bind these methods to the component instance using `.bind() in our custom component’s constructor.
+While working on React, you must have come across controlled components and event handlers. We need to bind these methods to the component instance using `.bind()` in our custom component’s constructor.
 
 ```javascript
 class Foo extends React.Component{
@@ -13,7 +13,7 @@ class Foo extends React.Component{
   }
   render(){
     return (
-      <button type="button" 
+      <button type="button"
         onClick={this.handleClick}>
         Click Me
       </button>
@@ -70,7 +70,7 @@ As mentioned, this happens because of the way this binding works in JavaScript. 
 function display(){
  console.log(this); // 'this' will point to the global object
 }
-display(); 
+display();
 ```
 
 This is a plain function call. The value of this inside the display() method in this case is the window — or the global — object in non-strict mode. In strict mode, the this value is undefined.
@@ -84,7 +84,7 @@ var obj = {
    console.log(this.name); // 'this' points to obj
   }
 };
-obj.display(); // Foo 
+obj.display(); // Foo
 ```
 
 When we call a function in this manner — preceded by a context object — the `this` value inside `display()` is set to `obj`.
@@ -133,7 +133,7 @@ To avoid this, we can explicitly hard bind the `this` value to a function by usi
 
 ```javascript
 var name = "Bar";
-obj.display = obj.display.bind(obj); 
+obj.display = obj.display.bind(obj);
 var outerDisplay = obj.display;
 outerDisplay();
 // Foo
@@ -160,10 +160,10 @@ class Foo {
 var foo = new Foo('Bar');
 foo.display(); // Bar
 
-// The assignment operation below simulates loss of context 
-// similar to passing the handler as a callback in the actual 
+// The assignment operation below simulates loss of context
+// similar to passing the handler as a callback in the actual
 // React Component
-var display = foo.display; 
+var display = foo.display;
 display(); // TypeError: this is undefined
 ```
 
@@ -217,9 +217,9 @@ We have two more ways we can define event handlers inside a React component.
 ```javascript
 class Foo extends React.Component{
   handleClick = () => {
-    console.log(this); 
+    console.log(this);
   }
- 
+
   render(){
     return (
       <button type="button" onClick={this.handleClick}>
@@ -227,7 +227,7 @@ class Foo extends React.Component{
       </button>
     );
   }
-} 
+}
 ReactDOM.render(
   <Foo />,
   document.getElementById("app")
@@ -241,7 +241,7 @@ class Foo extends React.Component{
   handleClick(event){
     console.log(this);
   }
- 
+
   render(){
     return (
       <button type="button" onClick={(e) => this.handleClick(e)}>

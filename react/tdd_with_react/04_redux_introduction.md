@@ -1,6 +1,10 @@
 ## Dependencies
 The packages we will need are `redux` , `react-redux`, as well as `redux-thunk`.
 
+Normally, actions must be plain objects. Returning a function, like we’re doing in fetchProducts, is outside the ordinary and Redux won’t allow it. Not without some help, anyway.
+
+That’s where `redux-thunk` comes in. It’s a middleware which we can add to Redux to effectively teach it how to deal with new kinds of actions.
+
 `redux-thunk` is necessary to return anything but plain objects from actions. We are going to request data from an api, and fetch returns a promise.
 
 As usual install these using `yarn` or `npm`
@@ -57,7 +61,7 @@ export const RECEIVE_USES = 'RECEIVE_USERS';
 
 ### About Action constants
 
-Why is beneficial to create action constants? In Redux you use those constants at least in two places - in your reducers and during actions creation. So it's convenient to define a constant once in some file e.g. `actionTypes.js`. It is often claimed that constants are unnecessary, and for small projects, this might be correct. For larger projects, there are some benefits to defining action types as constants.
+Why is beneficial to create action constants? In Redux you use those constants at least in two places - in your reducers and during actions creation. So it's convenient to define a constant once in some file e.g. `actionTypes.js`. It is often claimed that constants are unnecessary, and for small projects, and this might be correct. For larger projects, there are some benefits to defining action types as constants.
 
 * It helps keep the naming consistent because all action types are gathered in a single place.
 * Sometimes you want to see all existing actions before working on a new feature. It may be that the action you need was already added by somebody on the team, but you didn’t know.
