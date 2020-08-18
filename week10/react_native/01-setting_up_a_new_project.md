@@ -5,11 +5,11 @@ Replace NAME with the name of your application
 1. `$ expo init [NAME]`.
 2. select blank project.
 3. Type in the terminal the name of the application when asked.
-4. Make sure that `node_modules/**/*` and `.expo/*` folder is in gitignore.
+4. Make sure that `node_modules/**/*` and `.expo/*` folder is added to `.gitignore`.
 
-### Clean upp app.js
+### Clean upp App.js
 
-Before we clean out the `app.js` file lets take a look at some of the things in there.
+Before we clean out the `App.js` file lets take a look at some of the things in there.
 
 #### View and Text
 
@@ -65,9 +65,9 @@ export default class App extends React.Component {
 
 Start with creating a folder where we will keep all of our screens and a landing screen for our app.
 
-1. `$ mkdir Screens`
-2. `$ mkdir Screens/Home`
-3. `$ touch Screens/Home/HomeScreen.js`
+1. `$ mkdir screens`
+2. `$ mkdir screens/Home`
+3. `$ touch screens/Home/HomeScreen.js`
 
 And in the `HomeScreen.js` lets add some hello world text.
 
@@ -114,7 +114,7 @@ import axios from "axios";
 // const url = `http://192.168.1.178:3000`;  // whenever we want to make api calls to localhost we have to use the ip address not the keyword `localhost` since that can result in a network error.
 const url = `https://your-heroku-address`;
 
-export const GetArticles = async () => {
+export const getArticles = async () => {
   try {
     let response = await axios.get(url + "/api/articles");
     const articles = response.data.articles;
@@ -141,12 +141,12 @@ constructor(props) {
 Now Lets create a `componentDidMount` function in `HomeScreen` and call the `GetArticles` method in `ArticlesApiService`
 
 ```js
-import { GetArticles } from "../../Services/ArticlesApiService";
+import { getArticles } from "../../Services/ArticlesApiService";
 
 ....
 
 componentDidMount() {
-  GetArticles().then(res => {
+  getArticles().then(res => {
     this.updateArticlesStateHandler(res);
   });
 }

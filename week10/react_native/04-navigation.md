@@ -7,17 +7,17 @@ As it stands we only have one screen in our application the `HomeScreen`, lets c
 Create a new screen.
 
 ```sh
-$ mkdir Screens/Article
-$ touch Screens/Article/ArticleScreen.js
+$ mkdir src/screens/Articles
+$ touch src/screens/Articles/ArticleScreen.js
 ```
 
 And in it we will just render a simple hello world message initially.
 
 ```js
-import React from "react";
+import React, { Component } from "react";
 import { Text, View } from "react-native";
 
-export default class ArticleScreen extends React.Component {
+ class ArticleScreen extends Component {
   render() {
     return (
       <View>
@@ -26,6 +26,8 @@ export default class ArticleScreen extends React.Component {
     );
   }
 }
+
+export default ArticleScreen
 ```
 
 ### react-navigation
@@ -39,28 +41,28 @@ $ yarn add react-navigation --save
 And create a file `AppNavigator.js` to handle our screens.
 
 ```sh
-$ touch AppNavigator.js
+$ touch src/AppNavigator.js
 ```
 
 And add this to that file.
 
 ```js
 import { createAppContainer, createStackNavigator } from "react-navigation";
-import HomeScreen from "./Screens/Home/HomeScreen";
-import ArticleScreen from "./Screens/Article/ArticleScreen";
+import HomeScreen from "./screens/Home/HomeScreen";
+import ArticleScreen from "./screens/Articles/ArticleScreen";
 
-const NavStack = createStackNavigator({
+const navStack = createStackNavigator({
   Home: { screen: HomeScreen },
   Article: { screen: ArticleScreen }
 });
 
-const AppNavigator = createAppContainer(NavStack);
+const AppNavigator = createAppContainer(navStack);
 
 export default AppNavigator;
 ```
 
-- createStackNavigator it provides a way for your app to transition between screens where each new screen is placed on top of a stack.
-- createAppContainer creates the main component for react to render.
+- `createStackNavigator` provides a way for your app to transition between screens where each new screen is placed on top of a stack.
+- `createAppContainer` creates the main component for react to render.
 
 Lets update `App.js` and import the `AppNavigator` and have it render the component.
 
@@ -68,11 +70,13 @@ Lets update `App.js` and import the `AppNavigator` and have it render the compon
 import React from "react";
 import AppNavigator from "./AppNavigator";
 
-export default class App extends React.Component {
+ class App extends React.Component {
   render() {
     return <AppNavigator />;
   }
 }
+
+export default App
 ```
 
 At this point the application run fine again but we no way of navigating to the `ArticleScreen` lets add a button to each article that navigates to the `ArticleScreen`.
@@ -125,7 +129,7 @@ And then in the `ArticleScreen` we can receive the data with `this.props.navigat
 import React from "react";
 import { Text, View } from "react-native";
 
-export default class ArticleScreen extends React.Component {
+class ArticleScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -146,6 +150,8 @@ export default class ArticleScreen extends React.Component {
     );
   }
 }
+
+export default ArticleScreen
 ```
 
 ![Article screen receives params](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/339e12e46d487566421adbf13b66995fb08761ff/week10/article_nav_params.png)
