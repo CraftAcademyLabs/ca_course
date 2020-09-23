@@ -174,18 +174,9 @@ If you are setting up Semaphore to work with a React client you want to go ahead
 
 * In the `Job #1` you will have two commands.
 ```
-./node_modules/.bin/cypress install
-yarn run cy:run
+./node_modules/.bin/cypress install --force
+yarn start & ./node_modules/.bin/cypress run
 ``` 
-
-* `cy:run` is a script that you need to add to your `package.json`.
-```json
-// package.json
-  "scripts": {
-    // ...
-    "cy:run": "BROWSER=none yarn start & cypress run"
-  },
-```
 
 It should look like this except that your `Node.js version` might be different.
 
