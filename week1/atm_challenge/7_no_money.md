@@ -1,15 +1,15 @@
 ## Step 5 - Testing the sad path
 
-Okay, so now we can do a withdrawal IF there is money in the account.  
+Okay, so now we can do a withdrawal IF there is money in the account.
 
-Let's start thinking about everything that can go wrong with a withdrawal. 
+Let's start thinking about everything that can go wrong with a withdrawal.
 
 For starters, what if there is not enough money in the account? At this point we only `return` from the method without any feedback for the user.
 
 Let's change that.
 
-
 _spec/atm_spec.rb_
+
 ```ruby
 [...]
 it 'rejects withdraw if account has insufficient funds' do
@@ -35,8 +35,3 @@ def withdraw(amount, account)
   end
 end
 ```
-
-
-
-
-
