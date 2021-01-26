@@ -2,12 +2,13 @@
 
 Replace NAME with the name of your application
 
-1. `$ expo init [NAME]`.
-2. select blank project.
+1. `$ expo init [NAME OF YOUR APP]`.
+2. Select `blank project`.
 3. Type in the terminal the name of the application when asked.
-4. Make sure that `node_modules/**/*` and `.expo/*` folder is added to `.gitignore`.
+4. Make sure that `node_modules/**/*` and `.expo/*` folder is in `.gitignore`.
+5. Run `yarn start` or `yarn web` in your terminal
 
-### Clean upp App.js
+### Clean upp App.js (ande rename it to `App.jsx`)
 
 Before we clean out the `App.js` file lets take a look at some of the things in there.
 
@@ -54,11 +55,13 @@ Now that we got that out of the way lets remove unused code in the `app.js` and 
 import React from "react";
 import HomeScreen from "./Screens/Home/HomeScreen";
 
-export default class App extends React.Component {
+class App extends React.Component {
   render() {
     return <HomeScreen />;
   }
 }
+
+export default App
 ```
 
 ### Create a HomeScreen
@@ -75,7 +78,7 @@ And in the `HomeScreen.js` lets add some hello world text.
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-export default class HomeScreen extends React.Component {
+class HomeScreen extends React.Component {
   render() {
     return (
       <View style={styles.container}>
@@ -93,6 +96,8 @@ const styles = StyleSheet.create({
     justifyContent: "center"
   }
 });
+
+export default HomeScreen
 ```
 
 ![HomeScreen - Hello World](https://raw.githubusercontent.com/CraftAcademyLabs/ca_course/339e12e46d487566421adbf13b66995fb08761ff/week10/hello_world.png)
@@ -101,8 +106,8 @@ What we really want to be displaying in our `HomeScreen` is all of our articles 
 
 ### Fetching articles
 
-1. `$ mkdir Services`
-2. `$ touch Services/ArticlesApiService.js`
+1. `$ mkdir services`
+2. `$ touch services/ArticlesService.js`
 3. `$ yarn add axios --save`
 
 In the `ArticlesApiService.js` lets setup a function that fetches the articles from our backend.
@@ -114,7 +119,7 @@ import axios from "axios";
 // const url = `http://192.168.1.178:3000`;  // whenever we want to make api calls to localhost we have to use the ip address not the keyword `localhost` since that can result in a network error.
 const url = `https://your-heroku-address`;
 
-export const getArticles = async () => {
+const getArticles = async () => {
   try {
     let response = await axios.get(url + "/api/articles");
     const articles = response.data.articles;
@@ -123,9 +128,11 @@ export const getArticles = async () => {
     console.error(error);
   }
 };
+
+export getArticles
 ```
 
-And then in the `HomeScreen` component we can call on the `ArticlesApiService` to get an array of articles we will then use a component called `FlatList` to iterate through the list of articles.
+And then in the `HomeScreen` component we can call on the `ArticlesService` to get an array of articles we will then use a component called `FlatList` to iterate through the list of articles.
 
 Start by setting a state for the articles.
 
@@ -138,11 +145,10 @@ constructor(props) {
 }
 ```
 
-Now Lets create a `componentDidMount` function in `HomeScreen` and call the `GetArticles` method in `ArticlesApiService`
+Now lets create a `componentDidMount` function in `HomeScreen` and call the `GetArticles` method in `ArticlesApiService`
 
 ```js
-import { getArticles } from "../../Services/ArticlesApiService";
-
+import { getArticles } from "../../Services/ArticlesService";
 ....
 
 componentDidMount() {
@@ -150,6 +156,7 @@ componentDidMount() {
     this.updateArticlesStateHandler(res);
   });
 }
+
 ```
 
 And now we create a `updateArticlesStateHandler` that will take care of updating the state for the articles.

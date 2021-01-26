@@ -34,7 +34,7 @@ $ npm install -g expo-cli
 
 The installation for Android Studio is lengthy one and you have to make sure you do everything required to install it. **Do Not Skip Any Steps**
 
-Visit this [page](https://facebook.github.io/react-native/docs/getting-started) and select `React Native Cli Quickstart` - Development OS: `Linux` - Target OS: `Android`.
+Visit this [page](https://reactnative.dev/docs/environment-setup) and select `React Native Cli Quickstart` - Development OS: `Linux` - Target OS: `Android`.
 Before you start installing run the command `echo $0` and if the response is `zsh` then whenever you see instructions to add anything to `.bash_profile` you should put it in `~/.zshrc` instead.
 
 #### Running Android Emulator
@@ -76,11 +76,11 @@ CPU acceleration status: This user doesn't have permissions to use KVM (/dev/kvm
 
 ### Creating a new application
 
-1. `$ expo init [NAME]`.
-2. select blank project.
+1. `$ expo init [NAME OF YOUR APP]`.
+2. Select `blank project`.
 3. Type in the terminal the name of the application when asked.
-4. Make sure that `node_modules/**/*` and `.expo/*` folder is in gitignore.
-5. yarn start
+4. Make sure that `node_modules/**/*` and `.expo/*` folder is in `.gitignore`.
+5. Run `yarn start` or `yarn web` in your terminal
 6. If on ubuntu run `run-emu @nexus_5x` to start up an emulator.
 
 #### Hello World
@@ -91,7 +91,7 @@ Replace the content on `app.js` with this
 import React, { Component } from "react";
 import { Text, View } from "react-native";
 
-export default class HelloWorldApp extends Component {
+class HelloWorldApp extends Component {
   render() {
     return (
       <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
@@ -100,4 +100,6 @@ export default class HelloWorldApp extends Component {
     );
   }
 }
+
+export default HelloWorldApp
 ```
