@@ -108,4 +108,4 @@ class EmployeeList extends Component {
 export default EmployeeList;
 ```
 
-Ass you can see, the only thing we change is the way we get the data. Nothing else needss to change.
+As you can see, the only thing we change is the way we get the data. Nothing else needs to change.
