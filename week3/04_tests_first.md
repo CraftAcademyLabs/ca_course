@@ -151,15 +151,61 @@ export default class EmployeeList extends Component {
 }
 ```
 
-Now, this will make our test pass. But, this is of course nonsense. We have hard coded values in our component's stae. We want to fetch these from the api.
+Now, this will make our test pass. But, this is of course nonsense. We have hard coded values in our component's stae. We want to fetch these from the api. To start with, we will use the XHR method we tried out before (there is another way to make network requests that we will uncver in the next section...)
 
 Let's modify the test a bit.
+
+```js
+import { render, screen } from '@testing-library/react';
+import EmployeeList from '../components/EmployeeList';
+
+const mockedResponse =
+{
+  "page": 1,
+  "per_page": 6,
+  "total": 12,
+  "total_pages": 2,
+  "data":
+    [
+      { "id": 1, "email": "george.bluth@reqres.in", "first_name": "George", "last_name": "Bluth", "avatar": "https://reqres.in/img/faces/1-image.jpg" },
+      { "id": 2, "email": "janet.weaver@reqres.in", "first_name": "Janet", "last_name": "Weaver", "avatar": "https://reqres.in/img/faces/2-image.jpg" },
+      { "id": 3, "email": "emma.wong@reqres.in", "first_name": "Emma", "last_name": "Wong", "avatar": "https://reqres.in/img/faces/3-image.jpg" },
+      { "id": 4, "email": "eve.holt@reqres.in", "first_name": "Eve", "last_name": "Holt", "avatar": "https://reqres.in/img/faces/4-image.jpg" },
+      { "id": 5, "email": "charles.morris@reqres.in", "first_name": "Charles", "last_name": "Morris", "avatar": "https://reqres.in/img/faces/5-image.jpg" },
+      { "id": 6, "email": "tracey.ramos@reqres.in", "first_name": "Tracey", "last_name": "Ramos", "avatar": "https://reqres.in/img/faces/6-image.jpg" }],
+  "support": { "url": "https://reqres.in/#support-heading", "text": "To keep ReqRes free, contributions towards server costs are appreciated!" }
+}
+const xhrMock = {
+  open: jest.fn(),
+  send: jest.fn(),
+  setRequestHeader: jest.fn(),
+  readyState: 4,
+  status: 200,
+  responseText: JSON.stringify(mockedResponse)
+};
+
+beforeEach(() => {
+  jest.spyOn(window, 'XMLHttpRequest').mockImplementation(() => xhrMock);
+  render(<EmployeeList />);
+  xhrMock.onload()
+});
+
+it('calls the API using XHR on render', () => {
+  expect(xhrMock.open).toBeCalledWith('GET', 'https://reqres.in/api/users');
+  expect(xhrMock.send).toHaveBeenCalledTimes(1);
+});
+it('renders learn react link', () => {
+  const listElement = screen.getByRole('list')
+  expect(listElement.children.length).toBe(6);
+});
+
+```
 
 
 
 These specs will do to things for us:
 
-1. make sure that we are making use of `axios` to make a `get` request when the component is being used, and
+1. make sure that we are making use of `XMLHttpRequest` to make a `get` request when the component is being mounted, and
 
 2. that once state has been updated with a list of `employees`, the component is re-rendered with the right content.
 
@@ -171,8 +217,7 @@ This is an excercise in reading the test output, implementing the right code and
 At the end of the tunnel, your `EmployeeList` could look something like this:
 
 ```javascript
-import React, { Component } from 'react';
-import axios from 'axios'
+import React, { Component } from 'react'
 
 class EmployeeList extends Component {
   state = {
@@ -180,16 +225,14 @@ class EmployeeList extends Component {
   }
 
   componentDidMount() {
-    this.fetchEmployees()
+    const xhr = new XMLHttpRequest();
+    xhr.open('GET', 'https://reqres.in/api/users')
+    xhr.onload = () => {
+      this.setState({ employees: JSON.parse(xhr.responseText).data })
+    }
+    xhr.send()
   }
 
-  async fetchEmployees() {
-    let employees = await axios.get('https://reqres.in/api/users?per_page=5')
-    this.setState({ employees: employees.data.data })
-    // ?!? "data.data" - really?
-    // Well, check out the response by setting a breakpoint just
-    // before this line withe `debugger`
-  }
 
   render() {
     let employeeList
@@ -200,14 +243,14 @@ class EmployeeList extends Component {
         </li>
       )
     })
-
     return (
-      <ul>
+      <ul role="list">
         {employeeList}
       </ul>
-    );
+    )
   }
 }
+
 export default EmployeeList;
 ```
 
