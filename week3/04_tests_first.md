@@ -97,69 +97,65 @@ If you check the Cypress runner, you will probably see something like this:
 ## The "Inside"
 We will move from the "Outside" to the "Inside" and make sure we test drive the development of our new component.
 
-Remember the TODO list we wrote a few minutes ago? Let's put it to work and write a specification for the `<EmployeeList>` component we want to build.
-
-We created our application using the `create-react-app` scaffold, so we already have `jest` installed. We will enhance it with `enzyme` - a test utility that makes it easier to test React Components' output. We will need to install `enzyme` along with an Adapter corresponding to the version of react we are using (in this case React 16.8.6). We will also add a configuration file for `enzyme`
-
-```bash
-$ yarn add --dev enzyme enzyme-adapter-react-16
-$ touch src/setupTests.js
-```
-
-Add the following configuration to `setupTests.js`:
-
-```javascript
-import { configure } from 'enzyme';
-import Adapter from 'enzyme-adapter-react-16';
-
-configure({ adapter: new Adapter() });
-```
-
-We need to do a just a litte bit more configuration... we need to create a folder where we will hold out unit tests. By convention we will call it `__tests__` (yes, that is 2 underscores).
-
-```bash
-$ mkdir src/__tests__
-```
 
 ## The EmployeeList spec
 
 We could start with following specification as a starting point:
 
 ```javascript
-import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
+import EmployeeList from '../components/EmployeeList';
 
-import EmployeeList from '../components/EmployeeList'
-import axios from 'axios';
+beforeEach(() => {
+  render(<EmployeeList />);
+});
+it('renders learn react link', () => {
+  const lidtElement = screen.getByRole('list')
+  expect(lidstElement.children.length).toBe(5);
+});
 
-describe('<EmployeeList />', () => {
-  it('should fetch employees from back-end using Axios', () => {
-    const axiosSpy = jest.spyOn(axios, 'get');
-    shallow(
-      <EmployeeList />
-    )
-    expect(axiosSpy).toBeCalled();
-  })
+```
+Make sure to run the test. Thay will fail for you, of course. Let's add some implementation code.
 
-  it('should render a list of 5 employees', async () => {
-    const employees = {"data":[
+Create a subfolder in `src`, called `components`. In that folder, we will create a component file: `EmployeeList.jsx`
+
+```js
+import React, { Component } from 'react'
+
+export default class EmployeeList extends Component {
+  state = {
+    employees: [
       { "id": 1, "first_name": "George", "last_name": "Bluth", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/calebogden/128.jpg" },
       { "id": 2, "first_name": "Janet", "last_name": "Weaver", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg" },
       { "id": 3, "first_name": "Emma", "last_name": "Wong", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/olegpogodaev/128.jpg" },
       { "id": 4, "first_name": "Eve", "last_name": "Holt", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/marcoramires/128.jpg" },
       { "id": 5, "first_name": "Charles", "last_name": "Morris", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/stephenmoon/128.jpg" }
-    ]}
+    ]
+  }
 
-    // We mount the component
-    const describedComponent = mount(<EmployeeList />)
-    // we make sure that the components state is updated
-    await describedComponent.setState({ employees: employees.data })
-    // we make sure that the component renders 5 instances on a list item (<li>)
-    expect(describedComponent.find('li')).toHaveLength(5);
-  })
-})
-
+  render() {
+    let employeeList
+    employeeList = this.state.employees.map(employee => {
+      return (
+        <li key={employee.id}>
+          {`${employee.first_name} ${employee.last_name}`}
+        </li>
+      )
+    })
+    return (
+      <ul role="list">
+        {employeeList}
+      </ul>
+    )
+  }
+}
 ```
+
+Now, this will make our test pass. But, this is of course nonsense. We have hard coded values in our component's stae. We want to fetch these from the api.
+
+Let's modify the test a bit.
+
+
 
 These specs will do to things for us:
 
