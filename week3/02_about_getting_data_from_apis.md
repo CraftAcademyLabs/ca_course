@@ -16,4 +16,36 @@ Some time ago, it became a big thing for web startup to offer public access to s
 
 Okay, we will be working on this a lot moving forward, so today is NOT the day for a deep dive into this concept and becoming experts. Today is the day when we will make use of an API for the first time, and later, we will disect what occured and go over some of the moving parts.
 
+In typical web application architecture we have frontend/client side(detached from the backend) and server side/backend. Normally the backend and frontend run on different servers with different domain names may be in different locations too. They should be able to communicate with each other to share information. Frontend is responsible for capturing the user inputs then validate and send it to the server and also fetch and display the data on browser.The backend is responsible for storing and retrieving data from the database.
+
+We will make use of one API that is public and allow us to fetch some data (we often use the expression "provides API endpoints" - I will explain this expression further down the line.)
+
+Let's execute this in our browsers console or in the Node console in the terminal:
+
+```
+const xhr = new XMLHttpRequest();
+xhr.open('GET', 'https://reqres.in/api/users')
+xhr.onload = () => {
+  const data = JSON.parse(xhr.responseText)
+  console.table(data.data)
+}
+xhr.send()
+```
+
+You can also try this in the Node console in your terminal, but XMLHttpRequest is a built-in object in web browsers only. It is **not** distributed with Node; you have to install it separately,
+
+Install it with npm:
+
+```
+$ npm install xmlhttprequest
+```
+Now you can require it in your code.
+
+```
+const XMLHttpRequest = require("xmlhttprequest").XMLHttpRequest;
+const xhr = new XMLHttpRequest();
+// ...and the rest of the snippet
+```
+
+You can play around with these commands in your browser and the traminal for a bit.
 
