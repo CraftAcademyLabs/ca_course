@@ -73,10 +73,22 @@ This command will run a configuration script and add a bunch of example tests th
 
 ![](./employee_list_cypress_setup.png)
 
-**Step 3**: We need to add a script to our `package.json` to help us accesss the test runner in a smoother way. I suggest that you add this to the `scripts` section of the `package.json` file:
+**Step 3**:
+
+We need to add another tool and a script to our `package.json` to help us accesss the test runner in a smoother way.
+
+Here is one way t do it: We will add a [helper package](https://www.npmjs.com/package/start-server-and-test) to our development dependencies that will help us fire up the applicaation and start the test runner.
+
+```
+$ yarn add -D start-server-and-test
+```
+
+I would also like you add this to the `scripts` section of the `package.json` file:
 
 ```json
-"cy:open": "yarn start --silent & cypress open"
+"start:silent": "PORT=3001 BROWSER=none react-scripts start",
+"cy:open": "cypress open",
+"cypress": "start-server-and-test start:silent http://localhost:3001/ cy:open"
 ```
 
 I also would like you to modify the `eslintConfig` section to look like this (we want to avoid warnings in our IDE that implies that the `cy` object is undefined):
@@ -111,6 +123,16 @@ test('renders learn react link', () => {
 });
 ```
 
-This **IS** a component test written using React Testing Library and executed with Jest.We will write this kind of tests for our components, allthough we will structure them a bit differently.
+This **IS** a component test written using React Testing Library and executed with Jest. We will write this kind of tests for our components, allthough we will structure them a bit differently.
 
 You can go ahead and run this test by issuing the `yarn test` command in your terminal.
+
+For a better structure (this is highly opinionated, of course), please create a folder in `src` and neme it `specs`. Now, turn attention to your `scripts` section in the `package.json` file and modify `test` to the following:
+
+```json
+"test": "react-scripts test specs",
+```
+
+Now, simply move the `App.test.js`. into the `specs` forder and execute the tests (run `yarn test` in your terminal).
+
+You should be able to get a green output... 
