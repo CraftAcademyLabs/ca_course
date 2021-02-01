@@ -91,15 +91,10 @@ I would also like you add this to the `scripts` section of the `package.json` fi
 "cypress": "start-server-and-test start:silent http://localhost:3001/ cy:open"
 ```
 
-I also would like you to modify the `eslintConfig` section to look like this (we want to avoid warnings in our IDE that implies that the `cy` object is undefined):
+Note: If you run into an error telling you that Cypress can't find the `babel-plugin-transform-es2015-modules-commonjs` module, make sure too insstall it:
 
-```json
-"eslintConfig": {
-  "extends": "react-app",
-  "globals": {
-    "cy": "cy"
-  }
-}
+```
+$ yarn add babel-plugin-transform-es2015-modules-commonjs
 ```
 
 Cypress comes with TypeScript type declarations included. Modern text editors can use these type declarations to show IntelliSense inside spec files. The simplest way to see IntelliSense when typing a Cypress command or assertion is to add a triple-slash directive to the head of your test file. This will turn the IntelliSense on a per file basis. paste the comment line below into your test (on top).
@@ -135,4 +130,4 @@ For a better structure (this is highly opinionated, of course), please create a 
 
 Now, simply move the `App.test.js`. into the `specs` forder and execute the tests (run `yarn test` in your terminal).
 
-You should be able to get a green output... 
+You should be able to get a green output...

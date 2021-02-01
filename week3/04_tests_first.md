@@ -18,7 +18,7 @@ Time to start cranking out the tests! Let's start with a simple one - can we vis
 
 ```javascript
 it('when user visits the page', () => {
-    cy.visit('http://localhost:3000')
+    cy.visit('http://localhost:3001')
     cy.get('section[name="header"]')
       .should('contain', 'Employee list')
 })
@@ -45,8 +45,9 @@ Let's modify our feature with the following code (inside the `it` block we added
 
 ```javascript
 cy.get('section[name="main"]').within(() => {
-  cy.get('li')
-    .should('have.length', 5)
+  cy.get('ul')
+    .children()
+    .should('have.length', 6)
 })
 ```
 
@@ -109,9 +110,10 @@ import EmployeeList from '../components/EmployeeList';
 beforeEach(() => {
   render(<EmployeeList />);
 });
+
 it('renders learn react link', () => {
   const lidtElement = screen.getByRole('list')
-  expect(lidstElement.children.length).toBe(5);
+  expect(lidstElement.children.length).toBe(6);
 });
 
 ```
@@ -129,13 +131,13 @@ export default class EmployeeList extends Component {
       { "id": 2, "first_name": "Janet", "last_name": "Weaver", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/josephstein/128.jpg" },
       { "id": 3, "first_name": "Emma", "last_name": "Wong", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/olegpogodaev/128.jpg" },
       { "id": 4, "first_name": "Eve", "last_name": "Holt", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/marcoramires/128.jpg" },
-      { "id": 5, "first_name": "Charles", "last_name": "Morris", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/stephenmoon/128.jpg" }
+      { "id": 5, "first_name": "Charles", "last_name": "Morris", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/stephenmoon/128.jpg" ,
+      { "id": 5, "first_name": "Fake", "last_name": "User", "avatar": "https://s3.amazonaws.com/uifaces/faces/twitter/stephenmoon/128.jpg" }
     ]
   }
 
   render() {
-    let employeeList
-    employeeList = this.state.employees.map(employee => {
+    let employeeList = this.state.employees.map(employee => {
       return (
         <li key={employee.id}>
           {`${employee.first_name} ${employee.last_name}`}
@@ -233,7 +235,6 @@ class EmployeeList extends Component {
     xhr.send()
   }
 
-
   render() {
     let employeeList
     employeeList = this.state.employees.map(employee => {
@@ -254,4 +255,4 @@ class EmployeeList extends Component {
 export default EmployeeList;
 ```
 
-The interesting thing to pay attention to is what happens with your acceptance test. Once the unit test is passing, you should shift your attention to the Cypress runner and examine the status. Last time we checked, the error was quite extensive, as we tried to use the `<EmployeeList>` component even before it was created. Now that it is in place, we can hopefully look at a green state of the acceptance test. The Acceptance - Unit Test approach has come full cycle.
+The interesting thing to pay attention to, is what happens with your acceptance test. Once the unit test is passing, you should shift your attention to the Cypress runner and examine the status. Last time we checked, the error was quite extensive, as we tried to use the `<EmployeeList>` component even before it was created. Now that it is in place, we can hopefully look at a green state of the acceptance test. The Acceptance - Unit Test approach has come full cycle.
