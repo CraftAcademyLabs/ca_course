@@ -1,6 +1,9 @@
 # Axios
 
-Axios is a library for making asyncronous network requests.
+Axios is a library for making asynchronous network requests. It is designed to handle http requests and responses.
+It's used more often than Fetch (see next section) because it has a larger set of features and it supports older browsers.
+
+Axios deals with responses using Promises, so it's streamlined and easy to use in our code. Axios uses methods like `get()` and `post()` that perform http `GET` and `POST` requests for retrieving or creating resources (there's also `put()` and `delete()` functions built into Axios).
 
 You need to install it in your project. Run:
 ```
@@ -39,7 +42,7 @@ const mockedResponse =
 //   responseText: JSON.stringify(mockedResponse)
 // };
 
-let axiosSpy =
+let axiosSpy
 beforeEach(() => {
   // jest.spyOn(window, 'XMLHttpRequest').mockImplementation(() => xhrMock);
   axiosSpy = jest.spyOn(axios, 'get').mockResolvedValue(mockedResponse)
