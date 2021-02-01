@@ -41,12 +41,8 @@ const mockedResponse =
 
 let axiosSpy =
 beforeEach(() => {
-  axiosSpy = jest.spyOn(axios, 'get').mockResolvedValue(mockedResponse)
-
-
-  // axios.get = jest.fn()
-  //   .mockImplementationOnce(() => Promise.resolve({ data: 'mock data' }));
   // jest.spyOn(window, 'XMLHttpRequest').mockImplementation(() => xhrMock);
+  axiosSpy = jest.spyOn(axios, 'get').mockResolvedValue(mockedResponse)
   render(<EmployeeList />);
   // xhrMock.onload()
 });
