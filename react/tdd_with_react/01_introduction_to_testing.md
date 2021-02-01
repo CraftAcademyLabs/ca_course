@@ -2,7 +2,7 @@
 
 Software testing aims at obtaining its intentions (both implicit and explicit), but it does have certain flaws. Still, testing can be done more efficiently if certain established principles are followed.
 
-Without proper testing, none of the application’s stakeholders can be sure whether it works as expected or not. 
+Without proper testing, none of the application’s stakeholders can be sure whether it works as expected or not.
 
 In spite of having constraints, software testing extends to control other verification techniques like static interpretation, model checking, and data. It is necessary to understand the goals, limitations, and principles of software testing so that its effectiveness can be increased.
 
@@ -37,23 +37,21 @@ Write the minimum amount of code for your test, in order to make the test pass.
 Improve the code quality of your code without affecting the pre-written and new test results (i.e, already passed tests).
 
 # Testing web applications
-Web applications typically share multiple properties with traditional software, i.e. software that runs as an application locally on a single computer. There is however some key differences and features exhibited by web applications, each of them contributing to different challenges when doing software testing. 
+Web applications typically share multiple properties with traditional software, i.e. software that runs as an application locally on a single computer. There is however some key differences and features exhibited by web applications, each of them contributing to different challenges when doing software testing.
 
 * It can be used by a large number of users from multiple geographical locations at the same time.
 * The execution environment is very complex and may include different hardware, web servers, Internet connections, operating systems and web browsers.
 * The software itself typically consists of heterogeneous components, which often uses several different technologies. For example it may have a server component that uses a back-end framework (like SpringBot, NodeJS or Ruby on Rails), an client components that uses HTML, CSS and Javascript or a front-end framework (like Angular, VUE, ReactJS, etc.).
 * Some application components, such as parts of the graphical interface, may be generated at run time depending on user-input and the current state of the application.
 
-Web applications run in a browser and should be tested in a browser. Tests executed in a browser are, however, slow. Mostly due to the level of testing, but also due to the overhead of executing scripts, rendering pages and loading images. Another downside is that it requires a full graphical desktop environment and thus may take some effort and resources to set up on a server. 
+Web applications run in a browser and should be tested in a browser. Tests executed in a browser are, however, slow. Mostly due to the level of testing, but also due to the overhead of executing scripts, rendering pages and loading images. Another downside is that it requires a full graphical desktop environment and thus may take some effort and resources to set up on a server.
 
 ## Headless browser
 
 One way of achieving higher test execution speed is to use a headless browser. A headless browser typically does not have any graphical interface and therefore does not require a graphical desktop environment in order to gain speed. It used to mean that you ware spinning up a web browser where most functionality has been stripped away. Nowdays, we can use Google's Chrome Driver - essentially bring all modern web platform features provided by Chromium and the Blink rendering engine to the command line.
 
-However, browser tests often tend to be bound to the HTML and the CSS classes of the tested page, since we need to locate elements in order to click buttons or fill in forms. This makes the tests fragile since changes in the user interface may break them, and if the same elements are used in
-many tests, we may need to go over large parts of our test suite.
+However, browser tests often tend to be bound to the HTML and the CSS classes of the tested page, since we need to locate elements in order to click buttons or fill in forms. This makes the tests fragile since changes in the user interface may break them, and if the same elements are used in many tests, we may need to go over large parts of our test suite.
 
 
 # Acceptance-Unit Test Cycle (AUT)
-Building applications for the web involves much more than just creating components/units. We want to extend the tests to include acceptance tests and employ a combination of Acceptance and Units tests in our development flow. We will be covering this protocol in more detail and take a closer look at the toolchain that can support an effective use of tests. 
-
+Building applications for the web involves much more than just creating components/units. We want to extend the tests to include acceptance tests and employ a combination of Acceptance and Units tests in our development flow. We will be covering this protocol in more detail and take a closer look at the toolchain that can support an effective use of tests.

@@ -57,7 +57,7 @@ Total price expected: $73.76
 
 # Solution
 
-Solution to the Checkout Challenge by one of CraftAScademy's formenr students, Amber.
+Solution to the Checkout Challenge by one of CraftAScademy's former students, Amber.
 
 ```ruby
 class Checkout
@@ -168,4 +168,3 @@ class Checkout
   end
 end
 ```
-|001           | Tie     | $9.25  |
