@@ -14,7 +14,7 @@ titlepage-rule-height: 2
 
 # Ruby basics - ATM Challenge
 
-Welcome to your first Ruby assignment. We will start the next step on your journey toward becoming a programmer/developer/coder by building a small piece of software that is suppposed to simulate an ATM (or as we call it in swedish: Bankomat)
+Welcome to your first programming asignment assignment. We will start the next step on your journey toward becoming a programmer/developer/coder by building a small piece of software that is suppposed to simulate an ATM (or as we call it in swedish: Bankomat)
 
 
 
