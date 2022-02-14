@@ -599,11 +599,14 @@ console.log(div.dataset.active)
 ```
 This will update the dataset object and our HTML which means our HTML will look like this.
 
+
+```html
 <div
   id="test-div"
   data-first-name="Jane"
   data-last-name="Doe"
 ></div>
+```
 
 
 
