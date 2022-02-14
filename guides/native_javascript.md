@@ -488,9 +488,123 @@ Some basic Paralax effect can be acheved using the following script mixed with s
 
 This way we can achieve very smooth animations. The `requestAnimationFrame()` method in a nutshell, allows you to execute code on the next available screen repaint, taking the guess work out of getting in sync with the user's browser and hardware readiness to make changes to the screen. When we call requestAnimationFrame() repeatedly to create an animation, we are assured that our animation code is called when the user's computer is actually ready to make changes to the screen each time, resulting in a smoother, more efficient animation.
 
-## Wrap up
+## Data Attributes
+To get started talking about data attributes we need to first have some HTML with data attributes. To create a data attribute in HTML we just need to add a custom attribute to our HTML element that starts with data-.
 
-In this guide, we defined the Document Object Model, accessed the `document` object, and used JavaScript and the console to update properties of the `document` object.
+```html
+<div
+  id="test-div"
+  data-first-name="John"
+  data-last-name="Doe"
+  data-active
+></div>
+```
+### Reading Data Attributes
+We now have a div with three custom data attributes. Now let's move over to JavaScript to see how we would access these data attributes.
 
-For more in-depth information on the Document Object Model, review [the documentation - (https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model)](https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model) on the Mozilla Developer Network.
+```js
+const div = document.getElementById("test-div")
+
+console.log(div.dataset)
+```
+
+The dataset property on an element will return a `DOMStringMap` which is essentially just an object that contains all the custom data attributes of an element. 
+
+Our dataset looks like this.
+
+```js
+{
+  active: ""
+  firstName: "John"
+  lastName: "Doe"
+}
+```
+
+You will notice two interesting things about this.
+
+First, all of our properties are converted from snake case, first-name, to camel case, firstName. This is because in JavaScript object properties are primarily written as camel case so this just makes working with the JavaScript object much easier.
+
+Second, the active property has a value of "". This is because any data attribute without a value is assumed to have an empty string as its value.
+
+Now in order to access an individual data attribute we just access it like a property on an object since dataset is just an object.
+
+```js
+const div = document.getElementById("test-div")
+
+console.log(div.dataset.firstName)
+// John
+console.log(div.dataset.lastName)
+// Doe
+```
+
+### Writing Data Attributes
+
+In order to create a new data attribute in JavaScript we just need to add a new property to the dataset object with a value.
+
+```js
+const div = document.getElementById("test-div")
+
+div.dataset.test = "Hi"
+console.log(div.dataset.test)
+// Hi
+```
+
+This will update the dataset object and our HTML which means our HTML will look like this.
+
+```html
+<div
+  id="test-div"
+  data-test="Hi"
+  data-first-name="Kyle"
+  data-last-name="Cook"
+  data-active
+></div>
+```
+
+### Updating Data Attributes
+
+Let's say that we now want to update the value of a data attribute. This is incredibly easy since it works just like a normal object. We just need to set the value of our dataset property to the new value and it will update the HTML for us.
+
+```js
+const div = document.getElementById("test-div")
+
+div.dataset.firstName = "Jane"
+console.log(div.dataset.firstName)
+// Jena
+```
+
+This will update the dataset object and our HTML which means our HTML will look like this.
+
+```html
+<div
+  id="test-div"
+  data-first-name="Jane"
+  data-last-name="Doe"
+  data-active
+></div>
+```
+
+### Delete Data Attributes
+
+Deleting data attributes is a bit different since we need to actually remove the property from our object. This is because if we try setting the value to undefined or null the dataset object will still have a reference to that property with that value of undefined or null and will set the value of our HTML data attribute to the string null or undefined.
+
+To delete an element we need to use the delete keyword to remove it completely from the object.
+
+```js
+const div = document.getElementById("test-div")
+
+delete div.dataset.active
+console.log(div.dataset.active)
+// undefined
+```
+This will update the dataset object and our HTML which means our HTML will look like this.
+
+<div
+  id="test-div"
+  data-first-name="Jane"
+  data-last-name="Doe"
+></div>
+
+
+
 
